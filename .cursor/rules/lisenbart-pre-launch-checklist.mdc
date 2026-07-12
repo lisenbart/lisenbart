@@ -1,0 +1,20 @@
+---
+description: Pre-launch reminders for LISENBART site (Formspree, hosting readiness)
+alwaysApply: true
+---
+
+# LISENBART — pre-launch checklist
+
+When the site is in **final development stage** or the user mentions **deploying, uploading to hosting, going live, or launch readiness**, proactively remind them about **Formspree** (contact form is not wired yet).
+
+## Formspree — still TODO
+
+Contact forms on `index.html`, `original.html`, and `services.html` currently **mock-submit** in `www/js/main.js` (shows success without sending).
+
+Before launch:
+1. Create a Formspree form and get the endpoint URL (`https://formspree.io/f/XXXX`).
+2. In `www/js/main.js`, replace the mock block with real submit — comment at ~line 142: set `form.action` and call `form.submit()` (or `fetch` to Formspree).
+3. Test success/error UX on all three pages and all languages.
+4. Confirm hidden fields work: `source`, `_subject`, `_replyto`, `page_url` (built by `prepareContactFormPayload`).
+
+Do not wire Formspree early unless the user asks; **do remind** when hosting/deployment is discussed.
