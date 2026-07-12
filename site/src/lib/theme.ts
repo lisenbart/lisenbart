@@ -1,6 +1,6 @@
 export type Theme = "dark" | "light";
 
-export const THEME_STORAGE_KEY = "glowl-theme";
+export const THEME_STORAGE_KEY = "lisenbart-theme";
 
 export function getStoredTheme(): Theme {
   if (typeof window === "undefined") return "dark";

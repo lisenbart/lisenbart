@@ -1,10 +1,11 @@
-export interface SelectedWorkItem {
+export interface CapabilityItem {
   id: string;
   title: string;
   image: string;
 }
 
-export const selectedWork: SelectedWorkItem[] = [
+/** Production capabilities — titles/images editable later */
+export const capabilities: CapabilityItem[] = [
   {
     id: "commercial",
     title: "Commercial",

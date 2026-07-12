@@ -1,56 +1,39 @@
-# GLOWL WORKS
+# LISENBART
 
-Conversion-focused one-page site for **GLOWL WORKS** — commercial, gaming and cinematic production.
+One-page site for **LISENBART** — general producer for film, animation and AI content.
 
 ## Local development
 
+**Do not double-click `index.html`** — it will show a blank page. This is a Vite + React app and needs a dev server (same as Glowl).
+
 ```bash
+cd site
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173)
+Or double-click **`Dev LISENBART.command`** on the Desktop or in the project folder.
 
-## Deploy (GitHub Pages)
-
-Pushes to `main` deploy automatically via GitHub Actions.
-
-Live URL: `https://lisenbart.github.io/glowl/`
-
-To enable deploy, open the repo on GitHub → **Settings** → **Pages** → set **Source** to branch **`gh-pages`** / **`/ (root)`**.
+- Local: http://localhost:5173
+- Phone (same Wi‑Fi): use the Network URL from the terminal, e.g. http://192.168.0.43:5173
 
 ## Production build
 
 ```bash
 npm run build
-npm run preview
+npm run preview -- --host
 ```
 
-## Assets
+## Contact form
 
-| Path | Purpose |
-|------|---------|
-| `public/images/header_01.png` | Hero background (from `header_01.png`) |
-| `public/logos/glowl-logo.png` | Header / footer logo |
-| `public/images/reels/` | Reel poster images |
-| `public/videos/commercial.mp4` | Commercial reel |
-| `public/videos/gaming.mp4` | Gaming reel |
-| `public/videos/cinema.mp4` | Film reel |
+**Default (no Formspree):** `public/contact.php` sends to **info@lisenbart.com** via PHP `mail()` on Hosting Ukraine.
 
-Update paths in `src/data/reels.ts`.
+After `npm run build`, upload **`dist/contact.php`** together with the rest of `dist/`.
 
-## Contact form (Formspree / Resend)
+Local dev mocks submissions in the browser console (PHP is not available on Vite).
 
-1. Open `src/data/site.ts`
-2. Set `contactEndpoint` to your Formspree form URL, e.g. `https://formspree.io/f/xxxxx`
-3. Submissions include file upload support via `FormData`
-
-Until configured, submissions log to the browser console and show success in dev.
+Optional: set `VITE_FORMSPREE_FORM_ID` or `VITE_CONTACT_ENDPOINT` in `.env.local` to override.
 
 ## Stack
 
-- React 18 + TypeScript
-- Vite 6
-- Tailwind CSS 4
-- Framer Motion
-- Lucide icons
+React 18 · TypeScript · Vite 6 · Tailwind CSS 4 · Framer Motion

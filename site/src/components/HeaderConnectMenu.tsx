@@ -95,7 +95,7 @@ export default function HeaderConnectMenu() {
             <motion.div
               id={panelId}
               role="menu"
-              aria-label="Connect with GLOWL"
+              aria-label="Connect with LISENBART"
               className="header-connect-panel"
               {...panelMotion}
             >

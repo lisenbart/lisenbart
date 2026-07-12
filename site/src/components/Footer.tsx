@@ -2,16 +2,17 @@ import { site, scrollToSection, sectionIds } from "@/data/site";
 import SocialIconLinks from "./SocialIconLinks";
 
 const navLinks = [
-  { id: sectionIds.work, label: "Work" },
   { id: sectionIds.services, label: "Services" },
-  { id: sectionIds.process, label: "Process" },
+  { id: sectionIds.about, label: "Experience" },
   { id: sectionIds.contact, label: "Contact" },
 ];
 
 const socialLinks = [
   { label: "Email", href: `mailto:${site.email}` },
-  { label: "Vimeo", href: site.vimeo, external: true },
-  { label: "YouTube", href: site.youtube, external: true },
+  { label: "WhatsApp", href: site.social.whatsapp.href, external: true as const },
+  { label: "LinkedIn", href: site.linkedin, external: true as const },
+  { label: "Facebook", href: site.social.facebook.href, external: true as const },
+  { label: "YouTube", href: site.youtube, external: true as const },
 ];
 
 function FooterLink({ id, label }: { id: string; label: string }) {
@@ -40,7 +41,7 @@ export default function Footer() {
                 <a
                   href="#top"
                   className="inline-flex min-w-0 flex-col gap-1 md:gap-2"
-                  aria-label="GLOWL home"
+                  aria-label={`${site.name} home`}
                   onClick={(e) => {
                     e.preventDefault();
                     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -50,7 +51,7 @@ export default function Footer() {
                     className="font-display font-extralight uppercase leading-none tracking-[0.1em] text-text-primary"
                     style={{ fontSize: "clamp(1.35rem, 3vw, 2rem)" }}
                   >
-                    GLOWL
+                    {site.name}
                   </span>
                   <span
                     className="font-sans uppercase leading-snug text-text-tertiary"
@@ -62,15 +63,14 @@ export default function Footer() {
                 </a>
                 <SocialIconLinks className="mt-4 md:mt-5" size="md" />
                 <p className="mt-3 hidden max-w-sm text-sm font-light leading-relaxed text-text-secondary md:block">
-                  Commercials, gaming creatives and cinematic content — produced through an expert-led process
-                  supported by AI.
+                  {site.oneLiner}
                 </p>
                 <button
                   type="button"
                   onClick={() => scrollToSection(sectionIds.contact)}
-                  className="gradient-button btn-on-accent mt-4 hidden rounded-full px-5 py-2.5 text-xs font-medium tracking-wide sm:inline-flex md:mt-6 md:text-sm"
+                  className="gradient-button-emerald btn-on-accent mt-4 hidden rounded-full px-5 py-2.5 text-xs font-medium tracking-wide sm:inline-flex md:mt-6 md:text-sm"
                 >
-                  Get a Project Estimate
+                  {site.ctaLabel}
                 </button>
               </div>
 
@@ -94,7 +94,7 @@ export default function Footer() {
                         <a
                           href={link.href}
                           className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
-                          {...(link.external
+                          {...("external" in link && link.external
                             ? { target: "_blank", rel: "noopener noreferrer" }
                             : {})}
                         >

@@ -3,37 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GLOWL — Cinematic Production for Brands, Games and New Worlds</title>
+    <title>LISENBART — General Producer for Film, Animation and AI Content</title>
     <meta
       name="description"
-      content="GLOWL creates commercials, brand films, game trailers, cinematics and AI-assisted visual production for brands, agencies, game teams and producers."
+      content="General producer for film, animation and AI content. One lead, the right team, delivery end to end."
     />
-    <link rel="canonical" href="https://glowlworks.com" />
+    <link rel="canonical" href="https://www.lisenbart.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="GLOWL — Cinematic Production for Brands, Games and New Worlds" />
+    <meta property="og:title" content="LISENBART — General Producer for Film, Animation and AI Content" />
     <meta
       property="og:description"
-      content="GLOWL creates commercials, brand films, game trailers, cinematics and AI-assisted visual production for brands, agencies, game teams and producers."
+      content="General producer for film, animation and AI content. One lead, the right team, delivery end to end."
     />
-    <meta property="og:image" content="%BASE_URL%images/header_02.png" />
+    <meta property="og:url" content="https://www.lisenbart.com" />
+    <meta property="og:image" content="%BASE_URL%images/header_01.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="image" href="%BASE_URL%images/header_02.png" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "GLOWL WORKS",
-        "url": "https://glowlworks.com",
-        "email": "hello@glowlworks.com",
-        "description": "Cinematic production studio for commercials, games and new worlds.",
-        "areaServed": ["Canada", "Ukraine", "Poland"],
-        "knowsAbout": ["Commercials", "Brand Films", "Game Trailers", "Cinematics", "AI-assisted Production"]
+        "name": "LISENBART",
+        "url": "https://www.lisenbart.com",
+        "email": "info@lisenbart.com",
+        "description": "General producer for film, animation and AI content — one lead, the right team, delivery end to end.",
+        "areaServed": ["Ukraine", "Worldwide"],
+        "knowsAbout": ["Film Production", "Animation", "Game Content", "AI-assisted Production"]
       }
     </script>
     <script>
       (function () {
-        var t = localStorage.getItem("glowl-theme");
+        var t = localStorage.getItem("lisenbart-theme");
         document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
       })();
     </script>
@@ -54,6 +54,14 @@
     </style>
   </head>
   <body>
+    <!-- Netlify Forms: static hook for build-time detection (React form submits via JS) -->
+    <form name="contact" netlify netlify-honeypot="website" hidden>
+      <input type="email" name="email" />
+      <input type="text" name="name" />
+      <input type="text" name="projectType" />
+      <textarea name="message"></textarea>
+      <input type="text" name="website" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

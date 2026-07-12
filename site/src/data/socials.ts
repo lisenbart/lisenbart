@@ -1,6 +1,6 @@
 import { site } from "@/data/site";
 
-export type SocialNetworkId = "linkedin" | "whatsapp" | "facebook" | "instagram" | "tiktok";
+export type SocialNetworkId = "linkedin" | "whatsapp" | "facebook" | "youtube";
 
 export interface SocialChannel {
   href: string;
@@ -19,11 +19,10 @@ export interface SocialNetwork {
 }
 
 export const socialNetworks: SocialNetwork[] = [
-  { id: "linkedin", label: "LinkedIn", ...socialChannels.linkedin },
   { id: "whatsapp", label: "WhatsApp", ...socialChannels.whatsapp },
+  { id: "linkedin", label: "LinkedIn", ...socialChannels.linkedin },
   { id: "facebook", label: "Facebook", ...socialChannels.facebook },
-  { id: "instagram", label: "Instagram", ...socialChannels.instagram },
-  { id: "tiktok", label: "TikTok", ...socialChannels.tiktok },
+  { id: "youtube", label: "YouTube", ...socialChannels.youtube },
 ];
 
 export function isSocialChannelActive(id: SocialNetworkId): boolean {

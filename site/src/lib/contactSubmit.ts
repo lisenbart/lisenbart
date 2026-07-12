@@ -1,13 +1,16 @@
+import {
+  contactEndpoint,
+  contactHandler,
+  isContactFormLive,
+  NETLIFY_FORM_NAME,
+} from "@/lib/contactConfig";
 import { site } from "@/data/site";
 
 export interface ContactPayload {
   name: string;
   email: string;
-  company: string;
   projectType: string;
   message: string;
-  deadline?: string;
-  file?: File | null;
   honeypot?: string;
 }
 
@@ -25,28 +28,78 @@ export function validateContact(data: ContactPayload): Record<string, string> {
     errors.form = "Submission blocked.";
     return errors;
   }
-  if (!data.name.trim()) errors.name = "Name is required";
-  if (!data.email.trim()) errors.email = "Work email is required";
+  if (!data.email.trim()) errors.email = "Email is required";
   else if (!EMAIL_RE.test(data.email)) errors.email = "Enter a valid email";
-  if (!data.projectType) errors.projectType = "Select a project type";
-  if (!data.message.trim()) errors.message = "Project description is required";
-
-  if (data.file) {
-    if (data.file.size > site.maxUploadBytes) {
-      errors.file = `File must be under ${Math.round(site.maxUploadBytes / 1024 / 1024)}MB`;
-    } else {
-      const ext = data.file.name.split(".").pop()?.toLowerCase() ?? "";
-      const allowedExt = ["pdf", "doc", "docx", "png", "jpg", "jpeg", "webp"];
-      const typeOk = site.acceptedFileTypes.includes(
-        data.file.type as (typeof site.acceptedFileTypes)[number]
-      );
-      if (!typeOk && !allowedExt.includes(ext)) {
-        errors.file = "Unsupported file type";
-      }
-    }
-  }
 
   return errors;
+}
+
+function buildSubject(data: ContactPayload): string {
+  const type = data.projectType.trim();
+  return type ? `LISENBART — ${type}` : "LISENBART — New project inquiry";
+}
+
+function formatMessageBody(data: ContactPayload): string {
+  const lines = [
+    data.message.trim() || "(no message)",
+    "",
+    "---",
+    data.name.trim() ? `Name: ${data.name.trim()}` : "Name: (not provided)",
+    `Email: ${data.email.trim()}`,
+    data.projectType ? `Project type: ${data.projectType}` : "Project type: (not provided)",
+  ];
+  return lines.join("\n");
+}
+
+function encodeUrlBody(fields: Record<string, string>): string {
+  return Object.entries(fields)
+    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+    .join("&");
+}
+
+async function parseErrorResponse(res: Response): Promise<string> {
+  try {
+    const json = (await res.json()) as {
+      message?: string;
+      error?: string;
+      errors?: { message: string }[];
+    };
+    if (json.message) return json.message;
+    if (json.errors?.[0]?.message) return json.errors[0].message;
+    if (json.error) return json.error;
+  } catch {
+    /* ignore */
+  }
+  return "Could not send your message. Please try again or email us directly.";
+}
+
+function buildPhpFormBody(data: ContactPayload): FormData {
+  const body = new FormData();
+  body.append("email", data.email.trim());
+  if (data.name.trim()) body.append("name", data.name.trim());
+  if (data.projectType) body.append("projectType", data.projectType);
+  body.append("message", formatMessageBody(data));
+  if (data.honeypot?.trim()) body.append("website", data.honeypot.trim());
+  return body;
+}
+
+function buildFormspreeBody(data: ContactPayload): FormData {
+  const body = buildPhpFormBody(data);
+  body.append("_replyto", data.email.trim());
+  body.append("_subject", buildSubject(data));
+  if (data.honeypot?.trim()) body.append("_gotcha", data.honeypot.trim());
+  return body;
+}
+
+function buildNetlifyBody(data: ContactPayload): string {
+  return encodeUrlBody({
+    "form-name": NETLIFY_FORM_NAME,
+    email: data.email.trim(),
+    name: data.name.trim(),
+    projectType: data.projectType,
+    message: formatMessageBody(data),
+    website: data.honeypot?.trim() ?? "",
+  });
 }
 
 export async function submitContact(data: ContactPayload): Promise<ContactResult> {
@@ -55,33 +108,59 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
     return { success: false, message: Object.values(errors)[0] };
   }
 
-  if (site.contactEndpoint) {
-    const body = new FormData();
-    body.append("name", data.name.trim());
-    body.append("email", data.email.trim());
-    body.append("company", data.company.trim());
-    body.append("projectType", data.projectType);
-    body.append("message", data.message.trim());
-    if (data.deadline?.trim()) body.append("deadline", data.deadline.trim());
-    if (data.file) body.append("file", data.file);
-
-    const res = await fetch(site.contactEndpoint, { method: "POST", body });
-    if (!res.ok) {
-      return { success: false, message: "Could not send your request. Please try again." };
-    }
-    return { success: true, message: "Thank you. We've received your request and will review it shortly." };
+  if (!isContactFormLive) {
+    console.info("[LISENBART] Contact (dev mock):", {
+      name: data.name,
+      email: data.email,
+      projectType: data.projectType,
+      message: data.message,
+    });
+    await new Promise((r) => setTimeout(r, 600));
+    return {
+      success: true,
+      message: "Thank you. I've received your message and will get back to you shortly.",
+    };
   }
 
-  // Dev / placeholder — wire Formspree or Resend via site.contactEndpoint
-  console.info("[GLOWL WORKS] Estimate request:", {
-    name: data.name,
-    email: data.email,
-    company: data.company,
-    projectType: data.projectType,
-    message: data.message,
-    deadline: data.deadline,
-    file: data.file?.name,
-  });
-  await new Promise((r) => setTimeout(r, 600));
-  return { success: true, message: "Thank you. We've received your request and will review it shortly." };
+  let res: Response;
+
+  if (contactHandler === "netlify") {
+    res = await fetch(contactEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: buildNetlifyBody(data),
+    });
+  } else if (contactHandler === "remote" && contactEndpoint.includes("formspree.io")) {
+    res = await fetch(contactEndpoint, {
+      method: "POST",
+      body: buildFormspreeBody(data),
+      headers: { Accept: "application/json" },
+    });
+  } else {
+    res = await fetch(contactEndpoint, {
+      method: "POST",
+      body: buildPhpFormBody(data),
+      headers: { Accept: "application/json" },
+    });
+  }
+
+  if (!res.ok) {
+    return { success: false, message: await parseErrorResponse(res) };
+  }
+
+  if (contactHandler === "php") {
+    try {
+      const json = (await res.json()) as { success?: boolean; message?: string };
+      if (json.success === false) {
+        return { success: false, message: json.message ?? "Could not send your message." };
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
+  return {
+    success: true,
+    message: "Thank you. I've received your message and will get back to you shortly.",
+  };
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { sectionIds, scrollToSection } from "@/data/site";
+import { sectionIds, scrollToSection, site } from "@/data/site";
 
 export default function MobileEstimateCTA() {
   const [visible, setVisible] = useState(false);
@@ -25,7 +25,7 @@ export default function MobileEstimateCTA() {
         onClick={() => scrollToSection(sectionIds.contact)}
         className="gradient-button btn-on-accent w-full rounded-full py-3 text-sm font-medium"
       >
-        Get an Estimate
+        {site.ctaLabel}
       </button>
     </div>
   );

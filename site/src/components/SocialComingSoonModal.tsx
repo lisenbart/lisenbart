@@ -66,7 +66,7 @@ export default function SocialComingSoonModal({ channelLabel, onClose }: SocialC
           <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
             <a
               href={`mailto:${site.email}`}
-              className="gradient-button btn-on-accent inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
+              className="gradient-button-emerald btn-on-accent inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
             >
               <Send size={16} strokeWidth={1.75} aria-hidden="true" />
               {copy.cta}

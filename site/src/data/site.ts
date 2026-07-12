@@ -1,82 +1,67 @@
 import { publicAsset } from "@/lib/publicAsset";
 
 export const site = {
-  name: "GLOWL WORKS",
-  brand: "GLOWL",
+  name: "LISENBART",
+  brand: "LISENBART",
   tagline: {
-    line1: "Creative partner for",
-    line2: "brands, games and new worlds",
+    line1: "General producer for",
+    line2: "film, animation and AI content",
   },
+  oneLiner:
+    "General producer for film, animation and AI content — one lead, the right team, delivery end to end.",
   hero: {
-    headlineLine1: "Films, games and brand worlds",
-    headlineLine2BeforeAccent: "brought to ",
-    headlineAccent: "light",
+    headlineLine2BeforeAccent: "The right team. ",
+    headlineAccent: "End to end",
     paragraph:
-      "Commercials, game trailers and cinematic content shaped by experienced artists, directors and producers — with AI used where it helps the work move faster without losing the eye.",
-    audienceLine: "For brands, agencies, game teams, producers and entertainment projects.",
+      "General producer for film, animation and AI content — the right team, delivery end to end.",
   },
-  aiPositioningLine: "AI helps us move faster. Directors, artists and producers keep the work sharp.",
-  email: "hello@glowlworks.com",
-  linkedin: "https://linkedin.com/company/glowlworks",
-  vimeo: "https://vimeo.com/glowlworks",
-  youtube: "https://youtube.com/@glowlworks",
+  capabilitiesLine:
+    "Film, animation, game and AI content — scoped and delivered end to end.",
+  ctaLabel: "Discuss a project",
+  email: "info@lisenbart.com",
+  linkedin: "https://www.linkedin.com/in/lisenbart/",
+  vimeo: "https://vimeo.com/849899875",
+  youtube: "https://www.youtube.com/@lisenbartProduction",
   social: {
     linkedin: {
-      href: "https://linkedin.com/company/glowlworks",
+      href: "https://www.linkedin.com/in/lisenbart/",
       active: true,
     },
     whatsapp: {
-      href: "",
-      active: false,
+      href: "https://wa.me/380676302252",
+      active: true,
     },
     facebook: {
-      href: "",
-      active: false,
+      href: "https://www.facebook.com/dmytro.linsenbarth",
+      active: true,
     },
-    instagram: {
-      href: "",
-      active: false,
-    },
-    tiktok: {
-      href: "",
-      active: false,
+    youtube: {
+      href: "https://www.youtube.com/@lisenbartProduction",
+      active: true,
     },
   },
   socialComingSoon: {
     title: "Almost there",
-    body: "Sorry — this channel is still in the works. For now, drop us a line and we'll get back to you.",
-    cta: "Email Us",
+    body: "This channel is still in the works. For now, drop me a line and I'll get back to you.",
+    cta: "Email Me",
     closeLabel: "Close",
   },
-  locations: "Warsaw · Ukraine · Canada",
-  canonical: "https://glowlworks.com",
+  locations: "Ukraine · Remote worldwide",
+  canonical: "https://www.lisenbart.com",
   meta: {
-    title: "GLOWL — Cinematic Production for Brands, Games and New Worlds",
+    title: "LISENBART — General Producer for Film, Animation and AI Content",
     description:
-      "GLOWL creates commercials, brand films, game trailers, cinematics and AI-assisted visual production for brands, agencies, game teams and producers.",
+      "General producer for film, animation and AI content. One lead, the right team, delivery end to end.",
     ogImage: publicAsset("/images/header_01.png"),
   },
-  organizationDescription: "Cinematic production studio for commercials, games and new worlds.",
-  /** Set to your Formspree endpoint or backend URL for live submissions */
-  contactEndpoint: "",
-  maxUploadBytes: 10 * 1024 * 1024,
-  acceptedFileTypes: [
-    "application/pdf",
-    "application/msword",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "image/png",
-    "image/jpeg",
-    "image/webp",
-  ] as const,
-  acceptedFileExtensions: ".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp",
+  organizationDescription:
+    "General producer for film, animation and AI content — one lead, the right team, delivery end to end.",
 };
 
 export const sectionIds = {
-  work: "work",
   services: "services",
-  process: "process",
+  about: "about",
   contact: "contact",
-  estimate: "estimate",
 } as const;
 
 export function scrollToSection(id: string, onDone?: () => void) {

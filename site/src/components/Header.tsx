@@ -3,14 +3,12 @@ import { Menu, Moon, Send, Sun, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { sectionIds, scrollToSection, site } from "@/data/site";
 import { useTheme } from "@/hooks/useTheme";
-import { publicAsset } from "@/lib/publicAsset";
 import HeaderConnectMenu from "./HeaderConnectMenu";
 import SocialIconLinks from "./SocialIconLinks";
 
 const navLinks = [
-  { id: sectionIds.work, label: "Work" },
   { id: sectionIds.services, label: "Services" },
-  { id: sectionIds.process, label: "Process" },
+  { id: sectionIds.about, label: "Experience" },
   { id: sectionIds.contact, label: "Contact" },
 ];
 
@@ -58,10 +56,6 @@ export default function Header() {
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
-  const logoSrc =
-    theme === "light"
-      ? publicAsset("/logos/glowl-logo-black.png")
-      : publicAsset("/logos/glowl-logo-white.png");
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 w-full max-w-full overflow-x-clip">
@@ -82,19 +76,18 @@ export default function Header() {
             <a
               href="#top"
               className="relative z-10 flex min-w-0 shrink items-center gap-2.5 md:gap-4"
-              aria-label="GLOWL home"
+              aria-label={`${site.brand} home`}
               onClick={(e) => {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
             >
-              <img
-                src={logoSrc}
-                alt="GLOWL"
-                className="h-[2.65rem] w-auto max-w-[6.75rem] shrink-0 object-contain object-left md:h-[2.2rem] md:max-w-none"
-                width={2100}
-                height={795}
-              />
+              <span
+                className="font-display font-extralight uppercase leading-none tracking-[0.12em] text-text-primary"
+                style={{ fontSize: "clamp(1.1rem, 2.8vw, 1.45rem)" }}
+              >
+                {site.brand}
+              </span>
               <span
                 className="site-header-tagline font-sans hidden flex-col justify-center gap-px leading-none uppercase sm:flex"
                 style={{
@@ -123,15 +116,22 @@ export default function Header() {
 
           <div className="ml-auto flex shrink-0 items-center gap-1.5 md:gap-2">
             <div className="header-desktop-social hidden min-w-0 items-center gap-1.5 lg:flex lg:gap-2">
-              <SocialIconLinks className="min-w-0" />
               <a
                 href={`mailto:${site.email}`}
                 className="theme-toggle shrink-0"
-                aria-label={`Email us at ${site.email}`}
+                aria-label={`Email ${site.email}`}
               >
                 <Send size={18} strokeWidth={1.75} aria-hidden="true" />
               </a>
+              <SocialIconLinks className="min-w-0" />
             </div>
+            <button
+              type="button"
+              onClick={() => scrollToSection(sectionIds.contact)}
+              className="gradient-button-emerald btn-on-accent hidden rounded-full px-4 py-2 text-[11px] font-medium uppercase tracking-[0.1em] lg:inline-flex xl:px-5 xl:text-xs"
+            >
+              {site.ctaLabel}
+            </button>
             <HeaderConnectMenu />
             <button
               type="button"
@@ -165,6 +165,18 @@ export default function Header() {
                     />
                   </li>
                 ))}
+                <li className="pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      closeMenu();
+                      scrollToSection(sectionIds.contact);
+                    }}
+                    className="gradient-button-emerald btn-on-accent w-full rounded-full py-3 text-sm font-medium"
+                  >
+                    {site.ctaLabel}
+                  </button>
+                </li>
               </ul>
             </motion.div>
           )}
