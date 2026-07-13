@@ -719,3 +719,46 @@
   border-color: var(--form-spinner-border);
   border-top-color: var(--form-spinner-top);
 }
+
+[data-theme="light"] .capability-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(18, 18, 20, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 10px 24px rgba(18, 18, 20, 0.08),
+    0 4px 12px rgba(18, 18, 20, 0.05);
+}
+
+[data-theme="light"] .capability-card::before {
+  display: none;
+}
+
+[data-theme="light"] .capability-card:hover {
+  border-color: rgba(0, 136, 184, 0.22);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 16px 36px rgba(18, 18, 20, 0.1),
+    0 6px 16px rgba(18, 18, 20, 0.06);
+}
+
+[data-theme="light"] .capability-body {
+  background: rgba(255, 255, 255, 0.72);
+  border-top-color: rgba(18, 18, 20, 0.08);
+}
+
+[data-theme="light"] .capability-format-tag {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(18, 18, 20, 0.1);
+}
+
+[data-theme="light"] .capability-showreel-modal {
+  border-color: rgba(18, 18, 20, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 18px 40px rgba(18, 18, 20, 0.1),
+    0 0 28px color-mix(in srgb, var(--cyan) 10%, transparent);
+}
+
+[data-theme="light"] .capability-showreel-modal__glow {
+  opacity: 0.45;
+}

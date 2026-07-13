@@ -67,7 +67,7 @@ export default function ContactForm() {
         <div className="mb-8 text-center md:mb-10">
           <h2 className="section-heading">Contact</h2>
           <p className="mx-auto mt-3 max-w-md text-[0.9375rem] font-light leading-relaxed text-text-secondary md:text-base">
-            Tell me about your project — I'll respond within 24 hours.
+            Tell us about your project — you'll hear back within 24 hours.
           </p>
           {!isContactFormLive && import.meta.env.DEV && (
             <p className="mx-auto mt-2 max-w-md text-xs font-light text-text-tertiary">
@@ -82,7 +82,7 @@ export default function ContactForm() {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 text-center" role="status">
                 <CheckCircle2 size={44} className="mx-auto link-accent" />
                 <p className="mt-4 text-base font-light text-text-primary">
-                  Thank you. I've received your message and will get back to you shortly.
+                  Thank you. We've received your message and you'll hear back shortly.
                 </p>
                 <button type="button" onClick={() => setStatus("idle")} className="mt-4 text-sm link-accent hover:underline">
                   Send another message
@@ -157,6 +157,11 @@ export default function ContactForm() {
                     </select>
                     <ChevronDown size={14} className="inquiry-select-chevron pointer-events-none absolute right-0 top-1/2 -translate-y-1/2" aria-hidden="true" />
                   </div>
+                  {form.projectType === "AI-Assisted Production" && (
+                    <p className="inquiry-helper mt-2 text-xs font-light leading-relaxed text-text-tertiary">
+                      We use AI as a production tool, not a replacement for craft.
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -197,7 +202,7 @@ export default function ContactForm() {
                     </>
                   ) : (
                     <>
-                      {site.ctaLabel}
+                      {site.contactSubmitLabel}
                       <ChevronRight size={16} />
                     </>
                   )}

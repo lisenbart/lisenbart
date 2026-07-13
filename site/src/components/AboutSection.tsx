@@ -23,12 +23,12 @@ const experienceStats: ExperienceStat[] = [
       { text: "15 awards", tone: "accent", size: "medium" },
       { text: "45 selections", tone: "primary", size: "medium" },
     ],
-    subtext: "international festival recognition",
+    subtext: "international festival recognition — incl. Ottawa, Animafest Zagreb, Krok",
   },
   {
     id: "timeline",
     icon: Calendar,
-    lines: [{ text: "35 years", tone: "accent", size: "hero" }],
+    lines: [{ text: "20 years", tone: "accent", size: "hero" }],
     subtext: "in animation",
   },
   {
@@ -83,6 +83,10 @@ export default function AboutSection() {
           <div className="how-ios-card-inner how-experience-inner">
             <div className="how-experience-header">
               <h2 className="how-col-title how-col-title-experience">Experience</h2>
+              <p className="how-experience-identity">
+                Dmytro Lisenbart — producer, named lead and the trusted point of contact for clients across
+                three continents.
+              </p>
               <p className="how-experience-lead">
                 Proven production experience, built across commercial and cinematic work.
               </p>

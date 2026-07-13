@@ -1,15 +1,29 @@
 import { useEffect, useRef, useState } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import { Maximize2, Minimize2, Pause, Play, Send, Volume2, VolumeX } from "lucide-react";
+import { site } from "@/data/site";
 
-const VIMEO_SRC =
-  "https://player.vimeo.com/video/849899875?autoplay=1&loop=1&muted=1&playsinline=1&title=0&byline=0&portrait=0&controls=0&autopause=0&background=1";
+const VIMEO_ID = "849899875";
+const VIMEO_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=0&loop=1&muted=0&playsinline=1&title=0&byline=0&portrait=0&controls=0&autopause=0&vimeo_logo=0&badge=0&pip=0&dnt=1`;
+const SHOWREEL_SHARE_URL = site.vimeo;
+
+type VimeoPlayer = {
+  play: () => Promise<void>;
+  pause: () => Promise<void>;
+  setVolume: (v: number) => Promise<void>;
+  setMuted: (m: boolean) => Promise<void>;
+  getMuted: () => Promise<boolean>;
+  getFullscreen: () => Promise<boolean>;
+  requestFullscreen: () => Promise<void>;
+  exitFullscreen: () => Promise<void>;
+  on: (event: string, callback: (data?: { fullscreen?: boolean }) => void) => void;
+};
 
 function loadVimeoPlayerApi(): Promise<void> {
   if ((window as Window & { Vimeo?: { Player: unknown } }).Vimeo?.Player) {
     return Promise.resolve();
   }
   return new Promise((resolve, reject) => {
-    const existing = document.querySelector('script[data-vimeo-player]');
+    const existing = document.querySelector("script[data-vimeo-player]");
     if (existing) {
       existing.addEventListener("load", () => resolve(), { once: true });
       existing.addEventListener("error", () => reject(new Error("Vimeo API failed")), { once: true });
@@ -25,53 +39,195 @@ function loadVimeoPlayerApi(): Promise<void> {
   });
 }
 
+function canUseWebShare(data: ShareData) {
+  if (typeof navigator.share !== "function") return false;
+  if (typeof navigator.canShare === "function") {
+    return navigator.canShare(data);
+  }
+  return true;
+}
+
 export default function HeroShowreel() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<VimeoPlayer | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
-  const playerRef = useRef<{
-    setVolume: (v: number) => Promise<void>;
-    setMuted: (m: boolean) => Promise<void>;
-    play: () => Promise<void>;
-  } | null>(null);
+  const [playerReady, setPlayerReady] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    void loadVimeoPlayerApi()
-      .then(() => {
-        if (cancelled || !iframeRef.current) return;
-        const Vimeo = (
-          window as Window & {
-            Vimeo: {
-              Player: new (el: HTMLIFrameElement) => typeof playerRef.current;
-            };
-          }
-        ).Vimeo;
-        playerRef.current = new Vimeo.Player(iframeRef.current);
-      })
-      .catch(() => {});
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const initPlayer = () => {
+      setPlayerReady(false);
+      playerRef.current = null;
+
+      void loadVimeoPlayerApi()
+        .then(() => {
+          if (cancelled || !iframeRef.current) return;
+          const Vimeo = (
+            window as Window & {
+              Vimeo: { Player: new (el: HTMLIFrameElement) => VimeoPlayer };
+            }
+          ).Vimeo;
+          const player = new Vimeo.Player(iframeRef.current);
+          playerRef.current = player;
+
+          player.on("volumechange", () => {
+            void player.getMuted().then((isMuted) => {
+              if (!cancelled) setMuted(isMuted);
+            });
+          });
+
+          player.on("pause", () => {
+            if (!cancelled) setIsPlaying(false);
+          });
+
+          player.on("play", () => {
+            if (!cancelled) setIsPlaying(true);
+          });
+
+          player.on("fullscreenchange", (data) => {
+            if (!cancelled) setIsFullscreen(Boolean(data?.fullscreen));
+          });
+
+          setPlayerReady(true);
+        })
+        .catch(() => {});
+    };
+
+    iframe.addEventListener("load", initPlayer);
+    initPlayer();
+
     return () => {
       cancelled = true;
+      iframe.removeEventListener("load", initPlayer);
     };
   }, []);
 
-  async function toggleSound() {
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      if (document.fullscreenElement === containerRef.current) {
+        setIsFullscreen(true);
+      } else if (!playerRef.current) {
+        setIsFullscreen(false);
+      }
+    };
+    document.addEventListener("fullscreenchange", onFullscreenChange);
+    return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
+  }, []);
+
+  async function syncMutedState() {
     const player = playerRef.current;
     if (!player) return;
-    const nextMuted = !muted;
     try {
-      await player.setMuted(nextMuted);
-      if (!nextMuted) {
-        await player.setVolume(0.7);
-        await player.play();
-      }
-      setMuted(nextMuted);
+      setMuted(await player.getMuted());
     } catch {
       /* ignore */
     }
   }
 
+  async function handlePlay() {
+    const player = playerRef.current;
+    if (!player) return;
+    try {
+      await player.setMuted(true);
+      await player.play();
+      setIsPlaying(true);
+      setMuted(true);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  async function handlePause() {
+    const player = playerRef.current;
+    if (!player) return;
+    try {
+      await player.pause();
+      setIsPlaying(false);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  async function toggleSound() {
+    const player = playerRef.current;
+    if (!player) return;
+    try {
+      const currentlyMuted = await player.getMuted();
+      const nextMuted = !currentlyMuted;
+      await player.setMuted(nextMuted);
+      if (!nextMuted) {
+        await player.setVolume(0.7);
+      }
+      await syncMutedState();
+    } catch {
+      /* ignore */
+    }
+  }
+
+  async function toggleFullscreen() {
+    const player = playerRef.current;
+    if (!player) return;
+
+    try {
+      const inFullscreen = await player.getFullscreen();
+      if (inFullscreen) {
+        await player.exitFullscreen();
+      } else {
+        await player.requestFullscreen();
+      }
+      setIsFullscreen(!inFullscreen);
+      return;
+    } catch {
+      /* fall through */
+    }
+
+    const container = containerRef.current;
+    if (!container) return;
+    try {
+      if (document.fullscreenElement === container) {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      } else {
+        await container.requestFullscreen();
+        setIsFullscreen(true);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
+  async function handleShare() {
+    const sharePayloads: ShareData[] = [
+      {
+        title: "LISENBART Showreel",
+        text: "LISENBART showreel",
+        url: SHOWREEL_SHARE_URL,
+      },
+      { url: SHOWREEL_SHARE_URL },
+      { title: "LISENBART Showreel", url: SHOWREEL_SHARE_URL },
+    ];
+
+    for (const payload of sharePayloads) {
+      if (!canUseWebShare(payload)) continue;
+      try {
+        await navigator.share(payload);
+        return;
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+          return;
+        }
+      }
+    }
+  }
+
   return (
-    <div className="hero-showreel absolute inset-0 overflow-hidden">
+    <div ref={containerRef} className="hero-showreel group absolute inset-0 overflow-hidden">
       <iframe
         ref={iframeRef}
         src={VIMEO_SRC}
@@ -83,23 +239,61 @@ export default function HeroShowreel() {
         loading="eager"
         tabIndex={-1}
       />
-      <button
-        type="button"
-        onClick={() => void toggleSound()}
-        aria-label={muted ? "Unmute showreel" : "Mute showreel"}
-        className="hero-showreel__mute absolute z-20 flex items-center justify-center transition-all duration-200"
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: "50%",
-          border: "1px solid rgba(255,255,255,0.25)",
-          background: "rgba(0,0,0,0.45)",
-          backdropFilter: "blur(8px)",
-          color: "white",
-        }}
-      >
-        {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-      </button>
+
+      {!isPlaying && (
+        <button
+          type="button"
+          onClick={() => void handlePlay()}
+          disabled={!playerReady}
+          aria-label="Play showreel"
+          className="showreel-stage-play hero-showreel__play"
+        >
+          <Play className="showreel-stage-play-icon" strokeWidth={1.75} fill="currentColor" />
+        </button>
+      )}
+
+      {playerReady && (
+        <div
+          className={`hero-showreel__controls absolute z-20 flex items-center gap-2${isPlaying ? " hero-showreel__controls--active" : ""}`}
+        >
+          {isPlaying && (
+            <>
+              <button
+                type="button"
+                onClick={() => void handlePause()}
+                aria-label="Pause showreel"
+                className="hero-showreel__control"
+              >
+                <Pause size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={() => void toggleSound()}
+                aria-label={muted ? "Unmute showreel" : "Mute showreel"}
+                className="hero-showreel__control"
+              >
+                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
+              <button
+                type="button"
+                onClick={() => void toggleFullscreen()}
+                aria-label={isFullscreen ? "Exit fullscreen" : "Fullscreen showreel"}
+                className="hero-showreel__control"
+              >
+                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+              </button>
+            </>
+          )}
+          <button
+            type="button"
+            onClick={() => void handleShare()}
+            aria-label="Share showreel"
+            className="hero-showreel__control"
+          >
+            <Send size={16} strokeWidth={1.75} />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

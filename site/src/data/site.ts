@@ -18,6 +18,7 @@ export const site = {
   capabilitiesLine:
     "Film, animation, game and AI content — scoped and delivered end to end.",
   ctaLabel: "Discuss a project",
+  contactSubmitLabel: "Send message",
   email: "info@lisenbart.com",
   linkedin: "https://www.linkedin.com/in/lisenbart/",
   vimeo: "https://vimeo.com/849899875",
@@ -42,8 +43,12 @@ export const site = {
   },
   socialComingSoon: {
     title: "Almost there",
-    body: "This channel is still in the works. For now, drop me a line and I'll get back to you.",
+    body: "This channel is still in the works. For now, drop us a line and you'll hear back.",
     cta: "Email Me",
+    closeLabel: "Close",
+  },
+  capabilityShowreelModal: {
+    soonLabel: "Showreel coming soon",
     closeLabel: "Close",
   },
   locations: "Ukraine · Remote worldwide",
@@ -66,12 +71,26 @@ export const sectionIds = {
 
 export function scrollToSection(id: string, onDone?: () => void) {
   const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-    if (onDone) {
-      onDone();
-    } else if (id === sectionIds.contact) {
-      window.setTimeout(() => document.getElementById("contact-email")?.focus(), 650);
-    }
+  if (!el) {
+    onDone?.();
+    return;
   }
+
+  document.body.style.overflow = "";
+  document.body.classList.remove("header-connect-open");
+
+  const runScroll = () => {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    onDone?.();
+
+    if (id === sectionIds.contact) {
+      window.setTimeout(() => {
+        document.getElementById("contact-email")?.focus({ preventScroll: true });
+      }, 720);
+    }
+  };
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(runScroll);
+  });
 }

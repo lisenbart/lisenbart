@@ -125,6 +125,7 @@ export default function Header() {
               </a>
               <SocialIconLinks className="min-w-0" />
             </div>
+            <HeaderConnectMenu />
             <button
               type="button"
               onClick={() => scrollToSection(sectionIds.contact)}
@@ -132,7 +133,6 @@ export default function Header() {
             >
               {site.ctaLabel}
             </button>
-            <HeaderConnectMenu />
             <button
               type="button"
               className="site-header-link flex h-9 w-9 shrink-0 items-center justify-center lg:hidden"
@@ -165,14 +165,14 @@ export default function Header() {
                     />
                   </li>
                 ))}
-                <li className="pt-2">
+                <li className="flex justify-center pt-2">
                   <button
                     type="button"
                     onClick={() => {
                       closeMenu();
                       scrollToSection(sectionIds.contact);
                     }}
-                    className="gradient-button-emerald btn-on-accent w-full rounded-full py-3 text-sm font-medium"
+                    className="gradient-button-emerald btn-on-accent rounded-full px-6 py-3 text-sm font-medium uppercase tracking-[0.12em]"
                   >
                     {site.ctaLabel}
                   </button>

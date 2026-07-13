@@ -118,7 +118,7 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
     await new Promise((r) => setTimeout(r, 600));
     return {
       success: true,
-      message: "Thank you. I've received your message and will get back to you shortly.",
+      message: "Thank you. We've received your message and you'll hear back shortly.",
     };
   }
 
@@ -161,6 +161,6 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
 
   return {
     success: true,
-    message: "Thank you. I've received your message and will get back to you shortly.",
+    message: "Thank you. We've received your message and you'll hear back shortly.",
   };
 }
