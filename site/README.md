@@ -4,7 +4,7 @@ One-page site for **LISENBART** — general producer for film, animation and AI 
 
 ## Local development
 
-**Do not double-click `index.html`** — it will show a blank page. This is a Vite + React app and needs a dev server (same as Glowl).
+**Do not double-click `index.html`** — it will show a blank page. This is a Vite + React app and needs a dev server.
 
 ```bash
 cd site
@@ -26,13 +26,9 @@ npm run preview -- --host
 
 ## Contact form
 
-**Default (no Formspree):** `public/contact.php` sends to **info@lisenbart.com** via PHP `mail()` on Hosting Ukraine.
+**Default:** Netlify Forms (`contact` + `testimonial-review` in `index.html`). React submits via `fetch` on deploy.
 
-After `npm run build`, upload **`dist/contact.php`** together with the rest of `dist/`.
-
-Local dev mocks submissions in the browser console (PHP is not available on Vite).
-
-Optional: set `VITE_FORMSPREE_FORM_ID` or `VITE_CONTACT_ENDPOINT` in `.env.local` to override.
+Optional: set `VITE_CONTACT_HANDLER=php`, `VITE_FORMSPREE_FORM_ID`, or `VITE_CONTACT_ENDPOINT` in `.env.local` — see `.env.example`.
 
 ## Stack
 
