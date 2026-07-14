@@ -43,10 +43,10 @@ export const capabilities: CapabilityItem[] = [
   },
   {
     id: "performance-social",
-    title: "Performance & Social",
+    title: "Social Media",
     image: "/images/capabilities/performance-social.png",
     description:
-      "Fast-turnaround content for live events, social platforms and performance contexts.",
+      "YouTube channels and social content — animated songs, stories and learning series for young audiences.",
     formats: ["social content", "event visuals", "motion design", "reels & shorts"],
     workLinkLabel: "Our cases →",
     workAnchor: "social",

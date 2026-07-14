@@ -33,7 +33,7 @@ export default function WorkCategoryPage({ category }: WorkCategoryPageProps) {
             <WorkCaseBlock
               key={item.id}
               item={item}
-              mediaSide={index % 2 === 0 ? "left" : "right"}
+              mediaSide="left"
               bordered={index > 0}
             />
           ))}

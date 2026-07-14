@@ -79,7 +79,11 @@ export const site = {
       closeLabel: "Close",
     },
   },
-  locations: "Ukraine · Remote worldwide",
+  locations: "Ukraine · Canada · Poland · Remote worldwide",
+  founderQuote: {
+    text: "The AI era — guided by a professional eye.",
+    author: "Dmytro Lisenbart",
+  },
   canonical: "https://www.lisenbart.com",
   logo: {
     /** Shown on dark backgrounds */

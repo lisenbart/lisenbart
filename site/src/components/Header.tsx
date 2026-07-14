@@ -20,10 +20,10 @@ export default function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 w-full max-w-full overflow-x-clip">
       <nav
-        className={`site-header-nav transition-all duration-300${scrolled ? " site-header-nav--scrolled" : ""}`}
+        className={`site-header-nav transition-colors duration-300${scrolled ? " site-header-nav--scrolled" : ""}`}
         aria-label="Main navigation"
       >
-        <div className="mx-auto flex min-h-[4.25rem] w-full min-w-0 max-w-[1440px] items-center gap-2 px-[var(--page-padding)] py-2.5 md:min-h-16 md:gap-4 md:py-3">
+        <div className="mx-auto flex h-[4.25rem] w-full min-w-0 max-w-[1440px] items-center gap-2 px-[var(--page-padding)] md:h-16 md:gap-4">
           <div className="flex min-w-0 flex-1 items-center gap-2 md:gap-3">
             <button
               type="button"

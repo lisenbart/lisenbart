@@ -1,5 +1,17 @@
 export type WorkCategorySlug = "commercial" | "gaming" | "film" | "social";
 
+export interface WorkPlayableExample {
+  id: string;
+  label: string;
+  url: string;
+}
+
+export interface WorkPlayableTier {
+  id: string;
+  label: string;
+  examples: WorkPlayableExample[];
+}
+
 export interface WorkCaseStudy {
   id: string;
   /** [PLACEHOLDER — replace with real content before deploy] */
@@ -11,6 +23,21 @@ export interface WorkCaseStudy {
   result: string;
   /** [PLACEHOLDER — replace with real media before deploy] */
   mediaColor: string;
+  vimeoId?: string;
+  mediaImage?: string;
+  mediaImageAlt?: string;
+  imdbId?: string;
+  youtubeVideoId?: string;
+  youtubeUrl?: string;
+  youtubeBannerImage?: string;
+  youtubeThumbnails?: string[];
+  playableTiers?: WorkPlayableTier[];
+  mediaPlaceholder?: {
+    headline: string;
+    ctaLabel?: string;
+  };
+  /** 0–100 — shows COMING SOON media with a progress bar when set */
+  comingSoonProgress?: number;
 }
 
 export interface WorkCategory {
@@ -29,99 +56,188 @@ export const workCategories: WorkCategory[] = [
     subtitle: "Brand films, commercials and product visuals — from concept through delivery.",
     cases: [
       {
-        id: "commercial-fmcg-brand-film",
-        client: "Global FMCG Brand",
-        category: "Commercial · Brand Film",
-        year: "2023",
-        title: "Brand film for regional campaign launch",
+        id: "lisenbart-showreel",
+        client: "Lisenbart Production",
+        category: "Commercial · Showreel",
+        year: "2026",
+        title: "Creative & Animation Showreel",
         description:
-          "Animated brand film combining 2D character animation with motion graphics. Delivered in 6 weeks from first brief.",
-        result: "Aired across 5 markets. Campaign exceeded target reach by 40%.",
+          "2026 · 2D · 3D · stop-motion · puppet · collage\nWe create animation — we have been doing this for a long time and we really enjoy it. Everything is possible in the world of animation: any fantasy is real and any task is achievable. Our creative team gives 100%, producers 200%. We believe in our clients' ideas, and clients trust us. Lisenbart Production creates 2D and 3D animation, collage and puppet animation, stop-motion and interlacing animation. We develop characters, create ideas and write scripts.",
+        result:
+          "The showreel from our homepage — a cross-section of commercial animation, from TVCs and brand films to music videos and mixed-media work.",
         mediaColor: "#0a1628",
+        vimeoId: "849899875",
+        mediaImage: "/images/work/lisenbart-showreel-preview.jpg",
+        mediaImageAlt: "LISENBART creative and animation showreel — preview frame",
       },
       {
-        id: "commercial-product-launch",
-        client: "Consumer Electronics Brand",
-        category: "Commercial · Product Film",
-        year: "2024",
-        title: "Product hero film for global retail launch",
+        id: "nlo-valentine-id",
+        client: "NLO.TV",
+        category: "Commercial · TV Branding",
+        year: "2014",
+        title: "Valentine's Day · NLO.TV TV ID",
         description:
-          "High-energy product story built for paid social, retail screens and e-commerce. Modular cut-downs for 6, 15 and 30 seconds.",
-        result: "Used in 14 retail territories. Pre-order page conversion +22% vs. prior campaign.",
+          "15 sec · 3D CGI · seasonal on-air ident\nA four-armed monster falls for his own reflection — then a mountain of Valentine's gifts collapses on him. Part of NLO.TV's long-running ident series that built a playful monster universe for one of Ukraine's landmark entertainment channels. Idea by Pluzharov Artem, directed by Yuriy Kovalyov, animation direction by Dmytro Lisenbart.",
+        result:
+          "Flagship seasonal ID from the NLO.TV branding family — a series that defined the channel's on-air character and earned international festival attention, including selections on the London advertising circuit in the early 2010s.",
+        mediaColor: "#1a0a18",
+        mediaImage: "https://img.youtube.com/vi/VD0D6BXSKkA/hqdefault.jpg",
+        mediaImageAlt: "NLO.TV Valentine's Day TV ID — 3D animation preview",
+        youtubeVideoId: "VD0D6BXSKkA",
+        youtubeUrl: "https://www.youtube.com/watch?v=VD0D6BXSKkA",
+      },
+      {
+        id: "hubbub-sound-go-social",
+        client: "Hubbub.fm",
+        category: "Commercial · Motion Graphics",
+        year: "2011",
+        title: "Sound Go Social · Hubbub.fm",
+        description:
+          "Motion graphics · 2 min · product launch film\nWhat if social feeds were audio? Hubbub.fm turned text into 15-second sound clips — personalized streams you listen to like radio, voice fingerprints instead of passwords, and three taps to broadcast instead of three hundred keystrokes. We visualized a complex tech story through crisp motion design: networks, microphones, aquariums, loading bars — every metaphor moving with clarity and wit.",
+        result:
+          "Launch TVC for Hubbub.fm — billed as the first real sound social network on the web. Animation direction by Dmytro Lisenbart, production by Lisenbart Production, sound by Propeller Studios. Built to explain the impossible in under two minutes.",
+        mediaColor: "#0a1420",
+        mediaImage: "https://img.youtube.com/vi/E5IjKHWROFY/hqdefault.jpg",
+        mediaImageAlt: "Hubbub.fm Sound Go Social — motion graphics preview",
+        youtubeVideoId: "E5IjKHWROFY",
+        youtubeUrl: "https://www.youtube.com/watch?v=E5IjKHWROFY",
+      },
+      {
+        id: "commercial-coming-soon",
+        client: "Lisenbart Production",
+        category: "Commercial",
+        year: "In production",
+        title: "Coming soon",
+        description:
+          "In production · case study on the way\nAnother commercial project is moving through edit and grade — full credits, process notes and deliverables will land here soon.",
+        result: "Publishing the full case study as soon as final delivery is cleared.",
         mediaColor: "#0c1a30",
+        comingSoonProgress: 70,
       },
       {
-        id: "commercial-explainer-series",
-        client: "B2B SaaS Company",
-        category: "Commercial · Explainer",
-        year: "2023",
-        title: "Explainer series for enterprise onboarding",
+        id: "commercial-your-project",
+        client: "Lisenbart Production",
+        category: "Commercial · Your project",
+        year: "—",
+        title: "Your next campaign",
         description:
-          "Four-part animated explainer system covering product value, workflow and security. Designed for sales decks and help centre.",
-        result: "Reduced sales demo length by 18 minutes on average across the enterprise team.",
+          "Brand films · TVCs · motion design\nThe next case study on this page could be yours — a launch film, product story or campaign toolkit built to your brief and timeline.",
+        result: "From first concept to broadcast-ready delivery — we ship commercial work that moves brands.",
         mediaColor: "#081420",
-      },
-      {
-        id: "commercial-digital-campaign",
-        client: "Regional Retail Group",
-        category: "Commercial · Digital Campaign",
-        year: "2024",
-        title: "Seasonal digital campaign toolkit",
-        description:
-          "Motion toolkit for always-on digital placements — banners, short loops and vertical formats with one shared visual language.",
-        result: "32 assets delivered in 5 weeks. Paid social CTR improved by 31%.",
-        mediaColor: "#0a1828",
+        mediaPlaceholder: {
+          headline: "Your project could be here",
+        },
       },
     ],
   },
   {
     slug: "gaming",
     pageTitle: "Gaming Selected Work",
-    subtitle: "Trailers, cinematics and in-game animation — built for game production pace and scale.",
+    subtitle:
+      "Game marketing built to win UA — trailers, HTML5 playables and performance creatives engineered to cut CPI, ship fast and scale with your data team.",
     cases: [
       {
-        id: "gaming-playtika-launch",
-        client: "Playtika",
-        category: "Gaming · Game Trailer",
-        year: "2024",
-        title: "Launch trailer for a top-grossing mobile title",
+        id: "lisenbart-games-showreel",
+        client: "Lisenbart Games",
+        category: "Gaming · Showreel",
+        year: "2026",
+        title: "Game Marketing Showreel",
         description:
-          "Full production from brief to delivery — concept, storyboard, animation and sound. Built for simultaneous release across 12 markets.",
-        result: "12M views in the first week across paid and organic channels.",
+          "2026 · Promotional videos · Playable ads · UA creatives\nWe specialize in promotional videos for games — plus static banners, cinemagraphs, testimonials and playable ads for any creative task at a competitive price. We develop the most popular and relevant ideas through constant market monitoring and analysis, and work with your data team to improve CPI and achieve the best result. Direct production without maintaining an in-house studio, with flexible project cooperation on request.",
+        result:
+          "Marketing animation showreel — game trailers, playable ads and promotional creatives built for UA, launch and live-ops campaigns.",
         mediaColor: "#1a0a2e",
+        vimeoId: "944158555",
+        mediaImage: "/images/work/lisenbart-games-showreel-preview.jpg",
+        mediaImageAlt: "Lisenbart Games marketing showreel — preview frame",
       },
       {
-        id: "gaming-cinematic-trilogy",
-        client: "Mobile Game Publisher",
-        category: "Gaming · Cinematic",
-        year: "2023",
-        title: "Three-part cinematic story arc for live ops event",
-        description:
-          "Serialized CGI cinematics released over a month-long in-game event. Produced to match live content updates and localisation needs.",
-        result: "Event participation +28% week-on-week during cinematic release window.",
-        mediaColor: "#160828",
-      },
-      {
-        id: "gaming-playable-ads",
-        client: "Casual Games Studio",
+        id: "playable-ads",
+        client: "Lisenbart Games",
         category: "Gaming · Playable Ads",
-        year: "2024",
-        title: "Playable ad system for UA testing",
+        year: "2026",
+        title: "Playable Ads",
         description:
-          "Template-based playable ad pipeline with rapid iteration on hooks, UI beats and end cards for performance marketing tests.",
-        result: "18 playable variants shipped in 4 weeks. Best performer lowered CPI by 19%.",
-        mediaColor: "#1f0a34",
+          "CPI-first · hook in 3 seconds · Moloco & Meta ready\nInteractive HTML5 ads engineered to win UA auctions — from rich mini-games to high-velocity tap-throughs. We concept, animate and ship playables optimized for Moloco, Meta, Unity Ads and major networks, with rapid A/B iteration aligned to your data team's CPI and retention targets.",
+        result:
+          "Six live examples across three complexity tiers — complex mechanics, mid-weight engagement loops and lightweight playables built for scale testing and performance marketing.",
+        mediaColor: "#160828",
+        playableTiers: [
+          {
+            id: "complex",
+            label: "Complex",
+            examples: [
+              {
+                id: "blitzy-runway",
+                label: "Blitzy Runway",
+                url: "https://677ebabf171dc264e0591457--stunning-salamander-0479f8.netlify.app/playables/BB_BlitzyRunway.html",
+              },
+              {
+                id: "balinko",
+                label: "Balinko",
+                url: "https://677ebabf171dc264e0591457--stunning-salamander-0479f8.netlify.app/playables/SM_Balinko.html",
+              },
+            ],
+          },
+          {
+            id: "average",
+            label: "Average",
+            examples: [
+              {
+                id: "snoopy-moloco",
+                label: "Snoopy",
+                url: "https://677ebabf171dc264e0591457--stunning-salamander-0479f8.netlify.app/playables/SGH_Snoopy_Moloco.html",
+              },
+              {
+                id: "bank-of-jackpot",
+                label: "Bank of Jackpot",
+                url: "https://677ebabf171dc264e0591457--stunning-salamander-0479f8.netlify.app/playables/HOF_BankOfJackpot.html",
+              },
+            ],
+          },
+          {
+            id: "simple",
+            label: "Simple",
+            examples: [
+              {
+                id: "wsop-all-in",
+                label: "WSOP All-In",
+                url: "https://677ebabf171dc264e0591457--stunning-salamander-0479f8.netlify.app/playables/WSOP_AllIn.html",
+              },
+              {
+                id: "simplified-gameplay",
+                label: "Simplified Gameplay",
+                url: "https://677ebabf171dc264e0591457--stunning-salamander-0479f8.netlify.app/playables/BF_SimplifiedGamePlay_Moloco.html",
+              },
+            ],
+          },
+        ],
       },
       {
-        id: "gaming-marketing-video",
-        client: "PC Strategy Studio",
-        category: "Gaming · Marketing Video",
-        year: "2023",
-        title: "Announcement trailer and feature breakdown series",
+        id: "gaming-coming-soon",
+        client: "Lisenbart Games",
+        category: "Gaming",
+        year: "In production",
+        title: "Coming soon",
         description:
-          "Announcement trailer plus three feature-focused videos for Steam, YouTube and creator outreach ahead of early access.",
-        result: "Wishlist growth +42% in the 30 days after announcement.",
+          "In production · case study on the way\nA new game marketing project is in final polish — trailer cuts, playable variants and performance notes will go live here shortly.",
+        result: "Full breakdown coming as soon as the client launch window opens.",
+        mediaColor: "#1f0a34",
+        comingSoonProgress: 50,
+      },
+      {
+        id: "gaming-your-project",
+        client: "Lisenbart Games",
+        category: "Gaming · Your project",
+        year: "—",
+        title: "Your next campaign",
+        description:
+          "Trailers · playables · UA creatives\nThe next case study on this page could be yours — a launch trailer, playable ad or performance creative built to your brief, your KPIs and your timeline.",
+        result: "From first concept to network-ready delivery — we ship game marketing that wins UA.",
         mediaColor: "#140622",
+        mediaPlaceholder: {
+          headline: "Your project could be here",
+        },
       },
     ],
   },
@@ -131,99 +247,170 @@ export const workCategories: WorkCategory[] = [
     subtitle: "Animated series, short films and co-productions — across 2D, 3D and mixed media.",
     cases: [
       {
-        id: "film-award-short",
-        client: "Independent Co-production",
+        id: "unnecessary-things",
+        client: "Lisenbart Animation Studio",
         category: "Film & Entertainment · Short Film",
-        year: "2023",
-        title: "Award-winning animated short",
+        year: "2021",
+        title: "Unnecessary Things",
         description:
-          "Co-produced animated short film in mixed 2D/3D technique. Full production from script development through post-production and festival submission.",
-        result: "Selected at Ottawa, Animafest Zagreb and 12 other festivals.",
+          "15 awards · 45 festival selections · 8.0 on IMDb\nAward-winning 14-minute animated short — World Premiere at Shanghai, Best Animated Short Film at Curtas. A robot buys a human from a store of unwanted things; a friendship that ends where it began.",
+        result:
+          "Festival winner across Europe and Asia — from Linoleum and ZIFF to Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
         mediaColor: "#0a1f0f",
+        vimeoId: "823618245",
+        mediaImage: "/images/work/unnecessary-things-preview.png",
+        mediaImageAlt: "Unnecessary Things — trailer preview frame",
+        imdbId: "tt14760808",
       },
       {
-        id: "film-series-pilot",
-        client: "Streaming Platform Partner",
-        category: "Film & Entertainment · Animated Series",
-        year: "2024",
-        title: "Animated series pilot and look development",
+        id: "the-last-kozak",
+        client: "Lisenbart Animation Studio",
+        category: "Film & Entertainment · Animated Feature",
+        year: "In development",
+        title: "The Last Kozak",
         description:
-          "Pilot episode production with bible-ready character, environment and pipeline documentation for a youth-focused animated series.",
-        result: "Pilot approved for development slate. Look book adopted for season planning.",
-        mediaColor: "#081a12",
+          "80-minute animated feature · Drama · Action · Fantasy · 12+\nHe has no name — everyone calls him the Last Kozak. Trapped in a time loop, he must defeat evil again and again. A stylized action-fantasy with comic-book editing, psychological depth and a cossack who rides the Iron Dog through worlds that intersect at the Last Khreshchatyk.",
+        result:
+          "Currently in development — script, treatment and pitch complete. English teaser available.",
+        mediaColor: "#120808",
+        vimeoId: "699197721", // UA teaser for localization: 639390060
+        mediaImage: "/images/work/the-last-kozak-preview.png",
+        mediaImageAlt: "The Last Kozak — teaser preview frame",
       },
       {
-        id: "film-co-production",
-        client: "European Film Fund",
-        category: "Film & Entertainment · Co-production",
-        year: "2023",
-        title: "International co-production feature development",
+        id: "song-departure",
+        client: "Lisenbart Production",
+        category: "Film & Entertainment · Music Video",
+        year: "2012",
+        title: "Song Departure · La robe rouge",
         description:
-          "Development package including animatic, production design pack and budget model for a 75-minute animated feature.",
-        result: "Project advanced to financing stage with three territory partners attached.",
-        mediaColor: "#0c2218",
+          "Golden Kuker 2012 · Sofia International Animation Film Festival\nAnimated music video for Void ft's \"La robe rouge\" — stylized 2D animation from concept and storyboard through final cut.",
+        result:
+          "Selected for Golden Kuker International Animation Film Festival 2012. An art-film music video built for festival circuit and YouTube release.",
+        mediaColor: "#1a1420",
+        mediaImage: "/images/work/song-departure-preview.jpg",
+        mediaImageAlt: "Song Departure music video — preview frame",
+        youtubeVideoId: "a9OEOEVVZog",
+        youtubeUrl: "https://www.youtube.com/watch?v=a9OEOEVVZog",
       },
       {
-        id: "film-festival-package",
-        client: "Author-Directed Project",
-        category: "Film & Entertainment · Festival Project",
-        year: "2024",
-        title: "Festival submission package and DCP delivery",
+        id: "song-mishka",
+        client: "Ivan Dorn",
+        category: "Film & Entertainment · Music Video",
+        year: "2014",
+        title: "Mishka · Ivan Dorn",
         description:
-          "Final mastering, subtitle versions and festival submission assets for an auteur-led animated short.",
-        result: "Delivered 6 language versions and DCP in under 10 days for premiere deadline.",
-        mediaColor: "#071610",
+          "Frame-by-frame animation · client Ivan Dorn · Kyiv production\nMusic video for \"Mishka is guilty\" — hand-crafted 2D animation directed by Alexander Koreshkov and Dmytro Lisenbart, from design and backgrounds through final composite.",
+        result:
+          "Delivered for one of Ukraine's top pop artists — character-driven visuals built for broadcast, VOD and YouTube release.",
+        mediaColor: "#181820",
+        mediaImage: "/images/work/song-mishka-preview.jpg",
+        mediaImageAlt: "Mishka music video by Ivan Dorn — preview frame",
+        youtubeVideoId: "jPqAVzcpn9U",
+        youtubeUrl: "https://www.youtube.com/watch?v=jPqAVzcpn9U",
+      },
+      {
+        id: "film-coming-soon",
+        client: "Lisenbart Animation Studio",
+        category: "Film & Entertainment",
+        year: "In production",
+        title: "Coming soon",
+        description:
+          "In production · case study on the way\nA new film & entertainment project is in development — treatment, visual development and production milestones will be shared here as they lock.",
+        result: "Case study drops once the next festival or release milestone is confirmed.",
+        mediaColor: "#141820",
+        comingSoonProgress: 35,
+      },
+      {
+        id: "film-your-project",
+        client: "Lisenbart Animation Studio",
+        category: "Film & Entertainment · Your project",
+        year: "—",
+        title: "Your next film",
+        description:
+          "Short films · series · co-productions\nThe next case study on this page could be yours — an animated short, series pilot or co-production built from script to festival delivery.",
+        result: "From first treatment to premiere — we produce film & entertainment with festival-ready finish.",
+        mediaColor: "#101018",
+        mediaPlaceholder: {
+          headline: "Your project could be here",
+        },
       },
     ],
   },
   {
     slug: "social",
-    pageTitle: "Social Selected Work",
-    subtitle: "Fast-turnaround content for social platforms, live events and performance contexts.",
+    pageTitle: "Social Media Selected Work",
+    subtitle: "YouTube channels — animated songs, stories and learning content for preschool audiences.",
     cases: [
       {
-        id: "social-content-pipeline",
-        client: "Gaming Studio",
-        category: "Performance & Social · Content Campaign",
+        id: "scoopy-cap",
+        client: "Scoopy Cap",
+        category: "Social Media · YouTube Channel",
         year: "2024",
-        title: "Ongoing social content production",
+        title: "Scoopy Cap",
         description:
-          "Monthly content pipeline for social platforms — reels, shorts and motion ads. Consistent visual system across formats.",
-        result: "48 assets delivered across 8 months. Average engagement +65% vs. previous creative.",
-        mediaColor: "#1f0a0a",
+          "225 videos · 10.4K subscribers · weekly hits that kids replay\nFull English preschool channel — nursery rhymes, ABC, colours and numbers built around Scoopy Cap, a friendly space explorer designed for calm watch-time and repeat views.",
+        result:
+          "Finger Family became the channel's top-performing video. New full songs every Saturday, Shorts through the week — a content engine built to grow.",
+        mediaColor: "#1a1428",
+        mediaImage: "/images/work/scoopy-cap-preview.jpg",
+        mediaImageAlt: "Scoopy Cap YouTube channel",
+        youtubeBannerImage: "/images/work/scoopy-cap-banner.jpg",
+        youtubeThumbnails: [
+          "/images/work/scoopy-cap-thumb-1.jpg",
+          "/images/work/scoopy-cap-thumb-2.jpg",
+          "/images/work/scoopy-cap-thumb-3.jpg",
+        ],
+        youtubeVideoId: "kKZpVhpBV_0",
+        youtubeUrl: "https://www.youtube.com/@ScoopyCap",
       },
       {
-        id: "social-event-visuals",
-        client: "Live Entertainment Brand",
-        category: "Performance & Social · Event Visuals",
-        year: "2023",
-        title: "Event opener and stage visual package",
-        description:
-          "Motion package for a product keynote — stage loops, speaker bumpers and social cut-downs from one production shoot.",
-        result: "Used across main stage, livestream and 9 post-event social posts.",
-        mediaColor: "#241010",
-      },
-      {
-        id: "social-reels-campaign",
-        client: "Consumer App",
-        category: "Performance & Social · Reels Campaign",
+        id: "pershosvit",
+        client: "Pershosvit",
+        category: "Social Media · YouTube Channel",
         year: "2024",
-        title: "Always-on reels and shorts campaign",
+        title: "Pershosvit · Kapitan Świetlik",
         description:
-          "Twelve-week reels programme with weekly drops, trend-adapted formats and creator-friendly editable templates.",
-        result: "Average view-through rate +54%. Follower growth +18% over campaign period.",
-        mediaColor: "#1a0808",
+          "147K subscribers · 274 videos · breakout hits in Ukrainian\nThe country's leading preschool channel — songs, fairy tales and learning with Kapitan Świetlik, a robot hero parents trust and kids watch on repeat.",
+        result:
+          "Baby Shark UA became a channel phenomenon. Alphabet, bedtime and learning series driving daily growth across Ukraine.",
+        mediaColor: "#1f1020",
+        mediaImage: "/images/work/pershosvit-preview.jpg",
+        mediaImageAlt: "Pershosvit YouTube channel",
+        youtubeBannerImage: "/images/work/pershosvit-banner.jpg",
+        youtubeThumbnails: [
+          "/images/work/pershosvit-thumb-1.jpg",
+          "/images/work/pershosvit-thumb-2.jpg",
+          "/images/work/pershosvit-thumb-3.jpg",
+        ],
+        youtubeVideoId: "PzxN3FT1eAw",
+        youtubeUrl: "https://www.youtube.com/@pershosvit",
       },
       {
-        id: "social-motion-ads",
-        client: "E-commerce Brand",
-        category: "Performance & Social · Motion Ads",
-        year: "2023",
-        title: "Performance motion ad library",
+        id: "social-coming-soon",
+        client: "Lisenbart Production",
+        category: "Social Media",
+        year: "In production",
+        title: "Coming soon",
         description:
-          "Modular motion ad system for paid social — product, offer and seasonal variants with shared end-frame architecture.",
-        result: "24 ad variants produced in 3 weeks. ROAS improved 27% on top-performing set.",
-        mediaColor: "#200c0c",
+          "In production · case study on the way\nA new YouTube channel project is in active production — content calendar, character bible and first episodes are on the way.",
+        result: "Channel case study goes live once the first growth milestones are in.",
+        mediaColor: "#181028",
+        comingSoonProgress: 58,
+      },
+      {
+        id: "social-your-project",
+        client: "Lisenbart Production",
+        category: "Social Media · Your project",
+        year: "—",
+        title: "Your next channel",
+        description:
+          "YouTube · preschool · learning content\nThe next case study on this page could be yours — a channel launch, content series or IP built for repeat views and subscriber growth.",
+        result: "From character design to upload schedule — we build social content engines that scale.",
+        mediaColor: "#140e22",
+        mediaPlaceholder: {
+          headline: "Your project could be here",
+        },
       },
     ],
   },
