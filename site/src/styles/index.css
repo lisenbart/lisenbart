@@ -2641,6 +2641,30 @@ body.header-connect-open {
   box-shadow: 0 0 18px -6px color-mix(in srgb, var(--link-accent) 22%, transparent);
 }
 
+.modal-overlay {
+  background: var(--overlay-scrim);
+}
+
+.modal-panel {
+  border: 1px solid var(--modal-border);
+  background: var(--modal-bg);
+  box-shadow: var(--modal-panel-shadow);
+}
+
+.modal-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--modal-border);
+  background: color-mix(in srgb, var(--modal-bg) 88%, transparent);
+  color: var(--text-primary);
+  transition: background 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--inset-surface);
+}
+
 .link-accent {
   color: var(--link-accent);
 }

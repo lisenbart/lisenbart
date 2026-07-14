@@ -428,6 +428,7 @@
 
 [data-theme="light"] .modal-panel {
   border: 1px solid var(--modal-border);
+  background: var(--modal-bg);
   box-shadow: var(--modal-panel-shadow);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
