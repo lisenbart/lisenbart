@@ -3,7 +3,7 @@ import { moderationPage } from "../lib/moderationPage";
 import { removeTestimonial } from "../lib/testimonialsStore";
 import { resolveSiteUrl } from "../lib/siteUrl";
 
-export default async function handler(req: Request, _context: Context): Promise<Response> {
+export default async function handler(req: Request, context: Context): Promise<Response> {
   if (req.method !== "GET") {
     return moderationPage("Not allowed", "<h1>Method not allowed</h1>");
   }
@@ -20,7 +20,7 @@ export default async function handler(req: Request, _context: Context): Promise<
   }
 
   try {
-    const result = await removeTestimonial(id, token);
+    const result = await removeTestimonial(id, token, context);
     const homeUrl = resolveSiteUrl();
 
     if (result === "invalid") {
@@ -32,7 +32,7 @@ export default async function handler(req: Request, _context: Context): Promise<
 
     return moderationPage(
       "Review removed",
-      `<h1>Відгук прибрано</h1><p>Його більше немає на сайті.</p><div class="actions"><a class="btn btn-primary" href="${homeUrl}/#about">На головну</a></div>`,
+      `<h1>Відгук прибрано</h1><p>Його більше немає на сайті. Якщо все ще бачите — оновіть головну (Cmd+Shift+R).</p><div class="actions"><a class="btn btn-primary" href="${homeUrl}/#about">На головну</a></div>`,
     );
   } catch (error) {
     console.error("[testimonials-remove]", error);

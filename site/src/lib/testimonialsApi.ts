@@ -16,8 +16,13 @@ export function mergeTestimonials(dynamic: Testimonial[]): Testimonial[] {
 
 export async function fetchPublishedTestimonials(): Promise<Testimonial[]> {
   try {
-    const res = await fetch(API_PATH, {
-      headers: { Accept: "application/json" },
+    const res = await fetch(`${API_PATH}?t=${Date.now()}`, {
+      cache: "no-store",
+      headers: {
+        Accept: "application/json",
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+      },
     });
 
     if (!res.ok) return seedTestimonials;

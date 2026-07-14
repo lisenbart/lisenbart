@@ -1,3 +1,4 @@
+import type { Context } from "@netlify/functions";
 import { getStore } from "@netlify/blobs";
 
 export type StoredTestimonial = {
@@ -6,31 +7,46 @@ export type StoredTestimonial = {
   name: string;
   company: string;
   rating: number;
-  status: "pending" | "approved";
+  status: "pending" | "approved" | "removed";
   token: string;
   createdAt: string;
   approvedAt?: string;
+  removedAt?: string;
 };
 
 const STORE_NAME = "testimonials";
 const MAX_APPROVED = 10;
 
-export function getTestimonialsStore() {
+export function getTestimonialsStore(context?: Context) {
+  if (context?.site?.id) {
+    return getStore({
+      name: STORE_NAME,
+      siteID: context.site.id,
+      token: process.env.NETLIFY_BLOB_READ_WRITE_TOKEN,
+    });
+  }
+
   return getStore(STORE_NAME);
 }
 
-export async function savePendingTestimonial(record: StoredTestimonial): Promise<void> {
-  const store = getTestimonialsStore();
+export async function savePendingTestimonial(
+  record: StoredTestimonial,
+  context?: Context,
+): Promise<void> {
+  const store = getTestimonialsStore(context);
   await store.setJSON(record.id, record);
 }
 
-export async function getTestimonialById(id: string): Promise<StoredTestimonial | null> {
-  const store = getTestimonialsStore();
+export async function getTestimonialById(
+  id: string,
+  context?: Context,
+): Promise<StoredTestimonial | null> {
+  const store = getTestimonialsStore(context);
   return store.get(id, { type: "json" });
 }
 
-export async function listApprovedTestimonials(): Promise<StoredTestimonial[]> {
-  const store = getTestimonialsStore();
+export async function listApprovedTestimonials(context?: Context): Promise<StoredTestimonial[]> {
+  const store = getTestimonialsStore(context);
   const { blobs } = await store.list();
 
   const records = await Promise.all(
@@ -50,26 +66,40 @@ export async function listApprovedTestimonials(): Promise<StoredTestimonial[]> {
     .slice(0, MAX_APPROVED);
 }
 
-export async function approveTestimonial(id: string, token: string): Promise<StoredTestimonial | "invalid" | "already"> {
-  const record = await getTestimonialById(id);
-  if (!record || record.token !== token) return "invalid";
+export async function approveTestimonial(
+  id: string,
+  token: string,
+  context?: Context,
+): Promise<StoredTestimonial | "invalid" | "already"> {
+  const record = await getTestimonialById(id, context);
+  if (!record || record.token !== token || record.status === "removed") return "invalid";
   if (record.status === "approved") return "already";
 
   const approved: StoredTestimonial = {
     ...record,
     status: "approved",
     approvedAt: new Date().toISOString(),
+    removedAt: undefined,
   };
 
-  await savePendingTestimonial(approved);
+  await savePendingTestimonial(approved, context);
   return approved;
 }
 
-export async function removeTestimonial(id: string, token: string): Promise<"removed" | "invalid"> {
-  const record = await getTestimonialById(id);
+export async function removeTestimonial(
+  id: string,
+  token: string,
+  context?: Context,
+): Promise<"removed" | "invalid"> {
+  const record = await getTestimonialById(id, context);
   if (!record || record.token !== token) return "invalid";
 
-  const store = getTestimonialsStore();
-  await store.delete(id);
+  const removed: StoredTestimonial = {
+    ...record,
+    status: "removed",
+    removedAt: new Date().toISOString(),
+  };
+
+  await savePendingTestimonial(removed, context);
   return "removed";
 }

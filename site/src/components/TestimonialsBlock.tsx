@@ -48,12 +48,25 @@ export default function TestimonialsBlock() {
   useEffect(() => {
     let active = true;
 
-    void fetchPublishedTestimonials().then((next) => {
-      if (active) setItems(next);
-    });
+    const refresh = () => {
+      void fetchPublishedTestimonials().then((next) => {
+        if (active) setItems(next);
+      });
+    };
+
+    refresh();
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") refresh();
+    };
+
+    window.addEventListener("focus", refresh);
+    document.addEventListener("visibilitychange", onVisible);
 
     return () => {
       active = false;
+      window.removeEventListener("focus", refresh);
+      document.removeEventListener("visibilitychange", onVisible);
     };
   }, []);
 

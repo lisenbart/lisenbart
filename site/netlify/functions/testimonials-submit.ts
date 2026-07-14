@@ -73,7 +73,7 @@ async function notifyViaNetlifyForm(data: TestimonialPayload, message: string): 
   }
 }
 
-export default async function handler(req: Request, _context: Context): Promise<Response> {
+export default async function handler(req: Request, context: Context): Promise<Response> {
   if (req.method === "OPTIONS") {
     return new Response(null, {
       status: 204,
@@ -118,7 +118,7 @@ export default async function handler(req: Request, _context: Context): Promise<
   };
 
   try {
-    await savePendingTestimonial(record);
+    await savePendingTestimonial(record, context);
     await notifyViaNetlifyForm(payload, buildNotificationMessage(payload, approveUrl, removeUrl));
   } catch (error) {
     console.error("[testimonials-submit]", error);

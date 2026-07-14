@@ -11,7 +11,7 @@ function publishedActions(id: string, token: string, homeUrl: string): string {
   </div>`;
 }
 
-export default async function handler(req: Request, _context: Context): Promise<Response> {
+export default async function handler(req: Request, context: Context): Promise<Response> {
   if (req.method !== "GET") {
     return moderationPage("Not allowed", "<h1>Method not allowed</h1>");
   }
@@ -28,7 +28,7 @@ export default async function handler(req: Request, _context: Context): Promise<
   }
 
   try {
-    const result = await approveTestimonial(id, token);
+    const result = await approveTestimonial(id, token, context);
     const homeUrl = resolveSiteUrl();
 
     if (result === "invalid") {

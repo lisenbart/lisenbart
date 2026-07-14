@@ -1,5 +1,5 @@
 export function resolveSiteUrl(): string {
-  const url = process.env.DEPLOY_PRIME_URL || process.env.URL || "https://www.lisenbart.com";
+  const url = process.env.URL || process.env.DEPLOY_PRIME_URL || "https://lisenbart.com";
   return url.replace(/\/$/, "");
 }
 
