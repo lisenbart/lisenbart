@@ -35,24 +35,71 @@ function resolvePathname(pathname?: string) {
   return window.location.pathname;
 }
 
+/** Strip index.html and trailing slashes so /work/film/index.html resolves correctly. */
+export function normalizeWorkPathname(pathname: string): string {
+  let normalized = pathname.trim();
+
+  if (!normalized.startsWith("/")) {
+    normalized = `/${normalized}`;
+  }
+
+  normalized = normalized.replace(/\/index\.html$/i, "");
+
+  if (normalized.length > 1) {
+    normalized = normalized.replace(/\/+$/, "");
+  }
+
+  return normalized;
+}
+
+export function parseWorkCategorySlug(pathname?: string): WorkCategorySlug | null {
+  const normalized = normalizeWorkPathname(resolvePathname(pathname));
+  const match = normalized.match(WORK_CATEGORY_PATTERN);
+  if (match) return match[1] as WorkCategorySlug;
+
+  const looseMatch = normalized.match(/^\/work\/(commercial|gaming|film|social)(?:\/|$)/);
+  return looseMatch ? (looseMatch[1] as WorkCategorySlug) : null;
+}
+
 export function isWorkIndexPath(pathname?: string) {
-  const resolved = resolvePathname(pathname);
-  return resolved === routes.workBase || resolved === `${routes.workBase}/`;
+  const normalized = normalizeWorkPathname(resolvePathname(pathname));
+  return normalized === routes.workBase;
 }
 
 export function parseWorkRoute(pathname?: string): WorkRoute | null {
-  const resolved = resolvePathname(pathname);
-  const match = resolved.match(WORK_CATEGORY_PATTERN);
-  if (!match) return null;
-
-  return { slug: match[1] as WorkCategorySlug };
+  const slug = parseWorkCategorySlug(pathname);
+  return slug ? { slug } : null;
 }
 
 export function isWorkSection(pathname?: string) {
-  const resolved = resolvePathname(pathname);
-  return isWorkIndexPath(resolved) || WORK_CATEGORY_PATTERN.test(resolved);
+  const normalized = normalizeWorkPathname(resolvePathname(pathname));
+  return isWorkIndexPath(normalized) || WORK_CATEGORY_PATTERN.test(normalized);
 }
 
 export function workSectionHref(slug: WorkCategorySlug) {
   return workCategoryHref(slug);
+}
+
+export function canonicalWorkPath(slug: WorkCategorySlug): string {
+  return `${workCategoryHref(slug)}/`;
+}
+
+export function shouldRedirectToCanonicalWorkPath(pathname?: string): string | null {
+  const resolved = resolvePathname(pathname);
+  const slug = parseWorkCategorySlug(resolved);
+  if (!slug) return null;
+
+  const canonical = canonicalWorkPath(slug);
+  if (resolved === canonical) return null;
+
+  const normalized = normalizeWorkPathname(resolved);
+  if (normalized === workCategoryHref(slug) && !resolved.endsWith("/")) {
+    return canonical;
+  }
+
+  if (/\/index\.html/i.test(resolved)) {
+    return canonical;
+  }
+
+  return null;
 }

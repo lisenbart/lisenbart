@@ -5,7 +5,12 @@ import WorkCategoryPage from "./pages/WorkCategoryPage";
 import MobileEstimateCTA from "./components/MobileEstimateCTA";
 import Footer from "./components/Footer";
 import { getWorkCategory } from "./data/work";
-import { isWorkIndexPath, parseWorkRoute, workEntryHref } from "./lib/routes";
+import {
+  isWorkIndexPath,
+  parseWorkRoute,
+  shouldRedirectToCanonicalWorkPath,
+  workEntryHref,
+} from "./lib/routes";
 
 function WorkRouter() {
   const route = parseWorkRoute();
@@ -23,9 +28,17 @@ function WorkRouter() {
 }
 
 export default function App() {
-  if (isWorkIndexPath()) {
-    window.location.replace(workEntryHref());
-    return null;
+  if (typeof window !== "undefined") {
+    const canonicalWorkRedirect = shouldRedirectToCanonicalWorkPath();
+    if (canonicalWorkRedirect) {
+      window.location.replace(canonicalWorkRedirect);
+      return null;
+    }
+
+    if (isWorkIndexPath()) {
+      window.location.replace(workEntryHref());
+      return null;
+    }
   }
 
   const workRoute = parseWorkRoute();

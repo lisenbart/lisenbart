@@ -11,7 +11,47 @@
 
 [[redirects]]
   from = "/work"
-  to = "/work/commercial"
+  to = "/work/commercial/"
+  status = 301
+
+[[redirects]]
+  from = "/work/commercial"
+  to = "/work/commercial/"
+  status = 301
+
+[[redirects]]
+  from = "/work/gaming"
+  to = "/work/gaming/"
+  status = 301
+
+[[redirects]]
+  from = "/work/film"
+  to = "/work/film/"
+  status = 301
+
+[[redirects]]
+  from = "/work/social"
+  to = "/work/social/"
+  status = 301
+
+[[redirects]]
+  from = "/work/commercial/index.html"
+  to = "/work/commercial/"
+  status = 301
+
+[[redirects]]
+  from = "/work/gaming/index.html"
+  to = "/work/gaming/"
+  status = 301
+
+[[redirects]]
+  from = "/work/film/index.html"
+  to = "/work/film/"
+  status = 301
+
+[[redirects]]
+  from = "/work/social/index.html"
+  to = "/work/social/"
   status = 301
 
 [[redirects]]
