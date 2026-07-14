@@ -1322,6 +1322,67 @@ body.header-connect-open {
   filter: drop-shadow(0 0 5px color-mix(in srgb, var(--cyan) 42%, transparent));
 }
 
+.studio-popover-body {
+  padding-inline: 0.1rem;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--text-primary) 18%, transparent) transparent;
+}
+
+.studio-popover-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+.studio-popover-body::-webkit-scrollbar-thumb {
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--text-primary) 22%, transparent);
+}
+
+.studio-popover-intro,
+.studio-popover-text {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 1.2vw, 0.9375rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.studio-popover-text {
+  margin-top: 0.75rem;
+}
+
+.studio-popover-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studio-popover-highlight {
+  position: relative;
+  padding-left: 0.85rem;
+  font-family: var(--font-sans);
+  font-size: clamp(0.75rem, 1.1vw, 0.8125rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--text-primary) 72%, var(--text-secondary));
+}
+
+.studio-popover-highlight::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--violet) 72%, var(--cyan));
+  box-shadow: 0 0 8px color-mix(in srgb, var(--cyan) 35%, transparent);
+}
+
 .experience-testimonials {
   margin-top: clamp(0.75rem, 1.5vw, 1rem);
 }
@@ -2113,7 +2174,7 @@ body.header-connect-open {
   left: clamp(0.85rem, 2vw, 1.15rem);
   right: clamp(0.85rem, 2vw, 1.15rem);
   margin: 0;
-  text-align: left;
+  text-align: center;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   font-weight: 500;
@@ -2190,9 +2251,10 @@ body.header-connect-open {
 .capability-work-link {
   position: absolute;
   z-index: 3;
-  top: 50%;
+  top: auto;
+  bottom: clamp(0.75rem, 2vw, 1.1rem);
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2200,9 +2262,17 @@ body.header-connect-open {
   max-width: calc(100% - 2rem);
   padding: clamp(0.72rem, 1.6vw, 0.9rem) clamp(1.15rem, 2.4vw, 1.55rem);
   border-radius: 9999px;
-  border: 1px solid var(--cap-work-btn-border);
-  background: var(--cap-work-btn-bg);
-  box-shadow: var(--cap-work-btn-shadow);
+  color: #121214;
+  border: 1px solid rgba(18, 18, 20, 0.12);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(246, 247, 249, 0.94) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    0 8px 22px rgba(18, 18, 20, 0.14),
+    0 2px 6px rgba(18, 18, 20, 0.08);
   font-size: clamp(0.75rem, 1.25vw, 0.875rem);
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -2220,8 +2290,11 @@ body.header-connect-open {
 @media (hover: hover) {
   .capability-work-link:hover {
     opacity: 0.96;
-    transform: translate(-50%, calc(-50% - 2px));
-    box-shadow: var(--cap-work-btn-shadow-hover);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.98),
+      0 12px 28px rgba(18, 18, 20, 0.18),
+      0 4px 10px rgba(18, 18, 20, 0.1);
   }
 
   .capability-card:hover .capability-image {
@@ -2236,15 +2309,11 @@ body.header-connect-open {
 }
 
 .capability-work-link--commercial {
-  --cap-work-btn-bg: var(--category-accent-gradient);
-  --cap-work-btn-border: rgba(66, 217, 255, 0.42);
-  --cap-work-btn-shadow:
-    0 6px 20px rgba(10, 96, 120, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --cap-work-btn-shadow-hover:
-    0 8px 24px rgba(66, 217, 255, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  color: #031018;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    color-mix(in srgb, #42d9ff 10%, #f7fafb) 100%
+  );
 }
 
 .capability-work-link--gaming,
@@ -2253,15 +2322,11 @@ body.header-connect-open {
 }
 
 .capability-work-link--gaming {
-  --cap-work-btn-bg: var(--category-accent-gradient);
-  --cap-work-btn-border: rgba(123, 66, 255, 0.44);
-  --cap-work-btn-shadow:
-    0 6px 20px rgba(58, 28, 130, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --cap-work-btn-shadow-hover:
-    0 8px 24px rgba(123, 66, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  color: #f7f4ff;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    color-mix(in srgb, #7b42ff 9%, #f8f7fc) 100%
+  );
 }
 
 .capability-work-link--film-entertainment,
@@ -2270,15 +2335,11 @@ body.header-connect-open {
 }
 
 .capability-work-link--film-entertainment {
-  --cap-work-btn-bg: var(--category-accent-gradient);
-  --cap-work-btn-border: rgba(239, 61, 210, 0.42);
-  --cap-work-btn-shadow:
-    0 6px 20px rgba(90, 24, 154, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --cap-work-btn-shadow-hover:
-    0 8px 24px rgba(239, 61, 210, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  color: #fff7fd;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    color-mix(in srgb, #ef3dd2 8%, #fbf8fb) 100%
+  );
 }
 
 .capability-work-link--performance-social,
@@ -2287,15 +2348,11 @@ body.header-connect-open {
 }
 
 .capability-work-link--performance-social {
-  --cap-work-btn-bg: var(--category-accent-gradient);
-  --cap-work-btn-border: rgba(255, 112, 71, 0.44);
-  --cap-work-btn-shadow:
-    0 6px 20px rgba(143, 29, 20, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --cap-work-btn-shadow-hover:
-    0 8px 24px rgba(255, 112, 71, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  color: #fff8f5;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    color-mix(in srgb, #ff7047 9%, #fbf9f8) 100%
+  );
 }
 
 @media (max-width: 479px) {
@@ -2707,6 +2764,10 @@ body.header-connect-open {
 
 .btn-on-accent {
   color: var(--btn-on-accent-color);
+}
+
+.capability-work-link.btn-on-accent {
+  color: #121214;
 }
 
 .estimate-cta-secondary {

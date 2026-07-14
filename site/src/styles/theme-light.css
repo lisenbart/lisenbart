@@ -843,6 +843,15 @@
   color: color-mix(in srgb, var(--text-primary) 45%, transparent);
 }
 
+[data-theme="light"] .studio-popover-intro,
+[data-theme="light"] .studio-popover-text {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .studio-popover-highlight {
+  color: color-mix(in srgb, var(--text-primary) 78%, var(--text-secondary));
+}
+
 [data-theme="light"] .how-experience-stat--interactive {
   border-color: color-mix(in srgb, var(--cyan) 28%, var(--stat-border));
   box-shadow:

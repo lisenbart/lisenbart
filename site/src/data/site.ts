@@ -57,6 +57,56 @@ export const site = {
     casesCtaLabel: "Our cases",
     closeLabel: "Close",
   },
+  studioModal: {
+    title: "Lisenbart Production",
+    subtitle: "In animation since 2006",
+    intro:
+      "Lisenbart Production has been creating animation, film and motion content since 2006 — from TV branding and commercials to short films, game marketing and YouTube channels.",
+    body:
+      "We are a producer-led studio: one trusted lead contact, the right team assembled for each brief, and delivery from script and design through animation, sound and final grade. Teams in Ukraine, Canada and Poland — working with clients worldwide.",
+    highlights: [
+      "Founded 2006 · Kyiv, Ukraine",
+      "2D · 3D · motion graphics · stop-motion · puppet",
+      "Commercial · film · gaming · social content",
+      "Producer-led · end-to-end delivery",
+    ],
+    ctaLabel: "Discuss a project",
+    closeLabel: "Close",
+  },
+  awardsModal: {
+    title: "Unnecessary Things",
+    subtitle: "15 awards · 45 selections · 8.0 on IMDb",
+    intro:
+      "Award-winning 14-minute animated short directed by Dmytro Lisenbart. A robot buys a human from a store of unwanted things — a friendship that ends where it began.",
+    body:
+      "Full 2D production from Lisenbart Animation Studio: script, design, animation and festival delivery. Recognised across Europe and Asia on the international festival circuit.",
+    highlights: [
+      "Best Animated Short Film · Curtas International Film Festival",
+      "World Premiere · Shanghai International Film Festival",
+      "Linoleum · ZIFF · Vancouver · Huesca · Odessa",
+      "Prague Film Awards",
+      "45 official festival selections worldwide",
+    ],
+    ctaLabel: "View film case",
+    closeLabel: "Close",
+  },
+  teamModal: {
+    title: "Global production network",
+    subtitle: "Canada · Ukraine · Poland · Remote worldwide",
+    intro:
+      "Our producers, directors, art directors, animators, compositors and sound partners work across time zones — not in one room, but as one team assembled for each project.",
+    body:
+      "That distributed model keeps production moving around the clock. When one region signs off, another picks up — so reviews, revisions and delivery never wait for morning. One lead producer on your side, specialists worldwide, always within reach.",
+    highlights: [
+      "Producers · directors · art directors · animators",
+      "Storyboard · design · 2D · 3D · motion · compositing",
+      "Hubs in Canada, Ukraine and Poland",
+      "Remote collaborators across Europe and North America",
+      "Near 24/7 coverage · always on call for active projects",
+    ],
+    ctaLabel: "Discuss a project",
+    closeLabel: "Close",
+  },
   testimonialsBlock: {
     title: "What clients say",
     addLabel: "Leave a review",

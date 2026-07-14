@@ -2,16 +2,24 @@ import { useRef, useState, type MouseEvent, type RefObject } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Calendar, ChevronRight, Rocket, Trophy, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import AwardsPopover from "./AwardsPopover";
 import ClientsPopover from "./ClientsPopover";
+import StudioPopover from "./StudioPopover";
+import TeamPopover from "./TeamPopover";
 import TestimonialsBlock from "./TestimonialsBlock";
 import { sectionIds } from "@/data/site";
+
+type ExperiencePopoverId = "clients" | "studio" | "awards" | "team";
 
 type ExperienceStat = {
   id: string;
   icon: LucideIcon;
   lines: { text: string; tone?: "primary" | "accent"; size?: "hero" | "medium" | "compact" }[];
-  subtext: string;
+  subtext?: string;
   interactive?: boolean;
+  popover?: ExperiencePopoverId;
+  interactiveHint?: string;
+  interactiveAriaLabel?: string;
 };
 
 interface ClickPoint {
@@ -26,6 +34,9 @@ const experienceStats: ExperienceStat[] = [
     lines: [{ text: "1000+", tone: "accent", size: "hero" }],
     subtext: "projects delivered",
     interactive: true,
+    popover: "clients",
+    interactiveHint: "View clients",
+    interactiveAriaLabel: "1000 plus projects delivered. View clients.",
   },
   {
     id: "awards",
@@ -33,20 +44,32 @@ const experienceStats: ExperienceStat[] = [
     lines: [
       { text: "15 awards", tone: "accent", size: "medium" },
       { text: "45 selections", tone: "primary", size: "medium" },
+      { text: "8.0 on IMDb", tone: "primary", size: "compact" },
     ],
-    subtext: "international festival recognition — incl. Ottawa, Animafest Zagreb, Krok",
+    interactive: true,
+    popover: "awards",
+    interactiveHint: "Festival recognition",
+    interactiveAriaLabel: "15 awards, 45 selections, 8.0 on IMDb. Festival recognition.",
   },
   {
     id: "timeline",
     icon: Calendar,
     lines: [{ text: "20 years", tone: "accent", size: "hero" }],
-    subtext: "in animation",
+    subtext: "in animation since 2006",
+    interactive: true,
+    popover: "studio",
+    interactiveHint: "About the studio",
+    interactiveAriaLabel: "20 years in animation since 2006. About the studio.",
   },
   {
     id: "teams",
     icon: Users,
     lines: [{ text: "Canada • Ukraine • Poland", tone: "primary", size: "compact" }],
     subtext: "creative & production teams",
+    interactive: true,
+    popover: "team",
+    interactiveHint: "Global team",
+    interactiveAriaLabel: "Canada, Ukraine, Poland. Global team.",
   },
 ];
 
@@ -64,11 +87,11 @@ function experienceLineClass(tone: ExperienceStat["lines"][number]["tone"], size
 
 interface ExperienceStatCardProps {
   stat: ExperienceStat;
-  onProjectsOpen?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onInteractiveOpen?: (event: MouseEvent<HTMLButtonElement>) => void;
   cardRef?: RefObject<HTMLLIElement | null>;
 }
 
-function ExperienceStatCard({ stat, onProjectsOpen, cardRef }: ExperienceStatCardProps) {
+function ExperienceStatCard({ stat, onInteractiveOpen, cardRef }: ExperienceStatCardProps) {
   const content = (
     <>
       <span className="how-experience-stat-icon-wrap" aria-hidden="true">
@@ -82,10 +105,10 @@ function ExperienceStatCard({ stat, onProjectsOpen, cardRef }: ExperienceStatCar
             </span>
           ))}
         </div>
-        <p className="how-experience-stat-sub">{stat.subtext}</p>
-        {stat.interactive && (
-          <p className="how-experience-stat-hint">{stat.id === "projects" ? "View clients" : ""}</p>
-        )}
+        {stat.subtext ? <p className="how-experience-stat-sub">{stat.subtext}</p> : null}
+        {stat.interactive && stat.interactiveHint ? (
+          <p className="how-experience-stat-hint">{stat.interactiveHint}</p>
+        ) : null}
       </div>
       {stat.interactive && (
         <span className="how-experience-stat-action" aria-hidden="true">
@@ -95,15 +118,15 @@ function ExperienceStatCard({ stat, onProjectsOpen, cardRef }: ExperienceStatCar
     </>
   );
 
-  if (stat.interactive && onProjectsOpen) {
+  if (stat.interactive && onInteractiveOpen) {
     return (
       <li ref={cardRef} className="how-experience-stat how-experience-stat--interactive">
         <button
           type="button"
           className="how-experience-stat-button"
-          onClick={onProjectsOpen}
+          onClick={onInteractiveOpen}
           aria-haspopup="dialog"
-          aria-label="1000 plus projects delivered. View clients."
+          aria-label={stat.interactiveAriaLabel}
         >
           {content}
         </button>
@@ -115,17 +138,28 @@ function ExperienceStatCard({ stat, onProjectsOpen, cardRef }: ExperienceStatCar
 }
 
 export default function AboutSection() {
-  const [clientsOpen, setClientsOpen] = useState(false);
+  const [openPopover, setOpenPopover] = useState<ExperiencePopoverId | null>(null);
   const [clickPoint, setClickPoint] = useState<ClickPoint | null>(null);
   const projectsRef = useRef<HTMLLIElement>(null);
+  const awardsRef = useRef<HTMLLIElement>(null);
+  const timelineRef = useRef<HTMLLIElement>(null);
+  const teamRef = useRef<HTMLLIElement>(null);
 
-  const handleProjectsOpen = (event: MouseEvent<HTMLButtonElement>) => {
-    setClickPoint({ x: event.clientX, y: event.clientY });
-    setClientsOpen(true);
+  const popoverRefs: Record<ExperiencePopoverId, RefObject<HTMLLIElement | null>> = {
+    clients: projectsRef,
+    awards: awardsRef,
+    studio: timelineRef,
+    team: teamRef,
   };
 
-  const closeClients = () => {
-    setClientsOpen(false);
+  const handleStatOpen =
+    (popover: ExperiencePopoverId) => (event: MouseEvent<HTMLButtonElement>) => {
+      setClickPoint({ x: event.clientX, y: event.clientY });
+      setOpenPopover(popover);
+    };
+
+  const closePopover = () => {
+    setOpenPopover(null);
     setClickPoint(null);
   };
 
@@ -153,8 +187,12 @@ export default function AboutSection() {
                 <ExperienceStatCard
                   key={stat.id}
                   stat={stat}
-                  cardRef={stat.id === "projects" ? projectsRef : undefined}
-                  onProjectsOpen={stat.interactive ? handleProjectsOpen : undefined}
+                  cardRef={stat.popover ? popoverRefs[stat.popover] : undefined}
+                  onInteractiveOpen={
+                    stat.interactive && stat.popover
+                      ? handleStatOpen(stat.popover)
+                      : undefined
+                  }
                 />
               ))}
             </ul>
@@ -165,9 +203,18 @@ export default function AboutSection() {
       </div>
 
       <AnimatePresence>
-        {clientsOpen && clickPoint && (
-          <ClientsPopover clickPoint={clickPoint} rootRef={projectsRef} onClose={closeClients} />
-        )}
+        {openPopover === "clients" && clickPoint ? (
+          <ClientsPopover clickPoint={clickPoint} rootRef={projectsRef} onClose={closePopover} />
+        ) : null}
+        {openPopover === "awards" && clickPoint ? (
+          <AwardsPopover clickPoint={clickPoint} rootRef={awardsRef} onClose={closePopover} />
+        ) : null}
+        {openPopover === "studio" && clickPoint ? (
+          <StudioPopover clickPoint={clickPoint} rootRef={timelineRef} onClose={closePopover} />
+        ) : null}
+        {openPopover === "team" && clickPoint ? (
+          <TeamPopover clickPoint={clickPoint} rootRef={teamRef} onClose={closePopover} />
+        ) : null}
       </AnimatePresence>
     </section>
   );
