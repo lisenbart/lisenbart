@@ -1,14 +1,8 @@
 .DS_Store
-.DS_Store
 *.zip
-Archive.zip
-www_v01.zip
-output/
 
 site/node_modules/
 site/dist/
 site/.env
 site/.env.local
 site/.vite
-*.png
-!site/public/**/*.png

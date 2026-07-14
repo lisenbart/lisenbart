@@ -12,8 +12,6 @@ npm install
 npm run dev
 ```
 
-Or double-click **`Dev LISENBART.command`** on the Desktop or in the project folder.
-
 - Local: http://localhost:5173
 - Phone (same Wi‑Fi): use the Network URL from the terminal, e.g. http://192.168.0.43:5173
 
