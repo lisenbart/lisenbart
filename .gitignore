@@ -1,4 +1,5 @@
 .DS_Store
+.DS_Store
 *.zip
 Archive.zip
 www_v01.zip
@@ -9,3 +10,5 @@ site/dist/
 site/.env
 site/.env.local
 site/.vite
+*.png
+!site/public/**/*.png

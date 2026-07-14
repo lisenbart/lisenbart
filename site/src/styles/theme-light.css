@@ -138,18 +138,6 @@
   opacity: 0.018;
 }
 
-[data-theme="light"] .glass-panel {
-  background: var(--surface-strong);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--card-shadow);
-  backdrop-filter: blur(18px) saturate(120%);
-  -webkit-backdrop-filter: blur(18px) saturate(120%);
-}
-
-[data-theme="light"] .glass-panel-glow::before {
-  opacity: 0;
-}
-
 /* Editorial panels — gallery deck, not iOS cards */
 [data-theme="light"] .how-ios-card,
 [data-theme="light"] .how-ios-card-emerald,
@@ -290,116 +278,6 @@
   filter: contrast(1.06) saturate(1.05);
 }
 
-/* Process — production labels */
-[data-theme="light"] .how-process-card {
-  border: 1px solid var(--separator);
-  box-shadow: none;
-  background: rgba(255, 255, 255, 0.38);
-}
-
-[data-theme="light"] .how-process-card--pending {
-  opacity: 0.58;
-  background: rgba(18, 18, 20, 0.02);
-}
-
-[data-theme="light"] .how-process-card--active {
-  transform: none;
-  background: rgba(255, 255, 255, 0.72);
-  border-color: color-mix(in srgb, var(--step-accent) 38%, var(--separator));
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--step-accent) 10%, transparent),
-    0 8px 24px rgba(18, 18, 20, 0.05);
-  animation: none;
-}
-
-[data-theme="light"] .how-process-card--active::after {
-  animation: none;
-  opacity: 0;
-}
-
-[data-theme="light"] .how-process-card--active .how-process-icon {
-  opacity: 1;
-  animation: how-process-icon-float 4.2s cubic-bezier(0.34, 1.18, 0.42, 1) infinite;
-}
-
-[data-theme="light"] .how-process--complete .how-process-card--active .how-process-icon {
-  animation-duration: 3.1s;
-}
-
-[data-theme="light"] .how-process-num {
-  color: var(--step-accent);
-  font-weight: 500;
-}
-
-[data-theme="light"] .how-process-card-title {
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-[data-theme="light"] .how-process-icon {
-  color: var(--step-accent);
-  opacity: 0.62;
-  filter: saturate(1.15) contrast(1.05);
-}
-
-[data-theme="light"] .how-process-card--active .how-process-icon {
-  color: var(--step-accent);
-  opacity: 1;
-  filter: saturate(1.22) contrast(1.1);
-}
-
-[data-theme="light"] .how-process-connector .how-process-line,
-[data-theme="light"] .how-process-line {
-  background: var(--separator);
-}
-
-[data-theme="light"] .how-process-connector-active .how-process-line {
-  background: var(--process-line-active-bg);
-  animation: none;
-  opacity: 1;
-}
-
-[data-theme="light"] .how-process-dot {
-  background: var(--text-tertiary);
-  box-shadow: none;
-}
-
-[data-theme="light"] .how-process-connector-active .how-process-dot {
-  animation: none;
-  background: var(--process-dot-active-bg);
-  box-shadow: var(--process-dot-active-shadow);
-}
-
-/* What we produce — label grid */
-[data-theme="light"] .how-produce-cell {
-  opacity: 1;
-  border: 1px solid var(--produce-cell-border);
-  background: transparent;
-  color: var(--text-secondary);
-  box-shadow: none;
-}
-
-[data-theme="light"] .how-produce-cell:hover {
-  border-color: rgba(18, 18, 20, 0.16);
-  background: rgba(255, 255, 255, 0.45);
-}
-
-[data-theme="light"] .how-produce-cell-active {
-  background: var(--produce-active-bg);
-  color: var(--produce-active-color);
-  border-color: var(--produce-active-border);
-  box-shadow: var(--produce-active-shadow);
-}
-
-[data-theme="light"] .how-produce-icon {
-  color: var(--produce-icon-color);
-}
-
-[data-theme="light"] .how-produce-cell-active .how-produce-icon {
-  color: var(--produce-icon-active-color);
-  filter: var(--produce-icon-active-filter);
-}
-
 /* CTA — graphite + controlled neon glow */
 [data-theme="light"] .gradient-button,
 [data-theme="light"] .gradient-button-emerald {
@@ -414,25 +292,6 @@
   opacity: 1;
   transform: translateY(-1px);
   box-shadow: var(--gradient-button-hover-shadow);
-}
-
-[data-theme="light"] .how-talk-cta {
-  color: var(--cta-text-color);
-  background: var(--cta-bg);
-  border: 1px solid var(--cta-border);
-  box-shadow: var(--cta-shadow);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-
-[data-theme="light"] .how-talk-cta:hover {
-  opacity: 1;
-  transform: translateY(-1px);
-  box-shadow: var(--gradient-button-hover-shadow);
-}
-
-[data-theme="light"] .how-talk-cta-pulse {
-  animation: none;
 }
 
 /* Experience stats — strong hierarchy */
@@ -751,6 +610,43 @@
   border-color: rgba(18, 18, 20, 0.1);
 }
 
+[data-theme="light"] .capability-work-link--commercial {
+  color: #031018;
+}
+
+[data-theme="light"] .capability-work-link--gaming {
+  color: #f7f4ff;
+}
+
+[data-theme="light"] .capability-work-link--film-entertainment {
+  color: #fff7fd;
+}
+
+[data-theme="light"] .capability-work-link--performance-social {
+  color: #fff8f5;
+}
+
+[data-theme="light"] .work-nav-bar {
+  background: color-mix(in srgb, var(--header-bg-scrolled) 94%, transparent);
+  box-shadow: 0 8px 24px rgba(18, 18, 20, 0.06);
+}
+
+[data-theme="light"] .work-nav-home {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(18, 18, 20, 0.1);
+}
+
+[data-theme="light"] .work-nav-tab.is-active {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+[data-theme="light"] .work-block-media {
+  border-color: rgba(18, 18, 20, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 12px 28px rgba(18, 18, 20, 0.08);
+}
+
 [data-theme="light"] .capability-showreel-modal {
   border-color: rgba(18, 18, 20, 0.1);
   box-shadow:
@@ -761,4 +657,34 @@
 
 [data-theme="light"] .capability-showreel-modal__glow {
   opacity: 0.45;
+}
+
+[data-theme="light"] .clients-popover {
+  border-color: rgba(18, 18, 20, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 18px 40px rgba(18, 18, 20, 0.1),
+    0 0 28px color-mix(in srgb, var(--cyan) 10%, transparent);
+}
+
+[data-theme="light"] .clients-popover-item {
+  color: color-mix(in srgb, var(--text-primary) 45%, transparent);
+}
+
+[data-theme="light"] .how-experience-stat--interactive {
+  border-color: color-mix(in srgb, var(--cyan) 28%, var(--stat-border));
+  box-shadow:
+    var(--stat-shadow),
+    0 0 20px color-mix(in srgb, var(--cyan) 10%, transparent);
+}
+
+[data-theme="light"] .how-experience-stat-action {
+  color: var(--cyan);
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--cyan) 16%, transparent) 0%, transparent 68%),
+    rgba(255, 255, 255, 0.72);
+  border-color: color-mix(in srgb, var(--cyan) 36%, var(--stat-border));
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--cyan) 12%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }

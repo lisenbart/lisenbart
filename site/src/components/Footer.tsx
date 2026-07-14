@@ -1,5 +1,7 @@
 import { site, scrollToSection, sectionIds } from "@/data/site";
+import { isWorkSection, routes, workEntryHref } from "@/lib/routes";
 import SocialIconLinks from "./SocialIconLinks";
+import BrandLogo from "./BrandLogo";
 
 const navLinks = [
   { id: sectionIds.services, label: "Services" },
@@ -15,15 +17,32 @@ const socialLinks = [
   { label: "YouTube", href: site.youtube, external: true as const },
 ];
 
-function FooterLink({ id, label }: { id: string; label: string }) {
+function FooterSectionLink({ href, label }: { href: string; label: string }) {
   return (
     <a
-      href={`#${id}`}
+      href={href}
       className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
-      onClick={(e) => {
-        e.preventDefault();
-        scrollToSection(id);
-      }}
+    >
+      {label}
+    </a>
+  );
+}
+
+function FooterLink({ id, label }: { id: string; label: string }) {
+  const onWorkPage = isWorkSection();
+
+  return (
+    <a
+      href={onWorkPage ? `/#${id}` : `#${id}`}
+      className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
+      onClick={
+        onWorkPage
+          ? undefined
+          : (e) => {
+              e.preventDefault();
+              scrollToSection(id);
+            }
+      }
     >
       {label}
     </a>
@@ -39,24 +58,20 @@ export default function Footer() {
             <div className="grid gap-5 md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,0.8fr)] md:gap-8 lg:gap-12">
               <div className="min-w-0">
                 <a
-                  href="#top"
+                  href={isWorkSection() ? routes.home : "#top"}
                   className="inline-flex min-w-0 flex-col gap-1 md:gap-2"
                   aria-label={`${site.name} home`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
+                  onClick={
+                    isWorkSection()
+                      ? undefined
+                      : (e) => {
+                          e.preventDefault();
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                  }
                 >
-                  <span
-                    className="font-display font-extralight uppercase leading-none tracking-[0.1em] text-text-primary"
-                    style={{ fontSize: "clamp(1.35rem, 3vw, 2rem)" }}
-                  >
-                    {site.name}
-                  </span>
-                  <span
-                    className="font-sans uppercase leading-snug text-text-tertiary"
-                    style={{ fontSize: "clamp(8px, 1vw, 11px)", letterSpacing: "0.14em" }}
-                  >
+                  <BrandLogo variant="footer" />
+                  <span className="site-logo-tagline font-sans uppercase leading-snug text-text-tertiary">
                     <span className="block">{site.tagline.line1}</span>
                     <span className="block">{site.tagline.line2}</span>
                   </span>
@@ -67,7 +82,13 @@ export default function Footer() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => scrollToSection(sectionIds.contact)}
+                  onClick={() => {
+                    if (isWorkSection()) {
+                      window.location.href = `/#${sectionIds.contact}`;
+                      return;
+                    }
+                    scrollToSection(sectionIds.contact);
+                  }}
                   className="gradient-button-emerald btn-on-accent mt-4 hidden rounded-full px-5 py-2.5 text-xs font-medium tracking-wide sm:inline-flex md:mt-6 md:text-sm"
                 >
                   {site.ctaLabel}
@@ -83,6 +104,9 @@ export default function Footer() {
                         <FooterLink id={link.id} label={link.label} />
                       </li>
                     ))}
+                    <li>
+                      <FooterSectionLink href={workEntryHref()} label="Work" />
+                    </li>
                   </ul>
                 </nav>
 

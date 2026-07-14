@@ -1,16 +1,17 @@
 import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
-import { ChevronRight, X } from "lucide-react";
-import { sectionIds, scrollToSection, site } from "@/data/site";
+import { ChevronRight, Star, X } from "lucide-react";
+import { clients } from "@/data/clients";
+import { site } from "@/data/site";
+import { workEntryHref } from "@/lib/routes";
 
 interface ClickPoint {
   x: number;
   y: number;
 }
 
-interface CapabilityShowreelPopoverProps {
-  categoryTitle: string;
+interface ClientsPopoverProps {
   clickPoint: ClickPoint;
   rootRef: RefObject<HTMLElement | null>;
   onClose: () => void;
@@ -22,7 +23,7 @@ interface PanelCoords {
   width: number;
 }
 
-const POPOVER_MAX_WIDTH = 280;
+const POPOVER_MAX_WIDTH = 360;
 const VIEWPORT_PADDING = 12;
 const MOBILE_BOTTOM_INSET = 76;
 
@@ -30,34 +31,13 @@ function getPopoverWidth() {
   return Math.min(POPOVER_MAX_WIDTH, window.innerWidth - VIEWPORT_PADDING * 2);
 }
 
-const itemMotion = {
-  initial: { opacity: 0, y: 8 },
-  animate: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: 0.05 + index * 0.06,
-      duration: 0.24,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
-
-function clampPanelCoords(
-  clickPoint: ClickPoint,
-  panel: HTMLElement,
-  cta: HTMLElement,
-): PanelCoords {
+function clampPanelCoords(clickPoint: ClickPoint, panel: HTMLElement): PanelCoords {
   const panelRect = panel.getBoundingClientRect();
-  const ctaRect = cta.getBoundingClientRect();
   const width = getPopoverWidth();
   const bottomInset = window.innerWidth < 768 ? MOBILE_BOTTOM_INSET : 0;
 
-  const ctaCenterX = ctaRect.left - panelRect.left + ctaRect.width / 2;
-  const ctaCenterY = ctaRect.top - panelRect.top + ctaRect.height / 2;
-
-  let left = clickPoint.x - ctaCenterX;
-  let top = clickPoint.y - ctaCenterY;
+  let left = clickPoint.x - width / 2;
+  let top = clickPoint.y - 28;
 
   left = Math.max(VIEWPORT_PADDING, Math.min(left, window.innerWidth - width - VIEWPORT_PADDING));
   top = Math.max(
@@ -68,33 +48,28 @@ function clampPanelCoords(
   return { top, left, width };
 }
 
-export default function CapabilityShowreelPopover({
-  categoryTitle,
-  clickPoint,
-  rootRef,
-  onClose,
-}: CapabilityShowreelPopoverProps) {
+const starColorCycle = ["yellow", "cyan"] as const;
+
+export default function ClientsPopover({ clickPoint, rootRef, onClose }: ClientsPopoverProps) {
   const panelRef = useRef<HTMLDivElement>(null);
-  const ctaRef = useRef<HTMLButtonElement>(null);
-  const copy = site.capabilityShowreelModal;
+  const copy = site.clientsModal;
   const [coords, setCoords] = useState<PanelCoords | null>(null);
 
   useLayoutEffect(() => {
     const panel = panelRef.current;
-    const cta = ctaRef.current;
-    if (!panel || !cta) return;
+    if (!panel) return;
 
     const update = () => {
-      setCoords(clampPanelCoords(clickPoint, panel, cta));
+      setCoords(clampPanelCoords(clickPoint, panel));
     };
 
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
-  }, [clickPoint, categoryTitle]);
+  }, [clickPoint]);
 
   useEffect(() => {
-    ctaRef.current?.focus({ preventScroll: true });
+    panelRef.current?.focus({ preventScroll: true });
   }, [coords]);
 
   useEffect(() => {
@@ -104,23 +79,6 @@ export default function CapabilityShowreelPopover({
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
-
-  useEffect(() => {
-    let startY = window.scrollY;
-
-    const onScroll = () => {
-      if (Math.abs(window.scrollY - startY) > 20) onClose();
-    };
-
-    const timeout = window.setTimeout(() => {
-      window.addEventListener("scroll", onScroll, { passive: true, capture: true });
-    }, 280);
-
-    return () => {
-      window.clearTimeout(timeout);
-      window.removeEventListener("scroll", onScroll, true);
-    };
   }, [onClose]);
 
   useEffect(() => {
@@ -135,22 +93,19 @@ export default function CapabilityShowreelPopover({
     return () => document.removeEventListener("pointerdown", onPointerDown);
   }, [onClose, rootRef]);
 
-  const handleCta = () => {
-    scrollToSection(sectionIds.contact, onClose);
-  };
-
   const isReady = coords !== null;
 
   return createPortal(
     <motion.div
       ref={panelRef}
       role="dialog"
-      aria-labelledby="capability-showreel-title"
+      aria-labelledby="clients-popover-title"
+      tabIndex={-1}
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: isReady ? 1 : 0, scale: isReady ? 1 : 0.96 }}
       exit={{ opacity: 0, scale: 0.98 }}
       transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.82 }}
-      className="capability-showreel-popover capability-showreel-modal modal-panel fixed z-[100] overflow-hidden rounded-[20px]"
+      className="clients-popover capability-showreel-modal modal-panel fixed z-[100] flex max-h-[min(72vh,28rem)] flex-col overflow-hidden rounded-[20px] outline-none"
       style={{
         top: coords?.top ?? clickPoint.y,
         left: coords?.left ?? clickPoint.x,
@@ -171,39 +126,43 @@ export default function CapabilityShowreelPopover({
         <X size={18} />
       </button>
 
-      <div className="relative px-5 pb-5 pt-6 text-center">
-        <motion.h2
-          id="capability-showreel-title"
-          custom={0}
-          variants={itemMotion}
-          initial="initial"
-          animate="animate"
-          className="font-display text-xl font-medium leading-tight tracking-[0.01em] text-text-primary"
-        >
-          {categoryTitle}
-        </motion.h2>
+      <div className="relative flex min-h-0 flex-1 flex-col px-5 pb-5 pt-6">
+        <div className="shrink-0 text-center">
+          <h2
+            id="clients-popover-title"
+            className="font-display text-xl font-medium leading-tight tracking-[0.01em] text-text-primary"
+          >
+            {copy.title}
+          </h2>
+          <p className="mt-2 text-sm font-medium uppercase tracking-[0.14em] text-text-secondary">
+            {copy.subtitle}
+          </p>
+        </div>
 
-        <motion.p
-          custom={1}
-          variants={itemMotion}
-          initial="initial"
-          animate="animate"
-          className="capability-showreel-modal__soon mt-2.5 text-sm font-medium uppercase tracking-[0.14em] text-text-secondary"
-        >
-          {copy.soonLabel}
-        </motion.p>
+        <ul className="clients-popover-list mt-4 min-h-0 flex-1 overflow-y-auto overscroll-contain">
+          {clients.map((name, index) => (
+            <li key={name} className="clients-popover-item">
+              <Star
+                className={`clients-popover-star clients-popover-star--${starColorCycle[index % starColorCycle.length]}`}
+                size={11}
+                strokeWidth={0}
+                fill="currentColor"
+                aria-hidden="true"
+              />
+              <span>{name}</span>
+            </li>
+          ))}
+        </ul>
 
-        <motion.div custom={2} variants={itemMotion} initial="initial" animate="animate" className="mt-5">
-          <button
-            ref={ctaRef}
-            type="button"
-            onClick={handleCta}
+        <div className="mt-4 shrink-0">
+          <a
+            href={workEntryHref()}
             className="gradient-button-emerald btn-on-accent capability-showreel-modal__cta inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium uppercase tracking-[0.12em]"
           >
-            {site.ctaLabel}
+            {copy.casesCtaLabel}
             <ChevronRight size={16} aria-hidden="true" />
-          </button>
-        </motion.div>
+          </a>
+        </div>
       </div>
     </motion.div>,
     document.body,

@@ -1,22 +1,40 @@
 import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import ServicesSection from "./components/ServicesSection";
-import AboutSection from "./components/AboutSection";
-import ContactForm from "./components/ContactForm";
+import WorkNav from "./components/WorkNav";
+import HomePage from "./pages/HomePage";
+import WorkCategoryPage from "./pages/WorkCategoryPage";
 import MobileEstimateCTA from "./components/MobileEstimateCTA";
 import Footer from "./components/Footer";
+import { getWorkCategory } from "./data/work";
+import { isWorkIndexPath, parseWorkRoute, workEntryHref } from "./lib/routes";
+
+function WorkRouter() {
+  const route = parseWorkRoute();
+  if (!route) return null;
+
+  const category = getWorkCategory(route.slug);
+  if (!category) return null;
+
+  return (
+    <div className="work-shell">
+      <WorkNav active={route.slug} />
+      <WorkCategoryPage category={category} />
+    </div>
+  );
+}
 
 export default function App() {
+  if (isWorkIndexPath()) {
+    window.location.replace(workEntryHref());
+    return null;
+  }
+
+  const workRoute = parseWorkRoute();
+
   return (
     <>
       <div className="cosmic-bg" aria-hidden="true" />
       <Header />
-      <main className="site-main site-main-stack">
-        <HeroSection />
-        <ServicesSection />
-        <AboutSection />
-        <ContactForm />
-      </main>
+      {workRoute ? <WorkRouter /> : <HomePage />}
       <Footer />
       <MobileEstimateCTA />
     </>

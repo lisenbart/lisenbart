@@ -3,20 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LISENBART — General Producer for Film, Animation and AI Content</title>
-    <meta
-      name="description"
-      content="General producer for film, animation and AI content. One lead, the right team, delivery end to end."
-    />
-    <link rel="canonical" href="https://www.lisenbart.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="LISENBART — General Producer for Film, Animation and AI Content" />
-    <meta
-      property="og:description"
-      content="General producer for film, animation and AI content. One lead, the right team, delivery end to end."
-    />
-    <meta property="og:url" content="https://www.lisenbart.com" />
-    <meta property="og:image" content="%BASE_URL%images/header_01.png" />
+    <link rel="icon" type="image/png" href="%BASE_URL%favicon.png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <script type="application/ld+json">
@@ -26,7 +14,25 @@
         "name": "LISENBART",
         "url": "https://www.lisenbart.com",
         "email": "info@lisenbart.com",
-        "description": "General producer for film, animation and AI content — one lead, the right team, delivery end to end.",
+        "description": "From brief to screen — animation, film and AI content, produced end to end.",
+        "founder": {
+          "@type": "Person",
+          "name": "Dmytro Lisenbart"
+        },
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.lisenbart.com/images/logo_white.png"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@lisenbart.com",
+          "contactType": "Business Inquiries"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/lisenbart/",
+          "https://www.youtube.com/@lisenbartProduction",
+          "https://www.facebook.com/dmytro.linsenbarth"
+        ],
         "areaServed": ["Ukraine", "Worldwide"],
         "knowsAbout": ["Film Production", "Animation", "Game Content", "AI-assisted Production"]
       }
@@ -67,6 +73,22 @@
       <input type="email" name="email" />
       <input type="text" name="name" />
       <input type="text" name="projectType" />
+      <textarea name="message"></textarea>
+      <input type="text" name="website" />
+    </form>
+    <form
+      name="testimonial-review"
+      method="POST"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="testimonial-review" />
+      <input type="text" name="authorName" />
+      <input type="text" name="company" />
+      <textarea name="quote"></textarea>
+      <input type="text" name="rating" />
       <textarea name="message"></textarea>
       <input type="text" name="website" />
     </form>

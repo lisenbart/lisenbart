@@ -1,5 +1,9 @@
-import { Calendar, Rocket, Trophy, Users } from "lucide-react";
+import { useRef, useState, type MouseEvent, type RefObject } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Calendar, ChevronRight, Rocket, Trophy, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import ClientsPopover from "./ClientsPopover";
+import TestimonialsBlock from "./TestimonialsBlock";
 import { sectionIds } from "@/data/site";
 
 type ExperienceStat = {
@@ -7,7 +11,13 @@ type ExperienceStat = {
   icon: LucideIcon;
   lines: { text: string; tone?: "primary" | "accent"; size?: "hero" | "medium" | "compact" }[];
   subtext: string;
+  interactive?: boolean;
 };
+
+interface ClickPoint {
+  x: number;
+  y: number;
+}
 
 const experienceStats: ExperienceStat[] = [
   {
@@ -15,6 +25,7 @@ const experienceStats: ExperienceStat[] = [
     icon: Rocket,
     lines: [{ text: "1000+", tone: "accent", size: "hero" }],
     subtext: "projects delivered",
+    interactive: true,
   },
   {
     id: "awards",
@@ -51,9 +62,15 @@ function experienceLineClass(tone: ExperienceStat["lines"][number]["tone"], size
   return `${toneClass} ${sizeClass}`;
 }
 
-function ExperienceStatCard({ stat }: { stat: ExperienceStat }) {
-  return (
-    <li className="how-experience-stat">
+interface ExperienceStatCardProps {
+  stat: ExperienceStat;
+  onProjectsOpen?: (event: MouseEvent<HTMLButtonElement>) => void;
+  cardRef?: RefObject<HTMLLIElement | null>;
+}
+
+function ExperienceStatCard({ stat, onProjectsOpen, cardRef }: ExperienceStatCardProps) {
+  const content = (
+    <>
       <span className="how-experience-stat-icon-wrap" aria-hidden="true">
         <stat.icon className="how-experience-stat-icon" strokeWidth={1.5} />
       </span>
@@ -66,12 +83,52 @@ function ExperienceStatCard({ stat }: { stat: ExperienceStat }) {
           ))}
         </div>
         <p className="how-experience-stat-sub">{stat.subtext}</p>
+        {stat.interactive && (
+          <p className="how-experience-stat-hint">{stat.id === "projects" ? "View clients" : ""}</p>
+        )}
       </div>
-    </li>
+      {stat.interactive && (
+        <span className="how-experience-stat-action" aria-hidden="true">
+          <ChevronRight className="how-experience-stat-chevron" size={20} strokeWidth={2.15} />
+        </span>
+      )}
+    </>
   );
+
+  if (stat.interactive && onProjectsOpen) {
+    return (
+      <li ref={cardRef} className="how-experience-stat how-experience-stat--interactive">
+        <button
+          type="button"
+          className="how-experience-stat-button"
+          onClick={onProjectsOpen}
+          aria-haspopup="dialog"
+          aria-label="1000 plus projects delivered. View clients."
+        >
+          {content}
+        </button>
+      </li>
+    );
+  }
+
+  return <li className="how-experience-stat">{content}</li>;
 }
 
 export default function AboutSection() {
+  const [clientsOpen, setClientsOpen] = useState(false);
+  const [clickPoint, setClickPoint] = useState<ClickPoint | null>(null);
+  const projectsRef = useRef<HTMLLIElement>(null);
+
+  const handleProjectsOpen = (event: MouseEvent<HTMLButtonElement>) => {
+    setClickPoint({ x: event.clientX, y: event.clientY });
+    setClientsOpen(true);
+  };
+
+  const closeClients = () => {
+    setClientsOpen(false);
+    setClickPoint(null);
+  };
+
   return (
     <section
       id={sectionIds.about}
@@ -93,12 +150,25 @@ export default function AboutSection() {
             </div>
             <ul className="how-experience-grid">
               {experienceStats.map((stat) => (
-                <ExperienceStatCard key={stat.id} stat={stat} />
+                <ExperienceStatCard
+                  key={stat.id}
+                  stat={stat}
+                  cardRef={stat.id === "projects" ? projectsRef : undefined}
+                  onProjectsOpen={stat.interactive ? handleProjectsOpen : undefined}
+                />
               ))}
             </ul>
           </div>
         </article>
+
+        <TestimonialsBlock />
       </div>
+
+      <AnimatePresence>
+        {clientsOpen && clickPoint && (
+          <ClientsPopover clickPoint={clickPoint} rootRef={projectsRef} onClose={closeClients} />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

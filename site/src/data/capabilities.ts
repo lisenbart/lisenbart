@@ -4,6 +4,8 @@ export interface CapabilityItem {
   image: string;
   description: string;
   formats: string[];
+  workLinkLabel: string;
+  workAnchor: string;
   /** Category showreel — swap path when ready */
   showreelSrc?: string;
 }
@@ -16,6 +18,8 @@ export const capabilities: CapabilityItem[] = [
     description:
       "Brand films, commercials and product visuals — from concept through final delivery.",
     formats: ["TV & digital ads", "brand films", "product animation", "explainer videos"],
+    workLinkLabel: "Our cases →",
+    workAnchor: "commercial",
   },
   {
     id: "gaming",
@@ -24,6 +28,8 @@ export const capabilities: CapabilityItem[] = [
     description:
       "Trailers, cinematics and in-game animation — built for the pace and scale of game production.",
     formats: ["playable ads", "marketing video", "game trailers", "CGI cinematics"],
+    workLinkLabel: "Our cases →",
+    workAnchor: "gaming",
   },
   {
     id: "film-entertainment",
@@ -32,6 +38,8 @@ export const capabilities: CapabilityItem[] = [
     description:
       "Animated series, short films and feature development — across 2D, 3D and mixed media.",
     formats: ["animated series", "short films", "co-productions", "festival projects"],
+    workLinkLabel: "Our cases →",
+    workAnchor: "film",
   },
   {
     id: "performance-social",
@@ -40,5 +48,7 @@ export const capabilities: CapabilityItem[] = [
     description:
       "Fast-turnaround content for live events, social platforms and performance contexts.",
     formats: ["social content", "event visuals", "motion design", "reels & shorts"],
+    workLinkLabel: "Our cases →",
+    workAnchor: "social",
   },
 ];

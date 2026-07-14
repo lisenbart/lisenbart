@@ -4,16 +4,16 @@ export const site = {
   name: "LISENBART",
   brand: "LISENBART",
   tagline: {
-    line1: "General producer for",
-    line2: "film, animation and AI content",
+    line1: "Commercial · film",
+    line2: "Gaming · social",
   },
   oneLiner:
-    "General producer for film, animation and AI content — one lead, the right team, delivery end to end.",
+    "From brief to screen — animation, film and AI content, produced end to end.",
   hero: {
     headlineLine2BeforeAccent: "The right team. ",
     headlineAccent: "End to end",
     paragraph:
-      "General producer for film, animation and AI content — the right team, delivery end to end.",
+      "From brief to screen — animation, film and AI content, produced end to end.",
   },
   capabilitiesLine:
     "Film, animation, game and AI content — scoped and delivered end to end.",
@@ -51,16 +51,49 @@ export const site = {
     soonLabel: "Showreel coming soon",
     closeLabel: "Close",
   },
+  clientsModal: {
+    title: "Clients",
+    subtitle: "1000+ projects delivered",
+    casesCtaLabel: "Our cases",
+    closeLabel: "Close",
+  },
+  testimonialsBlock: {
+    title: "What clients say",
+    addLabel: "Leave a review",
+    submitModal: {
+      title: "Leave a review",
+      subtitle: "Sent for moderation before publishing",
+      quoteLabel: "Your review",
+      nameLabel: "Your name",
+      companyLabel: "Company",
+      ratingLabel: "Rating",
+      ratingSkip: "No rating",
+      submitLabel: "Send review",
+      sendingLabel: "Sending...",
+      closeLabel: "Close",
+      charLimit: 500,
+      successBody: "Review submitted and will be added as soon as possible.",
+      validationSummary: "Please check the highlighted fields.",
+    },
+    readModal: {
+      closeLabel: "Close",
+    },
+  },
   locations: "Ukraine · Remote worldwide",
   canonical: "https://www.lisenbart.com",
+  logo: {
+    /** Shown on dark backgrounds */
+    white: "/images/logo_white.png",
+    /** Shown on light backgrounds */
+    black: "/images/logo_black.png",
+  },
+  favicon: "/favicon.png",
   meta: {
-    title: "LISENBART — General Producer for Film, Animation and AI Content",
+    title: "LISENBART — Film, Animation & AI Content",
     description:
-      "General producer for film, animation and AI content. One lead, the right team, delivery end to end.",
+      "From brief to screen — animation, film and AI content, produced end to end.",
     ogImage: publicAsset("/images/header_01.png"),
   },
-  organizationDescription:
-    "General producer for film, animation and AI content — one lead, the right team, delivery end to end.",
 };
 
 export const sectionIds = {
