@@ -1,12 +1,9 @@
 import {
-  contactEndpoint,
   contactHandler,
   isContactFormLive,
 } from "@/lib/contactConfig";
 
-export const TESTIMONIAL_FORM_NAME = "testimonial-review";
 export const TESTIMONIAL_MAX_LENGTH = 500;
-const TESTIMONIAL_MIN_LENGTH = 1;
 
 export interface TestimonialSubmitPayload {
   authorName: string;
@@ -21,49 +18,7 @@ export interface TestimonialSubmitResult {
   message: string;
 }
 
-function encodeUrlBody(fields: Record<string, string>): string {
-  return Object.entries(fields)
-    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-    .join("&");
-}
-
-function buildModerationBlock(data: TestimonialSubmitPayload): string {
-  const slug = `${data.company.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${Date.now()}`;
-  const ratingLine =
-    data.rating > 0 ? `  rating: ${data.rating},` : "  // rating omitted";
-
-  return [
-    "---",
-    "MODERATION — publish manually after review",
-    "Add to site/src/data/testimonials.ts:",
-    "",
-    "{",
-    `  id: "${slug}",`,
-    `  quote: ${JSON.stringify(data.quote.trim())},`,
-    `  name: ${JSON.stringify(data.authorName.trim())},`,
-    `  company: ${JSON.stringify(data.company.trim())},`,
-    ratingLine,
-    "}",
-  ].join("\n");
-}
-
-function buildEmailBody(data: TestimonialSubmitPayload): string {
-  const stars =
-    data.rating > 0 ? `${data.rating} / 5` : "(not provided)";
-
-  return [
-    "New client testimonial submitted for moderation.",
-    "",
-    `Name: ${data.authorName.trim()}`,
-    `Company: ${data.company.trim()}`,
-    `Rating: ${stars}`,
-    "",
-    "Review:",
-    data.quote.trim(),
-    "",
-    buildModerationBlock(data),
-  ].join("\n");
-}
+const SUBMIT_API = "/api/testimonials/submit";
 
 export function validateTestimonialSubmit(
   data: TestimonialSubmitPayload,
@@ -92,28 +47,11 @@ export function validateTestimonialSubmit(
   return errors;
 }
 
-function buildNetlifyBody(data: TestimonialSubmitPayload): string {
-  return encodeUrlBody({
-    "form-name": TESTIMONIAL_FORM_NAME,
-    authorName: data.authorName.trim(),
-    company: data.company.trim(),
-    quote: data.quote.trim(),
-    rating: data.rating > 0 ? String(data.rating) : "",
-    message: buildEmailBody(data),
-    website: data.honeypot?.trim() ?? "",
-  });
-}
-
 async function parseErrorResponse(res: Response): Promise<string> {
   try {
-    const json = (await res.json()) as {
-      message?: string;
-      error?: string;
-      errors?: { message: string }[];
-    };
-    if (json.message) return json.message;
-    if (json.errors?.[0]?.message) return json.errors[0].message;
+    const json = (await res.json()) as { error?: string; message?: string };
     if (json.error) return json.error;
+    if (json.message) return json.message;
   } catch {
     /* ignore */
   }
@@ -130,7 +68,6 @@ export async function submitTestimonialReview(
 
   if (!isContactFormLive) {
     console.info("[LISENBART] Testimonial review (dev mock):", data);
-    console.info(buildModerationBlock(data));
     await new Promise((resolve) => window.setTimeout(resolve, 600));
     return {
       success: true,
@@ -141,14 +78,14 @@ export async function submitTestimonialReview(
   if (contactHandler !== "netlify") {
     return {
       success: false,
-      message: `Please email your review to info@lisenbart.com`,
+      message: "Please email your review to info@lisenbart.com",
     };
   }
 
-  const res = await fetch(contactEndpoint, {
+  const res = await fetch(SUBMIT_API, {
     method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: buildNetlifyBody(data),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
   });
 
   if (!res.ok) {

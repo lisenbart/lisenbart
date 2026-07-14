@@ -26,6 +26,16 @@ npm run preview -- --host
 
 **Default:** Netlify Forms (`contact` + `testimonial-review` in `index.html`). React submits via `fetch` on deploy.
 
+### Client reviews (approve link)
+
+New reviews go through `/api/testimonials/submit` (Netlify Function + Blobs):
+
+1. Visitor submits a review on the site.
+2. You receive the usual Netlify email with an **Approve & publish** link.
+3. Click the link — the review goes live on the homepage **without redeploy**.
+
+Local dev mocks submit; use `netlify dev` in `site/` to test functions locally.
+
 Optional: set `VITE_CONTACT_HANDLER=php`, `VITE_FORMSPREE_FORM_ID`, or `VITE_CONTACT_ENDPOINT` in `.env.local` — see `.env.example`.
 
 ## Stack

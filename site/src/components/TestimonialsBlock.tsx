@@ -9,7 +9,8 @@ import {
 } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
-import { testimonials, type Testimonial } from "@/data/testimonials";
+import { testimonials as seedTestimonials, type Testimonial } from "@/data/testimonials";
+import { fetchPublishedTestimonials } from "@/lib/testimonialsApi";
 import { site } from "@/data/site";
 import TestimonialCard from "./TestimonialCard";
 import TestimonialReadPopover from "./TestimonialReadPopover";
@@ -42,8 +43,21 @@ export default function TestimonialsBlock() {
   const [readOpen, setReadOpen] = useState(false);
   const [readClickPoint, setReadClickPoint] = useState<ClickPoint | null>(null);
   const [readItem, setReadItem] = useState<Testimonial | null>(null);
+  const [items, setItems] = useState<Testimonial[]>(seedTestimonials);
 
-  const count = testimonials.length;
+  const count = items.length;
+
+  useEffect(() => {
+    let active = true;
+
+    void fetchPublishedTestimonials().then((next) => {
+      if (active) setItems(next);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const updateScrollState = useCallback(() => {
     const viewport = viewportRef.current;
@@ -228,7 +242,7 @@ export default function TestimonialsBlock() {
     setReadOpen(true);
   };
 
-  if (testimonials.length === 0) return null;
+  if (items.length === 0) return null;
 
   return (
     <div className="experience-testimonials">
@@ -263,7 +277,7 @@ export default function TestimonialsBlock() {
               onPointerCancel={hasOverflow ? endDrag : undefined}
             >
               <ul className="testimonial-track" role="list">
-                {testimonials.map((item) => (
+                {items.map((item) => (
                   <li key={item.id} className="testimonial-slide">
                     <TestimonialCard item={item} onRead={handleReadOpen} />
                   </li>
@@ -293,18 +307,18 @@ export default function TestimonialsBlock() {
           </button>
         </div>
 
-        {testimonials.length > 1 && (
+        {items.length > 1 && (
           <div
             className="testimonial-dots"
             role="tablist"
             aria-label="Testimonial slides"
           >
-            {testimonials.map((item, index) => (
+            {items.map((item, index) => (
               <span
                 key={item.id}
                 role="tab"
                 aria-selected={index === activeIndex}
-                aria-label={`Slide ${index + 1} of ${testimonials.length}`}
+                aria-label={`Slide ${index + 1} of ${items.length}`}
                 className={`testimonial-dot${index === activeIndex ? " is-active" : ""}`}
               />
             ))}
