@@ -31,8 +31,6 @@ export default function TestimonialsBlock() {
   const blockRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef({ active: false, startX: 0, scrollLeft: 0 });
-  const isResettingRef = useRef(false);
-  const resetTimeoutRef = useRef<number | null>(null);
 
   const [isDragging, setIsDragging] = useState(false);
   const [fadeStart, setFadeStart] = useState(false);
@@ -84,47 +82,6 @@ export default function TestimonialsBlock() {
     setFadeEnd(viewport.scrollLeft < maxScroll - 2);
   }, [count]);
 
-  const resetToStart = useCallback((behavior: ScrollBehavior = "smooth") => {
-    const viewport = viewportRef.current;
-    if (!viewport || isResettingRef.current || dragRef.current.active) return;
-
-    if (viewport.scrollLeft <= 2) {
-      setActiveIndex(0);
-      return;
-    }
-
-    isResettingRef.current = true;
-    viewport.scrollTo({ left: 0, behavior });
-  }, []);
-
-  const handleScrollSettled = useCallback(() => {
-    const viewport = viewportRef.current;
-    if (!viewport || dragRef.current.active) return;
-
-    if (isResettingRef.current) {
-      if (viewport.scrollLeft <= 2) {
-        isResettingRef.current = false;
-        setActiveIndex(0);
-        updateScrollState();
-      }
-      return;
-    }
-
-    resetToStart();
-    updateScrollState();
-  }, [resetToStart, updateScrollState]);
-
-  const queueScrollSettled = useCallback(() => {
-    if (resetTimeoutRef.current !== null) {
-      window.clearTimeout(resetTimeoutRef.current);
-    }
-
-    resetTimeoutRef.current = window.setTimeout(() => {
-      handleScrollSettled();
-      resetTimeoutRef.current = null;
-    }, 120);
-  }, [handleScrollSettled]);
-
   useEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
@@ -132,32 +89,19 @@ export default function TestimonialsBlock() {
     updateScrollState();
 
     const onScroll = () => {
-      if (isResettingRef.current) return;
       updateScrollState();
     };
 
-    const onScrollEnd = () => {
-      handleScrollSettled();
-    };
-
     viewport.addEventListener("scroll", onScroll, { passive: true });
-    viewport.addEventListener("scrollend", onScrollEnd);
-    viewport.addEventListener("touchend", onScrollEnd, { passive: true });
 
     const resizeObserver = new ResizeObserver(updateScrollState);
     resizeObserver.observe(viewport);
 
     return () => {
       viewport.removeEventListener("scroll", onScroll);
-      viewport.removeEventListener("scrollend", onScrollEnd);
-      viewport.removeEventListener("touchend", onScrollEnd);
       resizeObserver.disconnect();
-
-      if (resetTimeoutRef.current !== null) {
-        window.clearTimeout(resetTimeoutRef.current);
-      }
     };
-  }, [handleScrollSettled, updateScrollState]);
+  }, [updateScrollState, items.length]);
 
   const scrollByCard = useCallback((direction: -1 | 1) => {
     const viewport = viewportRef.current;
@@ -185,8 +129,6 @@ export default function TestimonialsBlock() {
     const viewport = viewportRef.current;
     if (!viewport || !hasOverflow) return;
 
-    isResettingRef.current = false;
-
     dragRef.current = {
       active: true,
       startX: event.clientX,
@@ -211,7 +153,7 @@ export default function TestimonialsBlock() {
     dragRef.current.active = false;
     setIsDragging(false);
     viewport.releasePointerCapture(event.pointerId);
-    queueScrollSettled();
+    updateScrollState();
   };
 
   const closeSubmit = () => {
