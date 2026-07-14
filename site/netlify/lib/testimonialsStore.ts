@@ -64,3 +64,12 @@ export async function approveTestimonial(id: string, token: string): Promise<Sto
   await savePendingTestimonial(approved);
   return approved;
 }
+
+export async function removeTestimonial(id: string, token: string): Promise<"removed" | "invalid"> {
+  const record = await getTestimonialById(id);
+  if (!record || record.token !== token) return "invalid";
+
+  const store = getTestimonialsStore();
+  await store.delete(id);
+  return "removed";
+}

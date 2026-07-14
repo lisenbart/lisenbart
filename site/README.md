@@ -31,8 +31,10 @@ npm run preview -- --host
 New reviews go through `/api/testimonials/submit` (Netlify Function + Blobs):
 
 1. Visitor submits a review on the site.
-2. You receive the usual Netlify email with an **Approve & publish** link.
-3. Click the link — the review goes live on the homepage **without redeploy**.
+2. You receive an email with two links:
+   - **Publish on site** — one click, live without redeploy.
+   - **Don't publish / Remove** — for tests or if you approved by mistake (same email works later).
+3. No Netlify dashboard or code edits needed for day-to-day moderation.
 
 Local dev mocks submit; use `netlify dev` in `site/` to test functions locally.
 

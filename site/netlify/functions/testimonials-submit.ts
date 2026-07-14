@@ -1,6 +1,6 @@
 import { randomBytes } from "node:crypto";
 import type { Config, Context } from "@netlify/functions";
-import { buildApproveUrl } from "../lib/siteUrl";
+import { buildApproveUrl, buildRemoveUrl } from "../lib/siteUrl";
 import {
   buildTestimonialId,
   validateTestimonialPayload,
@@ -20,25 +20,33 @@ function jsonResponse(body: unknown, status = 200): Response {
   });
 }
 
-function buildNotificationMessage(data: TestimonialPayload, approveUrl: string): string {
+function buildNotificationMessage(
+  data: TestimonialPayload,
+  approveUrl: string,
+  removeUrl: string,
+): string {
   const stars = data.rating > 0 ? `${data.rating} / 5` : "(not provided)";
 
   return [
-    "New client review — waiting for moderation.",
+    "Новий відгук від клієнта",
     "",
-    `Name: ${data.authorName.trim()}`,
-    `Company: ${data.company.trim()}`,
-    `Rating: ${stars}`,
+    `Ім'я: ${data.authorName.trim()}`,
+    `Компанія: ${data.company.trim()}`,
+    `Рейтинг: ${stars}`,
     "",
-    "Review:",
+    "Текст:",
     data.quote.trim(),
     "",
-    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
-    "APPROVE & PUBLISH ON SITE (one click, no deploy):",
+    "════════════════════════════════",
+    "✅ ОПУБЛІКУВАТИ НА САЙТІ (один клік):",
     approveUrl,
-    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
     "",
-    "Ignore test submissions — only click Approve for real reviews.",
+    "❌ НЕ ПУБЛІКУВАТИ / ПРИБРАТИ:",
+    removeUrl,
+    "════════════════════════════════",
+    "",
+    "Тестовий відгук? → натисни «НЕ ПУБЛІКУВАТИ» або просто видали лист.",
+    "Опублікував помилково? → відкрий цей лист знову і натисни «ПРИБРАТИ».",
   ].join("\n");
 }
 
@@ -96,6 +104,7 @@ export default async function handler(req: Request, _context: Context): Promise<
   const id = buildTestimonialId(payload);
   const token = randomBytes(24).toString("hex");
   const approveUrl = buildApproveUrl(id, token);
+  const removeUrl = buildRemoveUrl(id, token);
 
   const record: StoredTestimonial = {
     id,
@@ -110,7 +119,7 @@ export default async function handler(req: Request, _context: Context): Promise<
 
   try {
     await savePendingTestimonial(record);
-    await notifyViaNetlifyForm(payload, buildNotificationMessage(payload, approveUrl));
+    await notifyViaNetlifyForm(payload, buildNotificationMessage(payload, approveUrl, removeUrl));
   } catch (error) {
     console.error("[testimonials-submit]", error);
     return jsonResponse({ error: "Could not save or notify about the review." }, 500);
