@@ -10,13 +10,59 @@ export const site = {
   oneLiner:
     "From brief to screen — animation, film and AI content, produced end to end.",
   hero: {
+    posterHeadlineLine1: "Powered by AI. Directed by us.",
+    posterHeadlineLine2: "Moving image for brands, agencies and game studios.",
+    posterCtaLabel: "See our work",
     headlineLine2BeforeAccent: "The right team. ",
     headlineAccent: "End to end",
     paragraph:
       "From brief to screen — animation, film and AI content, produced end to end.",
   },
+  endToEndProduction: {
+    steps: [
+      {
+        title: "Brief",
+        text: "We align on goals, references and deliverables.",
+      },
+      {
+        title: "Proposal",
+        text: "We shape the approach, timeline and production estimate.",
+      },
+      {
+        title: "Production",
+        text: "We manage the full process and deliver final assets ready to launch.",
+      },
+    ],
+  },
   capabilitiesLine:
     "Film, animation, game and AI content — scoped and delivered end to end.",
+  beyondTheTool: {
+    eyebrow: "Beyond the tool",
+    title: "Anyone can learn AI. Not everyone can turn it into a product that works.",
+    body:
+      "AI accelerates execution — but it does not replace brand understanding, dramaturgy, taste, or the final call. That always stays human. We use AI where it saves time and expands range; we bring experience where the work has to land.",
+  },
+  workModels: {
+    eyebrow: "How we work",
+    title: "Two ways to work with us.",
+    cards: [
+      {
+        id: "project",
+        modelLabel: "Model 01",
+        label: "Project",
+        summary: "One campaign, trailer, or film — scoped, produced, and delivered end to end.",
+        chips: ["One-time", "Fixed scope", "Producer-led"],
+      },
+      {
+        id: "embedded",
+        modelLabel: "Model 02",
+        label: "Embedded team",
+        summary:
+          "Ongoing production capacity that works like your own in-house studio — remotely, without the overhead of building one.",
+        chips: ["Monthly retainer", "Embedded team", "Scales with you"],
+      },
+    ],
+  },
   ctaLabel: "Discuss a project",
   contactSubmitLabel: "Send message",
   email: "info@lisenbart.com",
@@ -146,7 +192,7 @@ export const site = {
     title: "LISENBART — Film, Animation & AI Content",
     description:
       "From brief to screen — animation, film and AI content, produced end to end.",
-    ogImage: publicAsset("/images/header_01.png"),
+    ogImage: publicAsset("/images/work/lisenbart-showreel-preview.jpg"),
   },
 };
 

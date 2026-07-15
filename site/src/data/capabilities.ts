@@ -46,7 +46,7 @@ export const capabilities: CapabilityItem[] = [
     title: "Social Media",
     image: "/images/capabilities/performance-social.png",
     description:
-      "YouTube channels and social content — animated songs, stories and learning series for young audiences.",
+      "YouTube channels and social content — including our own IP, Pershosvit and Skupy Cap, alongside animated songs, stories and learning series for young audiences.",
     formats: ["social content", "event visuals", "motion design", "reels & shorts"],
     workLinkLabel: "Our cases →",
     workAnchor: "social",

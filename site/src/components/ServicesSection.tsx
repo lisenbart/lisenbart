@@ -12,12 +12,20 @@ export default function ServicesSection() {
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
         <article className="how-ios-card how-ios-card-cyan" aria-label="Production capabilities">
           <div className="how-ios-card-inner">
-            <h2 className="how-col-title how-col-title-cyan">Production capabilities</h2>
-            <p className="how-support-line">{site.capabilitiesLine}</p>
-            <p className="capability-ai-note">
-              AI-assisted production means faster iteration and broader creative range — always directed
-              and supervised by our team.
-            </p>
+            <div className="section-title-lockup section-title-lockup--capabilities">
+              <h2 className="how-col-title how-col-title-cyan capability-section-title">
+                <span className="capability-section-title-line">Production</span>
+                <span className="capability-section-title-line capability-section-title-line--second">
+                  capabilities
+                </span>
+              </h2>
+              <div className="section-title-tagline section-title-tagline--stacked">
+                <p className="how-support-line">{site.capabilitiesLine}</p>
+                <p className="capability-ai-note">
+                  AI-assisted production means faster iteration and broader creative range.
+                </p>
+              </div>
+            </div>
 
             <ul className="capability-grid">
               {capabilities.map((item) => (

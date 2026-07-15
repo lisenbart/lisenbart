@@ -159,7 +159,7 @@ export default function ContactForm() {
                   </div>
                   {form.projectType === "AI-Assisted Production" && (
                     <p className="inquiry-helper mt-2 text-xs font-light leading-relaxed text-text-tertiary">
-                      We use AI as a production tool, not a replacement for craft.
+                      AI speeds up the work — the craft stays ours.
                     </p>
                   )}
                 </div>

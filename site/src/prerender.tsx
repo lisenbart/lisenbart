@@ -60,7 +60,7 @@ export async function prerender(data: { url: string }) {
   setPrerenderPathname(url.pathname);
 
   if (typeof document !== "undefined") {
-    document.documentElement.setAttribute("data-theme", "dark");
+    document.documentElement.setAttribute("data-theme", "light");
   }
 
   const helmetContext: { helmet?: HelmetServerState } = {};

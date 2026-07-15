@@ -11,7 +11,12 @@ interface SEOProps {
 }
 
 export function SEO({ title, description, url, image, children }: SEOProps) {
-  const ogImage = image ?? site.meta.ogImage;
+  const ogImage = (() => {
+    const raw = image ?? site.meta.ogImage;
+    if (raw.startsWith("http")) return raw;
+    const path = raw.startsWith("/") ? raw : `/${raw}`;
+    return `${site.canonical}${path}`;
+  })();
   const canonical = url.startsWith("http") ? url : `${site.canonical}${url}`;
 
   return (

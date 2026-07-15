@@ -6,7 +6,6 @@ import AwardsPopover from "./AwardsPopover";
 import ClientsPopover from "./ClientsPopover";
 import StudioPopover from "./StudioPopover";
 import TeamPopover from "./TeamPopover";
-import TestimonialsBlock from "./TestimonialsBlock";
 import { sectionIds } from "@/data/site";
 
 type ExperiencePopoverId = "clients" | "studio" | "awards" | "team";
@@ -137,6 +136,9 @@ function ExperienceStatCard({ stat, onInteractiveOpen, cardRef }: ExperienceStat
   return <li className="how-experience-stat">{content}</li>;
 }
 
+const experienceLead =
+  "Proven production experience, built across commercial and cinematic work.";
+
 export default function AboutSection() {
   const [openPopover, setOpenPopover] = useState<ExperiencePopoverId | null>(null);
   const [clickPoint, setClickPoint] = useState<ClickPoint | null>(null);
@@ -172,15 +174,9 @@ export default function AboutSection() {
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
         <article className="how-ios-card how-experience-card" aria-label="Experience">
           <div className="how-ios-card-inner how-experience-inner">
-            <div className="how-experience-header">
+            <div className="section-title-lockup how-experience-header">
               <h2 className="how-col-title how-col-title-experience">Experience</h2>
-              <p className="how-experience-identity">
-                Dmytro Lisenbart — producer, named lead and the trusted point of contact for clients across
-                three continents.
-              </p>
-              <p className="how-experience-lead">
-                Proven production experience, built across commercial and cinematic work.
-              </p>
+              <p className="section-title-tagline how-experience-lead">{experienceLead}</p>
             </div>
             <ul className="how-experience-grid">
               {experienceStats.map((stat) => (
@@ -198,8 +194,6 @@ export default function AboutSection() {
             </ul>
           </div>
         </article>
-
-        <TestimonialsBlock />
       </div>
 
       <AnimatePresence>

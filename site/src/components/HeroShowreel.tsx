@@ -3,8 +3,15 @@ import { Maximize2, Minimize2, Pause, Play, Send, Volume2, VolumeX } from "lucid
 import { site } from "@/data/site";
 
 const VIMEO_ID = "849899875";
-const VIMEO_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=0&loop=1&muted=0&playsinline=1&title=0&byline=0&portrait=0&controls=0&autopause=0&vimeo_logo=0&badge=0&pip=0&dnt=1`;
+const VIMEO_BASE =
+  "title=0&byline=0&portrait=0&controls=0&autopause=0&vimeo_logo=0&badge=0&pip=0&dnt=1&playsinline=1";
+const VIMEO_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=0&loop=1&muted=0&${VIMEO_BASE}`;
+const VIMEO_POSTER_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=1&loop=1&muted=1&background=1&${VIMEO_BASE}`;
 const SHOWREEL_SHARE_URL = site.vimeo;
+
+interface HeroShowreelProps {
+  variant?: "interactive" | "poster";
+}
 
 type VimeoPlayer = {
   play: () => Promise<void>;
@@ -47,7 +54,8 @@ function canUseWebShare(data: ShareData) {
   return true;
 }
 
-export default function HeroShowreel() {
+export default function HeroShowreel({ variant = "interactive" }: HeroShowreelProps) {
+  const isPoster = variant === "poster";
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerRef = useRef<VimeoPlayer | null>(null);
@@ -95,6 +103,12 @@ export default function HeroShowreel() {
           });
 
           setPlayerReady(true);
+
+          if (isPoster) {
+            void player.setMuted(true).then(() => player.play()).then(() => {
+              if (!cancelled) setIsPlaying(true);
+            }).catch(() => {});
+          }
         })
         .catch(() => {});
     };
@@ -106,7 +120,7 @@ export default function HeroShowreel() {
       cancelled = true;
       iframe.removeEventListener("load", initPlayer);
     };
-  }, []);
+  }, [isPoster]);
 
   useEffect(() => {
     const onFullscreenChange = () => {
@@ -230,7 +244,7 @@ export default function HeroShowreel() {
     <div ref={containerRef} className="hero-showreel group absolute inset-0 overflow-hidden">
       <iframe
         ref={iframeRef}
-        src={VIMEO_SRC}
+        src={isPoster ? VIMEO_POSTER_SRC : VIMEO_SRC}
         title="LISENBART showreel"
         allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
         allowFullScreen
@@ -240,7 +254,7 @@ export default function HeroShowreel() {
         tabIndex={-1}
       />
 
-      {!isPlaying && (
+      {!isPoster && !isPlaying && (
         <button
           type="button"
           onClick={() => void handlePlay()}
@@ -252,7 +266,7 @@ export default function HeroShowreel() {
         </button>
       )}
 
-      {playerReady && (
+      {!isPoster && playerReady && (
         <div
           className={`hero-showreel__controls absolute z-20 flex items-center gap-2${isPlaying ? " hero-showreel__controls--active" : ""}`}
         >
