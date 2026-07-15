@@ -293,6 +293,22 @@
   color: color-mix(in srgb, var(--text-secondary) 88%, var(--text-primary));
 }
 
+[data-theme="light"] .journal-quote-card {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(18, 18, 20, 0.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 16px 36px rgba(18, 18, 20, 0.05);
+}
+
+[data-theme="light"] .journal-quote-card::before {
+  background: color-mix(in srgb, var(--cyan) 48%, #121214);
+}
+
+[data-theme="light"] .journal-quote-card__pull::before {
+  color: color-mix(in srgb, var(--cyan) 35%, var(--text-tertiary));
+}
+
 [data-theme="light"] .capability-card {
   background: var(--how-ios-bg);
   border: 1px solid var(--ios-card-border);
@@ -428,11 +444,16 @@
 }
 
 [data-theme="light"] .work-model-badge {
-  color: var(--text-primary);
+  color: var(--text-tertiary);
+  background: none;
+  border: 0;
+  box-shadow: none;
 }
 
 [data-theme="light"] .work-model-chip {
-  background: color-mix(in srgb, var(--work-model-accent) 10%, white);
+  color: var(--text-secondary);
+  background: var(--inset-surface);
+  border: 1px solid var(--separator);
 }
 
 [data-theme="light"] .how-experience-stat-icon-wrap {

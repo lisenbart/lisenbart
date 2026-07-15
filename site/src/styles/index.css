@@ -1052,6 +1052,10 @@ body.header-connect-open {
   overflow: visible;
 }
 
+.how-work-inner {
+  text-align: center;
+}
+
 .how-work-section-title {
   margin: 0 0 clamp(1.1rem, 2vw, 1.45rem);
   text-align: center;
@@ -1092,7 +1096,87 @@ body.header-connect-open {
   color: var(--text-secondary);
 }
 
+/* Editorial / e-journal pull-quote card */
+.journal-quote-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--how-ios-bg) 92%, var(--text-primary) 4%);
+  border: 1px solid var(--separator);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--text-primary) 6%, transparent) inset,
+    0 18px 40px color-mix(in srgb, var(--background) 35%, transparent);
+}
+
+.journal-quote-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: color-mix(in srgb, var(--cyan) 55%, var(--text-primary));
+}
+
+.journal-quote-card__quote {
+  position: relative;
+  margin: 0;
+  padding: clamp(1.35rem, 3vw, 2rem) clamp(1.25rem, 3.2vw, 2.35rem)
+    clamp(1.35rem, 3vw, 1.85rem) clamp(1.45rem, 3.4vw, 2.5rem);
+}
+
+.journal-quote-card__eyebrow {
+  margin: 0 0 clamp(0.75rem, 1.5vw, 1rem);
+  font-family: var(--font-sans);
+  font-size: clamp(0.625rem, 0.9vw, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.journal-quote-card__pull {
+  position: relative;
+  margin: 0;
+  max-width: 38rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  line-height: 1.28;
+  text-wrap: balance;
+  color: var(--text-primary);
+}
+
+.journal-quote-card__pull::before {
+  content: "\201C";
+  display: block;
+  margin: 0 0 0.15rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 0.75;
+  color: color-mix(in srgb, var(--cyan) 42%, var(--text-tertiary));
+  opacity: 0.9;
+}
+
+.journal-quote-card__dek {
+  margin: clamp(0.95rem, 1.8vw, 1.25rem) 0 0;
+  max-width: 40rem;
+  padding-top: clamp(0.85rem, 1.6vw, 1.1rem);
+  border-top: 1px solid var(--separator);
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 1.05vw, 0.975rem);
+  font-weight: 300;
+  line-height: 1.7;
+  text-wrap: pretty;
+  color: var(--text-secondary);
+}
+
 @media (max-width: 767px) {
+  .how-work-inner,
   .how-work-section-title,
   .how-work-beyond {
     text-align: left;
@@ -1101,6 +1185,19 @@ body.header-connect-open {
   .how-work-beyond-title,
   .how-work-beyond-body {
     margin-inline: 0;
+  }
+
+  .journal-quote-card__quote {
+    padding-left: clamp(1.15rem, 4vw, 1.5rem);
+  }
+
+  .work-model-card {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .work-model-chips {
+    justify-content: flex-start;
   }
 }
 
@@ -1266,6 +1363,77 @@ body.header-connect-open {
 .end-to-end-process {
   margin-top: clamp(0.65rem, 1.4vw, 0.95rem);
   gap: 0.5rem;
+}
+
+@media (max-width: 767px) {
+  .end-to-end-process {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 0.75rem;
+  }
+
+  .end-to-end-process .how-process-group {
+    flex: 1 1 0;
+    flex-direction: row;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .end-to-end-process .how-process-card {
+    padding: 0.55rem 0.35rem;
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .end-to-end-process .how-process-card-top {
+    gap: 0;
+  }
+
+  .end-to-end-process .how-process-card-heading {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.12rem;
+    text-align: center;
+  }
+
+  .end-to-end-process .how-process-num {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .end-to-end-process .how-process-card-title {
+    font-size: clamp(0.625rem, 2.8vw, 0.75rem);
+    letter-spacing: 0.02em;
+    white-space: normal;
+    text-wrap: balance;
+    line-height: 1.15;
+  }
+
+  .end-to-end-process .how-process-icon,
+  .end-to-end-process .how-process-card-text {
+    display: none;
+  }
+
+  .end-to-end-process .how-process-connector {
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    width: 0.55rem;
+    height: auto;
+    padding: 0;
+  }
+
+  .end-to-end-process .how-process-connector .how-process-line {
+    width: auto;
+    height: 1px;
+  }
+
+  .end-to-end-process .how-process-dot {
+    width: 4px;
+    height: 4px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1660,16 +1828,16 @@ body.header-connect-open {
 .work-models-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(1.35rem, 2.4vw, 1.65rem);
+  gap: clamp(0.85rem, 1.6vw, 1.1rem);
   list-style: none;
-  margin: clamp(1.35rem, 2.2vw, 1.75rem) 0 0;
-  padding: 0.75rem 0 0;
+  margin: clamp(0.35rem, 1vw, 0.55rem) 0 0;
+  padding: 0;
 }
 
 @media (min-width: 640px) {
   .work-models-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1rem, 1.8vw, 1.25rem);
+    gap: clamp(0.85rem, 1.5vw, 1.1rem);
   }
 }
 
@@ -1678,9 +1846,9 @@ body.header-connect-open {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   min-height: 100%;
-  padding: clamp(1.85rem, 3vw, 2.15rem) clamp(1rem, 1.6vw, 1.2rem)
+  padding: clamp(1.15rem, 2vw, 1.4rem) clamp(1rem, 1.6vw, 1.2rem)
     clamp(1.05rem, 1.8vw, 1.25rem);
   border-radius: 18px;
   background: var(--stat-surface);
@@ -1688,7 +1856,7 @@ body.header-connect-open {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: var(--stat-shadow);
-  overflow: visible;
+  overflow: hidden;
   isolation: isolate;
   text-align: center;
 }
@@ -1709,33 +1877,28 @@ body.header-connect-open {
 }
 
 .work-model-card--embedded {
-  --work-model-accent: var(--emerald, #34d399);
+  --work-model-accent: var(--violet);
 }
 
 .work-model-badge {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  z-index: 2;
-  transform: translateX(-50%) translateY(-50%);
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  font-size: clamp(0.625rem, 0.85vw, 0.6875rem);
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-family: var(--font-sans);
+  font-size: clamp(0.625rem, 0.9vw, 0.6875rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
   text-transform: uppercase;
-  color: var(--text-primary);
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--work-model-accent) 72%, var(--text-primary)),
-    color-mix(in srgb, var(--work-model-accent) 42%, transparent)
-  );
-  border: 1px solid color-mix(in srgb, var(--work-model-accent) 45%, transparent);
-  box-shadow: 0 4px 18px color-mix(in srgb, var(--work-model-accent) 28%, transparent);
+  color: var(--text-tertiary);
 }
 
 .work-model-name {
-  margin: 0.15rem 0 0;
+  margin: 0;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.4vw, 1.75rem);
   font-weight: 500;
@@ -1762,9 +1925,9 @@ body.header-connect-open {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--work-model-accent) 78%, var(--text-primary));
-  background: color-mix(in srgb, var(--work-model-accent) 12%, transparent);
-  border: 1px solid color-mix(in srgb, var(--work-model-accent) 28%, transparent);
+  color: var(--text-secondary);
+  background: var(--inset-surface);
+  border: 1px solid var(--separator);
 }
 
 .work-model-body {
