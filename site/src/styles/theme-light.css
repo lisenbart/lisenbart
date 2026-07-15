@@ -457,13 +457,27 @@
 }
 
 [data-theme="light"] .how-experience-stat-icon-wrap {
-  border: 1px solid var(--stat-icon-border);
-  background: var(--stat-icon-bg);
-  box-shadow: none;
+  border-color: color-mix(in srgb, var(--experience-icon-accent) 32%, var(--stat-icon-border));
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      color-mix(in srgb, var(--experience-icon-accent) 12%, transparent) 0%,
+      transparent 58%
+    ),
+    rgba(255, 255, 255, 0.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 0 1px color-mix(in srgb, var(--experience-icon-accent) 8%, transparent),
+    0 10px 22px rgba(18, 18, 20, 0.06);
+}
+
+[data-theme="light"] .how-experience-stat-icon-wrap::after {
+  opacity: 0.42;
 }
 
 [data-theme="light"] .how-experience-stat-icon {
-  color: var(--stat-icon-color);
+  color: color-mix(in srgb, var(--experience-icon-accent) 72%, #121214);
+  filter: none;
 }
 
 [data-theme="light"] .how-experience-stat-accent {

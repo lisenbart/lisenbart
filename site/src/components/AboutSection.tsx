@@ -1,6 +1,6 @@
 import { useRef, useState, type MouseEvent, type RefObject } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Calendar, ChevronRight, Rocket, Trophy, Users } from "lucide-react";
+import { Award, ChevronRight, Clapperboard, Globe2, History } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import AwardsPopover from "./AwardsPopover";
 import ClientsPopover from "./ClientsPopover";
@@ -11,7 +11,7 @@ import { sectionIds } from "@/data/site";
 type ExperiencePopoverId = "clients" | "studio" | "awards" | "team";
 
 type ExperienceStat = {
-  id: string;
+  id: "projects" | "awards" | "timeline" | "teams";
   icon: LucideIcon;
   lines: { text: string; tone?: "primary" | "accent"; size?: "hero" | "medium" | "compact" }[];
   subtext?: string;
@@ -29,7 +29,7 @@ interface ClickPoint {
 const experienceStats: ExperienceStat[] = [
   {
     id: "projects",
-    icon: Rocket,
+    icon: Clapperboard,
     lines: [{ text: "1000+", tone: "accent", size: "hero" }],
     subtext: "projects delivered",
     interactive: true,
@@ -39,7 +39,7 @@ const experienceStats: ExperienceStat[] = [
   },
   {
     id: "awards",
-    icon: Trophy,
+    icon: Award,
     lines: [
       { text: "15 awards", tone: "accent", size: "medium" },
       { text: "45 selections", tone: "primary", size: "medium" },
@@ -52,7 +52,7 @@ const experienceStats: ExperienceStat[] = [
   },
   {
     id: "timeline",
-    icon: Calendar,
+    icon: History,
     lines: [{ text: "20 years", tone: "accent", size: "hero" }],
     subtext: "in animation since 2006",
     interactive: true,
@@ -62,7 +62,7 @@ const experienceStats: ExperienceStat[] = [
   },
   {
     id: "teams",
-    icon: Users,
+    icon: Globe2,
     lines: [{ text: "Canada • Ukraine • Poland", tone: "primary", size: "compact" }],
     subtext: "creative & production teams",
     interactive: true,
@@ -93,8 +93,11 @@ interface ExperienceStatCardProps {
 function ExperienceStatCard({ stat, onInteractiveOpen, cardRef }: ExperienceStatCardProps) {
   const content = (
     <>
-      <span className="how-experience-stat-icon-wrap" aria-hidden="true">
-        <stat.icon className="how-experience-stat-icon" strokeWidth={1.5} />
+      <span
+        className={`how-experience-stat-icon-wrap how-experience-stat-icon-wrap--${stat.id}`}
+        aria-hidden="true"
+      >
+        <stat.icon className="how-experience-stat-icon" strokeWidth={1.65} />
       </span>
       <div className="how-experience-stat-copy">
         <div className="how-experience-stat-lines">
@@ -174,9 +177,11 @@ export default function AboutSection() {
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
         <article className="how-ios-card how-experience-card" aria-label="Experience">
           <div className="how-ios-card-inner how-experience-inner">
-            <div className="section-title-lockup how-experience-header">
-              <h2 className="how-col-title how-col-title-experience">Experience</h2>
-              <p className="section-title-tagline how-experience-lead">{experienceLead}</p>
+            <div className="section-card-header how-experience-header">
+              <h2 className="how-col-title how-col-title-experience section-card-header__title">
+                Experience
+              </h2>
+              <p className="section-card-header__lead how-experience-lead">{experienceLead}</p>
             </div>
             <ul className="how-experience-grid">
               {experienceStats.map((stat) => (

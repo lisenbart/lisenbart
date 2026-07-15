@@ -3076,35 +3076,6 @@ body.header-connect-open {
   color: var(--text-tertiary, color-mix(in srgb, var(--text-secondary) 78%, transparent));
 }
 
-.capability-section-title {
-  display: block;
-}
-
-.capability-section-title-line {
-  display: inline;
-}
-
-.capability-section-title-line--second::before {
-  content: " ";
-}
-
-@media (min-width: 640px) {
-  .section-title-lockup--capabilities .capability-section-title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.02em;
-    line-height: 1.04;
-  }
-
-  .section-title-lockup--capabilities .capability-section-title-line {
-    display: block;
-  }
-
-  .section-title-lockup--capabilities .capability-section-title-line--second::before {
-    content: none;
-  }
-}
-
 .capability-body {
   position: relative;
   z-index: 1;
@@ -3308,43 +3279,42 @@ body.header-connect-open {
   padding: clamp(1.5rem, 2.8vw, 2.25rem) clamp(1.25rem, 2.4vw, 2rem);
 }
 
-.section-title-lockup {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.85rem, 2.4vw, 1.85rem);
-  margin-bottom: clamp(1.35rem, 2.8vw, 1.85rem);
-  min-width: 0;
+.section-card-header {
+  margin: 0 0 clamp(1.15rem, 2.4vw, 1.65rem);
+  text-align: center;
 }
 
-.section-title-lockup .how-col-title {
-  flex-shrink: 0;
-  margin: 0;
+.section-card-header__title {
+  margin: 0 auto;
+  max-width: 100%;
+  text-wrap: balance;
 }
 
-.section-title-tagline {
-  min-width: 0;
-  margin: 0;
-  font-size: clamp(0.8125rem, 1.15vw, 0.9375rem);
+.section-card-header__lead {
+  margin: 0.55rem auto 0;
+  max-width: min(42rem, 100%);
+  font-size: clamp(0.875rem, 1.2vw, 1rem);
   font-weight: 300;
   line-height: 1.55;
+  text-wrap: pretty;
   color: var(--text-secondary);
-  overflow-wrap: anywhere;
 }
 
-.section-title-tagline--stacked {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+.section-card-header__lead--secondary,
+.section-card-header .capability-ai-note {
+  margin-top: 0.4rem;
+  max-width: min(40rem, 100%);
 }
 
-.section-title-lockup--capabilities .how-support-line,
-.section-title-lockup--capabilities .capability-ai-note {
-  margin: 0;
-  max-width: none;
+.section-card-header .how-support-line,
+.section-card-header .how-experience-lead,
+.section-card-header .capability-ai-note {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .how-experience-header {
-  margin-bottom: 0;
+  margin-bottom: clamp(1.15rem, 2.4vw, 1.65rem);
 }
 
 .how-col-title-experience {
@@ -3352,14 +3322,37 @@ body.header-connect-open {
 }
 
 .how-experience-lead {
-  max-width: none;
+  max-width: min(42rem, 100%);
 }
 
-@media (max-width: 639px) {
-  .section-title-lockup {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.55rem;
+@media (min-width: 768px) {
+  .section-card-header__title {
+    white-space: nowrap;
+  }
+
+  .section-card-header__lead:not(.section-card-header__lead--secondary):not(.capability-ai-note) {
+    white-space: nowrap;
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-card-header {
+    text-align: left;
+  }
+
+  .section-card-header__title {
+    white-space: normal;
+  }
+
+  .section-card-header__title,
+  .section-card-header__lead,
+  .section-card-header .how-support-line,
+  .section-card-header .how-experience-lead,
+  .section-card-header .capability-ai-note {
+    margin-inline: 0;
+    white-space: normal;
+    max-width: 100%;
   }
 }
 
@@ -3476,24 +3469,85 @@ body.header-connect-open {
 }
 
 .how-experience-stat-icon-wrap {
+  --experience-icon-accent: var(--cyan);
   position: relative;
   z-index: 3;
   display: flex;
   shrink: 0;
   align-items: center;
   justify-content: center;
-  width: clamp(3.45rem, 5.4vw, 4.05rem);
-  height: clamp(3.45rem, 5.4vw, 4.05rem);
+  width: clamp(3.55rem, 5.6vw, 4.25rem);
+  height: clamp(3.55rem, 5.6vw, 4.25rem);
   border-radius: 9999px;
-  border: 1px solid var(--stat-icon-border);
-  background: var(--stat-icon-bg);
-  box-shadow: var(--stat-icon-shadow);
+  border: 1px solid color-mix(in srgb, var(--experience-icon-accent) 42%, var(--stat-icon-border));
+  background:
+    radial-gradient(
+      circle at 35% 28%,
+      color-mix(in srgb, var(--experience-icon-accent) 22%, transparent) 0%,
+      transparent 58%
+    ),
+    var(--stat-icon-bg);
+  box-shadow:
+    var(--stat-icon-shadow),
+    inset 0 1px 0 color-mix(in srgb, var(--text-primary) 12%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--experience-icon-accent) 12%, transparent),
+    0 8px 22px color-mix(in srgb, var(--experience-icon-accent) 14%, transparent);
+  isolation: isolate;
+}
+
+.how-experience-stat-icon-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--experience-icon-accent) 28%, transparent);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.how-experience-stat-icon-wrap::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 210deg,
+    transparent 0deg,
+    color-mix(in srgb, var(--experience-icon-accent) 55%, transparent) 70deg,
+    transparent 150deg,
+    color-mix(in srgb, var(--violet) 28%, transparent) 220deg,
+    transparent 320deg
+  );
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: -1;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
+}
+
+.how-experience-stat-icon-wrap--projects {
+  --experience-icon-accent: var(--cyan);
+}
+
+.how-experience-stat-icon-wrap--awards {
+  --experience-icon-accent: var(--violet);
+}
+
+.how-experience-stat-icon-wrap--timeline {
+  --experience-icon-accent: var(--magenta);
+}
+
+.how-experience-stat-icon-wrap--teams {
+  --experience-icon-accent: color-mix(in srgb, var(--cyan) 55%, var(--violet));
 }
 
 .how-experience-stat-icon {
-  width: 1.625rem;
-  height: 1.625rem;
-  color: var(--stat-icon-color);
+  position: relative;
+  z-index: 1;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--experience-icon-accent);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--experience-icon-accent) 28%, transparent));
 }
 
 .how-experience-stat-copy {
