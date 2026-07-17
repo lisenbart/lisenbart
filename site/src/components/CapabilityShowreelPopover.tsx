@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type RefObject } from "re
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { ChevronRight, X } from "lucide-react";
-import { sectionIds, scrollToSection, site } from "@/data/site";
+import { goToContact, site } from "@/data/site";
 
 interface ClickPoint {
   x: number;
@@ -136,7 +136,7 @@ export default function CapabilityShowreelPopover({
   }, [onClose, rootRef]);
 
   const handleCta = () => {
-    scrollToSection(sectionIds.contact, onClose);
+    goToContact(onClose);
   };
 
   const isReady = coords !== null;

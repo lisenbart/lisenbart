@@ -10,7 +10,7 @@ import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronRight, X } from "lucide-react";
 import StarRatingInput from "./StarRatingInput";
-import { sectionIds, site, scrollToSection } from "@/data/site";
+import { goToContact, site } from "@/data/site";
 import {
   submitTestimonialReview,
   TESTIMONIAL_MAX_LENGTH,
@@ -257,7 +257,7 @@ export default function TestimonialSubmitPopover({ onClose }: TestimonialSubmitP
               </p>
               <button
                 type="button"
-                onClick={() => scrollToSection(sectionIds.contact, onClose)}
+                onClick={() => goToContact(onClose)}
                 className="gradient-button-emerald btn-on-accent capability-showreel-modal__cta mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full px-4 py-2.5 text-sm font-medium uppercase tracking-[0.12em]"
               >
                 {site.ctaLabel}

@@ -20,9 +20,12 @@
   --modal-bg: rgba(255, 255, 255, 0.96);
   --modal-border: rgba(18, 18, 20, 0.1);
   --inset-surface: rgba(18, 18, 20, 0.035);
-  --how-ios-bg: rgba(255, 255, 255, 0.52);
+  --how-ios-bg: rgba(255, 255, 255, 0.88);
   --how-ios-group-bg: rgba(18, 18, 20, 0.028);
-  --card-shadow: 0 18px 48px rgba(18, 18, 20, 0.05), 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+  --card-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 10px 28px rgba(18, 18, 20, 0.08),
+    0 2px 8px rgba(18, 18, 20, 0.04);
   --card-radius: 28px;
 
   /* Restrained electric accents — same family as dark mode */
@@ -35,13 +38,13 @@
   --link-accent: var(--cyan);
   --error: #d42e6e;
 
-  --ios-card-border: rgba(18, 18, 20, 0.11);
+  --ios-card-border: rgba(18, 18, 20, 0.16);
   --ios-card-shadow: var(--card-shadow);
-  --ios-card-border-emerald: rgba(18, 18, 20, 0.11);
+  --ios-card-border-emerald: rgba(18, 18, 20, 0.16);
   --ios-card-shadow-emerald: var(--card-shadow);
-  --ios-card-border-cyan: rgba(18, 18, 20, 0.11);
+  --ios-card-border-cyan: rgba(18, 18, 20, 0.16);
   --ios-card-shadow-cyan: var(--card-shadow);
-  --ios-card-border-experience: rgba(18, 18, 20, 0.11);
+  --ios-card-border-experience: rgba(18, 18, 20, 0.16);
   --ios-card-shadow-experience: var(--card-shadow);
 
   --stat-surface: rgba(255, 255, 255, 0.62);

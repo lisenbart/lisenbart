@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { Moon, Send, Sun } from "lucide-react";
-import { sectionIds, scrollToSection, site } from "@/data/site";
-import { isWorkSection, routes } from "@/lib/routes";
+import { goToContact, site } from "@/data/site";
+import { isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
 import { useTheme } from "@/hooks/useTheme";
 import HeaderConnectMenu from "./HeaderConnectMenu";
 import SocialIconLinks from "./SocialIconLinks";
 import BrandLogo from "./BrandLogo";
+
+const hubLinks = [
+  { href: routes.film, slug: "film" as const, label: "Film" },
+  { href: routes.commercial, slug: "commercial" as const, label: "Commercial" },
+];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,6 +21,9 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const onSubpage = isSiteSubpage();
+  const activeHub = parseHubPage();
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 w-full max-w-full overflow-x-clip">
@@ -34,11 +42,11 @@ export default function Header() {
               {theme === "dark" ? <Sun size={18} strokeWidth={1.75} /> : <Moon size={18} strokeWidth={1.75} />}
             </button>
             <a
-              href={isWorkSection() ? routes.home : "#top"}
-              className="site-brand-lockup relative z-10 flex min-w-0 shrink items-center gap-2.5 md:gap-4"
+              href={onSubpage ? routes.home : "#top"}
+              className="site-brand-lockup relative z-10 flex min-w-0 shrink items-center"
               aria-label={`${site.brand} home`}
               onClick={
-                isWorkSection()
+                onSubpage
                   ? undefined
                   : (e) => {
                       e.preventDefault();
@@ -47,11 +55,22 @@ export default function Header() {
               }
             >
               <BrandLogo variant="header" />
-              <span className="site-header-tagline site-logo-tagline font-sans flex flex-col justify-center gap-px leading-none uppercase">
-                <span className="whitespace-nowrap">{site.tagline.line1}</span>
-                <span className="whitespace-nowrap">{site.tagline.line2}</span>
-              </span>
             </a>
+            <div className="header-hub-nav" aria-label="Sections">
+              {hubLinks.map((link) => {
+                const isActive = activeHub === link.slug;
+                return (
+                  <a
+                    key={link.slug}
+                    href={link.href}
+                    className={`header-hub-nav__link${isActive ? " is-active" : ""}`}
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           <div className="ml-auto flex shrink-0 items-center gap-1.5 md:gap-2">
@@ -68,13 +87,7 @@ export default function Header() {
             <HeaderConnectMenu />
             <button
               type="button"
-              onClick={() => {
-                if (isWorkSection()) {
-                  window.location.href = `/#${sectionIds.contact}`;
-                  return;
-                }
-                scrollToSection(sectionIds.contact);
-              }}
+              onClick={() => goToContact()}
               className="gradient-button-emerald btn-on-accent hidden rounded-full px-4 py-2 text-[11px] font-medium uppercase tracking-[0.1em] lg:inline-flex xl:px-5 xl:text-[13px]"
             >
               {site.ctaLabel}

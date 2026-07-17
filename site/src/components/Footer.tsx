@@ -1,11 +1,11 @@
-import { site, scrollToSection, sectionIds } from "@/data/site";
-import { isWorkSection, routes, workEntryHref } from "@/lib/routes";
+import { contactHref, goToContact, site, scrollToSection, sectionIds } from "@/data/site";
+import { isSiteSubpage, routes } from "@/lib/routes";
 import SocialIconLinks from "./SocialIconLinks";
 import BrandLogo from "./BrandLogo";
 
 const navLinks = [
-  { id: sectionIds.services, label: "Services" },
-  { id: sectionIds.about, label: "Experience" },
+  { id: sectionIds.showreel, label: "Showreel" },
+  { id: sectionIds.about, label: "About" },
   { id: sectionIds.contact, label: "Contact" },
 ];
 
@@ -29,18 +29,20 @@ function FooterSectionLink({ href, label }: { href: string; label: string }) {
 }
 
 function FooterLink({ id, label }: { id: string; label: string }) {
-  const onWorkPage = isWorkSection();
+  const onSubpage = isSiteSubpage();
+  const isContact = id === sectionIds.contact;
 
   return (
     <a
-      href={onWorkPage ? `/#${id}` : `#${id}`}
+      href={isContact ? contactHref() : onSubpage ? `${routes.home}#${id}` : `#${id}`}
       className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
       onClick={
-        onWorkPage
+        onSubpage
           ? undefined
           : (e) => {
               e.preventDefault();
-              scrollToSection(id);
+              if (isContact) goToContact();
+              else scrollToSection(id);
             }
       }
     >
@@ -50,6 +52,8 @@ function FooterLink({ id, label }: { id: string; label: string }) {
 }
 
 export default function Footer() {
+  const onSubpage = isSiteSubpage();
+
   return (
     <footer className="w-full max-w-full min-w-0 overflow-x-clip px-[var(--page-padding)] pb-24 pt-7 md:pb-12 md:pt-14">
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
@@ -58,11 +62,11 @@ export default function Footer() {
             <div className="grid gap-5 md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,0.8fr)] md:gap-8 lg:gap-12">
               <div className="min-w-0">
                 <a
-                  href={isWorkSection() ? routes.home : "#top"}
+                  href={onSubpage ? routes.home : "#top"}
                   className="inline-flex min-w-0 flex-col gap-1 md:gap-2"
                   aria-label={`${site.name} home`}
                   onClick={
-                    isWorkSection()
+                    onSubpage
                       ? undefined
                       : (e) => {
                           e.preventDefault();
@@ -73,22 +77,18 @@ export default function Footer() {
                   <BrandLogo variant="footer" />
                   <span className="site-logo-tagline font-sans uppercase leading-snug text-text-tertiary">
                     <span className="block">{site.tagline.line1}</span>
-                    <span className="block">{site.tagline.line2}</span>
+                    {site.tagline.line2 ? (
+                      <span className="block">{site.tagline.line2}</span>
+                    ) : null}
                   </span>
                 </a>
                 <SocialIconLinks className="mt-4 md:mt-5" size="md" />
                 <p className="mt-3 hidden max-w-sm text-sm font-light leading-relaxed text-text-secondary md:block">
-                  {site.oneLiner}
+                  {site.meta.description}
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    if (isWorkSection()) {
-                      window.location.href = `/#${sectionIds.contact}`;
-                      return;
-                    }
-                    scrollToSection(sectionIds.contact);
-                  }}
+                  onClick={() => goToContact()}
                   className="gradient-button-emerald btn-on-accent mt-4 hidden rounded-full px-5 py-2.5 text-xs font-medium tracking-wide sm:inline-flex md:mt-6 md:text-sm"
                 >
                   {site.ctaLabel}
@@ -97,7 +97,9 @@ export default function Footer() {
 
               <div className="grid grid-cols-2 gap-x-4 gap-y-0 md:contents">
                 <nav aria-label="Footer navigation">
-                  <p className="footer-section-label text-[10px] font-medium uppercase tracking-[0.14em] md:text-[11px]">Navigate</p>
+                  <p className="footer-section-label text-[10px] font-medium uppercase tracking-[0.14em] md:text-[11px]">
+                    Navigate
+                  </p>
                   <ul className="mt-2 flex flex-col gap-1.5 md:mt-4 md:gap-3">
                     {navLinks.map((link) => (
                       <li key={link.id}>
@@ -105,13 +107,18 @@ export default function Footer() {
                       </li>
                     ))}
                     <li>
-                      <FooterSectionLink href={workEntryHref()} label="Work" />
+                      <FooterSectionLink href={routes.film} label="Film" />
+                    </li>
+                    <li>
+                      <FooterSectionLink href={routes.commercial} label="Commercial" />
                     </li>
                   </ul>
                 </nav>
 
                 <nav aria-label="Social links">
-                  <p className="footer-section-label text-[10px] font-medium uppercase tracking-[0.14em] md:text-[11px]">Connect</p>
+                  <p className="footer-section-label text-[10px] font-medium uppercase tracking-[0.14em] md:text-[11px]">
+                    Connect
+                  </p>
                   <ul className="mt-2 flex flex-col gap-1.5 md:mt-4 md:gap-3">
                     {socialLinks.map((link) => (
                       <li key={link.label}>
@@ -133,7 +140,9 @@ export default function Footer() {
 
             <div className="mt-5 flex flex-row items-center justify-between gap-3 border-t border-[var(--separator)] pt-4 text-[10px] font-light text-text-secondary/80 md:mt-10 md:pt-6 md:text-[11px]">
               <span className="truncate">{site.locations}</span>
-              <span className="shrink-0">© {new Date().getFullYear()} {site.name}</span>
+              <span className="shrink-0">
+                © {new Date().getFullYear()} {site.name}
+              </span>
             </div>
           </div>
         </article>

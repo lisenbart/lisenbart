@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { sectionIds, scrollToSection, site } from "@/data/site";
+import { goToContact, sectionIds, site } from "@/data/site";
 
 export default function MobileEstimateCTA() {
   const [visible, setVisible] = useState(false);
@@ -114,7 +114,7 @@ export default function MobileEstimateCTA() {
         >
           <button
             type="button"
-            onClick={() => scrollToSection(sectionIds.contact)}
+            onClick={() => goToContact()}
             className="gradient-button-emerald btn-on-accent w-full rounded-full py-3 text-sm font-medium uppercase tracking-[0.12em]"
           >
             {site.ctaLabel}

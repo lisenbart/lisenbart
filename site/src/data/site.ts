@@ -1,68 +1,92 @@
 import { publicAsset } from "@/lib/publicAsset";
+import { isSiteSubpage, routes } from "@/lib/routes";
 
 export const site = {
   name: "LISENBART",
   brand: "LISENBART",
   tagline: {
-    line1: "Commercial · film",
-    line2: "Gaming · social",
+    line1: "Film · Commercial",
+    line2: "",
   },
-  oneLiner:
-    "From brief to screen — animation, film and AI content, produced end to end.",
   hero: {
-    posterHeadlineLine1: "Powered by AI. Directed by us.",
-    posterHeadlineLine2: "Moving image for brands, agencies and game studios.",
     posterCtaLabel: "See our work",
     headlineLine2BeforeAccent: "The right team. ",
     headlineAccent: "End to end",
     paragraph:
       "From brief to screen — animation, film and AI content, produced end to end.",
+    personalName: "Dmytro Lisenbart",
+    personalRole: "Animation Director & Producer",
+    personalPositioning: "I direct animation and film — for festivals, for brands, and for myself.",
+    personalProof: "35 years in animation · 20 years producing · 1000+ projects delivered",
+    personalCta: "Watch reel ↓",
+    personalPortrait: "/images/portrait.png",
+    personalPortraitAlt: "Portrait of Dmytro Lisenbart",
   },
-  endToEndProduction: {
-    steps: [
+  showreelSection: {
+    eyebrow: "Showreel",
+    caption: "Creative & animation showreel — commercials, brand films and mixed media.",
+  },
+  trustedBy: {
+    label: "Trusted by",
+    brands: ["Samsung", "McDonald's", "Nestlé", "MasterCard", "Playtika", "Plarium"] as const,
+  },
+  explorePaths: {
+    eyebrow: "Explore",
+    title: "Two sides of the work.",
+    film: {
+      label: "Film",
+      title: "Authored cinema & personal IP",
+      text: "Original shorts, an animated feature in development, and two IP universes.",
+      cta: "Explore",
+    },
+    commercial: {
+      label: "Commercial",
+      title: "Brands & game studios",
+      text: "Campaign films, trailers and animation for brands and game studios.",
+      cta: "Explore",
+    },
+  },
+  personalAbout: {
+    eyebrow: "About",
+    title: "About",
+    bio: "Born in Lviv in 1975. Studied painting, then animation film directing at Kyiv’s Karpenko-Kary University. I founded my production practice after Mental dRive, leading creative and production teams across Ukraine, Canada and Poland to deliver commercial work across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association.",
+    recognition: "UANIMA · Head of Ukranimafilm, 2017–2019",
+    locations: "Ukraine · Canada · Poland — creative & production teams",
+  },
+  filmPage: {
+    title: "Original stories, directed for the screen — not the client.",
+    caseIds: ["unnecessary-things", "the-last-kozak", "pershosvit", "scoopy-cap"] as const,
+    contactLead: "For festival inquiries, co-productions or press — get in touch.",
+    contactCtaLabel: "Get in touch",
+  },
+  commercialPage: {
+    title: "Production leadership for brands, agencies and game studios.",
+    reels: [
       {
-        title: "Brief",
-        text: "We align on goals, references and deliverables.",
+        id: "ai-powered-reel",
+        label: "AI Powered",
+        text: "Concept exploration and rapid visual development — accelerated with AI-assisted tools, always finished by hand.",
+        vimeoId: null as string | null,
+        /** 10-day countdown window ending at this ISO timestamp */
+        comingSoonEndsAt: "2026-07-27T18:00:00+02:00",
       },
       {
-        title: "Proposal",
-        text: "We shape the approach, timeline and production estimate.",
+        id: "advertising-reel",
+        label: "Advertising",
+        text: "Brand campaigns and commercial films for Samsung, McDonald's, Nestlé and MasterCard — from first concept to final delivery.",
+        vimeoId: "849899875" as string | null,
       },
       {
-        title: "Production",
-        text: "We manage the full process and deliver final assets ready to launch.",
+        id: "games-reel",
+        label: "Games",
+        text: "Trailers and cinematics for Playtika, Plarium and Moon Active — built to sell the moment before the click.",
+        vimeoId: "944158555" as string | null,
       },
     ],
+    contactLead: "Tell me about your project.",
   },
   capabilitiesLine:
     "Film, animation, game and AI content — scoped and delivered end to end.",
-  beyondTheTool: {
-    eyebrow: "Beyond the tool",
-    title: "Anyone can learn AI. Not everyone can turn it into a product that works.",
-    body:
-      "AI accelerates execution — but it does not replace brand understanding, dramaturgy, taste, or the final call. That always stays human. We use AI where it saves time and expands range; we bring experience where the work has to land.",
-  },
-  workModels: {
-    eyebrow: "How we work",
-    title: "Two ways to work with us.",
-    cards: [
-      {
-        id: "project",
-        modelLabel: "Model 01",
-        label: "Project",
-        summary: "One campaign, trailer, or film — scoped, produced, and delivered end to end.",
-        chips: ["One-time", "Fixed scope", "Producer-led"],
-      },
-      {
-        id: "embedded",
-        modelLabel: "Model 02",
-        label: "Embedded team",
-        summary:
-          "Ongoing production capacity that works like your own in-house studio — remotely, without the overhead of building one.",
-        chips: ["Monthly retainer", "Embedded team", "Scales with you"],
-      },
-    ],
-  },
   ctaLabel: "Discuss a project",
   contactSubmitLabel: "Send message",
   email: "info@lisenbart.com",
@@ -97,62 +121,6 @@ export const site = {
     soonLabel: "Showreel coming soon",
     closeLabel: "Close",
   },
-  clientsModal: {
-    title: "Clients",
-    subtitle: "1000+ projects delivered",
-    casesCtaLabel: "Our cases",
-    closeLabel: "Close",
-  },
-  studioModal: {
-    title: "Lisenbart Production",
-    subtitle: "In animation since 2006",
-    intro:
-      "Lisenbart Production has been creating animation, film and motion content since 2006 — from TV branding and commercials to short films, game marketing and YouTube channels.",
-    body:
-      "We are a producer-led studio: one trusted lead contact, the right team assembled for each brief, and delivery from script and design through animation, sound and final grade. Teams in Ukraine, Canada and Poland — working with clients worldwide.",
-    highlights: [
-      "Founded 2006 · Kyiv, Ukraine",
-      "2D · 3D · motion graphics · stop-motion · puppet",
-      "Commercial · film · gaming · social content",
-      "Producer-led · end-to-end delivery",
-    ],
-    ctaLabel: "Discuss a project",
-    closeLabel: "Close",
-  },
-  awardsModal: {
-    title: "Unnecessary Things",
-    subtitle: "15 awards · 45 selections · 8.0 on IMDb",
-    intro:
-      "Award-winning 14-minute animated short directed by Dmytro Lisenbart. A robot buys a human from a store of unwanted things — a friendship that ends where it began.",
-    body:
-      "Full 2D production from Lisenbart Animation Studio: script, design, animation and festival delivery. Recognised across Europe and Asia on the international festival circuit.",
-    highlights: [
-      "Best Animated Short Film · Curtas International Film Festival",
-      "World Premiere · Shanghai International Film Festival",
-      "Linoleum · ZIFF · Vancouver · Huesca · Odessa",
-      "Prague Film Awards",
-      "45 official festival selections worldwide",
-    ],
-    ctaLabel: "View film case",
-    closeLabel: "Close",
-  },
-  teamModal: {
-    title: "Global production network",
-    subtitle: "Canada · Ukraine · Poland · Remote worldwide",
-    intro:
-      "Our producers, directors, art directors, animators, compositors and sound partners work across time zones — not in one room, but as one team assembled for each project.",
-    body:
-      "That distributed model keeps production moving around the clock. When one region signs off, another picks up — so reviews, revisions and delivery never wait for morning. One lead producer on your side, specialists worldwide, always within reach.",
-    highlights: [
-      "Producers · directors · art directors · animators",
-      "Storyboard · design · 2D · 3D · motion · compositing",
-      "Hubs in Canada, Ukraine and Poland",
-      "Remote collaborators across Europe and North America",
-      "Near 24/7 coverage · always on call for active projects",
-    ],
-    ctaLabel: "Discuss a project",
-    closeLabel: "Close",
-  },
   testimonialsBlock: {
     title: "What clients say",
     addLabel: "Leave a review",
@@ -176,10 +144,6 @@ export const site = {
     },
   },
   locations: "Ukraine · Canada · Poland · Remote worldwide",
-  founderQuote: {
-    text: "The AI era — guided by a professional eye.",
-    author: "Dmytro Lisenbart",
-  },
   canonical: "https://www.lisenbart.com",
   logo: {
     /** Shown on dark backgrounds */
@@ -189,9 +153,9 @@ export const site = {
   },
   favicon: "/favicon.png",
   meta: {
-    title: "LISENBART — Film, Animation & AI Content",
+    title: "Dmytro Lisenbart — Animation Director & Producer",
     description:
-      "From brief to screen — animation, film and AI content, produced end to end.",
+      "I direct animation and film — for festivals, for brands, and for myself. Festival work, children’s IP, and commercial craft.",
     ogImage: publicAsset("/images/work/lisenbart-showreel-preview.jpg"),
   },
 };
@@ -199,8 +163,24 @@ export const site = {
 export const sectionIds = {
   services: "services",
   about: "about",
+  showreel: "showreel",
+  explore: "explore",
+  trusted: "trusted",
   contact: "contact",
 } as const;
+
+export function contactHref() {
+  return `${routes.home}#${sectionIds.contact}`;
+}
+
+/** Scroll to Contact on Home; from any other page navigate to `/#contact`. */
+export function goToContact(onDone?: () => void) {
+  if (isSiteSubpage()) {
+    window.location.href = contactHref();
+    return;
+  }
+  scrollToSection(sectionIds.contact, onDone);
+}
 
 export function scrollToSection(id: string, onDone?: () => void) {
   const el = document.getElementById(id);

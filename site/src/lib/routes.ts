@@ -3,7 +3,11 @@ import type { WorkCategorySlug } from "@/data/work";
 export const routes = {
   home: "/",
   workBase: "/work",
+  film: "/film",
+  commercial: "/commercial",
 } as const;
+
+export type HubPageSlug = "film" | "commercial";
 
 export const DEFAULT_WORK_CATEGORY: WorkCategorySlug = "commercial";
 
@@ -15,9 +19,14 @@ export function workEntryHref() {
   return workCategoryHref(DEFAULT_WORK_CATEGORY);
 }
 
+export function hubPageHref(slug: HubPageSlug) {
+  return slug === "film" ? routes.film : routes.commercial;
+}
+
 export type WorkRoute = { slug: WorkCategorySlug };
 
 const WORK_CATEGORY_PATTERN = /^\/work\/(commercial|gaming|film|social)\/?$/;
+const HUB_PAGE_PATTERN = /^\/(film|commercial)\/?$/;
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -71,9 +80,21 @@ export function parseWorkRoute(pathname?: string): WorkRoute | null {
   return slug ? { slug } : null;
 }
 
+export function parseHubPage(pathname?: string): HubPageSlug | null {
+  const normalized = normalizeWorkPathname(resolvePathname(pathname));
+  if (normalized === routes.film) return "film";
+  if (normalized === routes.commercial) return "commercial";
+  return null;
+}
+
 export function isWorkSection(pathname?: string) {
   const normalized = normalizeWorkPathname(resolvePathname(pathname));
   return isWorkIndexPath(normalized) || WORK_CATEGORY_PATTERN.test(normalized);
+}
+
+/** Work category pages or new hub pages (/film, /commercial). */
+export function isSiteSubpage(pathname?: string) {
+  return isWorkSection(pathname) || parseHubPage(pathname) !== null;
 }
 
 export function workSectionHref(slug: WorkCategorySlug) {
@@ -82,6 +103,10 @@ export function workSectionHref(slug: WorkCategorySlug) {
 
 export function canonicalWorkPath(slug: WorkCategorySlug): string {
   return `${workCategoryHref(slug)}/`;
+}
+
+export function canonicalHubPath(slug: HubPageSlug): string {
+  return `${hubPageHref(slug)}/`;
 }
 
 export function shouldRedirectToCanonicalWorkPath(pathname?: string): string | null {
@@ -94,6 +119,27 @@ export function shouldRedirectToCanonicalWorkPath(pathname?: string): string | n
 
   const normalized = normalizeWorkPathname(resolved);
   if (normalized === workCategoryHref(slug) && !resolved.endsWith("/")) {
+    return canonical;
+  }
+
+  if (/\/index\.html/i.test(resolved)) {
+    return canonical;
+  }
+
+  return null;
+}
+
+export function shouldRedirectToCanonicalHubPath(pathname?: string): string | null {
+  const resolved = resolvePathname(pathname);
+  const slug = parseHubPage(resolved);
+  if (!slug) return null;
+
+  const canonical = canonicalHubPath(slug);
+  if (resolved === canonical) return null;
+
+  const href = hubPageHref(slug);
+  const normalized = normalizeWorkPathname(resolved);
+  if (normalized === href && !resolved.endsWith("/")) {
     return canonical;
   }
 

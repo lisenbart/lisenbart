@@ -2,12 +2,16 @@ import Header from "./components/Header";
 import WorkNav from "./components/WorkNav";
 import HomePage from "./pages/HomePage";
 import WorkCategoryPage from "./pages/WorkCategoryPage";
+import FilmPage from "./pages/FilmPage";
+import CommercialPage from "./pages/CommercialPage";
 import MobileEstimateCTA from "./components/MobileEstimateCTA";
 import Footer from "./components/Footer";
 import { getWorkCategory } from "./data/work";
 import {
   isWorkIndexPath,
+  parseHubPage,
   parseWorkRoute,
+  shouldRedirectToCanonicalHubPath,
   shouldRedirectToCanonicalWorkPath,
   workEntryHref,
 } from "./lib/routes";
@@ -27,8 +31,25 @@ function WorkRouter() {
   );
 }
 
+function resolveMain() {
+  const hub = parseHubPage();
+  if (hub === "film") return <FilmPage />;
+  if (hub === "commercial") return <CommercialPage />;
+
+  const workRoute = parseWorkRoute();
+  if (workRoute) return <WorkRouter />;
+
+  return <HomePage />;
+}
+
 export default function App() {
   if (typeof window !== "undefined") {
+    const canonicalHubRedirect = shouldRedirectToCanonicalHubPath();
+    if (canonicalHubRedirect) {
+      window.location.replace(canonicalHubRedirect);
+      return null;
+    }
+
     const canonicalWorkRedirect = shouldRedirectToCanonicalWorkPath();
     if (canonicalWorkRedirect) {
       window.location.replace(canonicalWorkRedirect);
@@ -41,13 +62,11 @@ export default function App() {
     }
   }
 
-  const workRoute = parseWorkRoute();
-
   return (
     <>
       <div className="cosmic-bg" aria-hidden="true" />
       <Header />
-      {workRoute ? <WorkRouter /> : <HomePage />}
+      {resolveMain()}
       <Footer />
       <MobileEstimateCTA />
     </>

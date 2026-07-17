@@ -1,8 +1,8 @@
 import { workCategoryTitleClass, type WorkCategory } from "@/data/work";
 import WorkCaseBlock from "@/components/WorkCaseBlock";
 import { SEO } from "@/components/SEO";
-import { sectionIds, site } from "@/data/site";
-import { routes, workCategoryHref } from "@/lib/routes";
+import { contactHref, site } from "@/data/site";
+import { workCategoryHref } from "@/lib/routes";
 
 interface WorkCategoryPageProps {
   category: WorkCategory;
@@ -43,7 +43,7 @@ export default function WorkCategoryPage({ category }: WorkCategoryPageProps) {
           <div className="mx-auto w-full min-w-0 max-w-[920px] text-center">
             <p className="work-page-cta-lead">Interested in similar work?</p>
             <a
-              href={`${routes.home}#${sectionIds.contact}`}
+              href={contactHref()}
               className="gradient-button-emerald btn-on-accent mt-4 inline-flex rounded-full px-6 py-3 text-sm font-medium tracking-wide"
             >
               {site.ctaLabel}

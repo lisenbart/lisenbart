@@ -1,16 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Maximize2, Minimize2, Pause, Play, Send, Volume2, VolumeX } from "lucide-react";
 import { site } from "@/data/site";
 
-const VIMEO_ID = "849899875";
+const DEFAULT_VIMEO_ID = "849899875";
 const VIMEO_BASE =
   "title=0&byline=0&portrait=0&controls=0&autopause=0&vimeo_logo=0&badge=0&pip=0&dnt=1&playsinline=1";
-const VIMEO_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=0&loop=1&muted=0&${VIMEO_BASE}`;
-const VIMEO_POSTER_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=1&loop=1&muted=1&background=1&${VIMEO_BASE}`;
-const SHOWREEL_SHARE_URL = site.vimeo;
 
 interface HeroShowreelProps {
   variant?: "interactive" | "poster";
+  /** Omit for default home reel. Pass `null` when the Vimeo ID is still TODO. */
+  vimeoId?: string | null;
+  shareUrl?: string;
+  title?: string;
 }
 
 type VimeoPlayer = {
@@ -54,8 +55,29 @@ function canUseWebShare(data: ShareData) {
   return true;
 }
 
-export default function HeroShowreel({ variant = "interactive" }: HeroShowreelProps) {
+function vimeoSrc(id: string, poster: boolean) {
+  if (poster) {
+    return `https://player.vimeo.com/video/${id}?autoplay=1&loop=1&muted=1&background=1&${VIMEO_BASE}`;
+  }
+  return `https://player.vimeo.com/video/${id}?autoplay=0&loop=1&muted=0&${VIMEO_BASE}`;
+}
+
+export default function HeroShowreel({
+  variant = "interactive",
+  vimeoId,
+  shareUrl,
+  title = "LISENBART showreel",
+}: HeroShowreelProps) {
   const isPoster = variant === "poster";
+  const resolvedId = vimeoId === undefined ? DEFAULT_VIMEO_ID : vimeoId;
+  const hasVideo = Boolean(resolvedId);
+  const embedSrc = useMemo(
+    () => (resolvedId ? vimeoSrc(resolvedId, isPoster) : ""),
+    [resolvedId, isPoster],
+  );
+  const resolvedShareUrl =
+    shareUrl ?? (resolvedId ? `https://vimeo.com/${resolvedId}` : site.vimeo);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerRef = useRef<VimeoPlayer | null>(null);
@@ -65,6 +87,8 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
+    if (!hasVideo) return;
+
     let cancelled = false;
     const iframe = iframeRef.current;
     if (!iframe) return;
@@ -105,9 +129,13 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
           setPlayerReady(true);
 
           if (isPoster) {
-            void player.setMuted(true).then(() => player.play()).then(() => {
-              if (!cancelled) setIsPlaying(true);
-            }).catch(() => {});
+            void player
+              .setMuted(true)
+              .then(() => player.play())
+              .then(() => {
+                if (!cancelled) setIsPlaying(true);
+              })
+              .catch(() => {});
           }
         })
         .catch(() => {});
@@ -120,7 +148,7 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
       cancelled = true;
       iframe.removeEventListener("load", initPlayer);
     };
-  }, [isPoster]);
+  }, [hasVideo, embedSrc, isPoster]);
 
   useEffect(() => {
     const onFullscreenChange = () => {
@@ -221,10 +249,10 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
       {
         title: "LISENBART Showreel",
         text: "LISENBART showreel",
-        url: SHOWREEL_SHARE_URL,
+        url: resolvedShareUrl,
       },
-      { url: SHOWREEL_SHARE_URL },
-      { title: "LISENBART Showreel", url: SHOWREEL_SHARE_URL },
+      { url: resolvedShareUrl },
+      { title: "LISENBART Showreel", url: resolvedShareUrl },
     ];
 
     for (const payload of sharePayloads) {
@@ -240,12 +268,24 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
     }
   }
 
+  if (!hasVideo) {
+    return (
+      <div
+        className="hero-showreel group absolute inset-0 overflow-hidden"
+        role="img"
+        aria-label={`${title} — pending`}
+      >
+        <div className="hero-showreel__pending" aria-hidden="true" />
+      </div>
+    );
+  }
+
   return (
     <div ref={containerRef} className="hero-showreel group absolute inset-0 overflow-hidden">
       <iframe
         ref={iframeRef}
-        src={isPoster ? VIMEO_POSTER_SRC : VIMEO_SRC}
-        title="LISENBART showreel"
+        src={embedSrc}
+        title={title}
         allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
         allowFullScreen
         className="hero-showreel__iframe absolute pointer-events-none"
@@ -259,7 +299,7 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
           type="button"
           onClick={() => void handlePlay()}
           disabled={!playerReady}
-          aria-label="Play showreel"
+          aria-label={`Play ${title}`}
           className="showreel-stage-play hero-showreel__play"
         >
           <Play className="showreel-stage-play-icon" strokeWidth={1.75} fill="currentColor" />
@@ -275,7 +315,7 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
               <button
                 type="button"
                 onClick={() => void handlePause()}
-                aria-label="Pause showreel"
+                aria-label={`Pause ${title}`}
                 className="hero-showreel__control"
               >
                 <Pause size={16} />
@@ -283,7 +323,7 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
               <button
                 type="button"
                 onClick={() => void toggleSound()}
-                aria-label={muted ? "Unmute showreel" : "Mute showreel"}
+                aria-label={muted ? `Unmute ${title}` : `Mute ${title}`}
                 className="hero-showreel__control"
               >
                 {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -291,7 +331,7 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
               <button
                 type="button"
                 onClick={() => void toggleFullscreen()}
-                aria-label={isFullscreen ? "Exit fullscreen" : "Fullscreen showreel"}
+                aria-label={isFullscreen ? `Exit fullscreen ${title}` : `Fullscreen ${title}`}
                 className="hero-showreel__control"
               >
                 {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
@@ -301,7 +341,7 @@ export default function HeroShowreel({ variant = "interactive" }: HeroShowreelPr
           <button
             type="button"
             onClick={() => void handleShare()}
-            aria-label="Share showreel"
+            aria-label={`Share ${title}`}
             className="hero-showreel__control"
           >
             <Send size={16} strokeWidth={1.75} />

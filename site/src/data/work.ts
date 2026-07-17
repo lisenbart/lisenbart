@@ -17,6 +17,8 @@ export interface WorkCaseStudy {
   /** [PLACEHOLDER — replace with real content before deploy] */
   client: string;
   category: string;
+  /** Category label when shown on /film (keeps legacy /work/* category intact) */
+  filmCategory?: string;
   year: string;
   title: string;
   description: string;
@@ -32,6 +34,10 @@ export interface WorkCaseStudy {
   youtubeBannerImage?: string;
   youtubeThumbnails?: string[];
   playableTiers?: WorkPlayableTier[];
+  /** Optional festival laurel badges shown beside the project title */
+  laurels?: string[];
+  /** Optional status chip (e.g. Feature film in development) */
+  statusBadge?: string;
   mediaPlaceholder?: {
     headline: string;
     ctaLabel?: string;
@@ -253,7 +259,7 @@ export const workCategories: WorkCategory[] = [
         year: "2021",
         title: "Unnecessary Things",
         description:
-          "15 awards · 45 festival selections · 8.0 on IMDb\nAward-winning 14-minute animated short — World Premiere at Shanghai, Best Animated Short Film at Curtas. A robot buys a human from a store of unwanted things; a friendship that ends where it began.",
+          "Award-winning 14-minute animated short — World Premiere at Shanghai, Best Animated Short Film at Curtas. A robot buys a human from a store of unwanted things; a friendship that ends where it began.",
         result:
           "Festival winner across Europe and Asia — from Linoleum and ZIFF to Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
         mediaColor: "#0a1f0f",
@@ -261,6 +267,7 @@ export const workCategories: WorkCategory[] = [
         mediaImage: "/images/work/unnecessary-things-preview.png",
         mediaImageAlt: "Unnecessary Things — trailer preview frame",
         imdbId: "tt14760808",
+        laurels: ["15 awards", "45 selections", "8.0 IMDb"],
       },
       {
         id: "the-last-kozak",
@@ -276,6 +283,7 @@ export const workCategories: WorkCategory[] = [
         vimeoId: "699197721", // UA teaser for localization: 639390060
         mediaImage: "/images/work/the-last-kozak-preview.png",
         mediaImageAlt: "The Last Kozak — teaser preview frame",
+        statusBadge: "Feature film in development",
       },
       {
         id: "song-departure",
@@ -346,6 +354,7 @@ export const workCategories: WorkCategory[] = [
         id: "scoopy-cap",
         client: "Scoopy Cap",
         category: "Social Media · YouTube Channel",
+        filmCategory: "Original IP · YouTube Channel",
         year: "2024",
         title: "Scoopy Cap",
         description:
@@ -368,6 +377,7 @@ export const workCategories: WorkCategory[] = [
         id: "pershosvit",
         client: "Pershosvit",
         category: "Social Media · YouTube Channel",
+        filmCategory: "Original IP · YouTube Channel",
         year: "2024",
         title: "Pershosvit · Kapitan Świetlik",
         description:
@@ -418,6 +428,16 @@ export const workCategories: WorkCategory[] = [
 
 export function getWorkCategory(slug: WorkCategorySlug): WorkCategory | undefined {
   return workCategories.find((category) => category.slug === slug);
+}
+
+export function getWorkCasesByIds(ids: readonly string[]): WorkCaseStudy[] {
+  const byId = new Map(
+    workCategories.flatMap((category) => category.cases).map((item) => [item.id, item]),
+  );
+  return ids.flatMap((id) => {
+    const item = byId.get(id);
+    return item ? [item] : [];
+  });
 }
 
 /** Matches capability-work-link tone classes for page title color */

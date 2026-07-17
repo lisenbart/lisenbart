@@ -1,8 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Play, Youtube } from "lucide-react";
 import type { WorkCaseStudy } from "@/data/work";
-import { sectionIds, site } from "@/data/site";
-import { routes } from "@/lib/routes";
+import { contactHref, site } from "@/data/site";
 import ImdbTitleRating from "@/components/ImdbTitleRating";
 import WorkYouTubeChannelPreview from "@/components/WorkYouTubeChannelPreview";
 import WorkPlayablesPreview from "@/components/WorkPlayablesPreview";
@@ -193,7 +192,7 @@ function WorkBlockMedia({ item }: { item: WorkCaseStudy }) {
         <div className="work-block-media-placeholder">
           <p className="work-block-media-placeholder__headline">{item.mediaPlaceholder.headline}</p>
           <a
-            href={`${routes.home}#${sectionIds.contact}`}
+            href={contactHref()}
             className="work-block-media-placeholder__cta gradient-button-emerald btn-on-accent"
           >
             {item.mediaPlaceholder.ctaLabel ?? site.ctaLabel}
@@ -274,6 +273,16 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
             <span className="work-block-title-text">{item.title}</span>
             {item.imdbId ? <ImdbTitleRating imdbId={item.imdbId} /> : null}
           </h2>
+          {item.statusBadge ? <p className="work-block-status-badge">{item.statusBadge}</p> : null}
+          {item.laurels && item.laurels.length > 0 ? (
+            <ul className="work-block-laurels" aria-label="Recognition">
+              {item.laurels.map((laurel) => (
+                <li key={laurel} className="work-block-laurel">
+                  {laurel}
+                </li>
+              ))}
+            </ul>
+          ) : null}
           <p className="work-block-description">
             {item.description.includes("\n") ? (
               <>
@@ -304,7 +313,7 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
                 Watch on YouTube
               </a>
               <a
-                href={`${routes.home}#${sectionIds.contact}`}
+                href={contactHref()}
                 className="work-block-contact-cta gradient-button-emerald btn-on-accent"
               >
                 {site.ctaLabel}

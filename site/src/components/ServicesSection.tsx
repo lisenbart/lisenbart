@@ -1,5 +1,5 @@
 import { capabilities } from "@/data/capabilities";
-import { sectionIds, scrollToSection, site } from "@/data/site";
+import { goToContact, sectionIds, site } from "@/data/site";
 import CapabilityCard from "./CapabilityCard";
 
 export default function ServicesSection() {
@@ -38,7 +38,7 @@ export default function ServicesSection() {
               <div className="estimate-cta-actions mt-7 flex w-full min-w-0 max-w-full flex-col items-stretch justify-center gap-3 md:flex-row md:items-center md:justify-center md:gap-4">
                 <button
                   type="button"
-                  onClick={() => scrollToSection(sectionIds.contact)}
+                  onClick={() => goToContact()}
                   className="gradient-button-emerald btn-on-accent site-scroll-cta w-full min-w-0 max-w-full rounded-full px-5 py-3 text-sm font-medium uppercase tracking-[0.12em] md:w-auto md:px-6"
                 >
                   {site.ctaLabel}

@@ -19,6 +19,8 @@ export default defineConfig(({ command }) => ({
               "/work/gaming",
               "/work/film",
               "/work/social",
+              "/film",
+              "/commercial",
             ],
           }),
         ]
