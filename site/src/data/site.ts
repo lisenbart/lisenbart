@@ -19,7 +19,7 @@ export const site = {
     personalPositioning: "I direct animation and film — for festivals, for brands, and for myself.",
     personalProof: "35 years in animation · 20 years producing · 1000+ projects delivered",
     personalCta: "Watch reel ↓",
-    personalPortrait: "/images/portrait.png",
+    personalPortrait: "/images/portrait.jpg",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
   },
   showreelSection: {
