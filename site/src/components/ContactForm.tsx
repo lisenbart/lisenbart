@@ -16,7 +16,11 @@ interface FormState {
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function ContactForm() {
+export default function ContactForm({
+  lead = "Tell me about your project — I'll get back to you within 24 hours.",
+}: {
+  lead?: string;
+}) {
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
@@ -67,7 +71,7 @@ export default function ContactForm() {
         <div className="mb-8 text-center md:mb-10">
           <h2 className="section-heading">Contact</h2>
           <p className="mx-auto mt-3 max-w-md text-[0.9375rem] font-light leading-relaxed text-text-secondary md:text-base">
-            Tell us about your project — you'll hear back within 24 hours.
+            {lead}
           </p>
           {!isContactFormLive && import.meta.env.DEV && (
             <p className="mx-auto mt-2 max-w-md text-xs font-light text-text-tertiary">
@@ -82,7 +86,7 @@ export default function ContactForm() {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 text-center" role="status">
                 <CheckCircle2 size={44} className="mx-auto link-accent" />
                 <p className="mt-4 text-base font-light text-text-primary">
-                  Thank you. We've received your message and you'll hear back shortly.
+                  Thank you. I've received your message and you'll hear back shortly.
                 </p>
                 <button type="button" onClick={() => setStatus("idle")} className="mt-4 text-sm link-accent hover:underline">
                   Send another message
@@ -159,7 +163,7 @@ export default function ContactForm() {
                   </div>
                   {form.projectType === "AI-Assisted Production" && (
                     <p className="inquiry-helper mt-2 text-xs font-light leading-relaxed text-text-tertiary">
-                      AI speeds up the work — the craft stays ours.
+                      AI speeds up the work — the craft stays mine.
                     </p>
                   )}
                 </div>

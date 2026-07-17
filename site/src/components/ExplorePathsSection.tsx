@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import { sectionIds, site } from "@/data/site";
 import { routes } from "@/lib/routes";
 
@@ -13,7 +14,6 @@ export default function ExplorePathsSection() {
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
         <article className="how-ios-card">
           <div className="how-ios-card-inner">
-            <p className="personal-section-eyebrow">{explorePaths.eyebrow}</p>
             <h2 className="how-col-title section-heading">{explorePaths.title}</h2>
 
             <div className="explore-paths-grid">
@@ -23,7 +23,9 @@ export default function ExplorePathsSection() {
                 </span>
                 <h3 className="explore-path-card__title">{explorePaths.film.title}</h3>
                 <p className="explore-path-card__text">{explorePaths.film.text}</p>
-                <span className="explore-path-card__cta">{explorePaths.film.cta} →</span>
+                <span className="explore-path-card__action" aria-hidden="true">
+                  <ChevronRight className="explore-path-card__chevron" size={18} strokeWidth={2} />
+                </span>
               </a>
 
               <a className="explore-path-card" href={routes.commercial}>
@@ -32,7 +34,9 @@ export default function ExplorePathsSection() {
                 </span>
                 <h3 className="explore-path-card__title">{explorePaths.commercial.title}</h3>
                 <p className="explore-path-card__text">{explorePaths.commercial.text}</p>
-                <span className="explore-path-card__cta">{explorePaths.commercial.cta} →</span>
+                <span className="explore-path-card__action" aria-hidden="true">
+                  <ChevronRight className="explore-path-card__chevron" size={18} strokeWidth={2} />
+                </span>
               </a>
             </div>
           </div>

@@ -1,13 +1,22 @@
+import { useEffect } from "react";
 import ReelBlock from "@/components/ReelBlock";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import TrustedBySection from "@/components/TrustedBySection";
+import ContactForm from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
-import { contactHref, site } from "@/data/site";
+import { scrollToSection, site } from "@/data/site";
 import { routes } from "@/lib/routes";
 
 export default function CommercialPage() {
   const { commercialPage } = site;
   const seoUrl = `${site.canonical}${routes.commercial}`;
+
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const timer = window.setTimeout(() => scrollToSection(hash), 50);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -38,17 +47,7 @@ export default function CommercialPage() {
 
         <TestimonialsSection />
 
-        <section className="work-page-cta px-[var(--page-padding)]" aria-label="Contact">
-          <div className="mx-auto w-full min-w-0 max-w-[920px] text-center">
-            <p className="work-page-cta-lead">{commercialPage.contactLead}</p>
-            <a
-              href={contactHref()}
-              className="gradient-button-emerald btn-on-accent mt-4 inline-flex rounded-full px-6 py-3 text-sm font-medium tracking-wide"
-            >
-              {site.ctaLabel}
-            </a>
-          </div>
-        </section>
+        <ContactForm lead={commercialPage.contactLead} />
       </main>
     </>
   );

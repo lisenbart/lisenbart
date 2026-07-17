@@ -1,13 +1,22 @@
+import { useEffect } from "react";
 import WorkCaseBlock from "@/components/WorkCaseBlock";
+import ContactForm from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
 import { getWorkCasesByIds } from "@/data/work";
-import { contactHref, site } from "@/data/site";
+import { scrollToSection, site } from "@/data/site";
 import { routes } from "@/lib/routes";
 
 export default function FilmPage() {
   const { filmPage } = site;
   const cases = getWorkCasesByIds(filmPage.caseIds);
   const seoUrl = `${site.canonical}${routes.film}`;
+
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const timer = window.setTimeout(() => scrollToSection(hash), 50);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -33,17 +42,7 @@ export default function FilmPage() {
           ))}
         </div>
 
-        <section className="work-page-cta px-[var(--page-padding)]" aria-label="Contact">
-          <div className="mx-auto w-full min-w-0 max-w-[920px] text-center">
-            <p className="work-page-cta-lead">{filmPage.contactLead}</p>
-            <a
-              href={contactHref()}
-              className="gradient-button-emerald btn-on-accent mt-4 inline-flex rounded-full px-6 py-3 text-sm font-medium tracking-wide"
-            >
-              {filmPage.contactCtaLabel}
-            </a>
-          </div>
-        </section>
+        <ContactForm lead={filmPage.contactLead} />
       </main>
     </>
   );

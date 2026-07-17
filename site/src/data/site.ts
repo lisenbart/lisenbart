@@ -1,5 +1,5 @@
 import { publicAsset } from "@/lib/publicAsset";
-import { isSiteSubpage, routes } from "@/lib/routes";
+import { isWorkSection, routes } from "@/lib/routes";
 
 export const site = {
   name: "LISENBART",
@@ -23,8 +23,8 @@ export const site = {
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
   },
   showreelSection: {
-    eyebrow: "Showreel",
-    caption: "Creative & animation showreel — commercials, brand films and mixed media.",
+    title: "Showreel",
+    caption: "A mix of commissioned and personal work, cut together.",
   },
   trustedBy: {
     label: "Trusted by",
@@ -170,13 +170,17 @@ export const sectionIds = {
 } as const;
 
 export function contactHref() {
-  return `${routes.home}#${sectionIds.contact}`;
+  // Home + /film + /commercial host the form in-page; legacy /work/* still jumps home.
+  if (isWorkSection()) {
+    return `${routes.home}#${sectionIds.contact}`;
+  }
+  return `#${sectionIds.contact}`;
 }
 
-/** Scroll to Contact on Home; from any other page navigate to `/#contact`. */
+/** Scroll to Contact on the current page when the form is present; otherwise go home. */
 export function goToContact(onDone?: () => void) {
-  if (isSiteSubpage()) {
-    window.location.href = contactHref();
+  if (isWorkSection()) {
+    window.location.href = `${routes.home}#${sectionIds.contact}`;
     return;
   }
   scrollToSection(sectionIds.contact, onDone);
