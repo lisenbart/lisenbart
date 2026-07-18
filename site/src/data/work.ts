@@ -485,7 +485,7 @@ export function getWorkCasesByIds(ids: readonly string[]): WorkCaseStudy[] {
   });
 }
 
-/** Matches capability-work-link tone classes for page title color */
+/** Tone classes for work page title color */
 export const workCategoryTitleClass: Record<WorkCategorySlug, string> = {
   commercial: "work-page-title--commercial",
   gaming: "work-page-title--gaming",

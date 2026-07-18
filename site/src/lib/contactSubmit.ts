@@ -70,7 +70,7 @@ async function parseErrorResponse(res: Response): Promise<string> {
   } catch {
     /* ignore */
   }
-  return "Could not send your message. Please try again or email us directly.";
+  return "Could not send your message. Please try again or email me directly.";
 }
 
 function buildPhpFormBody(data: ContactPayload): FormData {
@@ -118,7 +118,7 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
     await new Promise((r) => setTimeout(r, 600));
     return {
       success: true,
-      message: "Thank you. I've received your message and you'll hear back shortly.",
+      message: "Got it — thank you. I'll read it properly and get back to you soon.",
     };
   }
 
@@ -161,6 +161,6 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
 
   return {
     success: true,
-    message: "Thank you. I've received your message and you'll hear back shortly.",
+    message: "Got it — thank you. I'll read it properly and get back to you soon.",
   };
 }

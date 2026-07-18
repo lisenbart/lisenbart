@@ -7,25 +7,15 @@ export default function MobileEstimateCTA() {
 
   useEffect(() => {
     const intro = document.querySelector('[aria-label="Introduction"]');
-    const services = document.getElementById(sectionIds.services);
-
-    const suppressSelectors = [
-      `#${sectionIds.contact}`,
-      ".capability-cta",
-      ".site-scroll-cta",
-      ".capability-showreel-modal__overlay",
-    ];
-
-    const getSuppressNodes = () =>
-      suppressSelectors.flatMap((selector) => Array.from(document.querySelectorAll(selector)));
+    const contact = document.getElementById(sectionIds.contact);
 
     const suppressing = new Set<Element>();
-    let introPassed = false;
-    let servicesVisible = false;
+    /** No hero intro on hub pages — treat as already past intro. */
+    let introPassed = !intro;
     let scrollLocked = document.body.style.overflow === "hidden";
 
     const sync = () => {
-      setVisible((introPassed || servicesVisible) && suppressing.size === 0 && !scrollLocked);
+      setVisible(introPassed && suppressing.size === 0 && !scrollLocked);
     };
 
     const introObserver = new IntersectionObserver(
@@ -35,15 +25,6 @@ export default function MobileEstimateCTA() {
         sync();
       },
       { threshold: [0, 0.35, 0.65, 1] },
-    );
-
-    const servicesObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry) return;
-        servicesVisible = entry.isIntersecting && entry.intersectionRatio > 0.08;
-        sync();
-      },
-      { threshold: [0, 0.08, 0.2] },
     );
 
     const suppressObserver = new IntersectionObserver(
@@ -63,7 +44,7 @@ export default function MobileEstimateCTA() {
     const observeSuppressNodes = () => {
       suppressObserver.disconnect();
       suppressing.clear();
-      getSuppressNodes().forEach((node) => suppressObserver.observe(node));
+      if (contact) suppressObserver.observe(contact);
       sync();
     };
 
@@ -83,7 +64,6 @@ export default function MobileEstimateCTA() {
     });
 
     if (intro) introObserver.observe(intro);
-    if (services) servicesObserver.observe(services);
     observeSuppressNodes();
 
     domObserver.observe(document.body, {
@@ -95,7 +75,6 @@ export default function MobileEstimateCTA() {
 
     return () => {
       introObserver.disconnect();
-      servicesObserver.disconnect();
       suppressObserver.disconnect();
       domObserver.disconnect();
     };

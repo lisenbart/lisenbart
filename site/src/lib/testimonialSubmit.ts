@@ -55,7 +55,7 @@ async function parseErrorResponse(res: Response): Promise<string> {
   } catch {
     /* ignore */
   }
-  return "Could not send your review. Please try again or email us directly.";
+  return "Could not send your review. Please try again or email me directly.";
 }
 
 export async function submitTestimonialReview(
@@ -71,7 +71,7 @@ export async function submitTestimonialReview(
     await new Promise((resolve) => window.setTimeout(resolve, 600));
     return {
       success: true,
-      message: "Your review has been sent. We appreciate your feedback — thank you.",
+      message: "Your review has been sent. Thank you — I appreciate it.",
     };
   }
 
@@ -94,6 +94,6 @@ export async function submitTestimonialReview(
 
   return {
     success: true,
-    message: "Your review has been sent. We appreciate your feedback — thank you.",
+    message: "Your review has been sent. Thank you — I appreciate it.",
   };
 }

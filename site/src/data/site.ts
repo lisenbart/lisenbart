@@ -9,47 +9,38 @@ export const site = {
     line2: "",
   },
   hero: {
-    posterCtaLabel: "See our work",
-    headlineLine2BeforeAccent: "The right team. ",
-    headlineAccent: "End to end",
-    paragraph:
-      "From brief to screen — animation, film and AI content, produced end to end.",
     personalName: "Dmytro Lisenbart",
     personalRole: "Animation Director & Producer",
     personalPositioning: "I direct animation and film — for festivals, for brands, and for myself.",
     personalProof: "35 years in animation · 20 years producing · 1000+ projects delivered",
-    personalCta: "Watch reel ↓",
     personalPortrait: "/images/portrait.jpg",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
   },
   showreelSection: {
     title: "Showreel",
-    caption: "A mix of commissioned and personal work, cut together.",
+    caption:
+      "Some of it I was asked to make. Some of it I just wanted to. None of it made alone.",
   },
   trustedBy: {
     label: "Trusted by",
     brands: ["Samsung", "McDonald's", "Nestlé", "MasterCard", "Playtika", "Plarium"] as const,
   },
   explorePaths: {
-    eyebrow: "Explore",
-    title: "Two sides of the work.",
+    title: "Two roads, one direction.",
     film: {
       label: "Film",
       title: "Authored cinema & personal IP",
       text: "Original shorts, an animated feature in development, and two IP universes.",
-      cta: "Explore",
     },
     commercial: {
       label: "Commercial",
       title: "Brands & game studios",
       text: "Campaign films, trailers and animation for brands and game studios.",
-      cta: "Explore",
     },
   },
   personalAbout: {
-    eyebrow: "About",
     title: "About",
-    bio: "I've been directing animation for 35 years and producing commercial work for 20 — leading creative and production teams across Ukraine, Canada and Poland for clients across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association. My background is in painting and film directing, trained at Kyiv's Karpenko-Kary University.",
+    bio: "I've been directing animation for 35 years and producing commercial work for 20 — leading creative and production teams across Ukraine, Canada and Poland for clients across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association. My background is in painting and film directing, trained at Kyiv's Karpenko-Kary University. None of it happens alone — every project here was shaped by writers, designers and animators I'm lucky to work with.",
     recognition: "UANIMA · Head of Ukranimafilm, 2017–2019",
     locations: "Ukraine · Canada · Poland",
   },
@@ -57,7 +48,6 @@ export const site = {
     title: "Original stories, directed for the screen — not the client.",
     caseIds: ["unnecessary-things", "the-last-kozak", "pershosvit", "scoopy-cap"] as const,
     contactLead: "For festival inquiries, co-productions or press — get in touch.",
-    contactCtaLabel: "Get in touch",
   },
   commercialPage: {
     title: "Production leadership for brands, agencies and game studios.",
@@ -83,10 +73,8 @@ export const site = {
         vimeoId: "944158555" as string | null,
       },
     ],
-    contactLead: "Tell me about your project.",
+    contactLead: "Tell me about your project — I'll get back to you within 24 hours.",
   },
-  capabilitiesLine:
-    "Film, animation, game and AI content — scoped and delivered end to end.",
   ctaLabel: "Discuss a project",
   contactSubmitLabel: "Send message",
   email: "info@lisenbart.com",
@@ -113,12 +101,8 @@ export const site = {
   },
   socialComingSoon: {
     title: "Almost there",
-    body: "This channel is still in the works. For now, drop us a line and you'll hear back.",
+    body: "This one's still being built. Until it's live, drop me a line — I read everything myself.",
     cta: "Email Me",
-    closeLabel: "Close",
-  },
-  capabilityShowreelModal: {
-    soonLabel: "Showreel coming soon",
     closeLabel: "Close",
   },
   testimonialsBlock: {
@@ -151,7 +135,6 @@ export const site = {
     /** Shown on light backgrounds */
     black: "/images/logo_black.png",
   },
-  favicon: "/favicon.ico",
   meta: {
     title: "Dmytro Lisenbart — Animation Director & Producer",
     description:
@@ -161,7 +144,6 @@ export const site = {
 };
 
 export const sectionIds = {
-  services: "services",
   about: "about",
   showreel: "showreel",
   explore: "explore",

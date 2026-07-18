@@ -86,7 +86,7 @@ export default function ContactForm({
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 text-center" role="status">
                 <CheckCircle2 size={44} className="mx-auto link-accent" />
                 <p className="mt-4 text-base font-light text-text-primary">
-                  Thank you. I've received your message and you'll hear back shortly.
+                  Got it — thank you. I'll read it properly and get back to you soon.
                 </p>
                 <button type="button" onClick={() => setStatus("idle")} className="mt-4 text-sm link-accent hover:underline">
                   Send another message

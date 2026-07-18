@@ -26,7 +26,6 @@ export function hubPageHref(slug: HubPageSlug) {
 export type WorkRoute = { slug: WorkCategorySlug };
 
 const WORK_CATEGORY_PATTERN = /^\/work\/(commercial|gaming|film|social)\/?$/;
-const HUB_PAGE_PATTERN = /^\/(film|commercial)\/?$/;
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -95,10 +94,6 @@ export function isWorkSection(pathname?: string) {
 /** Work category pages or new hub pages (/film, /commercial). */
 export function isSiteSubpage(pathname?: string) {
   return isWorkSection(pathname) || parseHubPage(pathname) !== null;
-}
-
-export function workSectionHref(slug: WorkCategorySlug) {
-  return workCategoryHref(slug);
 }
 
 export function canonicalWorkPath(slug: WorkCategorySlug): string {
