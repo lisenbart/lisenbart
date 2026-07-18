@@ -151,7 +151,7 @@ export const site = {
     /** Shown on light backgrounds */
     black: "/images/logo_black.png",
   },
-  favicon: "/favicon.png",
+  favicon: "/favicon.ico",
   meta: {
     title: "Dmytro Lisenbart — Animation Director & Producer",
     description:
