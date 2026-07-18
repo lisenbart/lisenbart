@@ -18,7 +18,13 @@ export default function WorkYouTubeChannelPreview({
   return (
     <div className="work-youtube-preview">
       <div className="work-youtube-preview__banner">
-        <img src={bannerImage} alt="" className="work-youtube-preview__banner-image" />
+        <img
+          src={bannerImage}
+          alt=""
+          className="work-youtube-preview__banner-image"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div className="work-youtube-preview__header">
@@ -26,6 +32,8 @@ export default function WorkYouTubeChannelPreview({
           src={avatarImage}
           alt=""
           className="work-youtube-preview__avatar"
+          loading="lazy"
+          decoding="async"
         />
         <div className="work-youtube-preview__meta">
           <p className="work-youtube-preview__title">{title}</p>
@@ -36,7 +44,13 @@ export default function WorkYouTubeChannelPreview({
       <div className="work-youtube-preview__grid" aria-hidden="true">
         {thumbnails.map((thumb, index) => (
           <div key={thumb} className="work-youtube-preview__thumb">
-            <img src={thumb} alt="" className="work-youtube-preview__thumb-image" />
+            <img
+              src={thumb}
+              alt=""
+              className="work-youtube-preview__thumb-image"
+              loading="lazy"
+              decoding="async"
+            />
             {index === 0 ? <span className="work-youtube-preview__thumb-play" /> : null}
           </div>
         ))}

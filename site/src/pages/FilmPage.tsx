@@ -37,13 +37,14 @@ export default function FilmPage() {
         </header>
 
         <div className="film-cases px-[var(--page-padding)]">
-          {cases.map((item) => (
+          {cases.map((item, index) => (
             <WorkCaseBlock
               key={item.id}
               item={
                 item.filmCategory ? { ...item, category: item.filmCategory } : item
               }
               mediaSide="left"
+              mediaPriority={index === 0 ? "lcp" : "lazy"}
             />
           ))}
         </div>

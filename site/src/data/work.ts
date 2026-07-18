@@ -278,7 +278,7 @@ export const workCategories: WorkCategory[] = [
           "Festival winner across Europe and Asia — from Linoleum and ZIFF to Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
         mediaColor: "#0a1f0f",
         vimeoId: "823618245",
-        mediaImage: "/images/work/unnecessary-things-preview.png",
+        mediaImage: "/images/work/unnecessary-things-preview.webp",
         mediaImageAlt: "Unnecessary Things — robot eyes close-up preview",
         stills: [
           "/images/work/unnecessary-things-still-02.jpg",
@@ -326,7 +326,7 @@ export const workCategories: WorkCategory[] = [
           "Currently in development — script, treatment and pitch complete. English teaser available.",
         mediaColor: "#120808",
         vimeoId: "699197721", // UA teaser for localization: 639390060
-        mediaImage: "/images/work/the-last-kozak-preview.png",
+        mediaImage: "/images/work/the-last-kozak-preview.webp",
         mediaImageAlt: "The Last Kozak — teaser preview frame",
         statusBadge: "Feature film in development",
       },

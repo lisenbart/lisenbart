@@ -10,6 +10,8 @@ interface WorkCaseBlockProps {
   item: WorkCaseStudy;
   mediaSide: "left" | "right";
   bordered?: boolean;
+  /** First above-fold case on /film: eager + high. Below-fold: lazy. */
+  mediaPriority?: "lcp" | "lazy";
 }
 
 const STAT_PATTERN = /(\d+(?:[.,]\d+)?(?:K|M)?)/g;
@@ -94,8 +96,17 @@ function youtubeEmbedSrc(youtubeVideoId: string, autoplay = false): string {
   return `https://www.youtube.com/embed/${youtubeVideoId}?${params.toString()}`;
 }
 
-function WorkBlockMedia({ item }: { item: WorkCaseStudy }) {
+function WorkBlockMedia({
+  item,
+  mediaPriority = "lazy",
+}: {
+  item: WorkCaseStudy;
+  mediaPriority?: "lcp" | "lazy";
+}) {
   const [playing, setPlaying] = useState(false);
+  const isLcp = mediaPriority === "lcp";
+  const imgLoading = isLcp ? "eager" : "lazy";
+  const imgFetchPriority = isLcp ? "high" : undefined;
 
   if (item.playableTiers && item.playableTiers.length > 0) {
     return (
@@ -144,6 +155,9 @@ function WorkBlockMedia({ item }: { item: WorkCaseStudy }) {
             src={item.mediaImage}
             alt={item.mediaImageAlt ?? `${item.title} preview`}
             className="work-block-media__image"
+            loading={imgLoading}
+            decoding={isLcp ? "sync" : "async"}
+            fetchPriority={imgFetchPriority}
           />
           <div className="work-block-media__overlay" aria-hidden="true" />
           <button
@@ -178,6 +192,9 @@ function WorkBlockMedia({ item }: { item: WorkCaseStudy }) {
           src={item.mediaImage}
           alt={item.mediaImageAlt ?? item.title}
           className="work-block-media__image"
+          loading={imgLoading}
+          decoding={isLcp ? "sync" : "async"}
+          fetchPriority={imgFetchPriority}
         />
       </div>
     );
@@ -248,7 +265,12 @@ function WorkBlockMedia({ item }: { item: WorkCaseStudy }) {
   );
 }
 
-export default function WorkCaseBlock({ item, mediaSide, bordered = false }: WorkCaseBlockProps) {
+export default function WorkCaseBlock({
+  item,
+  mediaSide,
+  bordered = false,
+  mediaPriority = "lazy",
+}: WorkCaseBlockProps) {
   return (
     <article
       id={item.id}
@@ -257,7 +279,7 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
     >
       <div className="work-block-inner">
         <div className="work-block-media-col">
-          <WorkBlockMedia item={item} />
+          <WorkBlockMedia item={item} mediaPriority={mediaPriority} />
           {item.stills && item.stills.length > 0 ? (
             <ul className="work-block-stills" aria-label={`${item.title} stills`}>
               {item.stills.map((src, index) => (
