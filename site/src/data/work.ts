@@ -278,6 +278,8 @@ export const workCategories: WorkCategory[] = [
           "Festival winner across Europe and Asia — from Linoleum and ZIFF to Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
         mediaColor: "#0a1f0f",
         vimeoId: "823618245",
+        mediaImage: "/images/work/unnecessary-things-preview.png",
+        mediaImageAlt: "Unnecessary Things — robot eyes close-up preview",
         stills: [
           "/images/work/unnecessary-things-still-02.jpg",
           "/images/work/unnecessary-things-still-04.jpg",
