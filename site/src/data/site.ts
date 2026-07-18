@@ -49,9 +49,9 @@ export const site = {
   personalAbout: {
     eyebrow: "About",
     title: "About",
-    bio: "Born in Lviv in 1975. Studied painting, then animation film directing at Kyiv’s Karpenko-Kary University. I founded my production practice after Mental dRive, leading creative and production teams across Ukraine, Canada and Poland to deliver commercial work across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association.",
+    bio: "I've been directing animation for 35 years and producing commercial work for 20 — leading creative and production teams across Ukraine, Canada and Poland for clients across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association. My background is in painting and film directing, trained at Kyiv's Karpenko-Kary University.",
     recognition: "UANIMA · Head of Ukranimafilm, 2017–2019",
-    locations: "Ukraine · Canada · Poland — creative & production teams",
+    locations: "Ukraine · Canada · Poland",
   },
   filmPage: {
     title: "Original stories, directed for the screen — not the client.",

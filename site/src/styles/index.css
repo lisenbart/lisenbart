@@ -95,7 +95,12 @@
   --title-emerald-gradient: var(--hero-accent-gradient);
   --title-cyan-gradient: none;
   --title-magenta-gradient: none;
-  --title-section-gradient: none;
+  /* Signature H2: violet → magenta (purple → pink) */
+  --title-section-gradient: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--violet) 78%, #121214) 0%,
+    color-mix(in srgb, var(--magenta) 78%, #121214) 100%
+  );
   --title-experience-gradient: none;
   --title-mode: solid;
 
@@ -227,10 +232,8 @@
   );
   --title-section-gradient: linear-gradient(
     90deg,
-    var(--cyan) 0%,
-    var(--violet) 38%,
-    var(--magenta) 68%,
-    var(--orange) 100%
+    var(--violet) 0%,
+    var(--magenta) 100%
   );
   --title-experience-gradient: linear-gradient(180deg, #ede9fe 0%, #d8b4ff 38%, #c084fc 100%);
   --cta-bg: linear-gradient(90deg, #0a5f74 0%, #0c7f99 42%, #4338a8 100%);
@@ -1257,18 +1260,16 @@ body.header-connect-open {
   font-weight: 500;
   letter-spacing: 0.02em;
   line-height: 1.05;
-  color: var(--text-primary);
-  background-image: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
   text-shadow: none;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-image: var(--title-section-gradient);
 }
 
-.section-heading {
-  color: var(--text-primary);
-}
-
-[data-theme="dark"] .section-heading {
+/* H2 case/reel titles on /film and /commercial */
+.work-block-title-text,
+.work-block-title.reel-block__label {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -1320,12 +1321,6 @@ body.header-connect-open {
   .hero-headline {
     line-height: 0.95;
   }
-}
-
-[data-theme="dark"] .how-col-title {
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
 }
 
 [data-theme="dark"] .how-col-title-cyan {
@@ -5742,12 +5737,6 @@ footer {
   margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
 }
 
-#explore .how-col-title.section-heading {
-  font-size: clamp(2.35rem, 7vw, 3.25rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
 @media (min-width: 700px) {
   .explore-paths-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -6004,10 +5993,10 @@ footer {
   letter-spacing: -0.03em;
   line-height: 0.95;
   text-transform: uppercase;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  background-image: var(--category-accent-gradient, var(--title-section-gradient));
+  color: var(--text-primary);
+  background-image: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
 }
 
 .hub-page-header__sep {

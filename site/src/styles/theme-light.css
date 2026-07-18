@@ -67,13 +67,19 @@
   --produce-icon-active-color: var(--cyan);
   --produce-icon-active-filter: none;
 
-  /* Hero accent only — section titles stay graphite */
+  /* Hero accent only — full spectrum for rare accent spans */
   --hero-accent-gradient: linear-gradient(
     90deg,
     color-mix(in srgb, #42d9ff 80%, #121214) 0%,
     color-mix(in srgb, #7b42ff 80%, #121214) 40%,
     color-mix(in srgb, #ef3dd2 80%, #121214) 72%,
     color-mix(in srgb, #ff7047 80%, #121214) 100%
+  );
+
+  --title-section-gradient: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--violet) 78%, #121214) 0%,
+    color-mix(in srgb, var(--magenta) 78%, #121214) 100%
   );
 
   --cta-bg: #141416;
@@ -240,13 +246,9 @@
   box-shadow: var(--process-dot-active-shadow);
 }
 
-/* Graphite section titles — solid ink, no glow */
+/* Section H2 use shared --title-section-gradient (violet → magenta) */
 [data-theme="light"] .section-heading,
 [data-theme="light"] .how-col-title {
-  color: var(--text-primary);
-  background-image: none;
-  -webkit-background-clip: unset;
-  background-clip: unset;
   font-weight: 500;
   letter-spacing: 0.015em;
   text-shadow: none;
