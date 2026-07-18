@@ -288,10 +288,12 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
             </span>
             <span>{item.year}</span>
           </p>
-          <h2 id={`work-block-title-${item.id}`} className="work-block-title">
-            <span className="work-block-title-text">{item.title}</span>
+          <div className="work-block-title-row">
+            <h2 id={`work-block-title-${item.id}`} className="work-block-title">
+              <span className="work-block-title-text">{item.title}</span>
+            </h2>
             {item.imdbId ? <ImdbTitleRating imdbId={item.imdbId} /> : null}
-          </h2>
+          </div>
           {item.statusBadge ? <p className="work-block-status-badge">{item.statusBadge}</p> : null}
           {item.laurels && item.laurels.length > 0 ? (
             <ul className="work-block-laurels" aria-label="Recognition">

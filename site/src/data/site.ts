@@ -128,7 +128,7 @@ export const site = {
     },
   },
   locations: "Ukraine · Canada · Poland · Remote worldwide",
-  canonical: "https://www.lisenbart.com",
+  canonical: "https://lisenbart.com",
   logo: {
     /** Shown on dark backgrounds */
     white: "/images/logo_white.png",

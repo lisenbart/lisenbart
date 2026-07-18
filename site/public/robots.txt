@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /celana/
-Sitemap: https://www.lisenbart.com/sitemap.xml
+Sitemap: https://lisenbart.com/sitemap.xml

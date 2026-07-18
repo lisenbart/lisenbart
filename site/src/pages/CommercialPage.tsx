@@ -26,6 +26,7 @@ export default function CommercialPage() {
           <h1 className="hub-page-header__row mx-auto w-full min-w-0 max-w-[920px]">
             <span className="hub-page-header__name work-page-title--commercial">Commercial</span>
             <span className="hub-page-header__sep" aria-hidden="true" />
+            <span className="sr-only"> — </span>
             <span className="hub-page-header__lead">{commercialPage.title}</span>
           </h1>
         </header>
