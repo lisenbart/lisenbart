@@ -1,3 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /celana/
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /wp-login.php
+Disallow: /xmlrpc.php
 Sitemap: https://lisenbart.com/sitemap.xml

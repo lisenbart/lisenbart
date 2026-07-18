@@ -11,12 +11,6 @@ export const filmPageJsonLd = [
     datePublished: "2021",
     genre: "Animation",
     duration: "PT14M",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "7.9",
-      bestRating: "10",
-      worstRating: "1",
-    },
     award: "Winner, Prague Film Awards",
     sameAs: ["https://www.imdb.com/title/tt14760808/"],
     url: "https://lisenbart.com/film#unnecessary-things",
