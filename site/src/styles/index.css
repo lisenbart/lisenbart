@@ -4656,7 +4656,8 @@ footer {
   }
 
   .work-block--media-right .work-block-copy,
-  .work-block--media-right .work-block-media {
+  .work-block--media-right .work-block-media,
+  .work-block--media-right .work-block-media-col {
     direction: ltr;
   }
 }
@@ -4675,6 +4676,46 @@ footer {
     inset 0 1px 0 color-mix(in srgb, var(--text-primary) 6%, transparent),
     0 14px 36px rgba(0, 0, 0, 0.24);
   overflow: hidden;
+}
+
+.work-block-media-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.work-block-stills {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .work-block-stills {
+    gap: 0.5rem;
+  }
+}
+
+.work-block-stills__item {
+  margin: 0;
+  overflow: hidden;
+  border-radius: calc(var(--card-radius) - 8px);
+  border: 1px solid color-mix(in srgb, var(--text-primary) 10%, transparent);
+  aspect-ratio: 16 / 10;
+  background: #0a0a0c;
+}
+
+.work-block-stills__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .work-block-media-label {
@@ -5954,6 +5995,61 @@ footer {
   background: color-mix(in srgb, var(--cyan) 6%, transparent);
 }
 
+.work-block-selection-note {
+  margin: 0.55rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-tertiary);
+  text-wrap: pretty;
+}
+
+.work-block-ext-link {
+  color: var(--link-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: color-mix(in srgb, var(--link-accent) 55%, transparent);
+}
+
+.work-block-ext-link:hover {
+  text-decoration-color: var(--link-accent);
+}
+
+.work-block-credits {
+  margin: 0.65rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+  text-wrap: pretty;
+}
+
+.work-block-quote {
+  margin: 0.85rem 0 0;
+  padding: 0 0 0 0.85rem;
+  border-left: 2px solid color-mix(in srgb, var(--cyan) 35%, var(--separator));
+}
+
+.work-block-quote__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+
+.work-block-quote__attr {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  font-style: normal;
+  color: var(--text-tertiary);
+}
+
 .work-block-status-badge {
   margin: 0.45rem 0 0;
   font-size: 0.75rem;
@@ -6065,7 +6161,7 @@ footer {
   margin: 0;
 }
 
-/* Mobile /film: title → subtitle → media → rest. /commercial: title → text → media. */
+/* Mobile /film: title → subtitle → media → rest. /commercial: title + text → media. */
 @media (max-width: 767px) {
   .film-cases .work-block-inner {
     display: flex;
@@ -6085,34 +6181,50 @@ footer {
     order: 2;
   }
 
-  .film-cases .work-block-status-badge {
+  .film-cases .work-block-media-col {
     order: 3;
   }
 
-  .film-cases .work-block-laurels {
+  .film-cases .work-block-inner > .work-block-media,
+  .film-cases .work-block-inner > .work-block-media--poster,
+  .film-cases .work-block-inner > .work-block-media--video,
+  .film-cases .work-block-inner > .work-block-media--youtube,
+  .film-cases .work-block-inner > .work-block-media--playables,
+  .film-cases .work-block-inner > .work-block-media--coming-soon,
+  .film-cases .work-block-inner > .work-block-media--placeholder {
+    order: 3;
+  }
+
+  .film-cases .work-block-status-badge {
     order: 4;
   }
 
-  .film-cases .work-block-media,
-  .film-cases .work-block-media--poster,
-  .film-cases .work-block-media--video,
-  .film-cases .work-block-media--youtube,
-  .film-cases .work-block-media--playables,
-  .film-cases .work-block-media--coming-soon,
-  .film-cases .work-block-media--placeholder {
+  .film-cases .work-block-laurels {
     order: 5;
   }
 
-  .film-cases .work-block-description {
+  .film-cases .work-block-selection-note {
     order: 6;
   }
 
-  .film-cases .work-block-result {
+  .film-cases .work-block-description {
     order: 7;
   }
 
-  .film-cases .work-block-cta-row {
+  .film-cases .work-block-credits {
     order: 8;
+  }
+
+  .film-cases .work-block-quote {
+    order: 9;
+  }
+
+  .film-cases .work-block-result {
+    order: 10;
+  }
+
+  .film-cases .work-block-cta-row {
+    order: 11;
   }
 
   /* Commercial reels: keep title + text together above media on small screens */

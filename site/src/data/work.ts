@@ -28,6 +28,8 @@ export interface WorkCaseStudy {
   vimeoId?: string;
   mediaImage?: string;
   mediaImageAlt?: string;
+  /** Frame stills shown under the trailer */
+  stills?: string[];
   imdbId?: string;
   youtubeVideoId?: string;
   youtubeUrl?: string;
@@ -36,6 +38,18 @@ export interface WorkCaseStudy {
   playableTiers?: WorkPlayableTier[];
   /** Optional festival laurel badges shown beside the project title */
   laurels?: string[];
+  /** Festival selections with source links */
+  selectionLinks?: Array<{ label: string; href: string }>;
+  /** Winner line with source link */
+  winnerLink?: { label: string; href: string };
+  /** Smaller credit line under the description */
+  credits?: string;
+  /** Optional short press quote */
+  quote?: {
+    text: string;
+    attribution: string;
+    href: string;
+  };
   /** Optional status chip (e.g. Feature film in development) */
   statusBadge?: string;
   mediaPlaceholder?: {
@@ -264,10 +278,39 @@ export const workCategories: WorkCategory[] = [
           "Festival winner across Europe and Asia — from Linoleum and ZIFF to Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
         mediaColor: "#0a1f0f",
         vimeoId: "823618245",
-        mediaImage: "/images/work/unnecessary-things-preview.png",
-        mediaImageAlt: "Unnecessary Things — trailer preview frame",
+        stills: [
+          "/images/work/unnecessary-things-still-02.jpg",
+          "/images/work/unnecessary-things-still-04.jpg",
+          "/images/work/unnecessary-things-still-06.jpg",
+          "/images/work/unnecessary-things-still-08.jpg",
+        ],
         imdbId: "tt14760808",
-        laurels: ["15 awards", "45 selections", "8.0 IMDb"],
+        laurels: ["15 awards", "45 selections", "7.9 IMDb"],
+        selectionLinks: [
+          {
+            label: "Vancouver International Film Festival",
+            href: "https://www.youtube.com/watch?v=9I_So6Tq0rU",
+          },
+          {
+            label: "Short Shorts Film Festival & Asia (Tokyo)",
+            href: "https://shortshorts.org/2022/en/program/anime/anime-2/unnecessary-things/",
+          },
+          {
+            label: "St. Louis International Film Festival",
+            href: "https://watch.eventive.org/2021sliff/play/615f8c7b6152f10045ca60bf/615cc215038537025765c6a0",
+          },
+        ],
+        winnerLink: {
+          label: "Winner, Prague Film Awards",
+          href: "https://odessa-journal.com/dmytro-lisenbarts-animated-short-unnecessary-things-won-an-award-at-the-prague-film-awards/",
+        },
+        credits:
+          "Written and directed by Dmytro Lisenbart, based on a story by Robert Sheckley. Co-written with Andriy Rushkovskyi; production design by Dmytro Krivonos. Produced by Lisenbart Animation Studio and Marcus Film (Vitalii Khalo), with support from Derzhkino.",
+        quote: {
+          text: "Pair this with Blade Runner 2049 — a lovely story about sentience and friendship.",
+          attribution: "Review on Letterboxd",
+          href: "https://letterboxd.com/film/unnecessary-things/",
+        },
       },
       {
         id: "the-last-kozak",

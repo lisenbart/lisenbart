@@ -256,7 +256,26 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
       aria-labelledby={`work-block-title-${item.id}`}
     >
       <div className="work-block-inner">
-        <WorkBlockMedia item={item} />
+        <div className="work-block-media-col">
+          <WorkBlockMedia item={item} />
+          {item.stills && item.stills.length > 0 ? (
+            <ul className="work-block-stills" aria-label={`${item.title} stills`}>
+              {item.stills.map((src, index) => (
+                <li key={src} className="work-block-stills__item">
+                  <img
+                    src={src}
+                    alt=""
+                    className="work-block-stills__image"
+                    loading="lazy"
+                    decoding="async"
+                    width={640}
+                    height={360}
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
         <div className="work-block-copy">
           <p className="work-block-meta">
             <span>{item.client}</span>
@@ -283,6 +302,40 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
               ))}
             </ul>
           ) : null}
+          {(item.selectionLinks?.length || item.winnerLink) ? (
+            <p className="work-block-selection-note">
+              {item.selectionLinks && item.selectionLinks.length > 0 ? (
+                <>
+                  Selected:{" "}
+                  {item.selectionLinks.map((link, index) => (
+                    <span key={link.href}>
+                      {index > 0 ? ", " : null}
+                      <a
+                        href={link.href}
+                        className="work-block-ext-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label}
+                      </a>
+                    </span>
+                  ))}
+                  {item.winnerLink ? ". " : "."}
+                </>
+              ) : null}
+              {item.winnerLink ? (
+                <a
+                  href={item.winnerLink.href}
+                  className="work-block-ext-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.winnerLink.label}
+                </a>
+              ) : null}
+              {item.winnerLink ? "." : null}
+            </p>
+          ) : null}
           <p className="work-block-description">
             {item.description.includes("\n") ? (
               <>
@@ -297,6 +350,23 @@ export default function WorkCaseBlock({ item, mediaSide, bordered = false }: Wor
               item.description
             )}
           </p>
+          {item.credits ? <p className="work-block-credits">{item.credits}</p> : null}
+          {item.quote ? (
+            <blockquote className="work-block-quote">
+              <p className="work-block-quote__text">“{item.quote.text}”</p>
+              <footer className="work-block-quote__attr">
+                —{" "}
+                <a
+                  href={item.quote.href}
+                  className="work-block-ext-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.quote.attribution}
+                </a>
+              </footer>
+            </blockquote>
+          ) : null}
           <p className="work-block-result">
             <span className="work-block-result-label">Result</span>
             {highlightStats(item.result)}
