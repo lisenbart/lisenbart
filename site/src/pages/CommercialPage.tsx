@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import ReelBlock from "@/components/ReelBlock";
-import TestimonialsSection from "@/components/TestimonialsSection";
 import TrustedBySection from "@/components/TrustedBySection";
 import ContactForm from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
@@ -46,7 +45,8 @@ export default function CommercialPage() {
           ))}
         </div>
 
-        <TestimonialsSection />
+        {/* Temporarily hidden — restore when testimonials are ready to show */}
+        {/* <TestimonialsSection /> */}
 
         <ContactForm lead={commercialPage.contactLead} />
       </main>

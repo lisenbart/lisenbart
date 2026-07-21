@@ -13,7 +13,7 @@ export const site = {
     personalRole: "Animation Director & Producer",
     personalPositioning: "I direct animation and film — for festivals, for brands, and for myself.",
     personalProof: "35 years in animation · 20 years producing · 1000+ projects delivered",
-    personalPortrait: "/images/portrait.jpg",
+    personalPortrait: "/images/portrait.webp",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
   },
   showreelSection: {
@@ -23,7 +23,16 @@ export const site = {
   },
   trustedBy: {
     label: "Trusted by",
-    brands: ["Samsung", "McDonald's", "Nestlé", "MasterCard", "Playtika", "Plarium"] as const,
+    brands: [
+      "Nestlé",
+      "Playtika",
+      "MasterCard",
+      "Voodoo",
+      "Samsung",
+      "Plarium",
+      "McDonald's",
+      "Moon Active",
+    ] as const,
   },
   explorePaths: {
     title: "Two roads, one direction.",

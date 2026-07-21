@@ -24,7 +24,7 @@ export default function PersonalHeroSection() {
                 src={publicAsset(hero.personalPortrait)}
                 alt={hero.personalPortraitAlt}
                 width={900}
-                height={1100}
+                height={900}
                 decoding="async"
               />
             </figure>
