@@ -19,18 +19,17 @@ function BrandRow({ groupId, brands }: { groupId: string; brands: readonly strin
 export default function TrustedBySection() {
   const { trustedBy } = site;
   const brands = trustedBy.brands;
-  const countLabel = `${trustedBy.label} · ${brands.length}`;
 
   return (
     <section
       id={sectionIds.trusted}
       className="scroll-mt-24 px-[var(--page-padding)] pb-[var(--section-spacing)]"
-      aria-label={countLabel}
+      aria-label={trustedBy.label}
     >
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
-        <p className="trusted-by__label">{countLabel}</p>
-        <div className="trusted-by trusted-by--marquee" aria-hidden="true">
-          <div className="trusted-by__marquee strip-marquee-viewport overflow-hidden">
+        <div className="trusted-by trusted-by--marquee">
+          <p className="trusted-by__label">{trustedBy.label}</p>
+          <div className="trusted-by__marquee strip-marquee-viewport overflow-hidden" aria-hidden="true">
             <div className="strip-marquee-clip">
               <div className="strip-marquee-track">
                 <BrandRow groupId="a" brands={brands} />
