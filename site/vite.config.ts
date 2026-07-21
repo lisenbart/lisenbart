@@ -15,10 +15,6 @@ export default defineConfig(({ command }) => ({
             renderTarget: "#root",
             prerenderScript: path.resolve(__dirname, "src/prerender.tsx"),
             additionalPrerenderRoutes: [
-              "/work/commercial",
-              "/work/gaming",
-              "/work/film",
-              "/work/social",
               "/film",
               "/commercial",
             ],

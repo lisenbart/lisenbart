@@ -1,5 +1,5 @@
 import { contactHref, goToContact, site, scrollToSection, sectionIds } from "@/data/site";
-import { isSiteSubpage, isWorkSection, routes } from "@/lib/routes";
+import { isSiteSubpage, routes } from "@/lib/routes";
 import SocialIconLinks from "./SocialIconLinks";
 import BrandLogo from "./BrandLogo";
 
@@ -31,14 +31,13 @@ function FooterSectionLink({ href, label }: { href: string; label: string }) {
 function FooterLink({ id, label }: { id: string; label: string }) {
   const onSubpage = isSiteSubpage();
   const isContact = id === sectionIds.contact;
-  const contactOnPage = isContact && !isWorkSection();
 
   return (
     <a
       href={isContact ? contactHref() : onSubpage ? `${routes.home}#${id}` : `#${id}`}
       className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
       onClick={
-        contactOnPage || !onSubpage
+        isContact || !onSubpage
           ? (e) => {
               e.preventDefault();
               if (isContact) goToContact();

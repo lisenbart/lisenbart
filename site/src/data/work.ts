@@ -471,10 +471,6 @@ export const workCategories: WorkCategory[] = [
   },
 ];
 
-export function getWorkCategory(slug: WorkCategorySlug): WorkCategory | undefined {
-  return workCategories.find((category) => category.slug === slug);
-}
-
 export function getWorkCasesByIds(ids: readonly string[]): WorkCaseStudy[] {
   const byId = new Map(
     workCategories.flatMap((category) => category.cases).map((item) => [item.id, item]),
@@ -484,11 +480,3 @@ export function getWorkCasesByIds(ids: readonly string[]): WorkCaseStudy[] {
     return item ? [item] : [];
   });
 }
-
-/** Tone classes for work page title color */
-export const workCategoryTitleClass: Record<WorkCategorySlug, string> = {
-  commercial: "work-page-title--commercial",
-  gaming: "work-page-title--gaming",
-  film: "work-page-title--film-entertainment",
-  social: "work-page-title--performance-social",
-};

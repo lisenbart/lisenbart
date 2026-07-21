@@ -1,63 +1,33 @@
 import Header from "./components/Header";
-import WorkNav from "./components/WorkNav";
 import HomePage from "./pages/HomePage";
-import WorkCategoryPage from "./pages/WorkCategoryPage";
 import FilmPage from "./pages/FilmPage";
 import CommercialPage from "./pages/CommercialPage";
 import MobileEstimateCTA from "./components/MobileEstimateCTA";
 import Footer from "./components/Footer";
-import { getWorkCategory } from "./data/work";
 import {
-  isWorkIndexPath,
+  legacyWorkRedirectTarget,
   parseHubPage,
-  parseWorkRoute,
   shouldRedirectToCanonicalHubPath,
-  shouldRedirectToCanonicalWorkPath,
-  workEntryHref,
 } from "./lib/routes";
-
-function WorkRouter() {
-  const route = parseWorkRoute();
-  if (!route) return null;
-
-  const category = getWorkCategory(route.slug);
-  if (!category) return null;
-
-  return (
-    <div className="work-shell">
-      <WorkNav active={route.slug} />
-      <WorkCategoryPage category={category} />
-    </div>
-  );
-}
 
 function resolveMain() {
   const hub = parseHubPage();
   if (hub === "film") return <FilmPage />;
   if (hub === "commercial") return <CommercialPage />;
-
-  const workRoute = parseWorkRoute();
-  if (workRoute) return <WorkRouter />;
-
   return <HomePage />;
 }
 
 export default function App() {
   if (typeof window !== "undefined") {
+    const legacyRedirect = legacyWorkRedirectTarget();
+    if (legacyRedirect) {
+      window.location.replace(legacyRedirect);
+      return null;
+    }
+
     const canonicalHubRedirect = shouldRedirectToCanonicalHubPath();
     if (canonicalHubRedirect) {
       window.location.replace(canonicalHubRedirect);
-      return null;
-    }
-
-    const canonicalWorkRedirect = shouldRedirectToCanonicalWorkPath();
-    if (canonicalWorkRedirect) {
-      window.location.replace(canonicalWorkRedirect);
-      return null;
-    }
-
-    if (isWorkIndexPath()) {
-      window.location.replace(workEntryHref());
       return null;
     }
   }

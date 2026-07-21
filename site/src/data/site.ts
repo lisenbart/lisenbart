@@ -1,5 +1,4 @@
 import { publicAsset } from "@/lib/publicAsset";
-import { isWorkSection, routes } from "@/lib/routes";
 
 export const site = {
   name: "LISENBART",
@@ -161,19 +160,11 @@ export const sectionIds = {
 } as const;
 
 export function contactHref() {
-  // Home + /film + /commercial host the form in-page; legacy /work/* still jumps home.
-  if (isWorkSection()) {
-    return `${routes.home}#${sectionIds.contact}`;
-  }
   return `#${sectionIds.contact}`;
 }
 
-/** Scroll to Contact on the current page when the form is present; otherwise go home. */
+/** Scroll to Contact on the current page. */
 export function goToContact(onDone?: () => void) {
-  if (isWorkSection()) {
-    window.location.href = `${routes.home}#${sectionIds.contact}`;
-    return;
-  }
   scrollToSection(sectionIds.contact, onDone);
 }
 
