@@ -273,9 +273,9 @@ export const workCategories: WorkCategory[] = [
         year: "2021",
         title: "Unnecessary Things",
         description:
-          "Award-winning 14-minute animated short — World Premiere at Shanghai, Best Animated Short Film at Curtas. A robot buys a human from a store of unwanted things; a friendship that ends where it began.",
+          "14-minute animated short — World Premiere at Shanghai; Best Animated Short Film at Curtas. A robot buys a human from a store of unwanted things; a friendship that ends where it began.",
         result:
-          "Festival winner across Europe and Asia — from Linoleum and ZIFF to Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
+          "15 awards and 45 festival selections across Europe and Asia — including Linoleum, ZIFF, Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
         mediaColor: "#0a1f0f",
         vimeoId: "823618245",
         mediaImage: "/images/work/unnecessary-things-preview.webp",
@@ -321,9 +321,9 @@ export const workCategories: WorkCategory[] = [
         year: "In development",
         title: "The Last Kozak",
         description:
-          "80-minute animated feature · Drama · Action · Fantasy · 12+\nHe has no name — everyone calls him the Last Kozak. Trapped in a time loop, he must defeat evil again and again. A stylized action-fantasy with comic-book editing, psychological depth and a cossack who rides the Iron Dog through worlds that intersect at the Last Khreshchatyk.",
+          "80-minute animated feature · Drama · Action · Fantasy · 12+\nHe has no name — everyone calls him the Last Kozak. Trapped in a time loop, he must defeat evil again and again. A stylized action-fantasy with comic-book editing, psychological depth, and a cossack who rides the Iron Dog through worlds that meet at the Last Khreshchatyk.",
         result:
-          "Currently in development — script, treatment and pitch complete. English teaser available.",
+          "In development — script, treatment and pitch complete. English teaser available.",
         mediaColor: "#120808",
         vimeoId: "699197721", // UA teaser for localization: 639390060
         mediaImage: "/images/work/the-last-kozak-preview.webp",
@@ -403,9 +403,9 @@ export const workCategories: WorkCategory[] = [
         year: "2024",
         title: "Scoopy Cap",
         description:
-          "225 videos · 10.4K subscribers · weekly hits that kids replay\nFull English preschool channel — nursery rhymes, ABC, colours and numbers built around Scoopy Cap, a friendly space explorer designed for calm watch-time and repeat views.",
+          "225 videos · 10.4K subscribers · preschool content in English\nNursery rhymes, ABC, colours and numbers built around Scoopy Cap — a space explorer designed for calm viewing and repeat plays.",
         result:
-          "Finger Family became the channel's top-performing video. New full songs every Saturday, Shorts through the week — a content engine built to grow.",
+          "Finger Family is the channel’s top-performing video. Full songs each Saturday; Shorts through the week.",
         mediaColor: "#1a1428",
         mediaImage: "/images/work/scoopy-cap-preview.jpg",
         mediaImageAlt: "Scoopy Cap YouTube channel",
@@ -426,9 +426,9 @@ export const workCategories: WorkCategory[] = [
         year: "2024",
         title: "Pershosvit · Kapitan Świetlik",
         description:
-          "147K subscribers · 274 videos · breakout hits in Ukrainian\nThe country's leading preschool channel — songs, fairy tales and learning with Kapitan Świetlik, a robot hero parents trust and kids watch on repeat.",
+          "147K subscribers · 274 videos · preschool content in Ukrainian\nSongs, fairy tales and learning with Kapitan Świetlik — a robot hero for young audiences and the parents who watch with them.",
         result:
-          "Baby Shark UA became a channel phenomenon. Alphabet, bedtime and learning series driving daily growth across Ukraine.",
+          "Alphabet, bedtime and learning series across Ukraine. Baby Shark UA is among the channel’s strongest videos.",
         mediaColor: "#1f1020",
         mediaImage: "/images/work/pershosvit-preview.jpg",
         mediaImageAlt: "Pershosvit YouTube channel",

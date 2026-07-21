@@ -2,6 +2,6 @@ export const projectTypes = [
   "Campaign & Brand Film",
   "Game Trailer or Cinematic",
   "Animation & Motion",
-  "AI-Assisted Production",
+  "AI Production",
   "Other",
 ] as const;

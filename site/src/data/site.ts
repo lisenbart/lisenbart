@@ -10,15 +10,16 @@ export const site = {
   hero: {
     personalName: "Dmytro Lisenbart",
     personalRole: "Animation Director & Producer",
-    personalPositioning: "I direct animation and film — for festivals, for brands, and for myself.",
-    personalProof: "35 years in animation · 20 years producing · 1000+ projects delivered",
+    personalPositioning:
+      "I direct animation and produce film — for festivals, brands, and original projects.",
+    personalProof: "35 years in animation · 20 years producing · 1,000+ projects delivered",
     personalPortrait: "/images/portrait.webp",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
   },
   showreelSection: {
     title: "Showreel",
     caption:
-      "Some of it I was asked to make. Some of it I just wanted to. None of it made alone.",
+      "Festival films, commercial work, and original projects — directed and produced with the teams each brief required.",
   },
   trustedBy: {
     label: "Trusted by",
@@ -34,36 +35,37 @@ export const site = {
     ] as const,
   },
   explorePaths: {
-    title: "Two roads, one direction.",
+    title: "Film and commercial work.",
     film: {
       label: "Film",
-      title: "Authored cinema & personal IP",
-      text: "Original shorts, an animated feature in development, and two IP universes.",
+      title: "Original films & IP",
+      text: "Original shorts, a feature in development, and children’s IP for young audiences.",
     },
     commercial: {
       label: "Commercial",
-      title: "Brands & game studios",
-      text: "Campaign films, trailers and animation for brands and game studios.",
+      title: "Brands, agencies & game studios",
+      text: "Campaign films, trailers, and animation — shaped for the brief, audience, and final delivery.",
     },
   },
   personalAbout: {
     title: "About",
-    bio: "I've been directing animation for 35 years and producing commercial work for 20 — leading creative and production teams across Ukraine, Canada and Poland for clients across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association. My background is in painting and film directing, trained at Kyiv's Karpenko-Kary University. None of it happens alone — every project here was shaped by writers, designers and animators I'm lucky to work with.",
+    bio: "I've been directing animation for 35 years and producing commercial work for 20 — leading creative and production teams across Ukraine, Canada and Poland for clients across Europe and North America. I headed Ukranimafilm from 2017 to 2019 and co-founded UANIMA, the Ukrainian Animation Association. My background is in painting and film directing, trained at Kyiv's Karpenko-Kary University. Every project here is shaped with the writers, designers, animators and producers the work requires.",
     recognition: "UANIMA · Head of Ukranimafilm, 2017–2019",
     locations: "Ukraine · Canada · Poland",
   },
   filmPage: {
-    title: "Original stories, directed for the screen — not the client.",
+    title: "Original films, feature development, and children’s IP.",
     caseIds: ["unnecessary-things", "the-last-kozak", "pershosvit", "scoopy-cap"] as const,
-    contactLead: "For festival inquiries, co-productions or press — get in touch.",
+    contactLead:
+      "For festivals, co-productions, distribution or press — tell me where the project stands.",
   },
   commercialPage: {
     title: "Production leadership for brands, agencies and game studios.",
     reels: [
       {
         id: "ai-powered-reel",
-        label: "AI Powered",
-        text: "Concept exploration and rapid visual development — accelerated with AI-assisted tools, always finished by hand.",
+        label: "AI Production",
+        text: "Sometimes the idea calls for AI in visual development, world building, individual sequences, or a complete film. The brief defines its role, and I shape every decision with the team.",
         vimeoId: null as string | null,
         /** 10-day countdown window ending at this ISO timestamp */
         comingSoonEndsAt: "2026-07-27T18:00:00+02:00",
@@ -71,20 +73,20 @@ export const site = {
       {
         id: "advertising-reel",
         label: "Advertising",
-        text: "Brand campaigns and commercial films for Samsung, McDonald's, Nestlé and MasterCard — from first concept to final delivery.",
+        text: "Brand campaigns and commercial films for Samsung, McDonald's, Nestlé and MasterCard — from first idea to final delivery.",
         vimeoId: "849899875" as string | null,
       },
       {
         id: "games-reel",
         label: "Games",
-        text: "Trailers and cinematics for Playtika, Plarium and Moon Active — built to sell the moment before the click.",
+        text: "Trailers and cinematics for Playtika, Plarium and Moon Active — shaped for the audience, platform and campaign goal.",
         vimeoId: "944158555" as string | null,
       },
     ],
-    contactLead: "Tell me about your project — I'll get back to you within 24 hours.",
+    contactLead: "Tell me where the idea stands today. A brief is enough to begin.",
   },
-  ctaLabel: "Discuss a project",
-  contactSubmitLabel: "Send message",
+  ctaLabel: "Discuss a Project",
+  contactSubmitLabel: "Send It Over",
   email: "info@lisenbart.com",
   linkedin: "https://www.linkedin.com/in/lisenbart/",
   vimeo: "https://vimeo.com/849899875",
@@ -109,8 +111,8 @@ export const site = {
   },
   socialComingSoon: {
     title: "Almost there",
-    body: "This one's still being built. Until it's live, drop me a line — I read everything myself.",
-    cta: "Email Me",
+    body: "This channel is still being set up. Until then, email me directly.",
+    cta: "Email Me Directly",
     closeLabel: "Close",
   },
   testimonialsBlock: {
@@ -146,7 +148,7 @@ export const site = {
   meta: {
     title: "Dmytro Lisenbart — Animation Director & Producer",
     description:
-      "I direct animation and film — for festivals, for brands, and for myself. Festival work, children’s IP, and commercial craft.",
+      "I direct animation and produce film for festivals, brands, and original projects. Festival work, children’s IP, and commercial production.",
     ogImage: publicAsset("/images/work/lisenbart-showreel-preview.jpg"),
   },
 };

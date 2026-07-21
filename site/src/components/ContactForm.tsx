@@ -17,7 +17,7 @@ interface FormState {
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactForm({
-  lead = "Tell me about your project — I'll get back to you within 24 hours.",
+  lead = "Tell me where the idea stands today. A brief is enough to begin.",
 }: {
   lead?: string;
 }) {
@@ -86,7 +86,7 @@ export default function ContactForm({
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 text-center" role="status">
                 <CheckCircle2 size={44} className="mx-auto link-accent" />
                 <p className="mt-4 text-base font-light text-text-primary">
-                  Got it — thank you. I'll read it properly and get back to you soon.
+                  Thank you — I’ll review it and get back to you soon.
                 </p>
                 <button type="button" onClick={() => setStatus("idle")} className="mt-4 text-sm link-accent hover:underline">
                   Send another message
@@ -161,9 +161,9 @@ export default function ContactForm({
                     </select>
                     <ChevronDown size={14} className="inquiry-select-chevron pointer-events-none absolute right-0 top-1/2 -translate-y-1/2" aria-hidden="true" />
                   </div>
-                  {form.projectType === "AI-Assisted Production" && (
+                  {form.projectType === "AI Production" && (
                     <p className="inquiry-helper mt-2 text-xs font-light leading-relaxed text-text-tertiary">
-                      AI speeds up the work — the craft stays mine.
+                      The brief defines AI’s role. I shape every production decision with the team.
                     </p>
                   )}
                 </div>
@@ -177,7 +177,7 @@ export default function ContactForm({
                     id="contact-message"
                     value={form.message}
                     onChange={(e) => update("message", e.target.value)}
-                    placeholder="Brief, timeline, references..."
+                    placeholder="Goals, references, deliverables…"
                     rows={4}
                     className="inquiry-input inquiry-textarea resize-none"
                   />

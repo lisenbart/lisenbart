@@ -9,7 +9,7 @@ export default function ExplorePathsSection() {
     <section
       id={sectionIds.explore}
       className="scroll-mt-24 px-[var(--page-padding)] pb-[var(--section-spacing)]"
-      aria-label="Explore work"
+      aria-label="Film and commercial work"
     >
       <div className="mx-auto w-full min-w-0 max-w-[920px]">
         <article className="how-ios-card">

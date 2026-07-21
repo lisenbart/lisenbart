@@ -113,7 +113,7 @@ export default function ImdbProfileModal({ href, onClose }: ImdbProfileModalProp
             id="imdb-profile-body"
             className="mx-auto mt-4 max-w-sm text-center text-sm font-light leading-relaxed text-text-secondary md:text-[15px]"
           >
-            My director page on IMDb — everything I've made, for anyone who wants the paper trail.
+            My IMDb director page — filmography and festival credits.
           </p>
 
           <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
@@ -121,10 +121,10 @@ export default function ImdbProfileModal({ href, onClose }: ImdbProfileModalProp
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Open on IMDb (opens in a new tab)"
+              aria-label="View on IMDb (opens in a new tab)"
               className="gradient-button-emerald btn-on-accent inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium"
             >
-              Open on IMDb
+              View on IMDb
               <ExternalLink size={15} strokeWidth={1.75} aria-hidden="true" />
             </a>
             <button

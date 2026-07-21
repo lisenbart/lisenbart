@@ -26,7 +26,7 @@ export const filmPageJsonLd = [
     genre: ["Animation", "Drama", "Action", "Fantasy"],
     creativeWorkStatus: "In development",
     description:
-      "80-minute animated feature. A stylized action-fantasy about the Last Kozak trapped in a time loop.",
+      "80-minute animated feature. A stylized action-fantasy about the Last Kozak, trapped in a time loop.",
     url: "https://lisenbart.com/film#the-last-kozak",
   },
 ] as const;
