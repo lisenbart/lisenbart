@@ -41,8 +41,8 @@
     </script>
     <script>
       (function () {
-        var t = localStorage.getItem("lisenbart-theme");
-        document.documentElement.setAttribute("data-theme", t === "dark" ? "dark" : "light");
+        try { localStorage.setItem("lisenbart-theme", "light"); } catch (e) {}
+        document.documentElement.setAttribute("data-theme", "light");
       })();
     </script>
     <style>

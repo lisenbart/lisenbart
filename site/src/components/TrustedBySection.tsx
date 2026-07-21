@@ -23,10 +23,10 @@ export default function TrustedBySection() {
   return (
     <section
       id={sectionIds.trusted}
-      className="scroll-mt-24 px-[var(--page-padding)] pb-[var(--section-spacing)]"
+      className="trusted-by-section scroll-mt-24 pb-[var(--section-spacing)]"
       aria-label={trustedBy.label}
     >
-      <div className="mx-auto w-full min-w-0 max-w-[920px]">
+      <div className="archive-container">
         <div className="trusted-by trusted-by--marquee">
           <p className="trusted-by__label">{trustedBy.label}</p>
           <div className="trusted-by__marquee strip-marquee-viewport overflow-hidden" aria-hidden="true">

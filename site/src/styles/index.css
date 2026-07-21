@@ -1,4 +1,5 @@
 @import "./fonts.css";
+@import "./archive-design.css";
 @import "tailwindcss";
 
 *,
@@ -10,49 +11,59 @@
 /* Light tokens are the default on :root (no flash before data-theme). Dark is opt-in. */
 :root {
   color-scheme: light;
-  --section-spacing: clamp(2.25rem, 4vw, 3.5rem);
+  --section-spacing: clamp(3rem, 6vw, 6rem);
   --block-stack-gap: 0.75rem;
-  --page-padding: clamp(1rem, 4vw, 3rem);
+  --page-max: 1440px;
+  --page-gutter: clamp(24px, 4vw, 72px);
+  --page-padding: var(--page-gutter);
   --glass-radius: 32px;
   --card-radius: 28px;
-  --site-header-offset: 4.25rem;
+  --site-header-offset: 3.5rem;
   --work-nav-height: calc(3.15rem + 1px);
   --video-stage-bg: #000;
   --font-sans: "DM Sans", system-ui, sans-serif;
   --font-display: "Montserrat", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --background: #f3f2ed;
-  --surface: rgba(255, 255, 255, 0.58);
-  --surface-strong: rgba(255, 255, 255, 0.76);
-  --text-primary: #121214;
+  --paper: #f1efe8;
+  --paper-light: #faf9f5;
+  --ink: #111114;
+  --archive-grey: #aaa8a0;
+  --line: rgba(17, 17, 20, 0.16);
+  --warm-red: #e95d45;
+
+  --background: #f1efe8;
+  --surface: rgba(250, 249, 245, 0.72);
+  --surface-strong: rgba(250, 249, 245, 0.9);
+  --text-primary: #111114;
   --text-secondary: #43434d;
   --text-tertiary: #686872;
   --glass-border: rgba(18, 18, 20, 0.12);
-  --separator: rgba(18, 18, 20, 0.1);
-  --header-bg: rgba(243, 242, 237, 0.72);
-  --header-bg-scrolled: rgba(243, 242, 237, 0.92);
-  --header-bg-solid: #f3f2ed;
-  --header-bg-scrolled-solid: #efeee8;
-  --header-border: rgba(18, 18, 20, 0.11);
-  --mobile-bar-bg: rgba(243, 242, 237, 0.94);
+  --separator: rgba(17, 17, 20, 0.16);
+  --header-bg: rgba(241, 239, 232, 0.72);
+  --header-bg-scrolled: rgba(241, 239, 232, 0.92);
+  --header-bg-solid: #f1efe8;
+  --header-bg-scrolled-solid: #ebe8df;
+  --header-border: rgba(17, 17, 20, 0.16);
+  --mobile-bar-bg: rgba(241, 239, 232, 0.94);
   --overlay-scrim: rgba(8, 8, 12, 0.52);
-  --modal-bg: rgba(255, 255, 255, 0.96);
+  --modal-bg: rgba(250, 249, 245, 0.96);
   --modal-border: rgba(18, 18, 20, 0.1);
   --inset-surface: rgba(18, 18, 20, 0.035);
-  --how-ios-bg: rgba(255, 255, 255, 0.88);
+  --how-ios-bg: rgba(250, 249, 245, 0.92);
   --how-ios-group-bg: rgba(18, 18, 20, 0.028);
   --card-shadow:
     0 1px 0 rgba(255, 255, 255, 0.9) inset,
     0 10px 28px rgba(18, 18, 20, 0.08),
     0 2px 8px rgba(18, 18, 20, 0.04);
 
-  --blue: #1a6fe8;
-  --cyan: #0088b8;
-  --violet: #6a32e8;
+  --blue: #249bb7;
+  --cyan: #249bb7;
+  --violet: #6a42d8;
   --magenta: #c928a8;
   --pink: #d42e6e;
   --orange: #d04e24;
-  --link-accent: var(--cyan);
+  --link-accent: var(--blue);
   --error: #d42e6e;
 
   --ios-card-border: rgba(18, 18, 20, 0.16);
@@ -95,12 +106,8 @@
   --title-emerald-gradient: var(--hero-accent-gradient);
   --title-cyan-gradient: none;
   --title-magenta-gradient: none;
-  /* Signature H2: violet → magenta (purple → pink) */
-  --title-section-gradient: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--violet) 78%, #121214) 0%,
-    color-mix(in srgb, var(--magenta) 78%, #121214) 100%
-  );
+  /* Signature H2: solid archive ink (no rainbow) */
+  --title-section-gradient: none;
   --title-experience-gradient: none;
   --title-mode: solid;
 
@@ -304,7 +311,6 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 500;
 }
 
 .font-sans {
@@ -376,6 +382,14 @@ html {
   [data-theme="dark"],
   [data-theme="light"] {
     --block-stack-gap: 1rem;
+    --site-header-offset: 3.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root,
+  [data-theme="dark"],
+  [data-theme="light"] {
     --site-header-offset: 4rem;
   }
 }
@@ -713,6 +727,27 @@ html {
   width: fit-content;
   flex-shrink: 0;
   line-height: 0;
+}
+
+.site-logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+  line-height: 0;
+}
+
+.site-logo-mark {
+  display: block;
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  object-fit: contain;
+}
+
+.site-logo-lockup--footer .site-logo-mark {
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .site-logo-image {
@@ -1277,7 +1312,7 @@ body.header-connect-open {
 }
 
 [aria-label="Introduction"] h1 {
-  font-weight: 500;
+  font-weight: 800;
 }
 
 .hero-headline {
@@ -3196,12 +3231,6 @@ footer {
 }
 
 @media (max-width: 767px) {
-  :root,
-  [data-theme="dark"],
-  [data-theme="light"] {
-    --page-padding: clamp(0.875rem, 4vw, 1.25rem);
-  }
-
   html,
   body,
   #root,

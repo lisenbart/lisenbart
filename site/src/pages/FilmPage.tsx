@@ -26,9 +26,9 @@ export default function FilmPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(filmPageJsonLd) }}
       />
-      <main className="site-main work-page">
-        <header className="work-page-header hub-page-header px-[var(--page-padding)]">
-          <h1 className="hub-page-header__row mx-auto w-full min-w-0 max-w-[920px]">
+      <main className="site-main work-page work-page--film archive-hub">
+        <header className="work-page-header hub-page-header">
+          <h1 className="hub-page-header__row">
             <span className="hub-page-header__name work-page-title--film-entertainment">Film</span>
             <span className="hub-page-header__sep" aria-hidden="true" />
             <span className="sr-only"> — </span>
@@ -36,7 +36,7 @@ export default function FilmPage() {
           </h1>
         </header>
 
-        <div className="film-cases px-[var(--page-padding)]">
+        <div className="film-cases">
           {cases.map((item, index) => (
             <WorkCaseBlock
               key={item.id}

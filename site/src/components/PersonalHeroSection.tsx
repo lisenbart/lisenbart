@@ -1,53 +1,65 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { publicAsset } from "@/lib/publicAsset";
-import { site } from "@/data/site";
+import { sectionIds, site } from "@/data/site";
 import ImdbProfileModal from "./ImdbProfileModal";
 
 const IMDB_PROFILE = "https://www.imdb.com/name/nm11412621/";
 
+const PROOF_ITEMS = [
+  "35 years in animation",
+  "20 years producing",
+  "1,000+ projects delivered",
+] as const;
+
 export default function PersonalHeroSection() {
   const { hero } = site;
   const [imdbOpen, setImdbOpen] = useState(false);
+  const [firstName, lastName] = hero.personalName.split(" ");
 
   return (
-    <section
-      id="top"
-      className="hero-split scroll-mt-24 px-[var(--page-padding)] pt-[5.75rem] md:pt-[4.5rem]"
-      aria-label="Introduction"
-    >
-      <div className="mx-auto w-full min-w-0 max-w-[920px]">
-        <article className="how-ios-card hero-split-card" aria-label="Hero">
-          <div className="hero-split-card__inner personal-hero__inner">
-            <figure className="personal-hero__media">
-              <img
-                src={publicAsset(hero.personalPortrait)}
-                alt={hero.personalPortraitAlt}
-                width={900}
-                height={900}
-                decoding="async"
-              />
-            </figure>
+    <section id="top" className="archive-hero scroll-mt-24" aria-label="Introduction">
+      <div className="archive-container archive-hero__grid">
+        <div className="archive-hero__copy">
+          <p className="archive-meta archive-hero__role">{hero.personalRole}</p>
+          <h1 className="archive-hero__name">
+            <span className="archive-hero__name-line">{firstName}</span>
+            <span className="archive-hero__name-line archive-hero__name-line--offset">{lastName}</span>
+          </h1>
+          <p className="archive-hero__bio">{hero.personalPositioning}</p>
+          <ul className="archive-hero__proof" aria-label="Experience">
+            {PROOF_ITEMS.map((item) => (
+              <li key={item} className="archive-hero__proof-item">
+                {item}
+              </li>
+            ))}
+            <li className="archive-hero__proof-item">
+              <button
+                type="button"
+                className="archive-hero__proof-link"
+                onClick={() => setImdbOpen(true)}
+                aria-haspopup="dialog"
+              >
+                IMDb
+              </button>
+            </li>
+          </ul>
+          <a className="archive-hero__scroll" href={`#${sectionIds.showreel}`}>
+            <span className="archive-hero__scroll-line" aria-hidden="true" />
+            View work
+          </a>
+        </div>
 
-            <div className="hero-split-card__copy personal-hero__copy">
-              <p className="personal-hero__role">{hero.personalRole}</p>
-              <h1 className="hero-split__headline personal-hero__name">{hero.personalName}</h1>
-              <p className="hero-split__subhead personal-hero__bio">{hero.personalPositioning}</p>
-              <p className="personal-hero__proof">
-                {hero.personalProof}
-                {" · "}
-                <button
-                  type="button"
-                  className="personal-hero__proof-link"
-                  onClick={() => setImdbOpen(true)}
-                  aria-haspopup="dialog"
-                >
-                  IMDb ↗
-                </button>
-              </p>
-            </div>
-          </div>
-        </article>
+        <figure className="archive-hero__media">
+          <img
+            src={publicAsset(hero.personalPortrait)}
+            alt={hero.personalPortraitAlt}
+            width={900}
+            height={900}
+            decoding="async"
+            fetchPriority="high"
+          />
+        </figure>
       </div>
 
       <AnimatePresence>

@@ -339,7 +339,7 @@
 
 [data-theme="light"] [aria-label="Introduction"] h1 {
   color: var(--text-primary);
-  font-weight: 500;
+  font-weight: 800;
 }
 
 @media (max-width: 767px) {
@@ -350,6 +350,10 @@
 
 [data-theme="light"] .site-header-nav img {
   filter: contrast(1.06) saturate(1.05);
+}
+
+[data-theme="light"] .site-header-nav .site-logo-mark {
+  filter: none;
 }
 
 /* CTA — graphite + controlled neon glow */

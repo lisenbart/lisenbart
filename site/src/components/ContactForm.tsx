@@ -64,13 +64,13 @@ export default function ContactForm({
   return (
     <section
       id={sectionIds.contact}
-      className="scroll-mt-24 w-full max-w-full min-w-0 px-[var(--page-padding)] pb-[var(--section-spacing)]"
+      className="archive-contact scroll-mt-24 w-full max-w-full min-w-0 pb-[var(--section-spacing)]"
       aria-label="Contact"
     >
-      <div className="mx-auto w-full min-w-0 max-w-[920px]">
+      <div className="archive-container">
         <div className="mb-8 text-center md:mb-10">
-          <h2 className="how-col-title section-heading">Contact</h2>
-          <p className="mx-auto mt-3 max-w-md text-[0.9375rem] font-light leading-relaxed text-text-secondary md:text-base">
+          <h2 className="archive-h2 section-heading">Contact</h2>
+          <p className="archive-body mx-auto mt-3 max-w-md">
             {lead}
           </p>
           {!isContactFormLive && import.meta.env.DEV && (

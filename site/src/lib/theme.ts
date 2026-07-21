@@ -1,18 +1,21 @@
-export type Theme = "dark" | "light";
+export type Theme = "light";
 
 export const THEME_STORAGE_KEY = "lisenbart-theme";
 
+/** Site is light-only. Always apply light and clear any stored dark preference. */
 export function getStoredTheme(): Theme {
-  if (typeof window === "undefined") return "light";
-  const stored = localStorage.getItem(THEME_STORAGE_KEY);
-  return stored === "dark" ? "dark" : "light";
+  return "light";
 }
 
-export function applyTheme(theme: Theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-  localStorage.setItem(THEME_STORAGE_KEY, theme);
+export function applyTheme(_theme: Theme = "light") {
+  document.documentElement.setAttribute("data-theme", "light");
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, "light");
+  } catch {
+    /* ignore */
+  }
 }
 
 export function initTheme() {
-  applyTheme(getStoredTheme());
+  applyTheme("light");
 }

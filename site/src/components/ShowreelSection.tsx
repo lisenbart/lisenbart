@@ -20,23 +20,15 @@ export default function ShowreelSection({
   ariaLabel = "Showreel",
 }: ShowreelSectionProps) {
   return (
-    <section
-      id={sectionId}
-      className="scroll-mt-24 px-[var(--page-padding)] pb-[var(--section-spacing)]"
-      aria-label={ariaLabel}
-    >
-      <div className="mx-auto w-full min-w-0 max-w-[920px]">
-        <article className="how-ios-card showreel-card" aria-label={ariaLabel}>
-          <div className="showreel-section__frame">
-            <div className="showreel-section__header">
-              <h2 className="how-col-title section-heading showreel-section__title">{title}</h2>
-              <p className="showreel-section__caption">{caption}</p>
-            </div>
-            <div className="video-stage showreel-card-media hero-showreel-frame relative w-full min-w-0">
-              <HeroShowreel vimeoId={vimeoId} shareUrl={shareUrl} title={ariaLabel} />
-            </div>
-          </div>
-        </article>
+    <section id={sectionId} className="archive-showreel scroll-mt-24" aria-label={ariaLabel}>
+      <div className="archive-showreel__inner archive-container">
+        <div className="archive-showreel__header">
+          <h2 className="archive-showreel__title">{title}</h2>
+          <p className="archive-showreel__caption">{caption}</p>
+        </div>
+        <div className="archive-showreel__stage video-stage hero-showreel-frame relative w-full min-w-0">
+          <HeroShowreel vimeoId={vimeoId} shareUrl={shareUrl} title={ariaLabel} />
+        </div>
       </div>
     </section>
   );

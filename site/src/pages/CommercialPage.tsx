@@ -20,9 +20,9 @@ export default function CommercialPage() {
   return (
     <>
       <SEO title={`Commercial — ${site.brand}`} description={commercialPage.title} url={seoUrl} />
-      <main className="site-main work-page">
-        <header className="work-page-header hub-page-header px-[var(--page-padding)]">
-          <h1 className="hub-page-header__row mx-auto w-full min-w-0 max-w-[920px]">
+      <main className="site-main work-page work-page--commercial archive-hub">
+        <header className="work-page-header hub-page-header">
+          <h1 className="hub-page-header__row">
             <span className="hub-page-header__name work-page-title--commercial">Commercial</span>
             <span className="hub-page-header__sep" aria-hidden="true" />
             <span className="sr-only"> — </span>
@@ -32,7 +32,7 @@ export default function CommercialPage() {
 
         <TrustedBySection />
 
-        <div className="film-cases px-[var(--page-padding)]">
+        <div className="film-cases">
           {commercialPage.reels.map((reel) => (
             <ReelBlock
               key={reel.id}
