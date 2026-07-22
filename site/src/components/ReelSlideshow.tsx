@@ -52,8 +52,14 @@ export default function ReelSlideshow({
     return <div className="reel-slideshow reel-slideshow--empty" aria-hidden="true" />;
   }
 
+  const labeled = Boolean(alt);
+
   return (
-    <div ref={rootRef} className="reel-slideshow" role="img" aria-label={alt}>
+    <div
+      ref={rootRef}
+      className="reel-slideshow"
+      {...(labeled ? { role: "img" as const, "aria-label": alt } : { "aria-hidden": true as const })}
+    >
       {images.map((src, index) => (
         <img
           key={src}

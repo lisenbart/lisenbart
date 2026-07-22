@@ -1,12 +1,7 @@
 import { ChevronRight } from "lucide-react";
-import { publicAsset } from "@/lib/publicAsset";
+import ReelSlideshow from "@/components/ReelSlideshow";
 import { sectionIds, site } from "@/data/site";
 import { routes } from "@/lib/routes";
-
-const PANEL_MEDIA = {
-  film: "/images/work/unnecessary-things-preview.webp",
-  commercial: "/images/work/lisenbart-showreel-preview.jpg",
-} as const;
 
 function DirectionPanel({
   variant,
@@ -14,14 +9,16 @@ function DirectionPanel({
   ariaLabel,
   title,
   text,
-  media,
+  images,
+  intervalMs = 3400,
 }: {
   variant: "film" | "commercial";
   href: string;
   ariaLabel: string;
   title: string;
   text: string;
-  media: string;
+  images: readonly string[];
+  intervalMs?: number;
 }) {
   return (
     <a
@@ -29,11 +26,9 @@ function DirectionPanel({
       href={href}
       aria-label={ariaLabel}
     >
-      <span
-        className="archive-panel__media"
-        style={{ backgroundImage: `url(${publicAsset(media)})` }}
-        aria-hidden="true"
-      />
+      <span className="archive-panel__media" aria-hidden="true">
+        <ReelSlideshow images={[...images]} alt="" intervalMs={intervalMs} />
+      </span>
       <span className="archive-panel__overlay" aria-hidden="true" />
       <div className="archive-panel__content">
         <div className="archive-panel__heading">
@@ -67,7 +62,8 @@ export default function ExplorePathsSection() {
             ariaLabel={explorePaths.film.ctaAria}
             title={explorePaths.film.title}
             text={explorePaths.film.text}
-            media={PANEL_MEDIA.film}
+            images={explorePaths.film.previewImages}
+            intervalMs={3400}
           />
           <DirectionPanel
             variant="commercial"
@@ -75,7 +71,8 @@ export default function ExplorePathsSection() {
             ariaLabel={explorePaths.commercial.ctaAria}
             title={explorePaths.commercial.title}
             text={explorePaths.commercial.text}
-            media={PANEL_MEDIA.commercial}
+            images={explorePaths.commercial.previewImages}
+            intervalMs={3900}
           />
         </div>
       </div>

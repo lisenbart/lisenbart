@@ -1014,6 +1014,18 @@ html[data-theme="dark"] {
   align-items: start;
 }
 
+/* Stacked (phone + resized desktop windows): keep cards tight */
+@media (max-width: 767px) {
+  .archive-explore__panels {
+    gap: 0.5rem;
+  }
+
+  .archive-panel {
+    /* Real phones stay short; wider “mobile” windows no longer tower */
+    max-height: 12.75rem;
+  }
+}
+
 .archive-panel {
   position: relative;
   grid-column: 1 / -1;
@@ -1058,11 +1070,37 @@ html[data-theme="dark"] {
   z-index: 0;
   display: block;
   border-radius: 0;
-  background-color: color-mix(in srgb, var(--ink) 12%, transparent);
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  background-color: #111114;
   transform: scale(1.02);
   transition: transform 0.55s ease;
+}
+
+.archive-panel__media .reel-slideshow {
+  position: absolute;
+  inset: 0;
+}
+
+.archive-panel__media .reel-slideshow__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.85s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.archive-panel__media .reel-slideshow__frame.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-panel__media .reel-slideshow__frame {
+    transition: none;
+  }
 }
 
 .archive-panel__overlay {
@@ -1158,18 +1196,29 @@ html[data-theme="dark"] {
   display: none;
 }
 
-/* Desktop with real hover: image only → full color overlay + copy */
+/* Desktop: keep direction label bar always visible (same as mobile) —
+   slideshow alone is not enough to tell the two panels apart */
 @media (hover: hover) and (pointer: fine) {
   .archive-panel__content {
-    inset: 0;
-    padding: 1.1rem 1.2rem;
-    opacity: 0;
-    background: transparent;
-    transition: opacity 0.35s ease;
+    inset: auto 0 0 0;
+    padding: 0.85rem 1.1rem;
+    opacity: 1;
+    background: color-mix(in srgb, var(--ink) 78%, transparent);
+    transition: background 0.35s ease;
   }
 
   .archive-panel__text {
+    display: none;
+  }
+
+  .archive-panel:hover .archive-panel__text,
+  .archive-panel:focus-visible .archive-panel__text {
     display: block;
+  }
+
+  .archive-panel:hover .archive-panel__content,
+  .archive-panel:focus-visible .archive-panel__content {
+    background: color-mix(in srgb, var(--ink) 88%, transparent);
   }
 
   .archive-panel:hover .archive-panel__media,
@@ -1179,12 +1228,7 @@ html[data-theme="dark"] {
 
   .archive-panel:hover .archive-panel__overlay,
   .archive-panel:focus-visible .archive-panel__overlay {
-    opacity: 1;
-  }
-
-  .archive-panel:hover .archive-panel__content,
-  .archive-panel:focus-visible .archive-panel__content {
-    opacity: 1;
+    opacity: 0.28;
   }
 
   .archive-panel:hover .archive-panel__cta,
@@ -1506,8 +1550,8 @@ footer .how-ios-card {
 .work-page--commercial.archive-hub .film-cases--reels {
   display: flex;
   flex-direction: column;
-  /* Clear separation between reel units on mobile */
-  gap: clamp(2.75rem, 8vw, 3.75rem);
+  /* Fixed gap — vw-based spacing felt huge in desktop “mobile” widths */
+  gap: 1.75rem;
   /* Match footer + contact form width */
   width: min(calc(100% - 2.5rem), 920px);
   margin-inline: auto;
@@ -1719,7 +1763,7 @@ footer .how-ios-card {
 /* Mobile: extra space + rule between units so copy stays glued to its reel */
 @media (max-width: 899px) {
   .work-page--commercial.archive-hub .film-cases--reels .reel-block--split + .reel-block--split {
-    padding-top: clamp(2rem, 6vw, 2.75rem);
+    padding-top: 1.35rem;
     border-top: 1px solid var(--line);
   }
 }
