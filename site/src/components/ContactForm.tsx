@@ -1,9 +1,16 @@
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronDown, ChevronRight } from "lucide-react";
 import { isContactFormLive } from "@/lib/contactConfig";
 import { projectTypes } from "@/data/services";
-import { sectionIds, site } from "@/data/site";
+import {
+  CONTACT_PREFILL_EVENT,
+  clearContactPrefill,
+  consumeContactPrefill,
+  sectionIds,
+  site,
+  type ContactPrefill,
+} from "@/data/site";
 import { submitContact, validateContact } from "@/lib/contactSubmit";
 
 interface FormState {
@@ -35,6 +42,29 @@ export default function ContactForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<Status>("idle");
   const [serverMsg, setServerMsg] = useState("");
+
+  useEffect(() => {
+    const applyPrefill = (prefill: ContactPrefill) => {
+      setForm((prev) => ({
+        ...prev,
+        projectType: prefill.projectType ?? prev.projectType,
+        message: prefill.message ?? prev.message,
+      }));
+    };
+
+    const stored = consumeContactPrefill();
+    if (stored) applyPrefill(stored);
+
+    const onPrefill = (event: Event) => {
+      const detail = (event as CustomEvent<ContactPrefill>).detail;
+      if (!detail) return;
+      clearContactPrefill();
+      applyPrefill(detail);
+    };
+
+    window.addEventListener(CONTACT_PREFILL_EVENT, onPrefill);
+    return () => window.removeEventListener(CONTACT_PREFILL_EVENT, onPrefill);
+  }, []);
 
   const update = (field: keyof FormState, value: string) => {
     setForm((p) => ({ ...p, [field]: value }));

@@ -94,7 +94,8 @@ export const site = {
     seoTitle: "LISENBART Originals — Films, Stories and IP",
     seoDescription:
       "Original films, stories, and IP developed by animation director and producer Dmytro Lisenbart.",
-    caseIds: ["unnecessary-things", "the-last-kozak", "pershosvit", "scoopy-cap"] as const,
+    filmIds: ["unnecessary-things", "the-last-kozak"] as const,
+    ipIds: ["pershosvit", "scoopy-cap"] as const,
     contactHeading: "Project Enquiries",
     contactLead:
       "For co-production, distribution, festivals, or press, tell me which project you’re interested in.",
@@ -270,6 +271,45 @@ export function contactHref() {
 /** Scroll to Contact on the current page. */
 export function goToContact(onDone?: () => void) {
   scrollToSection(sectionIds.contact, onDone);
+}
+
+const CONTACT_PREFILL_KEY = "lisenbart-contact-prefill";
+
+export const CONTACT_PREFILL_EVENT = "lisenbart:contact-prefill";
+
+export type ContactPrefill = {
+  projectType?: string;
+  message?: string;
+};
+
+/** Prefill contact fields, then scroll to the form. */
+export function goToContactWithPrefill(prefill: ContactPrefill, onDone?: () => void) {
+  try {
+    sessionStorage.setItem(CONTACT_PREFILL_KEY, JSON.stringify(prefill));
+  } catch {
+    /* ignore quota / private mode */
+  }
+  window.dispatchEvent(new CustomEvent(CONTACT_PREFILL_EVENT, { detail: prefill }));
+  goToContact(onDone);
+}
+
+export function consumeContactPrefill(): ContactPrefill | null {
+  try {
+    const raw = sessionStorage.getItem(CONTACT_PREFILL_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(CONTACT_PREFILL_KEY);
+    return JSON.parse(raw) as ContactPrefill;
+  } catch {
+    return null;
+  }
+}
+
+export function clearContactPrefill() {
+  try {
+    sessionStorage.removeItem(CONTACT_PREFILL_KEY);
+  } catch {
+    /* ignore */
+  }
 }
 
 export function scrollToSection(id: string, onDone?: () => void) {
