@@ -8,11 +8,13 @@ export default function PersonalAboutSection() {
       <div className="archive-about__inner archive-container">
         <div className="archive-about__copy archive-about__copy--solo">
           <h2 className="archive-h2">{personalAbout.title}</h2>
-          {personalAbout.paragraphs.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} className="archive-body archive-about__text">
-              {paragraph}
-            </p>
-          ))}
+
+          <blockquote className="archive-about__quote">
+            {personalAbout.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
+          </blockquote>
+
           {personalAbout.markers.length > 0 && (
             <ul className="archive-about__markers">
               {personalAbout.markers.map((marker) => (

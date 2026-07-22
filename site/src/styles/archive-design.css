@@ -1284,7 +1284,7 @@ html[data-theme="dark"] {
 
   .archive-about__copy--solo {
     grid-column: 1 / -1;
-    max-width: 42rem;
+    max-width: 38rem;
   }
 }
 
@@ -1302,7 +1302,8 @@ html[data-theme="dark"] {
   }
 
   .archive-about__copy--solo {
-    grid-column: 1 / 9;
+    grid-column: 2 / 9;
+    max-width: none;
   }
 }
 
@@ -1339,7 +1340,31 @@ html[data-theme="dark"] {
 }
 
 .archive-about__copy h2 {
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+
+.archive-about__quote {
+  margin: 0;
+  padding: 0 0 0 var(--space-4);
+  border: 0;
+  border-left: 1px solid var(--line);
+}
+
+.archive-about__quote p {
+  margin: 0;
+  max-width: 34rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1.0625rem, 1.45vw, 1.1875rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.archive-about__quote p + p {
+  margin-top: var(--space-4);
 }
 
 .archive-about__text {
