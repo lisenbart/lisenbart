@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { Maximize2, Minimize2, Pause, Play, Send, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { Maximize2, Minimize2, Pause, Play, Send, Volume1, Volume2, VolumeX } from "lucide-react";
 import { site } from "@/data/site";
 
 const DEFAULT_VIMEO_ID = "849899875";
+const DEFAULT_VOLUME = 0.5;
 const VIMEO_BASE =
   "title=0&byline=0&portrait=0&controls=0&autopause=0&vimeo_logo=0&badge=0&pip=0&dnt=1&playsinline=1";
 
@@ -22,6 +23,7 @@ type VimeoPlayer = {
   play: () => Promise<void>;
   pause: () => Promise<void>;
   setVolume: (v: number) => Promise<void>;
+  getVolume: () => Promise<number>;
   setMuted: (m: boolean) => Promise<void>;
   getMuted: () => Promise<boolean>;
   getFullscreen: () => Promise<boolean>;
@@ -87,8 +89,15 @@ export default function HeroShowreel({
   const containerRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerRef = useRef<VimeoPlayer | null>(null);
+  const volumeWrapRef = useRef<HTMLDivElement>(null);
+  const lastVolumeRef = useRef(DEFAULT_VOLUME);
+  const volumeControlId = useId();
+  const volumePopoverId = useId();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [muted, setMuted] = useState(true);
+  const [hasStarted, setHasStarted] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [volume, setVolume] = useState(DEFAULT_VOLUME);
+  const [volumeOpen, setVolumeOpen] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -98,6 +107,50 @@ export default function HeroShowreel({
     let cancelled = false;
     const iframe = iframeRef.current;
     if (!iframe) return;
+
+    const syncVolumeUi = async (player: VimeoPlayer) => {
+      try {
+        const [isMuted, currentVolume] = await Promise.all([player.getMuted(), player.getVolume()]);
+        if (cancelled) return;
+        setMuted(isMuted);
+        setVolume(currentVolume);
+        if (currentVolume > 0) lastVolumeRef.current = currentVolume;
+      } catch {
+        /* ignore */
+      }
+    };
+
+    const startPlayback = async (player: VimeoPlayer, withSound: boolean) => {
+      if (withSound) {
+        try {
+          await player.setVolume(DEFAULT_VOLUME);
+          await player.setMuted(false);
+          await player.play();
+          if (!cancelled) {
+            setIsPlaying(true);
+            setHasStarted(true);
+            setMuted(false);
+            setVolume(DEFAULT_VOLUME);
+            lastVolumeRef.current = DEFAULT_VOLUME;
+          }
+          return;
+        } catch {
+          /* Browser may block unmuted autoplay — fall through to muted. */
+        }
+      }
+
+      try {
+        await player.setMuted(true);
+        await player.play();
+        if (!cancelled) {
+          setIsPlaying(true);
+          setHasStarted(true);
+          setMuted(true);
+        }
+      } catch {
+        /* ignore */
+      }
+    };
 
     const initPlayer = () => {
       setPlayerReady(false);
@@ -115,9 +168,7 @@ export default function HeroShowreel({
           playerRef.current = player;
 
           player.on("volumechange", () => {
-            void player.getMuted().then((isMuted) => {
-              if (!cancelled) setMuted(isMuted);
-            });
+            void syncVolumeUi(player);
           });
 
           player.on("pause", () => {
@@ -125,7 +176,10 @@ export default function HeroShowreel({
           });
 
           player.on("play", () => {
-            if (!cancelled) setIsPlaying(true);
+            if (!cancelled) {
+              setIsPlaying(true);
+              setHasStarted(true);
+            }
           });
 
           player.on("fullscreenchange", (data) => {
@@ -134,14 +188,11 @@ export default function HeroShowreel({
 
           setPlayerReady(true);
 
-          if (isPoster || autoPlay) {
-            void player
-              .setMuted(true)
-              .then(() => player.play())
-              .then(() => {
-                if (!cancelled) setIsPlaying(true);
-              })
-              .catch(() => {});
+          if (isPoster) {
+            void startPlayback(player, false);
+          } else if (autoPlay) {
+            // Parent already got a user click (e.g. Originals poster) — prefer half volume.
+            void startPlayback(player, true);
           }
         })
         .catch(() => {});
@@ -157,6 +208,26 @@ export default function HeroShowreel({
   }, [hasVideo, embedSrc, isPoster, autoPlay]);
 
   useEffect(() => {
+    if (!volumeOpen) return;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!volumeWrapRef.current?.contains(event.target as Node)) {
+        setVolumeOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setVolumeOpen(false);
+    };
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [volumeOpen]);
+
+  useEffect(() => {
     const onFullscreenChange = () => {
       if (document.fullscreenElement === containerRef.current) {
         setIsFullscreen(true);
@@ -168,26 +239,28 @@ export default function HeroShowreel({
     return () => document.removeEventListener("fullscreenchange", onFullscreenChange);
   }, []);
 
-  async function syncMutedState() {
-    const player = playerRef.current;
-    if (!player) return;
-    try {
-      setMuted(await player.getMuted());
-    } catch {
-      /* ignore */
-    }
-  }
-
   async function handlePlay() {
     const player = playerRef.current;
     if (!player) return;
     try {
-      await player.setMuted(true);
+      const nextVolume = lastVolumeRef.current || DEFAULT_VOLUME;
+      await player.setVolume(nextVolume);
+      await player.setMuted(false);
       await player.play();
       setIsPlaying(true);
-      setMuted(true);
+      setHasStarted(true);
+      setMuted(false);
+      setVolume(nextVolume);
     } catch {
-      /* ignore */
+      try {
+        await player.setMuted(true);
+        await player.play();
+        setIsPlaying(true);
+        setHasStarted(true);
+        setMuted(true);
+      } catch {
+        /* ignore */
+      }
     }
   }
 
@@ -202,20 +275,52 @@ export default function HeroShowreel({
     }
   }
 
-  async function toggleSound() {
+  async function toggleMute() {
     const player = playerRef.current;
     if (!player) return;
     try {
       const currentlyMuted = await player.getMuted();
-      const nextMuted = !currentlyMuted;
-      await player.setMuted(nextMuted);
-      if (!nextMuted) {
-        await player.setVolume(0.7);
+      if (currentlyMuted || volume === 0) {
+        const nextVolume = lastVolumeRef.current || DEFAULT_VOLUME;
+        await player.setVolume(nextVolume);
+        await player.setMuted(false);
+        setVolume(nextVolume);
+        setMuted(false);
+      } else {
+        lastVolumeRef.current = volume > 0 ? volume : lastVolumeRef.current;
+        await player.setMuted(true);
+        setMuted(true);
       }
-      await syncMutedState();
     } catch {
       /* ignore */
     }
+  }
+
+  async function handleVolumeChange(next: number) {
+    const player = playerRef.current;
+    if (!player) return;
+    const clamped = Math.min(1, Math.max(0, next));
+    try {
+      await player.setVolume(clamped);
+      if (clamped === 0) {
+        await player.setMuted(true);
+        setMuted(true);
+        setVolume(0);
+      } else {
+        lastVolumeRef.current = clamped;
+        await player.setMuted(false);
+        setMuted(false);
+        setVolume(clamped);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function volumeIcon() {
+    if (muted || volume === 0) return <VolumeX size={16} />;
+    if (volume < 0.5) return <Volume1 size={16} />;
+    return <Volume2 size={16} />;
   }
 
   async function toggleFullscreen() {
@@ -300,7 +405,7 @@ export default function HeroShowreel({
         tabIndex={-1}
       />
 
-      {!isPoster && !isPlaying && !hidePlayButton && (
+      {!isPoster && !isPlaying && !hidePlayButton && !hasStarted && (
         <button
           type="button"
           onClick={() => void handlePlay()}
@@ -314,26 +419,61 @@ export default function HeroShowreel({
 
       {!isPoster && playerReady && (
         <div
-          className={`hero-showreel__controls absolute z-20 flex items-center gap-2${isPlaying ? " hero-showreel__controls--active" : ""}`}
+          className={`hero-showreel__controls absolute z-20 flex items-center gap-2${hasStarted || isPlaying ? " hero-showreel__controls--active" : ""}`}
         >
-          {isPlaying && (
+          {hasStarted && (
             <>
               <button
                 type="button"
-                onClick={() => void handlePause()}
-                aria-label={`Pause ${title}`}
+                onClick={() => void (isPlaying ? handlePause() : handlePlay())}
+                aria-label={isPlaying ? `Pause ${title}` : `Play ${title}`}
                 className="hero-showreel__control"
               >
-                <Pause size={16} />
+                {isPlaying ? <Pause size={16} /> : <Play size={16} fill="currentColor" />}
               </button>
-              <button
-                type="button"
-                onClick={() => void toggleSound()}
-                aria-label={muted ? `Unmute ${title}` : `Mute ${title}`}
-                className="hero-showreel__control"
+              <div
+                ref={volumeWrapRef}
+                className={`hero-showreel__volume${volumeOpen ? " is-open" : ""}`}
+                onMouseEnter={() => setVolumeOpen(true)}
+                onMouseLeave={() => setVolumeOpen(false)}
               >
-                {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-              </button>
+                <div
+                  className="hero-showreel__volume-popover"
+                  id={volumePopoverId}
+                  hidden={!volumeOpen}
+                >
+                  <label className="sr-only" htmlFor={volumeControlId}>
+                    Volume
+                  </label>
+                  <input
+                    id={volumeControlId}
+                    className="hero-showreel__volume-slider"
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={0.05}
+                    value={muted ? 0 : volume}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={Math.round((muted ? 0 : volume) * 100)}
+                    aria-valuetext={`${Math.round((muted ? 0 : volume) * 100)} percent`}
+                    onChange={(event) => void handleVolumeChange(Number(event.target.value))}
+                  />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => void toggleMute()}
+                  onPointerUp={(event) => {
+                    if (event.pointerType === "touch") setVolumeOpen(true);
+                  }}
+                  aria-label={muted || volume === 0 ? `Unmute ${title}` : `Mute ${title}`}
+                  aria-expanded={volumeOpen}
+                  aria-controls={volumePopoverId}
+                  className="hero-showreel__control"
+                >
+                  {volumeIcon()}
+                </button>
+              </div>
               <button
                 type="button"
                 onClick={() => void toggleFullscreen()}
