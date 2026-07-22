@@ -15,7 +15,6 @@ export const site = {
     ] as const,
     personalPortrait: "/images/portrait.webp",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
-    showreelCta: "View Directions",
     imdbHref: "https://www.imdb.com/name/nm11412621/",
     imdbAria: "View Dmytro Lisenbart on IMDb",
   },

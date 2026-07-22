@@ -51,8 +51,8 @@ export default function ExplorePathsSection() {
     <section id={sectionIds.explore} className="archive-explore scroll-mt-24" aria-labelledby="explore-work-heading">
       <div className="archive-explore__inner archive-container">
         <h2 id="explore-work-heading" className="archive-explore__title">
-          <span className="archive-explore__title-line">{line1}</span>
-          <span className="archive-explore__title-line archive-explore__title-line--offset">{line2}</span>
+          <span className="archive-explore__title-line archive-explore__title-line--offset">{line1}</span>
+          <span className="archive-explore__title-line">{line2}</span>
         </h2>
 
         <div className="archive-explore__panels">
