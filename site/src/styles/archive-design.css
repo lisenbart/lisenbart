@@ -312,6 +312,11 @@ html[data-theme="dark"] {
   .site-header-cta__label {
     display: none;
   }
+
+  .header-connect-trigger {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 /* Mobile hubs — unused in new system; keep hidden */
@@ -615,32 +620,6 @@ html[data-theme="dark"] {
   outline: none;
 }
 
-.archive-hero__connect {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-top: var(--space-3);
-  width: 100%;
-}
-
-.archive-hero__connect-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  color: var(--text-tertiary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.archive-hero__connect-link:hover,
-.archive-hero__connect-link:focus-visible {
-  color: var(--text-primary);
-  outline: none;
-}
-
 .archive-hero__aside {
   grid-column: 1 / -1;
   display: flex;
@@ -804,11 +783,7 @@ html[data-theme="dark"] {
     grid-column: 9 / 13;
     margin: 0;
     justify-self: start;
-    /* Raise so portrait center aligns with “DMYTRO LISENBART” center */
-    margin-top: calc(
-      var(--space-4) + 0.85rem + var(--space-4) +
-        ((2 * var(--hero-name-lh) * var(--hero-name-size) - var(--hero-portrait)) / 2)
-    );
+    align-self: end;
   }
 
   .archive-hero__media {

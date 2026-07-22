@@ -3,6 +3,7 @@ import { MessageSquare } from "lucide-react";
 import { goToContact, sectionIds, site } from "@/data/site";
 import { isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
+import HeaderConnectMenu from "./HeaderConnectMenu";
 
 type NavId = (typeof site.primaryNav)[number]["id"];
 
@@ -119,6 +120,7 @@ export default function Header() {
             >
               {menuOpen ? "Close" : "Menu"}
             </button>
+            <HeaderConnectMenu />
             <button
               type="button"
               onClick={() => {

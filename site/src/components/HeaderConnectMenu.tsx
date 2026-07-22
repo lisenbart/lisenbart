@@ -1,10 +1,24 @@
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ChevronRight, ContactRound, Send, X } from "lucide-react";
+import { ChevronRight, ContactRound, Linkedin, Send, X, Youtube } from "lucide-react";
 import { site } from "@/data/site";
-import SocialIconLinks from "./SocialIconLinks";
 
 const panelSpring = { type: "spring" as const, stiffness: 420, damping: 34, mass: 0.85 };
+
+const socialItems = [
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: site.linkedin,
+    Icon: Linkedin,
+  },
+  {
+    id: "youtube",
+    label: "YouTube",
+    href: site.youtube,
+    Icon: Youtube,
+  },
+] as const;
 
 export default function HeaderConnectMenu() {
   const [open, setOpen] = useState(false);
@@ -46,7 +60,12 @@ export default function HeaderConnectMenu() {
     ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
     : {
         initial: { opacity: 0, scale: 0.88, y: -10 },
-        animate: { opacity: 1, scale: 1, y: 0, transition: { ...panelSpring, staggerChildren: 0.045, delayChildren: 0.04 } },
+        animate: {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          transition: { ...panelSpring, staggerChildren: 0.045, delayChildren: 0.04 },
+        },
         exit: { opacity: 0, scale: 0.94, y: -6, transition: { duration: 0.16 } },
       };
 
@@ -59,7 +78,7 @@ export default function HeaderConnectMenu() {
       };
 
   return (
-    <div ref={rootRef} className="header-connect relative shrink-0 lg:hidden">
+    <div ref={rootRef} className="header-connect relative shrink-0">
       <button
         type="button"
         className={`header-connect-trigger${open ? " header-connect-trigger--open" : ""}`}
@@ -117,14 +136,44 @@ export default function HeaderConnectMenu() {
                   <span className="header-connect-item-title">Email</span>
                   <span className="header-connect-item-sub">{site.email}</span>
                 </span>
-                <ChevronRight className="header-connect-item-chevron" size={16} strokeWidth={1.75} aria-hidden="true" />
+                <ChevronRight
+                  className="header-connect-item-chevron"
+                  size={16}
+                  strokeWidth={1.75}
+                  aria-hidden="true"
+                />
               </motion.a>
 
               <motion.div className="header-connect-divider" {...itemMotion} aria-hidden="true" />
 
-              <motion.div {...itemMotion}>
-                <SocialIconLinks layout="stack" size="md" onItemClick={close} className="header-connect-social" />
-              </motion.div>
+              <div className="header-connect-social-list" role="group" aria-label="Social media">
+                {socialItems.map(({ id, label, href, Icon }) => (
+                  <motion.a
+                    key={id}
+                    role="menuitem"
+                    href={href}
+                    className="header-connect-social-item header-connect-social-item--md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={close}
+                    {...itemMotion}
+                  >
+                    <span className="header-connect-item-icon" aria-hidden="true">
+                      <Icon size={17} strokeWidth={1.75} />
+                    </span>
+                    <span className="header-connect-item-copy">
+                      <span className="header-connect-item-title">{label}</span>
+                      <span className="header-connect-item-sub">Open channel</span>
+                    </span>
+                    <ChevronRight
+                      className="header-connect-item-chevron"
+                      size={16}
+                      strokeWidth={1.75}
+                      aria-hidden="true"
+                    />
+                  </motion.a>
+                ))}
+              </div>
             </motion.div>
           </>
         )}

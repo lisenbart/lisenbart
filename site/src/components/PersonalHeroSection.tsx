@@ -1,30 +1,5 @@
-import { Linkedin, Mail, Youtube } from "lucide-react";
 import { publicAsset } from "@/lib/publicAsset";
 import { site } from "@/data/site";
-
-const connectLinks = [
-  {
-    id: "email",
-    label: "Email",
-    href: `mailto:${site.email}`,
-    Icon: Mail,
-    external: false,
-  },
-  {
-    id: "linkedin",
-    label: "LinkedIn",
-    href: site.linkedin,
-    Icon: Linkedin,
-    external: true,
-  },
-  {
-    id: "youtube",
-    label: "YouTube",
-    href: site.youtube,
-    Icon: Youtube,
-    external: true,
-  },
-] as const;
 
 export default function PersonalHeroSection() {
   const { hero } = site;
@@ -71,19 +46,6 @@ export default function PersonalHeroSection() {
               fetchPriority="high"
             />
           </figure>
-          <nav className="archive-hero__connect" aria-label="Connect">
-            {connectLinks.map(({ id, label, href, Icon, external }) => (
-              <a
-                key={id}
-                href={href}
-                className="archive-hero__connect-link"
-                aria-label={label}
-                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              >
-                <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
-              </a>
-            ))}
-          </nav>
         </div>
       </div>
     </section>
