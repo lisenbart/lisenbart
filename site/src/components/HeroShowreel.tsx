@@ -12,6 +12,10 @@ interface HeroShowreelProps {
   vimeoId?: string | null;
   shareUrl?: string;
   title?: string;
+  /** Start playback as soon as the Vimeo player is ready. */
+  autoPlay?: boolean;
+  /** Hide the centered play control (parent provides its own CTA). */
+  hidePlayButton?: boolean;
 }
 
 type VimeoPlayer = {
@@ -67,6 +71,8 @@ export default function HeroShowreel({
   vimeoId,
   shareUrl,
   title = "LISENBART showreel",
+  autoPlay = false,
+  hidePlayButton = false,
 }: HeroShowreelProps) {
   const isPoster = variant === "poster";
   const resolvedId = vimeoId === undefined ? DEFAULT_VIMEO_ID : vimeoId;
@@ -128,7 +134,7 @@ export default function HeroShowreel({
 
           setPlayerReady(true);
 
-          if (isPoster) {
+          if (isPoster || autoPlay) {
             void player
               .setMuted(true)
               .then(() => player.play())
@@ -148,7 +154,7 @@ export default function HeroShowreel({
       cancelled = true;
       iframe.removeEventListener("load", initPlayer);
     };
-  }, [hasVideo, embedSrc, isPoster]);
+  }, [hasVideo, embedSrc, isPoster, autoPlay]);
 
   useEffect(() => {
     const onFullscreenChange = () => {
@@ -294,7 +300,7 @@ export default function HeroShowreel({
         tabIndex={-1}
       />
 
-      {!isPoster && !isPlaying && (
+      {!isPoster && !isPlaying && !hidePlayButton && (
         <button
           type="button"
           onClick={() => void handlePlay()}

@@ -1,50 +1,24 @@
-import { contactHref, goToContact, site, scrollToSection, sectionIds } from "@/data/site";
+import type { MouseEvent } from "react";
+import { site, sectionIds } from "@/data/site";
 import { isSiteSubpage, routes } from "@/lib/routes";
-import SocialIconLinks from "./SocialIconLinks";
 import BrandLogo from "./BrandLogo";
 
-const navLinks = [
-  { id: sectionIds.showreel, label: "Showreel" },
-  { id: sectionIds.about, label: "About" },
-  { id: sectionIds.contact, label: "Contact" },
-];
+const IMDB_PROFILE = site.imdb;
 
-const socialLinks = [
-  { label: "Email", href: `mailto:${site.email}` },
-  { label: "WhatsApp", href: site.social.whatsapp.href, external: true as const },
-  { label: "LinkedIn", href: site.linkedin, external: true as const },
-  { label: "Facebook", href: site.social.facebook.href, external: true as const },
-  { label: "YouTube", href: site.youtube, external: true as const },
-];
-
-function FooterSectionLink({ href, label }: { href: string; label: string }) {
+function FooterNavLink({
+  href,
+  label,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+}) {
   return (
     <a
       href={href}
       className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
-    >
-      {label}
-    </a>
-  );
-}
-
-function FooterLink({ id, label }: { id: string; label: string }) {
-  const onSubpage = isSiteSubpage();
-  const isContact = id === sectionIds.contact;
-
-  return (
-    <a
-      href={isContact ? contactHref() : onSubpage ? `${routes.home}#${id}` : `#${id}`}
-      className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
-      onClick={
-        isContact || !onSubpage
-          ? (e) => {
-              e.preventDefault();
-              if (isContact) goToContact();
-              else scrollToSection(id);
-            }
-          : undefined
-      }
+      onClick={onClick}
     >
       {label}
     </a>
@@ -53,6 +27,13 @@ function FooterLink({ id, label }: { id: string; label: string }) {
 
 export default function Footer() {
   const onSubpage = isSiteSubpage();
+
+  const connectLinks = [
+    { label: "Email", href: `mailto:${site.email}` },
+    { label: "LinkedIn", href: site.linkedin, external: true as const },
+    { label: "YouTube", href: site.youtube, external: true as const },
+    { label: "IMDb", href: IMDB_PROFILE, external: true as const },
+  ];
 
   return (
     <footer className="w-full max-w-full min-w-0 overflow-x-clip px-[var(--page-padding)] pb-24 pt-7 md:pb-12 md:pt-14">
@@ -63,7 +44,7 @@ export default function Footer() {
               <div className="min-w-0">
                 <a
                   href={onSubpage ? routes.home : "#top"}
-                  className="inline-flex min-w-0 flex-col gap-1 md:gap-2"
+                  className="inline-flex min-w-0"
                   aria-label={`${site.name} home`}
                   onClick={
                     onSubpage
@@ -75,24 +56,7 @@ export default function Footer() {
                   }
                 >
                   <BrandLogo variant="footer" />
-                  <span className="site-logo-tagline font-sans uppercase leading-snug text-text-tertiary">
-                    <span className="block">{site.tagline.line1}</span>
-                    {site.tagline.line2 ? (
-                      <span className="block">{site.tagline.line2}</span>
-                    ) : null}
-                  </span>
                 </a>
-                <SocialIconLinks className="mt-4 md:mt-5" size="md" />
-                <p className="mt-3 hidden max-w-sm text-sm font-light leading-relaxed text-text-secondary md:block">
-                  {site.meta.description}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => goToContact()}
-                  className="gradient-button-emerald btn-on-accent mt-4 hidden rounded-full px-5 py-2.5 text-xs font-medium tracking-wide sm:inline-flex md:mt-6 md:text-sm"
-                >
-                  {site.ctaLabel}
-                </button>
               </div>
 
               <div className="grid grid-cols-2 gap-x-4 gap-y-0 md:contents">
@@ -101,26 +65,38 @@ export default function Footer() {
                     Navigate
                   </p>
                   <ul className="mt-2 flex flex-col gap-1.5 md:mt-4 md:gap-3">
-                    {navLinks.map((link) => (
-                      <li key={link.id}>
-                        <FooterLink id={link.id} label={link.label} />
-                      </li>
-                    ))}
                     <li>
-                      <FooterSectionLink href={routes.film} label="Film" />
+                      <FooterNavLink href={routes.film} label="Originals" />
                     </li>
                     <li>
-                      <FooterSectionLink href={routes.commercial} label="Commercial" />
+                      <FooterNavLink href={routes.commercial} label="Client Work" />
+                    </li>
+                    <li>
+                      <FooterNavLink
+                        href={onSubpage ? `${routes.home}#${sectionIds.about}` : `#${sectionIds.about}`}
+                        label="About"
+                        onClick={
+                          onSubpage
+                            ? undefined
+                            : (e) => {
+                                e.preventDefault();
+                                document.getElementById(sectionIds.about)?.scrollIntoView({
+                                  behavior: "smooth",
+                                  block: "start",
+                                });
+                              }
+                        }
+                      />
                     </li>
                   </ul>
                 </nav>
 
-                <nav aria-label="Social links">
+                <nav aria-label="Connect">
                   <p className="footer-section-label text-[10px] font-medium uppercase tracking-[0.14em] md:text-[11px]">
                     Connect
                   </p>
                   <ul className="mt-2 flex flex-col gap-1.5 md:mt-4 md:gap-3">
-                    {socialLinks.map((link) => (
+                    {connectLinks.map((link) => (
                       <li key={link.label}>
                         <a
                           href={link.href}

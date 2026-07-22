@@ -35,7 +35,7 @@
   --magenta: #c928a8;
   --pink: #d42e6e;
   --orange: #d04e24;
-  --link-accent: var(--cyan);
+  --link-accent: var(--ink);
   --error: #d42e6e;
 
   --ios-card-border: rgba(18, 18, 20, 0.16);
@@ -348,12 +348,13 @@
   }
 }
 
-[data-theme="light"] .site-header-nav img {
+[data-theme="light"] .site-header-nav img:not(.site-logo-mark) {
   filter: contrast(1.06) saturate(1.05);
 }
 
-[data-theme="light"] .site-header-nav .site-logo-mark {
-  filter: none;
+[data-theme="light"] .site-logo-mark {
+  /* Source mark is a white silhouette — render black on paper without touching the PNG */
+  filter: brightness(0);
 }
 
 /* CTA — graphite + controlled neon glow */
@@ -479,7 +480,7 @@
 }
 
 [data-theme="light"] .link-accent {
-  color: var(--cyan);
+  color: var(--text-primary);
 }
 
 [data-theme="light"] .modal-panel {

@@ -8,50 +8,75 @@ const PANEL_MEDIA = {
   commercial: "/images/work/lisenbart-showreel-preview.jpg",
 } as const;
 
+function DirectionPanel({
+  variant,
+  href,
+  ariaLabel,
+  title,
+  text,
+  media,
+}: {
+  variant: "film" | "commercial";
+  href: string;
+  ariaLabel: string;
+  title: string;
+  text: string;
+  media: string;
+}) {
+  return (
+    <a
+      className={`archive-panel archive-panel--${variant}`}
+      href={href}
+      aria-label={ariaLabel}
+    >
+      <span
+        className="archive-panel__media"
+        style={{ backgroundImage: `url(${publicAsset(media)})` }}
+        aria-hidden="true"
+      />
+      <span className="archive-panel__overlay" aria-hidden="true" />
+      <div className="archive-panel__content">
+        <div className="archive-panel__heading">
+          <h3 className="archive-panel__title">{title}</h3>
+          <span className="archive-panel__cta" aria-hidden="true">
+            <ChevronRight size={28} strokeWidth={2.5} />
+          </span>
+        </div>
+        <p className="archive-panel__text">{text}</p>
+      </div>
+    </a>
+  );
+}
+
 export default function ExplorePathsSection() {
   const { explorePaths } = site;
+  const [line1, line2] = explorePaths.titleLines;
 
   return (
-    <section
-      id={sectionIds.explore}
-      className="archive-explore scroll-mt-24"
-      aria-label="Film and commercial work"
-    >
+    <section id={sectionIds.explore} className="archive-explore scroll-mt-24" aria-labelledby="explore-work-heading">
       <div className="archive-explore__inner archive-container">
-        <h2 className="archive-h2 archive-explore__title">{explorePaths.title}</h2>
+        <h2 id="explore-work-heading" className="archive-explore__title">
+          <span className="archive-explore__title-line">{line1}</span>
+          <span className="archive-explore__title-line archive-explore__title-line--offset">{line2}</span>
+        </h2>
 
         <div className="archive-explore__panels">
-          <a className="archive-panel archive-panel--film" href={routes.film}>
-            <span
-              className="archive-panel__bg"
-              style={{ backgroundImage: `url(${publicAsset(PANEL_MEDIA.film)})` }}
-              aria-hidden="true"
-            />
-            <span className="archive-panel__veil" aria-hidden="true" />
-            <span className="archive-panel__label">{explorePaths.film.label}</span>
-            <h3 className="archive-panel__title">{explorePaths.film.title}</h3>
-            <p className="archive-panel__text">{explorePaths.film.text}</p>
-            <span className="archive-panel__cta">
-              Explore Film
-              <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
-            </span>
-          </a>
-
-          <a className="archive-panel archive-panel--commercial" href={routes.commercial}>
-            <span
-              className="archive-panel__bg"
-              style={{ backgroundImage: `url(${publicAsset(PANEL_MEDIA.commercial)})` }}
-              aria-hidden="true"
-            />
-            <span className="archive-panel__veil" aria-hidden="true" />
-            <span className="archive-panel__label">{explorePaths.commercial.label}</span>
-            <h3 className="archive-panel__title">{explorePaths.commercial.title}</h3>
-            <p className="archive-panel__text">{explorePaths.commercial.text}</p>
-            <span className="archive-panel__cta">
-              Explore Commercial
-              <ChevronRight size={16} strokeWidth={2.25} aria-hidden="true" />
-            </span>
-          </a>
+          <DirectionPanel
+            variant="film"
+            href={routes.film}
+            ariaLabel={explorePaths.film.ctaAria}
+            title={explorePaths.film.title}
+            text={explorePaths.film.text}
+            media={PANEL_MEDIA.film}
+          />
+          <DirectionPanel
+            variant="commercial"
+            href={routes.commercial}
+            ariaLabel={explorePaths.commercial.ctaAria}
+            title={explorePaths.commercial.title}
+            text={explorePaths.commercial.text}
+            media={PANEL_MEDIA.commercial}
+          />
         </div>
       </div>
     </section>

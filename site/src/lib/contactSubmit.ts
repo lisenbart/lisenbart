@@ -28,8 +28,9 @@ export function validateContact(data: ContactPayload): Record<string, string> {
     errors.form = "Submission blocked.";
     return errors;
   }
-  if (!data.email.trim()) errors.email = "Email is required";
-  else if (!EMAIL_RE.test(data.email)) errors.email = "Enter a valid email";
+  if (!data.email.trim()) errors.email = site.contactForm.emailRequired;
+  else if (!EMAIL_RE.test(data.email)) errors.email = site.contactForm.emailInvalid;
+  if (!data.message.trim()) errors.message = site.contactForm.messageRequired;
 
   return errors;
 }
@@ -70,7 +71,7 @@ async function parseErrorResponse(res: Response): Promise<string> {
   } catch {
     /* ignore */
   }
-  return "Could not send your message. Please try again or email me directly.";
+  return site.contactForm.errorFallback;
 }
 
 function buildPhpFormBody(data: ContactPayload): FormData {
@@ -118,7 +119,7 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
     await new Promise((r) => setTimeout(r, 600));
     return {
       success: true,
-      message: "Got it — thank you. I'll read it properly and get back to you soon.",
+      message: site.contactForm.successMessage,
     };
   }
 
@@ -161,6 +162,6 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
 
   return {
     success: true,
-    message: "Got it — thank you. I'll read it properly and get back to you soon.",
+    message: site.contactForm.successMessage,
   };
 }

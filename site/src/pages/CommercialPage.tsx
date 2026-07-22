@@ -19,11 +19,17 @@ export default function CommercialPage() {
 
   return (
     <>
-      <SEO title={`Commercial — ${site.brand}`} description={commercialPage.title} url={seoUrl} />
+      <SEO
+        title={commercialPage.seoTitle}
+        description={commercialPage.seoDescription}
+        url={seoUrl}
+      />
       <main className="site-main work-page work-page--commercial archive-hub">
         <header className="work-page-header hub-page-header">
           <h1 className="hub-page-header__row">
-            <span className="hub-page-header__name work-page-title--commercial">Commercial</span>
+            <span className="hub-page-header__name work-page-title--commercial">
+              {commercialPage.name}
+            </span>
             <span className="hub-page-header__sep" aria-hidden="true" />
             <span className="sr-only"> — </span>
             <span className="hub-page-header__lead">{commercialPage.title}</span>
@@ -32,7 +38,7 @@ export default function CommercialPage() {
 
         <TrustedBySection />
 
-        <div className="film-cases">
+        <div className="film-cases film-cases--reels">
           {commercialPage.reels.map((reel) => (
             <ReelBlock
               key={reel.id}
@@ -40,7 +46,8 @@ export default function CommercialPage() {
               label={reel.label}
               text={reel.text}
               videoId={reel.vimeoId}
-              comingSoonEndsAt={reel.comingSoonEndsAt}
+              previewImages={reel.previewImages}
+              comingSoon={reel.comingSoon}
             />
           ))}
         </div>
@@ -48,7 +55,7 @@ export default function CommercialPage() {
         {/* Temporarily hidden — restore when testimonials are ready to show */}
         {/* <TestimonialsSection /> */}
 
-        <ContactForm lead={commercialPage.contactLead} />
+        <ContactForm heading={commercialPage.contactHeading} lead={commercialPage.contactLead} />
       </main>
     </>
   );

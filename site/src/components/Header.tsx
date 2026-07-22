@@ -1,14 +1,16 @@
 import { useEffect, useId, useState } from "react";
+import { MessageSquare } from "lucide-react";
 import { goToContact, sectionIds, site } from "@/data/site";
 import { isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
 
-const pillLinks = [
-  { href: routes.home, id: "home" as const, label: "Home" },
-  { href: routes.film, id: "film" as const, label: "Film" },
-  { href: routes.commercial, id: "commercial" as const, label: "Commercial" },
-  { href: `#${sectionIds.contact}`, id: "contact" as const, label: "Contact" },
-] as const;
+type NavId = (typeof site.primaryNav)[number]["id"];
+
+function navHref(id: NavId, onSubpage: boolean) {
+  if (id === "film") return routes.film;
+  if (id === "commercial") return routes.commercial;
+  return onSubpage ? `${routes.home}#${sectionIds.about}` : `#${sectionIds.about}`;
+}
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,8 +43,13 @@ export default function Header() {
 
   const onSubpage = isSiteSubpage();
   const activeHub = parseHubPage();
-
   const closeMenu = () => setMenuOpen(false);
+
+  const isActive = (id: NavId) => {
+    if (id === "film") return activeHub === "film";
+    if (id === "commercial") return activeHub === "commercial";
+    return false;
+  };
 
   return (
     <header className="site-header fixed top-0 inset-x-0 z-50 w-full max-w-full">
@@ -71,44 +78,29 @@ export default function Header() {
           </div>
 
           <div className="header-nav-pill" aria-label="Primary">
-            {pillLinks.map((link) => {
-              const isHome = link.id === "home";
-              const isContact = link.id === "contact";
-              const isActive =
-                (isHome && !onSubpage) ||
-                (link.id === "film" && activeHub === "film") ||
-                (link.id === "commercial" && activeHub === "commercial");
-
-              if (isContact) {
-                return (
-                  <button
-                    key={link.id}
-                    type="button"
-                    className="header-nav-pill__link"
-                    onClick={() => goToContact()}
-                  >
-                    {link.label}
-                  </button>
-                );
-              }
-
-              const href = isHome && !onSubpage ? "#top" : isHome ? routes.home : link.href;
+            {site.primaryNav.map((link) => {
+              const href = navHref(link.id, onSubpage);
+              const aboutOnHome = link.id === "about" && !onSubpage;
 
               return (
                 <a
                   key={link.id}
                   href={href}
-                  className={`header-nav-pill__link${isActive ? " is-active" : ""}${
+                  className={`header-nav-pill__link${isActive(link.id) ? " is-active" : ""}${
                     link.id === "film" ? " header-nav-pill__link--film" : ""
                   }${link.id === "commercial" ? " header-nav-pill__link--commercial" : ""}`}
-                  aria-current={isActive ? "page" : undefined}
+                  aria-current={isActive(link.id) ? "page" : undefined}
                   onClick={
-                    isHome && !onSubpage
+                    aboutOnHome
                       ? (e) => {
                           e.preventDefault();
-                          window.scrollTo({ top: 0, behavior: "smooth" });
+                          closeMenu();
+                          document.getElementById(sectionIds.about)?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         }
-                      : undefined
+                      : closeMenu
                   }
                 >
                   {link.label}
@@ -127,8 +119,23 @@ export default function Header() {
             >
               {menuOpen ? "Close" : "Menu"}
             </button>
-            <button type="button" onClick={() => goToContact()} className="site-header-cta">
-              {site.ctaLabel}
+            <button
+              type="button"
+              onClick={() => {
+                closeMenu();
+                goToContact();
+              }}
+              className="site-header-cta"
+              aria-label={site.ctaLabel}
+            >
+              <MessageSquare
+                className="site-header-cta__icon"
+                size={18}
+                strokeWidth={1.75}
+                color="#fff"
+                aria-hidden="true"
+              />
+              <span className="site-header-cta__label">{site.ctaLabel}</span>
             </button>
           </div>
         </div>
@@ -139,44 +146,25 @@ export default function Header() {
           hidden={!menuOpen}
         >
           <div className="header-mobile-panel__list">
-            {pillLinks.map((link) => {
-              const isHome = link.id === "home";
-              const isContact = link.id === "contact";
-              const isActive =
-                (isHome && !onSubpage) ||
-                (link.id === "film" && activeHub === "film") ||
-                (link.id === "commercial" && activeHub === "commercial");
-
-              if (isContact) {
-                return (
-                  <button
-                    key={link.id}
-                    type="button"
-                    className="header-mobile-panel__link"
-                    onClick={() => {
-                      closeMenu();
-                      goToContact();
-                    }}
-                  >
-                    {link.label}
-                  </button>
-                );
-              }
-
-              const href = isHome && !onSubpage ? "#top" : isHome ? routes.home : link.href;
+            {site.primaryNav.map((link) => {
+              const href = navHref(link.id, onSubpage);
+              const aboutOnHome = link.id === "about" && !onSubpage;
 
               return (
                 <a
                   key={link.id}
                   href={href}
-                  className={`header-mobile-panel__link${isActive ? " is-active" : ""}`}
-                  aria-current={isActive ? "page" : undefined}
+                  className={`header-mobile-panel__link${isActive(link.id) ? " is-active" : ""}`}
+                  aria-current={isActive(link.id) ? "page" : undefined}
                   onClick={
-                    isHome && !onSubpage
+                    aboutOnHome
                       ? (e) => {
                           e.preventDefault();
                           closeMenu();
-                          window.scrollTo({ top: 0, behavior: "smooth" });
+                          document.getElementById(sectionIds.about)?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
                         }
                       : closeMenu
                   }

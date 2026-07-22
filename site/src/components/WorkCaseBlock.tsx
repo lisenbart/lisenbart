@@ -299,17 +299,26 @@ export default function WorkCaseBlock({
           ) : null}
         </div>
         <div className="work-block-copy">
-          <p className="work-block-meta">
-            <span>{item.client}</span>
-            <span className="work-block-meta-sep" aria-hidden="true">
-              ·
-            </span>
-            <span>{item.category}</span>
-            <span className="work-block-meta-sep" aria-hidden="true">
-              ·
-            </span>
-            <span>{item.year}</span>
-          </p>
+          {(() => {
+            const metaParts = [item.client, item.category, item.year].filter((part) =>
+              Boolean(part?.trim()),
+            );
+            if (metaParts.length === 0) return null;
+            return (
+              <p className="work-block-meta">
+                {metaParts.map((part, index) => (
+                  <span key={`${part}-${index}`}>
+                    {index > 0 ? (
+                      <span className="work-block-meta-sep" aria-hidden="true">
+                        ·
+                      </span>
+                    ) : null}
+                    <span>{part}</span>
+                  </span>
+                ))}
+              </p>
+            );
+          })()}
           <div className="work-block-title-row">
             <h2 id={`work-block-title-${item.id}`} className="work-block-title">
               <span className="work-block-title-text">{item.title}</span>
@@ -405,12 +414,6 @@ export default function WorkCaseBlock({
               >
                 <Youtube className="work-block-youtube-cta__icon" aria-hidden="true" />
                 Watch on YouTube
-              </a>
-              <a
-                href={contactHref()}
-                className="work-block-contact-cta gradient-button-emerald btn-on-accent"
-              >
-                {site.ctaLabel}
               </a>
             </div>
           ) : null}

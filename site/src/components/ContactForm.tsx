@@ -16,10 +16,14 @@ interface FormState {
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const copy = site.contactForm;
+
 export default function ContactForm({
-  lead = "Tell me where the idea stands today. A brief is enough to begin.",
+  heading,
+  lead,
 }: {
-  lead?: string;
+  heading: string;
+  lead: string;
 }) {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -44,6 +48,7 @@ export default function ContactForm({
       setErrors(validationErrors);
       setStatus("idle");
       if (validationErrors.email) document.getElementById("contact-email")?.focus();
+      else if (validationErrors.message) document.getElementById("contact-message")?.focus();
       return;
     }
 
@@ -54,6 +59,7 @@ export default function ContactForm({
     const result = await submitContact(form);
     if (result.success) {
       setStatus("success");
+      setServerMsg(result.message);
       setForm({ name: "", email: "", projectType: "", message: "", honeypot: "" });
     } else {
       setStatus("error");
@@ -65,14 +71,12 @@ export default function ContactForm({
     <section
       id={sectionIds.contact}
       className="archive-contact scroll-mt-24 w-full max-w-full min-w-0 pb-[var(--section-spacing)]"
-      aria-label="Contact"
+      aria-label={heading}
     >
       <div className="archive-container">
         <div className="mb-8 text-center md:mb-10">
-          <h2 className="archive-h2 section-heading">Contact</h2>
-          <p className="archive-body mx-auto mt-3 max-w-md">
-            {lead}
-          </p>
+          <h2 className="archive-h2 section-heading">{heading}</h2>
+          <p className="archive-body mx-auto mt-3 max-w-md">{lead}</p>
           {!isContactFormLive && import.meta.env.DEV && (
             <p className="mx-auto mt-2 max-w-md text-xs font-light text-text-tertiary">
               Dev: form mocks locally. On Netlify it uses Netlify Forms.
@@ -86,10 +90,10 @@ export default function ContactForm({
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 text-center" role="status">
                 <CheckCircle2 size={44} className="mx-auto link-accent" />
                 <p className="mt-4 text-base font-light text-text-primary">
-                  Thank you — I’ll review it and get back to you soon.
+                  {serverMsg || copy.successMessage}
                 </p>
                 <button type="button" onClick={() => setStatus("idle")} className="mt-4 text-sm link-accent hover:underline">
-                  Send another message
+                  {copy.successAction}
                 </button>
               </motion.div>
             ) : (
@@ -117,7 +121,8 @@ export default function ContactForm({
                     onChange={(e) => update("email", e.target.value)}
                     className={`inquiry-input ${errors.email ? "inquiry-input--error" : ""}`}
                     autoComplete="email"
-                    placeholder={`you@company.com`}
+                    placeholder={copy.emailPlaceholder}
+                    required
                   />
                   {errors.email && (
                     <p className="mt-1.5 text-xs text-error" role="alert">
@@ -142,7 +147,7 @@ export default function ContactForm({
 
                 <div>
                   <label htmlFor="contact-projectType" className="inquiry-label">
-                    Project type
+                    Project Type
                     <span className="inquiry-optional">optional</span>
                   </label>
                   <div className="relative">
@@ -152,7 +157,7 @@ export default function ContactForm({
                       onChange={(e) => update("projectType", e.target.value)}
                       className={`inquiry-input inquiry-select w-full ${!form.projectType ? "inquiry-input--empty" : ""}`}
                     >
-                      <option value="">Select type</option>
+                      <option value="">{copy.projectTypePlaceholder}</option>
                       {projectTypes.map((t) => (
                         <option key={t} value={t}>
                           {t}
@@ -163,24 +168,30 @@ export default function ContactForm({
                   </div>
                   {form.projectType === "AI Production" && (
                     <p className="inquiry-helper mt-2 text-xs font-light leading-relaxed text-text-tertiary">
-                      The brief defines AI’s role. I shape every production decision with the team.
+                      {copy.aiHelper}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="inquiry-label">
+                  <label htmlFor="contact-message" className={`inquiry-label ${errors.message ? "inquiry-label--error" : ""}`}>
                     Message
-                    <span className="inquiry-optional">optional</span>
+                    <span className="inquiry-required">*</span>
                   </label>
                   <textarea
                     id="contact-message"
                     value={form.message}
                     onChange={(e) => update("message", e.target.value)}
-                    placeholder="Goals, references, deliverables…"
+                    placeholder={copy.messagePlaceholder}
                     rows={4}
-                    className="inquiry-input inquiry-textarea resize-none"
+                    required
+                    className={`inquiry-input inquiry-textarea resize-none ${errors.message ? "inquiry-input--error" : ""}`}
                   />
+                  {errors.message && (
+                    <p className="mt-1.5 text-xs text-error" role="alert">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 {status === "error" && serverMsg && (
@@ -202,11 +213,11 @@ export default function ContactForm({
                   {status === "loading" ? (
                     <>
                       <span className="form-spinner h-4 w-4 animate-spin rounded-full border-2" />
-                      Sending...
+                      {copy.sendingLabel}
                     </>
                   ) : (
                     <>
-                      {site.contactSubmitLabel}
+                      {copy.submitLabel}
                       <ChevronRight size={16} />
                     </>
                   )}

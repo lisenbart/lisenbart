@@ -270,12 +270,12 @@ export const workCategories: WorkCategory[] = [
         id: "unnecessary-things",
         client: "Lisenbart Animation Studio",
         category: "Film & Entertainment · Short Film",
+        filmCategory: "Animated Short · 14 min",
         year: "2021",
         title: "Unnecessary Things",
         description:
-          "14-minute animated short — World Premiere at Shanghai; Best Animated Short Film at Curtas. A robot buys a human from a store of unwanted things; a friendship that ends where it began.",
-        result:
-          "15 awards and 45 festival selections across Europe and Asia — including Linoleum, ZIFF, Vancouver, Huesca and Odessa. Full 2D production: script, design, animation and festival delivery.",
+          "A robot buys a human from a store of unwanted things, beginning a friendship that ends where it began.",
+        result: "15 awards · 45 festival selections",
         mediaColor: "#0a1f0f",
         vimeoId: "823618245",
         mediaImage: "/images/work/unnecessary-things-preview.webp",
@@ -287,7 +287,6 @@ export const workCategories: WorkCategory[] = [
           "/images/work/unnecessary-things-still-08.jpg",
         ],
         imdbId: "tt14760808",
-        laurels: ["15 awards", "45 selections", "7.9 IMDb"],
         selectionLinks: [
           {
             label: "Vancouver International Film Festival",
@@ -318,17 +317,16 @@ export const workCategories: WorkCategory[] = [
         id: "the-last-kozak",
         client: "Lisenbart Animation Studio",
         category: "Film & Entertainment · Animated Feature",
-        year: "In development",
+        filmCategory: "Animated Feature · 80 min · In Development",
+        year: "",
         title: "The Last Kozak",
         description:
-          "80-minute animated feature · Drama · Action · Fantasy · 12+\nHe has no name — everyone calls him the Last Kozak. Trapped in a time loop, he must defeat evil again and again. A stylized action-fantasy with comic-book editing, psychological depth, and a cossack who rides the Iron Dog through worlds that meet at the Last Khreshchatyk.",
-        result:
-          "In development — script, treatment and pitch complete. English teaser available.",
+          "He has no name — everyone calls him the Last Kozak. Trapped in a time loop, he must defeat evil again and again. A stylized action-fantasy with comic-book editing, psychological depth, and a cossack who rides the Iron Dog through worlds that meet at the Last Khreshchatyk.",
+        result: "Script, treatment and pitch complete. English teaser available.",
         mediaColor: "#120808",
         vimeoId: "699197721", // UA teaser for localization: 639390060
         mediaImage: "/images/work/the-last-kozak-preview.webp",
         mediaImageAlt: "The Last Kozak — teaser preview frame",
-        statusBadge: "Feature film in development",
       },
       {
         id: "song-departure",
@@ -399,11 +397,11 @@ export const workCategories: WorkCategory[] = [
         id: "scoopy-cap",
         client: "Scoopy Cap",
         category: "Social Media · YouTube Channel",
-        filmCategory: "Original IP · YouTube Channel",
-        year: "2024",
+        filmCategory: "Original Preschool IP · English",
+        year: "",
         title: "Scoopy Cap",
         description:
-          "225 videos · 10.4K subscribers · preschool content in English\nNursery rhymes, ABC, colours and numbers built around Scoopy Cap — a space explorer designed for calm viewing and repeat plays.",
+          "10.4K subscribers · 225 videos\nNursery rhymes, ABC, colours and numbers built around Scoopy Cap — a space explorer designed for calm viewing and repeat plays.",
         result:
           "Finger Family is the channel’s top-performing video. Full songs each Saturday; Shorts through the week.",
         mediaColor: "#1a1428",
@@ -422,11 +420,11 @@ export const workCategories: WorkCategory[] = [
         id: "pershosvit",
         client: "Pershosvit",
         category: "Social Media · YouTube Channel",
-        filmCategory: "Original IP · YouTube Channel",
-        year: "2024",
+        filmCategory: "Original Preschool IP · Ukrainian",
+        year: "",
         title: "Pershosvit · Kapitan Świetlik",
         description:
-          "147K subscribers · 274 videos · preschool content in Ukrainian\nSongs, fairy tales and learning with Kapitan Świetlik — a robot hero for young audiences and the parents who watch with them.",
+          "147K subscribers · 274 videos\nSongs, fairy tales and learning with Kapitan Świetlik — a robot hero for young audiences and the parents who watch with them.",
         result:
           "Alphabet, bedtime and learning series across Ukraine. Baby Shark UA is among the channel’s strongest videos.",
         mediaColor: "#1f1020",

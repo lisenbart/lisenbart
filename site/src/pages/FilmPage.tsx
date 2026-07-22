@@ -21,7 +21,7 @@ export default function FilmPage() {
 
   return (
     <>
-      <SEO title={`Film — ${site.brand}`} description={filmPage.title} url={seoUrl} />
+      <SEO title={filmPage.seoTitle} description={filmPage.seoDescription} url={seoUrl} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(filmPageJsonLd) }}
@@ -29,7 +29,9 @@ export default function FilmPage() {
       <main className="site-main work-page work-page--film archive-hub">
         <header className="work-page-header hub-page-header">
           <h1 className="hub-page-header__row">
-            <span className="hub-page-header__name work-page-title--film-entertainment">Film</span>
+            <span className="hub-page-header__name work-page-title--film-entertainment">
+              {filmPage.name}
+            </span>
             <span className="hub-page-header__sep" aria-hidden="true" />
             <span className="sr-only"> — </span>
             <span className="hub-page-header__lead">{filmPage.title}</span>
@@ -41,7 +43,9 @@ export default function FilmPage() {
             <WorkCaseBlock
               key={item.id}
               item={
-                item.filmCategory ? { ...item, category: item.filmCategory } : item
+                item.filmCategory
+                  ? { ...item, category: item.filmCategory, client: "", year: "" }
+                  : item
               }
               mediaSide="left"
               mediaPriority={index === 0 ? "lcp" : "lazy"}
@@ -49,7 +53,7 @@ export default function FilmPage() {
           ))}
         </div>
 
-        <ContactForm lead={filmPage.contactLead} />
+        <ContactForm heading={filmPage.contactHeading} lead={filmPage.contactLead} />
       </main>
     </>
   );

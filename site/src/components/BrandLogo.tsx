@@ -16,7 +16,7 @@ export default function BrandLogo({ variant = "header", className = "" }: BrandL
   return (
     <span className={lockupClass}>
       <img
-        src={publicAsset("/images/bear-mark.png")}
+        src={publicAsset("/images/bear-mark.png?v=3")}
         alt=""
         aria-hidden="true"
         className="site-logo-mark"

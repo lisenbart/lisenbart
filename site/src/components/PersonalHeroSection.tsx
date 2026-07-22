@@ -1,20 +1,8 @@
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
 import { publicAsset } from "@/lib/publicAsset";
 import { sectionIds, site } from "@/data/site";
-import ImdbProfileModal from "./ImdbProfileModal";
-
-const IMDB_PROFILE = "https://www.imdb.com/name/nm11412621/";
-
-const PROOF_ITEMS = [
-  "35 years in animation",
-  "20 years producing",
-  "1,000+ projects delivered",
-] as const;
 
 export default function PersonalHeroSection() {
   const { hero } = site;
-  const [imdbOpen, setImdbOpen] = useState(false);
   const [firstName, lastName] = hero.personalName.split(" ");
 
   return (
@@ -28,25 +16,26 @@ export default function PersonalHeroSection() {
           </h1>
           <p className="archive-hero__bio">{hero.personalPositioning}</p>
           <ul className="archive-hero__proof" aria-label="Experience">
-            {PROOF_ITEMS.map((item) => (
+            {hero.personalProof.map((item) => (
               <li key={item} className="archive-hero__proof-item">
                 {item}
               </li>
             ))}
             <li className="archive-hero__proof-item">
-              <button
-                type="button"
+              <a
+                href={hero.imdbHref}
                 className="archive-hero__proof-link"
-                onClick={() => setImdbOpen(true)}
-                aria-haspopup="dialog"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={hero.imdbAria}
               >
                 IMDb
-              </button>
+              </a>
             </li>
           </ul>
-          <a className="archive-hero__scroll" href={`#${sectionIds.showreel}`}>
+          <a className="archive-hero__scroll" href={`#${sectionIds.explore}`}>
             <span className="archive-hero__scroll-line" aria-hidden="true" />
-            View work
+            {hero.showreelCta}
           </a>
         </div>
 
@@ -61,12 +50,6 @@ export default function PersonalHeroSection() {
           />
         </figure>
       </div>
-
-      <AnimatePresence>
-        {imdbOpen ? (
-          <ImdbProfileModal href={IMDB_PROFILE} onClose={() => setImdbOpen(false)} />
-        ) : null}
-      </AnimatePresence>
     </section>
   );
 }

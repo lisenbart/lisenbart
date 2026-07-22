@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import PersonalHeroSection from "@/components/PersonalHeroSection";
-import ShowreelSection from "@/components/ShowreelSection";
 import ExplorePathsSection from "@/components/ExplorePathsSection";
 import PersonalAboutSection from "@/components/PersonalAboutSection";
 import ContactForm from "@/components/ContactForm";
@@ -20,10 +19,9 @@ export default function HomePage() {
       <SEO title={site.meta.title} description={site.meta.description} url={site.canonical} />
       <main className="site-main site-main-stack">
         <PersonalHeroSection />
-        <ShowreelSection />
         <ExplorePathsSection />
         <PersonalAboutSection />
-        <ContactForm />
+        <ContactForm heading={site.homeContact.heading} lead={site.homeContact.lead} />
       </main>
     </>
   );
