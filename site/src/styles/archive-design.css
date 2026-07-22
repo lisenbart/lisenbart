@@ -708,7 +708,7 @@ html[data-theme="dark"] {
   }
 
   .archive-hero__grid {
-    --hero-portrait: clamp(220px, 28vw, 320px);
+    --hero-portrait: clamp(220px, 26vw, 300px);
     --hero-name-size: clamp(60px, 8vw, 92px);
     --hero-name-lh: 0.88;
     grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -724,11 +724,7 @@ html[data-theme="dark"] {
     grid-column: 6 / 9;
     margin: 0;
     justify-self: start;
-    /* Raise so portrait center aligns with name center */
-    margin-top: calc(
-      0.85rem + var(--space-4) +
-        ((2 * var(--hero-name-lh) * var(--hero-name-size) - var(--hero-portrait)) / 2)
-    );
+    align-self: end;
   }
 
   .archive-hero__media {
@@ -766,7 +762,7 @@ html[data-theme="dark"] {
   }
 
   .archive-hero__grid {
-    --hero-portrait: clamp(280px, 22vw, 400px);
+    --hero-portrait: clamp(240px, 18vw, 320px);
     --hero-name-size: clamp(72px, 6.4vw, 120px);
     --hero-name-lh: 0.86;
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -783,6 +779,7 @@ html[data-theme="dark"] {
     grid-column: 9 / 13;
     margin: 0;
     justify-self: start;
+    /* Sit on the metrics baseline (proof / IMDb) */
     align-self: end;
   }
 

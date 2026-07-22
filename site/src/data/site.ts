@@ -81,11 +81,12 @@ export const site = {
   personalAbout: {
     title: "About",
     paragraphs: [
-      "My work spans independent films, commissioned projects, and production leadership across Ukraine, Canada, and Poland.",
-      "From 2017 to 2019, I headed Ukranimafilm and co-founded UANIMA, the Ukrainian Animation Association. My background is in painting and film directing, with training at Kyiv’s Karpenko-Kary University.",
-      "Each production is built around the writers, designers, animators, and producers the project requires.",
+      "I grew up drawing and making things up. At no point did I decide this was the career — I just kept doing it, and never got around to stopping.",
+      "Since then: artist, director, producer, studio founder. For a stretch I ran Ukranimafilm, Ukraine's national animation studio — still slightly improbable to me.",
+      "What all of it taught me: creativity and production aren't enemies, even if they act like it. An idea needs room to breathe — and the right people, structure and runway to actually get made.",
+      "I usually start with \"What if?\" It pretty quickly becomes: \"Alright — how do we pull this off?\"",
     ] as const,
-    markers: ["UANIMA", "Ukranimafilm, 2017–2019", "Karpenko-Kary University"] as const,
+    markers: [] as const,
   },
   filmPage: {
     name: "LISENBART ORIGINALS",

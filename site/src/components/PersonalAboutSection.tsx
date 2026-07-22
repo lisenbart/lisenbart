@@ -13,13 +13,15 @@ export default function PersonalAboutSection() {
               {paragraph}
             </p>
           ))}
-          <ul className="archive-about__markers">
-            {personalAbout.markers.map((marker) => (
-              <li key={marker} className="archive-about__marker">
-                {marker}
-              </li>
-            ))}
-          </ul>
+          {personalAbout.markers.length > 0 && (
+            <ul className="archive-about__markers">
+              {personalAbout.markers.map((marker) => (
+                <li key={marker} className="archive-about__marker">
+                  {marker}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </section>
