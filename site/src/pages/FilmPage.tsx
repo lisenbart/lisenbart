@@ -7,13 +7,13 @@ import { SEO } from "@/components/SEO";
 import { filmPageJsonLd } from "@/data/filmJsonLd";
 import { getWorkCasesByIds } from "@/data/work";
 import { scrollToSection, site } from "@/data/site";
-import { routes } from "@/lib/routes";
+import { hubCanonicalHref } from "@/lib/routes";
 
 export default function FilmPage() {
   const { filmPage } = site;
   const films = getWorkCasesByIds(filmPage.filmIds);
   const ips = getWorkCasesByIds(filmPage.ipIds);
-  const seoUrl = `${site.canonical}${routes.film}`;
+  const seoUrl = `${site.canonical}${hubCanonicalHref("originals")}`;
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");

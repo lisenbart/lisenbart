@@ -8,9 +8,20 @@ type HeadElement = {
   props: Record<string, string>;
 };
 
+/** Helmet already HTML-escapes; vite-prerender-plugin escapes again — decode once. */
+function decodeHtmlEntities(value: string) {
+  return value
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
 function extractTitle(titleFragment: string) {
   const match = titleFragment.match(/<title[^>]*>(.*?)<\/title>/i);
-  return match?.[1]?.trim() ?? "";
+  const raw = match?.[1]?.trim() ?? "";
+  return decodeHtmlEntities(raw);
 }
 
 function parseHelmetTags(fragment: string): HeadElement[] {
@@ -26,7 +37,9 @@ function parseHelmetTags(fragment: string): HeadElement[] {
     let attrMatch: RegExpExecArray | null;
 
     while ((attrMatch = attrRegex.exec(attrString)) !== null) {
-      props[attrMatch[1]] = attrMatch[3] ?? attrMatch[4] ?? "";
+      const key = attrMatch[1];
+      const value = attrMatch[3] ?? attrMatch[4] ?? "";
+      props[key] = key === "content" || key === "href" ? decodeHtmlEntities(value) : value;
     }
 
     if (Object.keys(props).length > 0) {

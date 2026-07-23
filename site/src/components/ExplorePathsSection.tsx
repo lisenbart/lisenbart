@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import ReelSlideshow from "@/components/ReelSlideshow";
 import { sectionIds, site } from "@/data/site";
-import { routes } from "@/lib/routes";
+import { hubCanonicalHref } from "@/lib/routes";
 
 function DirectionPanel({
   variant,
@@ -58,7 +58,7 @@ export default function ExplorePathsSection() {
         <div className="archive-explore__panels">
           <DirectionPanel
             variant="film"
-            href={routes.film}
+            href={hubCanonicalHref("originals")}
             ariaLabel={explorePaths.film.ctaAria}
             title={explorePaths.film.title}
             text={explorePaths.film.text}
@@ -67,7 +67,7 @@ export default function ExplorePathsSection() {
           />
           <DirectionPanel
             variant="commercial"
-            href={routes.commercial}
+            href={hubCanonicalHref("client-work")}
             ariaLabel={explorePaths.commercial.ctaAria}
             title={explorePaths.commercial.title}
             text={explorePaths.commercial.text}

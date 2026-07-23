@@ -4,11 +4,11 @@ import TrustedBySection from "@/components/TrustedBySection";
 import ContactForm from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
 import { scrollToSection, site } from "@/data/site";
-import { routes } from "@/lib/routes";
+import { hubCanonicalHref } from "@/lib/routes";
 
 export default function CommercialPage() {
   const { commercialPage } = site;
-  const seoUrl = `${site.canonical}${routes.commercial}`;
+  const seoUrl = `${site.canonical}${hubCanonicalHref("client-work")}`;
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");

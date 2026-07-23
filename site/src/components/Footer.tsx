@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 import { site, sectionIds } from "@/data/site";
-import { isSiteSubpage, routes } from "@/lib/routes";
+import { hubCanonicalHref, isSiteSubpage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
 
 const IMDB_PROFILE = site.imdb;
@@ -66,10 +66,10 @@ export default function Footer() {
                   </p>
                   <ul className="mt-2 flex flex-col gap-1.5 md:mt-4 md:gap-3">
                     <li>
-                      <FooterNavLink href={routes.film} label="Originals" />
+                      <FooterNavLink href={hubCanonicalHref("originals")} label="Originals" />
                     </li>
                     <li>
-                      <FooterNavLink href={routes.commercial} label="Client Work" />
+                      <FooterNavLink href={hubCanonicalHref("client-work")} label="Client Work" />
                     </li>
                     <li>
                       <FooterNavLink

@@ -1,15 +1,15 @@
 import { useEffect, useId, useState } from "react";
 import { MessageSquare } from "lucide-react";
 import { goToContact, sectionIds, site } from "@/data/site";
-import { isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
+import { hubCanonicalHref, isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
 import HeaderConnectMenu from "./HeaderConnectMenu";
 
 type NavId = (typeof site.primaryNav)[number]["id"];
 
 function navHref(id: NavId, onSubpage: boolean) {
-  if (id === "film") return routes.film;
-  if (id === "commercial") return routes.commercial;
+  if (id === "originals") return hubCanonicalHref("originals");
+  if (id === "client-work") return hubCanonicalHref("client-work");
   return onSubpage ? `${routes.home}#${sectionIds.about}` : `#${sectionIds.about}`;
 }
 
@@ -47,8 +47,8 @@ export default function Header() {
   const closeMenu = () => setMenuOpen(false);
 
   const isActive = (id: NavId) => {
-    if (id === "film") return activeHub === "film";
-    if (id === "commercial") return activeHub === "commercial";
+    if (id === "originals") return activeHub === "originals";
+    if (id === "client-work") return activeHub === "client-work";
     return false;
   };
 
@@ -88,8 +88,8 @@ export default function Header() {
                   key={link.id}
                   href={href}
                   className={`header-nav-pill__link${isActive(link.id) ? " is-active" : ""}${
-                    link.id === "film" ? " header-nav-pill__link--film" : ""
-                  }${link.id === "commercial" ? " header-nav-pill__link--commercial" : ""}`}
+                    link.id === "originals" ? " header-nav-pill__link--film" : ""
+                  }${link.id === "client-work" ? " header-nav-pill__link--commercial" : ""}`}
                   aria-current={isActive(link.id) ? "page" : undefined}
                   onClick={
                     aboutOnHome

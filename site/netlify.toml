@@ -71,93 +71,144 @@
   status = 410
   force = true
 
+# --- Current hubs: trailing-slash canonical ---
+[[redirects]]
+  from = "/originals"
+  to = "/originals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/client-work"
+  to = "/client-work/"
+  status = 301
+  force = true
+
+# --- Legacy hubs → new names ---
+[[redirects]]
+  from = "/film"
+  to = "/originals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/film/"
+  to = "/originals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/film/*"
+  to = "/originals/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/commercial"
+  to = "/client-work/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/commercial/"
+  to = "/client-work/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/commercial/*"
+  to = "/client-work/"
+  status = 301
+  force = true
+
+# --- Legacy /work/* ---
 [[redirects]]
   from = "/work"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/film"
-  to = "/film/"
+  to = "/originals/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/film/"
-  to = "/film/"
+  to = "/originals/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/film/*"
-  to = "/film/"
+  to = "/originals/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/commercial"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/commercial/"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/commercial/*"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/gaming"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/gaming/"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/gaming/*"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/social"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/social/"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/social/*"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/work/*"
-  to = "/commercial/"
+  to = "/client-work/"
   status = 301
   force = true
 

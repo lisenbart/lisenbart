@@ -1,10 +1,10 @@
 export const routes = {
   home: "/",
-  film: "/film",
-  commercial: "/commercial",
+  originals: "/originals",
+  clientWork: "/client-work",
 } as const;
 
-export type HubPageSlug = "film" | "commercial";
+export type HubPageSlug = "originals" | "client-work";
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -39,24 +39,31 @@ export function normalizePathname(pathname: string): string {
   return normalized;
 }
 
+/** Path without trailing slash — for matching only. */
 export function hubPageHref(slug: HubPageSlug) {
-  return slug === "film" ? routes.film : routes.commercial;
+  return slug === "originals" ? routes.originals : routes.clientWork;
 }
 
 export function parseHubPage(pathname?: string): HubPageSlug | null {
   const normalized = normalizePathname(resolvePathname(pathname));
-  if (normalized === routes.film) return "film";
-  if (normalized === routes.commercial) return "commercial";
+  if (normalized === routes.originals) return "originals";
+  if (normalized === routes.clientWork) return "client-work";
   return null;
 }
 
-/** Hub pages (/film, /commercial) — not home. */
+/** Hub pages — not home. */
 export function isSiteSubpage(pathname?: string) {
   return parseHubPage(pathname) !== null;
 }
 
+/** Canonical hub path for links, sitemap, and SEO (trailing slash). */
 export function canonicalHubPath(slug: HubPageSlug): string {
   return `${hubPageHref(slug)}/`;
+}
+
+/** Alias for link hrefs — same as canonicalHubPath. */
+export function hubCanonicalHref(slug: HubPageSlug) {
+  return canonicalHubPath(slug);
 }
 
 export function shouldRedirectToCanonicalHubPath(pathname?: string): string | null {
@@ -81,17 +88,26 @@ export function shouldRedirectToCanonicalHubPath(pathname?: string): string | nu
 }
 
 /**
- * Legacy /work/* → current hubs.
- * /work/film → /film; everything else under /work → /commercial.
+ * Legacy paths → current hubs.
+ * /film → /originals/; /commercial → /client-work/;
+ * /work/film → /originals/; other /work/* → /client-work/.
  */
 export function legacyWorkRedirectTarget(pathname?: string): string | null {
   const normalized = normalizePathname(resolvePathname(pathname));
 
+  if (normalized === "/film" || normalized.startsWith("/film/")) {
+    return canonicalHubPath("originals");
+  }
+
+  if (normalized === "/commercial" || normalized.startsWith("/commercial/")) {
+    return canonicalHubPath("client-work");
+  }
+
   if (normalized === "/work" || normalized.startsWith("/work/")) {
     if (normalized === "/work/film" || normalized.startsWith("/work/film/")) {
-      return canonicalHubPath("film");
+      return canonicalHubPath("originals");
     }
-    return canonicalHubPath("commercial");
+    return canonicalHubPath("client-work");
   }
 
   return null;

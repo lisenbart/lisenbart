@@ -186,8 +186,8 @@ export const site = {
     aiHelper: "Where do you see AI fitting into the project?",
   },
   primaryNav: [
-    { id: "film" as const, label: "Originals" },
-    { id: "commercial" as const, label: "Client Work" },
+    { id: "originals" as const, label: "Originals" },
+    { id: "client-work" as const, label: "Client Work" },
     { id: "about" as const, label: "About" },
   ],
   ctaLabel: "Discuss a Project",
@@ -253,6 +253,8 @@ export const site = {
     description:
       "Dmytro Lisenbart develops original animation projects and directs commissioned work for brands, studios, and production partners.",
     ogImage: publicAsset("/images/work/lisenbart-showreel-preview.jpg"),
+    /** Paste from Google Search Console → HTML tag verification (content= value only). */
+    googleSiteVerification: "" as string,
   },
 };
 

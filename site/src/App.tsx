@@ -12,8 +12,8 @@ import {
 
 function resolveMain() {
   const hub = parseHubPage();
-  if (hub === "film") return <FilmPage />;
-  if (hub === "commercial") return <CommercialPage />;
+  if (hub === "originals") return <FilmPage />;
+  if (hub === "client-work") return <CommercialPage />;
   return <HomePage />;
 }
 

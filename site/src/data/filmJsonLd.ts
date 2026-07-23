@@ -1,4 +1,4 @@
-/** JSON-LD graphs for primary /film case studies (Movie / CreativeWork). */
+/** JSON-LD graphs for primary Originals case studies (Movie / CreativeWork). */
 export const filmPageJsonLd = [
   {
     "@context": "https://schema.org",
@@ -13,7 +13,7 @@ export const filmPageJsonLd = [
     duration: "PT14M",
     award: "Winner, Prague Film Awards",
     sameAs: ["https://www.imdb.com/title/tt14760808/"],
-    url: "https://lisenbart.com/film#unnecessary-things",
+    url: "https://lisenbart.com/originals/#unnecessary-things",
   },
   {
     "@context": "https://schema.org",
@@ -27,6 +27,6 @@ export const filmPageJsonLd = [
     creativeWorkStatus: "In development",
     description:
       "80-minute animated feature. A stylized action-fantasy about the Last Kozak, trapped in a time loop.",
-    url: "https://lisenbart.com/film#the-last-kozak",
+    url: "https://lisenbart.com/originals/#the-last-kozak",
   },
 ] as const;
