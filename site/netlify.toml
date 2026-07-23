@@ -71,18 +71,9 @@
   status = 410
   force = true
 
-# --- Current hubs: trailing-slash canonical ---
-[[redirects]]
-  from = "/originals"
-  to = "/originals/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/client-work"
-  to = "/client-work/"
-  status = 301
-  force = true
+# Do NOT force-redirect /originals → /originals/ (or client-work):
+# with force=true Netlify matches the slashed URL too and loops forever.
+# Static dist/originals/index.html + client canonical redirect handle hubs.
 
 # --- Legacy hubs → new names ---
 [[redirects]]
