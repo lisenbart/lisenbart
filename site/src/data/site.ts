@@ -91,9 +91,9 @@ export const site = {
   filmPage: {
     name: "LISENBART ORIGINALS",
     title: "Original films and story worlds developed from first idea through production.",
-    seoTitle: "LISENBART Originals — Films, Stories and IP",
+    seoTitle: "LISENBART Originals — Animated Films & Story IP",
     seoDescription:
-      "Original films, stories, and IP developed by animation director and producer Dmytro Lisenbart.",
+      "Original animated films and story IP by Dmytro Lisenbart — including Unnecessary Things and projects in development. Co-production, festival, and press enquiries.",
     filmIds: ["unnecessary-things", "the-last-kozak"] as const,
     ipIds: ["pershosvit", "scoopy-cap"] as const,
     contactHeading: "Project Enquiries",
@@ -103,9 +103,9 @@ export const site = {
   commercialPage: {
     name: "CLIENT WORK",
     title: "Direction and production shaped around each brief — from creative development through final delivery.",
-    seoTitle: "Client Work — Animation Direction & Production | LISENBART",
+    seoTitle: "Client Animation — Brands, Games & Agencies | LISENBART",
     seoDescription:
-      "Animation direction and production for brands, agencies, and game studios — from creative development through final delivery.",
+      "Animation direction and production for brands, agencies, and game studios — from creative development through final delivery. Led by Dmytro Lisenbart.",
     reels: [
       {
         id: "ai-powered-reel",
@@ -249,9 +249,9 @@ export const site = {
     black: "/images/logo_black.png",
   },
   meta: {
-    title: "Dmytro Lisenbart — Animation Director & Producer",
+    title: "Dmytro Lisenbart — Animation Director & Producer | LISENBART",
     description:
-      "Dmytro Lisenbart develops original animation projects and directs commissioned work for brands, studios, and production partners.",
+      "Animation director and producer. Original films and IP under LISENBART Originals, plus commissioned work for brands, studios, and production partners.",
     ogImage: publicAsset("/images/work/lisenbart-showreel-preview.jpg"),
     /** Paste from Google Search Console → HTML tag verification (content= value only). */
     googleSiteVerification: "" as string,
