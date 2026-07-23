@@ -45,6 +45,7 @@ export default function CommercialPage() {
               id={reel.id}
               label={reel.label}
               text={reel.text}
+              body={reel.body}
               videoId={reel.vimeoId}
               previewImages={reel.previewImages}
               comingSoon={reel.comingSoon}

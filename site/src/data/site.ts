@@ -111,6 +111,11 @@ export const site = {
         id: "ai-powered-reel",
         label: "AI Production",
         text: "AI can support visual development, world-building, individual sequences, or an entire film. Its role is defined by the brief and the creative needs of the project.",
+        body: [
+          "AI doesn't replace the brief — it changes what's possible inside it.",
+          "We use AI across visual development, world-building, pre-production and individual sequences, depending on what the project needs. It's a production tool, not a pipeline shortcut: every frame is directed, reviewed and finished by the same team that handles the work without it.",
+          "Practically, this means faster concept iteration, more developed visual options before production locks, and the ability to take on formats and timelines that wouldn't be viable otherwise. Currently accepting select projects for AI-assisted animation, short-form content and visual development for longer productions.",
+        ] as const,
         vimeoId: null as string | null,
         comingSoon: true,
         previewImages: [
@@ -136,6 +141,11 @@ export const site = {
         id: "game-reel",
         label: "Gaming",
         text: "Trailers and cinematics shaped for the audience, platform, and campaign goal.",
+        body: [
+          "Game marketing that's built around how players actually decide — not how briefing documents describe them.",
+          "We produce trailers, cinematics and playable ads for mobile and PC titles across all major UA networks. Projects range from single launch assets to ongoing creative pipelines for live-ops and seasonal campaigns. Every format — from a 30-second UA cut to a full HTML5 playable — is shaped around the platform, the audience segment, and the CPI target it needs to hit.",
+          "Clients include Playtika, Voodoo, Moon Active and Plarium. We work directly with UA and creative teams, move fast on iteration, and don't need three rounds of onboarding to understand what a game trailer is supposed to do.",
+        ] as const,
         vimeoId: "944158555" as string | null,
         previewImages: [
           "/images/reels/games/01.webp",
@@ -151,6 +161,11 @@ export const site = {
         id: "advertising-reel",
         label: "Advertising",
         text: "Campaigns and films created for global brands and agencies.",
+        body: [
+          "Animation for brands that need the work to land — not just look good in a deck.",
+          "We direct and produce animated campaigns, brand films and product visuals for global brands and the agencies that work with them. The format follows the brief: 2D character animation, motion graphics, mixed media, or something that doesn't fit a category yet. Projects have shipped for Nestlé, Samsung, McDonald's, MasterCard and others across broadcast, digital and social platforms.",
+          "Typical engagements run from a single campaign film to multi-format content systems built for repeat production. The process is direct — one creative lead, no handoff between strategy and execution.",
+        ] as const,
         vimeoId: "849899875" as string | null,
         previewImages: [
           "/images/reels/advertising/01.webp",

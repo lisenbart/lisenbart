@@ -7,6 +7,7 @@ interface ReelBlockProps {
   id: string;
   label: string;
   text: string;
+  body?: readonly string[];
   videoId: string | null;
   previewImages: string[];
   comingSoon?: boolean;
@@ -17,6 +18,7 @@ export default function ReelBlock({
   id,
   label,
   text,
+  body,
   videoId,
   previewImages,
   comingSoon = false,
@@ -74,6 +76,15 @@ export default function ReelBlock({
         </h2>
         <p className="reel-block__text">{text}</p>
       </div>
+      {body && body.length > 0 ? (
+        <div className="reel-block__body">
+          {body.map((paragraph, index) => (
+            <p key={`${id}-body-${index}`} className="reel-block__text">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      ) : null}
     </article>
   );
 }
