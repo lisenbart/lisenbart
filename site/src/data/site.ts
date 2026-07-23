@@ -110,7 +110,6 @@ export const site = {
       {
         id: "ai-powered-reel",
         label: "AI Production",
-        text: "AI can support visual development, world-building, individual sequences, or an entire film. Its role is defined by the brief and the creative needs of the project.",
         body: [
           "AI doesn't replace the brief — it changes what's possible inside it.",
           "We use AI across visual development, world-building, pre-production and individual sequences, depending on what the project needs. It's a production tool, not a pipeline shortcut: every frame is directed, reviewed and finished by the same team that handles the work without it.",
@@ -140,7 +139,6 @@ export const site = {
       {
         id: "game-reel",
         label: "Gaming",
-        text: "Trailers and cinematics shaped for the audience, platform, and campaign goal.",
         body: [
           "Game marketing that's built around how players actually decide — not how briefing documents describe them.",
           "We produce trailers, cinematics and playable ads for mobile and PC titles across all major UA networks. Projects range from single launch assets to ongoing creative pipelines for live-ops and seasonal campaigns. Every format — from a 30-second UA cut to a full HTML5 playable — is shaped around the platform, the audience segment, and the CPI target it needs to hit.",
@@ -160,7 +158,6 @@ export const site = {
       {
         id: "advertising-reel",
         label: "Advertising",
-        text: "Campaigns and films created for global brands and agencies.",
         body: [
           "Animation for brands that need the work to land — not just look good in a deck.",
           "We direct and produce animated campaigns, brand films and product visuals for global brands and the agencies that work with them. The format follows the brief: 2D character animation, motion graphics, mixed media, or something that doesn't fit a category yet. Projects have shipped for Nestlé, Samsung, McDonald's, MasterCard and others across broadcast, digital and social platforms.",

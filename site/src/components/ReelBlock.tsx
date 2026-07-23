@@ -6,8 +6,7 @@ import ReelSlideshow from "./ReelSlideshow";
 interface ReelBlockProps {
   id: string;
   label: string;
-  text: string;
-  body?: readonly string[];
+  body: readonly string[];
   videoId: string | null;
   previewImages: string[];
   comingSoon?: boolean;
@@ -17,7 +16,6 @@ interface ReelBlockProps {
 export default function ReelBlock({
   id,
   label,
-  text,
   body,
   videoId,
   previewImages,
@@ -74,9 +72,6 @@ export default function ReelBlock({
         <h2 id={`reel-block-title-${id}`} className="reel-block__title">
           {label}
         </h2>
-        <p className="reel-block__text">{text}</p>
-      </div>
-      {body && body.length > 0 ? (
         <div className="reel-block__body">
           {body.map((paragraph, index) => (
             <p key={`${id}-body-${index}`} className="reel-block__text">
@@ -84,7 +79,7 @@ export default function ReelBlock({
             </p>
           ))}
         </div>
-      ) : null}
+      </div>
     </article>
   );
 }
