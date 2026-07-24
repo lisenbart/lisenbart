@@ -207,14 +207,14 @@ html[data-theme="dark"] {
 }
 
 .site-header-bar .site-logo-wrap--header .site-logo-image {
-  height: 1.35rem;
-  max-width: min(100%, 10.5rem);
+  height: 1.62rem;
+  max-width: min(100%, 12.6rem);
 }
 
 @media (min-width: 1200px) {
   .site-header-bar .site-logo-wrap--header .site-logo-image {
-    height: 1.5rem;
-    max-width: min(100%, 12rem);
+    height: 1.8rem;
+    max-width: min(100%, 14.4rem);
   }
 }
 
@@ -267,7 +267,7 @@ html[data-theme="dark"] {
 
   .site-header-bar .site-logo-wrap--header .site-logo-image {
     max-width: 100%;
-    height: 1.2rem;
+    height: 1.44rem;
   }
 
   .header-menu-toggle {

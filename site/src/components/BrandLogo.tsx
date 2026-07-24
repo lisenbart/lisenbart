@@ -21,8 +21,8 @@ export default function BrandLogo({ variant = "header", className = "" }: BrandL
           src={publicAsset(`${site.logo.black}?v=4`)}
           alt={site.brand}
           className="site-logo-image site-logo-image--theme-light"
-          width={isFooter ? 220 : 180}
-          height={isFooter ? 39 : 32}
+          width={isFooter ? 264 : 216}
+          height={isFooter ? 47 : 38}
           decoding="async"
         />
         <img
@@ -30,8 +30,8 @@ export default function BrandLogo({ variant = "header", className = "" }: BrandL
           alt=""
           aria-hidden="true"
           className="site-logo-image site-logo-image--theme-dark"
-          width={isFooter ? 220 : 180}
-          height={isFooter ? 39 : 32}
+          width={isFooter ? 264 : 216}
+          height={isFooter ? 47 : 38}
           decoding="async"
         />
       </span>

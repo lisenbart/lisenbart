@@ -769,16 +769,16 @@ html {
 }
 
 .site-logo-wrap--header .site-logo-image {
-  height: clamp(1.45rem, 3.4vw, 1.85rem);
+  height: clamp(1.74rem, 4.08vw, 2.22rem);
   width: auto;
-  max-width: min(100%, 11.5rem);
+  max-width: min(100%, 13.8rem);
   object-fit: contain;
   object-position: left center;
 }
 
 .site-logo-wrap--footer .site-logo-image {
-  height: clamp(1.75rem, 4vw, 2.35rem);
-  max-width: min(100%, 14rem);
+  height: clamp(2.1rem, 4.8vw, 2.82rem);
+  max-width: min(100%, 16.8rem);
 }
 
 .theme-toggle {
