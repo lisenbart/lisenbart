@@ -114,7 +114,7 @@ export default function ContactForm({
           )}
         </div>
 
-        <article className="how-ios-card inquiry-panel">
+        <div className="how-ios-card inquiry-panel">
           <div className="how-ios-card-inner">
             {status === "success" ? (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="py-10 text-center" role="status">
@@ -255,7 +255,7 @@ export default function ContactForm({
               </form>
             )}
           </div>
-        </article>
+        </div>
       </div>
     </section>
   );

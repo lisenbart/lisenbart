@@ -26,7 +26,7 @@ export default function ReelBlock({
   const canPlay = Boolean(videoId) && !comingSoon;
 
   return (
-    <article
+    <section
       id={id}
       className={`reel-block reel-block--split${comingSoon ? " reel-block--soon" : ""}${
         playing ? " reel-block--playing" : ""
@@ -72,14 +72,14 @@ export default function ReelBlock({
         <h2 id={`reel-block-title-${id}`} className="reel-block__title">
           {label}
         </h2>
-        <div className="reel-block__body">
+        <div className="reel-block__body sidebar">
           {body.map((paragraph, index) => (
-            <p key={`${id}-body-${index}`} className="reel-block__text">
+            <p key={`${id}-body-${index}`} className="reel-block__text comment">
               {paragraph}
             </p>
           ))}
         </div>
       </div>
-    </article>
+    </section>
   );
 }

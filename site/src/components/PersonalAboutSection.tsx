@@ -6,14 +6,16 @@ export default function PersonalAboutSection() {
   return (
     <section id={sectionIds.about} className="archive-about scroll-mt-24" aria-label="About">
       <div className="archive-about__inner archive-container">
-        <div className="archive-about__copy archive-about__copy--solo">
+        <div className="archive-about__copy archive-about__copy--solo sidebar">
           <h2 className="archive-h2">{personalAbout.title}</h2>
 
-          <blockquote className="archive-about__quote">
+          <div className="archive-about__quote">
             {personalAbout.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+              <p key={paragraph.slice(0, 32)} className="comment">
+                {paragraph}
+              </p>
             ))}
-          </blockquote>
+          </div>
 
           {personalAbout.markers.length > 0 && (
             <ul className="archive-about__markers">

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { publicAsset } from "@/lib/publicAsset";
 import { site } from "@/data/site";
 
-/** Play once while in view; reset when fully leaving the viewport (Glowl pattern). */
+/** Play on first view; later only after several re-entries into view. */
 function HeroPortraitVideo({
   src,
   poster,
@@ -18,8 +18,13 @@ function HeroPortraitVideo({
     const video = videoRef.current;
     if (!video) return;
 
+    /** Re-entries into view required before a repeat play (after the first). */
+    const REENTRIES_BEFORE_REPLAY = 3;
+
     let cancelled = false;
     let playedThisVisit = false;
+    let hasPlayedOnce = false;
+    let entriesSinceLastPlay = 0;
     let isInView = false;
 
     const freezeOnLastFrame = () => {
@@ -33,17 +38,31 @@ function HeroPortraitVideo({
       }
     };
 
+    const resetToStart = () => {
+      video.pause();
+      try {
+        video.currentTime = 0;
+      } catch {
+        /* ignore */
+      }
+    };
+
     const playOnce = () => {
       if (cancelled || !isInView || playedThisVisit) return;
       playedThisVisit = true;
+      entriesSinceLastPlay = 0;
       try {
         video.currentTime = 0;
       } catch {
         /* ignore seek errors before metadata */
       }
-      void video.play().catch(() => {
-        playedThisVisit = false;
-      });
+      void video.play()
+        .then(() => {
+          hasPlayedOnce = true;
+        })
+        .catch(() => {
+          playedThisVisit = false;
+        });
     };
 
     const onEnded = () => {
@@ -57,18 +76,25 @@ function HeroPortraitVideo({
         if (entry.isIntersecting) {
           if (isInView) return;
           isInView = true;
-          if (playedThisVisit) return;
-          playOnce();
+
+          if (!hasPlayedOnce) {
+            playOnce();
+            return;
+          }
+
+          entriesSinceLastPlay += 1;
+          if (entriesSinceLastPlay >= REENTRIES_BEFORE_REPLAY) {
+            playOnce();
+          }
           return;
         }
 
         isInView = false;
         playedThisVisit = false;
         video.pause();
-        try {
-          video.currentTime = 0;
-        } catch {
-          /* ignore */
+        // Keep last frame after the first play; only reset before first play.
+        if (!hasPlayedOnce) {
+          resetToStart();
         }
       },
       { threshold: 0, rootMargin: "0px" },
