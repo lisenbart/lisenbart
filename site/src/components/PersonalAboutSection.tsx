@@ -11,9 +11,9 @@ export default function PersonalAboutSection() {
 
           <div className="archive-about__quote">
             {personalAbout.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)} className="comment">
+              <div key={paragraph.slice(0, 32)} className="archive-about__quote-line comment">
                 {paragraph}
-              </p>
+              </div>
             ))}
           </div>
 

@@ -1350,7 +1350,7 @@ html[data-theme="dark"] {
   border-left: 1px solid var(--line);
 }
 
-.archive-about__quote p {
+.archive-about__quote-line {
   margin: 0;
   max-width: 34rem;
   font-family: var(--font-sans);
@@ -1361,7 +1361,7 @@ html[data-theme="dark"] {
   color: var(--text-secondary);
 }
 
-.archive-about__quote p + p {
+.archive-about__quote-line + .archive-about__quote-line {
   margin-top: var(--space-4);
 }
 
@@ -1999,7 +1999,7 @@ footer .how-ios-card {
 
 .originals-case__festival-list a,
 .originals-case__winner a,
-.originals-case__quote cite a {
+.originals-case__quote-attr a {
   color: var(--text-primary);
   text-decoration: underline;
   text-underline-offset: 0.15em;
@@ -2019,7 +2019,7 @@ footer .how-ios-card {
   max-width: var(--originals-copy);
 }
 
-.originals-case__quote p {
+.originals-case__quote-text {
   margin: 0;
   font-size: 0.95rem;
   font-weight: 300;
@@ -2028,7 +2028,7 @@ footer .how-ios-card {
   color: var(--text-secondary);
 }
 
-.originals-case__quote cite {
+.originals-case__quote-attr {
   display: block;
   margin-top: 0.4rem;
   font-family: var(--font-mono);

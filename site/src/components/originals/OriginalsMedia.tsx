@@ -153,7 +153,7 @@ export function CreditsDisclosure({ credits }: { credits: string }) {
   return (
     <details className="originals-credits">
       <summary className="originals-credits__summary">Credits</summary>
-      <p className="originals-credits__body">{credits}</p>
+      <div className="originals-credits__body">{credits}</div>
     </details>
   );
 }

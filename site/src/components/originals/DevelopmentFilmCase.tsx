@@ -24,12 +24,12 @@ export default function DevelopmentFilmCase({ item }: DevelopmentFilmCaseProps) 
     .filter(Boolean);
 
   return (
-    <article id={item.id} className="originals-case originals-case--development">
-      <header className="originals-case__intro">
+    <section id={item.id} className="originals-case originals-case--development">
+      <div className="originals-case__intro">
         <h3 className="originals-case__title">{item.title}</h3>
         {meta && <p className="originals-case__meta">{meta}</p>}
         <p className="originals-case__status">In Development</p>
-      </header>
+      </div>
 
       {item.vimeoId && item.mediaImage && (
         <FilmMediaStage
@@ -42,7 +42,7 @@ export default function DevelopmentFilmCase({ item }: DevelopmentFilmCaseProps) 
       )}
 
       <div className="originals-case__body">
-        <p className="originals-case__synopsis">{item.description}</p>
+        <div className="originals-case__synopsis">{item.description}</div>
 
         {statusLines.length > 0 && (
           <ul className="originals-case__dev-list">
@@ -52,7 +52,7 @@ export default function DevelopmentFilmCase({ item }: DevelopmentFilmCaseProps) 
           </ul>
         )}
 
-        <p className="originals-case__cta-row">
+        <div className="originals-case__cta-row">
           <button
             type="button"
             className="originals-case__cta originals-case__cta--button"
@@ -65,8 +65,8 @@ export default function DevelopmentFilmCase({ item }: DevelopmentFilmCaseProps) 
           >
             Request the Pitch
           </button>
-        </p>
+        </div>
       </div>
-    </article>
+    </section>
   );
 }

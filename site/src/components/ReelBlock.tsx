@@ -74,9 +74,9 @@ export default function ReelBlock({
         </h2>
         <div className="reel-block__body sidebar">
           {body.map((paragraph, index) => (
-            <p key={`${id}-body-${index}`} className="reel-block__text comment">
+            <div key={`${id}-body-${index}`} className="reel-block__text comment">
               {paragraph}
-            </p>
+            </div>
           ))}
         </div>
       </div>

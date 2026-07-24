@@ -17,11 +17,11 @@ export default function FilmFeatureCase({ item }: FilmFeatureCaseProps) {
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
 
   return (
-    <article id={item.id} className="originals-case originals-case--feature">
-      <header className="originals-case__intro">
+    <section id={item.id} className="originals-case originals-case--feature">
+      <div className="originals-case__intro">
         <h3 className="originals-case__title">{item.title}</h3>
         {meta && <p className="originals-case__meta">{meta}</p>}
-      </header>
+      </div>
 
       {item.vimeoId && item.mediaImage && (
         <FilmMediaStage
@@ -35,9 +35,9 @@ export default function FilmFeatureCase({ item }: FilmFeatureCaseProps) {
       )}
 
       <div className="originals-case__body">
-        <p className="originals-case__synopsis">{item.description}</p>
+        <div className="originals-case__synopsis">{item.description}</div>
 
-        {recognition && <p className="originals-case__recognition">{recognition}</p>}
+        {recognition && <div className="originals-case__recognition">{recognition}</div>}
 
         {(festivals.length > 0 || item.winnerLink) && (
           <div className="originals-case__festivals">
@@ -53,32 +53,32 @@ export default function FilmFeatureCase({ item }: FilmFeatureCaseProps) {
               </ul>
             )}
             {item.winnerLink && (
-              <p className="originals-case__winner">
+              <div className="originals-case__winner">
                 <a href={item.winnerLink.href} target="_blank" rel="noopener noreferrer">
                   {item.winnerLink.label}
                 </a>
-              </p>
+              </div>
             )}
           </div>
         )}
 
         {item.quote && (
-          <blockquote className="originals-case__quote">
-            <p>“{item.quote.text}”</p>
+          <div className="originals-case__quote">
+            <div className="originals-case__quote-text">“{item.quote.text}”</div>
             {item.quote.href ? (
-              <cite>
+              <div className="originals-case__quote-attr">
                 <a href={item.quote.href} target="_blank" rel="noopener noreferrer">
                   {item.quote.attribution}
                 </a>
-              </cite>
+              </div>
             ) : (
-              <cite>{item.quote.attribution}</cite>
+              <div className="originals-case__quote-attr">{item.quote.attribution}</div>
             )}
-          </blockquote>
+          </div>
         )}
 
         {imdbHref && (
-          <p className="originals-case__cta-row">
+          <div className="originals-case__cta-row">
             <a
               className="originals-case__cta"
               href={imdbHref}
@@ -87,7 +87,7 @@ export default function FilmFeatureCase({ item }: FilmFeatureCaseProps) {
             >
               View on IMDb
             </a>
-          </p>
+          </div>
         )}
 
         {item.stills && item.stills.length > 0 && (
@@ -96,6 +96,6 @@ export default function FilmFeatureCase({ item }: FilmFeatureCaseProps) {
 
         {item.credits && <CreditsDisclosure credits={item.credits} />}
       </div>
-    </article>
+    </section>
   );
 }

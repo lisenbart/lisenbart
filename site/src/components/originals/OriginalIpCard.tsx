@@ -20,7 +20,7 @@ export default function OriginalIpCard({ item }: OriginalIpCardProps) {
   const youtubeHref = item.youtubeUrl;
 
   return (
-    <article id={item.id} className="originals-ip-card">
+    <section id={item.id} className="originals-ip-card">
       {item.mediaImage && (
         <div className="originals-ip-card__media">
           <img
@@ -37,11 +37,11 @@ export default function OriginalIpCard({ item }: OriginalIpCardProps) {
       <div className="originals-ip-card__body">
         <h3 className="originals-ip-card__title">{item.title}</h3>
         {meta && <p className="originals-ip-card__meta">{meta}</p>}
-        {stats && <p className="originals-ip-card__stats">{stats}</p>}
-        {blurb && <p className="originals-ip-card__text">{blurb}</p>}
+        {stats && <div className="originals-ip-card__stats">{stats}</div>}
+        {blurb && <div className="originals-ip-card__text">{blurb}</div>}
 
         {youtubeHref && (
-          <p className="originals-ip-card__cta-row">
+          <div className="originals-ip-card__cta-row">
             <a
               className="originals-case__cta"
               href={youtubeHref}
@@ -50,9 +50,9 @@ export default function OriginalIpCard({ item }: OriginalIpCardProps) {
             >
               Watch on YouTube
             </a>
-          </p>
+          </div>
         )}
       </div>
-    </article>
+    </section>
   );
 }
