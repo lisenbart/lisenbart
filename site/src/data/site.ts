@@ -14,6 +14,7 @@ export const site = {
       "1,000+ projects delivered",
     ] as const,
     personalPortrait: "/images/portrait.webp",
+    personalPortraitVideo: "/images/portrait.mp4",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
     imdbHref: "https://www.imdb.com/name/nm11412621/",
     imdbAria: "View Dmytro Lisenbart on IMDb",
@@ -254,7 +255,7 @@ export const site = {
       closeLabel: "Close",
     },
   },
-  locations: "Ukraine · Canada · Poland · Worldwide",
+  locations: "Ukraine · Canada · Poland",
   canonical: "https://lisenbart.com",
   logo: {
     white: "/images/logo_white.png",

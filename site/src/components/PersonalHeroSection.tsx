@@ -1,9 +1,120 @@
+import { useEffect, useRef, useState } from "react";
 import { publicAsset } from "@/lib/publicAsset";
 import { site } from "@/data/site";
+
+/** Play once while in view; reset when fully leaving the viewport (Glowl pattern). */
+function HeroPortraitVideo({
+  src,
+  poster,
+  alt,
+}: {
+  src: string;
+  poster: string;
+  alt: string;
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let cancelled = false;
+    let playedThisVisit = false;
+    let isInView = false;
+
+    const freezeOnLastFrame = () => {
+      video.pause();
+      if (video.duration && Number.isFinite(video.duration)) {
+        try {
+          video.currentTime = Math.max(0, video.duration - 0.05);
+        } catch {
+          /* ignore */
+        }
+      }
+    };
+
+    const playOnce = () => {
+      if (cancelled || !isInView || playedThisVisit) return;
+      playedThisVisit = true;
+      try {
+        video.currentTime = 0;
+      } catch {
+        /* ignore seek errors before metadata */
+      }
+      void video.play().catch(() => {
+        playedThisVisit = false;
+      });
+    };
+
+    const onEnded = () => {
+      freezeOnLastFrame();
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry || cancelled) return;
+
+        if (entry.isIntersecting) {
+          if (isInView) return;
+          isInView = true;
+          if (playedThisVisit) return;
+          playOnce();
+          return;
+        }
+
+        isInView = false;
+        playedThisVisit = false;
+        video.pause();
+        try {
+          video.currentTime = 0;
+        } catch {
+          /* ignore */
+        }
+      },
+      { threshold: 0, rootMargin: "0px" },
+    );
+
+    video.loop = false;
+    video.addEventListener("ended", onEnded);
+    observer.observe(video);
+
+    return () => {
+      cancelled = true;
+      observer.disconnect();
+      video.removeEventListener("ended", onEnded);
+      video.pause();
+    };
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      className="archive-hero__portrait-video"
+      src={src}
+      poster={poster}
+      muted
+      playsInline
+      preload="auto"
+      loop={false}
+      aria-label={alt}
+    />
+  );
+}
 
 export default function PersonalHeroSection() {
   const { hero } = site;
   const [firstName, lastName] = hero.personalName.split(" ");
+  const portraitSrc = publicAsset(hero.personalPortrait);
+  const portraitVideoSrc = publicAsset(hero.personalPortraitVideo);
+  const [preferReducedMotion, setPreferReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setPreferReducedMotion(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
 
   return (
     <section id="top" className="archive-hero scroll-mt-24" aria-label="Introduction">
@@ -37,14 +148,22 @@ export default function PersonalHeroSection() {
 
         <div className="archive-hero__aside">
           <figure className="archive-hero__media">
-            <img
-              src={publicAsset(hero.personalPortrait)}
-              alt={hero.personalPortraitAlt}
-              width={900}
-              height={900}
-              decoding="async"
-              fetchPriority="high"
-            />
+            {preferReducedMotion ? (
+              <img
+                src={portraitSrc}
+                alt={hero.personalPortraitAlt}
+                width={900}
+                height={900}
+                decoding="async"
+                fetchPriority="high"
+              />
+            ) : (
+              <HeroPortraitVideo
+                src={portraitVideoSrc}
+                poster={portraitSrc}
+                alt={hero.personalPortraitAlt}
+              />
+            )}
           </figure>
         </div>
       </div>
