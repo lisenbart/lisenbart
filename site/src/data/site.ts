@@ -19,9 +19,6 @@ export const site = {
     imdbHref: "https://www.imdb.com/name/nm11412621/",
     imdbAria: "View Dmytro Lisenbart on IMDb",
   },
-  showreelSection: {
-    title: "Showreel",
-  },
   trustedBy: {
     label: "Selected Clients",
     brands: [
@@ -116,8 +113,7 @@ export const site = {
           "We use AI across visual development, world-building, pre-production and individual sequences, depending on what the project needs. It's a production tool, not a pipeline shortcut: every frame is directed, reviewed and finished by the same team that handles the work without it.",
           "Practically, this means faster concept iteration, more developed visual options before production locks, and the ability to take on formats and timelines that wouldn't be viable otherwise. Currently accepting select projects for AI-assisted animation, short-form content and visual development for longer productions.",
         ] as const,
-        vimeoId: null as string | null,
-        comingSoon: true,
+        vimeoId: "1212613379" as string | null,
         previewImages: [
           "/images/reels/ai/01.webp",
           "/images/reels/ai/02.webp",
@@ -209,57 +205,13 @@ export const site = {
   vimeo: "https://vimeo.com/849899875",
   youtube: "https://www.youtube.com/@lisenbartProduction",
   imdb: "https://www.imdb.com/name/nm11412621/",
-  social: {
-    linkedin: {
-      href: "https://www.linkedin.com/in/lisenbart/",
-      active: true,
-    },
-    whatsapp: {
-      href: "https://wa.me/380676302252",
-      active: true,
-    },
-    facebook: {
-      href: "https://www.facebook.com/dmytro.linsenbarth",
-      active: true,
-    },
-    youtube: {
-      href: "https://www.youtube.com/@lisenbartProduction",
-      active: true,
-    },
-  },
-  socialComingSoon: {
-    title: "Almost there",
-    body: "This channel is still being set up. Until then, email me directly.",
-    cta: "Email Me Directly",
-    closeLabel: "Close",
-  },
-  testimonialsBlock: {
-    title: "What clients say",
-    addLabel: "Leave a review",
-    submitModal: {
-      title: "Leave a review",
-      subtitle: "Sent for moderation before publishing",
-      quoteLabel: "Your review",
-      nameLabel: "Your name",
-      companyLabel: "Company",
-      ratingLabel: "Rating",
-      ratingSkip: "No rating",
-      submitLabel: "Send review",
-      sendingLabel: "Sending...",
-      closeLabel: "Close",
-      charLimit: 500,
-      successBody: "Review submitted and will be added as soon as possible.",
-      validationSummary: "Please check the highlighted fields.",
-    },
-    readModal: {
-      closeLabel: "Close",
-    },
-  },
   locations: "Ukraine · Canada · Poland",
   canonical: "https://lisenbart.com",
   logo: {
-    white: "/images/logo_white.png",
-    black: "/images/logo_black.png",
+    /** Combined LISENBART wordmark + bear (black on transparent). */
+    black: "/images/black_logo.png",
+    /** No separate white lockup yet — dark theme inverts via CSS. */
+    white: "/images/black_logo.png",
   },
   meta: {
     title: "Dmytro Lisenbart — Animation Director & Producer | LISENBART",
@@ -273,7 +225,6 @@ export const site = {
 
 export const sectionIds = {
   about: "about",
-  showreel: "showreel",
   explore: "explore",
   trusted: "trusted",
   contact: "contact",

@@ -52,9 +52,6 @@ export default function CommercialPage() {
           ))}
         </div>
 
-        {/* Temporarily hidden — restore when testimonials are ready to show */}
-        {/* <TestimonialsSection /> */}
-
         <ContactForm heading={commercialPage.contactHeading} lead={commercialPage.contactLead} />
       </main>
     </>

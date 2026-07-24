@@ -24,6 +24,9 @@
 *.pem
 *.tmp
 .vite
+/tmp
+COPY-AUDIT.md
+ORIGINALS-REDESIGN-GPT.md
 
 # debug
 npm-debug.log*

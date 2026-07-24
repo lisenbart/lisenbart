@@ -348,13 +348,8 @@
   }
 }
 
-[data-theme="light"] .site-header-nav img:not(.site-logo-mark) {
-  filter: contrast(1.06) saturate(1.05);
-}
-
-[data-theme="light"] .site-logo-mark {
-  /* Source mark is a white silhouette — render black on paper without touching the PNG */
-  filter: brightness(0);
+[data-theme="light"] .site-header-nav .site-logo-image {
+  filter: none;
 }
 
 /* CTA — graphite + controlled neon glow */
