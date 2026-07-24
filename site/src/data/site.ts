@@ -217,7 +217,8 @@ export const site = {
     title: "Dmytro Lisenbart — Animation Director & Producer | LISENBART",
     description:
       "Animation director and producer. Original films and IP under LISENBART Originals, plus commissioned work for brands, studios, and production partners.",
-    ogImage: publicAsset("/images/work/lisenbart-showreel-preview.jpg"),
+    /** Fresh path after domain-hack OG cache; keep separate from work thumbs. */
+    ogImage: publicAsset("/images/work/lisenbart-og-2026.jpg"),
     /** Paste from Google Search Console → HTML tag verification (content= value only). */
     googleSiteVerification: "" as string,
   },

@@ -31,6 +31,10 @@ export function SEO({ title, description, url, image, children }: SEOProps) {
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:secure_url" content={ogImage} />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:width" content="1280" />
+      <meta property="og:image:height" content="720" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={site.brand} />
 
