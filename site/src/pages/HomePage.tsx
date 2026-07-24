@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <>
-      <SEO title={site.meta.title} description={site.meta.description} url={site.canonical} />
+      <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
       <main className="site-main site-main-stack">
         <PersonalHeroSection />
         <ExplorePathsSection />
