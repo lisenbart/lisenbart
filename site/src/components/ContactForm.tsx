@@ -28,9 +28,13 @@ const copy = site.contactForm;
 export default function ContactForm({
   heading,
   lead,
+  embedded = false,
+  labelledBy,
 }: {
-  heading: string;
-  lead: string;
+  heading?: string;
+  lead?: string;
+  embedded?: boolean;
+  labelledBy?: string;
 }) {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -100,19 +104,30 @@ export default function ContactForm({
   return (
     <section
       id={sectionIds.contact}
-      className="archive-contact scroll-mt-24 w-full max-w-full min-w-0 pb-[var(--section-spacing)]"
-      aria-label={heading}
+      className={[
+        "archive-contact scroll-mt-24 w-full max-w-full min-w-0",
+        embedded ? "archive-contact--embedded" : "pb-[var(--section-spacing)]",
+      ].join(" ")}
+      aria-label={labelledBy ? undefined : heading || "Contact"}
+      aria-labelledby={labelledBy}
     >
-      <div className="archive-container">
-        <div className="mb-8 text-center md:mb-10">
-          <h2 className="archive-h2 section-heading">{heading}</h2>
-          <p className="archive-body mx-auto mt-3 max-w-md">{lead}</p>
-          {!isContactFormLive && import.meta.env.DEV && (
-            <p className="mx-auto mt-2 max-w-md text-xs font-light text-text-tertiary">
-              Dev: form mocks locally. On Netlify it uses Netlify Forms.
-            </p>
-          )}
-        </div>
+      <div className={embedded ? "archive-contact__embed" : "archive-container"}>
+        {!embedded && (heading || lead || (!isContactFormLive && import.meta.env.DEV)) && (
+          <div className="mb-8 text-center md:mb-10">
+            {heading ? <h2 className="archive-h2 section-heading">{heading}</h2> : null}
+            {lead ? <p className="archive-body mx-auto mt-3 max-w-md">{lead}</p> : null}
+            {!isContactFormLive && import.meta.env.DEV && (
+              <p className="mx-auto mt-2 max-w-md text-xs font-light text-text-tertiary">
+                Dev: form mocks locally. On Netlify it uses Netlify Forms.
+              </p>
+            )}
+          </div>
+        )}
+        {embedded && !isContactFormLive && import.meta.env.DEV && (
+          <p className="mb-3 text-xs font-light text-text-tertiary">
+            Dev: form mocks locally. On Netlify it uses Netlify Forms.
+          </p>
+        )}
 
         <div className="how-ios-card inquiry-panel">
           <div className="how-ios-card-inner">

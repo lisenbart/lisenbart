@@ -15,6 +15,14 @@ export interface WorkCaseStudy {
   stills?: string[];
   imdbId?: string;
   youtubeUrl?: string;
+  tiktokUrl?: string;
+  instagramUrl?: string;
+  /** Optional per-platform preview stills for IP cards. */
+  platformPreviews?: {
+    youtube?: string;
+    tiktok?: string;
+    instagram?: string;
+  };
   selectionLinks?: Array<{ label: string; href: string }>;
   winnerLink?: { label: string; href: string };
   credits?: string;
@@ -36,7 +44,7 @@ const originalsCases: WorkCaseStudy[] = [
     year: "2021",
     title: "Unnecessary Things",
     description:
-      "A robot buys a human from a store of unwanted things, beginning a friendship that ends where it began.",
+      "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a fragile story about friendship, memory and the need to be seen.",
     result: "15 awards · 45 festival selections",
     mediaColor: "#0a1f0f",
     vimeoId: "823618245",
@@ -55,7 +63,7 @@ const originalsCases: WorkCaseStudy[] = [
         href: "https://www.youtube.com/watch?v=9I_So6Tq0rU",
       },
       {
-        label: "Short Shorts Film Festival & Asia (Tokyo)",
+        label: "Short Shorts Film Festival & Asia",
         href: "https://shortshorts.org/2022/en/program/anime/anime-2/unnecessary-things/",
       },
       {
@@ -68,9 +76,9 @@ const originalsCases: WorkCaseStudy[] = [
       href: "https://odessa-journal.com/dmytro-lisenbarts-animated-short-unnecessary-things-won-an-award-at-the-prague-film-awards/",
     },
     credits:
-      "Written and directed by Dmytro Lisenbart, based on a story by Robert Sheckley. Co-written with Andriy Rushkovskyi; production design by Dmytro Krivonos. Produced by Lisenbart Animation Studio and Marcus Film (Vitalii Khalo), with support from Derzhkino.",
+      "Written and directed by Dmytro Lisenbart, based on a story by Robert Sheckley. Co-written with Andriy Rushkovskyi, with production design by Dmytro Krivonos. Produced by Lisenbart Animation Studio and Marcus Film, with support from Derzhkino.",
     quote: {
-      text: "Pair this with Blade Runner 2049 — a lovely story about sentience and friendship.",
+      text: "A lovely story about sentience and friendship.",
       attribution: "Review on Letterboxd",
       href: "https://letterboxd.com/film/unnecessary-things/",
     },
@@ -83,8 +91,9 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "The Last Kozak",
     description:
-      "He has no name — everyone calls him the Last Kozak. Trapped in a time loop, he must defeat evil again and again. A stylized action-fantasy with comic-book editing, psychological depth, and a cossack who rides the Iron Dog through worlds that meet at the Last Khreshchatyk.",
-    result: "Script, treatment and pitch complete. English teaser available.",
+      "A stylized animated feature about a nameless cossack trapped in a time loop, forced to defeat evil again and again. Built as an action-fantasy with comic-book rhythm, psychological tension and a Ukrainian mythic world shaped for international audiences.",
+    result:
+      "Script, treatment and pitch complete. English teaser available. Developed for production, financing and co-production conversations.",
     mediaColor: "#120808",
     vimeoId: "699197721",
     mediaImage: "/images/work/the-last-kozak-preview.webp",
@@ -98,13 +107,20 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "Scoopy Cap",
     description:
-      "10.4K subscribers · 225 videos\nNursery rhymes, ABC, colours and numbers built around Scoopy Cap — a space explorer designed for calm viewing and repeat plays.",
+      "10.5K subscribers · 225 videos · 8.2M views\nAn English-language preschool IP for babies and toddlers aged 0–5, built around Scoopy Cap — a friendly space explorer who introduces first letters, colours, numbers, animals and calm musical routines.",
     result:
-      "Finger Family is the channel’s top-performing video. Full songs each Saturday; Shorts through the week.",
+      "The project combines a growing English-language content library with repeatable preschool formats, creating a foundation for further audience growth, distribution and licensing.",
     mediaColor: "#1a1428",
     mediaImage: "/images/work/scoopy-cap-preview.jpg",
     mediaImageAlt: "Scoopy Cap YouTube channel",
     youtubeUrl: "https://www.youtube.com/@ScoopyCap",
+    tiktokUrl: "https://www.tiktok.com/@scoopycap",
+    instagramUrl: "https://www.instagram.com/scoopycap/",
+    platformPreviews: {
+      youtube: "/images/work/scoopy-cap-youtube.jpg?v=6",
+      tiktok: "/images/work/scoopy-cap-tiktok.jpg?v=6",
+      instagram: "/images/work/scoopy-cap-instagram.jpg?v=6",
+    },
   },
   {
     id: "pershosvit",
@@ -112,15 +128,22 @@ const originalsCases: WorkCaseStudy[] = [
     category: "Social Media · YouTube Channel",
     filmCategory: "Original Preschool IP · Ukrainian",
     year: "",
-    title: "Pershosvit · Kapitan Świetlik",
+    title: "Pershosvit",
     description:
-      "147K subscribers · 274 videos\nSongs, fairy tales and learning with Kapitan Świetlik — a robot hero for young audiences and the parents who watch with them.",
+      "149K subscribers · 274 videos · 196M views\nA Ukrainian preschool IP for children aged 0–6, built around Captain Firefly — a friendly robot hero who leads songs, stories and early learning through colours, numbers, shapes and emotions.",
     result:
-      "Alphabet, bedtime and learning series across Ukraine. Baby Shark UA is among the channel’s strongest videos.",
+      "With a large Ukrainian-language content library and strong audience reach, Pershosvit is positioned for further development across series, compilations, broadcasting and educational formats.",
     mediaColor: "#1f1020",
     mediaImage: "/images/work/pershosvit-preview.jpg",
     mediaImageAlt: "Pershosvit YouTube channel",
     youtubeUrl: "https://www.youtube.com/@pershosvit",
+    tiktokUrl: "https://www.tiktok.com/@pershosvit",
+    instagramUrl: "https://www.instagram.com/pershosvit/",
+    platformPreviews: {
+      youtube: "/images/work/pershosvit-youtube.jpg?v=6",
+      tiktok: "/images/work/pershosvit-tiktok.jpg?v=6",
+      instagram: "/images/work/pershosvit-instagram.jpg?v=6",
+    },
   },
 ];
 

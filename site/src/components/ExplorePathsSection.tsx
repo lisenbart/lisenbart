@@ -26,19 +26,24 @@ function DirectionPanel({
       href={href}
       aria-label={ariaLabel}
     >
-      <span className="archive-panel__media" aria-hidden="true">
-        <ReelSlideshow images={[...images]} alt="" intervalMs={intervalMs} />
-      </span>
-      <span className="archive-panel__overlay" aria-hidden="true" />
-      <div className="archive-panel__content">
-        <div className="archive-panel__heading">
-          <h3 className="archive-panel__title">{title}</h3>
-          <span className="archive-panel__cta" aria-hidden="true">
-            <ChevronRight size={28} strokeWidth={2.5} />
+      <span className="archive-panel__bezel">
+        <span className="archive-panel__screen">
+          <span className="archive-panel__media" aria-hidden="true">
+            <ReelSlideshow images={[...images]} alt="" intervalMs={intervalMs} />
           </span>
-        </div>
-        <p className="archive-panel__text">{text}</p>
-      </div>
+          <span className="archive-panel__overlay" aria-hidden="true" />
+          <div className="archive-panel__content">
+            <div className="archive-panel__heading">
+              <h3 className="archive-panel__title">{title}</h3>
+              <span className="archive-panel__cta" aria-hidden="true">
+                <ChevronRight size={28} strokeWidth={2.5} />
+              </span>
+            </div>
+            <p className="archive-panel__text">{text}</p>
+          </div>
+          <span className="archive-panel__home" aria-hidden="true" />
+        </span>
+      </span>
     </a>
   );
 }
@@ -57,15 +62,6 @@ export default function ExplorePathsSection() {
 
         <div className="archive-explore__panels">
           <DirectionPanel
-            variant="film"
-            href={hubCanonicalHref("originals")}
-            ariaLabel={explorePaths.film.ctaAria}
-            title={explorePaths.film.title}
-            text={explorePaths.film.text}
-            images={explorePaths.film.previewImages}
-            intervalMs={3400}
-          />
-          <DirectionPanel
             variant="commercial"
             href={hubCanonicalHref("client-work")}
             ariaLabel={explorePaths.commercial.ctaAria}
@@ -73,6 +69,15 @@ export default function ExplorePathsSection() {
             text={explorePaths.commercial.text}
             images={explorePaths.commercial.previewImages}
             intervalMs={3900}
+          />
+          <DirectionPanel
+            variant="film"
+            href={hubCanonicalHref("originals")}
+            ariaLabel={explorePaths.film.ctaAria}
+            title={explorePaths.film.title}
+            text={explorePaths.film.text}
+            images={explorePaths.film.previewImages}
+            intervalMs={3400}
           />
         </div>
       </div>

@@ -15,6 +15,8 @@ export const site = {
     ] as const,
     personalPortrait: "/images/portrait.webp",
     personalPortraitAlt: "Portrait of Dmytro Lisenbart",
+    personalNote:
+      "Creativity and production aren't enemies, even if they act like it. An idea needs room to breathe — and the right people, structure and runway to actually get made.",
     imdbHref: "https://www.imdb.com/name/nm11412621/",
     imdbAria: "View Dmytro Lisenbart on IMDb",
   },
@@ -80,9 +82,11 @@ export const site = {
     paragraphs: [
       "I grew up drawing and making things up. At no point did I decide this was the career — I just kept doing it, and never got around to stopping.",
       "Since then: artist, director, producer, studio founder. For a stretch I ran Ukranimafilm, Ukraine's national animation studio — still slightly improbable to me.",
-      "What all of it taught me: creativity and production aren't enemies, even if they act like it. An idea needs room to breathe — and the right people, structure and runway to actually get made.",
+      "What all of it taught me is that creativity and production aren't enemies, even if they sometimes act like it. An idea needs room to breathe — and the right people, structure and runway to actually get made.",
       "I usually start with \"What if?\" It pretty quickly becomes: \"Alright — how do we pull this off?\"",
+      "If you're working on something — an animated film, a world, a character, or an idea that is starting to take shape — send me a short brief or a few clear thoughts.",
     ] as const,
+    closing: "That is enough to begin a conversation.",
     markers: [] as const,
   },
   filmPage: {
@@ -176,8 +180,8 @@ export const site = {
     contactLead: "Share the project, timeline, and current stage. I’ll come back with the right next step.",
   },
   homeContact: {
-    heading: "Start a Conversation",
-    lead: "Tell me what you’re working on and where it stands. A short brief is enough to begin.",
+    heading: "That is enough to begin a conversation.",
+    lead: "",
   },
   contactForm: {
     submitLabel: "Send Message",

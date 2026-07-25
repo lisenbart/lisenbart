@@ -22,33 +22,41 @@ export function FilmMediaStage({
   const [playing, setPlaying] = useState(false);
 
   return (
-    <div className={`originals-media ${className}`.trim()}>
-      {playing ? (
-        <div className="originals-media__player">
-          <HeroShowreel vimeoId={vimeoId} title={title} autoPlay hidePlayButton />
+    <div className={`originals-tv ${className}`.trim()}>
+      <div className="originals-tv__bezel">
+        <div className="originals-media">
+          {playing ? (
+            <div className="originals-media__player">
+              <HeroShowreel vimeoId={vimeoId} title={title} autoPlay hidePlayButton />
+            </div>
+          ) : (
+            <>
+              <img
+                className="originals-media__poster"
+                src={publicAsset(posterSrc)}
+                alt={posterAlt}
+                width={1280}
+                height={720}
+                loading={priority ? "eager" : "lazy"}
+                decoding="async"
+                {...(priority ? { fetchPriority: "high" as const } : {})}
+              />
+              <button
+                type="button"
+                className="originals-media__play"
+                onClick={() => setPlaying(true)}
+                aria-label={`Play ${title}`}
+              >
+                <Play className="originals-media__play-icon" fill="currentColor" strokeWidth={0} />
+              </button>
+            </>
+          )}
         </div>
-      ) : (
-        <>
-          <img
-            className="originals-media__poster"
-            src={publicAsset(posterSrc)}
-            alt={posterAlt}
-            width={1280}
-            height={720}
-            loading={priority ? "eager" : "lazy"}
-            decoding="async"
-            {...(priority ? { fetchPriority: "high" as const } : {})}
-          />
-          <button
-            type="button"
-            className="originals-media__play"
-            onClick={() => setPlaying(true)}
-            aria-label={`Play ${title}`}
-          >
-            <Play className="originals-media__play-icon" fill="currentColor" strokeWidth={0} />
-          </button>
-        </>
-      )}
+      </div>
+      <div className="originals-tv__stand" aria-hidden="true">
+        <span className="originals-tv__neck" />
+        <span className="originals-tv__base" />
+      </div>
     </div>
   );
 }

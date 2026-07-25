@@ -61,7 +61,7 @@ export default function FilmPage() {
               Original IP
             </h2>
 
-            <div className="originals-ip-grid">
+            <div className="originals-section__stack">
               {ips.map((item) => (
                 <OriginalIpCard key={item.id} item={item} />
               ))}

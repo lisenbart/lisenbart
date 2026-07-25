@@ -25,12 +25,6 @@ export default function DevelopmentFilmCase({ item }: DevelopmentFilmCaseProps) 
 
   return (
     <section id={item.id} className="originals-case originals-case--development">
-      <div className="originals-case__intro">
-        <h3 className="originals-case__title">{item.title}</h3>
-        {meta && <p className="originals-case__meta">{meta}</p>}
-        <p className="originals-case__status">In Development</p>
-      </div>
-
       {item.vimeoId && item.mediaImage && (
         <FilmMediaStage
           className="originals-case__media"
@@ -41,30 +35,38 @@ export default function DevelopmentFilmCase({ item }: DevelopmentFilmCaseProps) 
         />
       )}
 
-      <div className="originals-case__body">
-        <div className="originals-case__synopsis">{item.description}</div>
+      <div className="originals-case__copy">
+        <div className="originals-case__intro">
+          <h3 className="originals-case__title">{item.title}</h3>
+          {meta && <p className="originals-case__meta">{meta}</p>}
+          <p className="originals-case__status">In Development</p>
+        </div>
 
-        {statusLines.length > 0 && (
-          <ul className="originals-case__dev-list">
-            {statusLines.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        )}
+        <div className="originals-case__body">
+          <div className="originals-case__synopsis">{item.description}</div>
 
-        <div className="originals-case__cta-row">
-          <button
-            type="button"
-            className="originals-case__cta originals-case__cta--button"
-            onClick={() =>
-              goToContactWithPrefill({
-                projectType: "Originals Partnership",
-                message: "I'd like to request the pitch for The Last Kozak.",
-              })
-            }
-          >
-            Request the Pitch
-          </button>
+          {statusLines.length > 0 && (
+            <ul className="originals-case__dev-list">
+              {statusLines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+            </ul>
+          )}
+
+          <div className="originals-case__cta-row">
+            <button
+              type="button"
+              className="originals-case__cta originals-case__cta--button"
+              onClick={() =>
+                goToContactWithPrefill({
+                  projectType: "Originals Partnership",
+                  message: "I'd like to request the pitch for The Last Kozak.",
+                })
+              }
+            >
+              Request the Pitch
+            </button>
+          </div>
         </div>
       </div>
     </section>

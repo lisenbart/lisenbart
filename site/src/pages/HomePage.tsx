@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import PersonalHeroSection from "@/components/PersonalHeroSection";
 import ExplorePathsSection from "@/components/ExplorePathsSection";
 import PersonalAboutSection from "@/components/PersonalAboutSection";
-import ContactForm from "@/components/ContactForm";
 import { SEO } from "@/components/SEO";
 import { scrollToSection, site } from "@/data/site";
 
@@ -21,7 +20,6 @@ export default function HomePage() {
         <PersonalHeroSection />
         <ExplorePathsSection />
         <PersonalAboutSection />
-        <ContactForm heading={site.homeContact.heading} lead={site.homeContact.lead} />
       </main>
     </>
   );
