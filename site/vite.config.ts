@@ -17,8 +17,10 @@ export default defineConfig(({ command }) => ({
             additionalPrerenderRoutes: [
               "/originals",
               "/client-work",
+              "/studio",
               "/about",
             ],
+
           }),
         ]
       : []),

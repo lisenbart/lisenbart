@@ -1,5 +1,4 @@
 import { goToContact, site } from "@/data/site";
-import { hubCanonicalHref } from "@/lib/routes";
 
 export default function StudioHeroSection() {
   const { studioHome } = site;
@@ -24,16 +23,6 @@ export default function StudioHeroSection() {
             {studioHome.ctaLabel}
           </button>
         </div>
-
-        <p className="studio-hero__founder-line">
-          <a
-            className="studio-hero__founder"
-            href={hubCanonicalHref("about")}
-            aria-label={studioHome.founderAria}
-          >
-            {studioHome.founderLine}
-          </a>
-        </p>
       </div>
     </section>
   );

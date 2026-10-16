@@ -3562,3 +3562,70 @@ footer .how-ios-card {
 .studio-games-bridge__cta:focus-visible {
   opacity: 0.88;
 }
+
+/* Studio company page — structural only */
+.studio-page__body {
+  margin-bottom: var(--space-5);
+  max-width: 40rem;
+}
+
+.studio-page__section {
+  margin-bottom: var(--space-4);
+}
+
+.studio-page__heading {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.studio-page__text {
+  margin: 0 0 0.65rem;
+  font-size: clamp(1rem, 1.8vw, 1.1rem);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.studio-page__founder {
+  margin: 0 0 var(--space-4);
+  font-size: 0.98rem;
+  color: var(--text-tertiary);
+}
+
+.studio-page__founder-link {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-primary) 30%, transparent);
+}
+
+.studio-page__founder-link:hover,
+.studio-page__founder-link:focus-visible {
+  border-bottom-color: var(--text-primary);
+}
+
+.studio-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.35rem;
+  margin-bottom: var(--space-4);
+}
+
+.studio-page__secondary {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-primary) 35%, transparent);
+}
+
+.studio-page__secondary:hover,
+.studio-page__secondary:focus-visible {
+  border-bottom-color: var(--text-primary);
+}

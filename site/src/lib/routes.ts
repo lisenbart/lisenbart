@@ -2,10 +2,11 @@ export const routes = {
   home: "/",
   originals: "/originals",
   clientWork: "/client-work",
+  studio: "/studio",
   about: "/about",
 } as const;
 
-export type HubPageSlug = "originals" | "client-work" | "about";
+export type HubPageSlug = "originals" | "client-work" | "studio" | "about";
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -43,6 +44,7 @@ export function normalizePathname(pathname: string): string {
 /** Path without trailing slash — for matching only. */
 export function hubPageHref(slug: HubPageSlug) {
   if (slug === "originals") return routes.originals;
+  if (slug === "studio") return routes.studio;
   if (slug === "about") return routes.about;
   return routes.clientWork;
 }
@@ -51,6 +53,7 @@ export function parseHubPage(pathname?: string): HubPageSlug | null {
   const normalized = normalizePathname(resolvePathname(pathname));
   if (normalized === routes.originals) return "originals";
   if (normalized === routes.clientWork) return "client-work";
+  if (normalized === routes.studio) return "studio";
   if (normalized === routes.about) return "about";
   return null;
 }

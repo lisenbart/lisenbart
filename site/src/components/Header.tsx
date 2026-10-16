@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, type MouseEvent } from "react";
 import { MessageSquare } from "lucide-react";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref, isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
@@ -10,7 +10,8 @@ type NavId = (typeof site.primaryNav)[number]["id"];
 function navHref(id: NavId) {
   if (id === "originals") return hubCanonicalHref("originals");
   if (id === "client-work") return hubCanonicalHref("client-work");
-  return hubCanonicalHref("about");
+  if (id === "studio") return hubCanonicalHref("studio");
+  return "#contact";
 }
 
 export default function Header() {
@@ -49,8 +50,15 @@ export default function Header() {
   const isActive = (id: NavId) => {
     if (id === "originals") return activeHub === "originals";
     if (id === "client-work") return activeHub === "client-work";
-    if (id === "about") return activeHub === "about";
+    if (id === "studio") return activeHub === "studio";
     return false;
+  };
+
+  const onNavClick = (id: NavId, e: MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+    if (id !== "contact") return;
+    e.preventDefault();
+    goToContact();
   };
 
   return (
@@ -91,7 +99,7 @@ export default function Header() {
                     link.id === "originals" ? " header-nav-pill__link--film" : ""
                   }${link.id === "client-work" ? " header-nav-pill__link--commercial" : ""}`}
                   aria-current={isActive(link.id) ? "page" : undefined}
-                  onClick={closeMenu}
+                  onClick={(e) => onNavClick(link.id, e)}
                 >
                   {link.label}
                 </a>
@@ -146,7 +154,7 @@ export default function Header() {
                   href={href}
                   className={`header-mobile-panel__link${isActive(link.id) ? " is-active" : ""}`}
                   aria-current={isActive(link.id) ? "page" : undefined}
-                  onClick={closeMenu}
+                  onClick={(e) => onNavClick(link.id, e)}
                 >
                   {link.label}
                 </a>

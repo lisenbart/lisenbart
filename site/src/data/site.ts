@@ -245,6 +245,45 @@ export const site = {
     seoDescription:
       "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM. Original films, story IP, and commissioned work.",
   },
+  /** Company page — verified facts only; no invented headcount or capacity. */
+  studioPage: {
+    name: "STUDIO",
+    title:
+      "Independent animation studio. Creative development, direction and production for client commissions and original films.",
+    seoTitle: "Studio — LISENBART FILM",
+    seoDescription:
+      "Independent animation studio since 2006. Creative development, direction and production for brands, agencies and original films.",
+    sections: [
+      {
+        id: "who",
+        heading: "Who we are",
+        paragraphs: [
+          "LISENBART FILM has operated since 2006 as an independent animation studio. We create commercials and branded content for brands, agencies and production partners, and we develop original films and story IP.",
+        ],
+      },
+      {
+        id: "expertise",
+        heading: "Expertise",
+        paragraphs: [
+          "Creative development, direction and animation production — as selected stages or complete delivery. Game advertising and playables live on Lisenbart Games. AI and hybrid production is a directed capability within Client Work.",
+        ],
+      },
+      {
+        id: "how",
+        heading: "How we work",
+        paragraphs: [
+          "One clear creative and production lead per project. We work from existing briefs and assets, or from early concept through delivery. Scope is agreed before production expands; communication stays direct with agency and in-house teams.",
+        ],
+      },
+    ] as const,
+    founderLine: "Founded by Dmytro Lisenbart, animation director and producer.",
+    founderCta: "About the founder",
+    ctaLabel: "Discuss a Project",
+    workCta: "View Client Work",
+    contactHeading: "Tell us about the project.",
+    contactLead: "Share a brief, partnership idea or production question. We’ll come back with the next step.",
+  },
+
   contactForm: {
     submitLabel: "Send Message",
     sendingLabel: "Sending…",
@@ -262,8 +301,10 @@ export const site = {
   primaryNav: [
     { id: "client-work" as const, label: "Client Work" },
     { id: "originals" as const, label: "Originals" },
-    { id: "about" as const, label: "About" },
+    { id: "studio" as const, label: "Studio" },
+    { id: "contact" as const, label: "Contact" },
   ],
+
   ctaLabel: "Discuss a Project",
   email: "info@lisenbart.com",
   linkedin: "https://www.linkedin.com/in/lisenbart/",

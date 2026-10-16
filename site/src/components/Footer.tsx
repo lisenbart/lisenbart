@@ -65,13 +65,13 @@ export default function Footer() {
                   </p>
                   <ul className="mt-2 flex flex-col gap-1.5 md:mt-4 md:gap-3">
                     <li>
-                      <FooterNavLink href={hubCanonicalHref("originals")} label="Originals" />
-                    </li>
-                    <li>
                       <FooterNavLink href={hubCanonicalHref("client-work")} label="Client Work" />
                     </li>
                     <li>
-                      <FooterNavLink href={hubCanonicalHref("about")} label="About" />
+                      <FooterNavLink href={hubCanonicalHref("originals")} label="Originals" />
+                    </li>
+                    <li>
+                      <FooterNavLink href={hubCanonicalHref("studio")} label="Studio" />
                     </li>
                     <li>
                       <FooterNavLink href={site.gamesUrl} label="Games" external />

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import CompactStudioProofSection from "@/components/CompactStudioProofSection";
 import ContactForm from "@/components/ContactForm";
 import SpecializedDivisionsSection from "@/components/SpecializedDivisionsSection";
 import StudioDirectionsSection from "@/components/StudioDirectionsSection";
@@ -22,7 +21,6 @@ export default function HomePage() {
         <StudioHeroSection />
         <StudioDirectionsSection />
         <SpecializedDivisionsSection />
-        <CompactStudioProofSection />
         <ContactForm heading={site.homeContact.heading} lead={site.homeContact.lead} />
       </main>
     </>
