@@ -3267,6 +3267,61 @@ footer .how-ios-card {
   }
 }
 
+/* Home proof — clients + routes (no reel) */
+.compact-proof {
+  padding: var(--space-5) 0 0;
+}
+
+.compact-proof__inner {
+  max-width: 38rem;
+  margin-bottom: var(--space-4);
+}
+
+.compact-proof__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.compact-proof__text {
+  margin: 0.75rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.compact-proof__links {
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.compact-proof__link {
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-primary) 30%, transparent);
+}
+
+.compact-proof__link:hover,
+.compact-proof__link:focus-visible {
+  border-bottom-color: var(--text-primary);
+}
+
+.compact-proof__sep {
+  margin: 0 0.55rem;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.compact-proof .trusted-by-section {
+  padding-bottom: var(--space-5);
+}
+
 /* Why LISENBART — compact credibility */
 .why-studio {
   padding: var(--space-5) 0 0;

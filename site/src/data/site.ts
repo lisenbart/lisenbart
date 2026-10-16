@@ -37,6 +37,14 @@ export const site = {
     founder: "Founded by Dmytro Lisenbart, animation director and producer.",
     aboutCta: "About the founder",
   },
+  /** Home proof strip — clients + routes; no reel, no hero repeats. */
+  compactProof: {
+    heading: "Selected clients",
+    text: "Commercial work for brands and agencies. Dmytro Lisenbart — founder and animation director.",
+    workCta: "View Client Work",
+    aboutCta: "About the founder",
+  },
+
   specializedDivisions: {
     heading: "Specialized Divisions",
     games: {
@@ -286,6 +294,7 @@ export const sectionIds = {
   explore: "explore",
   selectedWork: "selected-work",
   why: "why",
+  proof: "proof",
   divisions: "divisions",
   trusted: "trusted",
   contact: "contact",
