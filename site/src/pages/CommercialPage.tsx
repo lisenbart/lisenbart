@@ -36,15 +36,23 @@ export default function CommercialPage() {
           </h1>
         </header>
 
-        <div className="commercial-capabilities archive-container" aria-label="Capabilities">
+        <div className="commercial-capabilities archive-container" aria-labelledby="engagement-heading">
+          <h2 id="engagement-heading" className="commercial-capabilities__section-title">
+            {commercialPage.engagementHeading}
+          </h2>
           <ul className="commercial-capabilities__list">
-            {commercialPage.capabilities.map((item) => (
+            {commercialPage.engagementModels.map((item) => (
               <li key={item.title} className="commercial-capabilities__item">
                 <p className="commercial-capabilities__title">{item.title}</p>
                 <p className="commercial-capabilities__text">{item.text}</p>
               </li>
             ))}
           </ul>
+          <p className="commercial-capabilities__note">{commercialPage.engagementNote}</p>
+        </div>
+
+        <div className="archive-container commercial-evidence-heading">
+          <h2 className="commercial-capabilities__section-title">{commercialPage.evidenceHeading}</h2>
         </div>
 
         <TrustedBySection />

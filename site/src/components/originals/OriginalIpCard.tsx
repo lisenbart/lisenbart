@@ -45,6 +45,9 @@ function PlatformMark({ platform }: { platform: PlatformKey }) {
 }
 
 function splitDescription(description: string) {
+  if (!description.includes("\n")) {
+    return { stats: "", blurb: description.trim() };
+  }
   const [first = "", ...rest] = description.split("\n");
   return {
     stats: first.trim(),
@@ -144,7 +147,7 @@ export default function OriginalIpCard({ item }: OriginalIpCardProps) {
         <div className="originals-case__body">
           {stats && <div className="originals-case__status">{stats}</div>}
           {blurb && <div className="originals-case__synopsis">{blurb}</div>}
-          {item.result && <div className="originals-case__synopsis">{item.result}</div>}
+          {item.result?.trim() && <div className="originals-case__synopsis">{item.result}</div>}
         </div>
       </div>
     </section>

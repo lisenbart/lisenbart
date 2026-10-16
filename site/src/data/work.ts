@@ -40,12 +40,13 @@ const originalsCases: WorkCaseStudy[] = [
     id: "unnecessary-things",
     client: "Lisenbart Animation Studio",
     category: "Film & Entertainment · Short Film",
-    filmCategory: "Animated Short · 14 min",
+    filmCategory: "Animated Short · 14 min · 2021",
     year: "2021",
     title: "Unnecessary Things",
     description:
-      "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a fragile story about friendship, memory and the need to be seen.",
+      "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
     result: "15 awards · 45 festival selections",
+
     mediaColor: "#0a1f0f",
     vimeoId: "823618245",
     mediaImage: "/images/work/unnecessary-things-preview.webp",
@@ -91,9 +92,9 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "The Last Kozak",
     description:
-      "A stylized animated feature about a nameless cossack trapped in a time loop, forced to defeat evil again and again. Built as an action-fantasy with comic-book rhythm, psychological tension and a Ukrainian mythic world shaped for international audiences.",
-    result:
-      "Script, treatment and pitch complete. English teaser available. Developed for production, financing and co-production conversations.",
+      "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
+    result: "Script, treatment and pitch complete. English teaser available.",
+
     mediaColor: "#120808",
     vimeoId: "699197721",
     mediaImage: "/images/work/the-last-kozak-preview.webp",
@@ -107,9 +108,9 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "Scoopy Cap",
     description:
-      "10.5K subscribers · 225 videos · 8.2M views\nAn English-language preschool IP for babies and toddlers aged 0–5, built around Scoopy Cap — a friendly space explorer who introduces first letters, colours, numbers, animals and calm musical routines.",
-    result:
-      "The project combines a growing English-language content library with repeatable preschool formats, creating a foundation for further audience growth, distribution and licensing.",
+      "An English-language preschool world combining music, alphabet learning and character-led stories for young children.",
+    result: "",
+
     mediaColor: "#1a1428",
     mediaImage: "/images/work/scoopy-cap-preview.jpg",
     mediaImageAlt: "Scoopy Cap YouTube channel",
@@ -130,9 +131,9 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "Pershosvit",
     description:
-      "149K subscribers · 274 videos · 196M views\nA Ukrainian preschool IP for children aged 0–6, built around Captain Firefly — a friendly robot hero who leads songs, stories and early learning through colours, numbers, shapes and emotions.",
-    result:
-      "With a large Ukrainian-language content library and strong audience reach, Pershosvit is positioned for further development across series, compilations, broadcasting and educational formats.",
+      "A Ukrainian-language world of animated songs, stories and early learning for young children, developed across original characters and repeatable formats.",
+    result: "",
+
     mediaColor: "#1f1020",
     mediaImage: "/images/work/pershosvit-preview.jpg",
     mediaImageAlt: "Pershosvit YouTube channel",

@@ -3478,9 +3478,23 @@ footer .how-ios-card {
   color: var(--text-primary);
 }
 
-/* Client Work — capability strip */
+/* Client Work — engagement models */
 .commercial-capabilities {
   margin: 0 auto var(--space-4);
+}
+
+.commercial-capabilities__section-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.4vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.commercial-evidence-heading {
+  margin: 0 auto 0.75rem;
 }
 
 .commercial-capabilities__list {
@@ -3489,6 +3503,13 @@ footer .how-ios-card {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.commercial-capabilities__note {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--text-tertiary);
 }
 
 @media (min-width: 768px) {

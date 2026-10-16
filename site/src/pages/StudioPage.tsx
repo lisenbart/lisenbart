@@ -1,11 +1,10 @@
 import { useEffect } from "react";
 import ContactForm from "@/components/ContactForm";
-import TrustedBySection from "@/components/TrustedBySection";
 import { SEO } from "@/components/SEO";
-import { goToContact, scrollToSection, site } from "@/data/site";
+import { scrollToSection, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
-/** Company page — studio identity and working model, not founder biography. */
+/** Company page — how the studio works. No Selected Clients or service catalogue. */
 export default function StudioPage() {
   const { studioPage } = site;
   const seoUrl = `${site.canonical}${hubCanonicalHref("studio")}`;
@@ -32,7 +31,11 @@ export default function StudioPage() {
 
         <div className="archive-container studio-page__body">
           {studioPage.sections.map((section) => (
-            <section key={section.heading} className="studio-page__section" aria-labelledby={`studio-${section.id}`}>
+            <section
+              key={section.id}
+              className="studio-page__section"
+              aria-labelledby={`studio-${section.id}`}
+            >
               <h2 id={`studio-${section.id}`} className="studio-page__heading">
                 {section.heading}
               </h2>
@@ -41,27 +44,17 @@ export default function StudioPage() {
                   {paragraph}
                 </p>
               ))}
+              {section.id === "people" && (
+                <p className="studio-page__founder">
+                  {studioPage.founderLine}{" "}
+                  <a className="studio-page__founder-link" href={hubCanonicalHref("about")}>
+                    {studioPage.founderCta}
+                  </a>
+                </p>
+              )}
             </section>
           ))}
-
-          <p className="studio-page__founder">
-            {studioPage.founderLine}{" "}
-            <a className="studio-page__founder-link" href={hubCanonicalHref("about")}>
-              {studioPage.founderCta}
-            </a>
-          </p>
-
-          <div className="studio-page__actions">
-            <button type="button" className="studio-hero__cta" onClick={() => goToContact()}>
-              {studioPage.ctaLabel}
-            </button>
-            <a className="studio-page__secondary" href={hubCanonicalHref("client-work")}>
-              {studioPage.workCta}
-            </a>
-          </div>
         </div>
-
-        <TrustedBySection />
 
         <ContactForm heading={studioPage.contactHeading} lead={studioPage.contactLead} />
       </main>

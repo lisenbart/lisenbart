@@ -7,13 +7,14 @@ export const site = {
   studioHome: {
     brandLine: "LISENBART FILM",
     headline: "Endless stories. Different worlds. One language.",
-    lead: "Independent animation studio creating commercials, original films and story-driven content. From creative development and direction to complete production.",
+    lead: "Independent animation studio for brands, production partners and original films. Creative development, direction and production — together or as individual stages.",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
     ctaLabel: "Discuss a Project",
     exploreLabel: "Explore Our Work",
     founderLine: "Founded by Dmytro Lisenbart",
     founderAria: "About Dmytro Lisenbart, founder of LISENBART FILM",
   },
+
   selectedWork: {
     label: "Selected Commercial Work",
     href: "/client-work/",
@@ -50,20 +51,21 @@ export const site = {
     games: {
       title: "GAMES",
       subtitle: "Game Advertising & Playable Production",
-      text: "Advertising creatives, playable ads and production for game companies.",
+      text: "Advertising creatives and playables for game companies.",
       href: "https://lisenbart.games",
-      cta: "Visit Lisenbart Games",
+      cta: "Explore Games",
       external: true as const,
     },
     ai: {
       title: "AI",
       subtitle: "AI & Hybrid Production",
-      text: "AI-assisted visual development and video production, directed and finished by our team.",
+      text: "AI-assisted visuals and video, guided by creative direction and production oversight.",
       href: "/client-work/#ai-powered-reel",
-      cta: "See AI work",
+      cta: "View AI Work",
       external: false as const,
     },
   },
+
   hero: {
     personalName: "Dmytro Lisenbart",
     personalRole: "Animation Director & Producer",
@@ -113,8 +115,9 @@ export const site = {
     },
     film: {
       title: "ORIGINALS",
-      text: "Original animated films, stories and worlds developed from the first idea onward.",
+      text: "Original animated films and story IP — created, developed and produced by the studio.",
       ctaAria: "View LISENBART Originals",
+
       previewImages: [
         "/images/explore/originals/00-eyes.webp",
         "/images/explore/originals/01.webp",
@@ -147,45 +150,47 @@ export const site = {
     markers: [] as const,
   },
   filmPage: {
-    name: "LISENBART ORIGINALS",
-    title: "Original films and story worlds developed from first idea through production.",
-    seoTitle: "LISENBART Originals — Animated Films & Story IP",
+    name: "ORIGINALS",
+    title: "Stories and worlds we develop ourselves — from original animated films to long-running character-led IP.",
+    seoTitle: "Original Films & IP — LISENBART FILM",
     seoDescription:
-      "Original animated films and story IP by Dmytro Lisenbart — including Unnecessary Things and projects in development. Co-production, festival, and press enquiries.",
+      "Discover original animated films and character-led IP developed by LISENBART FILM, including Unnecessary Things, The Last Kozak, Pershosvit and Scoopy Cap.",
     filmIds: ["unnecessary-things", "the-last-kozak"] as const,
     ipIds: ["pershosvit", "scoopy-cap"] as const,
-    contactHeading: "Project Enquiries",
+    contactHeading: "Discuss an Original Project",
     contactLead:
-      "For co-production, distribution, festivals, or press, tell me which project you’re interested in.",
+      "Interested in a film or one of our original properties? Tell us which project and what kind of collaboration you have in mind.",
   },
   commercialPage: {
     name: "CLIENT WORK",
     title:
-      "From first concept to final frame. Creative development, direction and animation production for brands, agencies and production partners.",
-    seoTitle: "Client Animation — Brands & Agencies | LISENBART FILM",
+      "From a single production task to a complete animated campaign. We work with your brief and assets, or develop the project from the ground up.",
+    seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
     seoDescription:
-      "Creative development, direction and animation production for brands and agencies. LISENBART FILM.",
-    capabilities: [
+      "Commission animation production, creative development and direction for brands and agencies. From individual production stages to complete campaigns.",
+    engagementHeading: "Ways to work with us",
+    engagementModels: [
       {
-        title: "Creative Development",
-        text: "Concepts, scripts and visual approaches shaped around the brief.",
+        title: "Production Partner",
+        text: "Have the concept and assets ready? We handle the animation and production stages you need, working within your pipeline.",
       },
       {
-        title: "Direction",
-        text: "Creative leadership from look development through delivery.",
+        title: "Creative & Direction",
+        text: "Concepts, scripts, storyboards, visual development and direction — with or without full production.",
       },
       {
-        title: "Animation Production",
-        text: "Complete production — or selected stages — with clear process and one lead.",
+        title: "Full Production",
+        text: "From first idea to final delivery. Creative development, direction and production coordinated as one project.",
       },
     ] as const,
+    engagementNote: "One project or ongoing collaboration. Scope and workflow are agreed around the brief.",
+    evidenceHeading: "Selected Commercial Work",
     reels: [
       {
         id: "advertising-reel",
-        label: "Advertising",
+        label: "Advertising & Branded Content",
         body: [
-          "Animated campaigns, brand films and product visuals for brands and agencies.",
-          "Format follows the brief: character animation, motion graphics, mixed media. Projects for Nestlé, Samsung, McDonald's, Mastercard and others across broadcast, digital and social.",
+          "Animated campaigns, brand films and product visuals across character animation, motion graphics and mixed media.",
         ] as const,
         vimeoId: "849899875" as string | null,
         previewImages: [
@@ -203,8 +208,7 @@ export const site = {
         id: "ai-powered-reel",
         label: "AI & Hybrid Production",
         body: [
-          "AI-assisted visual development and sequences where the brief calls for it — always directed and finished by our team.",
-          "Method depends on the project. Not a shortcut, and not the same pipeline for every job.",
+          "We use AI where it serves the brief — from visual exploration to selected production sequences. Creative direction and finishing remain central to the process.",
         ] as const,
         vimeoId: "1212613379" as string | null,
         previewImages: [
@@ -228,61 +232,61 @@ export const site = {
       },
     ],
     gamesBridge: {
-      title: "Looking for game animation?",
-      text: "Trailers, ads and playables live on Lisenbart Games.",
-      cta: "Visit lisenbart.games",
+      title: "Making ads for games?",
+      text: "Game creatives and playable production have a dedicated home at LISENBART GAMES.",
+      cta: "Explore Games",
       href: "https://lisenbart.games",
     },
-    contactHeading: "Have a Brief?",
-    contactLead: "Share the project, timeline and current stage. We’ll come back with the right next step.",
+    contactHeading: "Send a Brief",
+    contactLead:
+      "Tell us what you are making, what you already have and when you need it. We’ll suggest the next step.",
   },
   homeContact: {
     heading: "Tell us about the project.",
-    lead: "",
+    lead: "A brief or a few clear details are enough to start.",
   },
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
     seoDescription:
       "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM. Original films, story IP, and commissioned work.",
   },
-  /** Company page — verified facts only; no invented headcount or capacity. */
+  /** Company page — operating model; no Selected Clients / Expertise catalogue. */
   studioPage: {
     name: "STUDIO",
-    title:
-      "Independent animation studio. Creative development, direction and production for client commissions and original films.",
-    seoTitle: "Studio — LISENBART FILM",
+    title: "Creative thinking and production working together.",
+    seoTitle: "Studio — How We Work | LISENBART FILM",
     seoDescription:
-      "Independent animation studio since 2006. Creative development, direction and production for brands, agencies and original films.",
+      "Get to know LISENBART FILM, an independent animation studio founded in 2006. Our approach to creative direction, teams and production collaboration.",
     sections: [
       {
         id: "who",
-        heading: "Who we are",
+        heading: "An independent animation studio since 2006.",
         paragraphs: [
-          "LISENBART FILM has operated since 2006 as an independent animation studio. We create commercials and branded content for brands, agencies and production partners, and we develop original films and story IP.",
-        ],
-      },
-      {
-        id: "expertise",
-        heading: "Expertise",
-        paragraphs: [
-          "Creative development, direction and animation production — as selected stages or complete delivery. Game advertising and playables live on Lisenbart Games. AI and hybrid production is a directed capability within Client Work.",
+          "LISENBART FILM develops original animation and produces commissioned work for brands, agencies and production partners. Storytelling shapes our creative decisions; production thinking makes them achievable.",
         ],
       },
       {
         id: "how",
-        heading: "How we work",
+        heading: "Built around the project.",
         paragraphs: [
-          "One clear creative and production lead per project. We work from existing briefs and assets, or from early concept through delivery. Scope is agreed before production expands; communication stays direct with agency and in-house teams.",
+          "Some clients come with a finished brief, boards and assets. Others need an idea developed from the start. We can join an existing workflow for selected stages or coordinate a complete production.",
+          "We agree the scope, responsibilities and delivery plan before work begins, and keep communication direct throughout production.",
+        ],
+      },
+      {
+        id: "people",
+        heading: "The right people for the work.",
+        paragraphs: [
+          "Creative direction, production management and specialist artists come together around the needs of each project. The team and workflow are shaped by the brief, rather than forcing every project through the same setup.",
         ],
       },
     ] as const,
-    founderLine: "Founded by Dmytro Lisenbart, animation director and producer.",
-    founderCta: "About the founder",
-    ctaLabel: "Discuss a Project",
-    workCta: "View Client Work",
-    contactHeading: "Tell us about the project.",
-    contactLead: "Share a brief, partnership idea or production question. We’ll come back with the next step.",
+    founderLine: "Founded in 2006 by animation director and producer Dmytro Lisenbart.",
+    founderCta: "About Dmytro Lisenbart",
+    contactHeading: "Let's talk about your project.",
+    contactLead: "Send a brief, production question or partnership idea. We’ll take it from there.",
   },
+
 
   contactForm: {
     submitLabel: "Send Message",
@@ -320,9 +324,10 @@ export const site = {
     white: "/images/black_logo.png",
   },
   meta: {
-    title: "LISENBART FILM — Independent Animation Studio",
+    title: "LISENBART FILM — Animation Studio for Brands & Original Films",
     description:
-      "Independent animation studio. Original films and story IP, plus commissioned work for brands and agencies. Game animation at Lisenbart Games.",
+      "Independent animation studio for brands, agencies and production partners. Creative development, direction and animation production since 2006.",
+
     /** Fresh path after domain-hack OG cache; keep separate from work thumbs. */
     ogImage: publicAsset("/images/work/lisenbart-og-2026.jpg"),
     /** Paste from Google Search Console → HTML tag verification (content= value only). */
