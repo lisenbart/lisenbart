@@ -36,6 +36,17 @@ export default function CommercialPage() {
           </h1>
         </header>
 
+        <div className="commercial-capabilities archive-container" aria-label="Capabilities">
+          <ul className="commercial-capabilities__list">
+            {commercialPage.capabilities.map((item) => (
+              <li key={item.title} className="commercial-capabilities__item">
+                <p className="commercial-capabilities__title">{item.title}</p>
+                <p className="commercial-capabilities__text">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <TrustedBySection />
 
         <div className="film-cases film-cases--reels">
