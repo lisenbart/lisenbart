@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import FilmPage from "./pages/FilmPage";
 import CommercialPage from "./pages/CommercialPage";
+import AboutPage from "./pages/AboutPage";
 import MobileEstimateCTA from "./components/MobileEstimateCTA";
 import Footer from "./components/Footer";
 import {
@@ -14,6 +15,7 @@ function resolveMain() {
   const hub = parseHubPage();
   if (hub === "originals") return <FilmPage />;
   if (hub === "client-work") return <CommercialPage />;
+  if (hub === "about") return <AboutPage />;
   return <HomePage />;
 }
 

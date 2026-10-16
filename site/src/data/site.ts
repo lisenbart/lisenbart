@@ -1,8 +1,18 @@
 import { publicAsset } from "@/lib/publicAsset";
 
 export const site = {
-  name: "LISENBART",
-  brand: "LISENBART",
+  name: "LISENBART FILM",
+  brand: "LISENBART FILM",
+  gamesUrl: "https://lisenbart.games",
+  studioHome: {
+    brandLine: "LISENBART FILM",
+    headline: "Independent animation studio",
+    lead: "Original films, story IP, and commissioned animation — from the first idea through final delivery.",
+    proof: ["Since 2006", "Kyiv · Canada · Poland", "1,000+ projects delivered"] as const,
+    ctaLabel: "Discuss a Project",
+    founderLine: "Founded by Dmytro Lisenbart",
+    founderAria: "About Dmytro Lisenbart",
+  },
   hero: {
     personalName: "Dmytro Lisenbart",
     personalRole: "Animation Director & Producer",
@@ -34,7 +44,7 @@ export const site = {
     ] as const,
   },
   explorePaths: {
-    titleLines: ["One Practice.", "Two Directions."] as const,
+    titleLines: ["What we do."] as const,
     film: {
       title: "LISENBART ORIGINALS",
       text: "Independent films, stories, and IP developed from the first idea onward.",
@@ -59,22 +69,25 @@ export const site = {
     },
     commercial: {
       title: "CLIENT WORK",
-      text: "Direction and production for brands, agencies, studios, and production partners.",
+      text: "Direction and production for brands, agencies, and production partners.",
       ctaAria: "View selected client work",
       previewImages: [
-        "/images/reels/games/01.webp",
         "/images/reels/advertising/01.webp",
         "/images/reels/ai/01.webp",
-        "/images/reels/games/03.webp",
         "/images/reels/advertising/03.webp",
         "/images/reels/ai/05.webp",
-        "/images/reels/games/05.webp",
         "/images/reels/advertising/05.webp",
         "/images/reels/ai/08.webp",
-        "/images/reels/games/07.webp",
         "/images/reels/advertising/07.webp",
         "/images/reels/ai/12.webp",
       ],
+    },
+    games: {
+      title: "LISENBART GAMES",
+      text: "Trailers, ad creatives, and playables for mobile and PC games.",
+      ctaAria: "Open Lisenbart Games — game animation studio",
+      href: "https://lisenbart.games",
+      mark: "GAMES",
     },
   },
   personalAbout: {
@@ -104,9 +117,9 @@ export const site = {
   commercialPage: {
     name: "CLIENT WORK",
     title: "Direction and production shaped around each brief — from creative development through final delivery.",
-    seoTitle: "Client Animation — Brands, Games & Agencies | LISENBART",
+    seoTitle: "Client Animation — Brands & Agencies | LISENBART FILM",
     seoDescription:
-      "Animation direction and production for brands, agencies, and game studios — from creative development through final delivery. Led by Dmytro Lisenbart.",
+      "Animation direction and production for brands and agencies — from creative development through final delivery. LISENBART FILM.",
     reels: [
       {
         id: "ai-powered-reel",
@@ -137,25 +150,6 @@ export const site = {
         ],
       },
       {
-        id: "game-reel",
-        label: "Gaming",
-        body: [
-          "Game marketing that's built around how players actually decide — not how briefing documents describe them.",
-          "We produce trailers, cinematics and playable ads for mobile and PC titles across all major UA networks. Projects range from single launch assets to ongoing creative pipelines for live-ops and seasonal campaigns. Every format — from a 30-second UA cut to a full HTML5 playable — is shaped around the platform, the audience segment, and the CPI target it needs to hit.",
-          "Clients include Playtika, Voodoo, Moon Active and Plarium. We work directly with UA and creative teams, move fast on iteration, and don't need three rounds of onboarding to understand what a game trailer is supposed to do.",
-        ] as const,
-        vimeoId: "944158555" as string | null,
-        previewImages: [
-          "/images/reels/games/01.webp",
-          "/images/reels/games/02.webp",
-          "/images/reels/games/03.webp",
-          "/images/reels/games/04.webp",
-          "/images/reels/games/05.webp",
-          "/images/reels/games/06.webp",
-          "/images/reels/games/07.webp",
-        ],
-      },
-      {
         id: "advertising-reel",
         label: "Advertising",
         body: [
@@ -176,12 +170,23 @@ export const site = {
         ],
       },
     ],
+    gamesBridge: {
+      title: "Looking for game animation?",
+      text: "Trailers, ads, and playables live on Lisenbart Games.",
+      cta: "Visit lisenbart.games",
+      href: "https://lisenbart.games",
+    },
     contactHeading: "Have a Brief?",
     contactLead: "Share the project, timeline, and current stage. I’ll come back with the right next step.",
   },
   homeContact: {
-    heading: "That is enough to begin a conversation.",
+    heading: "Tell us about the project.",
     lead: "",
+  },
+  aboutPage: {
+    seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
+    seoDescription:
+      "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM. Original films, story IP, and commissioned work.",
   },
   contactForm: {
     submitLabel: "Send Message",
@@ -217,9 +222,9 @@ export const site = {
     white: "/images/black_logo.png",
   },
   meta: {
-    title: "Dmytro Lisenbart — Animation Director & Producer | LISENBART",
+    title: "LISENBART FILM — Independent Animation Studio",
     description:
-      "Animation director and producer. Original films and IP under LISENBART Originals, plus commissioned work for brands, studios, and production partners.",
+      "Independent animation studio. Original films and story IP, plus commissioned work for brands and agencies. Game animation at Lisenbart Games.",
     /** Fresh path after domain-hack OG cache; keep separate from work thumbs. */
     ogImage: publicAsset("/images/work/lisenbart-og-2026.jpg"),
     /** Paste from Google Search Console → HTML tag verification (content= value only). */

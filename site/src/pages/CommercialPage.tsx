@@ -47,10 +47,28 @@ export default function CommercialPage() {
               body={reel.body}
               videoId={reel.vimeoId}
               previewImages={reel.previewImages}
-              comingSoon={reel.comingSoon}
             />
           ))}
         </div>
+
+        {commercialPage.gamesBridge && (
+          <aside className="studio-games-bridge archive-container" aria-label="Lisenbart Games">
+            <div className="studio-games-bridge__card">
+              <div className="studio-games-bridge__copy">
+                <p className="studio-games-bridge__title">{commercialPage.gamesBridge.title}</p>
+                <p className="studio-games-bridge__text">{commercialPage.gamesBridge.text}</p>
+              </div>
+              <a
+                className="studio-games-bridge__cta"
+                href={commercialPage.gamesBridge.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {commercialPage.gamesBridge.cta}
+              </a>
+            </div>
+          </aside>
+        )}
 
         <ContactForm heading={commercialPage.contactHeading} lead={commercialPage.contactLead} />
       </main>

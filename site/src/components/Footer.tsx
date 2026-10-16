@@ -1,5 +1,4 @@
-import type { MouseEvent } from "react";
-import { site, sectionIds } from "@/data/site";
+import { site } from "@/data/site";
 import { hubCanonicalHref, isSiteSubpage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
 
@@ -8,17 +7,17 @@ const IMDB_PROFILE = site.imdb;
 function FooterNavLink({
   href,
   label,
-  onClick,
+  external = false,
 }: {
   href: string;
   label: string;
-  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void;
+  external?: boolean;
 }) {
   return (
     <a
       href={href}
       className="text-sm font-light text-text-secondary transition-colors hover:text-text-primary"
-      onClick={onClick}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {label}
     </a>
@@ -72,21 +71,10 @@ export default function Footer() {
                       <FooterNavLink href={hubCanonicalHref("client-work")} label="Client Work" />
                     </li>
                     <li>
-                      <FooterNavLink
-                        href={onSubpage ? `${routes.home}#${sectionIds.about}` : `#${sectionIds.about}`}
-                        label="About"
-                        onClick={
-                          onSubpage
-                            ? undefined
-                            : (e) => {
-                                e.preventDefault();
-                                document.getElementById(sectionIds.about)?.scrollIntoView({
-                                  behavior: "smooth",
-                                  block: "start",
-                                });
-                              }
-                        }
-                      />
+                      <FooterNavLink href={hubCanonicalHref("about")} label="About" />
+                    </li>
+                    <li>
+                      <FooterNavLink href={site.gamesUrl} label="Games" external />
                     </li>
                   </ul>
                 </nav>

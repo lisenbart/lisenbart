@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import PersonalHeroSection from "@/components/PersonalHeroSection";
-import ExplorePathsSection from "@/components/ExplorePathsSection";
-import PersonalAboutSection from "@/components/PersonalAboutSection";
+import ContactForm from "@/components/ContactForm";
+import StudioDirectionsSection from "@/components/StudioDirectionsSection";
+import StudioHeroSection from "@/components/StudioHeroSection";
 import { SEO } from "@/components/SEO";
 import { scrollToSection, site } from "@/data/site";
 
@@ -17,9 +17,9 @@ export default function HomePage() {
     <>
       <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
       <main className="site-main site-main-stack">
-        <PersonalHeroSection />
-        <ExplorePathsSection />
-        <PersonalAboutSection />
+        <StudioHeroSection />
+        <StudioDirectionsSection />
+        <ContactForm heading={site.homeContact.heading} lead={site.homeContact.lead} />
       </main>
     </>
   );

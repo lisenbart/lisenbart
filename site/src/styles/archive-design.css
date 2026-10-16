@@ -2957,3 +2957,239 @@ footer .how-ios-card {
   outline: 2px solid var(--text-primary);
   outline-offset: 2px;
 }
+
+/* ══════════════════════════════════════════
+   STUDIO HOME (LISENBART FILM)
+   ══════════════════════════════════════════ */
+.studio-hero {
+  padding: calc(var(--site-header-offset) + var(--space-5)) 0 var(--space-5);
+}
+
+.studio-hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 42rem;
+}
+
+.studio-hero__brand {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.studio-hero__headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 7.5vw, 4.6rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  color: var(--text-primary);
+}
+
+.studio-hero__lead {
+  margin: 1.15rem 0 0;
+  max-width: 34rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  font-weight: 450;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.studio-hero__proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.15rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studio-hero__proof-item {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--text-tertiary);
+}
+
+.studio-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.35rem;
+  margin-top: 1.75rem;
+}
+
+.studio-hero__cta {
+  appearance: none;
+  border: 0;
+  border-radius: var(--radius-cta);
+  padding: 0.85rem 1.35rem;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.studio-hero__cta:hover,
+.studio-hero__cta:focus-visible {
+  opacity: 0.88;
+}
+
+.studio-hero__cta:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 3px;
+}
+
+.studio-hero__founder {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+.studio-hero__founder:hover,
+.studio-hero__founder:focus-visible {
+  color: var(--text-primary);
+}
+
+.archive-explore__title--studio {
+  text-align: left;
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.archive-explore__panels--studio {
+  align-items: stretch;
+}
+
+.archive-panel--games {
+  color: #f4f2eb;
+}
+
+.archive-panel--games .archive-panel__overlay {
+  background:
+    linear-gradient(160deg, rgba(20, 24, 38, 0.2) 0%, rgba(10, 12, 18, 0.55) 100%),
+    color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+.archive-panel__media--games {
+  background:
+    radial-gradient(120% 90% at 12% 18%, rgba(36, 155, 183, 0.55) 0%, transparent 55%),
+    radial-gradient(90% 80% at 88% 78%, rgba(106, 66, 216, 0.42) 0%, transparent 50%),
+    linear-gradient(145deg, #141822 0%, #0b0d14 55%, #1a1428 100%);
+}
+
+.archive-panel__games-mark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1.4rem 1.5rem;
+  z-index: 1;
+}
+
+.archive-panel__games-word {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(244, 242, 235, 0.72);
+}
+
+.archive-panel__games-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid rgba(244, 242, 235, 0.35);
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f4f2eb;
+  background: color-mix(in srgb, #000 28%, transparent);
+}
+
+.archive-panel--games .archive-panel__content {
+  background: color-mix(in srgb, var(--ink) 78%, transparent);
+}
+
+@media (min-width: 900px) {
+  .archive-explore__panels--studio {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .archive-explore__panels--studio .archive-panel {
+    grid-column: span 4;
+  }
+}
+
+.studio-games-bridge {
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--page-max));
+  margin: 0 auto var(--space-5);
+}
+
+.studio-games-bridge__card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1.25rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-panel);
+  background: color-mix(in srgb, var(--paper-light) 88%, #141822 12%);
+}
+
+.studio-games-bridge__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.studio-games-bridge__text {
+  margin: 0.25rem 0 0;
+  font-size: 0.98rem;
+  color: var(--text-secondary);
+}
+
+.studio-games-bridge__cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-cta);
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.studio-games-bridge__cta:hover,
+.studio-games-bridge__cta:focus-visible {
+  opacity: 0.88;
+}

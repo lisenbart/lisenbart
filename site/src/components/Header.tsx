@@ -1,16 +1,16 @@
 import { useEffect, useId, useState } from "react";
 import { MessageSquare } from "lucide-react";
-import { goToContact, sectionIds, site } from "@/data/site";
+import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref, isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
 import HeaderConnectMenu from "./HeaderConnectMenu";
 
 type NavId = (typeof site.primaryNav)[number]["id"];
 
-function navHref(id: NavId, onSubpage: boolean) {
+function navHref(id: NavId) {
   if (id === "originals") return hubCanonicalHref("originals");
   if (id === "client-work") return hubCanonicalHref("client-work");
-  return onSubpage ? `${routes.home}#${sectionIds.about}` : `#${sectionIds.about}`;
+  return hubCanonicalHref("about");
 }
 
 export default function Header() {
@@ -49,6 +49,7 @@ export default function Header() {
   const isActive = (id: NavId) => {
     if (id === "originals") return activeHub === "originals";
     if (id === "client-work") return activeHub === "client-work";
+    if (id === "about") return activeHub === "about";
     return false;
   };
 
@@ -80,8 +81,7 @@ export default function Header() {
 
           <div className="header-nav-pill" aria-label="Primary">
             {site.primaryNav.map((link) => {
-              const href = navHref(link.id, onSubpage);
-              const aboutOnHome = link.id === "about" && !onSubpage;
+              const href = navHref(link.id);
 
               return (
                 <a
@@ -91,18 +91,7 @@ export default function Header() {
                     link.id === "originals" ? " header-nav-pill__link--film" : ""
                   }${link.id === "client-work" ? " header-nav-pill__link--commercial" : ""}`}
                   aria-current={isActive(link.id) ? "page" : undefined}
-                  onClick={
-                    aboutOnHome
-                      ? (e) => {
-                          e.preventDefault();
-                          closeMenu();
-                          document.getElementById(sectionIds.about)?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                        }
-                      : closeMenu
-                  }
+                  onClick={closeMenu}
                 >
                   {link.label}
                 </a>
@@ -149,8 +138,7 @@ export default function Header() {
         >
           <div className="header-mobile-panel__list">
             {site.primaryNav.map((link) => {
-              const href = navHref(link.id, onSubpage);
-              const aboutOnHome = link.id === "about" && !onSubpage;
+              const href = navHref(link.id);
 
               return (
                 <a
@@ -158,18 +146,7 @@ export default function Header() {
                   href={href}
                   className={`header-mobile-panel__link${isActive(link.id) ? " is-active" : ""}`}
                   aria-current={isActive(link.id) ? "page" : undefined}
-                  onClick={
-                    aboutOnHome
-                      ? (e) => {
-                          e.preventDefault();
-                          closeMenu();
-                          document.getElementById(sectionIds.about)?.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                        }
-                      : closeMenu
-                  }
+                  onClick={closeMenu}
                 >
                   {link.label}
                 </a>
