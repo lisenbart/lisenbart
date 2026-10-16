@@ -10,6 +10,8 @@ interface ReelBlockProps {
   videoId: string | null;
   previewImages: string[];
   comingSoon?: boolean;
+  /** Primary advertising proof vs secondary capability (e.g. AI). */
+  emphasis?: "primary" | "secondary";
 }
 
 /** Commercial reel — slideshow preview → play launches showreel. */
@@ -20,6 +22,7 @@ export default function ReelBlock({
   videoId,
   previewImages,
   comingSoon = false,
+  emphasis = "primary",
 }: ReelBlockProps) {
   const [playing, setPlaying] = useState(false);
   const ariaLabel = `${label} reel`;
@@ -28,9 +31,9 @@ export default function ReelBlock({
   return (
     <section
       id={id}
-      className={`reel-block reel-block--split${comingSoon ? " reel-block--soon" : ""}${
-        playing ? " reel-block--playing" : ""
-      }`}
+      className={`reel-block reel-block--split reel-block--${emphasis}${
+        comingSoon ? " reel-block--soon" : ""
+      }${playing ? " reel-block--playing" : ""}`}
       aria-labelledby={`reel-block-title-${id}`}
     >
       <div className="reel-block__stage">

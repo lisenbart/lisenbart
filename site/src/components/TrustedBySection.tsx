@@ -23,7 +23,7 @@ export default function TrustedBySection() {
   return (
     <section
       id={sectionIds.trusted}
-      className="trusted-by-section scroll-mt-24 pb-[var(--section-spacing)]"
+      className="trusted-by-section trusted-by-section--compact scroll-mt-24"
       aria-label={trustedBy.label}
     >
       <div className="archive-container">

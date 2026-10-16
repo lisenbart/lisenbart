@@ -4,7 +4,7 @@ import { SEO } from "@/components/SEO";
 import { scrollToSection, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
-/** Company page — how the studio works. No Selected Clients or service catalogue. */
+/** Company page — intro, engagement models, people. No portfolio or clients. */
 export default function StudioPage() {
   const { studioPage } = site;
   const seoUrl = `${site.canonical}${hubCanonicalHref("studio")}`;
@@ -30,30 +30,40 @@ export default function StudioPage() {
         </header>
 
         <div className="archive-container studio-page__body">
-          {studioPage.sections.map((section) => (
-            <section
-              key={section.id}
-              className="studio-page__section"
-              aria-labelledby={`studio-${section.id}`}
-            >
-              <h2 id={`studio-${section.id}`} className="studio-page__heading">
-                {section.heading}
-              </h2>
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="studio-page__text">
-                  {paragraph}
-                </p>
+          <section className="studio-page__section" aria-labelledby="studio-intro">
+            <h2 id="studio-intro" className="studio-page__heading">
+              {studioPage.introHeading}
+            </h2>
+            <p className="studio-page__text">{studioPage.intro}</p>
+          </section>
+
+          <section className="studio-page__section studio-page__engagement" aria-labelledby="studio-engagement">
+            <h2 id="studio-engagement" className="studio-page__heading">
+              {studioPage.engagementHeading}
+            </h2>
+            <ul className="studio-engagement__list">
+              {studioPage.engagementModels.map((item) => (
+                <li key={item.title} className="studio-engagement__item">
+                  <p className="studio-engagement__title">{item.title}</p>
+                  <p className="studio-engagement__text">{item.text}</p>
+                </li>
               ))}
-              {section.id === "people" && (
-                <p className="studio-page__founder">
-                  {studioPage.founderLine}{" "}
-                  <a className="studio-page__founder-link" href={hubCanonicalHref("about")}>
-                    {studioPage.founderCta}
-                  </a>
-                </p>
-              )}
-            </section>
-          ))}
+            </ul>
+            <p className="studio-engagement__note">{studioPage.engagementNote}</p>
+          </section>
+
+          <section className="studio-page__section" aria-labelledby="studio-people">
+            <h2 id="studio-people" className="studio-page__heading">
+              {studioPage.peopleHeading}
+            </h2>
+            <p className="studio-page__text">{studioPage.people}</p>
+            <p className="studio-page__founder">
+              {studioPage.founderLine}{" "}
+              <a className="studio-page__founder-link" href={hubCanonicalHref("about")}>
+                {studioPage.founderCta}
+              </a>
+            </p>
+          </section>
         </div>
 
         <ContactForm heading={studioPage.contactHeading} lead={studioPage.contactLead} />

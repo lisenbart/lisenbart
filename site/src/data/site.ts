@@ -168,22 +168,21 @@ export const site = {
     seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
     seoDescription:
       "Commission animation production, creative development and direction for brands and agencies. From individual production stages to complete campaigns.",
-    engagementHeading: "Ways to work with us",
-    engagementModels: [
+    capabilitiesHeading: "What we do",
+    capabilities: [
       {
-        title: "Production Partner",
-        text: "Have the concept and assets ready? We handle the animation and production stages you need, working within your pipeline.",
+        title: "Creative Development",
+        text: "Concepts, scripts, storyboards and visual development.",
       },
       {
-        title: "Creative & Direction",
-        text: "Concepts, scripts, storyboards, visual development and direction — with or without full production.",
+        title: "Direction",
+        text: "Creative and directorial leadership from concept through delivery.",
       },
       {
-        title: "Full Production",
-        text: "From first idea to final delivery. Creative development, direction and production coordinated as one project.",
+        title: "Animation Production",
+        text: "Production of animation and motion content, as individual stages or complete delivery.",
       },
     ] as const,
-    engagementNote: "One project or ongoing collaboration. Scope and workflow are agreed around the brief.",
     evidenceHeading: "Selected Commercial Work",
     reels: [
       {
@@ -232,8 +231,8 @@ export const site = {
       },
     ],
     gamesBridge: {
-      title: "Making ads for games?",
-      text: "Game creatives and playable production have a dedicated home at LISENBART GAMES.",
+      title: "LISENBART GAMES",
+      text: "Game advertising creatives and playable production have a dedicated division.",
       cta: "Explore Games",
       href: "https://lisenbart.games",
     },
@@ -250,42 +249,42 @@ export const site = {
     seoDescription:
       "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM. Original films, story IP, and commissioned work.",
   },
-  /** Company page — operating model; no Selected Clients / Expertise catalogue. */
+  /** Company page — operating model & engagement; no Selected Clients. */
   studioPage: {
     name: "STUDIO",
     title: "Creative thinking and production working together.",
     seoTitle: "Studio — How We Work | LISENBART FILM",
     seoDescription:
       "Get to know LISENBART FILM, an independent animation studio founded in 2006. Our approach to creative direction, teams and production collaboration.",
-    sections: [
+    introHeading: "An independent animation studio since 2006.",
+    intro:
+      "LISENBART FILM develops original animation and produces commissioned work for brands, agencies and production partners. Storytelling shapes our creative decisions; production thinking makes them achievable.",
+    engagementHeading: "Ways to work with us",
+    engagementModels: [
       {
-        id: "who",
-        heading: "An independent animation studio since 2006.",
-        paragraphs: [
-          "LISENBART FILM develops original animation and produces commissioned work for brands, agencies and production partners. Storytelling shapes our creative decisions; production thinking makes them achievable.",
-        ],
+        title: "Production Partner",
+        text: "Clients provide an existing concept, brief or assets. We handle selected production stages within their workflow.",
       },
       {
-        id: "how",
-        heading: "Built around the project.",
-        paragraphs: [
-          "Some clients come with a finished brief, boards and assets. Others need an idea developed from the start. We can join an existing workflow for selected stages or coordinate a complete production.",
-          "We agree the scope, responsibilities and delivery plan before work begins, and keep communication direct throughout production.",
-        ],
+        title: "Creative & Direction",
+        text: "Concepts, scripts, visual development and creative direction, with or without complete production.",
       },
       {
-        id: "people",
-        heading: "The right people for the work.",
-        paragraphs: [
-          "Creative direction, production management and specialist artists come together around the needs of each project. The team and workflow are shaped by the brief, rather than forcing every project through the same setup.",
-        ],
+        title: "Full Production",
+        text: "Creative development, direction and production coordinated from initial concept through final delivery.",
       },
     ] as const,
+    engagementNote:
+      "Individual projects or ongoing collaboration. Existing briefs and assets are welcome. Scope, responsibilities and delivery plan are agreed before work begins — with direct communication and integration into your workflow.",
+    peopleHeading: "The right people for the work.",
+    people:
+      "Creative leadership, production coordination and relevant specialists work together around each project. The team and workflow are shaped by the brief, rather than forcing every project through the same setup.",
     founderLine: "Founded in 2006 by animation director and producer Dmytro Lisenbart.",
     founderCta: "About Dmytro Lisenbart",
     contactHeading: "Let's talk about your project.",
     contactLead: "Send a brief, production question or partnership idea. We’ll take it from there.",
   },
+
 
 
   contactForm: {

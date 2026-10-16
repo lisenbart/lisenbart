@@ -2,8 +2,6 @@ import { site } from "@/data/site";
 import { hubCanonicalHref, isSiteSubpage, routes } from "@/lib/routes";
 import BrandLogo from "./BrandLogo";
 
-const IMDB_PROFILE = site.imdb;
-
 function FooterNavLink({
   href,
   label,
@@ -27,12 +25,13 @@ function FooterNavLink({
 export default function Footer() {
   const onSubpage = isSiteSubpage();
 
+  /** Studio-facing connect links only — personal IMDb lives on /about/. */
   const connectLinks = [
     { label: "Email", href: `mailto:${site.email}` },
     { label: "LinkedIn", href: site.linkedin, external: true as const },
     { label: "YouTube", href: site.youtube, external: true as const },
-    { label: "IMDb", href: IMDB_PROFILE, external: true as const },
   ];
+
 
   return (
     <footer className="w-full max-w-full min-w-0 overflow-x-clip px-[var(--page-padding)] pb-24 pt-7 md:pb-12 md:pt-14">

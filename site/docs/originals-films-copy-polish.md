@@ -70,7 +70,7 @@ description:
 A robot buys a human from a store of unwanted things, beginning a friendship that ends where it began.
 
 result:
-15 awards · 45 festival selections
+11 awards · 45 festival selections
 
 selectionLinks:
 - Vancouver International Film Festival
@@ -171,7 +171,7 @@ result (each sentence = one bullet):
 1. Site language is **English**.
 2. Unnecessary Things synopsis is currently one sentence — strong and short; polish can deepen tone without becoming a plot dump.
 3. Last Kozak synopsis is denser (loop + tone + world). Polish can clarify hook vs world-building; keep Iron Dog / Last Khreshchatyk only if you want those proper nouns on the page.
-4. Awards numbers (`15 awards · 45 festival selections`) should stay factual if kept.
+4. Awards numbers (`11 awards · 45 festival selections`) should stay factual if kept.
 5. Festival / winner / quote labels are public-facing — polish wording carefully; URLs can stay as-is unless you also want link changes.
 6. Credits are behind a disclosure — can be slightly longer than the synopsis.
 7. Don’t invent festivals, awards, partners, or development status.

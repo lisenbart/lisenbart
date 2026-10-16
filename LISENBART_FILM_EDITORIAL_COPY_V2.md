@@ -129,7 +129,8 @@ Main navigation: **Client Work · Originals · Studio · Contact**. Brand mark l
 **Unnecessary Things**  
 Meta: **Animated Short · 14 min · 2021**  
 Synopsis (preserve verified project synopsis): **In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.**  
-Evidence: **15 awards · 45 festival selections** *(existing project record; verify totals before publishing updates)*  
+Evidence: **11 awards · 45 festival selections** *(corrected factual record, Oct 2026)*  
+
 Link: **View on IMDb** → existing project link.  
 **No new sales/distribution CTA until available rights and objectives are confirmed.**
 

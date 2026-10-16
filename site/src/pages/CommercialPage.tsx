@@ -9,6 +9,7 @@ import { hubCanonicalHref } from "@/lib/routes";
 export default function CommercialPage() {
   const { commercialPage } = site;
   const seoUrl = `${site.canonical}${hubCanonicalHref("client-work")}`;
+  const [advertisingReel, ...secondaryReels] = commercialPage.reels;
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -36,49 +37,64 @@ export default function CommercialPage() {
           </h1>
         </header>
 
-        <div className="commercial-capabilities archive-container" aria-labelledby="engagement-heading">
-          <h2 id="engagement-heading" className="commercial-capabilities__section-title">
-            {commercialPage.engagementHeading}
+        <div className="commercial-capabilities archive-container" aria-labelledby="capabilities-heading">
+          <h2 id="capabilities-heading" className="commercial-capabilities__section-title">
+            {commercialPage.capabilitiesHeading}
           </h2>
           <ul className="commercial-capabilities__list">
-            {commercialPage.engagementModels.map((item) => (
+            {commercialPage.capabilities.map((item) => (
               <li key={item.title} className="commercial-capabilities__item">
                 <p className="commercial-capabilities__title">{item.title}</p>
                 <p className="commercial-capabilities__text">{item.text}</p>
               </li>
             ))}
           </ul>
-          <p className="commercial-capabilities__note">{commercialPage.engagementNote}</p>
         </div>
 
-        <div className="archive-container commercial-evidence-heading">
-          <h2 className="commercial-capabilities__section-title">{commercialPage.evidenceHeading}</h2>
-        </div>
+        <section className="commercial-evidence" aria-labelledby="commercial-evidence-heading">
+          <div className="archive-container commercial-evidence__header">
+            <h2 id="commercial-evidence-heading" className="commercial-capabilities__section-title">
+              {commercialPage.evidenceHeading}
+            </h2>
+          </div>
 
-        <TrustedBySection />
+          <TrustedBySection />
 
-        <div className="film-cases film-cases--reels">
-          {commercialPage.reels.map((reel) => (
-            <ReelBlock
-              key={reel.id}
-              id={reel.id}
-              label={reel.label}
-              body={reel.body}
-              videoId={reel.vimeoId}
-              previewImages={reel.previewImages}
-            />
-          ))}
-        </div>
+          <div className="film-cases film-cases--reels">
+            {advertisingReel && (
+              <ReelBlock
+                key={advertisingReel.id}
+                id={advertisingReel.id}
+                label={advertisingReel.label}
+                body={advertisingReel.body}
+                videoId={advertisingReel.vimeoId}
+                previewImages={advertisingReel.previewImages}
+                emphasis="primary"
+              />
+            )}
+            {secondaryReels.map((reel) => (
+              <ReelBlock
+                key={reel.id}
+                id={reel.id}
+                label={reel.label}
+                body={reel.body}
+                videoId={reel.vimeoId}
+                previewImages={reel.previewImages}
+                emphasis="secondary"
+              />
+            ))}
+          </div>
+        </section>
 
         {commercialPage.gamesBridge && (
           <aside className="studio-games-bridge archive-container" aria-label="Lisenbart Games">
-            <div className="studio-games-bridge__card">
+            <div className="studio-games-bridge__row">
               <div className="studio-games-bridge__copy">
                 <p className="studio-games-bridge__title">{commercialPage.gamesBridge.title}</p>
                 <p className="studio-games-bridge__text">{commercialPage.gamesBridge.text}</p>
               </div>
               <a
-                className="studio-games-bridge__cta"
+                className="studio-games-bridge__link"
                 href={commercialPage.gamesBridge.href}
                 target="_blank"
                 rel="noopener noreferrer"
