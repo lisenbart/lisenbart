@@ -197,21 +197,60 @@ img { display: block; width: 100%; }
   position: relative;
   min-height: 100svh;
   overflow: hidden;
+  background: #0c1630;
+}
+
+.home-hero--day {
+  background: #7eb8e8;
 }
 
 .bear-art {
   position: absolute;
-  z-index: 2;
-  inset: -3% -4% -5% 10%;
-  width: 110%;
-  height: 110%;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 64% 48%;
-  mix-blend-mode: multiply;
-  filter: brightness(1.33) saturate(0.82);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 18%, black 46%);
-  mask-image: linear-gradient(90deg, transparent 0%, transparent 18%, black 46%);
+  object-position: 58% 45%;
   pointer-events: none;
+}
+
+/* Evening hero is dark — light type for contrast */
+.home-hero--evening .home-statement h1,
+.home-hero--evening .home-statement p,
+.home-hero--evening .home-actions a,
+.home-hero--evening .home-actions button {
+  color: #f7f4ef;
+}
+
+.home-hero--evening .home-statement i {
+  background: #f7f4ef;
+}
+
+.home-hero--evening .tiny-circle,
+.home-hero--evening .play-circle {
+  border-color: rgba(247, 244, 239, 0.85);
+}
+
+.home-hero--evening .arrow-icon,
+.home-hero--evening .play-icon {
+  stroke: #f7f4ef;
+  fill: #f7f4ef;
+}
+
+.home-hero--evening .play-icon {
+  fill: #f7f4ef;
+}
+
+/* Home evening: light nav over dark hero */
+html[data-hero-period="evening"] .film-header .brand,
+html[data-hero-period="evening"] .film-header .desktop-nav a,
+html[data-hero-period="evening"] .film-header .menu-button span {
+  color: #f7f4ef;
+}
+
+html[data-hero-period="evening"] .film-header .menu-button span {
+  background: #f7f4ef;
 }
 
 /* Film identity shell — isolate from archive chrome */
@@ -1067,12 +1106,10 @@ a.original-tile {
   .home-hero { min-height: 100svh; }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    inset: -4% -55% -4% -26%;
-    width: 180%;
-    height: 108%;
-    object-position: 65% 48%;
-    -webkit-mask-image: linear-gradient(180deg, black 0 72%, transparent 94%);
-    mask-image: linear-gradient(180deg, black 0 72%, transparent 94%);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-position: 62% 40%;
   }
   .home-statement { left: 1.2rem; right: 1.2rem; top: auto; bottom: 14vh; }
   .home-statement h1 { font-size: clamp(1.2rem, 6vw, 2rem); line-height: 1.5; letter-spacing: 0.26em; }

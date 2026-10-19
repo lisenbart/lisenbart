@@ -1,14 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
-import LightScene from "@/components/film/LightScene";
 import { Arrow, PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
+import {
+  heroImageForPeriod,
+  heroPeriodFromDate,
+  msUntilNextHeroBoundary,
+  type HeroPeriod,
+} from "@/lib/heroTime";
 import { scrollToSection, sectionIds, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
 export default function HomePage() {
   const { openReel } = useReel();
+  /** Default day for SSR/prerender; local period applied after mount. */
+  const [period, setPeriod] = useState<HeroPeriod>("day");
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -17,18 +24,46 @@ export default function HomePage() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    let timer: number;
+
+    const sync = () => {
+      const next = heroPeriodFromDate();
+      setPeriod(next);
+      document.documentElement.dataset.heroPeriod = next;
+      timer = window.setTimeout(sync, msUntilNextHeroBoundary());
+    };
+
+    sync();
+    const onVisible = () => {
+      if (document.visibilityState === "visible") {
+        window.clearTimeout(timer);
+        sync();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisible);
+
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("visibilitychange", onVisible);
+      delete document.documentElement.dataset.heroPeriod;
+    };
+  }, []);
+
+  const heroSrc = heroImageForPeriod(period);
+
   return (
     <>
       <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
       <div className="home-page">
-        <section className="home-hero">
-          <LightScene />
+        <section className={`home-hero home-hero--${period}`}>
           <img
             className="bear-art"
-            src="/images/lisenbart-hero.png"
+            src={heroSrc}
             alt=""
-            width={1600}
-            height={1200}
+            width={1024}
+            height={576}
+            fetchPriority="high"
           />
           <div className="home-statement">
             <h1>
