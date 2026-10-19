@@ -6,7 +6,7 @@ export const site = {
   gamesUrl: "https://lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
-    headline: "Endless stories. Different worlds. One language.",
+    headline: "Creative freedom. Production control.",
     lead: "Independent animation studio for brands, production partners and original films. Creative development, direction and production — together or as individual stages.",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
     ctaLabel: "Discuss a Project",
@@ -241,7 +241,7 @@ export const site = {
       "Tell us what you are making, what you already have and when you need it. We’ll suggest the next step.",
   },
   homeContact: {
-    heading: "Tell us about the project.",
+    heading: "Contact",
     lead: "A brief or a few clear details are enough to start.",
   },
   aboutPage: {
@@ -302,7 +302,7 @@ export const site = {
     aiHelper: "Where do you see AI fitting into the project?",
   },
   primaryNav: [
-    { id: "client-work" as const, label: "Client Work" },
+    { id: "client-work" as const, label: "Work" },
     { id: "originals" as const, label: "Originals" },
     { id: "studio" as const, label: "Studio" },
     { id: "contact" as const, label: "Contact" },
@@ -323,7 +323,7 @@ export const site = {
     white: "/images/black_logo.png",
   },
   meta: {
-    title: "LISENBART FILM — Animation Studio for Brands & Original Films",
+    title: "LISENBART FILM — Creative Freedom. Production Control.",
     description:
       "Independent animation studio for brands, agencies and production partners. Creative development, direction and animation production since 2006.",
 

@@ -1,73 +1,99 @@
-import { useEffect } from "react";
-import ContactForm from "@/components/ContactForm";
+import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
-import { scrollToSection, site } from "@/data/site";
+import LightScene from "@/components/film/LightScene";
+import { Arrow } from "@/components/film/FilmIcons";
+import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
-/** Company page — intro, engagement models, people. No portfolio or clients. */
+const page = site.studioPage;
+
 export default function StudioPage() {
-  const { studioPage } = site;
-  const seoUrl = `${site.canonical}${hubCanonicalHref("studio")}`;
-
-  useEffect(() => {
-    const hash = window.location.hash.replace(/^#/, "");
-    if (!hash) return;
-    const timer = window.setTimeout(() => scrollToSection(hash), 50);
-    return () => window.clearTimeout(timer);
-  }, []);
-
   return (
     <>
-      <SEO title={studioPage.seoTitle} description={studioPage.seoDescription} url={seoUrl} />
-      <main className="site-main work-page archive-hub studio-page">
-        <header className="work-page-header hub-page-header">
-          <h1 className="hub-page-header__row">
-            <span className="hub-page-header__name">{studioPage.name}</span>
-            <span className="hub-page-header__sep" aria-hidden="true" />
-            <span className="sr-only"> — </span>
-            <span className="hub-page-header__lead">{studioPage.title}</span>
-          </h1>
-        </header>
-
-        <div className="archive-container studio-page__body">
-          <section className="studio-page__section" aria-labelledby="studio-intro">
-            <h2 id="studio-intro" className="studio-page__heading">
-              {studioPage.introHeading}
-            </h2>
-            <p className="studio-page__text">{studioPage.intro}</p>
-          </section>
-
-          <section className="studio-page__section studio-page__engagement" aria-labelledby="studio-engagement">
-            <h2 id="studio-engagement" className="studio-page__heading">
-              {studioPage.engagementHeading}
-            </h2>
-            <ul className="studio-engagement__list">
-              {studioPage.engagementModels.map((item) => (
-                <li key={item.title} className="studio-engagement__item">
-                  <p className="studio-engagement__title">{item.title}</p>
-                  <p className="studio-engagement__text">{item.text}</p>
-                </li>
-              ))}
-            </ul>
-            <p className="studio-engagement__note">{studioPage.engagementNote}</p>
-          </section>
-
-          <section className="studio-page__section" aria-labelledby="studio-people">
-            <h2 id="studio-people" className="studio-page__heading">
-              {studioPage.peopleHeading}
-            </h2>
-            <p className="studio-page__text">{studioPage.people}</p>
-            <p className="studio-page__founder">
-              {studioPage.founderLine}{" "}
-              <a className="studio-page__founder-link" href={hubCanonicalHref("about")}>
-                {studioPage.founderCta}
-              </a>
-            </p>
-          </section>
+      <SEO
+        title={page.seoTitle}
+        description={page.seoDescription}
+        url={`${site.canonical}/studio/`}
+      />
+      <section className="studio-page">
+        <div className="studio-hero">
+          <LightScene variant="studio" />
+          <div>
+            <h1>
+              Director-led
+              <br />
+              creative
+              <br />
+              production
+              <br />
+              company.
+            </h1>
+            <i />
+            <p>Est. 2006</p>
+          </div>
         </div>
+        <div className="studio-image">
+          <img
+            src="/images/explore/originals/07.webp"
+            alt="Creative production in progress"
+          />
+        </div>
+        <div className="studio-footer">
+          <p>
+            Creative people.
+            <br />
+            Real production.
+            <br />
+            Global stories.
+          </p>
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              goToContact();
+            }}
+          >
+            <span className="circle-link">
+              <Arrow />
+            </span>{" "}
+            Discuss a project
+          </a>
+        </div>
+      </section>
 
-        <ContactForm heading={studioPage.contactHeading} lead={studioPage.contactLead} />
-      </main>
+      <section className="studio-models" aria-labelledby="ways-heading">
+        <p className="film-section-label">{page.introHeading}</p>
+        <p className="studio-models__note" style={{ marginTop: 0 }}>
+          {page.intro}
+        </p>
+        <h2 id="ways-heading" className="studio-models__title" style={{ marginTop: "2rem" }}>
+          {page.engagementHeading}
+        </h2>
+        <ul className="studio-models__list">
+          {page.engagementModels.map((model) => (
+            <li key={model.title}>
+              <h3 className="studio-models__title">{model.title}</h3>
+              <p className="studio-models__text">{model.text}</p>
+            </li>
+          ))}
+        </ul>
+        <p className="studio-models__note">{page.engagementNote}</p>
+      </section>
+
+      <section className="studio-people" aria-labelledby="people-heading">
+        <h2 id="people-heading" className="studio-models__title">
+          {page.peopleHeading}
+        </h2>
+        <p className="studio-people__text">{page.people}</p>
+        <p className="studio-people__founder">
+          {page.founderLine}{" "}
+          <a className="studio-people__link" href={hubCanonicalHref("about")}>
+            {page.founderCta}
+          </a>
+        </p>
+      </section>
+
+      <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />
     </>
   );
 }

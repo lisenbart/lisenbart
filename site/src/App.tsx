@@ -4,8 +4,8 @@ import FilmPage from "./pages/FilmPage";
 import CommercialPage from "./pages/CommercialPage";
 import StudioPage from "./pages/StudioPage";
 import AboutPage from "./pages/AboutPage";
-import MobileEstimateCTA from "./components/MobileEstimateCTA";
 import Footer from "./components/Footer";
+import { ReelProvider } from "./contexts/ReelContext";
 import {
   legacyWorkRedirectTarget,
   parseHubPage,
@@ -37,12 +37,12 @@ export default function App() {
   }
 
   return (
-    <>
-      <div className="cosmic-bg" aria-hidden="true" />
-      <Header />
-      {resolveMain()}
-      <Footer />
-      <MobileEstimateCTA />
-    </>
+    <ReelProvider>
+      <div className="film-app">
+        <Header />
+        {resolveMain()}
+        <Footer />
+      </div>
+    </ReelProvider>
   );
 }

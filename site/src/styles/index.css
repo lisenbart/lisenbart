@@ -1,6 +1,12 @@
 @import "./fonts.css";
 @import "./archive-design.css";
+@import "./film-identity.css";
 @import "tailwindcss";
+
+/* Identity redesign: suppress legacy cosmic backdrop on film pages */
+body:has(.film-app) {
+  background: #f5f4f0;
+}
 
 *,
 *::before,

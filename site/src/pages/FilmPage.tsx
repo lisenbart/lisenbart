@@ -1,76 +1,121 @@
-import { useEffect } from "react";
-import ContactForm from "@/components/ContactForm";
-import FilmFeatureCase from "@/components/originals/FilmFeatureCase";
-import DevelopmentFilmCase from "@/components/originals/DevelopmentFilmCase";
-import OriginalIpCard from "@/components/originals/OriginalIpCard";
+import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
-import { filmPageJsonLd } from "@/data/filmJsonLd";
+import { PlayIcon } from "@/components/film/FilmIcons";
+import { useReel } from "@/contexts/ReelContext";
+import { site } from "@/data/site";
 import { getWorkCasesByIds } from "@/data/work";
-import { scrollToSection, site } from "@/data/site";
-import { hubCanonicalHref } from "@/lib/routes";
+
+const page = site.filmPage;
+const [unnecessary] = getWorkCasesByIds(["unnecessary-things"]);
+
+const originals = [
+  {
+    id: "unnecessary-things",
+    title: "Unnecessary Things",
+    meta: "An animated film by Lisenbart Film · 11 awards",
+    image: "/images/work/unnecessary-things-preview.webp",
+    className: "original-main",
+    vimeoId: "823618245",
+  },
+  {
+    id: "the-last-kozak",
+    title: "The Last Kozak",
+    meta: "Feature film in development",
+    image: "/images/work/the-last-kozak-preview.webp",
+    className: "original-kozak",
+    vimeoId: "699197721",
+  },
+  {
+    id: "pershosvit",
+    title: "Pershosvit",
+    meta: "Kids' IP",
+    image: "/images/work/pershosvit-preview.jpg",
+    className: "original-small",
+    href: "https://www.youtube.com/@pershosvit",
+  },
+  {
+    id: "scoopy-cap",
+    title: "Scoopy Cap",
+    meta: "Kids' IP",
+    image: "/images/work/scoopy-cap-preview.jpg",
+    className: "original-small",
+    href: "https://www.youtube.com/@ScoopyCap",
+  },
+] as const;
 
 export default function FilmPage() {
-  const { filmPage } = site;
-  const films = getWorkCasesByIds(filmPage.filmIds);
-  const ips = getWorkCasesByIds(filmPage.ipIds);
-  const seoUrl = `${site.canonical}${hubCanonicalHref("originals")}`;
-
-  useEffect(() => {
-    const hash = window.location.hash.replace(/^#/, "");
-    if (!hash) return;
-    const timer = window.setTimeout(() => scrollToSection(hash), 50);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  const unnecessaryThings = films.find((item) => item.id === "unnecessary-things");
-  const lastKozak = films.find((item) => item.id === "the-last-kozak");
+  const { openReel } = useReel();
 
   return (
     <>
-      <SEO title={filmPage.seoTitle} description={filmPage.seoDescription} url={seoUrl} />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(filmPageJsonLd) }}
+      <SEO
+        title={page.seoTitle}
+        description={page.seoDescription}
+        url={`${site.canonical}/originals/`}
       />
-      <main className="site-main work-page work-page--film archive-hub originals-page">
-        <header className="work-page-header hub-page-header">
-          <h1 className="hub-page-header__row">
-            <span className="hub-page-header__name work-page-title--film-entertainment">
-              {filmPage.name}
-            </span>
-            <span className="hub-page-header__sep" aria-hidden="true" />
-            <span className="sr-only"> — </span>
-            <span className="hub-page-header__lead">{filmPage.title}</span>
-          </h1>
-        </header>
-
-        <div className="originals-rail">
-          <section className="originals-section" aria-labelledby="originals-films-heading">
-            <h2 id="originals-films-heading" className="originals-section__heading">
-              Films
-            </h2>
-
-            <div className="originals-section__stack">
-              {unnecessaryThings && <FilmFeatureCase item={unnecessaryThings} />}
-              {lastKozak && <DevelopmentFilmCase item={lastKozak} />}
-            </div>
-          </section>
-
-          <section className="originals-section" aria-labelledby="originals-ip-heading">
-            <h2 id="originals-ip-heading" className="originals-section__heading">
-              Original IP
-            </h2>
-
-            <div className="originals-section__stack">
-              {ips.map((item) => (
-                <OriginalIpCard key={item.id} item={item} />
-              ))}
-            </div>
-          </section>
+      <section className="page-shell originals-page">
+        <div className="page-title-row originals-title">
+          <h1>Originals</h1>
+          <p>
+            Our stories.
+            <br />
+            New worlds.
+          </p>
         </div>
+        <p className="film-contact__lead" style={{ marginBottom: "2rem", maxWidth: "36rem" }}>
+          {page.title}
+        </p>
+        {unnecessary?.result ? (
+          <p className="film-section-label" style={{ marginBottom: "1.5rem" }}>
+            Unnecessary Things — {unnecessary.result}
+          </p>
+        ) : null}
 
-        <ContactForm heading={filmPage.contactHeading} lead={filmPage.contactLead} />
-      </main>
+        <div className="originals-layout">
+          {originals.map((item) => {
+            if ("href" in item && item.href) {
+              return (
+                <a
+                  key={item.id}
+                  className={`original-tile ${item.className}`}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={item.image} alt="" />
+                  <span className="tile-shade" />
+                  <span className="tile-copy">
+                    <strong>{item.title}</strong>
+                    <small>{item.meta}</small>
+                  </span>
+                </a>
+              );
+            }
+
+            return (
+              <button
+                key={item.id}
+                className={`original-tile ${item.className}`}
+                type="button"
+                onClick={() =>
+                  openReel("vimeoId" in item ? item.vimeoId : null, item.title)
+                }
+              >
+                <img src={item.image} alt="" />
+                <span className="tile-shade" />
+                <span className="tile-copy">
+                  <strong>{item.title}</strong>
+                  <small>{item.meta}</small>
+                </span>
+                <span className="tile-play">
+                  <PlayIcon />
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+      <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />
     </>
   );
 }
