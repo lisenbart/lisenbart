@@ -1,11 +1,12 @@
 import { useEffect } from "react";
+import FilmContactSection from "@/components/FilmContactSection";
 import PersonalAboutSection from "@/components/PersonalAboutSection";
 import PersonalHeroSection from "@/components/PersonalHeroSection";
 import { SEO } from "@/components/SEO";
 import { scrollToSection, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
-/** Personal foundation page — same hero + About voice as the previous home. */
+/** Personal foundation page — adapted to the film identity shell. */
 export default function AboutPage() {
   const { aboutPage } = site;
   const seoUrl = `${site.canonical}${hubCanonicalHref("about")}`;
@@ -20,9 +21,13 @@ export default function AboutPage() {
   return (
     <>
       <SEO title={aboutPage.seoTitle} description={aboutPage.seoDescription} url={seoUrl} />
-      <main className="site-main site-main-stack">
+      <main className="film-about">
         <PersonalHeroSection />
-        <PersonalAboutSection />
+        <PersonalAboutSection hideContact />
+        <FilmContactSection
+          heading="Contact"
+          lead="A brief or a few clear details are enough to start."
+        />
       </main>
     </>
   );

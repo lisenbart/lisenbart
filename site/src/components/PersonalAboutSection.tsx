@@ -1,7 +1,11 @@
 import ContactForm from "@/components/ContactForm";
 import { sectionIds, site } from "@/data/site";
 
-export default function PersonalAboutSection() {
+export default function PersonalAboutSection({
+  hideContact = false,
+}: {
+  hideContact?: boolean;
+}) {
   const { personalAbout } = site;
 
   return (
@@ -39,7 +43,7 @@ export default function PersonalAboutSection() {
             </h2>
           </div>
 
-          <ContactForm embedded labelledBy="about-closing" />
+          {!hideContact ? <ContactForm embedded labelledBy="about-closing" /> : null}
         </div>
       </div>
     </section>

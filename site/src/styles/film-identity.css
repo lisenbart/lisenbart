@@ -468,6 +468,94 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   border-bottom: 1px solid var(--line);
 }
 
+.studio-founder {
+  margin-top: 1.75rem;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  max-width: 40rem;
+}
+
+.studio-founder__portrait {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.originals-context {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 44rem;
+}
+
+.originals-context li {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.originals-context strong {
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.originals-context span {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.originals-context p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+/* About page — keep personal content, soft-fit into film shell */
+.film-about {
+  background: var(--paper);
+  color: var(--ink);
+  padding-top: 5.5rem;
+}
+
+.film-about .archive-hero,
+.film-about .archive-about {
+  background: transparent;
+}
+
+.film-about .archive-container,
+.film-about .archive-about__inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding-left: 4vw;
+  padding-right: 4vw;
+}
+
+.film-about .archive-hero__name {
+  font-family: "Manrope", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.film-about .archive-hero__proof-item,
+.film-about .archive-meta,
+.film-about .archive-hero__bio,
+.film-about .archive-about__quote-line,
+.film-about .archive-about__closing {
+  color: var(--ink);
+}
+
+.film-about .archive-about__quote-line,
+.film-about .archive-hero__bio {
+  color: var(--muted);
+}
+
 .film-footer {
   padding: 2rem 4vw 3rem;
   border-top: 1px solid var(--line);

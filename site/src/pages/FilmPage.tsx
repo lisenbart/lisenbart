@@ -6,16 +6,29 @@ import { site } from "@/data/site";
 import { getWorkCasesByIds } from "@/data/work";
 
 const page = site.filmPage;
-const [unnecessary] = getWorkCasesByIds(["unnecessary-things"]);
+const films = getWorkCasesByIds([...page.filmIds, ...page.ipIds]);
+const byId = Object.fromEntries(films.map((item) => [item.id, item]));
 
-const originals = [
+type OriginalTile = {
+  id: string;
+  title: string;
+  meta: string;
+  image: string;
+  className: string;
+  vimeoId?: string;
+  href?: string;
+  blurb?: string;
+};
+
+const originals: OriginalTile[] = [
   {
     id: "unnecessary-things",
     title: "Unnecessary Things",
-    meta: "An animated film by Lisenbart Film · 11 awards",
+    meta: byId["unnecessary-things"]?.result ?? page.unnecessaryResult,
     image: "/images/work/unnecessary-things-preview.webp",
     className: "original-main",
-    vimeoId: "823618245",
+    vimeoId: byId["unnecessary-things"]?.vimeoId ?? "823618245",
+    blurb: byId["unnecessary-things"]?.description,
   },
   {
     id: "the-last-kozak",
@@ -23,25 +36,26 @@ const originals = [
     meta: "Feature film in development",
     image: "/images/work/the-last-kozak-preview.webp",
     className: "original-kozak",
-    vimeoId: "699197721",
+    vimeoId: byId["the-last-kozak"]?.vimeoId ?? "699197721",
+    blurb: byId["the-last-kozak"]?.description,
   },
   {
     id: "pershosvit",
     title: "Pershosvit",
-    meta: "Kids' IP",
+    meta: byId["pershosvit"]?.filmCategory ?? "Kids' IP",
     image: "/images/work/pershosvit-preview.jpg",
     className: "original-small",
-    href: "https://www.youtube.com/@pershosvit",
+    href: byId["pershosvit"]?.youtubeUrl ?? "https://www.youtube.com/@pershosvit",
   },
   {
     id: "scoopy-cap",
     title: "Scoopy Cap",
-    meta: "Kids' IP",
+    meta: byId["scoopy-cap"]?.filmCategory ?? "Kids' IP",
     image: "/images/work/scoopy-cap-preview.jpg",
     className: "original-small",
-    href: "https://www.youtube.com/@ScoopyCap",
+    href: byId["scoopy-cap"]?.youtubeUrl ?? "https://www.youtube.com/@ScoopyCap",
   },
-] as const;
+];
 
 export default function FilmPage() {
   const { openReel } = useReel();
@@ -65,15 +79,10 @@ export default function FilmPage() {
         <p className="film-contact__lead" style={{ marginBottom: "2rem", maxWidth: "36rem" }}>
           {page.title}
         </p>
-        {unnecessary?.result ? (
-          <p className="film-section-label" style={{ marginBottom: "1.5rem" }}>
-            Unnecessary Things — {unnecessary.result}
-          </p>
-        ) : null}
 
         <div className="originals-layout">
           {originals.map((item) => {
-            if ("href" in item && item.href) {
+            if (item.href) {
               return (
                 <a
                   key={item.id}
@@ -97,9 +106,7 @@ export default function FilmPage() {
                 key={item.id}
                 className={`original-tile ${item.className}`}
                 type="button"
-                onClick={() =>
-                  openReel("vimeoId" in item ? item.vimeoId : null, item.title)
-                }
+                onClick={() => openReel(item.vimeoId ?? null, item.title)}
               >
                 <img src={item.image} alt="" />
                 <span className="tile-shade" />
@@ -114,6 +121,18 @@ export default function FilmPage() {
             );
           })}
         </div>
+
+        <ul className="originals-context">
+          {originals
+            .filter((item) => item.blurb)
+            .map((item) => (
+              <li key={`${item.id}-blurb`}>
+                <strong>{item.title}</strong>
+                <span>{item.meta}</span>
+                <p>{item.blurb}</p>
+              </li>
+            ))}
+        </ul>
       </section>
       <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />
     </>

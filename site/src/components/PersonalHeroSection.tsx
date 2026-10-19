@@ -58,7 +58,7 @@ export default function PersonalHeroSection() {
             <figure className="archive-hero__media">
               <img
                 src={portraitSrc}
-                alt=""
+                alt={hero.personalPortraitAlt}
                 width={900}
                 height={900}
                 decoding="async"

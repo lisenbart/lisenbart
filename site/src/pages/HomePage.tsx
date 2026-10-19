@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
 import { Arrow, PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import {
+  HERO_IMAGES,
   heroImageForPeriod,
   heroPeriodFromDate,
   msUntilNextHeroBoundary,
@@ -12,16 +13,34 @@ import {
 import { scrollToSection, sectionIds, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
+function formatHeadline(headline: string) {
+  const parts = headline.split(/(?<=\.)\s+/).filter(Boolean);
+  if (parts.length < 2) return [headline];
+  return parts;
+}
+
 export default function HomePage() {
   const { openReel } = useReel();
-  /** Default day for SSR/prerender; local period applied after mount. */
+  /** Default day for SSR/prerender; local period applied before paint. */
   const [period, setPeriod] = useState<HeroPeriod>("day");
+  const headlineLines = formatHeadline(site.studioHome.headline);
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
     if (!hash) return;
     const timer = window.setTimeout(() => scrollToSection(hash), 50);
     return () => window.clearTimeout(timer);
+  }, []);
+
+  useLayoutEffect(() => {
+    Object.values(HERO_IMAGES).forEach((src) => {
+      const preload = new Image();
+      preload.src = src;
+    });
+
+    const next = heroPeriodFromDate();
+    setPeriod(next);
+    document.documentElement.dataset.heroPeriod = next;
   }, []);
 
   useEffect(() => {
@@ -34,7 +53,7 @@ export default function HomePage() {
       timer = window.setTimeout(sync, msUntilNextHeroBoundary());
     };
 
-    sync();
+    timer = window.setTimeout(sync, msUntilNextHeroBoundary());
     const onVisible = () => {
       if (document.visibilityState === "visible") {
         window.clearTimeout(timer);
@@ -67,9 +86,12 @@ export default function HomePage() {
           />
           <div className="home-statement">
             <h1>
-              Creative freedom.
-              <br />
-              Production control.
+              {headlineLines.map((line, index) => (
+                <span key={line}>
+                  {index > 0 ? <br /> : null}
+                  {line}
+                </span>
+              ))}
             </h1>
             <i />
             <p>Lisenbart Film</p>

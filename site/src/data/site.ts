@@ -72,8 +72,8 @@ export const site = {
     personalPositioning:
       "I develop original animation projects and direct commissioned work for brands, studios, and production partners.",
     personalProof: [
-      "35 years in animation",
-      "20 years producing",
+      "20 years in directing",
+      "15 years in producing",
       "1,000+ projects delivered",
     ] as const,
     personalPortrait: "/images/portrait.webp",
@@ -157,6 +157,7 @@ export const site = {
       "Discover original animated films and character-led IP developed by LISENBART FILM, including Unnecessary Things, The Last Kozak, Pershosvit and Scoopy Cap.",
     filmIds: ["unnecessary-things", "the-last-kozak"] as const,
     ipIds: ["pershosvit", "scoopy-cap"] as const,
+    unnecessaryResult: "11 awards · 45 festival selections",
     contactHeading: "Discuss an Original Project",
     contactLead:
       "Interested in a film or one of our original properties? Tell us which project and what kind of collaboration you have in mind.",
@@ -164,7 +165,7 @@ export const site = {
   commercialPage: {
     name: "CLIENT WORK",
     title:
-      "From a single production task to a complete animated campaign. We work with your brief and assets, or develop the project from the ground up.",
+      "Creative leadership, directing and producing for brands, agencies and production partners — from a single stage to full delivery.",
     seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
     seoDescription:
       "Commission animation production, creative development and direction for brands and agencies. From individual production stages to complete campaigns.",
@@ -172,15 +173,15 @@ export const site = {
     capabilities: [
       {
         title: "Creative Development",
-        text: "Concepts, scripts, storyboards and visual development.",
+        text: "Concepts, scripts, storyboards and visual development under clear creative direction.",
       },
       {
         title: "Direction",
-        text: "Creative and directorial leadership from concept through delivery.",
+        text: "Directorial leadership from concept through finishing, with production oversight.",
       },
       {
-        title: "Animation Production",
-        text: "Production of animation and motion content, as individual stages or complete delivery.",
+        title: "Production Delivery",
+        text: "Controlled animation and motion production — individual stages or complete campaigns.",
       },
     ] as const,
     evidenceHeading: "Selected Commercial Work",
@@ -259,28 +260,34 @@ export const site = {
     introHeading: "An independent animation studio since 2006.",
     intro:
       "LISENBART FILM develops original animation and produces commissioned work for brands, agencies and production partners. Storytelling shapes our creative decisions; production thinking makes them achievable.",
+    howHeading: "How we work",
+    how:
+      "Creative leadership and producing sit together from the start. We form or coordinate the team around each brief, keep direction and quality control through delivery, and stay accountable for the creative outcome — without claiming a fixed permanent headcount for every craft.",
     engagementHeading: "Ways to work with us",
     engagementModels: [
       {
         title: "Production Partner",
-        text: "Clients provide an existing concept, brief or assets. We handle selected production stages within their workflow.",
+        text: "Join an existing workflow with a brief or assets already in place. We take on the production stages you need.",
       },
       {
         title: "Creative & Direction",
-        text: "Concepts, scripts, visual development and creative direction, with or without complete production.",
+        text: "Concepts, scripts, boards and visual direction — with or without full production attached.",
       },
       {
         title: "Full Production",
-        text: "Creative development, direction and production coordinated from initial concept through final delivery.",
+        text: "Creative development, direction and coordinated production through to delivery, by agreed scope.",
       },
     ] as const,
     engagementNote:
-      "Individual projects or ongoing collaboration. Existing briefs and assets are welcome. Scope, responsibilities and delivery plan are agreed before work begins — with direct communication and integration into your workflow.",
-    peopleHeading: "The right people for the work.",
+      "Projects may be one-off or ongoing. Scope, roles and delivery plan are agreed before work begins.",
+    peopleHeading: "People & leadership",
     people:
-      "Creative leadership, production coordination and relevant specialists work together around each project. The team and workflow are shaped by the brief, rather than forcing every project through the same setup.",
-    founderLine: "Founded in 2006 by animation director and producer Dmytro Lisenbart.",
+      "Creative leadership, production coordination and specialists are assembled around the project. The setup follows the brief — not a single fixed roster for every job.",
+    founderLine:
+      "Founded in 2006 by Dmytro Lisenbart, animation director and producer — 20 years in directing, 15 years in producing.",
     founderCta: "About Dmytro Lisenbart",
+    founderPortrait: "/images/portrait.webp",
+    founderPortraitAlt: "Portrait of Dmytro Lisenbart",
     contactHeading: "Let's talk about your project.",
     contactLead: "Send a brief, production question or partnership idea. We’ll take it from there.",
   },

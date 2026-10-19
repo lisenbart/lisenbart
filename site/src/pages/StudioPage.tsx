@@ -4,6 +4,7 @@ import LightScene from "@/components/film/LightScene";
 import { Arrow } from "@/components/film/FilmIcons";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
+import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.studioPage;
 
@@ -61,11 +62,17 @@ export default function StudioPage() {
         </div>
       </section>
 
-      <section className="studio-models" aria-labelledby="ways-heading">
-        <p className="film-section-label">{page.introHeading}</p>
+      <section className="studio-models" aria-labelledby="who-heading">
+        <h2 id="who-heading" className="film-section-label">
+          {page.introHeading}
+        </h2>
         <p className="studio-models__note" style={{ marginTop: 0 }}>
           {page.intro}
         </p>
+        <h2 className="studio-models__title" style={{ marginTop: "2rem" }}>
+          {page.howHeading}
+        </h2>
+        <p className="studio-models__note">{page.how}</p>
         <h2 id="ways-heading" className="studio-models__title" style={{ marginTop: "2rem" }}>
           {page.engagementHeading}
         </h2>
@@ -85,12 +92,21 @@ export default function StudioPage() {
           {page.peopleHeading}
         </h2>
         <p className="studio-people__text">{page.people}</p>
-        <p className="studio-people__founder">
-          {page.founderLine}{" "}
-          <a className="studio-people__link" href={hubCanonicalHref("about")}>
-            {page.founderCta}
-          </a>
-        </p>
+        <div className="studio-founder">
+          <img
+            className="studio-founder__portrait"
+            src={publicAsset(page.founderPortrait)}
+            alt={page.founderPortraitAlt}
+            width={160}
+            height={160}
+          />
+          <div>
+            <p className="studio-people__founder">{page.founderLine}</p>
+            <a className="studio-people__link" href={hubCanonicalHref("about")}>
+              {page.founderCta}
+            </a>
+          </div>
+        </div>
       </section>
 
       <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />
