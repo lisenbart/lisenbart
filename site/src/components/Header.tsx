@@ -39,6 +39,7 @@ export default function Header() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const toggleMenu = () => setMenuOpen((v) => !v);
 
   const isActive = (id: NavId) => {
     if (id === "originals") return activeHub === "originals";
@@ -85,29 +86,32 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <button
-          className={`menu-button ${menuOpen ? "open" : ""}`}
-          type="button"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls={menuId}
-          onClick={() => setMenuOpen((v) => !v)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
       </header>
+
+      <button
+        className={`menu-button ${menuOpen ? "open" : ""}`}
+        type="button"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls={menuId}
+        onClick={toggleMenu}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
       <nav
         id={menuId}
         className={`mobile-menu ${menuOpen ? "open" : ""}`}
         aria-label="Mobile navigation"
-        hidden={!menuOpen}
+        aria-hidden={!menuOpen}
       >
         {site.primaryNav.map((link, index) => (
           <a
             key={link.id}
             href={navHref(link.id)}
+            tabIndex={menuOpen ? 0 : -1}
             onClick={(e) => onNavClick(link.id, e)}
           >
             <span>0{index + 1}</span>

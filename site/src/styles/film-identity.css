@@ -60,14 +60,10 @@ img { display: block; width: 100%; }
 
 .desktop-nav a {
   position: relative;
-  /* Former site headers size */
-  font-family: "Manrope", sans-serif;
-  font-size: clamp(1.45rem, 2.7vw, 3rem);
-  font-weight: 300;
-  letter-spacing: 0.2em;
+  font-size: 0.49rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  line-height: 1.15;
-  white-space: nowrap;
 }
 
 .desktop-nav a::after {
@@ -88,19 +84,20 @@ img { display: block; width: 100%; }
 }
 
 .menu-button {
-  position: absolute;
-  top: 50%;
+  /* Fixed above the dropdown overlay so Close (X) always works */
+  position: fixed;
+  top: 36px;
   right: 1.5rem;
-  z-index: 2;
-  width: 24px;
-  height: 19px;
+  z-index: 60;
+  width: 28px;
+  height: 22px;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border: 0;
   background: none;
-  transform: translateY(-50%);
+  color: var(--ink);
 }
 
 .menu-button span {
@@ -116,7 +113,7 @@ img { display: block; width: 100%; }
 
 .mobile-menu {
   position: fixed;
-  z-index: 35;
+  z-index: 55;
   inset: 0;
   padding: 8rem 5vw 3rem;
   display: flex;
@@ -125,9 +122,15 @@ img { display: block; width: 100%; }
   backdrop-filter: blur(20px);
   transform: translateY(-105%);
   transition: transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  visibility: hidden;
 }
 
-.mobile-menu.open { transform: translateY(0); }
+.mobile-menu.open {
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
 
 .mobile-menu a {
   padding: 1.2rem 0;
@@ -135,11 +138,11 @@ img { display: block; width: 100%; }
   align-items: flex-start;
   gap: 1.5rem;
   border-bottom: 1px solid var(--line);
-  /* Former site headers size */
+  /* Former page-header size */
   font-family: "Manrope", sans-serif;
   font-size: clamp(1.45rem, 2.7vw, 3rem);
   font-weight: 300;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
 }
 
@@ -251,13 +254,17 @@ img { display: block; width: 100%; }
 
 /* Home evening: light nav over dark hero */
 html[data-hero-period="evening"] .film-header .brand,
-html[data-hero-period="evening"] .film-header .desktop-nav a,
-html[data-hero-period="evening"] .film-header .menu-button span {
+html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #f7f4ef;
 }
 
-html[data-hero-period="evening"] .film-header .menu-button span {
+html[data-hero-period="evening"] .menu-button:not(.open) span {
   background: #f7f4ef;
+}
+
+/* Open overlay is light paper — keep X dark and above the panel */
+.menu-button.open span {
+  background: var(--ink);
 }
 
 /* Film identity shell — isolate from archive chrome */
@@ -519,12 +526,12 @@ a.original-tile {
 .contact-content h2,
 .studio-hero h1 {
   margin: 0;
-  /* Former menu size */
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.49rem;
-  font-weight: 500;
-  line-height: 1.55;
-  letter-spacing: 0.28em;
+  /* Former dropdown-menu display size */
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -627,10 +634,11 @@ a.original-tile {
 .explore-card h2 {
   margin: 0 0 1.2rem;
   font-family: "Manrope", sans-serif;
-  font-size: 1.3rem;
+  font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 300;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  line-height: 1.15;
 }
 
 .explore-card p,
@@ -688,13 +696,13 @@ a.original-tile {
 .page-title-row h1,
 .contact-content > h1 {
   margin: 0;
-  /* Former menu size */
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.49rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  /* Former dropdown-menu display size */
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  line-height: 1.55;
+  line-height: 1.15;
 }
 
 .reel-link {
@@ -1113,7 +1121,8 @@ a.original-tile {
   .desktop-nav { display: none; }
   .brand { font-size: 0.64rem; }
   .menu-button {
-    width: 20px;
+    top: 24px;
+    width: 22px;
     height: 16px;
     right: 1.2rem;
   }
@@ -1131,9 +1140,9 @@ a.original-tile {
   }
   .home-statement { left: 1.2rem; right: 1.2rem; top: auto; bottom: 14vh; }
   .home-statement h1 {
-    font-size: 0.55rem;
-    line-height: 1.5;
-    letter-spacing: 0.26em;
+    font-size: clamp(2rem, 9vw, 3.2rem);
+    line-height: 1.12;
+    letter-spacing: 0.1em;
   }
   .home-statement i, .home-statement p { display: none; }
   .home-actions { left: 1.2rem; right: 1.2rem; bottom: 2rem; }
@@ -1148,7 +1157,7 @@ a.original-tile {
 
   .page-shell { padding: 6rem 1rem 2rem; }
   .page-title-row h1, .contact-content > h1 {
-    font-size: 0.55rem;
+    font-size: clamp(2rem, 9vw, 3.2rem);
   }
   .reel-link { display: none; }
   .filter-row { margin: 2rem 0 1.2rem; gap: 1.2rem; overflow-x: auto; scrollbar-width: none; }
