@@ -28,27 +28,22 @@ img { display: block; width: 100%; }
 
 .film-header {
   position: absolute;
-  z-index: 40;
+  z-index: 50;
   top: 0;
   left: 0;
   right: 0;
-  height: 88px;
-  padding: 0 4vw;
+  height: 110px;
+  /* Extra right padding so centered nav clears the absolute menu icon */
+  padding: 0 clamp(3.5rem, 5vw, 4.5rem) 0 4vw;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  column-gap: 1.5rem;
 }
 
-@media (max-width: 800px) {
-  .film-header {
-    grid-template-columns: 1fr auto;
-  }
-}
-
-@media (min-width: 801px) {
-  .menu-button {
-    display: none;
-  }
+.film-header > a:first-child {
+  justify-self: start;
+  z-index: 1;
 }
 
 .brand {
@@ -58,16 +53,21 @@ img { display: block; width: 100%; }
 }
 
 .desktop-nav {
+  justify-self: center;
   display: flex;
   gap: clamp(1.5rem, 3vw, 3.2rem);
 }
 
 .desktop-nav a {
   position: relative;
-  font-size: 0.49rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
+  /* Former site headers size */
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1.45rem, 2.7vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .desktop-nav a::after {
@@ -88,7 +88,10 @@ img { display: block; width: 100%; }
 }
 
 .menu-button {
-  justify-self: end;
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  z-index: 2;
   width: 24px;
   height: 19px;
   padding: 0;
@@ -97,6 +100,7 @@ img { display: block; width: 100%; }
   justify-content: space-between;
   border: 0;
   background: none;
+  transform: translateY(-50%);
 }
 
 .menu-button span {
@@ -131,9 +135,12 @@ img { display: block; width: 100%; }
   align-items: flex-start;
   gap: 1.5rem;
   border-bottom: 1px solid var(--line);
+  /* Former site headers size */
   font-family: "Manrope", sans-serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(1.45rem, 2.7vw, 3rem);
   font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 .mobile-menu a span {
@@ -211,7 +218,7 @@ img { display: block; width: 100%; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 58% 45%;
+  object-position: center center;
   pointer-events: none;
 }
 
@@ -512,11 +519,12 @@ a.original-tile {
 .contact-content h2,
 .studio-hero h1 {
   margin: 0;
-  font-family: "Manrope", sans-serif;
-  font-size: clamp(1.45rem, 2.7vw, 3rem);
-  font-weight: 300;
+  /* Former menu size */
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.49rem;
+  font-weight: 500;
   line-height: 1.55;
-  letter-spacing: 0.34em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
@@ -680,11 +688,13 @@ a.original-tile {
 .page-title-row h1,
 .contact-content > h1 {
   margin: 0;
-  font-family: "Manrope", sans-serif;
-  font-size: clamp(1.6rem, 2.8vw, 3rem);
-  font-weight: 400;
-  letter-spacing: 0.3em;
+  /* Former menu size */
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.49rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
+  line-height: 1.55;
 }
 
 .reel-link {
@@ -1095,10 +1105,18 @@ a.original-tile {
 .reel-placeholder small { font-size: 0.5rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.6; }
 
 @media (max-width: 800px) {
-  .film-header { height: 66px; padding: 0 1.2rem; grid-template-columns: 1fr auto; }
+  .film-header {
+    height: 66px;
+    padding: 0 1.2rem;
+    grid-template-columns: 1fr auto;
+  }
   .desktop-nav { display: none; }
   .brand { font-size: 0.64rem; }
-  .menu-button { width: 20px; height: 16px; }
+  .menu-button {
+    width: 20px;
+    height: 16px;
+    right: 1.2rem;
+  }
   .menu-button.open span:first-child { transform: translateY(7.5px) rotate(45deg); }
   .menu-button.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
   .mobile-menu { padding: 6rem 1.2rem 2rem; }
@@ -1109,10 +1127,14 @@ a.original-tile {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-position: 62% 40%;
+    object-position: center center;
   }
   .home-statement { left: 1.2rem; right: 1.2rem; top: auto; bottom: 14vh; }
-  .home-statement h1 { font-size: clamp(1.2rem, 6vw, 2rem); line-height: 1.5; letter-spacing: 0.26em; }
+  .home-statement h1 {
+    font-size: 0.55rem;
+    line-height: 1.5;
+    letter-spacing: 0.26em;
+  }
   .home-statement i, .home-statement p { display: none; }
   .home-actions { left: 1.2rem; right: 1.2rem; bottom: 2rem; }
   .home-actions > a { display: none; }
@@ -1125,7 +1147,9 @@ a.original-tile {
   .strip-icon { width: 52px; height: 52px; }
 
   .page-shell { padding: 6rem 1rem 2rem; }
-  .page-title-row h1, .contact-content > h1 { font-size: 1.45rem; }
+  .page-title-row h1, .contact-content > h1 {
+    font-size: 0.55rem;
+  }
   .reel-link { display: none; }
   .filter-row { margin: 2rem 0 1.2rem; gap: 1.2rem; overflow-x: auto; scrollbar-width: none; }
   .filter-row button { flex: 0 0 auto; }
