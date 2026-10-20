@@ -1,5 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import DistributionPartnersSection from "@/components/film/DistributionPartnersSection";
+import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import { SEO } from "@/components/SEO";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
@@ -64,6 +65,8 @@ export default function FilmPage() {
               item.filmCategory ||
               (item.id === "the-last-kozak" ? "Animated feature in development" : "");
             const media = item.mediaImage ?? "";
+            const scoopyExtras =
+              item.id === "scoopy-cap" ? <ScoopyCapPlatforms /> : null;
 
             if (item.vimeoId) {
               return (
@@ -83,6 +86,7 @@ export default function FilmPage() {
                     <h2>{item.title}</h2>
                     {status ? <p className="original-card__status">{status}</p> : null}
                     <p className="original-card__text">{item.description}</p>
+                    {scoopyExtras}
                     <button
                       type="button"
                       className="original-card__action"
@@ -110,6 +114,7 @@ export default function FilmPage() {
                   <h2>{item.title}</h2>
                   {status ? <p className="original-card__status">{status}</p> : null}
                   <p className="original-card__text">{item.description}</p>
+                  {scoopyExtras}
                   <a
                     className="original-card__action"
                     href={item.youtubeUrl}

@@ -5,8 +5,8 @@ import {
 } from "@/data/distributionPartners";
 
 /**
- * Compact Originals block for distribution / content partners.
- * Hidden on production until partners are verified and sectionPublished is true.
+ * Compact Originals block for studio distribution partners.
+ * Production shows verified partners only when sectionPublished.
  */
 export default function DistributionPartnersSection() {
   const mode = distributionPartnersVisibility();
@@ -30,8 +30,21 @@ export default function DistributionPartnersSection() {
       <ul className="distribution-partners__list">
         {partners.map((partner) => (
           <li key={partner.id} className="distribution-partners__item">
-            <span className="distribution-partners__name">{partner.name}</span>
-            <span className="distribution-partners__meta">{partner.country}</span>
+            {partner.website ? (
+              <a
+                className="distribution-partners__name distribution-partners__name--link"
+                href={partner.website}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {partner.name}
+              </a>
+            ) : (
+              <span className="distribution-partners__name">{partner.name}</span>
+            )}
+            {partner.country ? (
+              <span className="distribution-partners__meta">{partner.country}</span>
+            ) : null}
           </li>
         ))}
       </ul>

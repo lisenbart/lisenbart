@@ -1,20 +1,22 @@
 /**
- * Originals — distribution / content partners.
+ * Originals — studio-level distribution / content partners.
  *
- * Names below are leads supplied for verification. Do not invent websites,
- * logos, territories, or title-level rights. Flip `verified` / `sectionPublished`
- * only after the relationship and public attribution are confirmed.
+ * Distinct from Scoopy Cap platform listings (`scoopyCapDistribution.ts`).
+ * Flip `verified` / `sectionPublished` only after public attribution is confirmed.
+ *
+ * Spelling notes:
+ * - BrighterMoon Entertainment LLC — studio-corrected full legal name.
+ * - LeadJoy — studio-confirmed brand spelling.
+ * - SWEET.TV — studio lead; alternate “SWEEN.TV” unresolved → keep unverified.
+ * - VlogBox — studio-supplied partner; public site https://vlogbox.com.
  */
 
 export type DistributionPartner = {
   id: string;
   name: string;
   country: string;
-  /** High-level relationship — keep generic until contract type is confirmed. */
   relationship: string;
-  /** Official site only when verified — never invent. */
   website: string | null;
-  /** Path under /public only when an approved logo asset exists. */
   logo: string | null;
   verified: boolean;
 };
@@ -24,11 +26,10 @@ export const distributionPartnersConfig = {
   lead: "Our stories travel beyond the studio.",
 
   /**
-   * Master publication flag.
-   * When false, the section never appears on production hosts as confirmed
-   * partners — only in preview/dev as a clearly marked draft.
+   * When true, verified partners render on production.
+   * Unverified partners remain preview-only.
    */
-  sectionPublished: false as boolean,
+  sectionPublished: true as boolean,
 
   partners: [
     {
@@ -38,7 +39,7 @@ export const distributionPartnersConfig = {
       relationship: "Distribution",
       website: null,
       logo: null,
-      verified: false,
+      verified: true,
     },
     {
       id: "leadjoy",
@@ -47,7 +48,7 @@ export const distributionPartnersConfig = {
       relationship: "Distribution",
       website: null,
       logo: null,
-      verified: false,
+      verified: true,
     },
     {
       id: "sweet-tv",
@@ -56,12 +57,21 @@ export const distributionPartnersConfig = {
       relationship: "Platform / content",
       website: null,
       logo: null,
+      /** Alternate spelling SWEEN.TV still unresolved. */
       verified: false,
+    },
+    {
+      id: "vlogbox",
+      name: "VlogBox",
+      country: "",
+      relationship: "OTT / CTV distribution & monetization",
+      website: "https://vlogbox.com",
+      logo: null,
+      verified: true,
     },
   ] satisfies DistributionPartner[],
 } as const;
 
-/** Same preview gate as legal draft exposure (Netlify DP / local). */
 function isPreviewContext(): boolean {
   if (import.meta.env.DEV) return true;
   return import.meta.env.VITE_LEGAL_PREVIEW === "true";
@@ -69,27 +79,20 @@ function isPreviewContext(): boolean {
 
 export type DistributionPartnersVisibility = "published" | "draft" | "hidden";
 
-/**
- * - published: all partners verified + sectionPublished — clean public section
- * - draft: preview only — names visible with pending marking
- * - hidden: production with unverified data — omit section entirely
- */
 export function distributionPartnersVisibility(): DistributionPartnersVisibility {
   const { sectionPublished, partners } = distributionPartnersConfig;
-  const allVerified = partners.every((p) => p.verified);
+  const hasVerified = partners.some((p) => p.verified);
 
-  if (sectionPublished && allVerified) return "published";
+  if (sectionPublished && hasVerified) return "published";
   if (isPreviewContext()) return "draft";
   return "hidden";
 }
 
-/** Partners safe to list for the current visibility mode. */
 export function distributionPartnersForDisplay(): DistributionPartner[] {
   const mode = distributionPartnersVisibility();
   if (mode === "hidden") return [];
   if (mode === "published") {
     return distributionPartnersConfig.partners.filter((p) => p.verified);
   }
-  // Draft preview: show leads so design can be reviewed; not confirmed.
   return [...distributionPartnersConfig.partners];
 }
