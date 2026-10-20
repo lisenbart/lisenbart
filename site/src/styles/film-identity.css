@@ -385,43 +385,28 @@ img { display: block; width: 100%; }
   filter: drop-shadow(0 0 14px rgba(255, 183, 135, 0.9));
 }
 
-/* Hero art spans hero + explore; Contact starts after this block */
-.home-stage {
-  position: relative;
-  overflow: hidden;
-  background: #0c1630;
-}
-
-.home-stage--day {
-  background: #7eb8e8;
-}
-
 .home-hero {
   position: relative;
-  z-index: 1;
   min-height: 100svh;
   overflow: hidden;
-  background: transparent;
+  background: #0c1630;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
 .home-hero--day {
-  background: transparent;
+  background: #7eb8e8;
 }
 
 .bear-art {
   position: absolute;
-  z-index: 0;
-  left: 0;
-  right: 0;
-  /* Shift art up so the bear sits under the nav (stage is taller than 1:1) */
-  top: -34%;
+  z-index: 1;
+  inset: -4% 0;
   width: 100%;
-  height: 140%;
+  height: 108%;
   object-fit: cover;
-  object-position: center 48%;
+  object-position: center 40%;
   pointer-events: none;
   will-change: transform;
   transform: translate3d(0, 0, 0) scale(1.05);
@@ -2093,13 +2078,16 @@ a.original-tile {
 .circle-link .arrow-icon { width: 19px; }
 
 .home-explore {
-  position: relative;
-  z-index: 1;
+  --explore-bg: #d8e6f4;
   padding: var(--space-4) var(--gutter) var(--section-y);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
-  background: transparent;
+  background: var(--explore-bg);
+}
+
+html[data-hero-period="evening"] .home-explore {
+  --explore-bg: #e6e2e8;
 }
 
 .explore-strip {
@@ -2838,18 +2826,11 @@ a.original-tile {
 
   .home-hero { min-height: 100svh; }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
-  /*
-   * Mobile stage is very tall (hero + 4 stacked cards). Cover on 100% width
-   * crops the square art hard and pushes the bear off-center. Widen + center
-   * the art box so the bear stays in frame; keep desktop framing untouched.
-   */
   .bear-art {
-    top: -6%;
-    left: -34%;
-    right: auto;
-    width: 168%;
-    height: 112%;
-    object-position: 52% 40%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-position: center 36%;
   }
   .home-statement {
     padding: 0 var(--gutter) var(--space-4);
@@ -2965,6 +2946,8 @@ a.original-tile {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 
   .bear-art {
+    inset: 0;
+    height: 100%;
     transform: none !important;
     will-change: auto;
   }
