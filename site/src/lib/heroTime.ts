@@ -2,8 +2,8 @@
 export type HeroPeriod = "day" | "evening";
 
 export const HERO_IMAGES = {
-  evening: "/images/HERO_bear_01.jpg",
-  day: "/images/HERO_bear_02.jpg",
+  evening: "/images/HERO_bear_01.webp",
+  day: "/images/HERO_bear_02.webp",
 } as const;
 
 export function heroPeriodFromDate(date = new Date()): HeroPeriod {

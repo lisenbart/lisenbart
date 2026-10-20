@@ -90,8 +90,8 @@ export default function HomePage() {
             className="bear-art"
             src={heroSrc}
             alt=""
-            width={1024}
-            height={576}
+            width={737}
+            height={737}
             fetchPriority="high"
           />
           <section ref={heroRef} className={`home-hero home-hero--${period}`}>
