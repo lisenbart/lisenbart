@@ -301,14 +301,14 @@ export const site = {
     },
     introHeading: "Who we are",
     introParagraphs: [
-      "LISENBART FILM is an independent animation studio founded in 2006, with over 1,000 commercial projects behind us.",
-      "We work with brands, agencies and production partners, bringing together creative direction, production management and the right artists for each project.",
+      "Founded in 2006, LISENBART FILM is an independent animation studio with over 1,000 commercial projects behind us.",
+      "We work with brands, agencies and production partners, combining creative direction and production expertise.",
       "Alongside commissioned work, we develop and produce our own animated films and original IP.",
     ] as const,
     howHeading: "How we work",
     howParagraphs: [
-      "LISENBART FILM operates through a focused creative and production core, assembling specialized teams around the needs of each project.",
-      "We lead the creative process, coordinate production and remain responsible for the work from the first decisions to the final delivery.",
+      "A focused creative and production core leads each project, bringing together the right artists and specialists for its specific needs.",
+      "We manage the creative process and production, taking responsibility from the first decisions to final delivery.",
     ] as const,
     engagementHeading: "Ways to work with us",
     engagementModels: [
