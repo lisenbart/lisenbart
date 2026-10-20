@@ -27,11 +27,12 @@ export default function HomePage() {
   /** Default day for SSR/prerender; local period applied before paint. */
   const [period, setPeriod] = useState<HeroPeriod>("day");
   const headlineLines = formatHeadline(site.studioHome.headline);
+  const stageRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const bearRef = useRef<HTMLImageElement>(null);
   const exploreRef = useRef<HTMLElement>(null);
 
-  useScrollParallax(heroRef, bearRef, { strength: 12 });
+  useScrollParallax(stageRef, bearRef, { strength: 12 });
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -83,7 +84,7 @@ export default function HomePage() {
     <>
       <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
       <div className="home-page">
-        <section ref={heroRef} className={`home-hero home-hero--${period}`}>
+        <div ref={stageRef} className={`home-stage home-stage--${period}`}>
           <img
             ref={bearRef}
             className="bear-art"
@@ -93,40 +94,42 @@ export default function HomePage() {
             height={576}
             fetchPriority="high"
           />
-          <div className="home-statement film-reveal is-in">
-            <h1>
-              {headlineLines.map((line, index) => (
-                <span key={line}>
-                  {index > 0 ? <br /> : null}
-                  {line}
-                </span>
-              ))}
-            </h1>
-          </div>
-        </section>
+          <section ref={heroRef} className={`home-hero home-hero--${period}`}>
+            <div className="home-statement film-reveal is-in">
+              <h1>
+                {headlineLines.map((line, index) => (
+                  <span key={line}>
+                    {index > 0 ? <br /> : null}
+                    {line}
+                  </span>
+                ))}
+              </h1>
+            </div>
+          </section>
 
-        <section ref={exploreRef} className="home-explore" id={sectionIds.explore}>
-          <FilmReveal delayMs={0}>
-            <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
-              <h3>Client Work</h3>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={80}>
-            <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
-              <h3>Originals</h3>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={160}>
-            <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
-              <h3>Game Ads</h3>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={240}>
-            <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
-              <h3>AI &amp; Hybrid</h3>
-            </a>
-          </FilmReveal>
-        </section>
+          <section ref={exploreRef} className="home-explore" id={sectionIds.explore}>
+            <FilmReveal delayMs={0}>
+              <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
+                <h3>Client Work</h3>
+              </a>
+            </FilmReveal>
+            <FilmReveal delayMs={80}>
+              <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
+                <h3>Originals</h3>
+              </a>
+            </FilmReveal>
+            <FilmReveal delayMs={160}>
+              <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
+                <h3>Game Ads</h3>
+              </a>
+            </FilmReveal>
+            <FilmReveal delayMs={240}>
+              <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
+                <h3>AI &amp; Hybrid</h3>
+              </a>
+            </FilmReveal>
+          </section>
+        </div>
 
         <FilmReveal>
           <FilmContactSection heading={site.homeContact.heading} />

@@ -385,28 +385,40 @@ img { display: block; width: 100%; }
   filter: drop-shadow(0 0 14px rgba(255, 183, 135, 0.9));
 }
 
-.home-hero {
+/* Hero art spans hero + explore; Contact starts after this block */
+.home-stage {
   position: relative;
-  min-height: 100svh;
   overflow: hidden;
   background: #0c1630;
+}
+
+.home-stage--day {
+  background: #7eb8e8;
+}
+
+.home-hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  overflow: hidden;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
 
 .home-hero--day {
-  background: #7eb8e8;
+  background: transparent;
 }
 
 .bear-art {
   position: absolute;
-  z-index: 1;
-  inset: -4% 0;
+  z-index: 0;
+  inset: -3% 0;
   width: 100%;
-  height: 108%;
+  height: 106%;
   object-fit: cover;
-  /* Keep the bear in the upper/mid frame so copy can sit clear below */
+  /* Bias upper/mid so bear still reads in the first viewport */
   object-position: center 28%;
   pointer-events: none;
   will-change: transform;
@@ -2079,17 +2091,13 @@ a.original-tile {
 .circle-link .arrow-icon { width: 19px; }
 
 .home-explore {
-  /* Same surface as hero (image stays in .home-hero only) */
-  --explore-bg: #7eb8e8;
+  position: relative;
+  z-index: 1;
   padding: var(--space-4) var(--gutter) var(--section-y);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-2);
-  background: var(--explore-bg);
-}
-
-html[data-hero-period="evening"] .home-explore {
-  --explore-bg: #0c1630;
+  background: transparent;
 }
 
 .explore-strip {
@@ -2832,7 +2840,7 @@ html[data-hero-period="evening"] .home-explore {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-position: center 22%;
+    object-position: center 20%;
   }
   .home-statement {
     padding: 0 var(--gutter) var(--space-4);
@@ -2952,6 +2960,10 @@ html[data-hero-period="evening"] .home-explore {
     height: 100%;
     transform: none !important;
     will-change: auto;
+  }
+
+  .home-stage .bear-art {
+    inset: 0;
   }
 
   .explore-strip::before {
