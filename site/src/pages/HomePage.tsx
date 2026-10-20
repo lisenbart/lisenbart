@@ -140,12 +140,7 @@ export default function HomePage() {
               <Arrow />
             </span>
           </a>
-          <a
-            className="explore-strip"
-            href={site.gamesUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="explore-strip" href={hubCanonicalHref("games")}>
             <span className="strip-icon gamepad-icon">◇</span>
             <div>
               <h3>Games</h3>
@@ -159,7 +154,7 @@ export default function HomePage() {
               <Arrow />
             </span>
           </a>
-          <a className="explore-strip" href={`${hubCanonicalHref("client-work")}#ai-powered-reel`}>
+          <a className="explore-strip" href={hubCanonicalHref("ai")}>
             <span className="strip-icon ai-orb" />
             <div>
               <h3>AI</h3>

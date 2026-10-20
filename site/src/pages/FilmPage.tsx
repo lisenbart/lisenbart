@@ -3,62 +3,48 @@ import { SEO } from "@/components/SEO";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { site } from "@/data/site";
-import { getWorkCasesByIds } from "@/data/work";
+import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
 
 const page = site.filmPage;
-const films = getWorkCasesByIds([...page.filmIds, ...page.ipIds]);
-const byId = Object.fromEntries(films.map((item) => [item.id, item]));
 
-type OriginalTile = {
-  id: string;
-  title: string;
-  meta: string;
-  image: string;
-  className: string;
-  vimeoId?: string;
-  href?: string;
-  blurb?: string;
+type ProjectCard = {
+  item: WorkCaseStudy;
+  featured?: boolean;
+  actionLabel: string;
 };
 
-const originals: OriginalTile[] = [
-  {
-    id: "unnecessary-things",
-    title: "Unnecessary Things",
-    meta: byId["unnecessary-things"]?.result ?? page.unnecessaryResult,
-    image: "/images/work/unnecessary-things-preview.webp",
-    className: "original-main",
-    vimeoId: byId["unnecessary-things"]?.vimeoId ?? "823618245",
-    blurb: byId["unnecessary-things"]?.description,
-  },
-  {
-    id: "the-last-kozak",
-    title: "The Last Kozak",
-    meta: "Feature film in development",
-    image: "/images/work/the-last-kozak-preview.webp",
-    className: "original-kozak",
-    vimeoId: byId["the-last-kozak"]?.vimeoId ?? "699197721",
-    blurb: byId["the-last-kozak"]?.description,
-  },
-  {
-    id: "pershosvit",
-    title: "Pershosvit",
-    meta: byId["pershosvit"]?.filmCategory ?? "Kids' IP",
-    image: "/images/work/pershosvit-preview.jpg",
-    className: "original-small",
-    href: byId["pershosvit"]?.youtubeUrl ?? "https://www.youtube.com/@pershosvit",
-  },
-  {
-    id: "scoopy-cap",
-    title: "Scoopy Cap",
-    meta: byId["scoopy-cap"]?.filmCategory ?? "Kids' IP",
-    image: "/images/work/scoopy-cap-preview.jpg",
-    className: "original-small",
-    href: byId["scoopy-cap"]?.youtubeUrl ?? "https://www.youtube.com/@ScoopyCap",
-  },
-];
+function buildCards(): ProjectCard[] {
+  const [unnecessary, kozak, pershosvit, scoopy] = getWorkCasesByIds([
+    "unnecessary-things",
+    "the-last-kozak",
+    "pershosvit",
+    "scoopy-cap",
+  ]);
+
+  return [
+    {
+      item: unnecessary,
+      featured: true,
+      actionLabel: "Watch film",
+    },
+    {
+      item: kozak,
+      actionLabel: "Watch teaser",
+    },
+    {
+      item: pershosvit,
+      actionLabel: "Explore on YouTube",
+    },
+    {
+      item: scoopy,
+      actionLabel: "Explore on YouTube",
+    },
+  ].filter((card): card is ProjectCard => Boolean(card.item));
+}
 
 export default function FilmPage() {
   const { openReel } = useReel();
+  const cards = buildCards();
 
   return (
     <>
@@ -76,63 +62,77 @@ export default function FilmPage() {
             New worlds.
           </p>
         </div>
-        <p className="film-contact__lead" style={{ marginBottom: "2rem", maxWidth: "36rem" }}>
-          {page.title}
-        </p>
+        <p className="film-contact__lead direction-lead">{page.title}</p>
 
-        <div className="originals-layout">
-          {originals.map((item) => {
-            if (item.href) {
+        <div className="originals-grid">
+          {cards.map(({ item, featured, actionLabel }) => {
+            const status =
+              item.result ||
+              item.filmCategory ||
+              (item.id === "the-last-kozak" ? "Animated feature in development" : "");
+            const media = item.mediaImage ?? "";
+
+            if (item.vimeoId) {
               return (
-                <a
+                <article
                   key={item.id}
-                  className={`original-tile ${item.className}`}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  className={`original-card${featured ? " original-card--featured" : ""}`}
                 >
-                  <img src={item.image} alt="" />
-                  <span className="tile-shade" />
-                  <span className="tile-copy">
-                    <strong>{item.title}</strong>
-                    <small>{item.meta}</small>
-                  </span>
-                </a>
+                  <button
+                    type="button"
+                    className="original-card__media"
+                    onClick={() => openReel(item.vimeoId ?? null, item.title)}
+                    aria-label={`${actionLabel}: ${item.title}`}
+                  >
+                    <img src={media} alt={item.mediaImageAlt ?? ""} />
+                    <span className="original-card__play">
+                      <PlayIcon />
+                    </span>
+                  </button>
+                  <div className="original-card__body">
+                    <h2>{item.title}</h2>
+                    {status ? <p className="original-card__status">{status}</p> : null}
+                    <p className="original-card__text">{item.description}</p>
+                    <button
+                      type="button"
+                      className="original-card__action"
+                      onClick={() => openReel(item.vimeoId ?? null, item.title)}
+                    >
+                      {actionLabel}
+                    </button>
+                  </div>
+                </article>
               );
             }
 
             return (
-              <button
-                key={item.id}
-                className={`original-tile ${item.className}`}
-                type="button"
-                onClick={() => openReel(item.vimeoId ?? null, item.title)}
-              >
-                <img src={item.image} alt="" />
-                <span className="tile-shade" />
-                <span className="tile-copy">
-                  <strong>{item.title}</strong>
-                  <small>{item.meta}</small>
-                </span>
-                <span className="tile-play">
-                  <PlayIcon />
-                </span>
-              </button>
+              <article key={item.id} className="original-card">
+                <a
+                  className="original-card__media"
+                  href={item.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${actionLabel}: ${item.title}`}
+                >
+                  <img src={media} alt={item.mediaImageAlt ?? ""} />
+                </a>
+                <div className="original-card__body">
+                  <h2>{item.title}</h2>
+                  {status ? <p className="original-card__status">{status}</p> : null}
+                  <p className="original-card__text">{item.description}</p>
+                  <a
+                    className="original-card__action"
+                    href={item.youtubeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {actionLabel}
+                  </a>
+                </div>
+              </article>
             );
           })}
         </div>
-
-        <ul className="originals-context">
-          {originals
-            .filter((item) => item.blurb)
-            .map((item) => (
-              <li key={`${item.id}-blurb`}>
-                <strong>{item.title}</strong>
-                <span>{item.meta}</span>
-                <p>{item.blurb}</p>
-              </li>
-            ))}
-        </ul>
       </section>
       <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />
     </>

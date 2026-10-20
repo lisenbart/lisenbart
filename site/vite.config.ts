@@ -19,6 +19,8 @@ export default defineConfig(({ command }) => ({
               "/client-work",
               "/studio",
               "/about",
+              "/games",
+              "/ai",
             ],
 
           }),

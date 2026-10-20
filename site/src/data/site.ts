@@ -3,7 +3,7 @@ import { publicAsset } from "@/lib/publicAsset";
 export const site = {
   name: "LISENBART FILM",
   brand: "LISENBART FILM",
-  gamesUrl: "https://lisenbart.games",
+  gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
     headline: "Creative freedom. Production control.",
@@ -52,15 +52,15 @@ export const site = {
       title: "GAMES",
       subtitle: "Game Advertising & Playable Production",
       text: "Advertising creatives and playables for game companies.",
-      href: "https://lisenbart.games",
+      href: "/games/",
       cta: "Explore Games",
-      external: true as const,
+      external: false as const,
     },
     ai: {
       title: "AI",
       subtitle: "AI & Hybrid Production",
       text: "AI-assisted visuals and video, guided by creative direction and production oversight.",
-      href: "/client-work/#ai-powered-reel",
+      href: "/ai/",
       cta: "View AI Work",
       external: false as const,
     },
@@ -169,7 +169,26 @@ export const site = {
     seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
     seoDescription:
       "Commission animation production, creative development and direction for brands and agencies. From individual production stages to complete campaigns.",
-    capabilitiesHeading: "What we do",
+    showreelHeading: "Advertising & Animation Showreel",
+    showreel: {
+      id: "advertising-reel",
+      label: "Advertising & Animation Showreel",
+      body: [
+        "Animated campaigns, brand films and product visuals — character animation, motion graphics and mixed media under creative direction.",
+      ] as const,
+      vimeoId: "849899875" as string | null,
+      previewImages: [
+        "/images/reels/advertising/01.webp",
+        "/images/reels/advertising/02.webp",
+        "/images/reels/advertising/03.webp",
+        "/images/reels/advertising/04.webp",
+        "/images/reels/advertising/05.webp",
+        "/images/reels/advertising/06.webp",
+        "/images/reels/advertising/07.webp",
+        "/images/reels/advertising/08.webp",
+      ],
+    },
+    capabilitiesHeading: "Expertise",
     capabilities: [
       {
         title: "Creative Development",
@@ -180,66 +199,96 @@ export const site = {
         text: "Directorial leadership from concept through finishing, with production oversight.",
       },
       {
-        title: "Production Delivery",
-        text: "Controlled animation and motion production — individual stages or complete campaigns.",
+        title: "Production Leadership & Delivery",
+        text: "Controlled production delivery — individual stages or complete campaigns.",
       },
     ] as const,
-    evidenceHeading: "Selected Commercial Work",
-    reels: [
-      {
-        id: "advertising-reel",
-        label: "Advertising & Branded Content",
-        body: [
-          "Animated campaigns, brand films and product visuals across character animation, motion graphics and mixed media.",
-        ] as const,
-        vimeoId: "849899875" as string | null,
-        previewImages: [
-          "/images/reels/advertising/01.webp",
-          "/images/reels/advertising/02.webp",
-          "/images/reels/advertising/03.webp",
-          "/images/reels/advertising/04.webp",
-          "/images/reels/advertising/05.webp",
-          "/images/reels/advertising/06.webp",
-          "/images/reels/advertising/07.webp",
-          "/images/reels/advertising/08.webp",
-        ],
-      },
-      {
-        id: "ai-powered-reel",
-        label: "AI & Hybrid Production",
-        body: [
-          "We use AI where it serves the brief — from visual exploration to selected production sequences. Creative direction and finishing remain central to the process.",
-        ] as const,
-        vimeoId: "1212613379" as string | null,
-        previewImages: [
-          "/images/reels/ai/01.webp",
-          "/images/reels/ai/02.webp",
-          "/images/reels/ai/03.webp",
-          "/images/reels/ai/04.webp",
-          "/images/reels/ai/05.webp",
-          "/images/reels/ai/06.webp",
-          "/images/reels/ai/07.webp",
-          "/images/reels/ai/08.webp",
-          "/images/reels/ai/09.webp",
-          "/images/reels/ai/10.webp",
-          "/images/reels/ai/11.webp",
-          "/images/reels/ai/12.webp",
-          "/images/reels/ai/13.webp",
-          "/images/reels/ai/14.webp",
-          "/images/reels/ai/15.webp",
-          "/images/reels/ai/16.webp",
-        ],
-      },
-    ],
-    gamesBridge: {
-      title: "LISENBART GAMES",
-      text: "Game advertising creatives and playable production have a dedicated division.",
-      cta: "Explore Games",
-      href: "https://lisenbart.games",
-    },
     contactHeading: "Send a Brief",
     contactLead:
       "Tell us what you are making, what you already have and when you need it. We’ll suggest the next step.",
+  },
+
+  gamesPage: {
+    name: "GAMES",
+    title:
+      "LISENBART GAMES is the specialist direction for game advertising creatives and playable production.",
+    seoTitle: "LISENBART GAMES — Game Advertising & Playables | LISENBART FILM",
+    seoDescription:
+      "Game advertising creatives, playable production and creative development for game companies — a specialized direction of LISENBART FILM.",
+    introHeading: "Game advertising & playables",
+    capabilitiesHeading: "What we do",
+    capabilities: [
+      {
+        title: "Creative Production",
+        text: "Advertising creatives produced from client-provided briefs and assets.",
+      },
+      {
+        title: "Playable Production",
+        text: "Interactive advertising production and adaptation for game campaigns.",
+      },
+      {
+        title: "Creative Development",
+        text: "Ideas, scripts, direction and more complex creative projects for game brands.",
+      },
+    ] as const,
+    externalCta: "Explore LISENBART GAMES",
+    externalHref: "https://www.lisenbart.games",
+    contactHeading: "Discuss a Games project",
+    contactLead: "Tell us about the campaign, assets and timeline. We’ll point you to the right next step.",
+  },
+
+  aiPage: {
+    name: "AI",
+    title:
+      "LISENBART FILM uses AI and hybrid production methods under professional creative direction and production supervision. Technology serves the brief.",
+    seoTitle: "AI & Hybrid Production | LISENBART FILM",
+    seoDescription:
+      "AI-assisted visuals and hybrid production workflows guided by creative direction and finishing — a specialized capability of LISENBART FILM.",
+    introHeading: "AI & hybrid production",
+    showreelHeading: "AI & Hybrid Showreel",
+    showreel: {
+      id: "ai-powered-reel",
+      label: "AI & Hybrid Showreel",
+      body: [
+        "AI where it serves the brief — from visual exploration to selected production sequences. Creative direction and finishing remain central.",
+      ] as const,
+      vimeoId: "1212613379" as string | null,
+      previewImages: [
+        "/images/reels/ai/01.webp",
+        "/images/reels/ai/02.webp",
+        "/images/reels/ai/03.webp",
+        "/images/reels/ai/04.webp",
+        "/images/reels/ai/05.webp",
+        "/images/reels/ai/06.webp",
+        "/images/reels/ai/07.webp",
+        "/images/reels/ai/08.webp",
+        "/images/reels/ai/09.webp",
+        "/images/reels/ai/10.webp",
+        "/images/reels/ai/11.webp",
+        "/images/reels/ai/12.webp",
+        "/images/reels/ai/13.webp",
+        "/images/reels/ai/14.webp",
+        "/images/reels/ai/15.webp",
+        "/images/reels/ai/16.webp",
+      ],
+    },
+    capabilitiesHeading: "Where it helps",
+    capabilities: [
+      {
+        title: "Visual exploration",
+        text: "Rapid visual development and look exploration guided by creative direction.",
+      },
+      {
+        title: "Selected production stages",
+        text: "AI-assisted sequences where they improve speed or possibility within the brief.",
+      },
+      {
+        title: "Hybrid finishing",
+        text: "Combining AI-assisted work with traditional production and finishing under supervision.",
+      },
+    ] as const,
+    contactHeading: "Discuss an AI or hybrid project",
+    contactLead: "Share the brief, references and where you see AI fitting. We’ll respond with a clear next step.",
   },
   homeContact: {
     heading: "Contact",

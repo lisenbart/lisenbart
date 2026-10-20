@@ -4,9 +4,12 @@ import FilmPage from "./pages/FilmPage";
 import CommercialPage from "./pages/CommercialPage";
 import StudioPage from "./pages/StudioPage";
 import AboutPage from "./pages/AboutPage";
+import GamesPage from "./pages/GamesPage";
+import AiPage from "./pages/AiPage";
 import Footer from "./components/Footer";
 import { ReelProvider } from "./contexts/ReelContext";
 import {
+  legacyAiAnchorRedirectTarget,
   legacyWorkRedirectTarget,
   parseHubPage,
   shouldRedirectToCanonicalHubPath,
@@ -18,6 +21,8 @@ function resolveMain() {
   if (hub === "client-work") return <CommercialPage />;
   if (hub === "studio") return <StudioPage />;
   if (hub === "about") return <AboutPage />;
+  if (hub === "games") return <GamesPage />;
+  if (hub === "ai") return <AiPage />;
   return <HomePage />;
 }
 
@@ -26,6 +31,12 @@ export default function App() {
     const legacyRedirect = legacyWorkRedirectTarget();
     if (legacyRedirect) {
       window.location.replace(legacyRedirect);
+      return null;
+    }
+
+    const aiAnchorRedirect = legacyAiAnchorRedirectTarget();
+    if (aiAnchorRedirect) {
+      window.location.replace(aiAnchorRedirect);
       return null;
     }
 

@@ -11,9 +11,8 @@ export default function Footer() {
         <a href={hubCanonicalHref("client-work")}>Work</a>
         <a href={hubCanonicalHref("originals")}>Originals</a>
         <a href={hubCanonicalHref("studio")}>Studio</a>
-        <a href={site.gamesUrl} target="_blank" rel="noopener noreferrer">
-          Games
-        </a>
+        <a href={hubCanonicalHref("games")}>Games</a>
+        <a href={hubCanonicalHref("ai")}>AI</a>
         <a
           href="#contact"
           onClick={(e) => {

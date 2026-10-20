@@ -4,9 +4,17 @@ export const routes = {
   clientWork: "/client-work",
   studio: "/studio",
   about: "/about",
+  games: "/games",
+  ai: "/ai",
 } as const;
 
-export type HubPageSlug = "originals" | "client-work" | "studio" | "about";
+export type HubPageSlug =
+  | "originals"
+  | "client-work"
+  | "studio"
+  | "about"
+  | "games"
+  | "ai";
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -46,6 +54,8 @@ export function hubPageHref(slug: HubPageSlug) {
   if (slug === "originals") return routes.originals;
   if (slug === "studio") return routes.studio;
   if (slug === "about") return routes.about;
+  if (slug === "games") return routes.games;
+  if (slug === "ai") return routes.ai;
   return routes.clientWork;
 }
 
@@ -55,6 +65,8 @@ export function parseHubPage(pathname?: string): HubPageSlug | null {
   if (normalized === routes.clientWork) return "client-work";
   if (normalized === routes.studio) return "studio";
   if (normalized === routes.about) return "about";
+  if (normalized === routes.games) return "games";
+  if (normalized === routes.ai) return "ai";
   return null;
 }
 
@@ -98,6 +110,7 @@ export function shouldRedirectToCanonicalHubPath(pathname?: string): string | nu
  * Legacy paths → current hubs.
  * /film → /originals/; /commercial → /client-work/;
  * /work/film → /originals/; other /work/* → /client-work/.
+ * /client-work/#ai-powered-reel handled separately in App (hash).
  */
 export function legacyWorkRedirectTarget(pathname?: string): string | null {
   const normalized = normalizePathname(resolvePathname(pathname));
@@ -117,5 +130,15 @@ export function legacyWorkRedirectTarget(pathname?: string): string | null {
     return canonicalHubPath("client-work");
   }
 
+  return null;
+}
+
+/** Old Client Work AI anchor → dedicated AI page. */
+export function legacyAiAnchorRedirectTarget(): string | null {
+  if (typeof window === "undefined") return null;
+  const hub = parseHubPage();
+  if (hub !== "client-work") return null;
+  const hash = window.location.hash.replace(/^#/, "");
+  if (hash === "ai-powered-reel") return canonicalHubPath("ai");
   return null;
 }
