@@ -1,47 +1,49 @@
 import {
+  jurisdictionRenderMode,
   legalConfig,
   shouldLinkDraftPolicies,
-  shouldShowLegalPlaceholders,
-  shouldShowVerifiedLegalDetails,
   type RegisteredPresence,
 } from "@/data/legal";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
-function PresenceBlock({
-  presence,
-  verified,
-}: {
-  presence: RegisteredPresence;
-  verified: boolean;
-}) {
+function PresenceBlock({ presence }: { presence: RegisteredPresence }) {
+  const mode = jurisdictionRenderMode(presence);
+
   return (
     <div className="film-footer__presence">
       <h3 className="film-footer__country">{presence.countryLabel}</h3>
-      {verified ? (
+
+      {mode === "verified" ? (
         <address className="film-footer__address">
           <span>{presence.legalName}</span>
           <span>{presence.addressLine}</span>
           <span>{presence.cityLine}</span>
           <span>{presence.registrationLine}</span>
         </address>
-      ) : (
+      ) : null}
+
+      {mode === "placeholder" ? (
         <address className="film-footer__address film-footer__address--placeholder">
           <span>{presence.legalName}</span>
           <span>{presence.addressLine}</span>
           <span>{presence.cityLine}</span>
           <span>{presence.registrationLine}</span>
         </address>
-      )}
+      ) : null}
+
+      {mode === "soft" ? (
+        <p className="film-footer__jurisdiction-pending">{legalConfig.pendingNote}</p>
+      ) : null}
     </div>
   );
 }
 
 export default function Footer() {
-  const showPlaceholders = shouldShowLegalPlaceholders();
-  const showVerified = shouldShowVerifiedLegalDetails();
   const showPolicies = shouldLinkDraftPolicies();
-  const showLegalLevel = showPlaceholders || showVerified;
+  const showPendingNote =
+    jurisdictionRenderMode(legalConfig.canada) === "placeholder" ||
+    jurisdictionRenderMode(legalConfig.ukraine) === "placeholder";
 
   return (
     <footer className="film-footer">
@@ -82,25 +84,14 @@ export default function Footer() {
         <div className="film-footer__level film-footer__level--legal">
           <p className="film-footer__legal-label">{legalConfig.legalSectionLabel}</p>
 
-          {showLegalLevel ? (
-            <>
-              <div className="film-footer__presence-grid">
-                <PresenceBlock presence={legalConfig.canada} verified={showVerified} />
-                <PresenceBlock presence={legalConfig.ukraine} verified={showVerified} />
-              </div>
-              {showPlaceholders ? (
-                <p className="film-footer__pending">{legalConfig.pendingNote}</p>
-              ) : null}
-            </>
-          ) : (
-            <div className="film-footer__presence-soft">
-              <p>{legalConfig.presenceSummary}</p>
-              <p>
-                {legalConfig.presenceContactHint}{" "}
-                <a href={`mailto:${site.email}`}>{site.email}</a>.
-              </p>
-            </div>
-          )}
+          <div className="film-footer__presence-grid">
+            <PresenceBlock presence={legalConfig.canada} />
+            <PresenceBlock presence={legalConfig.ukraine} />
+          </div>
+
+          {showPendingNote ? (
+            <p className="film-footer__pending">{legalConfig.pendingNote}</p>
+          ) : null}
         </div>
 
         <div className="film-footer__level film-footer__level--bar">

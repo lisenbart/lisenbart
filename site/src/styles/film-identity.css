@@ -978,6 +978,15 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--muted);
 }
 
+.film-footer__jurisdiction-pending {
+  margin: 0;
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: var(--leading-label);
+  color: var(--muted);
+}
+
 .film-footer__presence-soft {
   max-width: 36rem;
 }

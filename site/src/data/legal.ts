@@ -2,12 +2,15 @@
  * Centralized legal / policy configuration for LISENBART FILM.
  *
  * Do not invent registration numbers, entity names, or street addresses.
- * Flip `legalDetailsVerified` / `policiesPublished` only after real data is confirmed.
+ * Flip per-jurisdiction `verified` / `policiesPublished` only after real data is confirmed.
+ *
+ * Canada source (2026-10-20): Ontario Business Name Registration for a Sole Proprietorship
+ * — Business Names Act; BIN 1001421710; effective 2025-11-21; expiry 2030-11-20.
  */
 
 export type RegisteredPresence = {
   countryLabel: string;
-  /** Bracketed placeholders until verified — never treat as public fact. */
+  verified: boolean;
   legalName: string;
   addressLine: string;
   cityLine: string;
@@ -15,12 +18,6 @@ export type RegisteredPresence = {
 };
 
 export const legalConfig = {
-  /**
-   * When false, unverified registration fields must not appear as real
-   * on production hosts. Preview/dev may show marked placeholders.
-   */
-  legalDetailsVerified: false as boolean,
-
   /**
    * When false, Privacy / Cookie pages are review drafts only.
    * Production footer omits those links until this is true.
@@ -35,21 +32,21 @@ export const legalConfig = {
 
   pendingNote: "Details pending verification",
 
-  /** Soft presence line when placeholders are withheld (production + unverified). */
-  presenceSummary: "Registered business presence in Canada and Ukraine.",
-
+  /** Soft presence when a jurisdiction is unverified outside preview. */
   presenceContactHint: "For formal notices, email",
 
   canada: {
     countryLabel: "Canada",
-    legalName: "[CANADA — REGISTERED LEGAL NAME]",
-    addressLine: "[CANADA — REGISTERED ADDRESS]",
-    cityLine: "[CANADA — CITY, PROVINCE, POSTAL CODE]",
-    registrationLine: "[CANADA — REGISTRATION NUMBER]",
+    verified: true,
+    legalName: "LISENBART FILM",
+    addressLine: "Sole proprietorship of Dmytro Lisenbart",
+    cityLine: "3100 Keele Street, Toronto, Ontario M3M 0E1, Canada",
+    registrationLine: "Ontario Business Identification Number 1001421710",
   } satisfies RegisteredPresence,
 
   ukraine: {
     countryLabel: "Ukraine",
+    verified: false,
     legalName: "[UKRAINE — REGISTERED LEGAL NAME]",
     addressLine: "[UKRAINE — REGISTERED ADDRESS]",
     cityLine: "[UKRAINE — CITY, REGION, POSTAL CODE]",
@@ -74,24 +71,26 @@ export const legalConfig = {
   },
 } as const;
 
+/** True when every jurisdiction has verified public registration data. */
+export function legalDetailsVerified(): boolean {
+  return legalConfig.canada.verified && legalConfig.ukraine.verified;
+}
+
 /** True when Vite is building/serving a legal-preview context (Netlify DP / local). */
 export function isLegalPreviewContext(): boolean {
   if (import.meta.env.DEV) return true;
   return import.meta.env.VITE_LEGAL_PREVIEW === "true";
 }
 
-/**
- * Show bracketed registration placeholders (with pending note).
- * Never on production when unverified.
- */
-export function shouldShowLegalPlaceholders(): boolean {
-  if (legalConfig.legalDetailsVerified) return false;
-  return isLegalPreviewContext();
-}
+export type JurisdictionRenderMode = "verified" | "placeholder" | "soft";
 
-/** Show verified registration blocks (real data only). */
-export function shouldShowVerifiedLegalDetails(): boolean {
-  return legalConfig.legalDetailsVerified;
+/** How to render one jurisdiction block in the footer. */
+export function jurisdictionRenderMode(
+  presence: RegisteredPresence,
+): JurisdictionRenderMode {
+  if (presence.verified) return "verified";
+  if (isLegalPreviewContext()) return "placeholder";
+  return "soft";
 }
 
 /**
