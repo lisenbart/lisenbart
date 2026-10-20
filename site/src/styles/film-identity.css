@@ -2079,10 +2079,10 @@ a.original-tile {
 
 .home-explore {
   --explore-bg: #d8e6f4;
-  padding: var(--space-4) var(--gutter) var(--section-y);
+  padding: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-2);
+  gap: 0;
   background: var(--explore-bg);
 }
 
@@ -2095,9 +2095,9 @@ html[data-hero-period="evening"] .home-explore {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0;
   box-shadow: inset 0 0 0 1px rgba(16, 21, 36, 0.12);
-  transition: transform 350ms ease;
+  transition: filter 250ms ease;
   min-height: 9.5rem;
   padding: var(--space-4);
   display: flex;
@@ -2109,7 +2109,7 @@ html[data-hero-period="evening"] .home-explore {
   text-decoration: none;
 }
 
-.explore-strip:hover { transform: translateY(-4px); }
+.explore-strip:hover { filter: brightness(1.06); }
 
 /*
  * Static blurred preview — no scroll parallax on this layer.
@@ -2841,9 +2841,9 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .home-explore {
-    padding: var(--space-4) var(--gutter) var(--space-5);
+    padding: 0;
     grid-template-columns: 1fr;
-    gap: var(--space-2);
+    gap: 0;
   }
   .explore-strip { min-height: 7.5rem; padding: var(--space-3); gap: var(--space-2); }
 
