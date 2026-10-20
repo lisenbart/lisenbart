@@ -389,24 +389,44 @@ img { display: block; width: 100%; }
   transform: translate3d(0, 0, 0) scale(1.05);
 }
 
-/* Hero statement stays white on both day and evening art */
-.home-hero .home-statement h1,
-.home-hero .home-statement p {
+/* Hero copy: deep navy on day art, white on evening art */
+.home-hero--day .home-statement,
+.home-hero--day .home-statement h1,
+.home-hero--day .home-statement p {
+  color: #101524;
+}
+
+.home-hero--day .home-statement i {
+  background: #101524;
+}
+
+.home-hero--evening .home-statement,
+.home-hero--evening .home-statement h1,
+.home-hero--evening .home-statement p {
   color: #fff;
 }
 
-.home-hero .home-statement i {
+.home-hero--evening .home-statement i {
   background: #fff;
 }
 
-/* Home evening: light nav over dark hero */
+/* Nav matches hero period while on home */
+html[data-hero-period="day"] .film-header .brand,
+html[data-hero-period="day"] .film-header .desktop-nav a {
+  color: #101524;
+}
+
+html[data-hero-period="day"] .menu-button:not(.open) span {
+  background: #101524;
+}
+
 html[data-hero-period="evening"] .film-header .brand,
 html[data-hero-period="evening"] .film-header .desktop-nav a {
-  color: #f7f4ef;
+  color: #fff;
 }
 
 html[data-hero-period="evening"] .menu-button:not(.open) span {
-  background: #f7f4ef;
+  background: #fff;
 }
 
 /* Open overlay is light paper — keep X dark and above the panel */
