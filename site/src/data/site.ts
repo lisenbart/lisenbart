@@ -300,7 +300,11 @@ export const site = {
       playLabel: "Watch reel",
     },
     introHeading: "Who we are",
-    intro: "We make animation for clients and films of our own.",
+    introParagraphs: [
+      "LISENBART FILM is an independent animation studio founded in 2006, with over 1,000 commercial projects behind us.",
+      "We work with brands, agencies and production partners, bringing together creative direction, production management and the right artists for each project.",
+      "Alongside commissioned work, we develop and produce our own animated films and original IP.",
+    ] as const,
     howHeading: "How we work",
     how:
       "We assemble the right team for each project, guide the creative work and keep production moving.",

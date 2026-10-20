@@ -34,7 +34,11 @@ export default function StudioPage() {
             <h2 id="who-heading" className="studio-section-heading">
               {page.introHeading}
             </h2>
-            <p className="studio-models__note">{page.intro}</p>
+            {page.introParagraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="studio-models__note">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </FilmReveal>
       </section>

@@ -2470,7 +2470,12 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .studio-intro .studio-models__note {
-  margin-top: 0;
+  margin-top: var(--space-2);
+  max-width: var(--measure);
+}
+
+.studio-intro .studio-section-heading + .studio-models__note {
+  margin-top: var(--space-3);
 }
 
 .studio-image {
