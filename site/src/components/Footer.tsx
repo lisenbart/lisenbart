@@ -76,8 +76,6 @@ export default function Footer() {
         </div>
 
         <div className="film-footer__level film-footer__level--legal">
-          <p className="film-footer__legal-label">{legalConfig.legalSectionLabel}</p>
-
           <div className="film-footer__presence-grid">
             <PresenceBlock presence={legalConfig.canada} />
             <PresenceBlock presence={legalConfig.ukraine} />
