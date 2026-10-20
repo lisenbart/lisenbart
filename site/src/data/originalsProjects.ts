@@ -96,12 +96,18 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
     ],
     characterNote:
       "Captain Firefly — a cheerful robot guide who sings, explores and introduces colours, numbers, shapes and emotions.",
+    /** Curated from live @pershosvit playlists (verified Oct 2026). */
     highlights: [
-      "Ukrainian songs and animated stories",
-      "Alphabet and early-learning formats",
-      "Friendship and kindness tales",
-      "Calm bedtime viewing",
-      "Longer thematic compilations",
+      "Ukrainian children's songs",
+      "Ukrainian alphabet A–Я",
+      "English ABC and first words for toddlers",
+      "Марійчин Першосвіт friendship cartoons",
+      "Baby Shark and Wheels on the Bus (Ukrainian)",
+      "Vehicle songs and cartoons",
+      "Animal songs and sounds",
+      "Lullabies and calm evening videos",
+      "Seasonal songs — Christmas, New Year, Easter, Halloween",
+      "Finger Family and Shorts formats",
     ],
     cta: {
       label: "Discuss this IP",
@@ -125,11 +131,17 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
     ],
     characterNote:
       "Scoopy Cap — a gentle explorer who turns first letters, songs and everyday learning into play.",
+    /** Curated from live @ScoopyCap playlists (verified Oct 2026). */
     highlights: [
-      "Nursery rhymes and toddler songs",
-      "ABC Universe and letter learning",
-      "Colours, numbers and shapes",
-      "Calm bedtime songs and compilations",
+      "Nursery rhymes and kids songs",
+      "ABC Universe — alphabet A to Z",
+      "Letter Friends ABC songs",
+      "Baby Shark and classic toddler songs",
+      "Animal songs",
+      "Trucks and vehicles songs",
+      "Good habits songs",
+      "Meet Scoopy Cap Shorts",
+      "Seasonal songs — Christmas, Halloween, Easter",
     ],
     cta: {
       label: "Discuss this IP",

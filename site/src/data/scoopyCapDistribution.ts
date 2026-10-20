@@ -10,10 +10,11 @@ export type ScoopyCapPlatform = {
   /** Public-facing display name. */
   name: string;
   /**
+   * channel = owned social / YouTube presence
    * platform = named kids/AVOD service or catalog
    * ecosystem = broad store/ecosystem (Amazon, Roku) — no specific channel claimed
    */
-  category: "platform" | "ecosystem";
+  category: "channel" | "platform" | "ecosystem";
   /** Official platform homepage if known — never used as Scoopy Cap deep-link proof. */
   officialUrl: string | null;
   /** Direct Scoopy Cap title/channel URL — only when verified. */
@@ -29,7 +30,7 @@ export const scoopyCapDistribution = {
   reachNote:
     "Scoopy Cap is an original preschool animation and learning IP distributed across a growing network of digital and connected-TV platforms.",
 
-  platformsHeading: "Where to Watch",
+  platformsHeading: "Distribution & Platforms",
 
   /**
    * Studio-supplied platform names may appear when true.
@@ -38,6 +39,24 @@ export const scoopyCapDistribution = {
   sectionPublished: true as boolean,
 
   platforms: [
+    {
+      id: "youtube",
+      name: "YouTube",
+      category: "channel",
+      officialUrl: "https://www.youtube.com",
+      contentUrl: "https://www.youtube.com/@ScoopyCap",
+      nameVerified: true,
+      published: true,
+    },
+    {
+      id: "youtube-kids",
+      name: "YouTube Kids",
+      category: "platform",
+      officialUrl: "https://www.youtubekids.com",
+      contentUrl: null,
+      nameVerified: true,
+      published: true,
+    },
     {
       id: "batterypop",
       name: "batteryPOP",
@@ -134,6 +153,24 @@ export const scoopyCapDistribution = {
       category: "ecosystem",
       officialUrl: null,
       contentUrl: null,
+      nameVerified: true,
+      published: true,
+    },
+    {
+      id: "tiktok",
+      name: "TikTok",
+      category: "channel",
+      officialUrl: "https://www.tiktok.com",
+      contentUrl: "https://www.tiktok.com/@scoopycap",
+      nameVerified: true,
+      published: true,
+    },
+    {
+      id: "instagram",
+      name: "Instagram",
+      category: "channel",
+      officialUrl: "https://www.instagram.com",
+      contentUrl: "https://www.instagram.com/scoopycap/",
       nameVerified: true,
       published: true,
     },
