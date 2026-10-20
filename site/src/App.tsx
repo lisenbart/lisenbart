@@ -6,16 +6,23 @@ import StudioPage from "./pages/StudioPage";
 import AboutPage from "./pages/AboutPage";
 import GamesPage from "./pages/GamesPage";
 import AiPage from "./pages/AiPage";
+import PrivacyPage from "./pages/PrivacyPage";
+import CookiePolicyPage from "./pages/CookiePolicyPage";
 import Footer from "./components/Footer";
 import { ReelProvider } from "./contexts/ReelContext";
 import {
   legacyAiAnchorRedirectTarget,
   legacyWorkRedirectTarget,
   parseHubPage,
+  parseLegalPage,
   shouldRedirectToCanonicalHubPath,
 } from "./lib/routes";
 
 function resolveMain() {
+  const legal = parseLegalPage();
+  if (legal === "privacy") return <PrivacyPage />;
+  if (legal === "cookie-policy") return <CookiePolicyPage />;
+
   const hub = parseHubPage();
   if (hub === "originals") return <FilmPage />;
   if (hub === "client-work") return <CommercialPage />;

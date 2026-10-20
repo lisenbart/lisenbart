@@ -21,6 +21,8 @@ export default defineConfig(({ command }) => ({
               "/about",
               "/games",
               "/ai",
+              "/privacy",
+              "/cookie-policy",
             ],
 
           }),

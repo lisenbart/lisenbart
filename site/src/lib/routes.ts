@@ -6,6 +6,8 @@ export const routes = {
   about: "/about",
   games: "/games",
   ai: "/ai",
+  privacy: "/privacy",
+  cookiePolicy: "/cookie-policy",
 } as const;
 
 export type HubPageSlug =
@@ -15,6 +17,8 @@ export type HubPageSlug =
   | "about"
   | "games"
   | "ai";
+
+export type LegalPageSlug = "privacy" | "cookie-policy";
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -70,9 +74,16 @@ export function parseHubPage(pathname?: string): HubPageSlug | null {
   return null;
 }
 
-/** Hub pages — not home. */
+export function parseLegalPage(pathname?: string): LegalPageSlug | null {
+  const normalized = normalizePathname(resolvePathname(pathname));
+  if (normalized === routes.privacy) return "privacy";
+  if (normalized === routes.cookiePolicy) return "cookie-policy";
+  return null;
+}
+
+/** Hub or legal subpages — not home. */
 export function isSiteSubpage(pathname?: string) {
-  return parseHubPage(pathname) !== null;
+  return parseHubPage(pathname) !== null || parseLegalPage(pathname) !== null;
 }
 
 /** Canonical hub path for links, sitemap, and SEO (trailing slash). */

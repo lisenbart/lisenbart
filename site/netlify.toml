@@ -5,6 +5,14 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Preview / branch deploys may render marked legal placeholders & draft policies.
+# Production context must not set VITE_LEGAL_PREVIEW (unverified legal stays omitted).
+[context.deploy-preview.environment]
+  VITE_LEGAL_PREVIEW = "true"
+
+[context.branch-deploy.environment]
+  VITE_LEGAL_PREVIEW = "true"
+
 # --- Hard-block compromised / WordPress paths (hack aftermath) ---
 # Must stay ABOVE the SPA /* fallback so they are not soft-200 HTML.
 [[redirects]]
