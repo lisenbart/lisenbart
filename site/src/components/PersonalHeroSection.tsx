@@ -1,5 +1,6 @@
 import { useState, type MouseEvent } from "react";
 import { AnimatePresence } from "framer-motion";
+import { MessageSquare } from "lucide-react";
 import PersonPopover from "@/components/PersonPopover";
 import { publicAsset } from "@/lib/publicAsset";
 import { site } from "@/data/site";
@@ -57,6 +58,9 @@ export default function PersonalHeroSection() {
               decoding="async"
               fetchPriority="high"
             />
+            <span className="about-hero__message" aria-hidden="true">
+              <MessageSquare size={18} strokeWidth={2.25} />
+            </span>
           </button>
         </div>
       </div>

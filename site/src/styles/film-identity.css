@@ -1485,6 +1485,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .about-hero__portrait-trigger {
+  position: relative;
   margin: 0;
   padding: 0;
   border: 0;
@@ -1504,6 +1505,29 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   object-fit: cover;
   border-radius: 50%;
   background: #243454;
+}
+
+.about-hero__message {
+  position: absolute;
+  right: 0.15rem;
+  bottom: 0.35rem;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: 0 6px 18px rgba(16, 21, 36, 0.22);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.about-hero__portrait-trigger:hover .about-hero__message,
+.about-hero__portrait-trigger:focus-visible .about-hero__message {
+  transform: translateY(-2px);
 }
 
 .about-body {
