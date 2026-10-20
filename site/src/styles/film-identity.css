@@ -397,14 +397,19 @@ img { display: block; width: 100%; }
   background: #fff;
 }
 
-/* Home evening: light nav over dark hero */
-html[data-hero-period="evening"] .film-header .brand,
-html[data-hero-period="evening"] .film-header .desktop-nav a {
-  color: #f7f4ef;
+/* Home hero: brand + desktop nav stay white over day and evening art */
+html[data-hero-period] .film-header .brand,
+html[data-hero-period] .film-header .desktop-nav a {
+  color: #fff;
 }
 
-html[data-hero-period="evening"] .menu-button:not(.open) span {
-  background: #f7f4ef;
+/* Menu bars follow hero tone: white on dark evening, dark on light day */
+html[data-hero-period="evening"] .menu-button:not(.open) {
+  color: #fff;
+}
+
+html[data-hero-period="day"] .menu-button:not(.open) {
+  color: var(--ink);
 }
 
 /* Open overlay is light paper — keep X dark and above the panel */
