@@ -1,6 +1,7 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
+import StudioSlideshow from "@/components/film/StudioSlideshow";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 import { publicAsset } from "@/lib/publicAsset";
@@ -27,14 +28,7 @@ export default function StudioPage() {
           <p className="studio-models__note">{page.intro}</p>
         </div>
 
-        <div className="studio-image">
-          <img
-            src="/images/studio/studio-strip.webp"
-            alt="LISENBART FILM animation studio"
-            width={1536}
-            height={1024}
-          />
-        </div>
+        <StudioSlideshow />
       </section>
 
       <section className="studio-models" aria-labelledby="how-heading">

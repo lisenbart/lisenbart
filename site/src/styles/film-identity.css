@@ -1239,14 +1239,37 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .studio-image {
+  position: relative;
   height: 33vh;
   min-height: 250px;
   overflow: hidden;
   margin: 0 calc(-1 * var(--gutter));
   width: calc(100% + 2 * var(--gutter));
+  background: #142038;
 }
 
-.studio-image img { height: 100%; object-fit: cover; object-position: center 45%; }
+.studio-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 45%;
+  opacity: 0;
+  transition: opacity 1.15s ease;
+  pointer-events: none;
+}
+
+.studio-image img.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .studio-image img {
+    transition: none;
+  }
+}
 
 .studio-cta {
   display: inline-flex;
