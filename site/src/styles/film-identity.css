@@ -862,12 +862,26 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   max-width: 1120px;
 }
 
+.project-page.page-shell--to-reel {
+  padding-top: calc(var(--header-offset) + var(--space-3));
+  padding-bottom: var(--space-2);
+}
+
+.project-page.page-shell--from-reel {
+  padding-top: var(--space-3);
+  padding-bottom: var(--space-5);
+}
+
+.project-page.page-shell:not(.page-shell--to-reel):not(.page-shell--from-reel) {
+  padding-bottom: var(--space-5);
+}
+
 .project-page__nav {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem 0.65rem;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-2);
   font-size: var(--text-meta);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -922,7 +936,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .project-page__synopsis,
 .project-page__body {
-  margin: var(--space-3) 0 0;
+  margin: var(--space-2) 0 0;
   max-width: 40rem;
   font-size: var(--text-body);
   line-height: var(--leading-body);
@@ -944,12 +958,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 /* Festival recognition — Unnecessary Things */
 .festival-featured {
-  margin: 0 0 var(--space-5);
+  margin: 0 0 var(--space-3);
   max-width: min(100%, 56rem);
 }
 
 .festival-featured__statement {
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-2);
   font-size: var(--text-meta);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -1033,7 +1047,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .festival-rec {
-  margin-top: var(--space-5);
+  margin-top: var(--space-4);
   max-width: 40rem;
 }
 
@@ -1046,7 +1060,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .festival-rec__group {
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .festival-rec__group-title {
@@ -1109,7 +1123,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .project-page__stills,
 .project-page__highlights,
 .project-page__platforms {
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .project-page__festival-list,
@@ -1144,7 +1158,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .project-page__quote {
-  margin: var(--space-4) 0 0;
+  margin: var(--space-3) 0 0;
   padding: 0;
   border: 0;
   max-width: 36rem;
@@ -1169,7 +1183,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .project-page__cta-row {
-  margin-top: var(--space-4);
+  margin-top: var(--space-3);
 }
 
 .project-page__cta {
@@ -1208,7 +1222,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .project-page__character {
-  margin: var(--space-4) 0 0;
+  margin: var(--space-3) 0 0;
   max-width: 36rem;
   display: grid;
   gap: 0.45rem;
@@ -1822,14 +1836,15 @@ html[data-hero-period="evening"] .home-explore {
   background: var(--white);
 }
 
+/* Title → reel → content: keep the sandwich tight */
 .page-shell--to-reel {
   min-height: 0;
-  padding-bottom: var(--block-gap);
+  padding-bottom: var(--space-2);
 }
 
 .page-shell--from-reel {
   min-height: 0;
-  padding-top: var(--block-gap);
+  padding-top: var(--space-2);
 }
 
 .page-title-row {
