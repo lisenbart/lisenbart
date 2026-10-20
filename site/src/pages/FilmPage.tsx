@@ -70,26 +70,23 @@ export default function FilmPage() {
             const media = item.mediaImage ?? "";
 
             return (
-              <article key={item.id} className="original-card">
-                <a
-                  className="original-card__media"
-                  href={href}
-                  aria-label={`${actionLabel}: ${item.title}`}
-                >
-                  <img src={media} alt={item.mediaImageAlt ?? ""} />
-                </a>
-                <div className="original-card__body">
-                  <h2>
-                    <a className="original-card__title-link" href={href}>
-                      {item.title}
-                    </a>
-                  </h2>
-                  <p className="original-card__status">{type}</p>
-                  <a className="original-card__action" href={href}>
-                    {actionLabel}
-                  </a>
-                </div>
-              </article>
+              <a
+                key={item.id}
+                className="original-card"
+                href={href}
+                aria-label={`${item.title} — ${actionLabel}`}
+              >
+                <span className="original-card__media">
+                  <img src={media} alt="" />
+                  <span className="original-card__overlay">
+                    <span className="original-card__copy">
+                      <span className="original-card__title">{item.title}</span>
+                      <span className="original-card__status">{type}</span>
+                      <span className="original-card__action">{actionLabel}</span>
+                    </span>
+                  </span>
+                </span>
+              </a>
             );
           })}
         </div>
