@@ -1865,20 +1865,10 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .page-shell.page-shell--from-reel .film-capabilities {
-  margin: var(--space-4) 0 0;
+  margin: 0;
 }
 
-.page-shell.page-shell--from-reel > .film-section-label {
-  margin: 0 0 var(--space-1);
-}
-
-.page-shell.page-shell--from-reel > .direction-lead,
-.page-shell.page-shell--from-reel > .film-contact__lead {
-  margin: 0 0 0;
-  max-width: var(--measure);
-}
-
-.page-shell.page-shell--from-reel .film-capabilities > .film-section-label {
+.page-shell.page-shell--from-reel .film-section-label {
   margin-bottom: var(--space-2);
 }
 
