@@ -2079,8 +2079,8 @@ a.original-tile {
 .circle-link .arrow-icon { width: 19px; }
 
 .home-explore {
-  /* Hero-synced surface: day sky wash / evening dusk paper */
-  --explore-bg: #d8e6f4;
+  /* Same surface as hero (image stays in .home-hero only) */
+  --explore-bg: #7eb8e8;
   padding: var(--space-4) var(--gutter) var(--section-y);
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2089,7 +2089,7 @@ a.original-tile {
 }
 
 html[data-hero-period="evening"] .home-explore {
-  --explore-bg: #e6e2e8;
+  --explore-bg: #0c1630;
 }
 
 .explore-strip {
