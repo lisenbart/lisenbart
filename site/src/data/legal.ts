@@ -6,6 +6,10 @@
  *
  * Canada source (2026-10-20): Ontario Business Name Registration for a Sole Proprietorship
  * — Business Names Act; BIN 1001421710; effective 2025-11-21; expiry 2030-11-20.
+ *
+ * Ukraine source (2026-10-20): Extract from the Unified State Register (EN), extract no. 37804667
+ * dated 29.06.2026 — LLC "Lisenbart Film", EDRPOU 44610768.
+ * Film producer: State Register Series B No. 001298 (11.02.2022), per Derzhkino criteria filing.
  */
 
 export type RegisteredPresence = {
@@ -46,12 +50,23 @@ export const legalConfig = {
 
   ukraine: {
     countryLabel: "Ukraine",
-    verified: false,
-    legalName: "[UKRAINE — REGISTERED LEGAL NAME]",
-    addressLine: "[UKRAINE — REGISTERED ADDRESS]",
-    cityLine: "[UKRAINE — CITY, REGION, POSTAL CODE]",
-    registrationLine: "[UKRAINE — REGISTRATION / TAX NUMBER]",
+    verified: true,
+    legalName: 'LIMITED LIABILITY COMPANY "Lisenbart Film"',
+    addressLine: "Pryrichna Street, building 9A, apartment 81",
+    cityLine: "Kyiv 04213, Ukraine",
+    registrationLine: "EDRPOU 44610768",
   } satisfies RegisteredPresence,
+
+  /**
+   * Professional accreditation (not a registered-address field).
+   * Shown on Studio — not mixed into footer legal blocks.
+   */
+  ukraineFilmProducer: {
+    verified: true,
+    label: "Registered film producer in Ukraine",
+    detail:
+      "State Register of Film Producers, Distributors and Demonstrators of Films — Series B No. 001298 (11 February 2022)",
+  },
 
   policies: {
     privacy: {

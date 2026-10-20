@@ -4,11 +4,13 @@ import StudioModelItem from "@/components/film/StudioModelItem";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
 import StudioSlideshow from "@/components/film/StudioSlideshow";
+import { legalConfig } from "@/data/legal";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.studioPage;
+const filmProducer = legalConfig.ukraineFilmProducer;
 
 export default function StudioPage() {
   return (
@@ -31,6 +33,12 @@ export default function StudioPage() {
               {page.introHeading}
             </h2>
             <p className="studio-models__note">{page.intro}</p>
+            {filmProducer.verified ? (
+              <p className="studio-credential">
+                <span className="studio-credential__label">{filmProducer.label}</span>
+                <span className="studio-credential__detail">{filmProducer.detail}</span>
+              </p>
+            ) : null}
           </div>
         </FilmReveal>
 
