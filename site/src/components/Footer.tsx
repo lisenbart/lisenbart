@@ -32,18 +32,12 @@ function PresenceBlock({ presence }: { presence: RegisteredPresence }) {
         </address>
       ) : null}
 
-      {mode === "soft" ? (
-        <p className="film-footer__jurisdiction-pending">{legalConfig.pendingNote}</p>
-      ) : null}
     </div>
   );
 }
 
 export default function Footer() {
   const showPolicies = shouldLinkDraftPolicies();
-  const showPendingNote =
-    jurisdictionRenderMode(legalConfig.canada) === "placeholder" ||
-    jurisdictionRenderMode(legalConfig.ukraine) === "placeholder";
 
   return (
     <footer className="film-footer">
@@ -88,10 +82,6 @@ export default function Footer() {
             <PresenceBlock presence={legalConfig.canada} />
             <PresenceBlock presence={legalConfig.ukraine} />
           </div>
-
-          {showPendingNote ? (
-            <p className="film-footer__pending">{legalConfig.pendingNote}</p>
-          ) : null}
         </div>
 
         <div className="film-footer__level film-footer__level--bar">
