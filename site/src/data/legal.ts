@@ -51,7 +51,7 @@ export const legalConfig = {
   ukraine: {
     countryLabel: "Ukraine",
     verified: true,
-    legalName: 'LIMITED LIABILITY COMPANY "Lisenbart Film"',
+    legalName: "LISENBART FILM LLC",
     addressLine: "Pryrichna Street, building 9A, apartment 81",
     cityLine: "Kyiv 04213, Ukraine",
     registrationLine: "EDRPOU 44610768",
