@@ -1,6 +1,5 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
-import LightScene from "@/components/film/LightScene";
 import { Arrow } from "@/components/film/FilmIcons";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
@@ -17,21 +16,11 @@ export default function StudioPage() {
         url={`${site.canonical}/studio/`}
       />
       <section className="studio-page">
-        <div className="studio-hero">
-          <LightScene variant="studio" />
-          <div>
-            <h1>
-              Director-led
-              <br />
-              creative
-              <br />
-              production
-              <br />
-              company.
-            </h1>
-            <i />
-            <p>Est. 2006</p>
-          </div>
+        <div className="studio-hero" aria-labelledby="who-heading">
+          <h2 id="who-heading" className="film-section-label">
+            {page.introHeading}
+          </h2>
+          <p className="studio-hero__lead">{page.intro}</p>
         </div>
         <div className="studio-image">
           <img
@@ -55,12 +44,10 @@ export default function StudioPage() {
         </div>
       </section>
 
-      <section className="studio-models" aria-labelledby="who-heading">
-        <h2 id="who-heading" className="film-section-label">
-          {page.introHeading}
+      <section className="studio-models" aria-labelledby="how-heading">
+        <h2 id="how-heading" className="studio-models__title">
+          {page.howHeading}
         </h2>
-        <p className="studio-models__note">{page.intro}</p>
-        <h2 className="studio-models__title studio-block">{page.howHeading}</h2>
         <p className="studio-models__note">{page.how}</p>
         <h2 id="ways-heading" className="studio-models__title studio-block">
           {page.engagementHeading}

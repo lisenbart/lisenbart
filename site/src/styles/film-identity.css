@@ -866,19 +866,8 @@ a.original-tile {
   text-transform: uppercase;
 }
 
-.studio-hero h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-display);
-  font-weight: 300;
-  line-height: var(--leading-display);
-  letter-spacing: var(--track-display);
-  text-transform: uppercase;
-}
-
 .home-statement i,
-.contact-content > i,
-.studio-hero i {
+.contact-content > i {
   display: block;
   width: 52px;
   height: 1px;
@@ -886,8 +875,7 @@ a.original-tile {
   background: currentColor;
 }
 
-.home-statement p,
-.studio-hero p {
+.home-statement p {
   margin: 0 0 var(--space-1);
   font-size: var(--text-meta);
   font-weight: 500;
@@ -1199,22 +1187,30 @@ html[data-hero-period="evening"] .explore-strip--ai {
 .original-small .tile-play { display: none; }
 
 .studio-page {
-  min-height: 100svh;
   padding-top: var(--header-offset);
   background: var(--white);
 }
 
 .studio-hero {
   position: relative;
-  min-height: 43vh;
-  padding: var(--space-5) var(--gutter);
+  min-height: auto;
+  padding: var(--space-5) var(--gutter) var(--space-4);
   overflow: hidden;
+  background: var(--white);
+  max-width: var(--measure-wide);
 }
 
-.studio-hero > div:last-child { position: relative; z-index: 2; }
-.studio-hero .light-scene { left: 45%; }
-.studio-hero .scene-orb-a { display: none; }
-.studio-hero .scene-orb-b { width: 50vw; height: 50vw; right: -18vw; bottom: -35vw; }
+.studio-hero .film-section-label {
+  margin-bottom: var(--stack-tight);
+}
+
+.studio-hero__lead {
+  margin: 0;
+  max-width: var(--measure);
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
 
 .studio-image {
   height: 33vh;
@@ -1478,8 +1474,7 @@ html[data-hero-period="evening"] .explore-strip--ai {
   .original-kozak .tile-play, .original-small .tile-play { left: auto; right: var(--gutter); bottom: var(--space-3); }
 
   .studio-page { padding-top: var(--header-offset); }
-  .studio-hero { min-height: 48vh; padding: var(--space-5) var(--gutter) var(--space-4); }
-  .studio-hero .light-scene { left: 35%; }
+  .studio-hero { padding: var(--space-4) var(--gutter); }
   .studio-image { height: 36vh; }
   .studio-footer { padding: var(--space-4) var(--gutter); }
   .studio-footer a { font-size: 0; gap: 0; }
