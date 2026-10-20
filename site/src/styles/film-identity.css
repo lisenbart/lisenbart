@@ -38,18 +38,18 @@
   --track-nav: 0.16em;
   --track-brand: 0.2em;
 
-  /* Spacing rhythm (8px base) */
+  /* Spacing rhythm (8px base) — compact site-wide */
   --space-1: 0.5rem;
-  --space-2: 1rem;
-  --space-3: 1.5rem;
-  --space-4: 2rem;
-  --space-5: 3rem;
-  --space-6: 4.5rem;
+  --space-2: 0.85rem;
+  --space-3: 1.25rem;
+  --space-4: 1.75rem;
+  --space-5: 2.25rem;
+  --space-6: 3rem;
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  --section-y: clamp(3rem, 5.5vw, 5rem);
-  --block-gap: clamp(2rem, 3.5vw, 3rem);
-  --stack: 1.25rem;
-  --stack-tight: 0.75rem;
+  --section-y: clamp(1.75rem, 3.5vw, 3rem);
+  --block-gap: clamp(1.25rem, 2.5vw, 2rem);
+  --stack: 1rem;
+  --stack-tight: 0.65rem;
   --header-offset: 6.5rem;
   --measure: 40rem;
   --measure-wide: 60rem;
@@ -1409,7 +1409,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .film-footer {
-  padding: var(--space-5) var(--gutter) var(--space-5);
+  padding: var(--space-4) var(--gutter) var(--space-4);
   border-top: 1px solid var(--line);
   color: var(--muted);
   background: var(--paper);
@@ -1420,7 +1420,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 
 .film-footer__level--brand {
@@ -1709,10 +1709,10 @@ a.original-tile {
 .home-explore {
   /* Hero-synced surface: day sky wash / evening dusk paper */
   --explore-bg: #d8e6f4;
-  padding: var(--section-y) var(--gutter);
+  padding: var(--space-4) var(--gutter) var(--section-y);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
+  gap: var(--space-2);
   background: var(--explore-bg);
 }
 
@@ -1832,7 +1832,7 @@ html[data-hero-period="evening"] .home-explore {
 
 .page-shell {
   min-height: 100svh;
-  padding: calc(var(--header-offset) + var(--space-4)) var(--gutter) var(--section-y);
+  padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) var(--section-y);
   background: var(--white);
 }
 
@@ -2053,12 +2053,12 @@ html[data-hero-period="evening"] .home-explore {
 .original-small .tile-play { display: none; }
 
 .studio-page {
-  padding: calc(var(--header-offset) + var(--space-4)) var(--gutter) 0;
+  padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) 0;
   background: var(--white);
 }
 
 .studio-page .page-title-row {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
 }
 
 .studio-section-heading.studio-block,
@@ -2212,8 +2212,8 @@ html[data-hero-period="evening"] .home-explore {
 .contact-columns {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-  gap: var(--space-6);
-  margin-top: var(--space-4);
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-3);
   align-items: start;
 }
 
