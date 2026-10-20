@@ -13,7 +13,7 @@ export const filmPageJsonLd = [
     duration: "PT14M",
     award: "Winner, Prague Film Awards",
     sameAs: ["https://www.imdb.com/title/tt14760808/"],
-    url: "https://lisenbart.com/originals/#unnecessary-things",
+    url: "https://lisenbart.com/originals/unnecessary-things/",
   },
   {
     "@context": "https://schema.org",
@@ -28,6 +28,6 @@ export const filmPageJsonLd = [
     description:
       "80-minute animated feature in development. A nameless Cossack trapped in a time loop — action-fantasy drawing on Ukrainian mythology.",
 
-    url: "https://lisenbart.com/originals/#the-last-kozak",
+    url: "https://lisenbart.com/originals/the-last-kozak/",
   },
 ] as const;

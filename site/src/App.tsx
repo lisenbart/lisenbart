@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import FilmPage from "./pages/FilmPage";
+import OriginalProjectPage from "./pages/OriginalProjectPage";
 import CommercialPage from "./pages/CommercialPage";
 import StudioPage from "./pages/StudioPage";
 import AboutPage from "./pages/AboutPage";
@@ -15,6 +16,7 @@ import {
   legacyWorkRedirectTarget,
   parseHubPage,
   parseLegalPage,
+  parseOriginalsProject,
   shouldRedirectToCanonicalHubPath,
 } from "./lib/routes";
 
@@ -22,6 +24,9 @@ function resolveMain() {
   const legal = parseLegalPage();
   if (legal === "privacy") return <PrivacyPage />;
   if (legal === "cookie-policy") return <CookiePolicyPage />;
+
+  const originalsProject = parseOriginalsProject();
+  if (originalsProject) return <OriginalProjectPage slug={originalsProject} />;
 
   const hub = parseHubPage();
   if (hub === "originals") return <FilmPage />;

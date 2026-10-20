@@ -6,8 +6,18 @@ import {
 
 const PREVIEW_COUNT = 6;
 
-/** Quiet platform list for the Scoopy Cap Originals card only. */
-export default function ScoopyCapPlatforms() {
+type ScoopyCapPlatformsProps = {
+  /** Override default "Where to Watch" heading (e.g. project page). */
+  heading?: string;
+  /** Hide the reach note when the page already carries that context. */
+  compactNote?: boolean;
+};
+
+/** Quiet platform list for Scoopy Cap (overview card or project page). */
+export default function ScoopyCapPlatforms({
+  heading,
+  compactNote = false,
+}: ScoopyCapPlatformsProps = {}) {
   const platforms = scoopyCapPlatformsForDisplay();
   const [expanded, setExpanded] = useState(false);
 
@@ -19,8 +29,8 @@ export default function ScoopyCapPlatforms() {
 
   return (
     <div className="scoopy-platforms">
-      <p className="scoopy-platforms__note">{reachNote}</p>
-      <p className="scoopy-platforms__heading">{platformsHeading}</p>
+      {!compactNote ? <p className="scoopy-platforms__note">{reachNote}</p> : null}
+      <p className="scoopy-platforms__heading">{heading ?? platformsHeading}</p>
       <ul className="scoopy-platforms__list">
         {visible.map((platform) => (
           <li key={platform.id}>{platform.name}</li>

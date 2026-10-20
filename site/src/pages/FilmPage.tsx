@@ -2,48 +2,49 @@ import FilmContactSection from "@/components/FilmContactSection";
 import DistributionPartnersSection from "@/components/film/DistributionPartnersSection";
 import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import { SEO } from "@/components/SEO";
-import { PlayIcon } from "@/components/film/FilmIcons";
-import { useReel } from "@/contexts/ReelContext";
 import { site } from "@/data/site";
 import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
+import {
+  originalsProjectHref,
+  type OriginalsProjectSlug,
+} from "@/lib/routes";
 
 const page = site.filmPage;
 
+const PROJECT_ACTION: Record<OriginalsProjectSlug, string> = {
+  "unnecessary-things": "View project",
+  "the-last-kozak": "View project",
+  pershosvit: "View project",
+  "scoopy-cap": "View project",
+};
+
 type ProjectCard = {
   item: WorkCaseStudy;
+  slug: OriginalsProjectSlug;
+  href: string;
   actionLabel: string;
 };
 
 function buildCards(): ProjectCard[] {
-  const [unnecessary, kozak, pershosvit, scoopy] = getWorkCasesByIds([
-    "unnecessary-things",
-    "the-last-kozak",
-    "pershosvit",
-    "scoopy-cap",
-  ]);
+  const slugs = Object.keys(PROJECT_ACTION) as OriginalsProjectSlug[];
+  const cases = getWorkCasesByIds(slugs);
+  const byId = new Map(cases.map((item) => [item.id, item]));
 
-  return [
-    {
-      item: unnecessary,
-      actionLabel: "Watch film",
-    },
-    {
-      item: kozak,
-      actionLabel: "Watch teaser",
-    },
-    {
-      item: pershosvit,
-      actionLabel: "Explore on YouTube",
-    },
-    {
-      item: scoopy,
-      actionLabel: "Explore on YouTube",
-    },
-  ].filter((card): card is ProjectCard => Boolean(card.item));
+  return slugs.flatMap((slug) => {
+    const item = byId.get(slug);
+    if (!item) return [];
+    return [
+      {
+        item,
+        slug,
+        href: originalsProjectHref(slug),
+        actionLabel: PROJECT_ACTION[slug],
+      },
+    ];
+  });
 }
 
 export default function FilmPage() {
-  const { openReel } = useReel();
   const cards = buildCards();
 
   return (
@@ -59,68 +60,34 @@ export default function FilmPage() {
         </div>
 
         <div className="originals-grid">
-          {cards.map(({ item, actionLabel }) => {
+          {cards.map(({ item, slug, href, actionLabel }) => {
             const status =
               item.result ||
               item.filmCategory ||
-              (item.id === "the-last-kozak" ? "Animated feature in development" : "");
+              (slug === "the-last-kozak" ? "Animated feature in development" : "");
             const media = item.mediaImage ?? "";
             const scoopyExtras =
-              item.id === "scoopy-cap" ? <ScoopyCapPlatforms /> : null;
-
-            if (item.vimeoId) {
-              return (
-                <article key={item.id} className="original-card">
-                  <button
-                    type="button"
-                    className="original-card__media"
-                    onClick={() => openReel(item.vimeoId ?? null, item.title)}
-                    aria-label={`${actionLabel}: ${item.title}`}
-                  >
-                    <img src={media} alt={item.mediaImageAlt ?? ""} />
-                    <span className="original-card__play">
-                      <PlayIcon />
-                    </span>
-                  </button>
-                  <div className="original-card__body">
-                    <h2>{item.title}</h2>
-                    {status ? <p className="original-card__status">{status}</p> : null}
-                    <p className="original-card__text">{item.description}</p>
-                    {scoopyExtras}
-                    <button
-                      type="button"
-                      className="original-card__action"
-                      onClick={() => openReel(item.vimeoId ?? null, item.title)}
-                    >
-                      {actionLabel}
-                    </button>
-                  </div>
-                </article>
-              );
-            }
+              slug === "scoopy-cap" ? <ScoopyCapPlatforms /> : null;
 
             return (
               <article key={item.id} className="original-card">
                 <a
                   className="original-card__media"
-                  href={item.youtubeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={href}
                   aria-label={`${actionLabel}: ${item.title}`}
                 >
                   <img src={media} alt={item.mediaImageAlt ?? ""} />
                 </a>
                 <div className="original-card__body">
-                  <h2>{item.title}</h2>
+                  <h2>
+                    <a className="original-card__title-link" href={href}>
+                      {item.title}
+                    </a>
+                  </h2>
                   {status ? <p className="original-card__status">{status}</p> : null}
                   <p className="original-card__text">{item.description}</p>
                   {scoopyExtras}
-                  <a
-                    className="original-card__action"
-                    href={item.youtubeUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a className="original-card__action" href={href}>
                     {actionLabel}
                   </a>
                 </div>

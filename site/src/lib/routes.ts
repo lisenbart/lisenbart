@@ -20,6 +20,19 @@ export type HubPageSlug =
 
 export type LegalPageSlug = "privacy" | "cookie-policy";
 
+export type OriginalsProjectSlug =
+  | "unnecessary-things"
+  | "the-last-kozak"
+  | "pershosvit"
+  | "scoopy-cap";
+
+const ORIGINALS_PROJECT_SLUGS: readonly OriginalsProjectSlug[] = [
+  "unnecessary-things",
+  "the-last-kozak",
+  "pershosvit",
+  "scoopy-cap",
+] as const;
+
 let prerenderPathnameOverride: string | undefined;
 
 export function setPrerenderPathname(pathname: string) {
@@ -81,9 +94,27 @@ export function parseLegalPage(pathname?: string): LegalPageSlug | null {
   return null;
 }
 
-/** Hub or legal subpages — not home. */
+export function originalsProjectHref(slug: OriginalsProjectSlug): string {
+  return `${routes.originals}/${slug}/`;
+}
+
+export function parseOriginalsProject(pathname?: string): OriginalsProjectSlug | null {
+  const normalized = normalizePathname(resolvePathname(pathname));
+  const prefix = `${routes.originals}/`;
+  if (!normalized.startsWith(prefix)) return null;
+  const slug = normalized.slice(prefix.length);
+  return (ORIGINALS_PROJECT_SLUGS as readonly string[]).includes(slug)
+    ? (slug as OriginalsProjectSlug)
+    : null;
+}
+
+/** Hub, legal, or originals project subpages — not home. */
 export function isSiteSubpage(pathname?: string) {
-  return parseHubPage(pathname) !== null || parseLegalPage(pathname) !== null;
+  return (
+    parseHubPage(pathname) !== null ||
+    parseLegalPage(pathname) !== null ||
+    parseOriginalsProject(pathname) !== null
+  );
 }
 
 /** Canonical hub path for links, sitemap, and SEO (trailing slash). */
@@ -98,6 +129,17 @@ export function hubCanonicalHref(slug: HubPageSlug) {
 
 export function shouldRedirectToCanonicalHubPath(pathname?: string): string | null {
   const resolved = resolvePathname(pathname);
+
+  const project = parseOriginalsProject(resolved);
+  if (project) {
+    const canonical = originalsProjectHref(project);
+    if (resolved === canonical) return null;
+    if (/\/index\.html/i.test(resolved) || !resolved.endsWith("/")) {
+      return canonical;
+    }
+    return null;
+  }
+
   const slug = parseHubPage(resolved);
   if (!slug) return null;
 

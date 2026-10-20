@@ -1,6 +1,12 @@
 import { useEffect, useId, useState, type MouseEvent } from "react";
 import { goToContact, site } from "@/data/site";
-import { hubCanonicalHref, isSiteSubpage, parseHubPage, routes } from "@/lib/routes";
+import {
+  hubCanonicalHref,
+  isSiteSubpage,
+  parseHubPage,
+  parseOriginalsProject,
+  routes,
+} from "@/lib/routes";
 
 type NavId = (typeof site.primaryNav)[number]["id"];
 
@@ -41,6 +47,7 @@ export default function Header() {
 
   const isActive = (id: NavId) => {
     if (id === "contact") return false;
+    if (id === "originals" && parseOriginalsProject()) return true;
     return activeHub === id;
   };
 

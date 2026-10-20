@@ -16,6 +16,10 @@ export default defineConfig(({ command }) => ({
             prerenderScript: path.resolve(__dirname, "src/prerender.tsx"),
             additionalPrerenderRoutes: [
               "/originals",
+              "/originals/unnecessary-things",
+              "/originals/the-last-kozak",
+              "/originals/pershosvit",
+              "/originals/scoopy-cap",
               "/client-work",
               "/studio",
               "/about",
