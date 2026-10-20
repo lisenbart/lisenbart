@@ -234,7 +234,7 @@ export const site = {
       label: "AI & Hybrid Showreel",
       body: [] as const,
       vimeoId: "1212613379" as string | null,
-      poster: "/images/reels/ai/01.webp",
+      poster: "/images/reels/ai/showreel-poster.webp",
     },
     capabilitiesHeading: "How we use it",
     capabilities: [

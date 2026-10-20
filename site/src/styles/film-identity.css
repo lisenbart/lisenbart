@@ -981,7 +981,7 @@ html[data-hero-period="evening"] .home-explore {
   --explore-media: url("/images/reels/games/showreel-poster.webp");
 }
 .explore-strip--ai {
-  --explore-media: url("/images/reels/ai/01.webp");
+  --explore-media: url("/images/reels/ai/showreel-poster.webp");
 }
 
 .explore-strip h3 {
