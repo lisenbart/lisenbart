@@ -1,7 +1,10 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmReveal from "@/components/film/FilmReveal";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
+import { useExploreParallax } from "@/hooks/useExploreParallax";
+import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
   HERO_IMAGES,
   heroImageForPeriod,
@@ -26,6 +29,12 @@ export default function HomePage() {
   /** Default day for SSR/prerender; local period applied before paint. */
   const [period, setPeriod] = useState<HeroPeriod>("day");
   const headlineLines = formatHeadline(site.studioHome.headline);
+  const heroRef = useRef<HTMLElement>(null);
+  const bearRef = useRef<HTMLImageElement>(null);
+  const exploreRef = useRef<HTMLElement>(null);
+
+  useScrollParallax(heroRef, bearRef, { strength: 12 });
+  useExploreParallax(exploreRef);
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -77,8 +86,9 @@ export default function HomePage() {
     <>
       <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
       <div className="home-page">
-        <section className={`home-hero home-hero--${period}`}>
+        <section ref={heroRef} className={`home-hero home-hero--${period}`}>
           <img
+            ref={bearRef}
             className="bear-art"
             src={heroSrc}
             alt=""
@@ -86,7 +96,7 @@ export default function HomePage() {
             height={576}
             fetchPriority="high"
           />
-          <div className="home-statement">
+          <div className="home-statement film-reveal is-in">
             <h1>
               {headlineLines.map((line, index) => (
                 <span key={line}>
@@ -98,46 +108,56 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="home-explore" id={sectionIds.explore}>
-          <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
-            <div>
-              <h3>Client Work</h3>
-              <p>Animation for brands &amp; agencies</p>
-            </div>
-            <span className="circle-link">
-              <Arrow />
-            </span>
-          </a>
-          <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
-            <div>
-              <h3>Originals</h3>
-              <p>Stories of our own</p>
-            </div>
-            <span className="circle-link">
-              <Arrow />
-            </span>
-          </a>
-          <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
-            <div>
-              <h3>Game Ads</h3>
-              <p>Ads, cinematics &amp; playables</p>
-            </div>
-            <span className="circle-link">
-              <Arrow />
-            </span>
-          </a>
-          <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
-            <div>
-              <h3>AI &amp; Hybrid</h3>
-              <p>AI &amp; hybrid filmmaking</p>
-            </div>
-            <span className="circle-link">
-              <Arrow />
-            </span>
-          </a>
+        <section ref={exploreRef} className="home-explore" id={sectionIds.explore}>
+          <FilmReveal delayMs={0}>
+            <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
+              <div>
+                <h3>Client Work</h3>
+                <p>Animation for brands &amp; agencies</p>
+              </div>
+              <span className="circle-link">
+                <Arrow />
+              </span>
+            </a>
+          </FilmReveal>
+          <FilmReveal delayMs={80}>
+            <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
+              <div>
+                <h3>Originals</h3>
+                <p>Stories of our own</p>
+              </div>
+              <span className="circle-link">
+                <Arrow />
+              </span>
+            </a>
+          </FilmReveal>
+          <FilmReveal delayMs={160}>
+            <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
+              <div>
+                <h3>Game Ads</h3>
+                <p>Ads, cinematics &amp; playables</p>
+              </div>
+              <span className="circle-link">
+                <Arrow />
+              </span>
+            </a>
+          </FilmReveal>
+          <FilmReveal delayMs={240}>
+            <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
+              <div>
+                <h3>AI &amp; Hybrid</h3>
+                <p>AI &amp; hybrid filmmaking</p>
+              </div>
+              <span className="circle-link">
+                <Arrow />
+              </span>
+            </a>
+          </FilmReveal>
         </section>
 
-        <FilmContactSection heading={site.homeContact.heading} />
+        <FilmReveal>
+          <FilmContactSection heading={site.homeContact.heading} />
+        </FilmReveal>
       </div>
     </>
   );

@@ -1,4 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmReveal from "@/components/film/FilmReveal";
+import StudioModelItem from "@/components/film/StudioModelItem";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
 import StudioSlideshow from "@/components/film/StudioSlideshow";
@@ -17,76 +19,96 @@ export default function StudioPage() {
         url={`${site.canonical}/studio/`}
       />
       <section className="studio-page">
-        <div className="page-title-row">
-          <h1>Studio</h1>
-        </div>
+        <FilmReveal>
+          <div className="page-title-row">
+            <h1>Studio</h1>
+          </div>
+        </FilmReveal>
 
-        <div className="studio-intro" aria-labelledby="who-heading">
-          <h2 id="who-heading" className="studio-section-heading">
-            {page.introHeading}
-          </h2>
-          <p className="studio-models__note">{page.intro}</p>
-        </div>
+        <FilmReveal delayMs={60}>
+          <div className="studio-intro" aria-labelledby="who-heading">
+            <h2 id="who-heading" className="studio-section-heading">
+              {page.introHeading}
+            </h2>
+            <p className="studio-models__note">{page.intro}</p>
+          </div>
+        </FilmReveal>
 
-        <StudioSlideshow />
+        <FilmReveal delayMs={100}>
+          <StudioSlideshow />
+        </FilmReveal>
       </section>
 
       <section className="studio-models" aria-labelledby="how-heading">
-        <h2 id="how-heading" className="studio-section-heading">
-          {page.howHeading}
-        </h2>
-        <p className="studio-models__note">{page.how}</p>
-        <h2 id="ways-heading" className="studio-section-heading studio-block">
-          {page.engagementHeading}
-        </h2>
+        <FilmReveal>
+          <h2 id="how-heading" className="studio-section-heading">
+            {page.howHeading}
+          </h2>
+          <p className="studio-models__note">{page.how}</p>
+        </FilmReveal>
+
+        <FilmReveal delayMs={40}>
+          <h2 id="ways-heading" className="studio-section-heading studio-block">
+            {page.engagementHeading}
+          </h2>
+        </FilmReveal>
+
         <ul className="studio-models__list">
-          {page.engagementModels.map((model) => (
-            <li key={model.title}>
-              <h3 className="studio-models__title">{model.title}</h3>
-              <p className="studio-models__text">{model.text}</p>
-            </li>
+          {page.engagementModels.map((model, index) => (
+            <StudioModelItem
+              key={model.title}
+              title={model.title}
+              text={model.text}
+              delayMs={index * 70}
+            />
           ))}
         </ul>
 
-        <a
-          className="studio-cta"
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            goToContact();
-          }}
-        >
-          <span className="circle-link">
-            <Arrow />
-          </span>
-          Discuss a project
-        </a>
+        <FilmReveal delayMs={80}>
+          <a
+            className="studio-cta"
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              goToContact();
+            }}
+          >
+            <span className="circle-link">
+              <Arrow />
+            </span>
+            Discuss a project
+          </a>
+        </FilmReveal>
       </section>
 
       <section className="studio-people" aria-labelledby="people-heading">
-        <h2 id="people-heading" className="studio-models__title">
-          {page.peopleHeading}
-        </h2>
-        <div className="studio-founder">
-          <img
-            className="studio-founder__portrait"
-            src={publicAsset(page.founderPortrait)}
-            alt={page.founderPortraitAlt}
-            width={160}
-            height={160}
-          />
-          <div>
-            <p className="studio-people__founder-name">{page.founderName}</p>
-            <p className="studio-people__founder-role">{page.founderRole}</p>
-            <p className="studio-people__founder-proof">{page.founderProof}</p>
-            <a className="studio-people__link" href={hubCanonicalHref("about")}>
-              {page.founderCta}
-            </a>
+        <FilmReveal>
+          <h2 id="people-heading" className="studio-models__title">
+            {page.peopleHeading}
+          </h2>
+          <div className="studio-founder">
+            <img
+              className="studio-founder__portrait"
+              src={publicAsset(page.founderPortrait)}
+              alt={page.founderPortraitAlt}
+              width={160}
+              height={160}
+            />
+            <div>
+              <p className="studio-people__founder-name">{page.founderName}</p>
+              <p className="studio-people__founder-role">{page.founderRole}</p>
+              <p className="studio-people__founder-proof">{page.founderProof}</p>
+              <a className="studio-people__link" href={hubCanonicalHref("about")}>
+                {page.founderCta}
+              </a>
+            </div>
           </div>
-        </div>
+        </FilmReveal>
       </section>
 
-      <FilmContactSection heading={site.homeContact.heading} />
+      <FilmReveal>
+        <FilmContactSection heading={site.homeContact.heading} />
+      </FilmReveal>
     </>
   );
 }

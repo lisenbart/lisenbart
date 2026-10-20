@@ -378,13 +378,15 @@ img { display: block; width: 100%; }
 .bear-art {
   position: absolute;
   z-index: 1;
-  inset: 0;
+  inset: -4% 0;
   width: 100%;
-  height: 100%;
+  height: 108%;
   object-fit: cover;
   /* Keep the bear in the upper/mid frame so copy can sit clear below */
   object-position: center 28%;
   pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1.05);
 }
 
 /* Hero statement stays white on both day and evening art */
@@ -970,14 +972,38 @@ html[data-hero-period="evening"] .home-explore {
 .explore-strip::before {
   content: "";
   position: absolute;
-  inset: -12%;
+  inset: -16%;
   z-index: 0;
   background-image: var(--explore-media);
   background-size: cover;
   background-position: center;
   filter: blur(5px) saturate(1.05) brightness(1.08);
-  transform: scale(1.08);
+  transform: scale(1.1) translate3d(0, var(--parallax-y, 0px), 0);
+  will-change: transform;
   pointer-events: none;
+}
+
+/* Scroll / view motion — Home + Studio */
+.film-reveal {
+  opacity: 0;
+  transform: translate3d(0, 1.15rem, 0);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.film-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.home-explore > .film-reveal {
+  min-height: 0;
+}
+
+.home-explore > .film-reveal > .explore-strip {
+  height: 100%;
+  min-height: 9.5rem;
 }
 
 .explore-strip::after {
@@ -1689,4 +1715,23 @@ html[data-hero-period="evening"] .home-explore {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
+
+  .bear-art {
+    inset: 0;
+    height: 100%;
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .explore-strip::before {
+    inset: -12%;
+    transform: scale(1.08) !important;
+    will-change: auto;
+  }
+
+  .film-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
