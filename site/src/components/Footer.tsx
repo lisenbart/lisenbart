@@ -4,6 +4,7 @@ import {
   shouldLinkDraftPolicies,
   type RegisteredPresence,
 } from "@/data/legal";
+import { openCookiePreferences } from "@/components/CookieConsent";
 import { goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
@@ -86,12 +87,21 @@ export default function Footer() {
           <p className="film-footer__copy">
             © {legalConfig.copyrightYear} {site.brand}
           </p>
-          {showPolicies ? (
-            <nav className="film-footer__policies" aria-label="Legal">
-              <a href={legalConfig.policies.privacy.path}>{legalConfig.policies.privacy.title}</a>
-              <a href={legalConfig.policies.cookies.path}>{legalConfig.policies.cookies.title}</a>
-            </nav>
-          ) : null}
+          <nav className="film-footer__policies" aria-label="Legal">
+            {showPolicies ? (
+              <>
+                <a href={legalConfig.policies.privacy.path}>{legalConfig.policies.privacy.title}</a>
+                <a href={legalConfig.policies.cookies.path}>{legalConfig.policies.cookies.title}</a>
+              </>
+            ) : null}
+            <button
+              type="button"
+              className="film-footer__cookie-prefs"
+              onClick={() => openCookiePreferences()}
+            >
+              Cookie preferences
+            </button>
+          </nav>
         </div>
       </div>
     </footer>

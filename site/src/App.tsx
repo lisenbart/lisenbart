@@ -10,6 +10,7 @@ import AiPage from "./pages/AiPage";
 import PrivacyPage from "./pages/PrivacyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import Footer from "./components/Footer";
+import CookieConsent from "./components/CookieConsent";
 import { ReelProvider } from "./contexts/ReelContext";
 import {
   legacyAiAnchorRedirectTarget,
@@ -65,6 +66,7 @@ export default function App() {
         <Header />
         {resolveMain()}
         <Footer />
+        <CookieConsent />
       </div>
     </ReelProvider>
   );

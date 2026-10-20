@@ -160,7 +160,7 @@ export default function HeroShowreel({
         .then(() => {
           if (cancelled || !iframeRef.current) return;
           const Vimeo = (
-            window as Window & {
+            window as unknown as {
               Vimeo: { Player: new (el: HTMLIFrameElement) => VimeoPlayer };
             }
           ).Vimeo;

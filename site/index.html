@@ -36,16 +36,7 @@
       content="Independent animation studio. Original films and story IP, plus commissioned work for brands and agencies. Game animation at Lisenbart Games."
     />
     <meta name="twitter:image" content="https://lisenbart.com/images/work/lisenbart-og-2026.jpg" />
-    <!-- Google tag (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB7KBQMZ6T"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-ZB7KBQMZ6T");
-    </script>
+    <!-- GA4 loads only after optional analytics consent (see analyticsConsent.ts) -->
     <link rel="icon" href="%BASE_URL%favicon.svg?v=3" type="image/svg+xml" />
     <link rel="icon" href="%BASE_URL%favicon.ico?v=3" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="%BASE_URL%favicon-32.png?v=3" />
@@ -57,13 +48,16 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "LISENBART",
+        "name": "LISENBART FILM",
+        "alternateName": "LISENBART",
         "url": "https://lisenbart.com",
         "email": "info@lisenbart.com",
-        "description": "Dmytro Lisenbart develops original animation projects and directs commissioned work for brands, studios, and production partners.",
+        "description": "Independent animation studio for brands, agencies and production partners. Creative development, direction and animation production since 2006. Original films and story IP.",
+        "foundingDate": "2006",
         "founder": {
           "@type": "Person",
-          "name": "Dmytro Lisenbart"
+          "name": "Dmytro Lisenbart",
+          "url": "https://lisenbart.com/about/"
         },
         "logo": {
           "@type": "ImageObject",
@@ -72,15 +66,21 @@
         "contactPoint": {
           "@type": "ContactPoint",
           "email": "info@lisenbart.com",
-          "contactType": "Business Inquiries"
+          "contactType": "customer support",
+          "availableLanguage": ["English", "Ukrainian"]
         },
         "sameAs": [
           "https://www.linkedin.com/in/lisenbart/",
           "https://www.youtube.com/@lisenbartProduction",
-          "https://www.facebook.com/dmytro.linsenbarth"
+          "https://vimeo.com/849899875"
         ],
-        "areaServed": ["Ukraine", "Canada", "Poland", "Worldwide"],
-        "knowsAbout": ["Film Production", "Animation", "Game Content"]
+        "areaServed": ["Worldwide"],
+        "knowsAbout": [
+          "Animation production",
+          "Creative direction",
+          "Original animated films",
+          "Game advertising"
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -88,26 +88,17 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Dmytro Lisenbart",
-        "jobTitle": "Animation Director & Producer",
-        "url": "https://lisenbart.com",
+        "jobTitle": "Animation Director, Producer & Founder",
+        "url": "https://lisenbart.com/about/",
         "email": "info@lisenbart.com",
         "worksFor": {
           "@type": "Organization",
-          "name": "LISENBART",
+          "name": "LISENBART FILM",
           "url": "https://lisenbart.com"
         },
         "sameAs": [
           "https://www.imdb.com/name/nm11412621/",
-          "https://www.linkedin.com/in/lisenbart/",
-          "https://www.youtube.com/@lisenbartProduction",
-          "https://www.facebook.com/dmytro.linsenbarth"
-        ],
-        "knowsAbout": [
-          "Animation direction",
-          "Film production",
-          "Game trailer production",
-          "Playable ads",
-          "Animated short film"
+          "https://www.linkedin.com/in/lisenbart/"
         ]
       }
     </script>

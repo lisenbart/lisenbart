@@ -106,7 +106,7 @@ function buildNetlifyBody(data: ContactPayload): string {
 export async function submitContact(data: ContactPayload): Promise<ContactResult> {
   const errors = validateContact(data);
   if (Object.keys(errors).length > 0) {
-    return { success: false, message: Object.values(errors)[0] };
+    return { success: false, message: Object.values(errors)[0]! };
   }
 
   if (!isContactFormLive) {
@@ -123,45 +123,55 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
     };
   }
 
-  let res: Response;
+  try {
+    let res: Response;
 
-  if (contactHandler === "netlify") {
-    res = await fetch(contactEndpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: buildNetlifyBody(data),
-    });
-  } else if (contactHandler === "remote" && contactEndpoint.includes("formspree.io")) {
-    res = await fetch(contactEndpoint, {
-      method: "POST",
-      body: buildFormspreeBody(data),
-      headers: { Accept: "application/json" },
-    });
-  } else {
-    res = await fetch(contactEndpoint, {
-      method: "POST",
-      body: buildPhpFormBody(data),
-      headers: { Accept: "application/json" },
-    });
-  }
-
-  if (!res.ok) {
-    return { success: false, message: await parseErrorResponse(res) };
-  }
-
-  if (contactHandler === "php") {
-    try {
-      const json = (await res.json()) as { success?: boolean; message?: string };
-      if (json.success === false) {
-        return { success: false, message: json.message ?? "Could not send your message." };
-      }
-    } catch {
-      /* ignore */
+    if (contactHandler === "netlify") {
+      res = await fetch(contactEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: buildNetlifyBody(data),
+      });
+    } else if (contactHandler === "remote" && contactEndpoint.includes("formspree.io")) {
+      res = await fetch(contactEndpoint, {
+        method: "POST",
+        body: buildFormspreeBody(data),
+        headers: { Accept: "application/json" },
+      });
+    } else {
+      res = await fetch(contactEndpoint, {
+        method: "POST",
+        body: buildPhpFormBody(data),
+        headers: { Accept: "application/json" },
+      });
     }
-  }
 
-  return {
-    success: true,
-    message: site.contactForm.successMessage,
-  };
+    if (!res.ok) {
+      return { success: false, message: await parseErrorResponse(res) };
+    }
+
+    if (contactHandler === "php") {
+      try {
+        const json = (await res.json()) as { success?: boolean; message?: string };
+        if (json.success === false) {
+          return {
+            success: false,
+            message: json.message ?? site.contactForm.errorFallback,
+          };
+        }
+      } catch {
+        /* non-JSON success body is acceptable for some endpoints */
+      }
+    }
+
+    return {
+      success: true,
+      message: site.contactForm.successMessage,
+    };
+  } catch {
+    return {
+      success: false,
+      message: site.contactForm.errorFallback,
+    };
+  }
 }

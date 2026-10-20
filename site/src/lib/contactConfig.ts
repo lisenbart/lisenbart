@@ -4,6 +4,7 @@ function resolveContactHandler(): ContactHandler {
   const mode = import.meta.env.VITE_CONTACT_HANDLER?.trim().toLowerCase();
   if (mode === "php") return "php";
   if (mode === "netlify") return "netlify";
+  if (mode === "remote") return "remote";
   if (import.meta.env.VITE_CONTACT_ENDPOINT?.trim() || import.meta.env.VITE_FORMSPREE_FORM_ID?.trim()) {
     return "remote";
   }
@@ -27,6 +28,9 @@ export const contactEndpoint = resolveContactEndpoint();
 
 export const NETLIFY_FORM_NAME = "contact";
 
-/** Live submit on production deploy; dev mocks unless remote URL is set */
+/**
+ * Live submit on production (Netlify/php) or whenever a remote endpoint is configured.
+ * Local Vite mocks unless a remote handler/URL is set.
+ */
 export const isContactFormLive =
-  contactHandler === "remote" || (import.meta.env.PROD && contactHandler !== "remote");
+  contactHandler === "remote" || Boolean(import.meta.env.PROD);

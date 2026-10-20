@@ -1,4 +1,5 @@
 import { SEO } from "@/components/SEO";
+import { openCookiePreferences } from "@/components/CookieConsent";
 import { legalConfig, shouldTreatPoliciesAsDraft } from "@/data/legal";
 import { site } from "@/data/site";
 
@@ -24,47 +25,68 @@ export default function CookiePolicyPage() {
 
         {draft ? (
           <p className="legal-doc__banner" role="status">
-            Draft for review — not an approved cookie notice. No cookie preference centre is provided
-            on this site yet.
+            Draft for review — not an approved cookie notice until published.
           </p>
         ) : null}
 
         <div className="legal-doc__body">
           <p>
-            This draft explains cookies and similar technologies used on lisenbart.com. It does not
-            claim a consent banner or preference controls that are not actually present.
+            This page describes cookies and similar technologies used on lisenbart.com and how you
+            can control optional analytics.
           </p>
 
-          <h2>What we use today</h2>
+          <h2>Essential / functional</h2>
+          <ul>
+            <li>
+              Contact-form prefill uses <strong>sessionStorage</strong> briefly when you arrive from
+              an on-site CTA.
+            </li>
+            <li>
+              Theme preference and analytics consent are stored in <strong>localStorage</strong>.
+            </li>
+          </ul>
+          <p>These are needed for basic site behaviour and are not advertising cookies.</p>
+
+          <h2>Optional analytics</h2>
           <p>
-            The site includes Google Analytics via Google Tag Manager / gtag (measurement ID present
-            in the site shell). Analytics cookies or local storage may be set by Google according to
-            their configuration.
+            <strong>Google Analytics 4</strong> (G-ZB7KBQMZ6T) loads only if you accept analytics in
+            the consent prompt. Rejecting analytics prevents this site from initializing GA4.
+          </p>
+          <p>
+            Google may set its own cookies or identifiers according to Google’s configuration when
+            analytics is accepted.
           </p>
 
-          <h2>Essential storage</h2>
+          <h2>Embedded media</h2>
           <p>
-            The contact form and UI may use session or local browser storage for form prefill and
-            basic site behaviour. These are functional, not advertising cookies.
+            Choosing to play a showreel may load <strong>Vimeo</strong>, which can set cookies or
+            similar technologies under Vimeo’s policies.
           </p>
 
-          <h2>Consent controls</h2>
+          <h2>Fonts</h2>
           <p>
-            A cookie settings / consent-management UI is <strong>not implemented</strong>. Linking
-            “Cookie Settings” without a working control would be misleading, so it is omitted from
-            the footer until a real consent flow exists.
+            The site requests fonts from <strong>Google Fonts</strong>, which may process connection
+            data according to Google’s practices.
           </p>
 
-          <h2>Managing cookies</h2>
+          <h2>Your choices</h2>
           <p>
-            You can clear or block cookies through your browser settings. Blocking analytics may
-            limit our ability to understand aggregate traffic.
+            Use the consent prompt on first visit, or reopen preferences anytime:
+          </p>
+          <p>
+            <button type="button" className="legal-doc__prefs-btn" onClick={() => openCookiePreferences()}>
+              Cookie preferences
+            </button>
+          </p>
+          <p>
+            You can also clear or block cookies in your browser settings. Blocking analytics may
+            limit aggregate traffic measurement.
           </p>
 
           <h2>Contact</h2>
           <p>
-            Questions: <a href={`mailto:${site.email}`}>{site.email}</a>. Last draft note: October
-            2026.
+            Questions: <a href={`mailto:${site.email}`}>{site.email}</a>. Last technical draft:
+            October 2026.
           </p>
         </div>
       </article>

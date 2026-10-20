@@ -74,14 +74,14 @@ export const legalConfig = {
       path: "/privacy/",
       seoTitle: "Privacy Policy (Draft) — LISENBART FILM",
       seoDescription:
-        "Draft privacy notice for LISENBART FILM covering the contact form and site analytics. Pending legal review.",
+        "Draft privacy notice for LISENBART FILM: contact form, Netlify Forms, optional Google Analytics after consent, Vimeo and fonts. Pending legal review.",
     },
     cookies: {
       title: "Cookie Policy",
       path: "/cookie-policy/",
       seoTitle: "Cookie Policy (Draft) — LISENBART FILM",
       seoDescription:
-        "Draft cookie notice for LISENBART FILM describing analytics cookies in use. Pending legal review. No consent UI is claimed.",
+        "Draft cookie notice for LISENBART FILM: essential storage, optional GA4 after consent, Vimeo on play, Google Fonts. Pending legal review.",
     },
   },
 } as const;

@@ -20,11 +20,15 @@ export function SEO({ title, description, url, image, children }: SEOProps) {
   const canonical = url.startsWith("http") ? url : `${site.canonical}${url}`;
   const verification = site.meta.googleSiteVerification?.trim();
 
+  /** Deploy-preview / branch builds set VITE_LEGAL_PREVIEW — keep out of indexes. */
+  const previewNoIndex = import.meta.env.VITE_LEGAL_PREVIEW === "true";
+
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
+      {previewNoIndex ? <meta name="robots" content="noindex, nofollow" /> : null}
       {verification ? <meta name="google-site-verification" content={verification} /> : null}
 
       <meta property="og:title" content={title} />
