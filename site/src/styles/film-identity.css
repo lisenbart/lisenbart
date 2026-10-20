@@ -147,11 +147,11 @@ img { display: block; width: 100%; }
   margin: 0 0 var(--stack-tight);
   font-family: var(--font-display);
   font-size: calc(var(--text-display) * 0.5);
-  font-weight: 300;
+  font-weight: 500;
   line-height: var(--leading-title);
-  letter-spacing: var(--track-title);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: #0a0d14;
 }
 
 .film-meta,
