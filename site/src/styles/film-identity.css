@@ -857,7 +857,6 @@ a.original-tile {
   background: #edf0f1;
 }
 
-.explore-card,
 .explore-strip {
   position: relative;
   overflow: hidden;
@@ -866,7 +865,6 @@ a.original-tile {
   transition: transform 350ms ease;
 }
 
-.explore-card:hover,
 .explore-strip:hover { transform: translateY(-4px); }
 
 .explore-strip {
