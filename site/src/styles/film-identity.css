@@ -414,12 +414,14 @@ img { display: block; width: 100%; }
 .bear-art {
   position: absolute;
   z-index: 0;
-  inset: -3% 0;
+  left: 0;
+  right: 0;
+  /* Shift art up so the bear sits under the nav (stage is taller than 1:1) */
+  top: -22%;
   width: 100%;
-  height: 106%;
+  height: 128%;
   object-fit: cover;
-  /* Square art: keep bear in upper stage, dunes fill explore */
-  object-position: center 42%;
+  object-position: center 48%;
   pointer-events: none;
   will-change: transform;
   transform: translate3d(0, 0, 0) scale(1.05);
@@ -2837,10 +2839,10 @@ a.original-tile {
   .home-hero { min-height: 100svh; }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    inset: 0;
+    top: -16%;
     width: 100%;
-    height: 100%;
-    object-position: center 38%;
+    height: 122%;
+    object-position: center 46%;
   }
   .home-statement {
     padding: 0 var(--gutter) var(--space-4);
@@ -2956,14 +2958,8 @@ a.original-tile {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 
   .bear-art {
-    inset: 0;
-    height: 100%;
     transform: none !important;
     will-change: auto;
-  }
-
-  .home-stage .bear-art {
-    inset: 0;
   }
 
   .explore-strip::before {
