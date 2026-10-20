@@ -31,8 +31,8 @@ export const unnecessaryThingsFestivalSummary = {
 } as const;
 
 /**
- * Featured strip: international prestige + clear award wins.
- * Kept compact enough for 1–2 rows on mobile.
+ * Featured strip under the reel — 5 highest-status recognitions only.
+ * Full awards / selections remain in the Festival Recognition section below.
  */
 export const unnecessaryThingsFeaturedLaurels: FestivalRecognition[] = [
   {
@@ -92,42 +92,6 @@ export const unnecessaryThingsFeaturedLaurels: FestivalRecognition[] = [
     href: "https://curtas.org/2021/10/31/curtas-2021-palmares/",
     laurelSrc: "/images/work/unnecessary-things/laurels/curtas-2021-best-animated-short.png",
     laurelAlt: "Best Animated Short Film — Curtas Festival do Imaxinario 2021",
-    featured: true,
-  },
-  {
-    id: "linoleum-2021-featured",
-    festival: "Linoleum Contemporary Animation and Media Art Festival",
-    country: "Ukraine",
-    year: "2021",
-    kind: "award",
-    detail: "Best Ukrainian Animation Film",
-    href: "https://linoleumfest.com/uk/program/competition-programs/events/Unnecessary-things",
-    laurelSrc: "/images/work/unnecessary-things/laurels/linoleum-2021-best-ukrainian-animation.png",
-    laurelAlt: "Best Ukrainian Animation Film — Linoleum 2021",
-    featured: true,
-  },
-  {
-    id: "sao-paulo-2021-featured",
-    festival: "São Paulo International Film Festival",
-    country: "Brazil",
-    year: "2021",
-    kind: "finalist",
-    detail: "Finalist",
-    href: "https://www.saopaulofilmfestival.com.br/portfolio/unnecessary-things/",
-    laurelSrc: "/images/work/unnecessary-things/laurels/sao-paulo-2021-finalist.png",
-    laurelAlt: "Finalist — São Paulo International Film Festival 2021",
-    featured: true,
-  },
-  {
-    id: "la-shorts-2021-featured",
-    festival: "LA Shorts International Film Festival",
-    country: "United States",
-    year: "2021",
-    kind: "official-selection",
-    detail: "Official Selection",
-    href: "https://www.lashortsfest.com/animation-program4",
-    laurelSrc: "/images/work/unnecessary-things/laurels/la-shorts-2021-official-selection.png",
-    laurelAlt: "Official Selection — LA Shorts International Film Festival 2021",
     featured: true,
   },
 ];
