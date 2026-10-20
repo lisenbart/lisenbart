@@ -869,11 +869,11 @@ a.original-tile {
 
 .explore-strip {
   min-height: 150px;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 2rem;
+  padding: 2rem 2.25rem;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
   color: white;
   background: linear-gradient(120deg, #1b285a, #0c234a 60%, #365d9b);
   background-size: cover;
@@ -888,38 +888,23 @@ a.original-tile {
   background-image: linear-gradient(120deg, rgba(13, 26, 62, 0.55), rgba(12, 35, 74, 0.72)), url("/images/explore/originals/03.webp");
 }
 
+.explore-strip h3 {
+  margin: 0 0 0.55rem;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
 .explore-strip p {
   margin: 0;
-  font-size: 0.52rem;
-  line-height: 1.8;
-  letter-spacing: 0.3em;
+  font-size: clamp(0.72rem, 1.1vw, 0.85rem);
+  line-height: 1.55;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
-
-.explore-strip h3 {
-  margin: 0 0 0.7rem;
-  font-size: 0.85rem;
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-
-.strip-icon {
-  width: 68px;
-  height: 68px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255,255,255,.45);
-  border-radius: 50%;
-}
-
-.strip-icon--blank {
-  border-color: transparent;
-  background: transparent;
-}
-
-.gamepad-icon { font-size: 2rem; }
-.ai-orb { background: radial-gradient(circle at 70% 25%, #ffbb9a, #9f6aa0 32%, #315da4 68%, #10234e); border: 0; }
 
 .page-shell {
   min-height: 100svh;
@@ -1396,8 +1381,7 @@ a.original-tile {
   .play-circle { width: 36px; height: 36px; }
 
   .home-explore { padding: 1rem 1rem 3rem; grid-template-columns: 1fr; gap: 1rem; }
-  .explore-strip { min-height: 120px; padding: 1.2rem; gap: 1rem; }
-  .strip-icon { width: 52px; height: 52px; }
+  .explore-strip { min-height: 120px; padding: 1.35rem 1.4rem; gap: 1rem; }
 
   .page-shell { padding: 6rem 1rem 2rem; }
   .page-title-row h1, .contact-content > h1 {
