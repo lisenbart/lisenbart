@@ -1,5 +1,9 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
+import {
+  FestivalFeaturedStrip,
+  FestivalRecognitionSection,
+} from "@/components/originals/FestivalRecognition";
 import OriginalIpPhones from "@/components/originals/OriginalIpPhones";
 import {
   CreditsDisclosure,
@@ -55,11 +59,15 @@ function ProjectCta({ project }: { project: ProjectData }) {
 
 function FilmShortLayout({ project }: { project: ProjectData }) {
   const item = project.case;
-  const festivals = (item.selectionLinks ?? []).slice(0, 3);
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
+      <div className="project-page__intro">
+        <p className="project-page__format">{project.format}</p>
+        <h1>{item.title}</h1>
+      </div>
+
       {item.vimeoId && item.mediaImage ? (
         <div className="project-page__hero-media">
           <FilmMediaStage
@@ -72,11 +80,7 @@ function FilmShortLayout({ project }: { project: ProjectData }) {
         </div>
       ) : null}
 
-      <div className="project-page__intro">
-        <p className="project-page__format">{project.format}</p>
-        <h1>{item.title}</h1>
-        {item.result ? <p className="project-page__recognition">{item.result}</p> : null}
-      </div>
+      <FestivalFeaturedStrip />
 
       <div className="project-page__copy">
         <p className="project-page__synopsis">{project.synopsis}</p>
@@ -85,30 +89,6 @@ function FilmShortLayout({ project }: { project: ProjectData }) {
             {paragraph}
           </p>
         ))}
-
-        {(festivals.length > 0 || item.winnerLink) && (
-          <div className="project-page__festivals">
-            <h2 className="project-page__section-label">Festival recognition</h2>
-            {festivals.length > 0 ? (
-              <ul className="project-page__festival-list">
-                {festivals.map((fest) => (
-                  <li key={fest.href}>
-                    <a href={fest.href} target="_blank" rel="noopener noreferrer">
-                      {fest.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-            {item.winnerLink ? (
-              <p className="project-page__winner">
-                <a href={item.winnerLink.href} target="_blank" rel="noopener noreferrer">
-                  {item.winnerLink.label}
-                </a>
-              </p>
-            ) : null}
-          </div>
-        )}
 
         {item.quote ? (
           <blockquote className="project-page__quote">
@@ -132,6 +112,8 @@ function FilmShortLayout({ project }: { project: ProjectData }) {
             </a>
           </p>
         ) : null}
+
+        <FestivalRecognitionSection />
 
         {item.stills && item.stills.length > 0 ? (
           <div className="project-page__stills">

@@ -15,7 +15,10 @@ const PROJECT_CARD: Record<
   OriginalsProjectSlug,
   { type: string; actionLabel: string }
 > = {
-  "unnecessary-things": { type: "Animated short", actionLabel: "View project" },
+  "unnecessary-things": {
+    type: "11 Awards · 45 Festival Selections",
+    actionLabel: "View project",
+  },
   "the-last-kozak": { type: "Animated feature", actionLabel: "View project" },
   pershosvit: { type: "Preschool IP", actionLabel: "View project" },
   "scoopy-cap": { type: "Preschool IP", actionLabel: "View project" },

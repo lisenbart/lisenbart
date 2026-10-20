@@ -45,7 +45,7 @@ const originalsCases: WorkCaseStudy[] = [
     title: "Unnecessary Things",
     description:
       "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
-    result: "Animated short · 11 awards · 45 festival selections",
+    result: "11 Awards · 45 Festival Selections",
 
 
     mediaColor: "#0a1f0f",
