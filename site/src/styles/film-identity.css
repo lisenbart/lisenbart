@@ -1244,14 +1244,11 @@ html[data-hero-period="evening"] .explore-strip--ai {
 
 .contact-page {
   position: relative;
-  min-height: 100svh;
-  padding: calc(var(--header-offset) + var(--space-4)) var(--gutter) var(--section-y);
+  min-height: auto;
+  padding: var(--section-y) var(--gutter);
   overflow: hidden;
+  background: var(--white);
 }
-
-.contact-page .light-scene { left: 55%; }
-.contact-page .scene-orb-a { display: none; }
-.contact-page .scene-orb-b { width: 72vw; height: 72vw; right: -34vw; bottom: -30vw; }
 
 .contact-content { position: relative; z-index: 2; max-width: var(--measure-wide); }
 .contact-page .film-contact__lead { margin-top: 0; margin-bottom: var(--block-gap); }
@@ -1487,9 +1484,7 @@ html[data-hero-period="evening"] .explore-strip--ai {
   .studio-footer { padding: var(--space-4) var(--gutter); }
   .studio-footer a { font-size: 0; gap: 0; }
 
-  .contact-page { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) var(--space-5); }
-  .contact-page .light-scene { left: 52%; top: 0; bottom: auto; height: 47vh; }
-  .contact-content > i { margin: var(--stack) 0 var(--space-4); }
+  .contact-page { padding: var(--space-5) var(--gutter); }
   .contact-columns { grid-template-columns: 1fr; gap: var(--space-5); }
   .contact-columns label { grid-template-columns: 5.5rem 1fr; }
   .contact-details { padding: 0; }

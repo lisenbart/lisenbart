@@ -10,7 +10,6 @@ import {
   type ContactPrefill,
 } from "@/data/site";
 import { submitContact, validateContact } from "@/lib/contactSubmit";
-import LightScene from "@/components/film/LightScene";
 import { Arrow } from "@/components/film/FilmIcons";
 
 interface FormState {
@@ -28,11 +27,9 @@ const copy = site.contactForm;
 export default function FilmContactSection({
   heading = "Contact",
   lead,
-  showScene = true,
 }: {
   heading?: string;
   lead?: string;
-  showScene?: boolean;
 }) {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -101,7 +98,6 @@ export default function FilmContactSection({
 
   return (
     <section id={sectionIds.contact} className="contact-page" aria-label="Contact">
-      {showScene ? <LightScene variant="contact" /> : null}
       <div className="contact-content">
         <h1>{heading}</h1>
         {lead ? <p className="film-contact__lead">{lead}</p> : null}
