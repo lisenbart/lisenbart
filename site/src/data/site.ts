@@ -171,7 +171,7 @@ export const site = {
       label: "Advertising & Animation Showreel",
       body: [] as const,
       vimeoId: "849899875" as string | null,
-      poster: "/images/reels/advertising/01.webp",
+      poster: "/images/reels/advertising/showreel-poster.webp",
     },
     capabilitiesHeading: "What we bring to the table",
     capabilities: [
