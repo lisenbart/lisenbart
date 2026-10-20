@@ -85,7 +85,10 @@ export const site = {
   },
   trustedBy: {
     label: "Selected Clients",
-    /** International brands evidenced on @lisenbartfilm — no UA/RU brands, no game studios. */
+    /**
+     * International names evidenced on @lisenbartfilm credits.
+     * No UA/RU brands, no game studios. Agencies = network names from public credits.
+     */
     brands: [
       "Nestlé",
       "Danone",
@@ -104,6 +107,18 @@ export const site = {
       "Watsons",
       "Raiffeisen",
     ] as const,
+    brandsProof:
+      "Production & animation — motion graphics, frame and 3D animation, live-action hybrid.",
+    agencies: [
+      "Havas",
+      "Y&R",
+      "DraftFCB",
+      "BBDO",
+      "Cheil Worldwide",
+      "McCann Erickson",
+    ] as const,
+    agenciesProof:
+      "Campaign production partner — credited alongside network creative agencies.",
   },
   explorePaths: {
     titleLines: ["What we do."] as const,

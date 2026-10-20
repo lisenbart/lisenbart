@@ -44,10 +44,25 @@ export default function CommercialPage() {
 
         <div className="direction-clients">
           <p className="film-section-label">{site.trustedBy.label}</p>
-          <div className="client-names" aria-label={site.trustedBy.label}>
-            {site.trustedBy.brands.map((brand) => (
-              <span key={brand}>{brand}</span>
-            ))}
+
+          <div className="client-group">
+            <h2 className="client-group__heading">Brands</h2>
+            <p className="client-group__proof">{site.trustedBy.brandsProof}</p>
+            <div className="client-names" aria-label="Selected brands">
+              {site.trustedBy.brands.map((brand) => (
+                <span key={brand}>{brand}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="client-group">
+            <h2 className="client-group__heading">Agencies</h2>
+            <p className="client-group__proof">{site.trustedBy.agenciesProof}</p>
+            <div className="client-names" aria-label="Selected agencies">
+              {site.trustedBy.agencies.map((agency) => (
+                <span key={agency}>{agency}</span>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -691,6 +691,39 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin: 0 0 var(--block-gap);
 }
 
+.client-group {
+  margin-top: var(--space-4);
+}
+
+.client-group:first-of-type {
+  margin-top: var(--space-3);
+}
+
+.client-group__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 500;
+  letter-spacing: var(--track-title);
+  text-transform: uppercase;
+  line-height: var(--leading-label);
+  color: var(--ink);
+}
+
+.client-group__proof {
+  margin: var(--stack-tight) 0 0;
+  max-width: var(--measure);
+  font-size: var(--text-meta);
+  letter-spacing: 0.04em;
+  line-height: 1.55;
+  text-transform: none;
+  color: var(--muted);
+}
+
+.client-group .client-names {
+  padding-top: var(--space-2);
+}
+
 .direction-external {
   margin: var(--block-gap) 0 var(--space-2);
   padding-top: var(--space-3);
