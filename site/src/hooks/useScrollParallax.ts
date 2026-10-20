@@ -46,8 +46,7 @@ export function useScrollParallax(
 
       const travel = Math.max(rect.height, 1);
       const progress = Math.min(1, Math.max(0, -rect.top / travel));
-      // CSS vars so mobile gyro can compose without fighting this transform.
-      target.style.setProperty("--hero-scroll-y", `${(progress * strength).toFixed(2)}%`);
+      target.style.transform = `translate3d(0, ${(progress * strength).toFixed(2)}%, 0) scale(1.05)`;
     };
 
     const onScroll = () => {
@@ -63,7 +62,7 @@ export function useScrollParallax(
       window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
       if (cssVar) target.style.removeProperty(cssVar);
-      else target.style.removeProperty("--hero-scroll-y");
+      else target.style.transform = "";
     };
   }, [reduced, sectionRef, targetRef, strength, cssVar, cssStrength]);
 }
