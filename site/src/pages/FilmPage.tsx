@@ -1,4 +1,5 @@
 import FilmContactSection from "@/components/FilmContactSection";
+import DistributionPartnersSection from "@/components/film/DistributionPartnersSection";
 import { SEO } from "@/components/SEO";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
@@ -122,6 +123,8 @@ export default function FilmPage() {
             );
           })}
         </div>
+
+        <DistributionPartnersSection />
       </section>
       <FilmContactSection heading={site.homeContact.heading} />
     </>
