@@ -2838,11 +2838,18 @@ a.original-tile {
 
   .home-hero { min-height: 100svh; }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
+  /*
+   * Mobile stage is very tall (hero + 4 stacked cards). Cover on 100% width
+   * crops the square art hard and pushes the bear off-center. Widen + center
+   * the art box so the bear stays in frame; keep desktop framing untouched.
+   */
   .bear-art {
-    top: -26%;
-    width: 100%;
-    height: 132%;
-    object-position: center 46%;
+    top: -6%;
+    left: -34%;
+    right: auto;
+    width: 168%;
+    height: 112%;
+    object-position: 52% 40%;
   }
   .home-statement {
     padding: 0 var(--gutter) var(--space-4);
