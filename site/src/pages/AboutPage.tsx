@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmReveal from "@/components/film/FilmReveal";
 import PersonalAboutSection from "@/components/PersonalAboutSection";
 import PersonalHeroSection from "@/components/PersonalHeroSection";
 import { SEO } from "@/components/SEO";
@@ -22,12 +23,18 @@ export default function AboutPage() {
     <>
       <SEO title={aboutPage.seoTitle} description={aboutPage.seoDescription} url={seoUrl} />
       <main className="film-about">
-        <PersonalHeroSection />
-        <PersonalAboutSection hideContact />
-        <FilmContactSection
-          heading="Contact"
-          lead="A brief or a few clear details are enough to start."
-        />
+        <FilmReveal>
+          <PersonalHeroSection />
+        </FilmReveal>
+        <FilmReveal delayMs={80}>
+          <PersonalAboutSection hideContact />
+        </FilmReveal>
+        <FilmReveal delayMs={120}>
+          <FilmContactSection
+            heading="Contact"
+            lead="A brief or a few clear details are enough to start."
+          />
+        </FilmReveal>
       </main>
     </>
   );

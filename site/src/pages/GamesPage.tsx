@@ -1,4 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmCapabilityItem from "@/components/film/FilmCapabilityItem";
+import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
@@ -16,50 +18,60 @@ export default function GamesPage() {
         url={`${site.canonical}/games/`}
       />
       <section className="page-shell direction-page page-shell--to-reel">
-        <div className="page-title-row">
-          <h1>{page.name}</h1>
-        </div>
+        <FilmReveal>
+          <div className="page-title-row">
+            <h1>{page.name}</h1>
+          </div>
+        </FilmReveal>
       </section>
 
-      <FilmShowreel
-        id={reel.id}
-        label={reel.label}
-        poster={reel.poster}
-        vimeoId={reel.vimeoId}
-      />
+      <FilmReveal delayMs={60}>
+        <FilmShowreel
+          id={reel.id}
+          label={reel.label}
+          poster={reel.poster}
+          vimeoId={reel.vimeoId}
+        />
+      </FilmReveal>
 
       <section className="page-shell direction-page page-shell--from-reel">
-        <div className="film-capabilities">
+        <FilmReveal>
           <p className="film-section-label">{page.capabilitiesHeading}</p>
-          <ul className="film-capabilities__list">
-            {page.capabilities.map((item) => (
-              <li key={item.title}>
-                <h2 className="film-capabilities__title">{item.title}</h2>
-                <p className="film-capabilities__text">{item.text}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        </FilmReveal>
+        <ul className="film-capabilities__list">
+          {page.capabilities.map((item, index) => (
+            <FilmCapabilityItem
+              key={item.title}
+              title={item.title}
+              text={item.text}
+              delayMs={index * 70}
+            />
+          ))}
+        </ul>
 
-        <div className="direction-external">
-          <a
-            className="direction-external__link"
-            href={page.externalHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => {
-              e.preventDefault();
-              window.open(page.externalHref, "_blank", "noopener,noreferrer");
-            }}
-          >
-            {page.externalCta}
-            <span className="circle-link">
-              <Arrow />
-            </span>
-          </a>
-        </div>
+        <FilmReveal delayMs={80}>
+          <div className="direction-external">
+            <a
+              className="direction-external__link"
+              href={page.externalHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.preventDefault();
+                window.open(page.externalHref, "_blank", "noopener,noreferrer");
+              }}
+            >
+              {page.externalCta}
+              <span className="circle-link">
+                <Arrow />
+              </span>
+            </a>
+          </div>
+        </FilmReveal>
       </section>
-      <FilmContactSection heading={site.homeContact.heading} />
+      <FilmReveal>
+        <FilmContactSection heading={site.homeContact.heading} />
+      </FilmReveal>
     </>
   );
 }

@@ -762,6 +762,14 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin-top: var(--space-2);
 }
 
+.originals-grid > .film-reveal {
+  min-width: 0;
+}
+
+.originals-grid > .film-reveal > .original-card {
+  height: 100%;
+}
+
 @media (min-width: 900px) {
   .originals-grid {
     grid-template-columns: 1fr 1fr;

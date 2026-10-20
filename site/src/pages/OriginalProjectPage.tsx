@@ -1,4 +1,5 @@
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
 import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import {
@@ -276,29 +277,39 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
           <section
             className={`page-shell project-page project-page--${project.layout} page-shell--to-reel`}
           >
-            <ProjectNav title={item.title} />
-            <FilmProjectIntro project={project} />
+            <FilmReveal>
+              <ProjectNav title={item.title} />
+              <FilmProjectIntro project={project} />
+            </FilmReveal>
           </section>
-          <FilmShowreel
-            id={`${item.id}-reel`}
-            label={item.title}
-            poster={publicAsset(item.mediaImage!)}
-            vimeoId={item.vimeoId}
-          />
+          <FilmReveal delayMs={60}>
+            <FilmShowreel
+              id={`${item.id}-reel`}
+              label={item.title}
+              poster={publicAsset(item.mediaImage!)}
+              vimeoId={item.vimeoId}
+            />
+          </FilmReveal>
           <section
             className={`page-shell project-page project-page--${project.layout} page-shell--from-reel`}
           >
-            <ProjectBody project={project} />
+            <FilmReveal delayMs={100}>
+              <ProjectBody project={project} />
+            </FilmReveal>
           </section>
         </>
       ) : (
         <section className={`page-shell project-page project-page--${project.layout}`}>
-          <ProjectNav title={item.title} />
-          <ProjectBody project={project} />
+          <FilmReveal>
+            <ProjectNav title={item.title} />
+            <ProjectBody project={project} />
+          </FilmReveal>
         </section>
       )}
 
-      <FilmContactSection heading={site.homeContact.heading} />
+      <FilmReveal>
+        <FilmContactSection heading={site.homeContact.heading} />
+      </FilmReveal>
     </>
   );
 }

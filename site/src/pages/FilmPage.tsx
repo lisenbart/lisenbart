@@ -1,5 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import DistributionPartnersSection from "@/components/film/DistributionPartnersSection";
+import FilmReveal from "@/components/film/FilmReveal";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
@@ -64,39 +65,46 @@ export default function FilmPage() {
         url={`${site.canonical}/originals/`}
       />
       <section className="page-shell originals-page">
-        <div className="page-title-row originals-title">
-          <h1>Originals</h1>
-        </div>
+        <FilmReveal>
+          <div className="page-title-row originals-title">
+            <h1>Originals</h1>
+          </div>
+        </FilmReveal>
 
         <div className="originals-grid">
-          {cards.map(({ item, href, type, actionLabel }) => {
+          {cards.map(({ item, href, type, actionLabel }, index) => {
             const media = item.mediaImage ?? "";
 
             return (
-              <a
-                key={item.id}
-                className="original-card"
-                href={href}
-                aria-label={`${item.title} — ${actionLabel}`}
-              >
-                <span className="original-card__media">
-                  <img src={media} alt="" />
-                  <span className="original-card__overlay">
-                    <span className="original-card__copy">
-                      <span className="original-card__title">{item.title}</span>
-                      <span className="original-card__status">{type}</span>
-                      <span className="original-card__action">{actionLabel}</span>
+              <FilmReveal key={item.id} delayMs={index * 70}>
+                <a
+                  className="original-card"
+                  href={href}
+                  aria-label={`${item.title} — ${actionLabel}`}
+                >
+                  <span className="original-card__media">
+                    <img src={media} alt="" />
+                    <span className="original-card__overlay">
+                      <span className="original-card__copy">
+                        <span className="original-card__title">{item.title}</span>
+                        <span className="original-card__status">{type}</span>
+                        <span className="original-card__action">{actionLabel}</span>
+                      </span>
                     </span>
                   </span>
-                </span>
-              </a>
+                </a>
+              </FilmReveal>
             );
           })}
         </div>
 
-        <DistributionPartnersSection />
+        <FilmReveal delayMs={120}>
+          <DistributionPartnersSection />
+        </FilmReveal>
       </section>
-      <FilmContactSection heading={site.homeContact.heading} />
+      <FilmReveal>
+        <FilmContactSection heading={site.homeContact.heading} />
+      </FilmReveal>
     </>
   );
 }
