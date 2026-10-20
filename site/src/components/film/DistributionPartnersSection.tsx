@@ -15,7 +15,6 @@ export default function DistributionPartnersSection() {
   if (mode === "hidden" || partners.length === 0) return null;
 
   const { heading, lead } = distributionPartnersConfig;
-  const isDraft = mode === "draft";
 
   return (
     <section
@@ -28,20 +27,11 @@ export default function DistributionPartnersSection() {
       </h2>
       {lead ? <p className="distribution-partners__lead">{lead}</p> : null}
 
-      {isDraft ? (
-        <p className="distribution-partners__draft" role="status">
-          Draft — partner relationships pending verification. Not published as confirmed.
-        </p>
-      ) : null}
-
       <ul className="distribution-partners__list">
         {partners.map((partner) => (
           <li key={partner.id} className="distribution-partners__item">
             <span className="distribution-partners__name">{partner.name}</span>
-            <span className="distribution-partners__meta">
-              {partner.country}
-              {isDraft ? " · pending" : ""}
-            </span>
+            <span className="distribution-partners__meta">{partner.country}</span>
           </li>
         ))}
       </ul>
