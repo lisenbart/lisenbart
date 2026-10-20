@@ -4,6 +4,9 @@
 /work/*
   Cache-Control: no-cache
 
+/favicon.svg
+  Cache-Control: public, max-age=604800
+
 /favicon.ico
   Cache-Control: public, max-age=604800
 
