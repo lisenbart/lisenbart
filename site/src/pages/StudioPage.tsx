@@ -66,14 +66,10 @@ export default function StudioPage() {
         <h2 id="who-heading" className="film-section-label">
           {page.introHeading}
         </h2>
-        <p className="studio-models__note" style={{ marginTop: 0 }}>
-          {page.intro}
-        </p>
-        <h2 className="studio-models__title" style={{ marginTop: "2rem" }}>
-          {page.howHeading}
-        </h2>
+        <p className="studio-models__note">{page.intro}</p>
+        <h2 className="studio-models__title studio-block">{page.howHeading}</h2>
         <p className="studio-models__note">{page.how}</p>
-        <h2 id="ways-heading" className="studio-models__title" style={{ marginTop: "2rem" }}>
+        <h2 id="ways-heading" className="studio-models__title studio-block">
           {page.engagementHeading}
         </h2>
         <ul className="studio-models__list">
