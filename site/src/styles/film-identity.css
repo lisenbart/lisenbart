@@ -2176,6 +2176,8 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .explore-strip h3 {
+  position: relative;
+  display: inline-block;
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-title);
@@ -2185,6 +2187,50 @@ html[data-hero-period="evening"] .home-explore {
   line-height: var(--leading-title);
   text-align: center;
   text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Same underline language as .desktop-nav a::after */
+.explore-strip h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0.28em;
+  bottom: -0.55rem;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 250ms ease;
+  pointer-events: none;
+}
+
+@media (min-width: 801px) {
+  .explore-strip:hover h3::after {
+    transform: scaleX(1);
+  }
+}
+
+/* Mobile: draw once in sequence when the cards block first appears, then stay */
+@media (max-width: 800px) {
+  .explore-strip h3::after {
+    transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-explore:has(.film-reveal.is-in) > .film-reveal:nth-child(1) .explore-strip h3::after {
+    transform: scaleX(1);
+    transition-delay: 80ms;
+  }
+  .home-explore:has(.film-reveal.is-in) > .film-reveal:nth-child(2) .explore-strip h3::after {
+    transform: scaleX(1);
+    transition-delay: 200ms;
+  }
+  .home-explore:has(.film-reveal.is-in) > .film-reveal:nth-child(3) .explore-strip h3::after {
+    transform: scaleX(1);
+    transition-delay: 320ms;
+  }
+  .home-explore:has(.film-reveal.is-in) > .film-reveal:nth-child(4) .explore-strip h3::after {
+    transform: scaleX(1);
+    transition-delay: 440ms;
+  }
 }
 
 .page-shell {
@@ -2952,6 +2998,11 @@ html[data-hero-period="evening"] .home-explore {
     inset: -22%;
     filter: blur(16px) saturate(1.06) brightness(0.94);
     transform: scale(1.12) !important;
+  }
+
+  .explore-strip h3::after {
+    transform: scaleX(1) !important;
+    transition: none !important;
   }
 
   .film-reveal {
