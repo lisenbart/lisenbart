@@ -26,7 +26,7 @@ const copy = site.contactForm;
 
 export default function FilmContactSection({
   heading = site.homeContact.heading,
-  lead = site.homeContact.lead,
+  lead,
 }: {
   heading?: string;
   lead?: string;

@@ -90,10 +90,7 @@ export default function StudioPage() {
         </div>
       </section>
 
-      <FilmContactSection
-        heading={site.homeContact.heading}
-        lead={site.homeContact.lead}
-      />
+      <FilmContactSection heading={site.homeContact.heading} />
     </>
   );
 }

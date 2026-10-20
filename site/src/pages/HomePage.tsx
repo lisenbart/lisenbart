@@ -13,9 +13,13 @@ import { scrollToSection, sectionIds, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
 function formatHeadline(headline: string) {
-  const parts = headline.split(/(?<=\.)\s+/).filter(Boolean);
-  if (parts.length < 2) return [headline];
-  return parts;
+  const lines = headline.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+  if (lines.length >= 2) return lines;
+  const parts = headline
+    .split(/(?<=\.)\s+/)
+    .map((part) => part.replace(/\.$/, "").trim())
+    .filter(Boolean);
+  return parts.length >= 2 ? parts : [headline.replace(/\.$/, "").trim()];
 }
 
 export default function HomePage() {
@@ -133,10 +137,7 @@ export default function HomePage() {
           </a>
         </section>
 
-        <FilmContactSection
-          heading={site.homeContact.heading}
-          lead={site.homeContact.lead}
-        />
+        <FilmContactSection heading={site.homeContact.heading} />
       </div>
     </>
   );

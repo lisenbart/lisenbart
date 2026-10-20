@@ -42,10 +42,7 @@ export default function AiPage() {
           </ul>
         </div>
       </section>
-      <FilmContactSection
-        heading={site.homeContact.heading}
-        lead={site.homeContact.lead}
-      />
+      <FilmContactSection heading={site.homeContact.heading} />
     </>
   );
 }

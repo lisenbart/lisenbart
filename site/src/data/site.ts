@@ -6,7 +6,7 @@ export const site = {
   gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
-    headline: "Creative freedom. Production control.",
+    headline: "Creative freedom\nProduction control",
     lead: "Independent animation studio for brands, production partners and original films. Creative development, direction and production — together or as individual stages.",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
     ctaLabel: "Discuss a Project",
@@ -256,7 +256,7 @@ export const site = {
   },
   homeContact: {
     heading: "Have something in mind?",
-    lead: "Tell us a little about it.",
+    lead: "",
   },
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
@@ -338,7 +338,7 @@ export const site = {
     white: "/images/black_logo.png",
   },
   meta: {
-    title: "LISENBART FILM — Creative Freedom. Production Control.",
+    title: "LISENBART FILM — Creative Freedom · Production Control",
     description:
       "Independent animation studio for brands, agencies and production partners. Creative development, direction and animation production since 2006.",
 
