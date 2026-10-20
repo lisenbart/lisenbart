@@ -387,14 +387,14 @@ img { display: block; width: 100%; }
   pointer-events: none;
 }
 
-/* Evening hero is dark — light type for contrast */
-.home-hero--evening .home-statement h1,
-.home-hero--evening .home-statement p {
-  color: #f7f4ef;
+/* Hero statement stays white on both day and evening art */
+.home-hero .home-statement h1,
+.home-hero .home-statement p {
+  color: #fff;
 }
 
-.home-hero--evening .home-statement i {
-  background: #f7f4ef;
+.home-hero .home-statement i {
+  background: #fff;
 }
 
 /* Home evening: light nav over dark hero */
