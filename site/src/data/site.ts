@@ -201,7 +201,7 @@ export const site = {
       id: "games-reel",
       label: "LISENBART GAMES Showreel",
       vimeoId: "944158555" as string | null,
-      poster: "/images/reels/games/01.webp",
+      poster: "/images/reels/games/showreel-poster.webp",
     },
     capabilitiesHeading: "What we do",
     capabilities: [
