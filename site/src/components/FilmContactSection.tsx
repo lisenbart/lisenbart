@@ -10,8 +10,6 @@ import {
   type ContactPrefill,
 } from "@/data/site";
 import { submitContact, validateContact } from "@/lib/contactSubmit";
-import { Arrow } from "@/components/film/FilmIcons";
-
 interface FormState {
   name: string;
   email: string;
@@ -110,9 +108,6 @@ export default function FilmContactSection({
             <div role="status">
               <p>{serverMsg || copy.successMessage}</p>
               <button type="button" className="send-button" onClick={() => setStatus("idle")}>
-                <span className="circle-link">
-                  <Arrow />
-                </span>
                 {copy.successAction}
               </button>
             </div>
@@ -128,7 +123,7 @@ export default function FilmContactSection({
                 autoComplete="off"
                 aria-hidden="true"
               />
-              <label>
+              <label htmlFor="contact-name">
                 <span>Name</span>
                 <input
                   id="contact-name"
@@ -136,9 +131,10 @@ export default function FilmContactSection({
                   value={form.name}
                   onChange={(e) => update("name", e.target.value)}
                   autoComplete="name"
+                  placeholder="Your name"
                 />
               </label>
-              <label>
+              <label htmlFor="contact-email">
                 <span>
                   Email{errors.email ? " — required" : ""}
                 </span>
@@ -151,9 +147,10 @@ export default function FilmContactSection({
                   autoComplete="email"
                   required
                   aria-invalid={Boolean(errors.email)}
+                  placeholder={copy.emailPlaceholder}
                 />
               </label>
-              <label>
+              <label htmlFor="contact-projectType">
                 <span>Project type</span>
                 <select
                   id="contact-projectType"
@@ -161,7 +158,7 @@ export default function FilmContactSection({
                   value={form.projectType}
                   onChange={(e) => update("projectType", e.target.value)}
                 >
-                  <option value="">Select</option>
+                  <option value="">{copy.projectTypePlaceholder}</option>
                   {projectTypes.map((t) => (
                     <option key={t} value={t}>
                       {t}
@@ -169,31 +166,29 @@ export default function FilmContactSection({
                   ))}
                 </select>
               </label>
-              <label>
+              <label htmlFor="contact-message">
                 <span>
                   Message{errors.message ? " — required" : ""}
                 </span>
                 <textarea
                   id="contact-message"
                   name="message"
-                  rows={2}
+                  rows={5}
                   value={form.message}
                   onChange={(e) => update("message", e.target.value)}
                   required
                   aria-invalid={Boolean(errors.message)}
+                  placeholder={copy.messagePlaceholder}
                 />
               </label>
               {status === "error" && serverMsg ? (
-                <p role="alert">
+                <p className="contact-form-error" role="alert">
                   {serverMsg}{" "}
                   <a href={`mailto:${site.email}`}>{site.email}</a>
                 </p>
               ) : null}
               <button className="send-button" type="submit" disabled={status === "loading"}>
-                <span className="circle-link">
-                  <Arrow />
-                </span>
-                {status === "loading" ? copy.sendingLabel : "Send a brief"}
+                {status === "loading" ? copy.sendingLabel : copy.submitLabel}
               </button>
             </form>
           )}
