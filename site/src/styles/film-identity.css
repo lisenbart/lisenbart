@@ -2111,22 +2111,15 @@ html[data-hero-period="evening"] .home-explore {
 
 .explore-strip:hover { filter: brightness(1.06); }
 
-/*
- * Static blurred preview — no scroll parallax on this layer.
- * Animating transform + filter:blur on scroll causes flicker/repaint thrash.
- */
 .explore-strip::before {
   content: "";
   position: absolute;
-  inset: -20%;
+  inset: 0;
   z-index: 0;
   background-image: var(--explore-media);
   background-size: cover;
   background-position: center;
-  filter: blur(11px) saturate(1.06) brightness(0.94);
-  transform: scale(1.12);
   pointer-events: none;
-  backface-visibility: hidden;
 }
 
 /* Scroll / view motion — Home + Studio */
@@ -2953,9 +2946,7 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .explore-strip::before {
-    inset: -16%;
-    filter: blur(10px) saturate(1.06) brightness(0.94);
-    transform: scale(1.1) !important;
+    transform: none !important;
   }
 
   .film-reveal {
