@@ -28,11 +28,6 @@ export default function CommercialPage() {
             poster={reel.poster}
             vimeoId={reel.vimeoId}
           />
-          {reel.body.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} className="film-capabilities__text direction-showreel__note">
-              {paragraph}
-            </p>
-          ))}
         </div>
 
         <div className="direction-clients">

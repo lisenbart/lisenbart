@@ -99,9 +99,7 @@ export default function HomePage() {
             <div>
               <h3>Client Work</h3>
               <p>
-                Brands. Agencies.
-                <br />
-                Bold ideas.
+                Brands &amp; agencies
               </p>
             </div>
             <span className="circle-link">
@@ -112,9 +110,7 @@ export default function HomePage() {
             <div>
               <h3>Originals</h3>
               <p>
-                Our stories.
-                <br />
-                New worlds.
+                Films &amp; story IP
               </p>
             </div>
             <span className="circle-link">
@@ -125,9 +121,7 @@ export default function HomePage() {
             <div>
               <h3>Games</h3>
               <p>
-                Trailers. Cinematics.
-                <br />
-                Playables.
+                Ads &amp; playables
               </p>
             </div>
             <span className="circle-link">
@@ -138,9 +132,7 @@ export default function HomePage() {
             <div>
               <h3>AI</h3>
               <p>
-                Hybrid production.
-                <br />
-                More possibilities.
+                Hybrid pipelines
               </p>
             </div>
             <span className="circle-link">

@@ -54,13 +54,7 @@ export default function FilmPage() {
       <section className="page-shell originals-page">
         <div className="page-title-row originals-title">
           <h1>Originals</h1>
-          <p>
-            Our stories.
-            <br />
-            New worlds.
-          </p>
         </div>
-        <p className="film-contact__lead direction-lead">{page.title}</p>
 
         <div className="originals-grid">
           {cards.map(({ item, actionLabel }) => {

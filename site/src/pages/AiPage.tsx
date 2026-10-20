@@ -18,7 +18,6 @@ export default function AiPage() {
         <div className="page-title-row">
           <h1>{page.name}</h1>
         </div>
-        <p className="film-section-label">{page.introHeading}</p>
         <p className="film-contact__lead direction-lead">{page.title}</p>
 
         <div className="direction-showreel">
@@ -29,11 +28,6 @@ export default function AiPage() {
             poster={reel.poster}
             vimeoId={reel.vimeoId}
           />
-          {reel.body.map((paragraph) => (
-            <p key={paragraph.slice(0, 24)} className="film-capabilities__text direction-showreel__note">
-              {paragraph}
-            </p>
-          ))}
         </div>
 
         <div className="film-capabilities">

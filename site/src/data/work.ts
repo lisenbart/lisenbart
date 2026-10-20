@@ -109,7 +109,7 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "Scoopy Cap",
     description:
-      "An English-language preschool world combining music, alphabet learning and character-led stories for young children.",
+      "English-language preschool animation — music, alphabet and character stories built as educational IP.",
     result: "",
 
     mediaColor: "#1a1428",
@@ -132,7 +132,7 @@ const originalsCases: WorkCaseStudy[] = [
     year: "",
     title: "Pershosvit",
     description:
-      "A Ukrainian-language world of animated songs, stories and early learning for young children, developed across original characters and repeatable formats.",
+      "Ukrainian-language preschool animation — songs, stories and early learning across original characters and repeatable formats.",
     result: "",
 
     mediaColor: "#1f1020",

@@ -19,11 +19,9 @@ export default function GamesPage() {
         <div className="page-title-row">
           <h1>{page.name}</h1>
         </div>
-        <p className="film-section-label">{page.introHeading}</p>
         <p className="film-contact__lead direction-lead">{page.title}</p>
 
         <div className="direction-showreel">
-          <p className="film-section-label">{page.showreelHeading}</p>
           <FilmShowreel
             id={reel.id}
             label={reel.label}
@@ -57,9 +55,6 @@ export default function GamesPage() {
               <Arrow />
             </span>
           </a>
-          <p className="film-capabilities__text">
-            Detailed examples and commercial information live on the dedicated GAMES site.
-          </p>
         </div>
       </section>
       <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />

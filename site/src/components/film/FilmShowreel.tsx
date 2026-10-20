@@ -32,18 +32,21 @@ export default function FilmShowreel({
     }
   };
 
+  const actionLabel = canPlayInline ? "Play reel" : "Open site";
+  const ariaAction = canPlayInline ? `Play ${label}` : `Open ${label}`;
+
   return (
     <section id={id} className="film-showreel" aria-label={label}>
       <button
         type="button"
         className="film-showreel__stage"
         onClick={play}
-        aria-label={`Play ${label}`}
+        aria-label={ariaAction}
       >
         <img src={poster} alt="" width={1280} height={720} />
         <span className="film-showreel__play">
           <PlayIcon />
-          <span>Play reel</span>
+          <span>{actionLabel}</span>
         </span>
       </button>
     </section>

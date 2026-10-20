@@ -40,13 +40,6 @@ export default function StudioPage() {
           />
         </div>
         <div className="studio-footer">
-          <p>
-            Creative people.
-            <br />
-            Real production.
-            <br />
-            Global stories.
-          </p>
           <a
             href="#contact"
             onClick={(e) => {
@@ -80,14 +73,12 @@ export default function StudioPage() {
             </li>
           ))}
         </ul>
-        <p className="studio-models__note">{page.engagementNote}</p>
       </section>
 
       <section className="studio-people" aria-labelledby="people-heading">
         <h2 id="people-heading" className="studio-models__title">
           {page.peopleHeading}
         </h2>
-        <p className="studio-people__text">{page.people}</p>
         <div className="studio-founder">
           <img
             className="studio-founder__portrait"

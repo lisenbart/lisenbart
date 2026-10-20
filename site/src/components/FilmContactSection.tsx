@@ -104,14 +104,6 @@ export default function FilmContactSection({
       {showScene ? <LightScene variant="contact" /> : null}
       <div className="contact-content">
         <h1>{heading}</h1>
-        <h2>
-          Let&apos;s make
-          <br />
-          something
-          <br />
-          extraordinary.
-        </h2>
-        <i />
         {lead ? <p className="film-contact__lead">{lead}</p> : null}
         {!isContactFormLive && import.meta.env.DEV ? (
           <p className="film-contact__lead">Dev: form mocks locally. On Netlify it uses Netlify Forms.</p>

@@ -1225,20 +1225,12 @@ html[data-hero-period="evening"] .explore-strip--ai {
 .studio-image img { height: 100%; object-fit: cover; object-position: center 48%; filter: brightness(0.82) saturate(0.7); }
 
 .studio-footer {
-  min-height: 19vh;
+  min-height: auto;
   padding: var(--space-4) var(--gutter);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: var(--space-3);
-}
-
-.studio-footer p {
-  margin: 0;
-  font-size: var(--text-meta);
-  line-height: var(--leading-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
 }
 
 .studio-footer a {
