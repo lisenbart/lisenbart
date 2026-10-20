@@ -66,7 +66,7 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
     seoTitle: "The Last Kozak — Animated Feature in Development | LISENBART FILM",
     seoDescription:
       "The Last Kozak — an animated feature in development from LISENBART FILM. Ukrainian mythological action-fantasy; English teaser available.",
-    format: "Animated feature · 80 min",
+    format: "Animated feature · 26 min",
     status: "In development",
     synopsis:
       "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
