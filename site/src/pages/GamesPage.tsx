@@ -19,7 +19,6 @@ export default function GamesPage() {
         <div className="page-title-row">
           <h1>{page.name}</h1>
         </div>
-        <p className="film-contact__lead direction-lead">{page.title}</p>
       </section>
 
       <FilmShowreel
