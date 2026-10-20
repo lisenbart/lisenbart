@@ -2114,12 +2114,15 @@ html[data-hero-period="evening"] .home-explore {
 .explore-strip::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: -28%;
   z-index: 0;
   background-image: var(--explore-media);
   background-size: cover;
   background-position: center;
+  filter: blur(18px) saturate(1.06) brightness(0.94);
+  transform: scale(1.14);
   pointer-events: none;
+  backface-visibility: hidden;
 }
 
 /* Scroll / view motion — Home + Studio */
@@ -2946,7 +2949,9 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .explore-strip::before {
-    transform: none !important;
+    inset: -22%;
+    filter: blur(16px) saturate(1.06) brightness(0.94);
+    transform: scale(1.12) !important;
   }
 
   .film-reveal {
