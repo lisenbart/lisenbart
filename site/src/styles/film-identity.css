@@ -1225,7 +1225,7 @@ html[data-hero-period="evening"] .explore-strip--ai {
   width: calc(100% + 2 * var(--gutter));
 }
 
-.studio-image img { height: 100%; object-fit: cover; object-position: center 48%; filter: brightness(0.82) saturate(0.7); }
+.studio-image img { height: 100%; object-fit: cover; object-position: center 45%; }
 
 .studio-cta {
   display: inline-flex;

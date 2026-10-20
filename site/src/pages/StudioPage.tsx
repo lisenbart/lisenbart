@@ -29,8 +29,10 @@ export default function StudioPage() {
 
         <div className="studio-image">
           <img
-            src="/images/explore/originals/07.webp"
-            alt="Creative production in progress"
+            src="/images/studio/studio-strip.webp"
+            alt="LISENBART FILM animation studio"
+            width={1536}
+            height={1024}
           />
         </div>
       </section>
