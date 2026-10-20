@@ -342,7 +342,7 @@ export const site = {
   vimeo: "https://vimeo.com/849899875",
   youtube: "https://www.youtube.com/@lisenbartProduction",
   imdb: "https://www.imdb.com/name/nm11412621/",
-  locations: "Ukraine · Canada · Poland",
+  locations: "Canada · Poland · Ukraine",
   canonical: "https://lisenbart.com",
   logo: {
     /** Combined LISENBART wordmark + bear (black on transparent). */
