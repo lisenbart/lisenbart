@@ -2093,35 +2093,11 @@ html[data-hero-period="evening"] .home-explore {
 
 .studio-intro {
   max-width: var(--measure-wide);
-  padding: 0 0 var(--space-3);
+  padding: var(--space-3) 0 var(--space-4);
 }
 
 .studio-intro .studio-models__note {
   margin-top: 0;
-}
-
-.studio-credential {
-  margin: var(--space-3) 0 0;
-  max-width: var(--measure);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-
-.studio-credential__label {
-  font-size: var(--text-meta);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  line-height: var(--leading-label);
-  color: var(--ink);
-}
-
-.studio-credential__detail {
-  font-size: var(--text-meta);
-  letter-spacing: 0.04em;
-  line-height: 1.55;
-  text-transform: none;
-  color: var(--muted);
 }
 
 .studio-image {
@@ -2543,7 +2519,7 @@ html[data-hero-period="evening"] .home-explore {
   .original-kozak .tile-play, .original-small .tile-play { left: auto; right: var(--gutter); bottom: var(--space-3); }
 
   .studio-page { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) 0; }
-  .studio-intro { padding: 0 0 var(--space-3); }
+  .studio-intro { padding: var(--space-3) 0 var(--space-4); }
   .studio-image { height: 36vh; }
   .film-showreel { height: 36vh; }
 
