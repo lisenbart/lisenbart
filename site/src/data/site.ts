@@ -341,8 +341,10 @@ export const site = {
     aiHelper: "Where do you see AI fitting into the project?",
   },
   primaryNav: [
-    { id: "client-work" as const, label: "Work" },
+    { id: "client-work" as const, label: "Client Work" },
     { id: "originals" as const, label: "Originals" },
+    { id: "games" as const, label: "Games" },
+    { id: "ai" as const, label: "AI" },
     { id: "studio" as const, label: "Studio" },
     { id: "contact" as const, label: "Contact" },
   ],

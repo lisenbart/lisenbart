@@ -55,7 +55,9 @@ img { display: block; width: 100%; }
 .desktop-nav {
   justify-self: center;
   display: flex;
-  gap: clamp(1.5rem, 3vw, 3.2rem);
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.85rem, 1.8vw, 2rem);
 }
 
 .desktop-nav a {

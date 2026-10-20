@@ -5,10 +5,8 @@ import { hubCanonicalHref, isSiteSubpage, parseHubPage, routes } from "@/lib/rou
 type NavId = (typeof site.primaryNav)[number]["id"];
 
 function navHref(id: NavId) {
-  if (id === "originals") return hubCanonicalHref("originals");
-  if (id === "client-work") return hubCanonicalHref("client-work");
-  if (id === "studio") return hubCanonicalHref("studio");
-  return "#contact";
+  if (id === "contact") return "#contact";
+  return hubCanonicalHref(id);
 }
 
 export default function Header() {
@@ -42,10 +40,8 @@ export default function Header() {
   const toggleMenu = () => setMenuOpen((v) => !v);
 
   const isActive = (id: NavId) => {
-    if (id === "originals") return activeHub === "originals";
-    if (id === "client-work") return activeHub === "client-work";
-    if (id === "studio") return activeHub === "studio";
-    return false;
+    if (id === "contact") return false;
+    return activeHub === id;
   };
 
   const onNavClick = (id: NavId, e: MouseEvent<HTMLAnchorElement>) => {

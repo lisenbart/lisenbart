@@ -8,11 +8,11 @@ export default function Footer() {
         LISENBART FILM · Est. 2006
       </a>
       <nav aria-label="Footer">
-        <a href={hubCanonicalHref("client-work")}>Work</a>
+        <a href={hubCanonicalHref("client-work")}>Client Work</a>
         <a href={hubCanonicalHref("originals")}>Originals</a>
-        <a href={hubCanonicalHref("studio")}>Studio</a>
         <a href={hubCanonicalHref("games")}>Games</a>
         <a href={hubCanonicalHref("ai")}>AI</a>
+        <a href={hubCanonicalHref("studio")}>Studio</a>
         <a
           href="#contact"
           onClick={(e) => {
