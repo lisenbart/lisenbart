@@ -919,7 +919,9 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .explore-strip {
+  --explore-media: none;
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   border-radius: 8px;
   box-shadow: inset 0 0 0 1px rgba(16, 21, 36, 0.12);
@@ -931,48 +933,66 @@ html[data-hero-period="evening"] .home-explore {
   justify-content: space-between;
   gap: var(--space-3);
   color: #f7f4ef;
-  /* Default = day hero blues (sky / mid / soft cream edge) */
-  background: linear-gradient(120deg, #1e5aa8 0%, #3d88d4 55%, #7eb8e8 100%);
+  background: #142038;
 }
 
 .explore-strip:hover { transform: translateY(-4px); }
 
-/* Day hero palette — HERO_bear_02: sky blue, soft cream, warm peach */
-.explore-strip--work {
-  background: linear-gradient(125deg, #1a4f98 0%, #3a7fd0 52%, #6ba8e0 100%);
-}
-.explore-strip--originals {
-  background: linear-gradient(125deg, #2568b8 0%, #5a9ad8 48%, #c9a890 100%);
-}
-.explore-strip--games {
-  background: linear-gradient(125deg, #1e5aa8 0%, #4a90e0 58%, #81acea 100%);
-}
-.explore-strip--ai {
-  background: linear-gradient(125deg, #184e96 0%, #5080c0 42%, #e0b898 100%);
+/* Soft preview of the destination page — blurred so type stays readable */
+.explore-strip::before {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  background-image: var(--explore-media);
+  background-size: cover;
+  background-position: center;
+  filter: blur(14px) saturate(0.92);
+  transform: scale(1.08);
+  pointer-events: none;
 }
 
-/* Evening hero palette — HERO_bear_01: deep navy, mauve, peach glow */
-html[data-hero-period="evening"] .explore-strip--work {
-  background: linear-gradient(125deg, #0c1028 0%, #1a2850 55%, #3a3860 100%);
+.explore-strip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    120deg,
+    rgba(10, 16, 32, 0.62) 0%,
+    rgba(12, 22, 42, 0.48) 55%,
+    rgba(10, 16, 32, 0.58) 100%
+  );
+  pointer-events: none;
 }
-html[data-hero-period="evening"] .explore-strip--originals {
-  background: linear-gradient(125deg, #101030 0%, #302848 50%, #765c76 100%);
+
+.explore-strip > * {
+  position: relative;
+  z-index: 2;
 }
-html[data-hero-period="evening"] .explore-strip--games {
-  background: linear-gradient(125deg, #0a1430 0%, #182850 58%, #504060 100%);
+
+.explore-strip--work {
+  --explore-media: url("/images/reels/advertising/01.webp");
 }
-html[data-hero-period="evening"] .explore-strip--ai {
-  background: linear-gradient(125deg, #101028 0%, #282040 45%, #c090a0 100%);
+.explore-strip--originals {
+  --explore-media: url("/images/work/unnecessary-things-preview.webp");
+}
+.explore-strip--games {
+  --explore-media: url("/images/reels/games/01.webp");
+}
+.explore-strip--ai {
+  --explore-media: url("/images/reels/ai/01.webp");
 }
 
 .explore-strip h3 {
   margin: 0 0 var(--space-1);
   font-family: var(--font-display);
   font-size: var(--text-title);
-  font-weight: 300;
+  font-weight: 500;
   letter-spacing: var(--track-title);
   text-transform: uppercase;
   line-height: var(--leading-title);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 
 .explore-strip p {
@@ -981,6 +1001,7 @@ html[data-hero-period="evening"] .explore-strip--ai {
   line-height: var(--leading-label);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
 .page-shell {
