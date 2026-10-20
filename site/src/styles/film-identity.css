@@ -1210,47 +1210,34 @@ html[data-hero-period="evening"] .explore-strip--ai {
   margin-top: var(--block-gap);
 }
 
-.studio-hero {
-  position: relative;
-  min-height: auto;
-  padding: 0 0 var(--space-4);
-  overflow: hidden;
-  background: transparent;
+.studio-intro {
   max-width: var(--measure-wide);
+  padding: 0 0 var(--space-4);
 }
 
-.studio-hero__lead {
-  margin: 0;
-  max-width: var(--measure);
-  font-size: var(--text-lead);
-  line-height: var(--leading-body);
-  color: var(--muted);
+.studio-intro .studio-models__note {
+  margin-top: 0;
 }
 
 .studio-image {
   height: 33vh;
   min-height: 250px;
   overflow: hidden;
+  margin: 0 calc(-1 * var(--gutter));
+  width: calc(100% + 2 * var(--gutter));
 }
 
 .studio-image img { height: 100%; object-fit: cover; object-position: center 48%; filter: brightness(0.82) saturate(0.7); }
 
-.studio-footer {
-  min-height: auto;
-  padding: var(--space-4) var(--gutter);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-3);
-}
-
-.studio-footer a {
-  display: flex;
+.studio-cta {
+  display: inline-flex;
   align-items: center;
   gap: var(--space-3);
+  margin-top: var(--block-gap);
   font-size: var(--text-meta);
   letter-spacing: var(--track-label);
   text-transform: uppercase;
+  color: var(--ink);
 }
 
 .contact-page {
@@ -1489,10 +1476,8 @@ html[data-hero-period="evening"] .explore-strip--ai {
   .original-kozak .tile-play, .original-small .tile-play { left: auto; right: var(--gutter); bottom: var(--space-3); }
 
   .studio-page { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) 0; }
-  .studio-hero { padding: 0 0 var(--space-3); }
-  .studio-image { height: 36vh; margin-left: calc(-1 * var(--gutter)); margin-right: calc(-1 * var(--gutter)); width: calc(100% + 2 * var(--gutter)); }
-  .studio-footer { padding: var(--space-4) var(--gutter); }
-  .studio-footer a { font-size: 0; gap: 0; }
+  .studio-intro { padding: 0 0 var(--space-3); }
+  .studio-image { height: 36vh; }
 
   .contact-page { padding: var(--space-5) var(--gutter); }
   .contact-columns { grid-template-columns: 1fr; gap: var(--space-5); }

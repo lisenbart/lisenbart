@@ -20,11 +20,11 @@ export default function StudioPage() {
           <h1>Studio</h1>
         </div>
 
-        <div className="studio-hero" aria-labelledby="who-heading">
+        <div className="studio-intro" aria-labelledby="who-heading">
           <h2 id="who-heading" className="studio-section-heading">
             {page.introHeading}
           </h2>
-          <p className="studio-hero__lead">{page.intro}</p>
+          <p className="studio-models__note">{page.intro}</p>
         </div>
 
         <div className="studio-image">
@@ -32,21 +32,6 @@ export default function StudioPage() {
             src="/images/explore/originals/07.webp"
             alt="Creative production in progress"
           />
-        </div>
-
-        <div className="studio-footer">
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              goToContact();
-            }}
-          >
-            <span className="circle-link">
-              <Arrow />
-            </span>{" "}
-            Discuss a project
-          </a>
         </div>
       </section>
 
@@ -66,6 +51,20 @@ export default function StudioPage() {
             </li>
           ))}
         </ul>
+
+        <a
+          className="studio-cta"
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            goToContact();
+          }}
+        >
+          <span className="circle-link">
+            <Arrow />
+          </span>
+          Discuss a project
+        </a>
       </section>
 
       <section className="studio-people" aria-labelledby="people-heading">
