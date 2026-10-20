@@ -91,9 +91,6 @@ export default function HomePage() {
                 </span>
               ))}
             </h1>
-            <i />
-            <p>Lisenbart Film</p>
-            <p>Est. 2006</p>
           </div>
         </section>
 
