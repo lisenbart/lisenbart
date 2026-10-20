@@ -400,6 +400,9 @@ img { display: block; width: 100%; }
 }
 
 .bear-art {
+  --gyro-x: 0px;
+  --gyro-y: 0px;
+  --hero-scroll-y: 0%;
   position: absolute;
   z-index: 1;
   inset: -4% 0;
@@ -408,6 +411,8 @@ img { display: block; width: 100%; }
   object-fit: cover;
   /* Keep the bear in the upper/mid frame so copy can sit clear below */
   object-position: center 28%;
+  transform: translate3d(var(--gyro-x), calc(var(--hero-scroll-y) + var(--gyro-y)), 0) scale(1.06);
+  will-change: transform;
   pointer-events: none;
   will-change: transform;
   transform: translate3d(0, 0, 0) scale(1.05);
@@ -2829,10 +2834,13 @@ html[data-hero-period="evening"] .home-explore {
   .home-hero { min-height: 100svh; }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    /* Extra bleed so light gyro tilt does not show edges */
+    inset: -7%;
+    width: 114%;
+    height: 114%;
+    left: -7%;
     object-position: center 22%;
+    transform: translate3d(var(--gyro-x), calc(var(--hero-scroll-y) + var(--gyro-y)), 0) scale(1.04);
   }
   .home-statement {
     padding: 0 var(--gutter) var(--space-4);
@@ -2952,6 +2960,8 @@ html[data-hero-period="evening"] .home-explore {
     height: 100%;
     transform: none !important;
     will-change: auto;
+    --gyro-x: 0px !important;
+    --gyro-y: 0px !important;
   }
 
   .explore-strip::before {

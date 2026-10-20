@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import { SEO } from "@/components/SEO";
+import { useHeroGyro } from "@/hooks/useHeroGyro";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
   HERO_IMAGES,
@@ -32,6 +33,7 @@ export default function HomePage() {
   const exploreRef = useRef<HTMLElement>(null);
 
   useScrollParallax(heroRef, bearRef, { strength: 12 });
+  useHeroGyro(heroRef, bearRef, { maxPx: 10 });
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
