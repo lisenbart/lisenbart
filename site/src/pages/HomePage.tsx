@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
+import { Arrow } from "@/components/film/FilmIcons";
 import FilmReveal from "@/components/film/FilmReveal";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
@@ -109,21 +110,33 @@ export default function HomePage() {
           <FilmReveal delayMs={0}>
             <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
               <h3>Client Work</h3>
+              <span className="circle-link explore-strip__arrow" aria-hidden="true">
+                <Arrow />
+              </span>
             </a>
           </FilmReveal>
           <FilmReveal delayMs={80}>
             <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
               <h3>Originals</h3>
+              <span className="circle-link explore-strip__arrow" aria-hidden="true">
+                <Arrow />
+              </span>
             </a>
           </FilmReveal>
           <FilmReveal delayMs={160}>
             <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
               <h3>Game Ads</h3>
+              <span className="circle-link explore-strip__arrow" aria-hidden="true">
+                <Arrow />
+              </span>
             </a>
           </FilmReveal>
           <FilmReveal delayMs={240}>
             <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
               <h3>AI &amp; Hybrid</h3>
+              <span className="circle-link explore-strip__arrow" aria-hidden="true">
+                <Arrow />
+              </span>
             </a>
           </FilmReveal>
         </section>
