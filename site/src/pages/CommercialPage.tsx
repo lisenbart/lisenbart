@@ -1,5 +1,5 @@
 import FilmContactSection from "@/components/FilmContactSection";
-import ReelBlock from "@/components/ReelBlock";
+import FilmShowreel from "@/components/film/FilmShowreel";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 
@@ -22,14 +22,17 @@ export default function CommercialPage() {
 
         <div className="direction-showreel">
           <p className="film-section-label">{page.showreelHeading}</p>
-          <ReelBlock
+          <FilmShowreel
             id={reel.id}
             label={reel.label}
-            body={reel.body}
-            videoId={reel.vimeoId}
-            previewImages={[...reel.previewImages]}
-            emphasis="primary"
+            poster={reel.poster}
+            vimeoId={reel.vimeoId}
           />
+          {reel.body.map((paragraph) => (
+            <p key={paragraph.slice(0, 24)} className="film-capabilities__text direction-showreel__note">
+              {paragraph}
+            </p>
+          ))}
         </div>
 
         <div className="direction-clients">

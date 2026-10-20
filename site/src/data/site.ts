@@ -177,16 +177,7 @@ export const site = {
         "Animated campaigns, brand films and product visuals — character animation, motion graphics and mixed media under creative direction.",
       ] as const,
       vimeoId: "849899875" as string | null,
-      previewImages: [
-        "/images/reels/advertising/01.webp",
-        "/images/reels/advertising/02.webp",
-        "/images/reels/advertising/03.webp",
-        "/images/reels/advertising/04.webp",
-        "/images/reels/advertising/05.webp",
-        "/images/reels/advertising/06.webp",
-        "/images/reels/advertising/07.webp",
-        "/images/reels/advertising/08.webp",
-      ],
+      poster: "/images/reels/advertising/01.webp",
     },
     capabilitiesHeading: "Expertise",
     capabilities: [
@@ -216,6 +207,15 @@ export const site = {
     seoDescription:
       "Game advertising creatives, playable production and creative development for game companies — a specialized direction of LISENBART FILM.",
     introHeading: "Game advertising & playables",
+    showreelHeading: "Games Showreel",
+    showreel: {
+      id: "games-reel",
+      label: "Games Showreel",
+      /** No dedicated Vimeo on FILM — play opens the specialist GAMES site. */
+      vimeoId: null as string | null,
+      poster: "/images/reels/games/01.webp",
+      externalHref: "https://www.lisenbart.games",
+    },
     capabilitiesHeading: "What we do",
     capabilities: [
       {
@@ -253,24 +253,7 @@ export const site = {
         "AI where it serves the brief — from visual exploration to selected production sequences. Creative direction and finishing remain central.",
       ] as const,
       vimeoId: "1212613379" as string | null,
-      previewImages: [
-        "/images/reels/ai/01.webp",
-        "/images/reels/ai/02.webp",
-        "/images/reels/ai/03.webp",
-        "/images/reels/ai/04.webp",
-        "/images/reels/ai/05.webp",
-        "/images/reels/ai/06.webp",
-        "/images/reels/ai/07.webp",
-        "/images/reels/ai/08.webp",
-        "/images/reels/ai/09.webp",
-        "/images/reels/ai/10.webp",
-        "/images/reels/ai/11.webp",
-        "/images/reels/ai/12.webp",
-        "/images/reels/ai/13.webp",
-        "/images/reels/ai/14.webp",
-        "/images/reels/ai/15.webp",
-        "/images/reels/ai/16.webp",
-      ],
+      poster: "/images/reels/ai/01.webp",
     },
     capabilitiesHeading: "Where it helps",
     capabilities: [

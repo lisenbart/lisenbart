@@ -1,9 +1,11 @@
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmShowreel from "@/components/film/FilmShowreel";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
 import { site } from "@/data/site";
 
 const page = site.gamesPage;
+const reel = page.showreel;
 
 export default function GamesPage() {
   return (
@@ -19,6 +21,17 @@ export default function GamesPage() {
         </div>
         <p className="film-section-label">{page.introHeading}</p>
         <p className="film-contact__lead direction-lead">{page.title}</p>
+
+        <div className="direction-showreel">
+          <p className="film-section-label">{page.showreelHeading}</p>
+          <FilmShowreel
+            id={reel.id}
+            label={reel.label}
+            poster={reel.poster}
+            vimeoId={reel.vimeoId}
+            externalHref={reel.externalHref}
+          />
+        </div>
 
         <div className="film-capabilities">
           <p className="film-section-label">{page.capabilitiesHeading}</p>

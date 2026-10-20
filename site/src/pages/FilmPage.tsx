@@ -9,7 +9,6 @@ const page = site.filmPage;
 
 type ProjectCard = {
   item: WorkCaseStudy;
-  featured?: boolean;
   actionLabel: string;
 };
 
@@ -24,7 +23,6 @@ function buildCards(): ProjectCard[] {
   return [
     {
       item: unnecessary,
-      featured: true,
       actionLabel: "Watch film",
     },
     {
@@ -65,7 +63,7 @@ export default function FilmPage() {
         <p className="film-contact__lead direction-lead">{page.title}</p>
 
         <div className="originals-grid">
-          {cards.map(({ item, featured, actionLabel }) => {
+          {cards.map(({ item, actionLabel }) => {
             const status =
               item.result ||
               item.filmCategory ||
@@ -74,10 +72,7 @@ export default function FilmPage() {
 
             if (item.vimeoId) {
               return (
-                <article
-                  key={item.id}
-                  className={`original-card${featured ? " original-card--featured" : ""}`}
-                >
+                <article key={item.id} className="original-card">
                   <button
                     type="button"
                     className="original-card__media"

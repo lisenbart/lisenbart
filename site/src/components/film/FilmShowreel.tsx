@@ -1,0 +1,51 @@
+import { PlayIcon } from "@/components/film/FilmIcons";
+import { useReel } from "@/contexts/ReelContext";
+
+/**
+ * Single showreel presentation: one poster, one play action.
+ * Avoids multi-frame galleries that read as separate projects.
+ */
+export default function FilmShowreel({
+  id,
+  label,
+  poster,
+  vimeoId = null,
+  externalHref,
+}: {
+  id: string;
+  label: string;
+  poster: string;
+  vimeoId?: string | null;
+  /** Used when no Vimeo id — e.g. Games specialist site. */
+  externalHref?: string;
+}) {
+  const { openReel } = useReel();
+  const canPlayInline = Boolean(vimeoId);
+
+  const play = () => {
+    if (canPlayInline && vimeoId) {
+      openReel(vimeoId, label);
+      return;
+    }
+    if (externalHref) {
+      window.open(externalHref, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  return (
+    <section id={id} className="film-showreel" aria-label={label}>
+      <button
+        type="button"
+        className="film-showreel__stage"
+        onClick={play}
+        aria-label={`Play ${label}`}
+      >
+        <img src={poster} alt="" width={1280} height={720} />
+        <span className="film-showreel__play">
+          <PlayIcon />
+          <span>Play reel</span>
+        </span>
+      </button>
+    </section>
+  );
+}
