@@ -103,6 +103,7 @@ export const site = {
       "Lacalut",
       "Staropramen",
       "TUC",
+      "Kraft",
       "Enterogermina",
       "Watsons",
       "Raiffeisen",
@@ -116,6 +117,7 @@ export const site = {
       "BBDO",
       "Cheil Worldwide",
       "McCann Erickson",
+      "Leo Burnett",
     ] as const,
     agenciesProof:
       "Campaign production partner — credited alongside network creative agencies.",
