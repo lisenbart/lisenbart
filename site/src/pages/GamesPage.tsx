@@ -27,7 +27,6 @@ export default function GamesPage() {
             label={reel.label}
             poster={reel.poster}
             vimeoId={reel.vimeoId}
-            externalHref={reel.externalHref}
           />
         </div>
 
@@ -49,6 +48,10 @@ export default function GamesPage() {
             href={page.externalHref}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              window.open(page.externalHref, "_blank", "noopener,noreferrer");
+            }}
           >
             {page.externalCta}
             <span className="circle-link">

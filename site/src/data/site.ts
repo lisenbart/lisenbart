@@ -199,11 +199,9 @@ export const site = {
     showreelHeading: "LISENBART GAMES",
     showreel: {
       id: "games-reel",
-      label: "LISENBART GAMES",
-      /** No dedicated Vimeo on FILM — play opens the specialist GAMES site. */
-      vimeoId: null as string | null,
+      label: "LISENBART GAMES Showreel",
+      vimeoId: "944158555" as string | null,
       poster: "/images/reels/games/01.webp",
-      externalHref: "https://www.lisenbart.games",
     },
     capabilitiesHeading: "What we do",
     capabilities: [

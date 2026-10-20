@@ -32,8 +32,8 @@ export default function FilmShowreel({
     }
   };
 
-  const actionLabel = canPlayInline ? "Play reel" : "Open site";
-  const ariaAction = canPlayInline ? `Play ${label}` : `Open ${label}`;
+  const actionLabel = canPlayInline ? "Watch reel" : "Open site";
+  const ariaAction = canPlayInline ? `Watch ${label}` : `Open ${label}`;
 
   return (
     <section id={id} className="film-showreel" aria-label={label}>
