@@ -1,4 +1,3 @@
-import { scoopyCapDistribution } from "@/data/scoopyCapDistribution";
 import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
 
 export type OriginalsProjectSlug =
@@ -90,24 +89,14 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
       "Pershosvit — original Ukrainian preschool animation and songs for ages 0–6, led by Captain Firefly. A LISENBART FILM educational entertainment IP.",
     format: "Original preschool IP · Ukrainian · Ages 0–6",
     synopsis: pershosvit.description,
-    body: [
-      "Pershosvit is an original Ukrainian-language preschool property — animated stories and songs built for young children and the parents who watch with them.",
-      "Content spans early learning, friendship tales and calm evening viewing, developed as a recognizable children's IP rather than a one-off video set.",
-    ],
     characterNote:
       "Captain Firefly — a cheerful robot guide who sings, explores and introduces colours, numbers, shapes and emotions.",
-    /** Curated from live @pershosvit playlists (verified Oct 2026). */
+    /** Category-level selection from live @pershosvit playlists (verified Oct 2026). */
     highlights: [
-      "Ukrainian children's songs",
-      "Ukrainian alphabet A–Я",
-      "English ABC and first words for toddlers",
+      "Ukrainian songs and early learning",
+      "Alphabet — Ukrainian A–Я and English first words",
       "Марійчин Першосвіт friendship cartoons",
-      "Baby Shark and Wheels on the Bus (Ukrainian)",
-      "Vehicle songs and cartoons",
-      "Animal songs and sounds",
-      "Lullabies and calm evening videos",
-      "Seasonal songs — Christmas, New Year, Easter, Halloween",
-      "Finger Family and Shorts formats",
+      "Lullabies and seasonal songs",
     ],
     cta: {
       label: "Discuss this IP",
@@ -125,21 +114,12 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
       "Scoopy Cap — original English-language preschool animation and learning IP from LISENBART FILM. Music, alphabet and character stories for ages 2–5.",
     format: "Original preschool IP · English · Ages 2–5",
     synopsis: scoopy.description,
-    body: [
-      scoopyCapDistribution.reachNote,
-      "Built around Scoopy Cap — a friendly space explorer — the property spans nursery rhymes, ABC learning, colours, numbers and calm repeatable formats for toddlers.",
-    ],
     characterNote:
       "Scoopy Cap — a gentle explorer who turns first letters, songs and everyday learning into play.",
-    /** Curated from live @ScoopyCap playlists (verified Oct 2026). */
+    /** Category-level selection from live @ScoopyCap playlists (verified Oct 2026). */
     highlights: [
       "Nursery rhymes and kids songs",
       "ABC Universe — alphabet A to Z",
-      "Letter Friends ABC songs",
-      "Baby Shark and classic toddler songs",
-      "Animal songs",
-      "Trucks and vehicles songs",
-      "Good habits songs",
       "Meet Scoopy Cap Shorts",
       "Seasonal songs — Christmas, Halloween, Easter",
     ],

@@ -300,11 +300,10 @@ export const site = {
       playLabel: "Watch reel",
     },
     introHeading: "Who we are",
-    intro:
-      "We make animation for clients and films of our own. Some projects begin with a finished brief. Others start with a question worth exploring.",
+    intro: "We make animation for clients and films of our own.",
     howHeading: "How we work",
     how:
-      "Every project needs its own mix of people and skills. We bring them together, guide the creative work and keep production moving.",
+      "We assemble the right team for each project, guide the creative work and keep production moving.",
     engagementHeading: "Ways to work with us",
     engagementModels: [
       {

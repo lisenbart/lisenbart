@@ -1,6 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
-import DistributionPartnersSection from "@/components/film/DistributionPartnersSection";
 import FilmReveal from "@/components/film/FilmReveal";
+import OriginalsPartnershipSection from "@/components/film/OriginalsPartnershipSection";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
@@ -99,7 +99,7 @@ export default function FilmPage() {
         </div>
 
         <FilmReveal delayMs={120}>
-          <DistributionPartnersSection />
+          <OriginalsPartnershipSection />
         </FilmReveal>
       </section>
       <FilmReveal>

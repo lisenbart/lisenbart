@@ -146,7 +146,6 @@ export default function HomePage() {
             <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
               <div>
                 <h3>AI &amp; Hybrid</h3>
-                <p>AI &amp; hybrid filmmaking</p>
               </div>
               <span className="circle-link">
                 <Arrow />
