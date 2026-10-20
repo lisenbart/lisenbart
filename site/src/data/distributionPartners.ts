@@ -32,8 +32,8 @@ export const distributionPartnersConfig = {
 
   partners: [
     {
-      id: "brighten-moon",
-      name: "Brighten Moon",
+      id: "brightermoon",
+      name: "BrighterMoon Entertainment LLC",
       country: "United States",
       relationship: "Distribution (pending confirmation)",
       website: null,
@@ -41,8 +41,8 @@ export const distributionPartnersConfig = {
       verified: false,
     },
     {
-      id: "leejoy",
-      name: "LeeJoy",
+      id: "leadjoy",
+      name: "LeadJoy",
       country: "China",
       relationship: "Distribution (pending confirmation)",
       website: null,
