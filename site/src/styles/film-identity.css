@@ -888,7 +888,6 @@ a.original-tile {
   background-image: linear-gradient(120deg, rgba(13, 26, 62, 0.55), rgba(12, 35, 74, 0.72)), url("/images/explore/originals/03.webp");
 }
 
-.explore-card p,
 .explore-strip p {
   margin: 0;
   font-size: 0.52rem;
