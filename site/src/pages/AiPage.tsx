@@ -18,8 +18,6 @@ export default function AiPage() {
         <div className="page-title-row">
           <h1>{page.name}</h1>
         </div>
-        <p className="film-contact__lead direction-lead">{page.title}</p>
-        <p className="film-section-label">{page.showreelHeading}</p>
       </section>
 
       <FilmShowreel
@@ -30,6 +28,9 @@ export default function AiPage() {
       />
 
       <section className="page-shell direction-page page-shell--from-reel">
+        <p className="film-section-label">{page.showreelHeading}</p>
+        <p className="film-contact__lead direction-lead">{page.title}</p>
+
         <div className="film-capabilities">
           <p className="film-section-label">{page.capabilitiesHeading}</p>
           <ul className="film-capabilities__list">
