@@ -2,7 +2,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import { SEO } from "@/components/SEO";
-import { useExploreParallax } from "@/hooks/useExploreParallax";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
   HERO_IMAGES,
@@ -33,7 +32,6 @@ export default function HomePage() {
   const exploreRef = useRef<HTMLElement>(null);
 
   useScrollParallax(heroRef, bearRef, { strength: 12 });
-  useExploreParallax(exploreRef);
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
