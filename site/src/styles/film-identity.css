@@ -635,9 +635,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--muted);
 }
 
-.studio-models > .film-section-label + .studio-models__note,
-.studio-intro .studio-models__note {
-  margin-top: 0;
+.studio-models > .studio-section-heading + .studio-models__note {
+  margin-top: var(--space-3);
+}
+
+.studio-models > .studio-models__note + .studio-models__note {
+  margin-top: var(--space-2);
 }
 
 .studio-people {

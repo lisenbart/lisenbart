@@ -306,8 +306,10 @@ export const site = {
       "Alongside commissioned work, we develop and produce our own animated films and original IP.",
     ] as const,
     howHeading: "How we work",
-    how:
-      "We assemble the right team for each project, guide the creative work and keep production moving.",
+    howParagraphs: [
+      "LISENBART FILM operates through a focused creative and production core, assembling specialized teams around the needs of each project.",
+      "We lead the creative process, coordinate production and remain responsible for the work from the first decisions to the final delivery.",
+    ] as const,
     engagementHeading: "Ways to work with us",
     engagementModels: [
       {

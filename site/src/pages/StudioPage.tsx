@@ -48,7 +48,11 @@ export default function StudioPage() {
           <h2 id="how-heading" className="studio-section-heading">
             {page.howHeading}
           </h2>
-          <p className="studio-models__note">{page.how}</p>
+          {page.howParagraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)} className="studio-models__note">
+              {paragraph}
+            </p>
+          ))}
         </FilmReveal>
 
         <FilmReveal delayMs={40}>
