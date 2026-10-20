@@ -268,6 +268,11 @@ export const site = {
     seoTitle: "Studio — How We Work | LISENBART FILM",
     seoDescription:
       "LISENBART FILM is an independent director-led creative production company founded in 2006. Commissioned animation and original films.",
+    showreel: {
+      label: "Studio Showreel",
+      vimeoId: "849899875",
+      playLabel: "Watch reel",
+    },
     introHeading: "Who we are",
     intro:
       "We make animation for clients and films of our own. Some projects begin with a finished brief. Others start with a question worth exploring.",

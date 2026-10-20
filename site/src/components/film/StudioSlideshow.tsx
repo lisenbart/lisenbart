@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { PlayIcon } from "@/components/film/FilmIcons";
+import { useReel } from "@/contexts/ReelContext";
+import { site } from "@/data/site";
 
 const SLIDES = [
   {
@@ -24,8 +27,10 @@ const SLIDES = [
 ] as const;
 
 const INTERVAL_MS = 4500;
+const reel = site.studioPage.showreel;
 
 export default function StudioSlideshow() {
+  const { openReel } = useReel();
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -60,6 +65,17 @@ export default function StudioSlideshow() {
           aria-hidden={index === active ? undefined : true}
         />
       ))}
+      <button
+        type="button"
+        className="studio-image__play"
+        onClick={() => openReel(reel.vimeoId, reel.label)}
+        aria-label={`${reel.playLabel}: ${reel.label}`}
+      >
+        <span className="studio-image__play-circle">
+          <PlayIcon />
+        </span>
+        <span className="studio-image__play-label">{reel.playLabel}</span>
+      </button>
     </div>
   );
 }
