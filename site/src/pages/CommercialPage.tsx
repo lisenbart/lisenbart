@@ -14,22 +14,22 @@ export default function CommercialPage() {
         description={page.seoDescription}
         url={`${site.canonical}/client-work/`}
       />
-      <section className="page-shell work-page">
+      <section className="page-shell work-page page-shell--to-reel">
         <div className="page-title-row">
           <h1>Client Work</h1>
         </div>
         <p className="film-contact__lead direction-lead">{page.title}</p>
+        <p className="film-section-label">{page.showreelHeading}</p>
+      </section>
 
-        <div className="direction-showreel">
-          <p className="film-section-label">{page.showreelHeading}</p>
-          <FilmShowreel
-            id={reel.id}
-            label={reel.label}
-            poster={reel.poster}
-            vimeoId={reel.vimeoId}
-          />
-        </div>
+      <FilmShowreel
+        id={reel.id}
+        label={reel.label}
+        poster={reel.poster}
+        vimeoId={reel.vimeoId}
+      />
 
+      <section className="page-shell work-page page-shell--from-reel">
         <div className="direction-clients">
           <p className="film-section-label">{site.trustedBy.label}</p>
           <div className="client-names" aria-label={site.trustedBy.label}>

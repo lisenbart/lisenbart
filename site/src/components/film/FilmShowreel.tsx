@@ -45,8 +45,10 @@ export default function FilmShowreel({
       >
         <img src={poster} alt="" width={1280} height={720} />
         <span className="film-showreel__play">
-          <PlayIcon />
-          <span>{actionLabel}</span>
+          <span className="film-showreel__play-circle">
+            <PlayIcon />
+          </span>
+          <span className="film-showreel__play-label">{actionLabel}</span>
         </span>
       </button>
     </section>

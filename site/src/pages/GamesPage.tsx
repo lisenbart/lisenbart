@@ -15,21 +15,21 @@ export default function GamesPage() {
         description={page.seoDescription}
         url={`${site.canonical}/games/`}
       />
-      <section className="page-shell direction-page">
+      <section className="page-shell direction-page page-shell--to-reel">
         <div className="page-title-row">
           <h1>{page.name}</h1>
         </div>
         <p className="film-contact__lead direction-lead">{page.title}</p>
+      </section>
 
-        <div className="direction-showreel">
-          <FilmShowreel
-            id={reel.id}
-            label={reel.label}
-            poster={reel.poster}
-            vimeoId={reel.vimeoId}
-          />
-        </div>
+      <FilmShowreel
+        id={reel.id}
+        label={reel.label}
+        poster={reel.poster}
+        vimeoId={reel.vimeoId}
+      />
 
+      <section className="page-shell direction-page page-shell--from-reel">
         <div className="film-capabilities">
           <p className="film-section-label">{page.capabilitiesHeading}</p>
           <ul className="film-capabilities__list">

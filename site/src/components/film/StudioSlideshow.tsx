@@ -9,6 +9,10 @@ const SLIDES = [
     alt: "LISENBART FILM animation studio",
   },
   {
+    src: "/images/studio/showreel-collage.webp",
+    alt: "LISENBART FILM showreel collage",
+  },
+  {
     src: "/images/reels/advertising/showreel-poster.webp",
     alt: "Client Work collage",
   },
