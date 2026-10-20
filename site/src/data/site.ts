@@ -72,8 +72,8 @@ export const site = {
     personalPositioning:
       "I develop original animation projects and direct commissioned work for brands, studios, and production partners.",
     personalProof: [
-      "20 years in directing",
-      "15 years in producing",
+      "20 years directing",
+      "15 years producing",
       "1,000+ projects delivered",
     ] as const,
     personalPortrait: "/images/portrait.webp",
@@ -151,7 +151,6 @@ export const site = {
   },
   filmPage: {
     name: "ORIGINALS",
-    /** Page lead removed — project cards carry the substance. */
     title: "",
     seoTitle: "Original Films & IP — LISENBART FILM",
     seoDescription:
@@ -159,13 +158,10 @@ export const site = {
     filmIds: ["unnecessary-things", "the-last-kozak"] as const,
     ipIds: ["pershosvit", "scoopy-cap"] as const,
     unnecessaryResult: "11 awards · 45 festival selections",
-    contactHeading: "Contact",
-    contactLead:
-      "Interested in a film or original property? Tell us which project and how you’d like to collaborate.",
   },
   commercialPage: {
     name: "CLIENT WORK",
-    title: "Animation for brands and agencies — from a single stage to a finished piece.",
+    title: "Bring us the idea, the brief, or the work already in progress. We'll take it from there.",
     seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
     seoDescription:
       "Commission animation for brands and agencies: creative development, direction and production — from individual stages to complete campaigns.",
@@ -177,32 +173,30 @@ export const site = {
       vimeoId: "849899875" as string | null,
       poster: "/images/reels/advertising/01.webp",
     },
-    capabilitiesHeading: "Expertise",
+    capabilitiesHeading: "What we bring to the table",
     capabilities: [
       {
         title: "Creative Development",
-        text: "Concepts, scripts, boards and visual development.",
+        text: "Ideas, scripts, storyboards and visual worlds.",
       },
       {
         title: "Direction",
-        text: "From approved concept through to the final frame.",
+        text: "A clear creative vision, from first decisions to final frame.",
       },
       {
         title: "Production",
-        text: "Individual stages or complete delivery.",
+        text: "The right team and a production plan built around your project.",
       },
     ] as const,
-    contactHeading: "Contact",
-    contactLead: "Share the brief, what you already have, and the deadline.",
   },
 
   gamesPage: {
-    name: "GAMES",
-    title: "Advertising creatives and playables for game companies.",
-    seoTitle: "LISENBART GAMES — Game Advertising & Playables | LISENBART FILM",
+    name: "Game Production",
+    title: "From the assets you already have to the ideas you haven't made yet.",
+    seoTitle: "Game Production — Ads, Cinematics & Playables | LISENBART FILM",
     seoDescription:
       "Game advertising creatives, playable production and creative development — LISENBART GAMES, a direction of LISENBART FILM.",
-    showreelHeading: "Games",
+    showreelHeading: "LISENBART GAMES",
     showreel: {
       id: "games-reel",
       label: "LISENBART GAMES",
@@ -211,30 +205,28 @@ export const site = {
       poster: "/images/reels/games/01.webp",
       externalHref: "https://www.lisenbart.games",
     },
-    capabilitiesHeading: "Offerings",
+    capabilitiesHeading: "What we do",
     capabilities: [
       {
         title: "Creative Production",
-        text: "From client briefs and assets.",
+        text: "Turn your briefs and assets into campaign-ready creatives.",
       },
       {
         title: "Playable Production",
-        text: "Interactive builds and adaptations.",
+        text: "Interactive ads, built and adapted for your campaigns.",
       },
       {
         title: "Creative Development",
-        text: "Ideas, scripts and larger creative jobs.",
+        text: "New concepts, scripts and creative direction.",
       },
     ] as const,
     externalCta: "Explore LISENBART GAMES",
     externalHref: "https://www.lisenbart.games",
-    contactHeading: "Contact",
-    contactLead: "Campaign, assets and timeline — we’ll point you to the right next step.",
   },
 
   aiPage: {
     name: "AI & Hybrid Production",
-    title: "AI and hybrid methods where they serve the brief — directed and finished by us.",
+    title: "New tools open up new possibilities. We know how to turn them into finished work.",
     seoTitle: "AI & Hybrid Production | LISENBART FILM",
     seoDescription:
       "AI-assisted visuals and hybrid production as a capability of LISENBART FILM — from exploration to finishing.",
@@ -246,27 +238,25 @@ export const site = {
       vimeoId: "1212613379" as string | null,
       poster: "/images/reels/ai/01.webp",
     },
-    capabilitiesHeading: "Where it helps",
+    capabilitiesHeading: "How we use it",
     capabilities: [
       {
-        title: "Visual exploration",
-        text: "Look development and options, fast.",
+        title: "Explore",
+        text: "Find the look before committing to production.",
       },
       {
-        title: "Selected production stages",
-        text: "Sequences where speed or range matters.",
+        title: "Create",
+        text: "Bring ideas to the screen in new ways.",
       },
       {
-        title: "Hybrid finishing",
-        text: "AI-assisted work finished with traditional craft.",
+        title: "Finish",
+        text: "Bring everything together into one coherent result.",
       },
     ] as const,
-    contactHeading: "Contact",
-    contactLead: "Brief, references, and where AI should fit.",
   },
   homeContact: {
-    heading: "Contact",
-    lead: "A brief or a few clear details are enough.",
+    heading: "Have something in mind?",
+    lead: "Tell us a little about it.",
   },
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
@@ -282,39 +272,36 @@ export const site = {
       "LISENBART FILM is an independent director-led creative production company founded in 2006. Commissioned animation and original films.",
     introHeading: "Who we are",
     intro:
-      "An independent company founded in 2006. We make commissioned animation and develop original films.",
+      "We make animation for clients and films of our own. Some projects begin with a finished brief. Others start with a question worth exploring.",
     howHeading: "How we work",
     how:
-      "Creative and producing leadership stay together on every job. We form or coordinate the team around the brief, and remain responsible for direction and delivery within the agreed scope.",
+      "Every project needs its own mix of people and skills. We bring them together, guide the creative work and keep production moving.",
     engagementHeading: "Ways to work with us",
     engagementModels: [
       {
         title: "Production Partner",
-        text: "You bring the brief or assets. We take the production stages you need.",
+        text: "You have the brief and assets. We handle the production work you need.",
       },
       {
         title: "Creative & Direction",
-        text: "Concepts, scripts, boards and visual direction — with or without production attached.",
+        text: "Need the idea, the story or the right visual approach? That's where we can start.",
       },
       {
         title: "Full Production",
-        text: "From development through delivery, by agreed scope.",
+        text: "From the first conversation to the finished film, with creative leadership guiding the process.",
       },
     ] as const,
     peopleHeading: "People & leadership",
-    founderLine:
-      "Dmytro Lisenbart — animation director and producer. Founded 2006. 20 years in directing. 15 years in producing.",
+    founderName: "Dmytro Lisenbart",
+    founderRole: "Animation Director, Producer & Founder",
+    founderProof: "20 years directing · 15 years producing",
     founderCta: "About Dmytro Lisenbart",
     founderPortrait: "/images/portrait.webp",
     founderPortraitAlt: "Portrait of Dmytro Lisenbart",
-    contactHeading: "Contact",
-    contactLead: "Brief, production question, or partnership idea.",
   },
 
-
-
   contactForm: {
-    submitLabel: "Send Message",
+    submitLabel: "Send a brief",
     sendingLabel: "Sending…",
     successMessage: "Thank you — we’ll review your message and get back to you soon.",
     successAction: "Send Another Message",
@@ -330,8 +317,8 @@ export const site = {
   primaryNav: [
     { id: "client-work" as const, label: "Client Work" },
     { id: "originals" as const, label: "Originals" },
-    { id: "games" as const, label: "Games" },
-    { id: "ai" as const, label: "AI" },
+    { id: "games" as const, label: "Game Production" },
+    { id: "ai" as const, label: "AI Production" },
     { id: "studio" as const, label: "Studio" },
     { id: "contact" as const, label: "Contact" },
   ],

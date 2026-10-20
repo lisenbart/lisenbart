@@ -80,7 +80,9 @@ export default function StudioPage() {
             height={160}
           />
           <div>
-            <p className="studio-people__founder">{page.founderLine}</p>
+            <p className="studio-people__founder-name">{page.founderName}</p>
+            <p className="studio-people__founder-role">{page.founderRole}</p>
+            <p className="studio-people__founder-proof">{page.founderProof}</p>
             <a className="studio-people__link" href={hubCanonicalHref("about")}>
               {page.founderCta}
             </a>
@@ -88,7 +90,10 @@ export default function StudioPage() {
         </div>
       </section>
 
-      <FilmContactSection heading={page.contactHeading} lead={page.contactLead} />
+      <FilmContactSection
+        heading={site.homeContact.heading}
+        lead={site.homeContact.lead}
+      />
     </>
   );
 }

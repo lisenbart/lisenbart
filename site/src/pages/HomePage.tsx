@@ -98,9 +98,7 @@ export default function HomePage() {
           <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
             <div>
               <h3>Client Work</h3>
-              <p>
-                Brands &amp; agencies
-              </p>
+              <p>Animation for brands &amp; agencies</p>
             </div>
             <span className="circle-link">
               <Arrow />
@@ -109,9 +107,7 @@ export default function HomePage() {
           <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
             <div>
               <h3>Originals</h3>
-              <p>
-                Films &amp; story IP
-              </p>
+              <p>Stories of our own</p>
             </div>
             <span className="circle-link">
               <Arrow />
@@ -119,10 +115,8 @@ export default function HomePage() {
           </a>
           <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
             <div>
-              <h3>Games</h3>
-              <p>
-                Ads &amp; playables
-              </p>
+              <h3>Game Production</h3>
+              <p>Ads, cinematics &amp; playables</p>
             </div>
             <span className="circle-link">
               <Arrow />
@@ -130,10 +124,8 @@ export default function HomePage() {
           </a>
           <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
             <div>
-              <h3>AI</h3>
-              <p>
-                Hybrid pipelines
-              </p>
+              <h3>AI Production</h3>
+              <p>AI &amp; hybrid filmmaking</p>
             </div>
             <span className="circle-link">
               <Arrow />
@@ -141,7 +133,10 @@ export default function HomePage() {
           </a>
         </section>
 
-        <FilmContactSection heading="Contact" lead={site.homeContact.lead} />
+        <FilmContactSection
+          heading={site.homeContact.heading}
+          lead={site.homeContact.lead}
+        />
       </div>
     </>
   );

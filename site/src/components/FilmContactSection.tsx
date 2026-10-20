@@ -25,8 +25,8 @@ type Status = "idle" | "loading" | "success" | "error";
 const copy = site.contactForm;
 
 export default function FilmContactSection({
-  heading = "Contact",
-  lead,
+  heading = site.homeContact.heading,
+  lead = site.homeContact.lead,
 }: {
   heading?: string;
   lead?: string;

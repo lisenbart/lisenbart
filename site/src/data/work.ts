@@ -40,12 +40,12 @@ const originalsCases: WorkCaseStudy[] = [
     id: "unnecessary-things",
     client: "Lisenbart Animation Studio",
     category: "Film & Entertainment · Short Film",
-    filmCategory: "Animated Short · 14 min · 2021",
+    filmCategory: "Animated short · 14 min · 2021",
     year: "2021",
     title: "Unnecessary Things",
     description:
       "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
-    result: "11 awards · 45 festival selections",
+    result: "Animated short · 11 awards · 45 festival selections",
 
 
     mediaColor: "#0a1f0f",
@@ -89,12 +89,12 @@ const originalsCases: WorkCaseStudy[] = [
     id: "the-last-kozak",
     client: "Lisenbart Animation Studio",
     category: "Film & Entertainment · Animated Feature",
-    filmCategory: "Animated Feature · 80 min · In Development",
+    filmCategory: "Animated feature · In development",
     year: "",
     title: "The Last Kozak",
     description:
-      "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
-    result: "Script, treatment and pitch complete. English teaser available.",
+      "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension. Script, treatment and pitch complete; English teaser available.",
+    result: "Animated feature · In development",
 
     mediaColor: "#120808",
     vimeoId: "699197721",
@@ -105,12 +105,12 @@ const originalsCases: WorkCaseStudy[] = [
     id: "scoopy-cap",
     client: "Scoopy Cap",
     category: "Social Media · YouTube Channel",
-    filmCategory: "Original Preschool IP · English",
+    filmCategory: "Original English-language preschool learning & music",
     year: "",
     title: "Scoopy Cap",
     description:
       "English-language preschool animation — music, alphabet and character stories built as educational IP.",
-    result: "",
+    result: "Original English-language preschool learning & music",
 
     mediaColor: "#1a1428",
     mediaImage: "/images/work/scoopy-cap-preview.jpg",
@@ -128,12 +128,12 @@ const originalsCases: WorkCaseStudy[] = [
     id: "pershosvit",
     client: "Pershosvit",
     category: "Social Media · YouTube Channel",
-    filmCategory: "Original Preschool IP · Ukrainian",
+    filmCategory: "Original Ukrainian preschool animation & songs",
     year: "",
     title: "Pershosvit",
     description:
       "Ukrainian-language preschool animation — songs, stories and early learning across original characters and repeatable formats.",
-    result: "",
+    result: "Original Ukrainian preschool animation & songs",
 
     mediaColor: "#1f1020",
     mediaImage: "/images/work/pershosvit-preview.jpg",

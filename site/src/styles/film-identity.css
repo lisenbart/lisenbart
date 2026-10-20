@@ -202,16 +202,18 @@ img { display: block; width: 100%; }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: clamp(0.75rem, 1.6vw, 1.75rem);
+  gap: clamp(0.55rem, 1.2vw, 1.35rem);
+  max-width: min(52rem, 100%);
 }
 
 .desktop-nav a {
   position: relative;
-  font-size: var(--text-nav);
+  font-size: clamp(0.62rem, 0.95vw, 0.6875rem);
   font-weight: 500;
-  letter-spacing: var(--track-nav);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: var(--leading-label);
+  white-space: nowrap;
 }
 
 .desktop-nav a::after {
@@ -559,16 +561,30 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   max-width: var(--measure);
 }
 
-.studio-people__founder {
+.studio-people__founder-name {
   margin: 0;
+  font-size: var(--text-body);
+  font-weight: 500;
+  line-height: var(--leading-body);
+  color: var(--ink);
+}
+
+.studio-people__founder-role,
+.studio-people__founder-proof {
+  margin: 0.2rem 0 0;
   font-size: var(--text-body-sm);
   line-height: var(--leading-body);
   color: var(--muted);
 }
 
 .studio-people__link {
+  display: inline-block;
+  margin-top: var(--stack-tight);
   color: var(--ink);
   border-bottom: 1px solid var(--line);
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
 }
 
 .studio-founder {
