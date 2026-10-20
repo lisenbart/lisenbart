@@ -113,14 +113,14 @@ function FilmShortLayout({ project }: { project: ProjectData }) {
           </p>
         ) : null}
 
-        <FestivalRecognitionSection />
-
         {item.stills && item.stills.length > 0 ? (
           <div className="project-page__stills">
             <h2 className="project-page__section-label">Stills</h2>
             <OriginalsStillGallery stills={item.stills} projectTitle={item.title} />
           </div>
         ) : null}
+
+        <FestivalRecognitionSection />
 
         {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
 
