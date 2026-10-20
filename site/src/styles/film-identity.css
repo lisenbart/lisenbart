@@ -947,7 +947,7 @@ html[data-hero-period="evening"] .home-explore {
   background-image: var(--explore-media);
   background-size: cover;
   background-position: center;
-  filter: blur(12px) saturate(1.05) brightness(1.08);
+  filter: blur(5px) saturate(1.05) brightness(1.08);
   transform: scale(1.08);
   pointer-events: none;
 }
