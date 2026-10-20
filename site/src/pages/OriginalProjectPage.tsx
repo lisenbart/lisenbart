@@ -1,6 +1,6 @@
-import type { ReactNode } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
+import OriginalIpPhones from "@/components/originals/OriginalIpPhones";
 import {
   CreditsDisclosure,
   FilmMediaStage,
@@ -19,15 +19,6 @@ import {
   parseOriginalsProject,
   type OriginalsProjectSlug,
 } from "@/lib/routes";
-import { Instagram, Youtube } from "lucide-react";
-
-function TikTokGlyph({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.3a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.73a8.18 8.18 0 0 0 4.76 1.52V6.84a4.84 4.84 0 0 1-1-.15Z" />
-    </svg>
-  );
-}
 
 function ProjectNav({ title }: { title: string }) {
   return (
@@ -58,108 +49,6 @@ function ProjectCta({ project }: { project: ProjectData }) {
       >
         {project.cta.label}
       </button>
-    </div>
-  );
-}
-
-function ChannelLinks({ project }: { project: ProjectData }) {
-  const { case: item } = project;
-  const links: Array<{ key: string; href: string; label: string; icon: ReactNode }> = [];
-
-  if (item.youtubeUrl) {
-    links.push({
-      key: "youtube",
-      href: item.youtubeUrl,
-      label: "YouTube",
-      icon: <Youtube size={16} strokeWidth={2.25} aria-hidden="true" />,
-    });
-  }
-  if (item.tiktokUrl) {
-    links.push({
-      key: "tiktok",
-      href: item.tiktokUrl,
-      label: "TikTok",
-      icon: <TikTokGlyph size={15} />,
-    });
-  }
-  if (item.instagramUrl) {
-    links.push({
-      key: "instagram",
-      href: item.instagramUrl,
-      label: "Instagram",
-      icon: <Instagram size={15} strokeWidth={2.25} aria-hidden="true" />,
-    });
-  }
-
-  if (links.length === 0) return null;
-
-  return (
-    <ul className="project-page__channels">
-      {links.map((link) => (
-        <li key={link.key}>
-          <a href={link.href} target="_blank" rel="noopener noreferrer">
-            {link.icon}
-            <span>{link.label}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function PlatformPreviews({ project }: { project: ProjectData }) {
-  const { case: item } = project;
-  const previews = item.platformPreviews;
-  const phones: Array<{ key: string; href: string; image: string; label: string }> = [];
-
-  if (item.youtubeUrl) {
-    phones.push({
-      key: "youtube",
-      href: item.youtubeUrl,
-      image: publicAsset(previews?.youtube ?? item.mediaImage ?? ""),
-      label: "YouTube",
-    });
-  }
-  if (item.tiktokUrl) {
-    phones.push({
-      key: "tiktok",
-      href: item.tiktokUrl,
-      image: publicAsset(previews?.tiktok ?? item.mediaImage ?? ""),
-      label: "TikTok",
-    });
-  }
-  if (item.instagramUrl) {
-    phones.push({
-      key: "instagram",
-      href: item.instagramUrl,
-      image: publicAsset(previews?.instagram ?? item.mediaImage ?? ""),
-      label: "Instagram",
-    });
-  }
-
-  if (phones.length === 0) return null;
-
-  return (
-    <div className="project-page__phones">
-      {phones.map((phone) => (
-        <a
-          key={phone.key}
-          className={`project-page__phone project-page__phone--${phone.key}`}
-          href={phone.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${project.case.title} on ${phone.label}`}
-        >
-          <img
-            src={phone.image}
-            alt=""
-            width={390}
-            height={844}
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-      ))}
     </div>
   );
 }
@@ -309,94 +198,72 @@ function FeatureDevLayout({ project }: { project: ProjectData }) {
 function PreschoolLayout({
   project,
   showPlatforms = false,
-  mediaFirst = true,
 }: {
   project: ProjectData;
   showPlatforms?: boolean;
-  mediaFirst?: boolean;
 }) {
   const item = project.case;
 
-  const media = (
-    <div className="project-page__ip-media">
-      {item.mediaImage ? (
-        <div className="project-page__ip-hero">
-          <img
-            src={publicAsset(item.mediaImage)}
-            alt={item.mediaImageAlt ?? item.title}
-            width={1280}
-            height={720}
-            loading="eager"
-            decoding="async"
-            fetchPriority="high"
-          />
-        </div>
-      ) : null}
-      <PlatformPreviews project={project} />
-    </div>
-  );
-
-  const copy = (
-    <div className="project-page__copy">
-      <div className="project-page__intro">
-        <p className="project-page__format">{project.format}</p>
-        <h1>{item.title}</h1>
-      </div>
-
-      <p className="project-page__synopsis">{project.synopsis}</p>
-      {project.body?.map((paragraph) => (
-        <p key={paragraph} className="project-page__body">
-          {paragraph}
-        </p>
-      ))}
-
-      {project.characterNote ? (
-        <p className="project-page__character">
-          <span className="project-page__section-label">Lead character</span>
-          {project.characterNote}
-        </p>
-      ) : null}
-
-      {project.highlights && project.highlights.length > 0 ? (
-        <div className="project-page__highlights">
-          <h2 className="project-page__section-label">In the library</h2>
-          <ul>
-            {project.highlights.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      <ChannelLinks project={project} />
-
-      {showPlatforms ? (
-        <div className="project-page__platforms">
-          <ScoopyCapPlatforms heading="Distribution & Platforms" compactNote />
-        </div>
-      ) : null}
-
-      <ProjectCta project={project} />
-    </div>
-  );
-
   return (
-    <div
-      className={`project-page__layout project-page__layout--preschool ${
-        mediaFirst ? "project-page__layout--media-first" : "project-page__layout--copy-first"
-      }`}
-    >
-      {mediaFirst ? (
-        <>
-          {media}
-          {copy}
-        </>
-      ) : (
-        <>
-          {copy}
-          {media}
-        </>
-      )}
+    <div className="project-page__layout project-page__layout--preschool">
+      <section className="originals-case originals-case--ip project-page__ip-case">
+        <OriginalIpPhones item={item} />
+
+        <div className="originals-case__copy">
+          <div className="originals-case__intro originals-ip-intro">
+            {item.mediaImage ? (
+              <img
+                className="originals-ip-avatar"
+                src={publicAsset(item.mediaImage)}
+                alt=""
+                width={72}
+                height={72}
+                loading="eager"
+                decoding="async"
+              />
+            ) : null}
+            <div className="originals-ip-intro__text">
+              <p className="project-page__format">{project.format}</p>
+              <h1 className="originals-case__title">{item.title}</h1>
+            </div>
+          </div>
+
+          <div className="originals-case__body">
+            <p className="project-page__synopsis">{project.synopsis}</p>
+            {project.body?.map((paragraph) => (
+              <p key={paragraph} className="project-page__body">
+                {paragraph}
+              </p>
+            ))}
+
+            {project.characterNote ? (
+              <p className="project-page__character">
+                <span className="project-page__section-label">Lead character</span>
+                {project.characterNote}
+              </p>
+            ) : null}
+
+            {project.highlights && project.highlights.length > 0 ? (
+              <div className="project-page__highlights">
+                <h2 className="project-page__section-label">In the library</h2>
+                <ul>
+                  {project.highlights.map((line) => (
+                    <li key={line}>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {showPlatforms ? (
+              <div className="project-page__platforms">
+                <ScoopyCapPlatforms heading="Distribution & Platforms" compactNote />
+              </div>
+            ) : null}
+
+            <ProjectCta project={project} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -408,9 +275,9 @@ function ProjectBody({ project }: { project: ProjectData }) {
     case "feature-dev":
       return <FeatureDevLayout project={project} />;
     case "preschool-ua":
-      return <PreschoolLayout project={project} mediaFirst />;
+      return <PreschoolLayout project={project} />;
     case "preschool-en":
-      return <PreschoolLayout project={project} showPlatforms mediaFirst={false} />;
+      return <PreschoolLayout project={project} showPlatforms />;
     default:
       return null;
   }

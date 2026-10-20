@@ -1,6 +1,5 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import DistributionPartnersSection from "@/components/film/DistributionPartnersSection";
-import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
@@ -11,34 +10,41 @@ import {
 
 const page = site.filmPage;
 
-const PROJECT_ACTION: Record<OriginalsProjectSlug, string> = {
-  "unnecessary-things": "View project",
-  "the-last-kozak": "View project",
-  pershosvit: "View project",
-  "scoopy-cap": "View project",
+/** Short type line only — full detail lives on the project page. */
+const PROJECT_CARD: Record<
+  OriginalsProjectSlug,
+  { type: string; actionLabel: string }
+> = {
+  "unnecessary-things": { type: "Animated short", actionLabel: "View project" },
+  "the-last-kozak": { type: "Animated feature", actionLabel: "View project" },
+  pershosvit: { type: "Preschool IP", actionLabel: "View project" },
+  "scoopy-cap": { type: "Preschool IP", actionLabel: "View project" },
 };
 
 type ProjectCard = {
   item: WorkCaseStudy;
   slug: OriginalsProjectSlug;
   href: string;
+  type: string;
   actionLabel: string;
 };
 
 function buildCards(): ProjectCard[] {
-  const slugs = Object.keys(PROJECT_ACTION) as OriginalsProjectSlug[];
+  const slugs = Object.keys(PROJECT_CARD) as OriginalsProjectSlug[];
   const cases = getWorkCasesByIds(slugs);
   const byId = new Map(cases.map((item) => [item.id, item]));
 
   return slugs.flatMap((slug) => {
     const item = byId.get(slug);
     if (!item) return [];
+    const meta = PROJECT_CARD[slug];
     return [
       {
         item,
         slug,
         href: originalsProjectHref(slug),
-        actionLabel: PROJECT_ACTION[slug],
+        type: meta.type,
+        actionLabel: meta.actionLabel,
       },
     ];
   });
@@ -60,14 +66,8 @@ export default function FilmPage() {
         </div>
 
         <div className="originals-grid">
-          {cards.map(({ item, slug, href, actionLabel }) => {
-            const status =
-              item.result ||
-              item.filmCategory ||
-              (slug === "the-last-kozak" ? "Animated feature in development" : "");
+          {cards.map(({ item, href, type, actionLabel }) => {
             const media = item.mediaImage ?? "";
-            const scoopyExtras =
-              slug === "scoopy-cap" ? <ScoopyCapPlatforms /> : null;
 
             return (
               <article key={item.id} className="original-card">
@@ -84,9 +84,7 @@ export default function FilmPage() {
                       {item.title}
                     </a>
                   </h2>
-                  {status ? <p className="original-card__status">{status}</p> : null}
-                  <p className="original-card__text">{item.description}</p>
-                  {scoopyExtras}
+                  <p className="original-card__status">{type}</p>
                   <a className="original-card__action" href={href}>
                     {actionLabel}
                   </a>
