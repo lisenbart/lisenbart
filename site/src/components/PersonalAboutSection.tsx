@@ -9,43 +9,28 @@ export default function PersonalAboutSection({
   const { personalAbout } = site;
 
   return (
-    <section id={sectionIds.about} className="archive-about scroll-mt-24" aria-label="About">
-      <div className="archive-about__inner">
-        <div className="archive-about__copy archive-about__copy--solo">
-          <div className="archive-about__heading">
-            <span className="archive-about__mark" aria-hidden="true">
-              “
-            </span>
-            <h2 className="archive-h2">{personalAbout.title}</h2>
-          </div>
+    <section id={sectionIds.about} className="about-body" aria-label="About">
+      <h2 className="film-section-label">{personalAbout.title}</h2>
 
-          <blockquote className="archive-about__quote">
-            {personalAbout.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)} className="archive-about__quote-line">
-                {paragraph}
-              </p>
-            ))}
-          </blockquote>
-
-          {personalAbout.markers.length > 0 && (
-            <ul className="archive-about__markers">
-              {personalAbout.markers.map((marker) => (
-                <li key={marker} className="archive-about__marker">
-                  {marker}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="archive-about__bridge">
-            <h2 id="about-closing" className="archive-about__closing">
-              {personalAbout.closing}
-            </h2>
-          </div>
-
-          {!hideContact ? <ContactForm embedded labelledBy="about-closing" /> : null}
-        </div>
+      <div className="about-body__copy">
+        {personalAbout.paragraphs.map((paragraph) => (
+          <p key={paragraph.slice(0, 40)} className="film-lead">
+            {paragraph}
+          </p>
+        ))}
       </div>
+
+      {personalAbout.markers.length > 0 ? (
+        <ul className="about-body__markers">
+          {personalAbout.markers.map((marker) => (
+            <li key={marker}>{marker}</li>
+          ))}
+        </ul>
+      ) : null}
+
+      <p className="about-body__closing">{personalAbout.closing}</p>
+
+      {!hideContact ? <ContactForm embedded labelledBy="about-closing" /> : null}
     </section>
   );
 }

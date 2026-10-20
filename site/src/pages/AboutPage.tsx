@@ -30,10 +30,7 @@ export default function AboutPage() {
           <PersonalAboutSection hideContact />
         </FilmReveal>
         <FilmReveal delayMs={120}>
-          <FilmContactSection
-            heading="Contact"
-            lead="A brief or a few clear details are enough to start."
-          />
+          <FilmContactSection heading={site.homeContact.heading} />
         </FilmReveal>
       </main>
     </>
