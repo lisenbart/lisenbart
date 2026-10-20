@@ -2155,12 +2155,7 @@ html[data-hero-period="evening"] .home-explore {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    120deg,
-    rgba(10, 16, 32, 0.38) 0%,
-    rgba(12, 22, 42, 0.28) 55%,
-    rgba(10, 16, 32, 0.34) 100%
-  );
+  background: rgba(10, 16, 32, 0.42);
   pointer-events: none;
 }
 
@@ -2183,23 +2178,15 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .explore-strip h3 {
-  margin: 0 0 var(--space-1);
+  margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-title);
   font-weight: 500;
   letter-spacing: var(--track-title);
   text-transform: uppercase;
   line-height: var(--leading-title);
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
-}
-
-.explore-strip p {
-  margin: 0;
-  font-size: var(--text-meta);
-  line-height: var(--leading-label);
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
 }
 
 .page-shell {

@@ -2,7 +2,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import { SEO } from "@/components/SEO";
-import { Arrow } from "@/components/film/FilmIcons";
 import { useExploreParallax } from "@/hooks/useExploreParallax";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
@@ -111,45 +110,22 @@ export default function HomePage() {
         <section ref={exploreRef} className="home-explore" id={sectionIds.explore}>
           <FilmReveal delayMs={0}>
             <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
-              <div>
-                <h3>Client Work</h3>
-                <p>Animation for brands &amp; agencies</p>
-              </div>
-              <span className="circle-link">
-                <Arrow />
-              </span>
+              <h3>Client Work</h3>
             </a>
           </FilmReveal>
           <FilmReveal delayMs={80}>
             <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
-              <div>
-                <h3>Originals</h3>
-                <p>Stories of our own</p>
-              </div>
-              <span className="circle-link">
-                <Arrow />
-              </span>
+              <h3>Originals</h3>
             </a>
           </FilmReveal>
           <FilmReveal delayMs={160}>
             <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
-              <div>
-                <h3>Game Ads</h3>
-                <p>Ads, cinematics &amp; playables</p>
-              </div>
-              <span className="circle-link">
-                <Arrow />
-              </span>
+              <h3>Game Ads</h3>
             </a>
           </FilmReveal>
           <FilmReveal delayMs={240}>
             <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
-              <div>
-                <h3>AI &amp; Hybrid</h3>
-              </div>
-              <span className="circle-link">
-                <Arrow />
-              </span>
+              <h3>AI &amp; Hybrid</h3>
             </a>
           </FilmReveal>
         </section>
