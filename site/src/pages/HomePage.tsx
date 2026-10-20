@@ -115,7 +115,7 @@ export default function HomePage() {
           </a>
           <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
             <div>
-              <h3>Game Production</h3>
+              <h3>Game Ads</h3>
               <p>Ads, cinematics &amp; playables</p>
             </div>
             <span className="circle-link">
@@ -124,7 +124,7 @@ export default function HomePage() {
           </a>
           <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
             <div>
-              <h3>AI Production</h3>
+              <h3>AI &amp; Hybrid</h3>
               <p>AI &amp; hybrid filmmaking</p>
             </div>
             <span className="circle-link">

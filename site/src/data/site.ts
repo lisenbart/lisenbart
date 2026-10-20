@@ -58,7 +58,7 @@ export const site = {
     },
     ai: {
       title: "AI",
-      subtitle: "AI & Hybrid Production",
+      subtitle: "AI & Hybrid",
       text: "AI-assisted visuals and video, guided by creative direction and production oversight.",
       href: "/ai/",
       cta: "View AI Work",
@@ -191,9 +191,9 @@ export const site = {
   },
 
   gamesPage: {
-    name: "Game Production",
+    name: "Game Ads",
     title: "From the assets you already have to the ideas you haven't made yet.",
-    seoTitle: "Game Production — Ads, Cinematics & Playables | LISENBART FILM",
+    seoTitle: "Game Ads — Ads, Cinematics & Playables | LISENBART FILM",
     seoDescription:
       "Game advertising creatives, playable production and creative development — LISENBART GAMES, a direction of LISENBART FILM.",
     showreelHeading: "LISENBART GAMES",
@@ -225,11 +225,11 @@ export const site = {
   },
 
   aiPage: {
-    name: "AI & Hybrid Production",
+    name: "AI & Hybrid",
     title: "New tools open up new possibilities. We know how to turn them into finished work.",
-    seoTitle: "AI & Hybrid Production | LISENBART FILM",
+    seoTitle: "AI & Hybrid | LISENBART FILM",
     seoDescription:
-      "AI-assisted visuals and hybrid production as a capability of LISENBART FILM — from exploration to finishing.",
+      "AI-assisted visuals and hybrid filmmaking as a capability of LISENBART FILM — from exploration to finishing.",
     showreelHeading: "AI & Hybrid Showreel",
     showreel: {
       id: "ai-powered-reel",
@@ -317,8 +317,8 @@ export const site = {
   primaryNav: [
     { id: "client-work" as const, label: "Client Work" },
     { id: "originals" as const, label: "Originals" },
-    { id: "games" as const, label: "Game Production" },
-    { id: "ai" as const, label: "AI Production" },
+    { id: "games" as const, label: "Game Ads" },
+    { id: "ai" as const, label: "AI & Hybrid" },
     { id: "studio" as const, label: "Studio" },
     { id: "contact" as const, label: "Contact" },
   ],

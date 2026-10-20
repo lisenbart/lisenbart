@@ -211,7 +211,7 @@ export default function ContactForm({
                     </select>
                     <ChevronDown size={14} className="inquiry-select-chevron pointer-events-none absolute right-0 top-1/2 -translate-y-1/2" aria-hidden="true" />
                   </div>
-                  {form.projectType === "AI Production" && (
+                  {form.projectType === "AI & Hybrid" && (
                     <p className="inquiry-helper mt-2 text-xs font-light leading-relaxed text-text-tertiary">
                       {copy.aiHelper}
                     </p>
