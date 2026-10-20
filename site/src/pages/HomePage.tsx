@@ -95,7 +95,7 @@ export default function HomePage() {
         </section>
 
         <section className="home-explore" id={sectionIds.explore}>
-          <a className="explore-strip work-card" href={hubCanonicalHref("client-work")}>
+          <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
             <div>
               <h3>Client Work</h3>
               <p>
@@ -108,7 +108,7 @@ export default function HomePage() {
               <Arrow />
             </span>
           </a>
-          <a className="explore-strip originals-card" href={hubCanonicalHref("originals")}>
+          <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
             <div>
               <h3>Originals</h3>
               <p>
@@ -121,7 +121,7 @@ export default function HomePage() {
               <Arrow />
             </span>
           </a>
-          <a className="explore-strip" href={hubCanonicalHref("games")}>
+          <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
             <div>
               <h3>Games</h3>
               <p>
@@ -134,7 +134,7 @@ export default function HomePage() {
               <Arrow />
             </span>
           </a>
-          <a className="explore-strip" href={hubCanonicalHref("ai")}>
+          <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
             <div>
               <h3>AI</h3>
               <p>
