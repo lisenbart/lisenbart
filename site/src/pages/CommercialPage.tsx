@@ -30,15 +30,6 @@ export default function CommercialPage() {
       />
 
       <section className="page-shell work-page page-shell--from-reel">
-        <div className="direction-clients">
-          <p className="film-section-label">{site.trustedBy.label}</p>
-          <div className="client-names" aria-label={site.trustedBy.label}>
-            {site.trustedBy.brands.map((brand) => (
-              <span key={brand}>{brand}</span>
-            ))}
-          </div>
-        </div>
-
         <div className="film-capabilities">
           <p className="film-section-label">{page.capabilitiesHeading}</p>
           <ul className="film-capabilities__list">
@@ -49,6 +40,15 @@ export default function CommercialPage() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="direction-clients">
+          <p className="film-section-label">{site.trustedBy.label}</p>
+          <div className="client-names" aria-label={site.trustedBy.label}>
+            {site.trustedBy.brands.map((brand) => (
+              <span key={brand}>{brand}</span>
+            ))}
+          </div>
         </div>
       </section>
       <FilmContactSection heading={site.homeContact.heading} />
