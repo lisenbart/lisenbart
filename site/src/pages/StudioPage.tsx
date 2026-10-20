@@ -16,18 +16,24 @@ export default function StudioPage() {
         url={`${site.canonical}/studio/`}
       />
       <section className="studio-page">
+        <div className="page-title-row">
+          <h1>Studio</h1>
+        </div>
+
         <div className="studio-hero" aria-labelledby="who-heading">
-          <h2 id="who-heading" className="film-section-label">
+          <h2 id="who-heading" className="studio-section-heading">
             {page.introHeading}
           </h2>
           <p className="studio-hero__lead">{page.intro}</p>
         </div>
+
         <div className="studio-image">
           <img
             src="/images/explore/originals/07.webp"
             alt="Creative production in progress"
           />
         </div>
+
         <div className="studio-footer">
           <a
             href="#contact"
@@ -45,11 +51,11 @@ export default function StudioPage() {
       </section>
 
       <section className="studio-models" aria-labelledby="how-heading">
-        <h2 id="how-heading" className="studio-models__title">
+        <h2 id="how-heading" className="studio-section-heading">
           {page.howHeading}
         </h2>
         <p className="studio-models__note">{page.how}</p>
-        <h2 id="ways-heading" className="studio-models__title studio-block">
+        <h2 id="ways-heading" className="studio-section-heading studio-block">
           {page.engagementHeading}
         </h2>
         <ul className="studio-models__list">
