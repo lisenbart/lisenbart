@@ -231,29 +231,12 @@ img { display: block; width: 100%; }
 
 /* Evening hero is dark — light type for contrast */
 .home-hero--evening .home-statement h1,
-.home-hero--evening .home-statement p,
-.home-hero--evening .home-actions a,
-.home-hero--evening .home-actions button {
+.home-hero--evening .home-statement p {
   color: #f7f4ef;
 }
 
 .home-hero--evening .home-statement i {
   background: #f7f4ef;
-}
-
-.home-hero--evening .tiny-circle,
-.home-hero--evening .play-circle {
-  border-color: rgba(247, 244, 239, 0.85);
-}
-
-.home-hero--evening .arrow-icon,
-.home-hero--evening .play-icon {
-  stroke: #f7f4ef;
-  fill: #f7f4ef;
-}
-
-.home-hero--evening .play-icon {
-  fill: #f7f4ef;
 }
 
 /* Home evening: light nav over dark hero */
@@ -768,7 +751,7 @@ a.original-tile {
   width: 100%;
   max-width: 42rem;
   margin: 0;
-  padding: 0 4vw 0.6rem;
+  padding: 0 4vw 2.4rem;
 }
 
 .home-statement h1 {
@@ -811,42 +794,16 @@ a.original-tile {
   text-transform: uppercase;
 }
 
-.home-actions {
-  position: relative;
-  z-index: 5;
-  width: 100%;
-  padding: 0.4rem 4vw 2.2rem;
-  display: flex;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
-
-.home-actions a,
-.home-actions button {
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  border: 0;
-  background: none;
-  font-size: 0.48rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
-.tiny-circle,
-.play-circle,
 .circle-link {
   display: grid;
   place-items: center;
   border: 1px solid currentColor;
   border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
 }
 
-.tiny-circle { width: 22px; height: 22px; }
-.tiny-circle .arrow-icon { width: 12px; }
-.play-circle { width: 52px; height: 52px; }
-.circle-link { width: 44px; height: 44px; flex: 0 0 auto; }
 .circle-link .arrow-icon { width: 19px; }
 
 .home-explore {
@@ -1364,7 +1321,7 @@ a.original-tile {
     object-position: center 22%;
   }
   .home-statement {
-    padding: 0 1.2rem 0.5rem;
+    padding: 0 1.2rem 1.8rem;
     max-width: none;
   }
   .home-statement h1 {
@@ -1373,12 +1330,6 @@ a.original-tile {
     letter-spacing: 0.12em;
   }
   .home-statement i { margin: 0.85rem 0; }
-  .home-actions {
-    padding: 0.25rem 1.2rem 1.5rem;
-  }
-  .home-actions > a { display: none; }
-  .home-actions button { margin-left: auto; }
-  .play-circle { width: 36px; height: 36px; }
 
   .home-explore { padding: 1rem 1rem 3rem; grid-template-columns: 1fr; gap: 1rem; }
   .explore-strip { min-height: 120px; padding: 1.35rem 1.4rem; gap: 1rem; }

@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import { SEO } from "@/components/SEO";
-import { Arrow, PlayIcon } from "@/components/film/FilmIcons";
-import { useReel } from "@/contexts/ReelContext";
+import { Arrow } from "@/components/film/FilmIcons";
 import {
   HERO_IMAGES,
   heroImageForPeriod,
@@ -20,7 +19,6 @@ function formatHeadline(headline: string) {
 }
 
 export default function HomePage() {
-  const { openReel } = useReel();
   /** Default day for SSR/prerender; local period applied before paint. */
   const [period, setPeriod] = useState<HeroPeriod>("day");
   const headlineLines = formatHeadline(site.studioHome.headline);
@@ -96,20 +94,6 @@ export default function HomePage() {
             <i />
             <p>Lisenbart Film</p>
             <p>Est. 2006</p>
-          </div>
-          <div className="home-actions">
-            <a href={`#${sectionIds.explore}`}>
-              Scroll{" "}
-              <span className="tiny-circle">
-                <Arrow direction="down" />
-              </span>
-            </a>
-            <button type="button" onClick={() => openReel(site.selectedWork.vimeoId, "Advertising reel")}>
-              Play reel{" "}
-              <span className="play-circle">
-                <PlayIcon />
-              </span>
-            </button>
           </div>
         </section>
 
