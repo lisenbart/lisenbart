@@ -932,13 +932,14 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--muted);
 }
 
-.project-page__layout--film-short .project-page__hero-media {
-  margin: var(--space-3) 0 var(--space-4);
-  max-width: 52rem;
+.project-page__layout--film-short .project-page__intro,
+.project-page--feature-dev .project-page__intro {
+  margin-bottom: 0;
 }
 
-.project-page__layout--film-short .project-page__intro {
-  margin-bottom: 0;
+.project-page--film-short.page-shell--from-reel .festival-featured,
+.project-page--feature-dev.page-shell--from-reel .project-page__copy {
+  margin-top: 0;
 }
 
 /* Festival recognition — Unnecessary Things */
@@ -1166,17 +1167,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--bg);
 }
 
-.project-page__layout--feature-dev .project-page__dev-grid {
-  display: grid;
-  gap: var(--space-4);
-}
-
-@media (min-width: 900px) {
-  .project-page__layout--feature-dev .project-page__dev-grid {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    align-items: start;
-    gap: var(--space-5);
-  }
+.project-page__layout--feature-dev .project-page__copy {
+  max-width: 40rem;
 }
 
 .project-page__ip-case {

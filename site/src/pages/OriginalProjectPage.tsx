@@ -1,4 +1,5 @@
 import FilmContactSection from "@/components/FilmContactSection";
+import FilmShowreel from "@/components/film/FilmShowreel";
 import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import {
   FestivalFeaturedStrip,
@@ -7,7 +8,6 @@ import {
 import OriginalIpPhones from "@/components/originals/OriginalIpPhones";
 import {
   CreditsDisclosure,
-  FilmMediaStage,
   OriginalsStillGallery,
 } from "@/components/originals/OriginalsMedia";
 import { SEO } from "@/components/SEO";
@@ -57,29 +57,12 @@ function ProjectCta({ project }: { project: ProjectData }) {
   );
 }
 
-function FilmShortLayout({ project }: { project: ProjectData }) {
+function FilmShortBody({ project }: { project: ProjectData }) {
   const item = project.case;
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
-      <div className="project-page__intro">
-        <p className="project-page__format">{project.format}</p>
-        <h1>{item.title}</h1>
-      </div>
-
-      {item.vimeoId && item.mediaImage ? (
-        <div className="project-page__hero-media">
-          <FilmMediaStage
-            title={item.title}
-            posterSrc={item.mediaImage}
-            posterAlt={item.mediaImageAlt ?? item.title}
-            vimeoId={item.vimeoId}
-            priority
-          />
-        </div>
-      ) : null}
-
       <FestivalFeaturedStrip />
 
       <div className="project-page__copy">
@@ -130,48 +113,26 @@ function FilmShortLayout({ project }: { project: ProjectData }) {
   );
 }
 
-function FeatureDevLayout({ project }: { project: ProjectData }) {
-  const item = project.case;
-
+function FeatureDevBody({ project }: { project: ProjectData }) {
   return (
     <div className="project-page__layout project-page__layout--feature-dev">
-      <div className="project-page__dev-grid">
-        {item.vimeoId && item.mediaImage ? (
-          <div className="project-page__hero-media">
-            <FilmMediaStage
-              title={item.title}
-              posterSrc={item.mediaImage}
-              posterAlt={item.mediaImageAlt ?? item.title}
-              vimeoId={item.vimeoId}
-              priority
-            />
-          </div>
+      <div className="project-page__copy">
+        <p className="project-page__synopsis">{project.synopsis}</p>
+        {project.body?.map((paragraph) => (
+          <p key={paragraph} className="project-page__body">
+            {paragraph}
+          </p>
+        ))}
+
+        {project.developmentNotes && project.developmentNotes.length > 0 ? (
+          <ul className="project-page__dev-list">
+            {project.developmentNotes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
         ) : null}
 
-        <div className="project-page__copy">
-          <div className="project-page__intro">
-            <p className="project-page__format">{project.format}</p>
-            {project.status ? <p className="project-page__status">{project.status}</p> : null}
-            <h1>{item.title}</h1>
-          </div>
-
-          <p className="project-page__synopsis">{project.synopsis}</p>
-          {project.body?.map((paragraph) => (
-            <p key={paragraph} className="project-page__body">
-              {paragraph}
-            </p>
-          ))}
-
-          {project.developmentNotes && project.developmentNotes.length > 0 ? (
-            <ul className="project-page__dev-list">
-              {project.developmentNotes.map((note) => (
-                <li key={note}>{note}</li>
-              ))}
-            </ul>
-          ) : null}
-
-          <ProjectCta project={project} />
-        </div>
+        <ProjectCta project={project} />
       </div>
     </div>
   );
@@ -253,9 +214,9 @@ function PreschoolLayout({
 function ProjectBody({ project }: { project: ProjectData }) {
   switch (project.layout) {
     case "film-short":
-      return <FilmShortLayout project={project} />;
+      return <FilmShortBody project={project} />;
     case "feature-dev":
-      return <FeatureDevLayout project={project} />;
+      return <FeatureDevBody project={project} />;
     case "preschool-ua":
       return <PreschoolLayout project={project} />;
     case "preschool-en":
@@ -263,6 +224,17 @@ function ProjectBody({ project }: { project: ProjectData }) {
     default:
       return null;
   }
+}
+
+function FilmProjectIntro({ project }: { project: ProjectData }) {
+  const item = project.case;
+  return (
+    <div className="project-page__intro">
+      <p className="project-page__format">{project.format}</p>
+      {project.status ? <p className="project-page__status">{project.status}</p> : null}
+      <h1>{item.title}</h1>
+    </div>
+  );
 }
 
 export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectSlug }) {
@@ -285,6 +257,10 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
   const ogImage = project.case.mediaImage
     ? publicAsset(project.case.mediaImage.split("?")[0]!)
     : undefined;
+  const item = project.case;
+  const hasFullBleedReel =
+    (project.layout === "film-short" || project.layout === "feature-dev") &&
+    Boolean(item.vimeoId && item.mediaImage);
 
   return (
     <>
@@ -294,10 +270,34 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
         url={`${site.canonical}${canonicalPath}`}
         image={ogImage}
       />
-      <section className={`page-shell project-page project-page--${project.layout}`}>
-        <ProjectNav title={project.case.title} />
-        <ProjectBody project={project} />
-      </section>
+
+      {hasFullBleedReel ? (
+        <>
+          <section
+            className={`page-shell project-page project-page--${project.layout} page-shell--to-reel`}
+          >
+            <ProjectNav title={item.title} />
+            <FilmProjectIntro project={project} />
+          </section>
+          <FilmShowreel
+            id={`${item.id}-reel`}
+            label={item.title}
+            poster={publicAsset(item.mediaImage!)}
+            vimeoId={item.vimeoId}
+          />
+          <section
+            className={`page-shell project-page project-page--${project.layout} page-shell--from-reel`}
+          >
+            <ProjectBody project={project} />
+          </section>
+        </>
+      ) : (
+        <section className={`page-shell project-page project-page--${project.layout}`}>
+          <ProjectNav title={item.title} />
+          <ProjectBody project={project} />
+        </section>
+      )}
+
       <FilmContactSection heading={site.homeContact.heading} />
     </>
   );
