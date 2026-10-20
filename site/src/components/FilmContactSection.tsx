@@ -195,7 +195,6 @@ export default function FilmContactSection({
           <div className="contact-details">
             <span>Or just say hello</span>
             <a href={`mailto:${site.email}`}>{site.email}</a>
-            <p>{site.locations}</p>
           </div>
         </div>
       </div>
