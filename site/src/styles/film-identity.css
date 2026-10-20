@@ -975,7 +975,7 @@ html[data-hero-period="evening"] .home-explore {
   --explore-media: url("/images/reels/advertising/showreel-poster.webp");
 }
 .explore-strip--originals {
-  --explore-media: url("/images/work/unnecessary-things-preview.webp");
+  --explore-media: url("/images/explore/originals/card-poster.jpg");
 }
 .explore-strip--games {
   --explore-media: url("/images/reels/games/showreel-poster.webp");
