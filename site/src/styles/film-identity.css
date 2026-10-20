@@ -869,44 +869,6 @@ a.original-tile {
 .explore-card:hover,
 .explore-strip:hover { transform: translateY(-4px); }
 
-.explore-card {
-  min-height: 440px;
-  padding: 3rem;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  color: white;
-  background-size: cover;
-  background-position: center;
-}
-
-.work-card {
-  background-image: linear-gradient(180deg, transparent 20%, rgba(13, 26, 62, 0.72)), url("/images/reels/ai/05.webp");
-}
-
-.originals-card {
-  background-image: linear-gradient(180deg, transparent 20%, rgba(13, 26, 62, 0.72)), url("/images/explore/originals/03.webp");
-}
-
-.explore-card h2 {
-  margin: 0 0 1.2rem;
-  font-family: "Manrope", sans-serif;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  font-weight: 300;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.15;
-}
-
-.explore-card p,
-.explore-strip p {
-  margin: 0;
-  font-size: 0.52rem;
-  line-height: 1.8;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-}
-
 .explore-strip {
   min-height: 150px;
   padding: 2rem;
@@ -916,6 +878,25 @@ a.original-tile {
   align-items: center;
   color: white;
   background: linear-gradient(120deg, #1b285a, #0c234a 60%, #365d9b);
+  background-size: cover;
+  background-position: center;
+}
+
+.work-card {
+  background-image: linear-gradient(120deg, rgba(13, 26, 62, 0.55), rgba(12, 35, 74, 0.72)), url("/images/reels/ai/05.webp");
+}
+
+.originals-card {
+  background-image: linear-gradient(120deg, rgba(13, 26, 62, 0.55), rgba(12, 35, 74, 0.72)), url("/images/explore/originals/03.webp");
+}
+
+.explore-card p,
+.explore-strip p {
+  margin: 0;
+  font-size: 0.52rem;
+  line-height: 1.8;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 
 .explore-strip h3 {
@@ -933,6 +914,11 @@ a.original-tile {
   place-items: center;
   border: 1px solid rgba(255,255,255,.45);
   border-radius: 50%;
+}
+
+.strip-icon--blank {
+  border-color: transparent;
+  background: transparent;
 }
 
 .gamepad-icon { font-size: 2rem; }
@@ -1413,7 +1399,6 @@ a.original-tile {
   .play-circle { width: 36px; height: 36px; }
 
   .home-explore { padding: 1rem 1rem 3rem; grid-template-columns: 1fr; gap: 1rem; }
-  .explore-card { min-height: 320px; padding: 1.5rem; }
   .explore-strip { min-height: 120px; padding: 1.2rem; gap: 1rem; }
   .strip-icon { width: 52px; height: 52px; }
 

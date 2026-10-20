@@ -114,9 +114,10 @@ export default function HomePage() {
         </section>
 
         <section className="home-explore" id={sectionIds.explore}>
-          <a className="explore-card work-card" href={hubCanonicalHref("client-work")}>
+          <a className="explore-strip work-card" href={hubCanonicalHref("client-work")}>
+            <span className="strip-icon strip-icon--blank" aria-hidden="true" />
             <div>
-              <h2>Client Work</h2>
+              <h3>Client Work</h3>
               <p>
                 Brands. Agencies.
                 <br />
@@ -127,9 +128,10 @@ export default function HomePage() {
               <Arrow />
             </span>
           </a>
-          <a className="explore-card originals-card" href={hubCanonicalHref("originals")}>
+          <a className="explore-strip originals-card" href={hubCanonicalHref("originals")}>
+            <span className="strip-icon strip-icon--blank" aria-hidden="true" />
             <div>
-              <h2>Originals</h2>
+              <h3>Originals</h3>
               <p>
                 Our stories.
                 <br />
