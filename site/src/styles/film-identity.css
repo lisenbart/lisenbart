@@ -417,9 +417,9 @@ img { display: block; width: 100%; }
   left: 0;
   right: 0;
   /* Shift art up so the bear sits under the nav (stage is taller than 1:1) */
-  top: -22%;
+  top: -34%;
   width: 100%;
-  height: 128%;
+  height: 140%;
   object-fit: cover;
   object-position: center 48%;
   pointer-events: none;
@@ -2839,9 +2839,9 @@ a.original-tile {
   .home-hero { min-height: 100svh; }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    top: -16%;
+    top: -26%;
     width: 100%;
-    height: 122%;
+    height: 132%;
     object-position: center 46%;
   }
   .home-statement {
