@@ -71,7 +71,7 @@ export default function Header() {
                 }
           }
         >
-          <span className="brand">LISENBART</span>
+          <span className="brand">{site.brand}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (
