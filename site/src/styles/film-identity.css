@@ -231,7 +231,7 @@ img { display: block; width: 100%; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.2;
-  opacity: 0.85;
+  color: inherit;
 }
 
 .desktop-nav {
@@ -474,7 +474,9 @@ img { display: block; width: 100%; }
 }
 
 /* Nav matches hero period while on home */
+html[data-hero-period="day"] .film-header .brand-lockup,
 html[data-hero-period="day"] .film-header .brand,
+html[data-hero-period="day"] .film-header .brand-est,
 html[data-hero-period="day"] .film-header .desktop-nav a {
   color: #101524;
 }
@@ -489,7 +491,9 @@ html[data-hero-period="day"] .menu-button:not(.open) span {
   background: #101524;
 }
 
+html[data-hero-period="evening"] .film-header .brand-lockup,
 html[data-hero-period="evening"] .film-header .brand,
+html[data-hero-period="evening"] .film-header .brand-est,
 html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
