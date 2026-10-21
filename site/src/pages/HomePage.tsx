@@ -96,7 +96,6 @@ export default function HomePage() {
             fetchPriority="high"
           />
           <div className="home-statement film-reveal is-in">
-            <p className="home-statement__creds">{site.studioHome.credentials}</p>
             <h1 id="home-who-heading">
               {headlineLines.map((line, index) => (
                 <span key={line}>

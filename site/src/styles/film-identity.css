@@ -202,9 +202,19 @@ img { display: block; width: 100%; }
   column-gap: var(--space-3);
 }
 
-.film-header > a:first-child {
+.film-header > a:first-child,
+.film-header .brand-lockup {
   justify-self: start;
   z-index: 1;
+}
+
+.brand-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .brand {
@@ -212,6 +222,16 @@ img { display: block; width: 100%; }
   font-weight: 500;
   letter-spacing: var(--track-brand);
   text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.brand-est {
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  opacity: 0.72;
 }
 
 .desktop-nav {
@@ -434,6 +454,7 @@ img { display: block; width: 100%; }
 }
 
 /* Nav matches hero period while on home */
+html[data-hero-period="day"] .film-header .brand-lockup,
 html[data-hero-period="day"] .film-header .brand,
 html[data-hero-period="day"] .film-header .desktop-nav a {
   color: #101524;
@@ -449,6 +470,7 @@ html[data-hero-period="day"] .menu-button:not(.open) span {
   background: #101524;
 }
 
+html[data-hero-period="evening"] .film-header .brand-lockup,
 html[data-hero-period="evening"] .film-header .brand,
 html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
@@ -2063,17 +2085,6 @@ a.original-tile {
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   line-height: var(--leading-label);
-}
-
-.home-statement__creds {
-  margin: 0 0 var(--space-3);
-  font-family: var(--font-display);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  line-height: var(--leading-label);
-  opacity: 0.72;
 }
 
 .home-statement__lead {

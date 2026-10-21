@@ -8,7 +8,7 @@ export const site = {
     brandLine: "LISENBART FILM",
     headline: "Creative freedom\nProduction control",
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
-    credentials: "Est. 2006 · Independent creative studio",
+    credentials: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
     exploreLabel: "Explore Our Work",
     ctaLabel: "Start a Project",

@@ -62,6 +62,7 @@ export default function Header() {
     <>
       <header className="film-header">
         <a
+          className="brand-lockup"
           href={onSubpage ? routes.home : "#top"}
           aria-label={`${site.brand} home`}
           onClick={
@@ -75,6 +76,7 @@ export default function Header() {
           }
         >
           <span className="brand">{site.brand}</span>
+          <span className="brand-est">{site.studioHome.credentials}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (
