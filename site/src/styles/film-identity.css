@@ -2099,11 +2099,16 @@ a.original-tile {
   text-transform: uppercase;
   line-height: 1;
   cursor: pointer;
-  transition: background 220ms ease, color 220ms ease, border-color 220ms ease;
+  transition: background 220ms ease, color 220ms ease, border-color 220ms ease, opacity 220ms ease;
 }
 
 .home-cta--primary {
   background: currentColor;
+  font-weight: 600;
+}
+
+.home-cta--secondary {
+  opacity: 0.88;
 }
 
 .home-hero--day .home-cta--primary {
@@ -2142,9 +2147,13 @@ a.original-tile {
 
 /* —— Home B2B sections (post-hero journey) —— */
 .home-b2b {
-  padding: var(--section-y) var(--gutter);
+  padding: clamp(2rem, 4.5vw, 3.25rem) var(--gutter);
   background: var(--white);
   color: var(--ink);
+}
+
+.home-b2b + .home-b2b {
+  padding-top: clamp(1.75rem, 3.5vw, 2.75rem);
 }
 
 .home-b2b__heading {
@@ -2170,11 +2179,22 @@ a.original-tile {
 .home-b2b__header--row {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: var(--space-2) var(--space-4);
+  gap: var(--space-3) var(--space-4);
   margin-bottom: var(--space-4);
   max-width: var(--measure-wide);
+}
+
+.home-selected-work__intro {
+  flex: 1 1 16rem;
+  min-width: 0;
+  max-width: var(--measure);
+}
+
+.home-selected-work__lead {
+  margin-top: var(--space-2);
+  max-width: 32rem;
 }
 
 .home-b2b__text-link {
@@ -2216,8 +2236,11 @@ a.original-tile {
 }
 
 .home-selected-work .film-showreel {
-  height: min(56vh, 34rem);
+  width: 100%;
+  height: auto;
   min-height: 16rem;
+  max-height: min(56vh, 34rem);
+  aspect-ratio: 16 / 9;
 }
 
 .home-how-help__list {
@@ -2255,6 +2278,16 @@ a.original-tile {
   font-size: var(--text-body-sm);
   line-height: var(--leading-body);
   color: var(--muted);
+}
+
+.home-experience__model {
+  margin: var(--space-3) 0 0;
+  max-width: 36rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  color: var(--ink);
 }
 
 .home-experience__facts {
@@ -3290,8 +3323,18 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .home-selected-work .film-showreel {
-    height: 42vh;
-    min-height: 14rem;
+    height: auto;
+    max-height: none;
+    min-height: 12.5rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  .home-b2b__header--row {
+    align-items: flex-start;
+  }
+
+  .home-b2b__header--row .home-b2b__text-link {
+    margin-top: var(--space-1);
   }
 
   .home-originals__feature {

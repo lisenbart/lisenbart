@@ -16,11 +16,16 @@ export default function HomeSelectedWorkSection() {
       aria-labelledby="home-selected-work-heading"
     >
       <div className="home-b2b__header home-b2b__header--row">
-        <FilmReveal>
-          <h2 id="home-selected-work-heading" className="home-b2b__heading">
-            {selectedWork.label}
-          </h2>
-        </FilmReveal>
+        <div className="home-selected-work__intro">
+          <FilmReveal>
+            <h2 id="home-selected-work-heading" className="home-b2b__heading">
+              {selectedWork.label}
+            </h2>
+          </FilmReveal>
+          <FilmReveal delayMs={40}>
+            <p className="home-b2b__lead home-selected-work__lead">{selectedWork.lead}</p>
+          </FilmReveal>
+        </div>
         <FilmReveal delayMs={60}>
           <a className="home-b2b__text-link" href={hubCanonicalHref("client-work")}>
             {selectedWork.cta}

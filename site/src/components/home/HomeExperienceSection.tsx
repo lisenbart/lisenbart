@@ -18,6 +18,9 @@ export default function HomeExperienceSection() {
       <FilmReveal delayMs={60}>
         <p className="home-b2b__lead">{experience.lead}</p>
       </FilmReveal>
+      <FilmReveal delayMs={80}>
+        <p className="home-experience__model">{experience.model}</p>
+      </FilmReveal>
 
       <FilmReveal delayMs={100}>
         <dl className="home-experience__facts">

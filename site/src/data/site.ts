@@ -21,6 +21,7 @@ export const site = {
     label: "Selected Work",
     href: "/client-work/",
     cta: "Explore Client Work",
+    lead: "Commercial animation, branded content and creative production for agencies and brands.",
     vimeoId: "849899875",
     poster: "/images/reels/advertising/showreel-poster.webp",
     previewImages: [
@@ -40,15 +41,15 @@ export const site = {
     items: [
       {
         title: "Production Partner",
-        text: "You bring the brief, concept or creative assets. We bring the production expertise to make it happen.",
+        text: "You bring the brief, concept or creative assets. We handle the production work needed to bring them to screen.",
       },
       {
         title: "Creative Development & Direction",
-        text: "From ideas and scripts to visual storytelling and creative direction.",
+        text: "From the first idea to scripts, storyboards and visual direction — we shape stories built to communicate.",
       },
       {
         title: "Full Production",
-        text: "Creative thinking, production management and final delivery — built around your project.",
+        text: "One creative and production partner, from concept development through animation, finishing and final delivery.",
       },
     ] as const,
   },
@@ -56,6 +57,8 @@ export const site = {
   homeExperience: {
     heading: "Experience That Delivers",
     lead: "Trusted by brands and agencies across a wide range of commercial productions.",
+    model:
+      "A focused creative and production core, with the right specialists brought together for each project.",
     facts: [
       { value: "2006", label: "Established" },
       { value: "1,000+", label: "Completed projects" },
