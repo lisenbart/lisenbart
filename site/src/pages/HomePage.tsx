@@ -83,7 +83,7 @@ export default function HomePage() {
         <section
           ref={heroRef}
           className={`home-hero home-hero--${period}`}
-          aria-labelledby="home-who-heading"
+          aria-label={headlineLines.join(" ")}
         >
           <img
             ref={bearRef}
@@ -95,16 +95,7 @@ export default function HomePage() {
             fetchPriority="high"
           />
           <div className="home-hero__copy film-reveal is-in">
-            <div className="home-hero__slogan">
-              <h1 id="home-who-heading">
-                {headlineLines.map((line, index) => (
-                  <span key={line}>
-                    {index > 0 ? <br /> : null}
-                    {line}
-                  </span>
-                ))}
-              </h1>
-            </div>
+            {/* Slogan temporarily hidden for composition review — restore home-hero__slogan */}
             <p className="home-hero__support">{site.studioHome.heroSupport}</p>
           </div>
         </section>
