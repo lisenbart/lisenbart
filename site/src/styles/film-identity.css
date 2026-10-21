@@ -2083,8 +2083,8 @@ a.original-tile {
   position: relative;
   z-index: 4;
   width: 100%;
-  max-width: var(--measure);
-  margin: 0;
+  max-width: var(--home-measure, var(--measure-wide));
+  margin: 0 auto;
   padding: 0 var(--gutter) var(--space-5);
 }
 
@@ -2128,9 +2128,9 @@ a.original-tile {
   opacity: 0.92;
 }
 
-/* —— Home V5.1 gateway (Who we are → Values → Paths) —— */
+/* —— Home V5.2 gateway (Who we are → Values → Paths) —— */
 .home-page--gateway {
-  /* Editorial column: intentional, slightly roomier on wide desktops */
+  /* Centered editorial column on desktop; text stays left-aligned inside */
   --home-measure: min(68rem, 100%);
 }
 
@@ -2150,10 +2150,20 @@ a.original-tile {
   padding-bottom: clamp(2.75rem, 5.5vw, 4rem);
 }
 
+/* Center section content blocks (FilmReveal wrappers + grids) */
+.home-values > .film-reveal,
+.home-paths > .film-reveal,
+.home-values__list,
+.home-paths__grid {
+  width: 100%;
+  max-width: var(--home-measure);
+  margin-inline: auto;
+}
+
 .home-values__heading,
 .home-paths__heading {
   margin: 0;
-  max-width: var(--home-measure);
+  max-width: none;
   font-family: var(--font-display);
   font-size: var(--text-title);
   font-weight: 500;
@@ -2164,22 +2174,37 @@ a.original-tile {
 
 .home-values__list {
   list-style: none;
-  margin: var(--space-4) 0 0;
+  margin-top: var(--space-4);
+  margin-bottom: 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
-  max-width: var(--home-measure);
   border-top: 1px solid var(--line);
+}
+
+.home-values__list > .film-reveal {
+  min-width: 0;
+  height: 100%;
 }
 
 .home-values__item {
   margin: 0;
-  padding: var(--space-3) var(--space-4) var(--space-3) 0;
+  height: 100%;
+  padding: var(--space-3) clamp(0.85rem, 1.8vw, 1.35rem);
   border-bottom: 1px solid var(--line);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  box-sizing: border-box;
+}
+
+.home-values__list > .film-reveal:first-child .home-values__item {
+  padding-left: 0;
+}
+
+.home-values__list > .film-reveal:last-child .home-values__item {
+  padding-right: 0;
 }
 
 .home-values__title {
@@ -2194,7 +2219,7 @@ a.original-tile {
 
 .home-values__text {
   margin: 0;
-  max-width: 18rem;
+  max-width: none;
   font-family: var(--font-body);
   font-size: var(--text-body-sm);
   font-weight: 400;
@@ -2211,7 +2236,6 @@ a.original-tile {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  max-width: var(--home-measure);
   border: 1px solid var(--line);
 }
 
@@ -3557,7 +3581,10 @@ html[data-hero-period="evening"] .home-explore {
     grid-template-columns: 1fr;
   }
 
-  .home-values__item {
+  .home-values__item,
+  .home-values__list > .film-reveal:first-child .home-values__item,
+  .home-values__list > .film-reveal:last-child .home-values__item {
+    padding-left: 0;
     padding-right: 0;
   }
 

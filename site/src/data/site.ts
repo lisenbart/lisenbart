@@ -18,25 +18,25 @@ export const site = {
   },
 
   homeValues: {
-    heading: "Good work starts with good people.",
+    heading: "We take stories seriously. Ourselves, not so much.",
     items: [
       {
-        title: "Creative Thinking",
-        text: "We care about the idea, not just how it looks.",
+        title: "The Story Comes First.",
+        text: "The tools can change. The reason to make something shouldn't.",
       },
       {
-        title: "Taking Ownership",
-        text: "We treat every project like our name is on it. Because it is.",
+        title: "Different Minds. One Direction.",
+        text: "Good work happens when creative thinking and production pull together.",
       },
       {
-        title: "Making It Happen",
-        text: "Good ideas deserve more than good intentions. We know how to get them made.",
+        title: "The Magic Is in the Making.",
+        text: "And yes, there's usually a spreadsheet behind it.",
       },
     ] as const,
   },
 
   homePaths: {
-    heading: "Let's make something together.",
+    heading: "Great stories are rarely made alone.",
     items: [
       {
         label: "For Brands & Agencies",
