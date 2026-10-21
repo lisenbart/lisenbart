@@ -48,7 +48,6 @@ export default function Footer() {
             <a className="film-footer__brand" href={routes.home}>
               {site.brand}
             </a>
-            <p className="film-footer__descriptor">{legalConfig.brandDescriptor}</p>
             <a className="film-footer__email" href={`mailto:${site.email}`}>
               {site.email}
             </a>

@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type MouseEvent } from "react";
+import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
 import { contactPageHref, goToContact, site } from "@/data/site";
 import {
   hubCanonicalHref,
@@ -17,7 +17,10 @@ function navHref(id: NavId) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  /** Desktop: show floating burger only after primary header nav leaves view */
+  const [navDocked, setNavDocked] = useState(false);
   const menuId = useId();
+  const headerRef = useRef<HTMLElement>(null);
   const onSubpage = isSiteSubpage();
   const activeHub = parseHubPage();
 
@@ -42,6 +45,45 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const mq = window.matchMedia("(min-width: 801px)");
+    const sync = (intersecting: boolean) => {
+      // Mobile: always keep the floating control available
+      if (!mq.matches) {
+        setNavDocked(true);
+        return;
+      }
+      setNavDocked(!intersecting);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        sync(entry?.isIntersecting ?? true);
+      },
+      { threshold: 0, rootMargin: "0px" },
+    );
+
+    const onMq = () => {
+      if (!mq.matches) setNavDocked(true);
+      else {
+        const rect = header.getBoundingClientRect();
+        setNavDocked(rect.bottom <= 0);
+      }
+    };
+
+    observer.observe(header);
+    mq.addEventListener("change", onMq);
+    onMq();
+
+    return () => {
+      observer.disconnect();
+      mq.removeEventListener("change", onMq);
+    };
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
   const toggleMenu = () => setMenuOpen((v) => !v);
 
@@ -58,9 +100,11 @@ export default function Header() {
     goToContact();
   };
 
+  const showFloating = navDocked || menuOpen;
+
   return (
     <>
-      <header className="film-header">
+      <header ref={headerRef} className="film-header">
         <a
           className="brand-lockup"
           href={onSubpage ? routes.home : "#top"}
@@ -76,7 +120,7 @@ export default function Header() {
           }
         >
           <span className="brand">{site.brand}</span>
-          <span className="brand-est">{site.studioHome.credentials}</span>
+          <span className="brand-est">{site.studioHome.established}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (
@@ -94,11 +138,13 @@ export default function Header() {
       </header>
 
       <button
-        className={`menu-button ${menuOpen ? "open" : ""}`}
+        className={`menu-button${menuOpen ? " open" : ""}${showFloating ? " is-floating" : ""}`}
         type="button"
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
         aria-controls={menuId}
+        aria-hidden={!showFloating}
+        tabIndex={showFloating ? 0 : -1}
         onClick={toggleMenu}
       >
         <span />
