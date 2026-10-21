@@ -50,37 +50,37 @@ export default function Header() {
     if (!header) return;
 
     const mq = window.matchMedia("(min-width: 801px)");
-    const sync = (intersecting: boolean) => {
-      // Mobile: always keep the floating control available
+    let raf = 0;
+
+    const update = () => {
+      // Mobile: primary desktop nav is hidden — keep the floating control available
       if (!mq.matches) {
         setNavDocked(true);
         return;
       }
-      setNavDocked(!intersecting);
+      // Small hysteresis avoids flicker at the exact threshold
+      const bottom = header.getBoundingClientRect().bottom;
+      setNavDocked((prev) => {
+        if (prev) return bottom < 12;
+        return bottom <= 0;
+      });
     };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        sync(entry?.isIntersecting ?? true);
-      },
-      { threshold: 0, rootMargin: "0px" },
-    );
-
-    const onMq = () => {
-      if (!mq.matches) setNavDocked(true);
-      else {
-        const rect = header.getBoundingClientRect();
-        setNavDocked(rect.bottom <= 0);
-      }
+    const onScrollOrResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
     };
 
-    observer.observe(header);
-    mq.addEventListener("change", onMq);
-    onMq();
+    update();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    mq.addEventListener("change", update);
 
     return () => {
-      observer.disconnect();
-      mq.removeEventListener("change", onMq);
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      mq.removeEventListener("change", update);
     };
   }, []);
 
