@@ -442,14 +442,15 @@ img { display: block; width: 100%; }
 .bear-art {
   position: absolute;
   z-index: 1;
-  inset: -4% 0;
+  /* Lift subject so the bear sits above the bottom slogan block */
+  inset: -10% 0 -2% 0;
   width: 100%;
-  height: 108%;
+  height: 112%;
   object-fit: cover;
-  object-position: center 40%;
+  object-position: center 26%;
   pointer-events: none;
   will-change: transform;
-  transform: translate3d(0, 0, 0) scale(1.05);
+  transform: translate3d(0, -3%, 0) scale(1.06);
 }
 
 /* Hero copy: deep navy on day art, white on evening art */
@@ -2092,13 +2093,14 @@ a.original-tile {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: clamp(1.5rem, 4vh, 2.75rem);
+  /* Slogan + support stacked at the bottom; bear fills the space above */
+  justify-content: flex-end;
+  gap: clamp(0.85rem, 1.8vh, 1.25rem);
   width: 100%;
   max-width: var(--home-measure);
   margin: 0 auto;
   padding:
-    calc(var(--header-offset) + clamp(0.75rem, 2vh, 1.5rem))
+    calc(var(--header-offset) + clamp(0.5rem, 1.5vh, 1rem))
     var(--gutter)
     clamp(1.35rem, 3vh, 2.25rem);
   box-sizing: border-box;
@@ -3482,14 +3484,16 @@ html[data-hero-period="evening"] .home-explore {
   .home-hero { min-height: clamp(26rem, 62svh, 34rem); }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    inset: 0;
+    inset: -8% 0 0 0;
     width: 100%;
-    height: 100%;
-    object-position: center 36%;
+    height: 110%;
+    object-position: center 22%;
+    transform: translate3d(0, -2%, 0) scale(1.05);
   }
   .home-hero__copy {
     max-width: none;
-    gap: clamp(1.25rem, 4vh, 2.25rem);
+    justify-content: flex-end;
+    gap: clamp(0.75rem, 2vh, 1.1rem);
     padding-bottom: var(--space-4);
   }
   .home-hero__slogan h1 {
