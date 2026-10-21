@@ -53,6 +53,8 @@
   --header-offset: 6.5rem;
   --measure: 40rem;
   --measure-wide: 60rem;
+  /* Shared centered column — header nav right edge matches hero copy */
+  --home-measure: min(68rem, 100%);
   --radius: 6px;
 
   color: var(--ink);
@@ -193,18 +195,21 @@ img { display: block; width: 100%; }
   top: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: var(--home-measure);
   height: var(--header-offset);
-  /* Extra right padding so centered nav clears the absolute menu icon */
-  padding: 0 clamp(3.5rem, 5vw, 4.5rem) 0 var(--gutter);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  margin-inline: auto;
+  padding: 0 var(--gutter);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   column-gap: var(--space-3);
+  box-sizing: border-box;
 }
 
 .film-header > a:first-child,
 .film-header .brand-lockup {
-  justify-self: start;
+  flex: 0 0 auto;
   z-index: 1;
 }
 
@@ -235,12 +240,14 @@ img { display: block; width: 100%; }
 }
 
 .desktop-nav {
-  justify-self: center;
+  flex: 0 1 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   gap: clamp(0.55rem, 1.2vw, 1.35rem);
-  max-width: min(52rem, 100%);
+  margin-left: auto;
+  max-width: none;
 }
 
 .desktop-nav a {
@@ -2082,11 +2089,6 @@ a.original-tile {
 }
 
 /* —— Home V6 gateway (Hero → Collaboration paths) —— */
-.home-page--gateway {
-  /* Centered editorial column on desktop; text stays left-aligned inside */
-  --home-measure: min(68rem, 100%);
-}
-
 .home-hero__copy {
   position: relative;
   z-index: 4;
@@ -3460,7 +3462,6 @@ html[data-hero-period="evening"] .home-explore {
   .film-header {
     height: var(--header-offset);
     padding: 0 var(--gutter);
-    grid-template-columns: 1fr auto;
   }
   .desktop-nav { display: none; }
   .brand { font-size: var(--text-meta); letter-spacing: 0.14em; }
