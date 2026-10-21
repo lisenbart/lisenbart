@@ -12,7 +12,7 @@ export const site = {
     /** Home hero — lower copy block */
     heroSupportHeading: "INDEPENDENT FILM & ANIMATION PRODUCTION COMPANY.",
     heroSupport:
-      "Some projects need a fresh idea. Others need someone who knows how to make it work. We do both — bringing creative thinking and production experience wherever they're needed.",
+      "Some projects need a fresh idea. Others come with a brief and a deadline. We do both — from creative development and direction to production and final delivery.",
     /** Shown under the header logo — not above the hero slogan */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
@@ -23,7 +23,7 @@ export const site = {
   },
 
   homePaths: {
-    heading: "Better when we make it together.",
+    heading: "Let's fly together.",
     items: [
       {
         label: "For Brands & Agencies",
