@@ -2,13 +2,19 @@
 export type HeroPeriod = "day" | "evening";
 
 export const HERO_IMAGES = {
-  evening: "/images/HERO_bear_01.webp",
-  day: "/images/HERO_bear_02.webp",
+  // TEMP composition test — restore bear webps when done
+  evening: "/images/HERO_temp_mountains.jpg",
+  day: "/images/HERO_temp_mountains.jpg",
+  // evening: "/images/HERO_bear_01.webp",
+  // day: "/images/HERO_bear_02.webp",
 } as const;
 
 export function heroPeriodFromDate(date = new Date()): HeroPeriod {
-  const hour = date.getHours();
-  return hour >= 6 && hour < 18 ? "day" : "evening";
+  // TEMP: night mountains need light type — restore day/evening schedule after
+  void date;
+  return "evening";
+  // const hour = date.getHours();
+  // return hour >= 6 && hour < 18 ? "day" : "evening";
 }
 
 export function heroImageForPeriod(period: HeroPeriod) {
