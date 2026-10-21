@@ -10,7 +10,7 @@ export const site = {
     /** Studio page — not shown on Home V6 hero */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
     /** Home hero — lower copy block */
-    heroSupportHeading: "Independent film & animation production company.",
+    heroSupportHeading: "INDEPENDENT FILM & ANIMATION PRODUCTION COMPANY.",
     heroSupport:
       "Some projects need a fresh idea. Others need someone who knows how to make it work. We do both — bringing creative thinking and production experience wherever they're needed.",
     /** Shown under the header logo — not above the hero slogan */
