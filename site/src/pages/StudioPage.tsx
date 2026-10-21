@@ -1,16 +1,24 @@
+import { useEffect } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import StudioModelItem from "@/components/film/StudioModelItem";
 import { SEO } from "@/components/SEO";
 import { Arrow } from "@/components/film/FilmIcons";
 import StudioSlideshow from "@/components/film/StudioSlideshow";
-import { goToContact, site } from "@/data/site";
+import { goToContact, scrollToSection, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.studioPage;
 
 export default function StudioPage() {
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash) return;
+    const timer = window.setTimeout(() => scrollToSection(hash), 50);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <SEO

@@ -1,5 +1,5 @@
 import { useEffect, useId, useState, type MouseEvent } from "react";
-import { goToContact, site } from "@/data/site";
+import { contactPageHref, goToContact, site } from "@/data/site";
 import {
   hubCanonicalHref,
   isSiteSubpage,
@@ -11,7 +11,7 @@ import {
 type NavId = (typeof site.primaryNav)[number]["id"];
 
 function navHref(id: NavId) {
-  if (id === "contact") return "#contact";
+  if (id === "contact") return contactPageHref();
   return hubCanonicalHref(id);
 }
 

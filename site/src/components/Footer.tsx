@@ -5,7 +5,7 @@ import {
   type RegisteredPresence,
 } from "@/data/legal";
 import { openCookiePreferences } from "@/components/CookieConsent";
-import { goToContact, site } from "@/data/site";
+import { contactPageHref, goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
 function PresenceBlock({ presence }: { presence: RegisteredPresence }) {
@@ -59,7 +59,7 @@ export default function Footer() {
               link.id === "contact" ? (
                 <a
                   key={link.id}
-                  href="#contact"
+                  href={contactPageHref()}
                   onClick={(e) => {
                     e.preventDefault();
                     goToContact();

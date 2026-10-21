@@ -2065,6 +2065,17 @@ a.original-tile {
   line-height: var(--leading-label);
 }
 
+.home-statement__creds {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: var(--leading-label);
+  opacity: 0.72;
+}
+
 .home-statement__lead {
   margin: var(--space-3) 0 0;
   max-width: 34rem;
@@ -2075,6 +2086,140 @@ a.original-tile {
   text-transform: none;
   line-height: var(--leading-body);
   opacity: 0.92;
+}
+
+/* —— Home V4 gateway (Who we are → Expertise → Paths) —— */
+.home-gateway {
+  padding: clamp(2rem, 4.5vw, 3.25rem) var(--gutter);
+  background: var(--white);
+  color: var(--ink);
+}
+
+.home-expertise__heading,
+.home-paths__heading {
+  margin: 0;
+  max-width: var(--measure-wide);
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 500;
+  letter-spacing: var(--track-title);
+  text-transform: uppercase;
+  line-height: var(--leading-title);
+}
+
+.home-expertise__list {
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  max-width: var(--measure-wide);
+  border-top: 1px solid var(--line);
+}
+
+.home-expertise__item {
+  margin: 0;
+  padding: var(--space-3) var(--space-3) var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: var(--leading-title);
+}
+
+.home-paths__heading {
+  margin-bottom: var(--space-5);
+}
+
+.home-paths__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  max-width: var(--measure-wide);
+  border: 1px solid var(--line);
+}
+
+.home-paths__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 11rem;
+  padding: var(--space-4);
+  text-decoration: none;
+  color: inherit;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 220ms ease;
+}
+
+.home-paths__grid > .film-reveal:nth-child(2n) .home-paths__card {
+  border-right: 0;
+}
+
+.home-paths__grid > .film-reveal:nth-last-child(-n + 2) .home-paths__card {
+  border-bottom: 0;
+}
+
+.home-paths__card:hover,
+.home-paths__card:focus-visible {
+  background: rgba(16, 21, 36, 0.03);
+  outline: none;
+}
+
+.home-paths__card:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+.home-paths__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-body);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: var(--leading-title);
+}
+
+.home-paths__text {
+  margin: 0;
+  flex: 1 1 auto;
+  max-width: 22rem;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm);
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
+
+.home-paths__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(16, 21, 36, 0.28);
+  padding-bottom: 0.15rem;
+  width: fit-content;
+}
+
+.home-paths__card:hover .home-paths__cta,
+.home-paths__card:focus-visible .home-paths__cta {
+  border-bottom-color: var(--ink);
+}
+
+.home-paths__cta-arrow {
+  display: inline-grid;
+  place-items: center;
+}
+
+.home-paths__cta-arrow .arrow-icon {
+  width: 0.95rem;
 }
 
 .home-statement__ctas {
@@ -3312,6 +3457,31 @@ html[data-hero-period="evening"] .home-explore {
   }
   .home-cta {
     padding: 0.8rem 1.15rem;
+  }
+
+  .home-expertise__list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .home-paths__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-paths__card {
+    min-height: 0;
+    border-right: 0;
+  }
+
+  .home-paths__grid > .film-reveal:nth-child(2n) .home-paths__card {
+    border-right: 0;
+  }
+
+  .home-paths__grid > .film-reveal:nth-last-child(-n + 2) .home-paths__card {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .home-paths__grid > .film-reveal:last-child .home-paths__card {
+    border-bottom: 0;
   }
 
   .home-explore {

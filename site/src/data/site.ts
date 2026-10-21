@@ -7,14 +7,55 @@ export const site = {
   studioHome: {
     brandLine: "LISENBART FILM",
     headline: "Creative freedom\nProduction control",
-    lead: "Independent animation studio for brands, agencies and original stories. From creative development to final production.",
+    lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
+    credentials: "Est. 2006 · Independent creative studio",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
-    /** Primary hero CTA — scrolls to Selected Work */
     exploreLabel: "Explore Our Work",
-    /** Secondary hero CTA — scrolls to Contact */
     ctaLabel: "Start a Project",
     founderLine: "Founded by Dmytro Lisenbart",
     founderAria: "About Dmytro Lisenbart, founder of LISENBART FILM",
+  },
+
+  homeExpertise: {
+    heading: "Our strength is in what we know how to create.",
+    items: [
+      "Storytelling",
+      "Creative Direction",
+      "Animation & Film",
+      "Production",
+      "Interactive",
+      "AI & Hybrid",
+    ] as const,
+  },
+
+  homePaths: {
+    heading: "What brings you here?",
+    items: [
+      {
+        title: "For Brands & Agencies",
+        text: "Commercial animation, creative direction and production.",
+        cta: "Explore Client Work",
+        hub: "client-work" as const,
+      },
+      {
+        title: "For Game Studios",
+        text: "Game ads, playable creatives and production.",
+        cta: "Explore Games",
+        hub: "games" as const,
+      },
+      {
+        title: "For Film & IP Partners",
+        text: "Original films, intellectual property and collaboration.",
+        cta: "Explore Originals",
+        hub: "originals" as const,
+      },
+      {
+        title: "For AI & Hybrid Production",
+        text: "Filmmaking expertise enhanced by new production technologies.",
+        cta: "Explore AI",
+        hub: "ai" as const,
+      },
+    ] as const,
   },
 
   selectedWork: {
@@ -455,13 +496,21 @@ export function contactHref() {
   return `#${sectionIds.contact}`;
 }
 
-/** Scroll to Contact on the current page, or home #contact if absent (e.g. legal). */
+/** Canonical contact destination when the current page has no form (home / legal). */
+export function contactPageHref() {
+  return `/studio/#${sectionIds.contact}`;
+}
+
+/**
+ * Scroll to Contact on the current page when present.
+ * Otherwise open Studio contact (homepage no longer hosts the form).
+ */
 export function goToContact(onDone?: () => void) {
   if (document.getElementById(sectionIds.contact)) {
     scrollToSection(sectionIds.contact, onDone);
     return;
   }
-  window.location.assign(`/${contactHref()}`);
+  window.location.assign(contactPageHref());
   onDone?.();
 }
 

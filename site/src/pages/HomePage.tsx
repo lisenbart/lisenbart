@@ -1,11 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import FilmContactSection from "@/components/FilmContactSection";
-import FilmReveal from "@/components/film/FilmReveal";
-import HomeDivisionsSection from "@/components/home/HomeDivisionsSection";
-import HomeExperienceSection from "@/components/home/HomeExperienceSection";
-import HomeHowWeHelpSection from "@/components/home/HomeHowWeHelpSection";
-import HomeOriginalStoriesSection from "@/components/home/HomeOriginalStoriesSection";
-import HomeSelectedWorkSection from "@/components/home/HomeSelectedWorkSection";
+import HomeExpertiseSection from "@/components/home/HomeExpertiseSection";
+import HomePathsSection from "@/components/home/HomePathsSection";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
@@ -15,7 +10,7 @@ import {
   msUntilNextHeroBoundary,
   type HeroPeriod,
 } from "@/lib/heroTime";
-import { scrollToSection, sectionIds, site } from "@/data/site";
+import { scrollToSection, site } from "@/data/site";
 
 function formatHeadline(headline: string) {
   const lines = headline.split(/\n+/).map((line) => line.trim()).filter(Boolean);
@@ -85,8 +80,12 @@ export default function HomePage() {
   return (
     <>
       <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
-      <div className="home-page">
-        <section ref={heroRef} className={`home-hero home-hero--${period}`}>
+      <div className="home-page home-page--gateway">
+        <section
+          ref={heroRef}
+          className={`home-hero home-hero--${period}`}
+          aria-labelledby="home-who-heading"
+        >
           <img
             ref={bearRef}
             className="bear-art"
@@ -97,7 +96,8 @@ export default function HomePage() {
             fetchPriority="high"
           />
           <div className="home-statement film-reveal is-in">
-            <h1>
+            <p className="home-statement__creds">{site.studioHome.credentials}</p>
+            <h1 id="home-who-heading">
               {headlineLines.map((line, index) => (
                 <span key={line}>
                   {index > 0 ? <br /> : null}
@@ -106,34 +106,11 @@ export default function HomePage() {
               ))}
             </h1>
             <p className="home-statement__lead">{site.studioHome.lead}</p>
-            <div className="home-statement__ctas">
-              <button
-                type="button"
-                className="home-cta home-cta--primary"
-                onClick={() => scrollToSection(sectionIds.selectedWork)}
-              >
-                {site.studioHome.exploreLabel}
-              </button>
-              <button
-                type="button"
-                className="home-cta home-cta--secondary"
-                onClick={() => scrollToSection(sectionIds.contact)}
-              >
-                {site.studioHome.ctaLabel}
-              </button>
-            </div>
           </div>
         </section>
 
-        <HomeSelectedWorkSection />
-        <HomeHowWeHelpSection />
-        <HomeExperienceSection />
-        <HomeOriginalStoriesSection />
-        <HomeDivisionsSection />
-
-        <FilmReveal>
-          <FilmContactSection heading={site.homeContact.heading} />
-        </FilmReveal>
+        <HomeExpertiseSection />
+        <HomePathsSection />
       </div>
     </>
   );
