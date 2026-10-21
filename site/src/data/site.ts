@@ -36,7 +36,7 @@ export const site = {
   },
 
   homePaths: {
-    heading: "Great stories are rarely made alone.",
+    heading: "Better when we make it together.",
     items: [
       {
         label: "For Brands & Agencies",
