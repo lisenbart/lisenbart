@@ -61,7 +61,7 @@ export const site = {
       "A focused creative and production core, with the right specialists brought together for each project.",
     facts: [
       { value: "2006", label: "Established" },
-      { value: "1,000+", label: "Completed projects" },
+      { value: "1,000+", label: "Projects delivered" },
     ] as const,
     /** Curated subset of Client Work names — not a full logo wall */
     brands: [
@@ -455,9 +455,14 @@ export function contactHref() {
   return `#${sectionIds.contact}`;
 }
 
-/** Scroll to Contact on the current page. */
+/** Scroll to Contact on the current page, or home #contact if absent (e.g. legal). */
 export function goToContact(onDone?: () => void) {
-  scrollToSection(sectionIds.contact, onDone);
+  if (document.getElementById(sectionIds.contact)) {
+    scrollToSection(sectionIds.contact, onDone);
+    return;
+  }
+  window.location.assign(`/${contactHref()}`);
+  onDone?.();
 }
 
 const CONTACT_PREFILL_KEY = "lisenbart-contact-prefill";

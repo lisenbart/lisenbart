@@ -3032,6 +3032,7 @@ html[data-hero-period="evening"] .home-explore {
   padding: var(--space-5) var(--gutter);
   overflow: hidden;
   background: var(--white);
+  scroll-margin-top: var(--header-offset);
 }
 
 .contact-content { position: relative; z-index: 2; max-width: var(--measure-wide); }

@@ -43,7 +43,7 @@ export default function FilmShowreel({
         onClick={play}
         aria-label={ariaAction}
       >
-        <img src={poster} alt="" width={1280} height={720} />
+        <img src={poster} alt="" width={1672} height={941} decoding="async" />
         <span className="film-showreel__play">
           <span className="film-showreel__play-circle">
             <PlayIcon />
