@@ -95,8 +95,11 @@ export default function HomePage() {
             fetchPriority="high"
           />
           <div className="home-hero__copy film-reveal is-in">
-            {/* Slogan temporarily hidden for composition review — restore home-hero__slogan */}
-            <p className="home-hero__support">{site.studioHome.heroSupport}</p>
+            {/* Main slogan temporarily hidden for composition review — restore home-hero__slogan */}
+            <div className="home-hero__footer-copy">
+              <p className="home-hero__support-heading">{site.studioHome.heroSupportHeading}</p>
+              <p className="home-hero__support">{site.studioHome.heroSupport}</p>
+            </div>
           </div>
         </section>
 
