@@ -7,19 +7,22 @@ export const site = {
   studioHome: {
     brandLine: "LISENBART FILM",
     headline: "Creative freedom\nProduction control",
-    lead: "Independent animation studio for brands, production partners and original films. Creative development, direction and production — together or as individual stages.",
+    lead: "Independent animation studio for brands, agencies and original stories. From creative development to final production.",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
-    ctaLabel: "Discuss a Project",
+    /** Primary hero CTA — scrolls to Selected Work */
     exploreLabel: "Explore Our Work",
+    /** Secondary hero CTA — scrolls to Contact */
+    ctaLabel: "Start a Project",
     founderLine: "Founded by Dmytro Lisenbart",
     founderAria: "About Dmytro Lisenbart, founder of LISENBART FILM",
   },
 
   selectedWork: {
-    label: "Selected Commercial Work",
+    label: "Selected Work",
     href: "/client-work/",
-    cta: "View Client Work",
+    cta: "Explore Client Work",
     vimeoId: "849899875",
+    poster: "/images/reels/advertising/showreel-poster.webp",
     previewImages: [
       "/images/reels/advertising/01.webp",
       "/images/reels/advertising/02.webp",
@@ -30,6 +33,54 @@ export const site = {
       "/images/reels/advertising/07.webp",
       "/images/reels/advertising/08.webp",
     ] as const,
+  },
+
+  howWeHelp: {
+    heading: "How We Can Help",
+    items: [
+      {
+        title: "Production Partner",
+        text: "You bring the brief, concept or creative assets. We bring the production expertise to make it happen.",
+      },
+      {
+        title: "Creative Development & Direction",
+        text: "From ideas and scripts to visual storytelling and creative direction.",
+      },
+      {
+        title: "Full Production",
+        text: "Creative thinking, production management and final delivery — built around your project.",
+      },
+    ] as const,
+  },
+
+  homeExperience: {
+    heading: "Experience That Delivers",
+    lead: "Trusted by brands and agencies across a wide range of commercial productions.",
+    facts: [
+      { value: "2006", label: "Established" },
+      { value: "1,000+", label: "Completed projects" },
+    ] as const,
+    /** Curated subset of Client Work names — not a full logo wall */
+    brands: [
+      "Nestlé",
+      "Danone",
+      "McDonald's",
+      "Mastercard",
+      "Samsung",
+      "PepsiCo",
+      "METRO",
+      "Borjomi",
+    ] as const,
+    agencies: ["Havas", "Y&R", "BBDO", "McCann Erickson", "Leo Burnett"] as const,
+  },
+
+  homeOriginals: {
+    heading: "Original Stories. Independent Vision.",
+    lead: "Our original films reflect the storytelling and creative direction we bring to everything we make.",
+    filmId: "unnecessary-things" as const,
+    filmTitle: "Unnecessary Things",
+    result: "11 awards · 45 festival selections",
+    cta: "Explore Originals",
   },
   whyStudio: {
     eyebrow: "Why LISENBART",
@@ -51,7 +102,7 @@ export const site = {
     games: {
       title: "GAMES",
       subtitle: "Game Advertising & Playable Production",
-      text: "Advertising creatives and playables for game companies.",
+      text: "Creative production, game advertising and playable ads.",
       href: "/games/",
       cta: "Explore Games",
       external: false as const,
@@ -59,9 +110,9 @@ export const site = {
     ai: {
       title: "AI",
       subtitle: "AI & Hybrid",
-      text: "AI-assisted visuals and video, guided by creative direction and production oversight.",
+      text: "AI-assisted and hybrid production guided by creative direction and filmmaking expertise.",
       href: "/ai/",
-      cta: "View AI Work",
+      cta: "Explore AI",
       external: false as const,
     },
   },
@@ -279,7 +330,7 @@ export const site = {
     ] as const,
   },
   homeContact: {
-    heading: "Have something in mind?",
+    heading: "Have a project? Let's talk.",
     lead: "",
   },
   aboutPage: {
@@ -387,6 +438,9 @@ export const sectionIds = {
   about: "about",
   explore: "explore",
   selectedWork: "selected-work",
+  howWeHelp: "how-we-help",
+  experience: "experience",
+  originalStories: "original-stories",
   why: "why",
   proof: "proof",
   divisions: "divisions",

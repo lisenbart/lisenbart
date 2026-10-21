@@ -1,7 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
-import { Arrow } from "@/components/film/FilmIcons";
 import FilmReveal from "@/components/film/FilmReveal";
+import HomeDivisionsSection from "@/components/home/HomeDivisionsSection";
+import HomeExperienceSection from "@/components/home/HomeExperienceSection";
+import HomeHowWeHelpSection from "@/components/home/HomeHowWeHelpSection";
+import HomeOriginalStoriesSection from "@/components/home/HomeOriginalStoriesSection";
+import HomeSelectedWorkSection from "@/components/home/HomeSelectedWorkSection";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
@@ -12,7 +16,6 @@ import {
   type HeroPeriod,
 } from "@/lib/heroTime";
 import { scrollToSection, sectionIds, site } from "@/data/site";
-import { hubCanonicalHref } from "@/lib/routes";
 
 function formatHeadline(headline: string) {
   const lines = headline.split(/\n+/).map((line) => line.trim()).filter(Boolean);
@@ -30,7 +33,6 @@ export default function HomePage() {
   const headlineLines = formatHeadline(site.studioHome.headline);
   const heroRef = useRef<HTMLElement>(null);
   const bearRef = useRef<HTMLImageElement>(null);
-  const exploreRef = useRef<HTMLElement>(null);
 
   useScrollParallax(heroRef, bearRef, { strength: 12 });
 
@@ -103,43 +105,31 @@ export default function HomePage() {
                 </span>
               ))}
             </h1>
+            <p className="home-statement__lead">{site.studioHome.lead}</p>
+            <div className="home-statement__ctas">
+              <button
+                type="button"
+                className="home-cta home-cta--primary"
+                onClick={() => scrollToSection(sectionIds.selectedWork)}
+              >
+                {site.studioHome.exploreLabel}
+              </button>
+              <button
+                type="button"
+                className="home-cta home-cta--secondary"
+                onClick={() => scrollToSection(sectionIds.contact)}
+              >
+                {site.studioHome.ctaLabel}
+              </button>
+            </div>
           </div>
         </section>
 
-        <section ref={exploreRef} className="home-explore" id={sectionIds.explore}>
-          <FilmReveal delayMs={0}>
-            <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
-              <h3>Client Work</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={80}>
-            <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
-              <h3>Originals</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={160}>
-            <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
-              <h3>Game Ads</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={240}>
-            <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
-              <h3>AI &amp; Hybrid</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-        </section>
+        <HomeSelectedWorkSection />
+        <HomeHowWeHelpSection />
+        <HomeExperienceSection />
+        <HomeOriginalStoriesSection />
+        <HomeDivisionsSection />
 
         <FilmReveal>
           <FilmContactSection heading={site.homeContact.heading} />
