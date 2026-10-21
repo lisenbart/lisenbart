@@ -443,9 +443,9 @@ export const site = {
   },
   primaryNav: [
     { id: "client-work" as const, label: "Client Work" },
-    { id: "originals" as const, label: "Originals" },
     { id: "games" as const, label: "Game Ads" },
     { id: "ai" as const, label: "AI & Hybrid" },
+    { id: "originals" as const, label: "Originals" },
     { id: "studio" as const, label: "Studio" },
     { id: "contact" as const, label: "Contact" },
   ],
