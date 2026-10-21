@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import HomeExpertiseSection from "@/components/home/HomeExpertiseSection";
 import HomePathsSection from "@/components/home/HomePathsSection";
+import HomeValuesSection from "@/components/home/HomeValuesSection";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
@@ -108,7 +108,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <HomeExpertiseSection />
+        <HomeValuesSection />
         <HomePathsSection />
       </div>
     </>

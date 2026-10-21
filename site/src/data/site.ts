@@ -17,20 +17,26 @@ export const site = {
     founderAria: "About Dmytro Lisenbart, founder of LISENBART FILM",
   },
 
-  homeExpertise: {
-    heading: "Our strength is in what we know how to create.",
+  homeValues: {
+    heading: "Good work starts with good people.",
     items: [
-      "Storytelling",
-      "Creative Direction",
-      "Animation & Film",
-      "Production",
-      "Interactive",
-      "AI & Hybrid",
+      {
+        title: "Creative Thinking",
+        text: "We care about the idea, not just how it looks.",
+      },
+      {
+        title: "Taking Ownership",
+        text: "We treat every project like our name is on it. Because it is.",
+      },
+      {
+        title: "Making It Happen",
+        text: "Good ideas deserve more than good intentions. We know how to get them made.",
+      },
     ] as const,
   },
 
   homePaths: {
-    heading: "What brings you here?",
+    heading: "Let's make something together.",
     items: [
       {
         label: "For Brands & Agencies",
