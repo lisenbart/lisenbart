@@ -432,7 +432,6 @@ img { display: block; width: 100%; }
   background: #0c1630;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 }
 
 .home-hero--day {
@@ -453,24 +452,16 @@ img { display: block; width: 100%; }
 }
 
 /* Hero copy: deep navy on day art, white on evening art */
-.home-hero--day .home-statement,
-.home-hero--day .home-statement h1,
-.home-hero--day .home-statement p {
+.home-hero--day .home-hero__copy,
+.home-hero--day .home-hero__slogan h1,
+.home-hero--day .home-hero__support {
   color: #101524;
 }
 
-.home-hero--day .home-statement i {
-  background: #101524;
-}
-
-.home-hero--evening .home-statement,
-.home-hero--evening .home-statement h1,
-.home-hero--evening .home-statement p {
+.home-hero--evening .home-hero__copy,
+.home-hero--evening .home-hero__slogan h1,
+.home-hero--evening .home-hero__support {
   color: #fff;
-}
-
-.home-hero--evening .home-statement i {
-  background: #fff;
 }
 
 /* Nav matches hero period while on home */
@@ -2079,25 +2070,6 @@ a.original-tile {
   border-top: 1px solid var(--line);
 }
 
-.home-statement {
-  position: relative;
-  z-index: 4;
-  width: 100%;
-  max-width: var(--home-measure, var(--measure-wide));
-  margin: 0 auto;
-  padding: 0 var(--gutter) var(--space-5);
-}
-
-.home-statement h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.45rem, 3vw, 2.15rem);
-  font-weight: 300;
-  line-height: var(--leading-display);
-  letter-spacing: var(--track-display);
-  text-transform: uppercase;
-}
-
 .home-statement i,
 .contact-content > i {
   display: block;
@@ -2107,17 +2079,42 @@ a.original-tile {
   background: currentColor;
 }
 
-.home-statement p {
-  margin: 0 0 var(--space-1);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  line-height: var(--leading-label);
+/* —— Home V6 gateway (Hero → Collaboration paths) —— */
+.home-page--gateway {
+  /* Centered editorial column on desktop; text stays left-aligned inside */
+  --home-measure: min(68rem, 100%);
 }
 
-.home-statement__lead {
-  margin: var(--space-3) 0 0;
+.home-hero__copy {
+  position: relative;
+  z-index: 4;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(2rem, 6vh, 4.5rem);
+  width: 100%;
+  max-width: var(--home-measure);
+  margin: 0 auto;
+  padding:
+    calc(var(--header-offset) + clamp(1.25rem, 3vh, 2.25rem))
+    var(--gutter)
+    clamp(1.5rem, 3.5vh, 2.75rem);
+  box-sizing: border-box;
+}
+
+.home-hero__slogan h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  font-weight: 300;
+  line-height: var(--leading-display);
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+}
+
+.home-hero__support {
+  margin: 0;
   max-width: 34rem;
   font-family: var(--font-body);
   font-size: var(--text-body-sm);
@@ -2128,41 +2125,27 @@ a.original-tile {
   opacity: 0.92;
 }
 
-/* —— Home V5.2 gateway (Who we are → Values → Paths) —— */
-.home-page--gateway {
-  /* Centered editorial column on desktop; text stays left-aligned inside */
-  --home-measure: min(68rem, 100%);
-}
-
 .home-gateway {
   padding: clamp(2.5rem, 5vw, 3.75rem) var(--gutter);
   background: var(--white);
   color: var(--ink);
 }
 
-.home-values.home-gateway {
-  padding-top: clamp(2.75rem, 5.5vw, 4rem);
-  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
-}
-
 .home-paths.home-gateway {
-  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
   padding-bottom: clamp(2.75rem, 5.5vw, 4rem);
 }
 
 /* Center section content blocks (FilmReveal wrappers + grids) */
-.home-values > .film-reveal,
 .home-paths > .film-reveal,
-.home-values__list,
 .home-paths__grid {
   width: 100%;
   max-width: var(--home-measure);
   margin-inline: auto;
 }
 
-.home-values__heading,
 .home-paths__heading {
-  margin: 0;
+  margin: 0 0 var(--space-4);
   max-width: none;
   font-family: var(--font-display);
   font-size: var(--text-title);
@@ -2170,66 +2153,6 @@ a.original-tile {
   letter-spacing: var(--track-title);
   text-transform: uppercase;
   line-height: var(--leading-title);
-}
-
-.home-values__list {
-  list-style: none;
-  margin-top: var(--space-4);
-  margin-bottom: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  border-top: 1px solid var(--line);
-}
-
-.home-values__list > .film-reveal {
-  min-width: 0;
-  height: 100%;
-}
-
-.home-values__item {
-  margin: 0;
-  height: 100%;
-  padding: var(--space-3) clamp(0.85rem, 1.8vw, 1.35rem);
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  box-sizing: border-box;
-}
-
-.home-values__list > .film-reveal:first-child .home-values__item {
-  padding-left: 0;
-}
-
-.home-values__list > .film-reveal:last-child .home-values__item {
-  padding-right: 0;
-}
-
-.home-values__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: var(--text-body);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  line-height: var(--leading-title);
-}
-
-.home-values__text {
-  margin: 0;
-  max-width: none;
-  font-family: var(--font-body);
-  font-size: var(--text-body-sm);
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: var(--leading-body);
-  color: var(--muted);
-}
-
-.home-paths__heading {
-  margin-bottom: var(--space-4);
 }
 
 .home-paths__grid {
@@ -3563,29 +3486,20 @@ html[data-hero-period="evening"] .home-explore {
     height: 100%;
     object-position: center 36%;
   }
-  .home-statement {
-    padding: 0 var(--gutter) var(--space-4);
+  .home-hero__copy {
     max-width: none;
+    gap: clamp(1.75rem, 5vh, 3rem);
+    padding-bottom: var(--space-4);
   }
-  .home-statement h1 {
+  .home-hero__slogan h1 {
     font-size: clamp(1.2rem, 5.2vw, 1.7rem);
   }
-  .home-statement__lead {
+  .home-hero__support {
+    max-width: 28rem;
     font-size: 0.9rem;
   }
   .home-cta {
     padding: 0.8rem 1.15rem;
-  }
-
-  .home-values__list {
-    grid-template-columns: 1fr;
-  }
-
-  .home-values__item,
-  .home-values__list > .film-reveal:first-child .home-values__item,
-  .home-values__list > .film-reveal:last-child .home-values__item {
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .home-paths__grid {

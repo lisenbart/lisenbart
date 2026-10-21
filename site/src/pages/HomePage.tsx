@@ -1,6 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import HomePathsSection from "@/components/home/HomePathsSection";
-import HomeValuesSection from "@/components/home/HomeValuesSection";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
@@ -95,20 +94,21 @@ export default function HomePage() {
             height={2500}
             fetchPriority="high"
           />
-          <div className="home-statement film-reveal is-in">
-            <h1 id="home-who-heading">
-              {headlineLines.map((line, index) => (
-                <span key={line}>
-                  {index > 0 ? <br /> : null}
-                  {line}
-                </span>
-              ))}
-            </h1>
-            <p className="home-statement__lead">{site.studioHome.lead}</p>
+          <div className="home-hero__copy film-reveal is-in">
+            <div className="home-hero__slogan">
+              <h1 id="home-who-heading">
+                {headlineLines.map((line, index) => (
+                  <span key={line}>
+                    {index > 0 ? <br /> : null}
+                    {line}
+                  </span>
+                ))}
+              </h1>
+            </div>
+            <p className="home-hero__support">{site.studioHome.heroSupport}</p>
           </div>
         </section>
 
-        <HomeValuesSection />
         <HomePathsSection />
       </div>
     </>

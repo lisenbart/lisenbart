@@ -7,7 +7,11 @@ export const site = {
   studioHome: {
     brandLine: "LISENBART FILM",
     headline: "Creative freedom\nProduction control",
+    /** Studio page — not shown on Home V6 hero */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
+    /** Home hero — lower supporting paragraph */
+    heroSupport:
+      "Some projects need a fresh idea. Others need someone who knows how to make it work. We do both — bringing creative thinking and production experience wherever they're needed.",
     /** Shown under the header logo — not above the hero slogan */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
@@ -15,24 +19,6 @@ export const site = {
     ctaLabel: "Start a Project",
     founderLine: "Founded by Dmytro Lisenbart",
     founderAria: "About Dmytro Lisenbart, founder of LISENBART FILM",
-  },
-
-  homeValues: {
-    heading: "We take stories seriously. Ourselves, not so much.",
-    items: [
-      {
-        title: "The Story Comes First.",
-        text: "The tools can change. The reason to make something shouldn't.",
-      },
-      {
-        title: "Different Minds. One Direction.",
-        text: "Good work happens when creative thinking and production pull together.",
-      },
-      {
-        title: "The Magic Is in the Making.",
-        text: "And yes, there's usually a spreadsheet behind it.",
-      },
-    ] as const,
   },
 
   homePaths: {
