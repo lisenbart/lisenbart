@@ -449,15 +449,18 @@ img { display: block; width: 100%; }
 .bear-art {
   position: absolute;
   z-index: 1;
-  /* Lift subject so the bear sits above the bottom copy block */
-  inset: -10% 0 -2% 0;
+  /*
+   * Oversized + shifted up: cover alone has no vertical surplus to lift,
+   * so scale ~10% larger than the previous crop, then translate up 100px.
+   */
+  inset: -18% 0 -8% 0;
   width: 100%;
-  height: 112%;
+  height: 126%;
   object-fit: cover;
-  object-position: center 26%;
+  object-position: center 30%;
   pointer-events: none;
   will-change: transform;
-  transform: translate3d(0, calc(-3% - 100px), 0) scale(1.06);
+  transform: translate3d(0, -100px, 0) scale(1.16);
 }
 
 /* Hero copy: deep navy on day art, white on evening art */
@@ -3485,11 +3488,11 @@ html[data-hero-period="evening"] .home-explore {
   .home-hero { min-height: clamp(26rem, 62svh, 34rem); }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    inset: -8% 0 0 0;
+    inset: -16% 0 -6% 0;
     width: 100%;
-    height: 110%;
-    object-position: center 22%;
-    transform: translate3d(0, calc(-2% - 100px), 0) scale(1.05);
+    height: 122%;
+    object-position: center 28%;
+    transform: translate3d(0, -100px, 0) scale(1.16);
   }
   .home-hero__copy {
     max-width: none;
