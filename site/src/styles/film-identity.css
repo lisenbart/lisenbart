@@ -449,7 +449,7 @@ img { display: block; width: 100%; }
 .bear-art {
   position: absolute;
   z-index: 1;
-  /* Lift subject so the bear sits above the bottom slogan block */
+  /* Lift subject so the bear sits above the bottom copy block */
   inset: -10% 0 -2% 0;
   width: 100%;
   height: 112%;
@@ -457,7 +457,7 @@ img { display: block; width: 100%; }
   object-position: center 26%;
   pointer-events: none;
   will-change: transform;
-  transform: translate3d(0, -3%, 0) scale(1.06);
+  transform: translate3d(0, calc(-3% - 100px), 0) scale(1.06);
 }
 
 /* Hero copy: deep navy on day art, white on evening art */
@@ -3489,7 +3489,7 @@ html[data-hero-period="evening"] .home-explore {
     width: 100%;
     height: 110%;
     object-position: center 22%;
-    transform: translate3d(0, -2%, 0) scale(1.05);
+    transform: translate3d(0, calc(-2% - 100px), 0) scale(1.05);
   }
   .home-hero__copy {
     max-width: none;
