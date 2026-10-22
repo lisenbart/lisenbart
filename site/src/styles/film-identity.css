@@ -949,11 +949,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   outline: none;
 }
 
-.page-hero-reel:has(.film-showreel__stage--playing) .page-hero-reel__chrome,
-.page-hero-reel:has(.studio-image--playing) .page-hero-reel__chrome,
+/* Keep page title visible while playing (same as logo / menu). Only drop scrim. */
+.page-hero-reel:has(.film-showreel__stage--playing) .film-showreel__stage::before,
 .page-hero-reel:has(.studio-image--playing) .studio-image::before {
   opacity: 0;
-  pointer-events: none;
 }
 
 .page-hero-reel .film-showreel__play,
