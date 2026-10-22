@@ -18,10 +18,8 @@ export default function HomePathsSection() {
         {homePaths.items.map((item, index) => (
           <FilmReveal key={item.label} delayMs={index * 60}>
             <a className="home-paths__card" href={hubCanonicalHref(item.hub)}>
-              <div className="home-paths__direction">
-                <span className="home-paths__direction-name">{item.label}</span>
-              </div>
-              <h3 className="home-paths__statement">{item.statement}</h3>
+              <h3 className="home-paths__label">{item.label}</h3>
+              <p className="home-paths__statement">{item.statement}</p>
               <p className="home-paths__text">{item.text}</p>
               <span className="home-paths__cta">
                 {item.cta}
