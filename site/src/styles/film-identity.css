@@ -695,6 +695,20 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
     border-top: 0;
     border-left: 1px solid var(--line);
   }
+
+  /* Team cards with media: equal column width (middle was narrower from L+R padding) */
+  .studio-models__list:has(.studio-team-card) {
+    column-gap: var(--space-4);
+  }
+
+  .studio-models__list:has(.studio-team-card) > li {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .studio-models__list:has(.studio-team-card) > li + li {
+    border-left: 0;
+  }
 }
 
 .film-games-bridge {
