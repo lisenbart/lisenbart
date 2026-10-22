@@ -85,7 +85,6 @@ img { display: block; width: 100%; }
 /* Shared type roles — HOME content ladder site-wide */
 .film-display,
 .page-title-row h1,
-.contact-content > h1,
 .film-contact__eyebrow {
   margin: 0;
   width: 100%;
@@ -93,6 +92,21 @@ img { display: block; width: 100%; }
   font-family: var(--font-display);
   font-size: var(--text-display);
   font-weight: 600;
+  line-height: var(--leading-display);
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+
+/* Contact heading — 25% smaller than display, not bold */
+.contact-content > h1 {
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  font-family: var(--font-display);
+  font-size: calc(var(--text-display) * 0.75);
+  font-weight: 400;
   line-height: var(--leading-display);
   letter-spacing: var(--track-display);
   text-transform: uppercase;
