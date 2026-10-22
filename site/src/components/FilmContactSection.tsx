@@ -32,7 +32,7 @@ const emptyForm = (): FormState => ({
 
 export default function FilmContactSection({
   heading = site.homeContact.heading,
-  lead,
+  lead = site.homeContact.lead,
 }: {
   heading?: string;
   lead?: string;

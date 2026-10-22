@@ -6,14 +6,14 @@ export const site = {
   gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
-    /** Home hero primary headline — two lines */
-    headline: "Let's fly\ntogether.",
+    /** Home hero primary headline */
+    headline: "Cleared for takeoff",
     /** Studio page only */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
     /** Home hero — under the fly headline */
     heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
     heroSupport:
-      "Some projects start with a blank page. Others arrive with a brief and a deadline. We're comfortable with both — from creative development and direction to production and final delivery.",
+      "Since 2006 · 1,000+ projects · Nestlé, McDonald’s, Samsung, Mastercard · 11 festival awards",
     /** Home header tagline beside brand */
     animalines: "Airlines",
     /** Shown under the header logo */
@@ -375,8 +375,8 @@ export const site = {
     ] as const,
   },
   homeContact: {
-    heading: "Have a project? Let's talk.",
-    lead: "",
+    heading: "Let's fly together.",
+    lead: "For teams that need speed / tight budgets",
   },
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
