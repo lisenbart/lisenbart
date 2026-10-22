@@ -3953,10 +3953,10 @@ html[data-hero-period="evening"] .home-explore {
    */
   .bear-art {
     inset: auto;
-    top: -14%;
+    top: -22%;
     left: 0;
     width: 100%;
-    height: 114%;
+    height: 122%;
     object-fit: cover;
     object-position: 78% top;
     transform: none;
