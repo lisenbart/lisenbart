@@ -38,7 +38,7 @@ export default function HomePage() {
   }, []);
 
   useLayoutEffect(() => {
-    Object.values(HERO_IMAGES).forEach((src) => {
+    [HERO_IMAGES.desktop, HERO_IMAGES.mobile].forEach((src) => {
       const preload = new Image();
       preload.src = src;
     });
@@ -74,7 +74,7 @@ export default function HomePage() {
     };
   }, []);
 
-  const heroSrc = heroImageForPeriod(period);
+  void heroImageForPeriod(period);
 
   return (
     <>
@@ -85,15 +85,18 @@ export default function HomePage() {
           className={`home-hero home-hero--${period}`}
           aria-labelledby="home-who-heading"
         >
-          <img
-            ref={bearRef}
-            className="bear-art"
-            src={heroSrc}
-            alt=""
-            width={2500}
-            height={2500}
-            fetchPriority="high"
-          />
+          <picture>
+            <source media="(max-width: 800px)" srcSet={HERO_IMAGES.mobile} width={1170} height={1560} />
+            <img
+              ref={bearRef}
+              className="bear-art"
+              src={HERO_IMAGES.desktop}
+              alt=""
+              width={2400}
+              height={800}
+              fetchPriority="high"
+            />
+          </picture>
           <div className="home-hero__copy film-reveal is-in">
             <div className="home-hero__intro">
               <h1 id="home-who-heading" className="home-hero__fly">
