@@ -74,7 +74,7 @@ export default function Header() {
         <a
           className={`brand-lockup${onSubpage ? "" : " brand-lockup--hero"}`}
           href={onSubpage ? routes.home : "#top"}
-          aria-label={`${site.brand}${onSubpage ? "" : ` ${site.studioHome.animalines}`} home`}
+          aria-label={`${site.brand} ${site.studioHome.established} home`}
           onClick={
             onSubpage
               ? undefined
@@ -87,11 +87,11 @@ export default function Header() {
         >
           <span className="brand-lockup__row">
             <span className="brand">{site.brand}</span>
-            {onSubpage ? null : (
-              <span className="brand-animalines">{site.studioHome.animalines}</span>
-            )}
+            <span className="brand-lockup__dot" aria-hidden="true">
+              ·
+            </span>
+            <span className="brand-est">{site.studioHome.established}</span>
           </span>
-          <span className="brand-est">{site.studioHome.established}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (

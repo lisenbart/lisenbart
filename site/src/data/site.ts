@@ -14,9 +14,7 @@ export const site = {
     heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
     heroSupport:
       "Since 2006 · 1,000+ projects · Nestlé, McDonald’s, Samsung, Mastercard · 11 festival awards",
-    /** Home header tagline beside brand */
-    animalines: "Airlines",
-    /** Shown under the header logo */
+    /** Shown with brand in the header lockup */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
     exploreLabel: "Explore Our Work",

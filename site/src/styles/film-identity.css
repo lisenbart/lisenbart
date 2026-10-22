@@ -250,10 +250,7 @@ img { display: block; width: 100%; }
 }
 
 .brand-lockup {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.2rem;
+  display: block;
   text-decoration: none;
   color: inherit;
 }
@@ -262,7 +259,7 @@ img { display: block; width: 100%; }
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.4em;
+  gap: 0.35em;
 }
 
 .brand {
@@ -273,29 +270,28 @@ img { display: block; width: 100%; }
   line-height: 1.1;
 }
 
-/* Home hero only: LISENBART FILM + Airlines */
-.brand-lockup--hero .brand {
+/* Home hero: slightly stronger lockup on the reel/image */
+.brand-lockup--hero .brand,
+.brand-lockup--hero .brand-est,
+.brand-lockup--hero .brand-lockup__dot {
   font-size: 0.9375rem; /* 15px */
   font-weight: 600;
   letter-spacing: 0.14em;
 }
 
-.brand-animalines {
-  font-family: var(--font-display);
-  font-size: 0.9375rem; /* 15px — same baseline, lighter */
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: 0.14em;
-  text-transform: none;
+.brand-lockup__dot {
+  font-size: var(--text-brand);
+  font-weight: 500;
+  letter-spacing: 0;
   line-height: 1.1;
 }
 
 .brand-est {
-  font-size: 0.625rem; /* 10px */
+  font-size: var(--text-brand);
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--track-brand);
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1.1;
   color: inherit;
 }
 
@@ -548,8 +544,8 @@ img { display: block; width: 100%; }
 /* Nav matches hero period while on home */
 html[data-hero-period="day"] .film-header .brand-lockup,
 html[data-hero-period="day"] .film-header .brand,
-html[data-hero-period="day"] .film-header .brand-animalines,
 html[data-hero-period="day"] .film-header .brand-est,
+html[data-hero-period="day"] .film-header .brand-lockup__dot,
 html[data-hero-period="day"] .film-header .desktop-nav a {
   color: #101524;
 }
@@ -566,8 +562,8 @@ html[data-hero-period="day"] .menu-button:not(.open) span {
 
 html[data-hero-period="evening"] .film-header .brand-lockup,
 html[data-hero-period="evening"] .film-header .brand,
-html[data-hero-period="evening"] .film-header .brand-animalines,
 html[data-hero-period="evening"] .film-header .brand-est,
+html[data-hero-period="evening"] .film-header .brand-lockup__dot,
 html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
@@ -575,11 +571,12 @@ html[data-hero-period="evening"] .film-header .desktop-nav a {
 /* Home + hero-reel pages: white logo with light shadow (desktop nav temporarily off) */
 html:has(.home-page--gateway) .film-header .brand-lockup,
 html:has(.home-page--gateway) .film-header .brand,
-html:has(.home-page--gateway) .film-header .brand-animalines,
 html:has(.home-page--gateway) .film-header .brand-est,
+html:has(.home-page--gateway) .film-header .brand-lockup__dot,
 html:has(.page-with-hero-reel) .film-header .brand-lockup,
 html:has(.page-with-hero-reel) .film-header .brand,
-html:has(.page-with-hero-reel) .film-header .brand-est {
+html:has(.page-with-hero-reel) .film-header .brand-est,
+html:has(.page-with-hero-reel) .film-header .brand-lockup__dot {
   color: #fff;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
@@ -3886,11 +3883,9 @@ html[data-hero-period="evening"] .home-explore {
     transform: scale(1);
   }
 
-  .brand-est {
-    font-size: 0.625rem;
-  }
   .brand-lockup--hero .brand,
-  .brand-animalines {
+  .brand-lockup--hero .brand-est,
+  .brand-lockup--hero .brand-lockup__dot {
     font-size: 0.75rem;
   }
   .mobile-menu { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) var(--space-4); }
