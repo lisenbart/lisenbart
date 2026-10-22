@@ -1237,9 +1237,19 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   border-bottom: 1px solid rgba(255, 255, 255, 0.55);
 }
 
-/* ── Originals project pages ── */
+/* ── Originals project pages ──
+ * Outer shell is full-bleed (hero + white page). Never clamp the page
+ * wrapper — that left a paper gutter on the right and cropped the reel.
+ */
 .project-page {
-  max-width: 1120px;
+  width: 100%;
+  max-width: none;
+}
+
+.project-page.page-with-hero-reel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .project-page.page-shell.page-shell--to-reel {
@@ -1248,11 +1258,15 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .project-page.page-shell.page-shell--from-reel {
+  width: 100%;
+  max-width: none;
   padding-top: 0.85rem;
   padding-bottom: var(--space-4);
 }
 
 .project-page.page-shell:not(.page-shell--to-reel):not(.page-shell--from-reel) {
+  width: 100%;
+  max-width: none;
   padding-bottom: var(--space-5);
 }
 
@@ -1593,7 +1607,13 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .project-page__layout--feature-dev .project-page__copy {
-  max-width: 40rem;
+  max-width: min(40rem, 100%);
+}
+
+.project-page__layout--film-short,
+.project-page__layout--feature-dev,
+.project-page__layout--preschool {
+  width: 100%;
 }
 
 .project-page__ip-case {
