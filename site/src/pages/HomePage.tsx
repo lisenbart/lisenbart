@@ -4,7 +4,6 @@ import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
   HERO_IMAGES,
-  heroImageForPeriod,
   heroPeriodFromDate,
   msUntilNextHeroBoundary,
   type HeroPeriod,
@@ -73,8 +72,6 @@ export default function HomePage() {
       delete document.documentElement.dataset.heroPeriod;
     };
   }, []);
-
-  void heroImageForPeriod(period);
 
   return (
     <>
