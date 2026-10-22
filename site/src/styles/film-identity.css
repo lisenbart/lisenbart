@@ -186,6 +186,8 @@ img { display: block; width: 100%; }
 
 .film-app {
   min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   background: var(--paper);
 }
 
@@ -564,6 +566,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 /* Film identity shell — isolate from archive chrome */
 .film-app {
   min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   background: var(--paper);
   color: var(--ink);
 }
@@ -1739,11 +1743,15 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .film-footer {
+  width: 100%;
+  margin-top: auto;
+  flex: 1 0 auto;
   padding: var(--space-4) 0;
-  border-top: 1px solid rgba(48, 93, 152, 0.12);
+  border-top: 1px solid rgba(16, 21, 36, 0.08);
   color: var(--muted);
-  /* Soft blue wash under legal / contact block */
-  background: #eef3f9;
+  /* Light gray, full-bleed; grows to fill remaining viewport */
+  background: #f4f4f5;
+  box-sizing: border-box;
 }
 
 .film-footer__inner {
@@ -3826,7 +3834,7 @@ html[data-hero-period="evening"] .home-explore {
   .contact-details { padding: 0; }
 
   .film-footer {
-    padding: var(--space-4) var(--gutter) var(--space-5);
+    padding: var(--space-4) 0 var(--space-5);
   }
 
   .film-footer__inner {
