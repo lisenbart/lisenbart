@@ -2412,13 +2412,15 @@ a.original-tile {
   overflow-wrap: break-word;
 }
 
-/* CTA */
+/* CTA — right edge of each card block */
 .home-paths__cta {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: flex-end;
   gap: 0.5rem;
+  align-self: flex-end;
   margin-top: auto;
+  margin-left: auto;
   padding-top: 1.25rem;
   font-family: var(--font-display);
   font-size: 0.875rem; /* 14px */
