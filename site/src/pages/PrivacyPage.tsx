@@ -21,6 +21,7 @@ export default function PrivacyPage() {
       </SEO>
 
       <article className="page-shell legal-doc">
+        <div className="legal-doc__inner">
         <div className="page-title-row">
           <h1>{meta.title}</h1>
         </div>
@@ -127,6 +128,7 @@ export default function PrivacyPage() {
             This page will be updated when the policy is approved for publication. Last technical
             draft: October 2026.
           </p>
+        </div>
         </div>
       </article>
     </>

@@ -2189,8 +2189,16 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--blue);
 }
 
-.legal-doc {
-  max-width: var(--measure-wide);
+/* Full-bleed white shell; content sits on the shared measure */
+.page-shell.legal-doc {
+  width: 100%;
+  max-width: none;
+}
+
+.legal-doc__inner {
+  width: 100%;
+  max-width: var(--home-measure);
+  margin-inline: auto;
 }
 
 .legal-doc__banner {
@@ -2207,7 +2215,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .legal-doc__body {
   width: 100%;
-  max-width: none;
+  max-width: var(--measure-wide);
 }
 
 .legal-doc__body h2 {
@@ -2251,6 +2259,51 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .legal-doc__body li + li {
   margin-top: 0.35rem;
+}
+
+.legal-doc__entities {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 800px) {
+  .legal-doc__entities {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+  }
+}
+
+.legal-doc__entity {
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+
+.legal-doc__entity h2 {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: var(--leading-label);
+}
+
+.legal-doc__address {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  font-style: normal;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
+
+.legal-doc__entity-name {
+  font-weight: 600;
+  color: var(--ink);
 }
 
 .legal-doc__prefs-btn {

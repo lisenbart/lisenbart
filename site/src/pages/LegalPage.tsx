@@ -1,8 +1,22 @@
 import { SEO } from "@/components/SEO";
-import { legalConfig } from "@/data/legal";
+import { legalConfig, type RegisteredPresence } from "@/data/legal";
 import { site } from "@/data/site";
 
 const meta = legalConfig.policies.legal;
+
+function EntityBlock({ presence }: { presence: RegisteredPresence }) {
+  return (
+    <section className="legal-doc__entity" aria-labelledby={`legal-${presence.countryLabel}`}>
+      <h2 id={`legal-${presence.countryLabel}`}>{presence.countryLabel}</h2>
+      <address className="legal-doc__address">
+        <span className="legal-doc__entity-name">{presence.legalName}</span>
+        <span>{presence.addressLine}</span>
+        <span>{presence.cityLine}</span>
+        <span>{presence.registrationLine}</span>
+      </address>
+    </section>
+  );
+}
 
 export default function LegalPage() {
   return (
@@ -14,37 +28,22 @@ export default function LegalPage() {
       />
 
       <article className="page-shell legal-doc">
-        <div className="page-title-row">
-          <h1>{meta.pageTitle}</h1>
-        </div>
+        <div className="legal-doc__inner">
+          <div className="page-title-row">
+            <h1>{meta.pageTitle}</h1>
+          </div>
 
-        <div className="legal-doc__body">
-          <p>
-            Registered business information for <strong>{site.brand}</strong>. Public contact:{" "}
-            <a href={`mailto:${site.email}`}>{site.email}</a>.
-          </p>
+          <div className="legal-doc__body">
+            <p>
+              Registered business information for <strong>{site.brand}</strong>. Public contact:{" "}
+              <a href={`mailto:${site.email}`}>{site.email}</a>.
+            </p>
 
-          <h2>{legalConfig.canada.countryLabel}</h2>
-          <p>
-            {legalConfig.canada.legalName}
-            <br />
-            {legalConfig.canada.addressLine}
-            <br />
-            {legalConfig.canada.cityLine}
-            <br />
-            {legalConfig.canada.registrationLine}
-          </p>
-
-          <h2>{legalConfig.ukraine.countryLabel}</h2>
-          <p>
-            {legalConfig.ukraine.legalName}
-            <br />
-            {legalConfig.ukraine.addressLine}
-            <br />
-            {legalConfig.ukraine.cityLine}
-            <br />
-            {legalConfig.ukraine.registrationLine}
-          </p>
+            <div className="legal-doc__entities">
+              <EntityBlock presence={legalConfig.canada} />
+              <EntityBlock presence={legalConfig.ukraine} />
+            </div>
+          </div>
         </div>
       </article>
     </>
