@@ -3584,34 +3584,69 @@ html[data-hero-period="evening"] .home-explore {
   .brand-est {
     font-size: 0.625rem;
   }
+  .brand-lockup--hero .brand,
+  .brand-animalines {
+    font-size: 0.75rem;
+  }
   .mobile-menu { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) var(--space-4); }
 
+  /*
+   * Mobile hero: copy stays in the upper safe zone; bear lives in the lower half.
+   * Avoid white body text sitting on the bright character.
+   */
   .home-hero {
     aspect-ratio: auto;
-    min-height: clamp(28rem, 72svh, 38rem);
+    min-height: 100svh;
+  }
+  .home-hero::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: min(58%, 22rem);
+    background: linear-gradient(
+      180deg,
+      rgba(8, 14, 32, 0.62) 0%,
+      rgba(8, 14, 32, 0.34) 55%,
+      rgba(8, 14, 32, 0) 100%
+    );
+    pointer-events: none;
   }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
-    object-position: 58% 36%;
-    transform: scale(1.06);
+    object-fit: cover;
+    object-position: 50% 78%;
+    transform: scale(1.18) translate3d(0, 10%, 0);
   }
   .home-hero__copy {
+    z-index: 3;
     max-width: none;
     justify-content: flex-start;
-    padding-bottom: var(--space-4);
+    /* Leave lower band clear for the bear */
+    padding-top: calc(var(--header-offset) + 0.15rem);
+    padding-bottom: clamp(15rem, 46svh, 22rem);
+    text-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.55),
+      0 2px 16px rgba(0, 0, 0, 0.4);
   }
   .home-hero__intro {
-    max-width: 22rem;
+    max-width: 100%;
   }
   .home-hero__fly {
-    font-size: clamp(2.375rem, 11vw, 3.25rem); /* ~38–52px */
+    font-size: clamp(2.25rem, 10.5vw, 2.85rem);
+    margin-bottom: 0.7rem;
   }
   .home-hero__support-heading {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.55rem;
   }
   .home-hero__support {
-    font-size: 0.9375rem;
-    max-width: 22rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    max-width: 21rem;
   }
   .home-cta {
     padding: 0.8rem 1.15rem;
