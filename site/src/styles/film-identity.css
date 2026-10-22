@@ -933,7 +933,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .page-hero-reel .film-showreel__play-circle .play-icon {
+  width: 26px;
+  height: 26px;
   fill: #000;
+  stroke: none;
   mix-blend-mode: destination-out;
 }
 
