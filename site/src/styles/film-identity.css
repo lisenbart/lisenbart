@@ -263,8 +263,9 @@ img { display: block; width: 100%; }
 }
 
 .desktop-nav {
+  /* TEMP V8: use hamburger on desktop too — restore display:flex later */
+  display: none;
   flex: 0 1 auto;
-  display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
@@ -321,11 +322,11 @@ img { display: block; width: 100%; }
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 2px rgba(16, 21, 36, 0.06);
   color: var(--ink);
-  /* Desktop: hidden while primary header nav is in view; floats after scroll */
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: scale(0.92);
+  /* TEMP V8: always show hamburger while desktop nav is hidden */
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
   transition:
     opacity 220ms ease,
     visibility 220ms ease,
@@ -524,17 +525,13 @@ html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
 
-/* Home: white logo + menu with stronger shadow (must follow period colors) */
+/* Home: white logo with light shadow (desktop nav temporarily off) */
 html:has(.home-page--gateway) .film-header .brand-lockup,
 html:has(.home-page--gateway) .film-header .brand,
 html:has(.home-page--gateway) .film-header .brand-animalines,
-html:has(.home-page--gateway) .film-header .brand-est,
-html:has(.home-page--gateway) .film-header .desktop-nav a {
+html:has(.home-page--gateway) .film-header .brand-est {
   color: #fff;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.55),
-    0 2px 14px rgba(0, 0, 0, 0.45),
-    0 0 24px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
 
 /* Dark soft disc over evening hero so the icon still reads */
@@ -3591,12 +3588,11 @@ html[data-hero-period="evening"] .home-explore {
   .mobile-menu { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) var(--space-4); }
 
   /*
-   * Mobile hero: copy stays in the upper safe zone; bear lives in the lower half.
-   * Avoid white body text sitting on the bright character.
+   * Mobile hero: shorter band, bear above, copy below the character.
    */
   .home-hero {
     aspect-ratio: auto;
-    min-height: 100svh;
+    min-height: clamp(26rem, 70svh, 34rem);
   }
   .home-hero::after {
     content: "";
@@ -3604,12 +3600,13 @@ html[data-hero-period="evening"] .home-explore {
     z-index: 2;
     left: 0;
     right: 0;
-    top: 0;
-    height: min(58%, 22rem);
+    bottom: 0;
+    top: auto;
+    height: min(48%, 16rem);
     background: linear-gradient(
-      180deg,
-      rgba(8, 14, 32, 0.62) 0%,
-      rgba(8, 14, 32, 0.34) 55%,
+      0deg,
+      rgba(8, 14, 32, 0.72) 0%,
+      rgba(8, 14, 32, 0.28) 55%,
       rgba(8, 14, 32, 0) 100%
     );
     pointer-events: none;
@@ -3617,36 +3614,35 @@ html[data-hero-period="evening"] .home-explore {
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
   .bear-art {
     object-fit: cover;
-    object-position: 50% 78%;
-    transform: scale(1.18) translate3d(0, 10%, 0);
+    object-position: 50% 22%;
+    transform: scale(1.08) translate3d(0, -2%, 0);
   }
   .home-hero__copy {
     z-index: 3;
     max-width: none;
-    justify-content: flex-start;
-    /* Leave lower band clear for the bear */
-    padding-top: calc(var(--header-offset) + 0.15rem);
-    padding-bottom: clamp(15rem, 46svh, 22rem);
+    justify-content: flex-end;
+    padding-top: calc(var(--header-offset) + 0.5rem);
+    padding-bottom: 1.35rem;
     text-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.55),
-      0 2px 16px rgba(0, 0, 0, 0.4);
+      0 1px 2px rgba(0, 0, 0, 0.5),
+      0 2px 12px rgba(0, 0, 0, 0.35);
   }
   .home-hero__intro {
     max-width: 100%;
   }
   .home-hero__fly {
-    font-size: clamp(2.25rem, 10.5vw, 2.85rem);
-    margin-bottom: 0.7rem;
+    font-size: clamp(2.1rem, 9.5vw, 2.65rem);
+    margin-bottom: 0.55rem;
   }
   .home-hero__support-heading {
     font-size: 0.6875rem;
     letter-spacing: 0.12em;
-    margin-bottom: 0.55rem;
+    margin-bottom: 0.45rem;
   }
   .home-hero__support {
     font-size: 0.875rem;
     line-height: 1.45;
-    max-width: 21rem;
+    max-width: 22rem;
   }
   .home-cta {
     padding: 0.8rem 1.15rem;
