@@ -93,30 +93,30 @@ export default function StudioPage() {
         <section className="studio-section" aria-labelledby="how-heading">
           <FilmReveal>
             <div className="studio-section__grid">
-              <h2 id="how-heading" className="studio-section-heading">
-                {page.howHeading}
-              </h2>
-              <div className="studio-section__body">
+              <div className="studio-section__aside">
+                <h2 id="how-heading" className="studio-section-heading">
+                  {page.howHeading}
+                </h2>
                 {page.howParagraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)} className="studio-models__note studio-section__readable">
+                  <p key={paragraph.slice(0, 48)} className="studio-models__note">
                     {paragraph}
                   </p>
                 ))}
-                <p className="studio-models__note studio-section__readable">{page.howNote}</p>
+              </div>
+              <div className="studio-section__body">
+                <p className="studio-models__note">{page.howNote}</p>
+                <ol className="studio-how-steps" aria-label="How we work">
+                  {page.howSteps.map((step, index) => (
+                    <li key={step.title} className="studio-how-steps__item">
+                      <span className="studio-how-steps__number">{step.number}</span>
+                      <h3 className="studio-models__title">{step.title}</h3>
+                      <p className="studio-models__text">{step.text}</p>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </div>
           </FilmReveal>
-          <ol className="studio-how-steps studio-section__full" aria-label="How we work">
-            {page.howSteps.map((step, index) => (
-              <li key={step.title} className="studio-how-steps__item">
-                <FilmReveal delayMs={index * 70}>
-                  <p className="studio-how-steps__number">{step.number}</p>
-                  <h3 className="studio-models__title">{step.title}</h3>
-                  <p className="studio-models__text">{step.text}</p>
-                </FilmReveal>
-              </li>
-            ))}
-          </ol>
         </section>
 
         <section className="studio-section studio-section--founder" aria-labelledby="people-heading">
