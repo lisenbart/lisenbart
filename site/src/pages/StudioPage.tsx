@@ -45,9 +45,6 @@ export default function StudioPage() {
                   {paragraph}
                 </p>
               ))}
-              <a className="studio-people__link" href={hubCanonicalHref(page.introCta.hub)}>
-                {page.introCta.label}
-              </a>
               <ul className="studio-models__list studio-stats" aria-label="Studio at a glance">
                 {page.stats.map((stat, index) => (
                   <StudioModelItem
@@ -74,6 +71,7 @@ export default function StudioPage() {
                 key={team.title}
                 title={team.title}
                 text={team.text}
+                href={hubCanonicalHref(team.hub)}
                 delayMs={index * 70}
               />
             ))}
@@ -113,7 +111,7 @@ export default function StudioPage() {
                 width={160}
                 height={160}
               />
-              <div>
+              <div className="studio-founder__copy">
                 <p className="studio-people__founder-name">{page.founderName}</p>
                 <p className="studio-people__founder-role">{page.founderRole}</p>
                 {page.founderProof.map((line) => (

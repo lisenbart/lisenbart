@@ -112,7 +112,7 @@ export default function FilmContactSection({
       <div className="contact-content">
         {status === "success" ? (
           <div role="status" aria-live="polite">
-            <h1>{copy.successHeading}</h1>
+            <h2 className="contact-heading">{copy.successHeading}</h2>
             <p className="film-contact__lead">{copy.successMessage}</p>
             <button type="button" className="send-button" onClick={() => setStatus("idle")}>
               {copy.successAction}
@@ -120,7 +120,7 @@ export default function FilmContactSection({
           </div>
         ) : (
           <>
-            <h1>{heading}</h1>
+            <h2 className="contact-heading">{heading}</h2>
             {lead ? <p className="film-contact__lead">{lead}</p> : null}
             {!isContactFormLive && import.meta.env.DEV ? (
               <p className="film-contact__lead">

@@ -386,7 +386,7 @@ export const site = {
     title: "",
     seoTitle: "Studio | LISENBART FILM",
     seoDescription:
-      "Independent animation studio founded in 2006. Production company discipline for brands, agencies, game studios and original IP.",
+      "Independent animation studio since 2006. Brand films, AI & hybrid production, game ads and original IP — one creative lead, specialized teams.",
     showreel: {
       label: "Studio Showreel",
       vimeoId: "849899875",
@@ -397,10 +397,6 @@ export const site = {
     introParagraphs: [
       "Founded in 2006, LISENBART FILM creates animation and film for brands, agencies, game studios and production partners. Alongside client work, we develop award-winning original films and IP.",
     ] as const,
-    introCta: {
-      label: "Explore Originals",
-      hub: "originals" as const,
-    },
     stats: [
       { value: "2006", label: "founded" },
       { value: "1,000+", label: "projects delivered" },
@@ -411,14 +407,17 @@ export const site = {
       {
         title: "LISENBART FILM",
         text: "Brand films, commercial animation and original IP.",
+        hub: "client-work" as const,
       },
       {
         title: "GLOWL",
         text: "AI & hybrid production.",
+        hub: "ai" as const,
       },
       {
         title: "LISENBART GAMES",
         text: "Game ads, UA creatives and playables.",
+        hub: "games" as const,
       },
     ] as const,
     teamsNote: "One creative lead. Specialized teams around every project.",

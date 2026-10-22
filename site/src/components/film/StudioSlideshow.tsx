@@ -1,65 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
 import { useShowreelSession } from "@/hooks/useShowreelSession";
 import { site } from "@/data/site";
 
-const SLIDES = [
-  {
-    src: "/images/studio/studio-strip.webp",
-    alt: "LISENBART FILM animation studio",
-  },
-  {
-    src: "/images/studio/showreel-collage.webp",
-    alt: "LISENBART FILM showreel collage",
-  },
-  {
-    src: "/images/reels/advertising/showreel-poster.webp",
-    alt: "Client Work collage",
-  },
-  {
-    src: "/images/explore/originals/card-poster.jpg",
-    alt: "Originals collage",
-  },
-  {
-    src: "/images/reels/games/showreel-poster.webp",
-    alt: "Game Ads collage",
-  },
-  {
-    src: "/images/reels/ai/showreel-poster.webp",
-    alt: "AI & Hybrid collage",
-  },
-] as const;
+/** Same studio still on desktop and mobile — bears in the studio. */
+const STUDIO_STILL = {
+  src: "/images/studio/studio-strip.webp",
+  alt: "LISENBART FILM animation studio",
+} as const;
 
-const INTERVAL_MS = 4500;
 const reel = site.studioPage.showreel;
 
 export default function StudioSlideshow() {
   const { openReel } = useReel();
   const isNarrow = useIsNarrowViewport();
-  const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
   const closeControl = useShowreelSession(playing, setPlaying);
-
-  useEffect(() => {
-    SLIDES.forEach(({ src }) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
-  useEffect(() => {
-    if (playing) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
-
-    const timer = window.setInterval(() => {
-      setActive((index) => (index + 1) % SLIDES.length);
-    }, INTERVAL_MS);
-
-    return () => window.clearInterval(timer);
-  }, [playing]);
 
   const play = () => {
     if (!reel.vimeoId) return;
@@ -73,20 +31,18 @@ export default function StudioSlideshow() {
   return (
     <div
       className={`studio-image${playing ? " studio-image--playing" : ""}`}
-      aria-label="Studio work collage slideshow"
+      aria-label="LISENBART FILM studio"
     >
-      {SLIDES.map((slide, index) => (
-        <img
-          key={slide.src}
-          className={index === active ? "is-active" : undefined}
-          src={slide.src}
-          alt={index === active && !playing ? slide.alt : ""}
-          width={1536}
-          height={1024}
-          loading={index === 0 ? "eager" : "lazy"}
-          aria-hidden={index === active && !playing ? undefined : true}
-        />
-      ))}
+      <img
+        className="is-active"
+        src={STUDIO_STILL.src}
+        alt={playing ? "" : STUDIO_STILL.alt}
+        width={1536}
+        height={1024}
+        loading="eager"
+        fetchPriority="high"
+        aria-hidden={playing ? true : undefined}
+      />
       {playing && reel.vimeoId ? (
         <>
           <div className="studio-image__player">
