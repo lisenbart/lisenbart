@@ -34,6 +34,9 @@ export default function GamesPage() {
               />
             ))}
           </ul>
+          <FilmReveal delayMs={40}>
+            <p className="studio-models__note">{page.clientsNote}</p>
+          </FilmReveal>
 
           <FilmReveal delayMs={80}>
             <div className="direction-external">

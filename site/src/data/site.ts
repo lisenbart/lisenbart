@@ -13,7 +13,7 @@ export const site = {
     /** Home hero — under the fly headline */
     heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
     heroSupport:
-      "Since 2006 · 1,000+ projects for brands like Nestlé, McDonald’s, Samsung and Mastercard · 11 festival awards",
+      "Since 2006 · 1,000+ projects for brands and studios like Nestlé, McDonald's, Samsung, Mastercard, Playtika and Moon Active · 11 festival awards",
     /** Shown with brand in the header lockup */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
@@ -260,7 +260,7 @@ export const site = {
     title: "About",
     paragraphs: [
       "I grew up drawing and making things up. At no point did I decide this was the career — I just kept doing it, and never got around to stopping.",
-      "Since then: artist, director, producer, studio founder. For a stretch I ran Ukranimafilm, Ukraine's national animation studio — still slightly improbable to me.",
+      "Since then: artist, director, producer, studio founder. For a stretch I was the last director of Ukranimafilm, Ukraine's oldest state animation studio — still slightly improbable to me.",
       "What all of it taught me is that creativity and production aren't enemies, even if they sometimes act like it. An idea needs room to breathe — and the right people, structure and runway to actually get made.",
       "I usually start with \"What if?\" It pretty quickly becomes: \"Alright — how do we pull this off?\"",
       "If you're working on something — an animated film, a world, a character, or an idea that is starting to take shape — send me a short brief or a few clear thoughts.",
@@ -337,6 +337,8 @@ export const site = {
         text: "New concepts, scripts and creative direction.",
       },
     ] as const,
+    clientsNote:
+      "Trusted by Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania and Beach Bum Games.",
     externalCta: "Explore LISENBART GAMES",
     externalHref: "https://www.lisenbart.games",
   },
@@ -439,7 +441,6 @@ export const site = {
     founderName: "Dmytro Lisenbart",
     founderRole: "Founder, Director & Producer",
     founderProof: [
-      "20 years directing · 15 years producing",
       "The last director of Ukranimafilm, Ukraine's oldest state animation studio",
       "Co-founder of UANIMA, the Ukrainian Animation Association",
     ] as const,
