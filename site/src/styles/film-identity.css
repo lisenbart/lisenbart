@@ -2306,6 +2306,7 @@ a.original-tile {
 .home-paths__direction {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.125rem; /* 18px */
   width: 100%;
   min-height: 2.375rem; /* 38px */

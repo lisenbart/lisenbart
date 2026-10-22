@@ -19,10 +19,10 @@ export default function HomePathsSection() {
           <FilmReveal key={item.seat} delayMs={index * 60}>
             <a className="home-paths__card" href={hubCanonicalHref(item.hub)}>
               <div className="home-paths__direction">
+                <span className="home-paths__direction-name">{item.direction}</span>
                 <span className="home-paths__seat" aria-hidden="true">
                   {item.seat}
                 </span>
-                <span className="home-paths__direction-name">{item.direction}</span>
               </div>
               {item.label ? <p className="home-paths__label">{item.label}</p> : null}
               <h3 className="home-paths__statement">{item.statement}</h3>
