@@ -65,10 +65,10 @@ export default function StudioPage() {
         <section className="studio-section" aria-labelledby="teams-heading">
           <FilmReveal>
             <div className="studio-section__grid">
-              <div className="studio-section__aside">
-                <h2 id="teams-heading" className="studio-section-heading">
-                  {page.teamsHeading}
-                </h2>
+              <h2 id="teams-heading" className="studio-section-heading">
+                {page.teamsHeading}
+              </h2>
+              <div className="studio-section__body">
                 <p className="studio-models__note">{page.teamsNote}</p>
               </div>
             </div>
@@ -94,13 +94,13 @@ export default function StudioPage() {
               <h2 id="how-heading" className="studio-section-heading">
                 {page.howHeading}
               </h2>
-              <div className="studio-section__body studio-section__body--measure">
+              <div className="studio-section__body">
                 {page.howParagraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 48)} className="studio-models__note">
+                  <p key={paragraph.slice(0, 48)} className="studio-models__note studio-section__readable">
                     {paragraph}
                   </p>
                 ))}
-                <p className="studio-models__note">{page.howNote}</p>
+                <p className="studio-models__note studio-section__readable">{page.howNote}</p>
               </div>
             </div>
           </FilmReveal>

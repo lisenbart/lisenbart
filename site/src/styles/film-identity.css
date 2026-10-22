@@ -775,21 +775,20 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   display: grid;
   gap: var(--space-3);
   align-items: start;
+  width: 100%;
 }
 
-.studio-section__aside .studio-section-heading {
-  margin-bottom: var(--space-2);
-}
-
-.studio-section__aside .studio-models__note {
-  margin-top: 0;
+.studio-section__body {
+  min-width: 0;
+  width: 100%;
 }
 
 .studio-section__body > .studio-models__note:first-child {
   margin-top: 0;
 }
 
-.studio-section__body--measure {
+/* Line length only — column still spans to the same right edge as full-width blocks */
+.studio-section__readable {
   max-width: var(--measure);
 }
 
@@ -799,6 +798,21 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-section__full {
   margin-top: var(--space-4);
+  width: 100%;
+}
+
+/* Match hero / contact: same display family, not bold, calmer than content titles */
+.studio-page .studio-section-heading {
+  margin: 0;
+  font-size: calc(var(--text-display) * 0.75);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  letter-spacing: var(--track-display);
+  text-transform: uppercase;
+}
+
+.studio-page .studio-section-heading::after {
+  content: none;
 }
 
 .studio-stats .studio-models__title {
@@ -836,18 +850,19 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .studio-how-steps__number {
-  margin: 0 0 0.45rem;
+  margin: 0 0 0.55rem;
   font-family: var(--font-display);
-  font-size: var(--text-meta);
+  font-size: var(--text-title);
   font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--muted);
+  line-height: 1;
+  letter-spacing: var(--track-title);
+  text-transform: none;
+  color: var(--ink);
 }
 
 @media (min-width: 768px) {
   .studio-section__grid {
-    grid-template-columns: minmax(11rem, 1fr) minmax(0, 2fr);
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr);
     column-gap: var(--space-5);
     row-gap: var(--space-3);
   }
@@ -3813,10 +3828,6 @@ html[data-hero-period="evening"] .home-explore {
 
 .studio-section .studio-stats {
   margin-top: var(--space-4);
-}
-
-.studio-section .studio-section-heading {
-  margin-bottom: 0;
 }
 
 .studio-image {
