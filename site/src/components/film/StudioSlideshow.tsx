@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
-import ShowreelCloseButton from "@/components/film/ShowreelCloseButton";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
+import { useShowreelSession } from "@/hooks/useShowreelSession";
 import { site } from "@/data/site";
 
 const SLIDES = [
@@ -40,6 +40,7 @@ export default function StudioSlideshow() {
   const isNarrow = useIsNarrowViewport();
   const [active, setActive] = useState(0);
   const [playing, setPlaying] = useState(false);
+  const closeControl = useShowreelSession(playing, setPlaying);
 
   useEffect(() => {
     SLIDES.forEach(({ src }) => {
@@ -58,15 +59,6 @@ export default function StudioSlideshow() {
     }, INTERVAL_MS);
 
     return () => window.clearInterval(timer);
-  }, [playing]);
-
-  useEffect(() => {
-    if (!playing) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setPlaying(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
   }, [playing]);
 
   const play = () => {
@@ -105,7 +97,7 @@ export default function StudioSlideshow() {
               allowFullScreen
             />
           </div>
-          <ShowreelCloseButton onClose={() => setPlaying(false)} />
+          {closeControl}
         </>
       ) : (
         <button

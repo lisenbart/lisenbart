@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
-import ShowreelCloseButton from "@/components/film/ShowreelCloseButton";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
+import { useShowreelSession } from "@/hooks/useShowreelSession";
 
 /**
  * Single showreel presentation: one poster, one play action.
@@ -25,16 +25,8 @@ export default function FilmShowreel({
   const { openReel } = useReel();
   const isNarrow = useIsNarrowViewport();
   const [playing, setPlaying] = useState(false);
+  const closeControl = useShowreelSession(playing, setPlaying);
   const canPlayInline = Boolean(vimeoId);
-
-  useEffect(() => {
-    if (!playing) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setPlaying(false);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [playing]);
 
   const play = () => {
     if (canPlayInline && vimeoId) {
@@ -65,7 +57,7 @@ export default function FilmShowreel({
               allowFullScreen
             />
           </div>
-          <ShowreelCloseButton onClose={() => setPlaying(false)} />
+          {closeControl}
         </>
       ) : (
         <button
