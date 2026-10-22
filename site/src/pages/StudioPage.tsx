@@ -67,8 +67,9 @@ export default function StudioPage() {
         <section className="studio-section studio-section--tint" aria-labelledby="teams-heading">
           <FilmReveal>
             <div className="studio-section__grid">
-              <h2 id="teams-heading" className="studio-section-heading">
-                {page.teamsHeading}
+              <h2 id="teams-heading" className="studio-section-heading studio-section-heading--teams">
+                <span className="studio-section-heading__run">One vision,</span>{" "}
+                <span className="studio-section-heading__run">three&nbsp;teams</span>
               </h2>
               <div className="studio-section__body">
                 <p className="studio-models__note">{page.teamsNote}</p>
@@ -105,18 +106,18 @@ export default function StudioPage() {
               </div>
               <div className="studio-section__body">
                 <p className="studio-models__note">{page.howNote}</p>
-                <ol className="studio-how-steps" aria-label="How we work">
-                  {page.howSteps.map((step, index) => (
-                    <li key={step.title} className="studio-how-steps__item">
-                      <span className="studio-how-steps__number">{step.number}</span>
-                      <h3 className="studio-models__title">{step.title}</h3>
-                      <p className="studio-models__text">{step.text}</p>
-                    </li>
-                  ))}
-                </ol>
               </div>
             </div>
           </FilmReveal>
+          <ol className="studio-how-steps studio-section__full" aria-label="How we work">
+            {page.howSteps.map((step) => (
+              <li key={step.title} className="studio-how-steps__item">
+                <span className="studio-how-steps__number">{step.number}</span>
+                <h3 className="studio-models__title">{step.title}</h3>
+                <p className="studio-models__text">{step.text}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="studio-section studio-section--founder studio-section--tint" aria-labelledby="people-heading">

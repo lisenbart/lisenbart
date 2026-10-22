@@ -858,6 +858,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   content: none;
 }
 
+/* Prefer “One vision, / three teams” over an orphan “teams” */
+.studio-section-heading--teams .studio-section-heading__run {
+  display: inline;
+  white-space: nowrap;
+}
+
 .studio-stats .studio-models__title {
   font-size: clamp(2rem, 3.4vw, 2.75rem);
   letter-spacing: var(--track-display);
@@ -875,15 +881,20 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-how-steps {
   display: grid;
   gap: 0;
-  margin: var(--space-4) 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
   width: 100%;
 }
 
-.studio-section__body > .studio-models__note:first-child + .studio-how-steps,
-.studio-section__body > .studio-how-steps:first-child {
+.studio-how-steps.studio-section__full {
   margin-top: var(--space-4);
+}
+
+.studio-how-steps .studio-models__title {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .studio-how-steps__item {
