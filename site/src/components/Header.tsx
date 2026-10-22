@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
-import { contactPageHref, goToContact, site } from "@/data/site";
+import { contactNavHref, goToContact, site } from "@/data/site";
 import {
   hubCanonicalHref,
   isSiteSubpage,
@@ -11,7 +11,7 @@ import {
 type NavId = (typeof site.primaryNav)[number]["id"];
 
 function navHref(id: NavId) {
-  if (id === "contact") return contactPageHref();
+  if (id === "contact") return contactNavHref();
   return hubCanonicalHref(id);
 }
 
@@ -60,10 +60,14 @@ export default function Header() {
   };
 
   const onNavClick = (id: NavId, e: MouseEvent<HTMLAnchorElement>) => {
+    const wasMenuOpen = menuOpen;
     closeMenu();
     if (id !== "contact") return;
     e.preventDefault();
-    goToContact();
+    // Let the mobile menu unlock body scroll before smooth-scrolling to the form.
+    const run = () => goToContact();
+    if (wasMenuOpen) window.setTimeout(run, 40);
+    else run();
   };
 
   const showFloating = navDocked || menuOpen;

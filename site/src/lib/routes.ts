@@ -119,6 +119,14 @@ export function isSiteSubpage(pathname?: string) {
   );
 }
 
+/** True when the route renders FilmContactSection (id=contact). */
+export function pageHasContactForm(pathname?: string): boolean {
+  if (parseLegalPage(pathname)) return false;
+  const normalized = normalizePathname(resolvePathname(pathname));
+  if (normalized === routes.home) return false;
+  return parseHubPage(pathname) !== null || parseOriginalsProject(pathname) !== null;
+}
+
 /** Canonical hub path for links, sitemap, and SEO (trailing slash). */
 export function canonicalHubPath(slug: HubPageSlug): string {
   return `${hubPageHref(slug)}/`;

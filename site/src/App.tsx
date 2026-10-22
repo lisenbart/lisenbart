@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import HashScroll from "./components/HashScroll";
 import HomePage from "./pages/HomePage";
 import FilmPage from "./pages/FilmPage";
 import OriginalProjectPage from "./pages/OriginalProjectPage";
@@ -66,6 +67,7 @@ export default function App() {
     <ReelProvider>
       <div className="film-app">
         <Header />
+        <HashScroll />
         {resolveMain()}
         <Footer />
         <CookieConsent />

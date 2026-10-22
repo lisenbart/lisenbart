@@ -1,6 +1,6 @@
 import { legalConfig } from "@/data/legal";
 import { openCookiePreferences } from "@/components/CookieConsent";
-import { contactPageHref, goToContact, site } from "@/data/site";
+import { contactNavHref, goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
 export default function Footer() {
@@ -23,7 +23,7 @@ export default function Footer() {
               link.id === "contact" ? (
                 <a
                   key={link.id}
-                  href={contactPageHref()}
+                  href={contactNavHref()}
                   onClick={(e) => {
                     e.preventDefault();
                     goToContact();

@@ -1,4 +1,5 @@
 import { publicAsset } from "@/lib/publicAsset";
+import { pageHasContactForm } from "@/lib/routes";
 
 export const site = {
   name: "LISENBART FILM",
@@ -545,9 +546,14 @@ export function contactPageHref() {
   return `/studio/#${sectionIds.contact}`;
 }
 
+/** Nav/footer href: same-page #contact when the form is on this route, else Studio. */
+export function contactNavHref(pathname?: string) {
+  return pageHasContactForm(pathname) ? contactHref() : contactPageHref();
+}
+
 /**
  * Scroll to Contact on the current page when present.
- * Otherwise open Studio contact (homepage no longer hosts the form).
+ * Otherwise open Studio contact (home / legal / cookie pages have no form).
  */
 export function goToContact(onDone?: () => void) {
   if (document.getElementById(sectionIds.contact)) {
@@ -608,6 +614,13 @@ export function scrollToSection(id: string, onDone?: () => void) {
   document.body.classList.remove("header-connect-open");
 
   const runScroll = () => {
+    if (id === sectionIds.contact) {
+      const nextHash = `#${sectionIds.contact}`;
+      if (window.location.hash !== nextHash) {
+        history.replaceState(null, "", nextHash);
+      }
+    }
+
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     onDone?.();
 
