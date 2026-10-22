@@ -1698,15 +1698,19 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .film-footer {
-  padding: var(--space-4) var(--gutter) var(--space-4);
+  padding: var(--space-4) 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
   background: var(--paper);
 }
 
 .film-footer__inner {
-  max-width: 72rem;
+  /* Same centered column as header + home hero/paths */
+  width: 100%;
+  max-width: var(--home-measure);
   margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -2153,7 +2157,7 @@ a.original-tile {
 }
 
 .home-gateway {
-  padding: clamp(2.5rem, 5vw, 3.75rem) var(--gutter);
+  padding: clamp(2.5rem, 5vw, 3.75rem) 0;
   background: var(--white);
   color: var(--ink);
 }
@@ -2163,12 +2167,14 @@ a.original-tile {
   padding-bottom: clamp(2.75rem, 5.5vw, 4rem);
 }
 
-/* Center section content blocks (FilmReveal wrappers + grids) */
+/* Same column as header / hero / footer — gutter inside the measure */
 .home-paths > .film-reveal,
 .home-paths__grid {
   width: 100%;
   max-width: var(--home-measure);
   margin-inline: auto;
+  padding-inline: var(--gutter);
+  box-sizing: border-box;
 }
 
 .home-paths__heading {
