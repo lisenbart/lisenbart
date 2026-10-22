@@ -2302,30 +2302,16 @@ a.original-tile {
   outline-offset: 6px;
 }
 
-/* Direction bar — seat code + business direction */
+/* Audience bar — FOR … / AI & HYBRID */
 .home-paths__direction {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.125rem; /* 18px */
   width: 100%;
   min-height: 2.375rem; /* 38px */
   margin: 0 0 1rem;
   padding: 0.55rem 0.75rem;
   box-sizing: border-box;
   background: #1d1d1f;
-  border-bottom: 0;
-}
-
-.home-paths__seat {
-  flex-shrink: 0;
-  font-family: var(--font-display);
-  font-size: 0.71875rem; /* 11.5px */
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.48);
 }
 
 .home-paths__direction-name {
@@ -2338,19 +2324,6 @@ a.original-tile {
   color: #fff;
 }
 
-/* L1 — audience label (secondary; omitted on AI block) */
-.home-paths__label {
-  margin: 0 0 0.55rem;
-  font-family: var(--font-display);
-  font-size: 0.6875rem; /* 11px */
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  line-height: 1.4;
-  color: #8a8f98;
-}
-
-/* When no audience label, keep statement spacing from the bar */
 .home-paths__direction + .home-paths__statement {
   margin-top: 0.15rem;
 }
@@ -3733,7 +3706,6 @@ html[data-hero-period="evening"] .home-explore {
     min-height: 2.25rem;
     margin-bottom: 0.875rem;
     padding: 0.5rem 0.65rem;
-    gap: 1rem;
   }
 
   .home-paths__direction-name {

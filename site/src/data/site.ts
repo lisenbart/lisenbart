@@ -29,8 +29,6 @@ export const site = {
     heading: "Welcome aboard.",
     items: [
       {
-        seat: "1A",
-        direction: "Client Work",
         label: "For Brands & Agencies",
         statement: "From the first sketch to the final cut.",
         text: "Commercial films, animation and creative production. Bring us a brief, a script or just the beginnings of an idea.",
@@ -38,17 +36,13 @@ export const site = {
         hub: "client-work" as const,
       },
       {
-        seat: "1B",
-        direction: "AI & Hybrid",
-        label: null,
+        label: "AI & Hybrid",
         statement: "New tools. Same creative standards.",
         text: "AI, animation, compositing — whatever serves the shot. The creative decisions stay with filmmakers.",
         cta: "Explore AI",
         hub: "ai" as const,
       },
       {
-        seat: "2A",
-        direction: "Game Ads",
         label: "For Game Studios",
         statement: "Let's get your game noticed.",
         text: "Video ads, UA creatives and playables. From ready-to-produce assets to fresh creative concepts.",
@@ -56,8 +50,6 @@ export const site = {
         hub: "games" as const,
       },
       {
-        seat: "2B",
-        direction: "Originals",
         label: "For Film & IP Partners",
         statement: "We've got stories of our own, too.",
         text: "Original films and IP in development. Always open to the right creative partners and co-producers.",
