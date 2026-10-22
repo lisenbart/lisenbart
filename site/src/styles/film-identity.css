@@ -1732,7 +1732,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   padding: var(--space-4) 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  background: var(--paper);
+  background: #fff;
 }
 
 .film-footer__inner {
@@ -2195,7 +2195,7 @@ a.original-tile {
 
 .home-gateway {
   padding: 0;
-  background: var(--white);
+  background: #fff;
   color: var(--ink);
 }
 
