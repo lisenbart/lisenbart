@@ -250,16 +250,12 @@ img { display: block; width: 100%; }
 }
 
 .brand-lockup {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
   text-decoration: none;
   color: inherit;
-}
-
-.brand-lockup__row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35em;
 }
 
 .brand {
@@ -270,28 +266,19 @@ img { display: block; width: 100%; }
   line-height: 1.1;
 }
 
-/* Home hero: slightly stronger lockup on the reel/image */
-.brand-lockup--hero .brand,
-.brand-lockup--hero .brand-est,
-.brand-lockup--hero .brand-lockup__dot {
+/* Home hero: slightly stronger brand on the image */
+.brand-lockup--hero .brand {
   font-size: 0.9375rem; /* 15px */
   font-weight: 600;
   letter-spacing: 0.14em;
 }
 
-.brand-lockup__dot {
-  font-size: var(--text-brand);
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.1;
-}
-
 .brand-est {
-  font-size: var(--text-brand);
+  font-size: 0.625rem; /* 10px — under the logo */
   font-weight: 500;
-  letter-spacing: var(--track-brand);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1.2;
   color: inherit;
 }
 
@@ -545,7 +532,6 @@ img { display: block; width: 100%; }
 html[data-hero-period="day"] .film-header .brand-lockup,
 html[data-hero-period="day"] .film-header .brand,
 html[data-hero-period="day"] .film-header .brand-est,
-html[data-hero-period="day"] .film-header .brand-lockup__dot,
 html[data-hero-period="day"] .film-header .desktop-nav a {
   color: #101524;
 }
@@ -563,7 +549,6 @@ html[data-hero-period="day"] .menu-button:not(.open) span {
 html[data-hero-period="evening"] .film-header .brand-lockup,
 html[data-hero-period="evening"] .film-header .brand,
 html[data-hero-period="evening"] .film-header .brand-est,
-html[data-hero-period="evening"] .film-header .brand-lockup__dot,
 html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
@@ -572,11 +557,9 @@ html[data-hero-period="evening"] .film-header .desktop-nav a {
 html:has(.home-page--gateway) .film-header .brand-lockup,
 html:has(.home-page--gateway) .film-header .brand,
 html:has(.home-page--gateway) .film-header .brand-est,
-html:has(.home-page--gateway) .film-header .brand-lockup__dot,
 html:has(.page-with-hero-reel) .film-header .brand-lockup,
 html:has(.page-with-hero-reel) .film-header .brand,
-html:has(.page-with-hero-reel) .film-header .brand-est,
-html:has(.page-with-hero-reel) .film-header .brand-lockup__dot {
+html:has(.page-with-hero-reel) .film-header .brand-est {
   color: #fff;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
@@ -3883,10 +3866,11 @@ html[data-hero-period="evening"] .home-explore {
     transform: scale(1);
   }
 
-  .brand-lockup--hero .brand,
-  .brand-lockup--hero .brand-est,
-  .brand-lockup--hero .brand-lockup__dot {
+  .brand-lockup--hero .brand {
     font-size: 0.75rem;
+  }
+  .brand-est {
+    font-size: 0.625rem;
   }
   .mobile-menu { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) var(--space-4); }
 

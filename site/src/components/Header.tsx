@@ -85,13 +85,8 @@ export default function Header() {
                 }
           }
         >
-          <span className="brand-lockup__row">
-            <span className="brand">{site.brand}</span>
-            <span className="brand-lockup__dot" aria-hidden="true">
-              ·
-            </span>
-            <span className="brand-est">{site.studioHome.established}</span>
-          </span>
+          <span className="brand">{site.brand}</span>
+          <span className="brand-est">{site.studioHome.established}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (
