@@ -761,6 +761,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   border-top: 1px solid var(--line);
 }
 
+.studio-section--tint {
+  background: #f4f4f5;
+}
+
 .studio-section:first-of-type,
 .studio-page .page-hero-reel + .studio-section {
   border-top: 0;

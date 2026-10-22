@@ -34,7 +34,7 @@ export default function StudioPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <section className="studio-section" aria-labelledby="who-heading">
+        <section className="studio-section studio-section--tint" aria-labelledby="who-heading">
           <FilmReveal delayMs={100}>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -90,7 +90,7 @@ export default function StudioPage() {
           </ul>
         </section>
 
-        <section className="studio-section" aria-labelledby="how-heading">
+        <section className="studio-section studio-section--tint" aria-labelledby="how-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
