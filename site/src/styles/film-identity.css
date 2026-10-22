@@ -273,7 +273,7 @@ img { display: block; width: 100%; }
   line-height: 1.1;
 }
 
-/* Home hero only: LISENBART FILM + ANIMLINES */
+/* Home hero only: LISENBART FILM + Airlines */
 .brand-lockup--hero .brand {
   font-size: 0.9375rem; /* 15px */
   font-weight: 600;
@@ -284,8 +284,9 @@ img { display: block; width: 100%; }
   font-family: var(--font-display);
   font-size: 0.9375rem; /* 15px — same baseline, lighter */
   font-weight: 300;
+  font-style: italic;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
+  text-transform: none;
   line-height: 1.1;
 }
 

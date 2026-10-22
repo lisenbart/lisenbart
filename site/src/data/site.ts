@@ -15,7 +15,7 @@ export const site = {
     heroSupport:
       "Some projects start with a blank page. Others arrive with a brief and a deadline. We're comfortable with both — from creative development and direction to production and final delivery.",
     /** Home header tagline beside brand */
-    animalines: "Animlines",
+    animalines: "Airlines",
     /** Shown under the header logo */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
