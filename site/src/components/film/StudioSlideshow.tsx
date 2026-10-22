@@ -59,6 +59,15 @@ export default function StudioSlideshow() {
     return () => window.clearInterval(timer);
   }, [playing]);
 
+  useEffect(() => {
+    if (!playing) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setPlaying(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [playing]);
+
   const play = () => {
     if (!reel.vimeoId) return;
     if (isNarrow) {
@@ -93,6 +102,13 @@ export default function StudioSlideshow() {
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
           />
+          <button
+            type="button"
+            className="film-showreel__close"
+            onClick={() => setPlaying(false)}
+          >
+            Close
+          </button>
         </div>
       ) : (
         <button

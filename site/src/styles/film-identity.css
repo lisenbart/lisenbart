@@ -926,6 +926,29 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   z-index: 4;
 }
 
+.film-showreel__close {
+  position: absolute;
+  z-index: 5;
+  top: max(1rem, env(safe-area-inset-top));
+  right: max(1rem, env(safe-area-inset-right));
+  border: 0;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.film-showreel__close:hover,
+.film-showreel__close:focus-visible {
+  background: rgba(0, 0, 0, 0.7);
+  outline: none;
+}
+
 .page-hero-reel:has(.film-showreel__stage--playing) .page-hero-reel__chrome,
 .page-hero-reel:has(.studio-image--playing) .page-hero-reel__chrome,
 .page-hero-reel:has(.studio-image--playing) .studio-image::before {
