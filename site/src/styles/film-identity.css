@@ -3582,8 +3582,8 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 /*
- * Full-bleed reel heroes sit under the absolute film-header.
- * Must beat .work-page in index.css (same file loads after @import film-identity).
+ * Full-bleed reel heroes — no page padding on any side.
+ * .studio-page shorthand keeps gutter L/R unless we zero the whole box.
  */
 .work-page.page-with-hero-reel,
 .games-page.page-with-hero-reel,
@@ -3591,8 +3591,7 @@ html[data-hero-period="evening"] .home-explore {
 .studio-page.page-with-hero-reel,
 .project-page.page-with-hero-reel,
 .page-with-hero-reel {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+  padding: 0 !important;
 }
 
 .studio-page .page-title-row {
