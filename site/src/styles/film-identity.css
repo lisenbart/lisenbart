@@ -478,10 +478,10 @@ img { display: block; width: 100%; }
 
 .home-hero {
   position: relative;
-  /* Desktop cinematic band ~2.9–3.1:1; min-height keeps copy readable */
+  /* Desktop cinematic band — a bit taller for presence */
   width: 100%;
-  aspect-ratio: 3 / 1;
-  min-height: clamp(22rem, 34vw, 30rem);
+  aspect-ratio: 2.55 / 1;
+  min-height: clamp(26rem, 40vw, 36rem);
   overflow: hidden;
   background: #0c1630;
   display: flex;
@@ -854,7 +854,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .page-hero-reel {
   position: relative;
   width: 100%;
-  min-height: clamp(22rem, 52vh, 34rem);
+  min-height: clamp(26rem, 60vh, 40rem);
   overflow: hidden;
   background: #142038;
 }
@@ -943,7 +943,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   justify-content: flex-end;
   gap: var(--space-2);
   width: 100%;
-  min-height: clamp(22rem, 52vh, 34rem);
+  min-height: clamp(26rem, 60vh, 40rem);
   max-width: var(--home-measure);
   margin: 0 auto;
   padding:
