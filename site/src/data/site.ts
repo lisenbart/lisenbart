@@ -12,7 +12,7 @@ export const site = {
     /** Home hero — lower copy block */
     heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY.",
     heroSupport:
-      "Some projects need a fresh idea. Others come with a brief and a deadline. We do both — from creative development and direction to production and final delivery.",
+      "Some projects start with a blank page. Others arrive with a brief and a deadline. We're comfortable with both — from creative development and direction to production and final delivery.",
     /** Shown under the header logo — not above the hero slogan */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
@@ -27,29 +27,29 @@ export const site = {
     items: [
       {
         label: "For Brands & Agencies",
-        statement: "You bring the brief. We'll bring it to life.",
-        text: "Ideas, direction, animation and production. Whatever the story needs.",
+        statement: "From the first sketch to the final cut.",
+        text: "Commercial films, animation and creative production. Bring us a brief, a script or just the beginnings of an idea.",
         cta: "Explore Client Work",
         hub: "client-work" as const,
       },
       {
         label: "For Game Studios",
-        statement: "Good games deserve good ads.",
-        text: "Game trailers, performance creatives and playables. Built to stand out.",
+        statement: "Let's get your game noticed.",
+        text: "Video ads, UA creatives and playables. From ready-to-produce assets to fresh creative concepts.",
         cta: "Explore Games",
         hub: "games" as const,
       },
       {
         label: "For Film & IP Partners",
-        statement: "Some stories are worth making together.",
-        text: "Original films, new worlds and ideas looking for the right partners.",
+        statement: "We've got stories of our own, too.",
+        text: "Original films and IP in development. Always open to the right creative partners and co-producers.",
         cta: "Explore Originals",
         hub: "originals" as const,
       },
       {
         label: "AI & Hybrid",
         statement: "New tools. Same creative standards.",
-        text: "AI is part of our creative toolbox. The thinking, direction and decisions are still ours.",
+        text: "AI, animation, compositing — whatever serves the shot. The creative decisions stay with filmmakers.",
         cta: "Explore AI",
         hub: "ai" as const,
       },
