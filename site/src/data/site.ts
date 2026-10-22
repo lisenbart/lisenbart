@@ -33,6 +33,13 @@ export const site = {
         hub: "client-work" as const,
       },
       {
+        label: "AI & Hybrid",
+        statement: "New tools. Same creative standards.",
+        text: "AI, animation, compositing — whatever serves the shot. The creative decisions stay with filmmakers.",
+        cta: "Explore AI",
+        hub: "ai" as const,
+      },
+      {
         label: "For Game Studios",
         statement: "Let's get your game noticed.",
         text: "Video ads, UA creatives and playables. From ready-to-produce assets to fresh creative concepts.",
@@ -45,13 +52,6 @@ export const site = {
         text: "Original films and IP in development. Always open to the right creative partners and co-producers.",
         cta: "Explore Originals",
         hub: "originals" as const,
-      },
-      {
-        label: "AI & Hybrid",
-        statement: "New tools. Same creative standards.",
-        text: "AI, animation, compositing — whatever serves the shot. The creative decisions stay with filmmakers.",
-        cta: "Explore AI",
-        hub: "ai" as const,
       },
     ] as const,
   },
@@ -443,8 +443,8 @@ export const site = {
   },
   primaryNav: [
     { id: "client-work" as const, label: "Client Work" },
-    { id: "games" as const, label: "Game Ads" },
     { id: "ai" as const, label: "AI & Hybrid" },
+    { id: "games" as const, label: "Game Ads" },
     { id: "originals" as const, label: "Originals" },
     { id: "studio" as const, label: "Studio" },
     { id: "contact" as const, label: "Contact" },
