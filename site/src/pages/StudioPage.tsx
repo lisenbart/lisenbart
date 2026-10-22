@@ -117,41 +117,38 @@ export default function StudioPage() {
           </ol>
         </section>
 
-        <section className="studio-pull" aria-label="Studio approach">
-          <FilmReveal>
-            <blockquote className="studio-pull__quote">
-              <p>{page.pullQuote}</p>
-            </blockquote>
-          </FilmReveal>
-        </section>
-
         <section className="studio-section studio-section--founder" aria-labelledby="people-heading">
           <FilmReveal>
             <div className="studio-section__grid">
-              <h2 id="people-heading" className="studio-section-heading">
-                {page.peopleHeading}
-              </h2>
-              <div className="studio-founder">
-                <img
-                  className="studio-founder__portrait"
-                  src={publicAsset(page.founderPortrait)}
-                  alt={page.founderPortraitAlt}
-                  width={200}
-                  height={200}
-                />
-                <div className="studio-founder__copy">
-                  <p className="studio-people__founder-name">{page.founderName}</p>
-                  <p className="studio-people__founder-role">{page.founderRole}</p>
-                  {page.founderProof.map((line) => (
-                    <p key={line} className="studio-people__founder-proof">
-                      {line}
-                    </p>
-                  ))}
-                  <a className="studio-people__link" href={hubCanonicalHref("about")}>
-                    {page.founderCta}
-                  </a>
+              <div className="studio-section__aside">
+                <h2 id="people-heading" className="studio-section-heading">
+                  {page.peopleHeading}
+                </h2>
+                <div className="studio-founder">
+                  <img
+                    className="studio-founder__portrait"
+                    src={publicAsset(page.founderPortrait)}
+                    alt={page.founderPortraitAlt}
+                    width={200}
+                    height={200}
+                  />
+                  <div className="studio-founder__copy">
+                    <p className="studio-people__founder-name">{page.founderName}</p>
+                    <p className="studio-people__founder-role">{page.founderRole}</p>
+                    {page.founderProof.map((line) => (
+                      <p key={line} className="studio-people__founder-proof">
+                        {line}
+                      </p>
+                    ))}
+                    <a className="studio-people__link" href={hubCanonicalHref("about")}>
+                      {page.founderCta}
+                    </a>
+                  </div>
                 </div>
               </div>
+              <blockquote className="studio-pull__quote">
+                <p>{page.pullQuote}</p>
+              </blockquote>
             </div>
           </FilmReveal>
         </section>
