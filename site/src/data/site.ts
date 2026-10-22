@@ -6,14 +6,17 @@ export const site = {
   gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
-    headline: "Creative freedom\nProduction control",
-    /** Studio page — not shown on Home V6 hero */
+    /** Home hero primary headline — two lines */
+    headline: "Let's fly\ntogether.",
+    /** Studio page only */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
-    /** Home hero — lower copy block */
-    heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY.",
+    /** Home hero — under the fly headline */
+    heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
     heroSupport:
       "Some projects start with a blank page. Others arrive with a brief and a deadline. We're comfortable with both — from creative development and direction to production and final delivery.",
-    /** Shown under the header logo — not above the hero slogan */
+    /** Home header tagline beside brand */
+    animalines: "Animalines",
+    /** Shown under the header logo */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
     exploreLabel: "Explore Our Work",
@@ -23,7 +26,7 @@ export const site = {
   },
 
   homePaths: {
-    heading: "Let's fly together.",
+    heading: "Welcome aboard.",
     items: [
       {
         label: "For Brands & Agencies",

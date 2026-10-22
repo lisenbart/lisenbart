@@ -28,7 +28,7 @@ export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const bearRef = useRef<HTMLImageElement>(null);
 
-  useScrollParallax(heroRef, bearRef, { strength: 12 });
+  useScrollParallax(heroRef, bearRef, { strength: 8 });
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -83,7 +83,7 @@ export default function HomePage() {
         <section
           ref={heroRef}
           className={`home-hero home-hero--${period}`}
-          aria-label={headlineLines.join(" ")}
+          aria-labelledby="home-who-heading"
         >
           <img
             ref={bearRef}
@@ -95,8 +95,14 @@ export default function HomePage() {
             fetchPriority="high"
           />
           <div className="home-hero__copy film-reveal is-in">
-            {/* Main slogan temporarily hidden for composition review — restore home-hero__slogan */}
-            <div className="home-hero__footer-copy">
+            <div className="home-hero__intro">
+              <h1 id="home-who-heading" className="home-hero__fly">
+                {headlineLines.map((line) => (
+                  <span key={line} className="home-hero__fly-line">
+                    {line}
+                  </span>
+                ))}
+              </h1>
               <p className="home-hero__support-heading">{site.studioHome.heroSupportHeading}</p>
               <p className="home-hero__support">{site.studioHome.heroSupport}</p>
             </div>
