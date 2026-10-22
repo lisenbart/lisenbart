@@ -926,11 +926,13 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   z-index: 4;
 }
 
+/* Bottom-right of the player — away from fixed hamburger (z-index 60, top-right) */
 .film-showreel__close {
   position: absolute;
   z-index: 5;
-  top: max(1rem, env(safe-area-inset-top));
-  right: max(1rem, env(safe-area-inset-right));
+  top: auto;
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  right: max(1rem, var(--gutter));
   border: 0;
   padding: 0.65rem 0.9rem;
   border-radius: 999px;
