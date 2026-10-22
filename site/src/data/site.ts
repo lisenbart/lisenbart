@@ -34,10 +34,10 @@ export const site = {
         hub: "client-work" as const,
       },
       {
-        label: "AI & Hybrid",
+        label: "For AI-Driven Projects",
         statement: "New tools. Same creative standards.",
-        text: "AI, animation, compositing — whatever serves the shot. The creative decisions stay with filmmakers.",
-        cta: "Explore AI",
+        text: "AI, animation, compositing — whatever serves the shot.",
+        cta: "Explore AI & Hybrid",
         hub: "ai" as const,
       },
       {
