@@ -459,7 +459,7 @@ export const site = {
       },
     ] as const,
     pullQuote:
-      "I usually start with 'What if?' It pretty quickly becomes: 'Alright — how do we pull this off?'",
+      "\u201CI usually start with \u2018What if?\u2019 It pretty quickly becomes: \u2018Alright — how do we pull this off?\u2019\u201D",
     peopleHeading: "Founder",
     founderName: "Dmytro Lisenbart",
     founderRole: "Founder, Director & Producer",

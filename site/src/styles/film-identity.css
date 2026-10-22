@@ -774,7 +774,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-section__aside {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
   min-width: 0;
 }
 
@@ -782,17 +782,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin-top: 0;
 }
 
-.studio-section--founder .studio-section__aside {
-  gap: var(--space-3);
+.studio-section--founder .studio-section__grid {
+  align-items: start;
 }
 
 .studio-section--founder .studio-section-heading {
   margin: 0;
-}
-
-.studio-section--founder .studio-founder {
-  flex-direction: column;
-  gap: var(--space-3);
 }
 
 .studio-pull__quote {
@@ -800,19 +795,18 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   padding: 0;
   border: 0;
   min-width: 0;
-  align-self: center;
 }
 
 .studio-pull__quote p {
   margin: 0;
   width: 100%;
-  max-width: 28rem;
-  font-family: var(--font-display);
-  font-size: clamp(1.15rem, 1.7vw, 1.45rem);
+  max-width: none;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
   font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: var(--track-title);
-  color: var(--ink);
+  line-height: var(--leading-body);
+  letter-spacing: 0.01em;
+  color: var(--muted);
   overflow-wrap: break-word;
 }
 
@@ -1058,7 +1052,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-founder {
   margin: 0;
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-3);
   align-items: flex-start;
   max-width: none;
   text-align: left;
@@ -1066,16 +1060,32 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-founder__copy {
   min-width: 0;
-  padding-top: 0.15rem;
+  padding-top: 0;
   text-align: left;
 }
 
 .studio-founder__portrait {
-  width: clamp(7.5rem, 14vw, 10rem);
-  height: clamp(7.5rem, 14vw, 10rem);
+  width: 5.5rem;
+  height: 5.5rem;
   object-fit: cover;
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+.studio-section--founder .studio-people__founder-name {
+  font-size: var(--text-body);
+  font-weight: 500;
+  line-height: var(--leading-body);
+  letter-spacing: 0;
+}
+
+.studio-section--founder .studio-people__founder-role,
+.studio-section--founder .studio-people__founder-proof {
+  margin-top: 0.2rem;
+}
+
+.studio-section--founder .studio-people__link {
+  margin-top: var(--stack-tight);
 }
 
 .direction-showreel {
