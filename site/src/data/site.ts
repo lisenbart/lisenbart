@@ -422,7 +422,7 @@ export const site = {
         title: "LISENBART GAMES",
         text: "Game ads, UA creatives and playables.",
         hub: "games" as const,
-        image: "/images/studio/games-team-preview.webp",
+        image: "/images/reels/games/showreel-poster.webp",
         imageAlt: "Game worlds collage",
       },
     ] as const,
