@@ -106,9 +106,9 @@ export default function Header() {
     <>
       <header ref={headerRef} className="film-header">
         <a
-          className="brand-lockup"
+          className={`brand-lockup${onSubpage ? "" : " brand-lockup--hero"}`}
           href={onSubpage ? routes.home : "#top"}
-          aria-label={`${site.brand} home`}
+          aria-label={`${site.brand}${onSubpage ? "" : " Airlines"} home`}
           onClick={
             onSubpage
               ? undefined
@@ -119,7 +119,10 @@ export default function Header() {
                 }
           }
         >
-          <span className="brand">{site.brand}</span>
+          <span className="brand-lockup__row">
+            <span className="brand">{site.brand}</span>
+            {onSubpage ? null : <span className="brand-airlines">Airlines</span>}
+          </span>
           <span className="brand-est">{site.studioHome.established}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
