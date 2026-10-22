@@ -755,17 +755,48 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   overflow-wrap: break-word;
 }
 
-.studio-models__title-link {
+.studio-team-card__link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  height: 100%;
   color: inherit;
   text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 180ms ease;
 }
 
-.studio-models__title-link:hover,
-.studio-models__title-link:focus-visible {
-  border-bottom-color: currentColor;
-  outline: none;
+.studio-team-card__media {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.85rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #142038;
+}
+
+.studio-team-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 320ms ease, opacity 220ms ease;
+}
+
+.studio-team-card__link:hover .studio-team-card__media img,
+.studio-team-card__link:focus-visible .studio-team-card__media img {
+  transform: scale(1.03);
+}
+
+.studio-team-card__link:hover .studio-models__title,
+.studio-team-card__link:focus-visible .studio-models__title {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.studio-team-card__link:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
 }
 
 .studio-models__text,

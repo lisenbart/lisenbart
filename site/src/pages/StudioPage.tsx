@@ -72,6 +72,8 @@ export default function StudioPage() {
                 title={team.title}
                 text={team.text}
                 href={hubCanonicalHref(team.hub)}
+                image={team.image}
+                imageAlt={team.imageAlt}
                 delayMs={index * 70}
               />
             ))}
