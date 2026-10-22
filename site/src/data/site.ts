@@ -435,8 +435,29 @@ export const site = {
     howParagraphs: [
       "A small senior core leads every project and brings in the right artists and specialists for it — studio-level craft without studio-level overhead.",
     ] as const,
-    howStages: ["Brief", "Development", "Production", "Delivery"] as const,
     howNote: "One producer, one point of contact, from the first call to the final file.",
+    howSteps: [
+      {
+        number: "01",
+        title: "Brief",
+        text: "Your goals, assets and constraints.",
+      },
+      {
+        number: "02",
+        title: "Development",
+        text: "Concept, script, storyboard and look.",
+      },
+      {
+        number: "03",
+        title: "Production",
+        text: "Animation, AI, compositing and sound.",
+      },
+      {
+        number: "04",
+        title: "Delivery",
+        text: "Final files in every format you need.",
+      },
+    ] as const,
     peopleHeading: "Founder",
     founderName: "Dmytro Lisenbart",
     founderRole: "Founder, Director & Producer",

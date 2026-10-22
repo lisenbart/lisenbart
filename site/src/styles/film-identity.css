@@ -754,6 +754,127 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin-top: var(--space-1);
 }
 
+/* Studio page body — one grid for every section under the hero */
+.studio-section {
+  padding: var(--space-5) var(--gutter);
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.studio-section:first-of-type,
+.studio-page .page-hero-reel + .studio-section {
+  border-top: 0;
+  padding-top: clamp(2rem, 3.5vw, 2.75rem);
+}
+
+.studio-section--founder {
+  padding-bottom: var(--section-y);
+}
+
+.studio-section__grid {
+  display: grid;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.studio-section__aside .studio-section-heading {
+  margin-bottom: var(--space-2);
+}
+
+.studio-section__aside .studio-models__note {
+  margin-top: 0;
+}
+
+.studio-section__body > .studio-models__note:first-child {
+  margin-top: 0;
+}
+
+.studio-section__body--measure {
+  max-width: var(--measure);
+}
+
+.studio-section__trust {
+  margin-top: var(--space-4);
+}
+
+.studio-section__full {
+  margin-top: var(--space-4);
+}
+
+.studio-stats .studio-models__title {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  letter-spacing: var(--track-display);
+  line-height: 1.05;
+}
+
+.studio-stats .studio-models__text {
+  margin-top: 0.15rem;
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.studio-how-steps {
+  display: grid;
+  gap: 0;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.studio-how-steps__item {
+  padding: var(--space-3) 0;
+}
+
+.studio-how-steps__item > .film-reveal {
+  width: 100%;
+}
+
+.studio-how-steps__item + .studio-how-steps__item {
+  border-top: 1px solid var(--line);
+}
+
+.studio-how-steps__number {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .studio-section__grid {
+    grid-template-columns: minmax(11rem, 1fr) minmax(0, 2fr);
+    column-gap: var(--space-5);
+    row-gap: var(--space-3);
+  }
+
+  .studio-how-steps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 0;
+  }
+
+  .studio-how-steps__item {
+    padding: 0 var(--space-4);
+  }
+
+  .studio-how-steps__item:first-child {
+    padding-left: 0;
+  }
+
+  .studio-how-steps__item:last-child {
+    padding-right: 0;
+  }
+
+  .studio-how-steps__item + .studio-how-steps__item {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+}
+
 .studio-models__title,
 .film-capabilities__title {
   margin: 0 0 0.55rem;
@@ -844,16 +965,17 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-people__founder-name {
   margin: 0;
-  font-size: var(--text-body);
-  font-weight: 500;
-  line-height: var(--leading-body);
+  font-size: var(--text-title);
+  font-weight: 600;
+  line-height: var(--leading-title);
+  letter-spacing: var(--track-title);
   color: var(--ink);
   text-align: left;
 }
 
 .studio-people__founder-role,
 .studio-people__founder-proof {
-  margin: 0.2rem 0 0;
+  margin: 0.35rem 0 0;
   font-size: var(--text-body-sm);
   line-height: var(--leading-body);
   color: var(--muted);
@@ -862,7 +984,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-people__link {
   display: inline-block;
-  margin-top: var(--stack-tight);
+  margin-top: var(--space-2);
   color: var(--ink);
   border-bottom: 1px solid var(--line);
   font-size: var(--text-meta);
@@ -871,22 +993,23 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .studio-founder {
-  margin-top: var(--space-3);
+  margin: 0;
   display: flex;
-  gap: var(--space-3);
+  gap: var(--space-4);
   align-items: flex-start;
-  max-width: var(--measure);
+  max-width: none;
   text-align: left;
 }
 
 .studio-founder__copy {
   min-width: 0;
+  padding-top: 0.15rem;
   text-align: left;
 }
 
 .studio-founder__portrait {
-  width: 88px;
-  height: 88px;
+  width: clamp(7.5rem, 14vw, 10rem);
+  height: clamp(7.5rem, 14vw, 10rem);
   object-fit: cover;
   border-radius: 50%;
   flex-shrink: 0;
@@ -3678,29 +3801,7 @@ html[data-hero-period="evening"] .home-explore {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
 }
 
-.studio-intro-block {
-  padding: clamp(2rem, 3.5vw, 2.75rem) var(--gutter) 0;
-  background: var(--white);
-}
-
-.studio-intro .studio-people__link {
-  margin-top: var(--space-3);
-}
-
-.studio-intro .studio-stats {
-  margin-top: var(--space-4);
-}
-
-.studio-how {
-  padding-top: 0;
-}
-
-.studio-how__stages {
-  margin-top: var(--space-3);
-}
-
-.studio-page.page-with-hero-reel .studio-models,
-.studio-page.page-with-hero-reel .studio-people {
+.studio-page.page-with-hero-reel .studio-section {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
@@ -3710,18 +3811,12 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: var(--space-4);
 }
 
-.studio-intro {
-  max-width: var(--measure-wide);
-  padding: var(--space-3) 0 var(--space-4);
+.studio-section .studio-stats {
+  margin-top: var(--space-4);
 }
 
-.studio-intro .studio-models__note {
-  margin-top: var(--space-2);
-  max-width: var(--measure);
-}
-
-.studio-intro .studio-section-heading + .studio-models__note {
-  margin-top: var(--space-3);
+.studio-section .studio-section-heading {
+  margin-bottom: 0;
 }
 
 .studio-image {
@@ -3833,7 +3928,9 @@ html[data-hero-period="evening"] .home-explore {
 .originals-page + .contact-page,
 .project-page + .contact-page,
 .studio-people + .contact-page,
-.studio-models ~ .contact-page {
+.studio-models ~ .contact-page,
+.studio-section + .contact-page,
+.studio-section ~ .film-reveal .contact-page {
   min-height: auto;
   padding-top: var(--space-5);
   border-top: 1px solid var(--line);
@@ -4323,7 +4420,7 @@ html[data-hero-period="evening"] .home-explore {
   .studio-page:not(.page-with-hero-reel) {
     padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) 0;
   }
-  .studio-intro { padding: var(--space-3) 0 var(--space-4); }
+  .studio-section { padding-top: var(--space-4); padding-bottom: var(--space-4); }
   .studio-image { height: 36vh; }
   .page-hero-reel .studio-image { height: 100%; }
   .film-showreel { height: 36vh; }

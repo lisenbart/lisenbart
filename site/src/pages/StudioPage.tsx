@@ -34,39 +34,46 @@ export default function StudioPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <section className="studio-intro-block" aria-labelledby="who-heading">
+        <section className="studio-section" aria-labelledby="who-heading">
           <FilmReveal delayMs={100}>
-            <div className="studio-intro" aria-labelledby="who-heading">
+            <div className="studio-section__grid">
               <h2 id="who-heading" className="studio-section-heading">
                 {page.introHeading}
               </h2>
-              {page.introParagraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)} className="studio-models__note">
-                  {paragraph}
-                </p>
-              ))}
-              <ul className="studio-models__list studio-stats" aria-label="Studio at a glance">
-                {page.stats.map((stat, index) => (
-                  <StudioModelItem
-                    key={stat.label}
-                    title={stat.value}
-                    text={stat.label}
-                    delayMs={index * 70}
-                  />
+              <div className="studio-section__body">
+                {page.introParagraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)} className="studio-models__note">
+                    {paragraph}
+                  </p>
                 ))}
-              </ul>
-              <p className="studio-models__note">{page.statsNote}</p>
+                <ul className="studio-models__list studio-stats" aria-label="Studio at a glance">
+                  {page.stats.map((stat, index) => (
+                    <StudioModelItem
+                      key={stat.label}
+                      title={stat.value}
+                      text={stat.label}
+                      delayMs={index * 70}
+                    />
+                  ))}
+                </ul>
+                <p className="studio-models__note studio-section__trust">{page.statsNote}</p>
+              </div>
             </div>
           </FilmReveal>
         </section>
 
-        <section className="studio-models" aria-labelledby="teams-heading">
+        <section className="studio-section" aria-labelledby="teams-heading">
           <FilmReveal>
-            <h2 id="teams-heading" className="studio-section-heading">
-              {page.teamsHeading}
-            </h2>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="teams-heading" className="studio-section-heading">
+                  {page.teamsHeading}
+                </h2>
+                <p className="studio-models__note">{page.teamsNote}</p>
+              </div>
+            </div>
           </FilmReveal>
-          <ul className="studio-models__list">
+          <ul className="studio-models__list studio-section__full">
             {page.teams.map((team, index) => (
               <StudioModelItem
                 key={team.title}
@@ -79,52 +86,63 @@ export default function StudioPage() {
               />
             ))}
           </ul>
-          <FilmReveal delayMs={80}>
-            <p className="studio-models__note">{page.teamsNote}</p>
-          </FilmReveal>
         </section>
 
-        <section className="studio-models studio-how" aria-labelledby="how-heading">
+        <section className="studio-section" aria-labelledby="how-heading">
           <FilmReveal>
-            <h2 id="how-heading" className="studio-section-heading">
-              {page.howHeading}
-            </h2>
-            {page.howParagraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 48)} className="studio-models__note">
-                {paragraph}
-              </p>
-            ))}
-            <p className="studio-models__title studio-how__stages">
-              {page.howStages.join(" → ")}
-            </p>
-            <p className="studio-models__note">{page.howNote}</p>
-          </FilmReveal>
-        </section>
-
-        <section className="studio-people" aria-labelledby="people-heading">
-          <FilmReveal>
-            <h2 id="people-heading" className="studio-section-heading">
-              {page.peopleHeading}
-            </h2>
-            <div className="studio-founder">
-              <img
-                className="studio-founder__portrait"
-                src={publicAsset(page.founderPortrait)}
-                alt={page.founderPortraitAlt}
-                width={160}
-                height={160}
-              />
-              <div className="studio-founder__copy">
-                <p className="studio-people__founder-name">{page.founderName}</p>
-                <p className="studio-people__founder-role">{page.founderRole}</p>
-                {page.founderProof.map((line) => (
-                  <p key={line} className="studio-people__founder-proof">
-                    {line}
+            <div className="studio-section__grid">
+              <h2 id="how-heading" className="studio-section-heading">
+                {page.howHeading}
+              </h2>
+              <div className="studio-section__body studio-section__body--measure">
+                {page.howParagraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)} className="studio-models__note">
+                    {paragraph}
                   </p>
                 ))}
-                <a className="studio-people__link" href={hubCanonicalHref("about")}>
-                  {page.founderCta}
-                </a>
+                <p className="studio-models__note">{page.howNote}</p>
+              </div>
+            </div>
+          </FilmReveal>
+          <ol className="studio-how-steps studio-section__full" aria-label="How we work">
+            {page.howSteps.map((step, index) => (
+              <li key={step.title} className="studio-how-steps__item">
+                <FilmReveal delayMs={index * 70}>
+                  <p className="studio-how-steps__number">{step.number}</p>
+                  <h3 className="studio-models__title">{step.title}</h3>
+                  <p className="studio-models__text">{step.text}</p>
+                </FilmReveal>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="studio-section studio-section--founder" aria-labelledby="people-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <h2 id="people-heading" className="studio-section-heading">
+                {page.peopleHeading}
+              </h2>
+              <div className="studio-founder">
+                <img
+                  className="studio-founder__portrait"
+                  src={publicAsset(page.founderPortrait)}
+                  alt={page.founderPortraitAlt}
+                  width={200}
+                  height={200}
+                />
+                <div className="studio-founder__copy">
+                  <p className="studio-people__founder-name">{page.founderName}</p>
+                  <p className="studio-people__founder-role">{page.founderRole}</p>
+                  {page.founderProof.map((line) => (
+                    <p key={line} className="studio-people__founder-proof">
+                      {line}
+                    </p>
+                  ))}
+                  <a className="studio-people__link" href={hubCanonicalHref("about")}>
+                    {page.founderCta}
+                  </a>
+                </div>
               </div>
             </div>
           </FilmReveal>
