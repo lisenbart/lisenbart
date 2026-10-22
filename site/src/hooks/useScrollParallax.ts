@@ -31,6 +31,7 @@ export function useScrollParallax(
     if (!section || !target) return;
 
     let frame = 0;
+    const narrowMq = window.matchMedia("(max-width: 800px)");
 
     const update = () => {
       frame = 0;
@@ -41,6 +42,12 @@ export function useScrollParallax(
         const mid = rect.top + rect.height / 2;
         const offset = (mid - view / 2) * -cssStrength;
         target.style.setProperty(cssVar, `${offset.toFixed(1)}px`);
+        return;
+      }
+
+      // Narrow viewports use CSS crop/scale for the bear — don't override with parallax zoom.
+      if (narrowMq.matches) {
+        target.style.transform = "";
         return;
       }
 
@@ -57,9 +64,11 @@ export function useScrollParallax(
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    narrowMq.addEventListener("change", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      narrowMq.removeEventListener("change", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
       if (cssVar) target.style.removeProperty(cssVar);
       else target.style.transform = "";

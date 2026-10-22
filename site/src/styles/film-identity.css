@@ -3947,10 +3947,15 @@ html[data-hero-period="evening"] .home-explore {
     pointer-events: none;
   }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
+  /*
+   * Narrow hero: zoom out so the bear stays fully in frame (not clipped on the
+   * right), and bias the crop so he sits upper-center above the headline.
+   */
   .bear-art {
     object-fit: cover;
-    object-position: center top;
-    transform: none;
+    object-position: 58% 12%;
+    transform: scale(0.78);
+    transform-origin: 48% 18%;
   }
   .home-hero__copy {
     z-index: 3;
