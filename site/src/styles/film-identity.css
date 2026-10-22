@@ -1730,9 +1730,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .film-footer {
   padding: var(--space-4) 0;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid rgba(48, 93, 152, 0.12);
   color: var(--muted);
-  background: #fff;
+  /* Soft blue wash under legal / contact block */
+  background: #eef3f9;
 }
 
 .film-footer__inner {
