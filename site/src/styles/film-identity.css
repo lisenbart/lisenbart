@@ -879,21 +879,24 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   background: #142038;
 }
 
-.page-hero-reel .film-showreel {
+.page-hero-reel .film-showreel,
+.page-hero-reel .studio-image {
   position: absolute;
   inset: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
   min-height: 0;
+  margin: 0;
 }
 
 /* Option 3 scrim sits under the play UI so the control stays bright */
-.page-hero-reel .film-showreel__stage::before {
+.page-hero-reel .film-showreel__stage::before,
+.page-hero-reel .studio-image::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
   background:
     linear-gradient(
@@ -915,24 +918,28 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   z-index: 0;
 }
 
-.page-hero-reel .film-showreel__play {
-  z-index: 2;
+.page-hero-reel .film-showreel__play,
+.page-hero-reel .studio-image__play {
+  z-index: 3;
   background: transparent;
 }
 
-.page-hero-reel .film-showreel__stage:hover .film-showreel__play {
+.page-hero-reel .film-showreel__stage:hover .film-showreel__play,
+.page-hero-reel .studio-image__play:hover {
   background: rgba(8, 14, 32, 0.12);
 }
 
 /* White disc with triangle knockout */
-.page-hero-reel .film-showreel__play-circle {
+.page-hero-reel .film-showreel__play-circle,
+.page-hero-reel .studio-image__play-circle {
   border: 0;
   background: #fff;
   isolation: isolate;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
 }
 
-.page-hero-reel .film-showreel__play-circle .play-icon {
+.page-hero-reel .film-showreel__play-circle .play-icon,
+.page-hero-reel .studio-image__play-circle .play-icon {
   width: 26px;
   height: 26px;
   fill: #000;
@@ -940,7 +947,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   mix-blend-mode: destination-out;
 }
 
-.page-hero-reel .film-showreel__play-label {
+.page-hero-reel .film-showreel__play-label,
+.page-hero-reel .studio-image__play-label {
   font-weight: 700;
   color: #fff;
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
@@ -3461,8 +3469,23 @@ html[data-hero-period="evening"] .home-explore {
   background: var(--white);
 }
 
+.studio-page.page-with-hero-reel {
+  padding: 0;
+}
+
 .studio-page .page-title-row {
   margin-bottom: var(--space-2);
+}
+
+.studio-intro-block {
+  padding: clamp(2rem, 3.5vw, 2.75rem) var(--gutter) 0;
+  background: var(--white);
+}
+
+.studio-page.page-with-hero-reel .studio-models,
+.studio-page.page-with-hero-reel .studio-people {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
 }
 
 .studio-section-heading.studio-block,
@@ -4049,9 +4072,12 @@ html[data-hero-period="evening"] .home-explore {
   .original-small .tile-play { display: grid; }
   .original-kozak .tile-play, .original-small .tile-play { left: auto; right: var(--gutter); bottom: var(--space-3); }
 
-  .studio-page { padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) 0; }
+  .studio-page:not(.page-with-hero-reel) {
+    padding: calc(var(--header-offset) + var(--space-3)) var(--gutter) 0;
+  }
   .studio-intro { padding: var(--space-3) 0 var(--space-4); }
   .studio-image { height: 36vh; }
+  .page-hero-reel .studio-image { height: 100%; }
   .film-showreel { height: 36vh; }
 
   .contact-page { padding: var(--space-4) var(--gutter); }
