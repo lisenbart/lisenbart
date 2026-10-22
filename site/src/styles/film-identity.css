@@ -787,12 +787,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-pull__quote p {
   margin: 0;
   width: 100%;
-  max-width: 28rem;
+  max-width: 36rem;
   font-family: var(--font-display);
-  font-size: clamp(1.85rem, 4.2vw, 3.25rem);
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
   font-weight: 400;
-  line-height: 1.2;
-  letter-spacing: var(--track-display);
+  line-height: 1.35;
+  letter-spacing: var(--track-title);
   color: var(--ink);
   overflow-wrap: break-word;
 }
