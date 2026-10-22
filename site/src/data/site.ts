@@ -13,7 +13,7 @@ export const site = {
     /** Home hero — under the fly headline */
     heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
     heroSupport:
-      "Since 2006 · 1,000+ projects · Nestlé, McDonald’s, Samsung, Mastercard · 11 festival awards",
+      "Since 2006 · 1,000+ projects for brands like Nestlé, McDonald’s, Samsung and Mastercard · 11 festival awards",
     /** Shown with brand in the header lockup */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
