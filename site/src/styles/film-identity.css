@@ -927,18 +927,20 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 /*
- * Fixed under the hamburger. Must sit above .film-header (z-index 50) — the
- * header bar was swallowing clicks when Close was absolute inside the reel.
- * Stay below .menu-button (z-index 60).
+ * Portaled to body. Left of the fixed hamburger (2.55rem), same vertical band.
+ * z-index below menu (60), above header (50).
  */
 .film-showreel__close {
   position: fixed;
   z-index: 59;
-  top: calc(1.65rem + 2.55rem + 0.65rem);
-  right: var(--gutter);
+  top: 1.65rem;
+  right: calc(var(--gutter) + 2.55rem + 0.65rem);
   bottom: auto;
+  height: 2.55rem;
+  display: inline-flex;
+  align-items: center;
   border: 0;
-  padding: 0.65rem 0.9rem;
+  padding: 0 0.95rem;
   border-radius: 999px;
   color: #fff;
   background: rgba(0, 0, 0, 0.55);

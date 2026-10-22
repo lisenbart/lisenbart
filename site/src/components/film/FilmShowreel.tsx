@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
+import ShowreelCloseButton from "@/components/film/ShowreelCloseButton";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
 
@@ -55,21 +56,17 @@ export default function FilmShowreel({
   return (
     <section id={id} className="film-showreel" aria-label={label}>
       {playing && vimeoId ? (
-        <div className="film-showreel__stage film-showreel__stage--playing">
-          <iframe
-            title={label}
-            src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-          />
-          <button
-            type="button"
-            className="film-showreel__close"
-            onClick={() => setPlaying(false)}
-          >
-            Close
-          </button>
-        </div>
+        <>
+          <div className="film-showreel__stage film-showreel__stage--playing">
+            <iframe
+              title={label}
+              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          <ShowreelCloseButton onClose={() => setPlaying(false)} />
+        </>
       ) : (
         <button
           type="button"
