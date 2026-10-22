@@ -497,16 +497,6 @@ img { display: block; width: 100%; }
   color: #fff;
 }
 
-/* Home V8: white header chrome over cinematic hero (header sits outside .home-page) */
-html[data-hero-period="day"]:has(.home-page--gateway) .film-header .brand-lockup,
-html[data-hero-period="day"]:has(.home-page--gateway) .film-header .brand,
-html[data-hero-period="day"]:has(.home-page--gateway) .film-header .brand-animalines,
-html[data-hero-period="day"]:has(.home-page--gateway) .film-header .brand-est,
-html[data-hero-period="day"]:has(.home-page--gateway) .film-header .desktop-nav a {
-  color: #fff;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
-}
-
 /* Nav matches hero period while on home */
 html[data-hero-period="day"] .film-header .brand-lockup,
 html[data-hero-period="day"] .film-header .brand,
@@ -532,6 +522,19 @@ html[data-hero-period="evening"] .film-header .brand-animalines,
 html[data-hero-period="evening"] .film-header .brand-est,
 html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
+}
+
+/* Home: white logo + menu with stronger shadow (must follow period colors) */
+html:has(.home-page--gateway) .film-header .brand-lockup,
+html:has(.home-page--gateway) .film-header .brand,
+html:has(.home-page--gateway) .film-header .brand-animalines,
+html:has(.home-page--gateway) .film-header .brand-est,
+html:has(.home-page--gateway) .film-header .desktop-nav a {
+  color: #fff;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 2px 14px rgba(0, 0, 0, 0.45),
+    0 0 24px rgba(0, 0, 0, 0.35);
 }
 
 /* Dark soft disc over evening hero so the icon still reads */
