@@ -2233,8 +2233,9 @@ a.original-tile {
 .home-paths__heading {
   margin: 0 0 clamp(1.75rem, 2.8vw, 2.25rem); /* ~28–36px */
   max-width: none;
+  width: 100%;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 2.8vw, 2.5rem); /* ~36–40px */
+  font-size: clamp(2.25rem, 3.2vw, 2.875rem); /* ~36–46px */
   font-weight: 600;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -2307,44 +2308,50 @@ a.original-tile {
   outline-offset: 6px;
 }
 
-/* Audience title — same size as WELCOME ABOARD, not bold */
+/* Audience title — same size as WELCOME ABOARD, not bold; wraps to card width */
 .home-paths__label {
   margin: 0 0 0.75rem;
+  width: 100%;
   max-width: none;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 2.8vw, 2.5rem); /* match .home-paths__heading */
+  font-size: clamp(2.25rem, 3.2vw, 2.875rem); /* match .home-paths__heading */
   font-weight: 400;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   line-height: 1.1;
   color: #1d1d1f;
+  overflow-wrap: break-word;
 }
 
-/* Statement under audience title */
+/* Statement under audience title — full card width, natural wrap */
 .home-paths__statement {
   margin: 0 0 0.75rem;
-  max-width: 22rem;
+  width: 100%;
+  max-width: none;
   font-family: var(--font-display);
-  font-size: clamp(1.375rem, 1.7vw, 1.5rem); /* 22–24px */
+  font-size: clamp(1.5rem, 2vw, 1.75rem); /* 24–28px */
   font-weight: 600;
   letter-spacing: -0.02em;
   text-transform: none;
-  line-height: 1.2;
+  line-height: 1.25;
   color: #1d1d1f;
+  overflow-wrap: break-word;
 }
 
-/* L3 — supporting description */
+/* Supporting description — full card width */
 .home-paths__text {
   margin: 0;
-  max-width: 28rem;
+  width: 100%;
+  max-width: none;
   font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.05vw, 0.9375rem); /* 14–15px */
+  font-size: clamp(1.0625rem, 1.25vw, 1.1875rem); /* 17–19px */
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #4a5058;
+  overflow-wrap: break-word;
 }
 
-/* L4 — CTA */
+/* CTA */
 .home-paths__cta {
   display: inline-flex;
   align-items: center;
@@ -2353,7 +2360,7 @@ a.original-tile {
   margin-top: auto;
   padding-top: 1.25rem;
   font-family: var(--font-display);
-  font-size: 0.75rem; /* 12px */
+  font-size: 0.875rem; /* 14px */
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -3671,7 +3678,7 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .home-paths__heading {
-    font-size: clamp(1.75rem, 7vw, 2.125rem);
+    font-size: clamp(1.875rem, 7.5vw, 2.375rem);
     margin-bottom: 1.5rem;
   }
 
@@ -3695,17 +3702,15 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .home-paths__label {
-    font-size: clamp(1.75rem, 7vw, 2.125rem); /* match mobile WELCOME ABOARD */
+    font-size: clamp(1.875rem, 7.5vw, 2.375rem); /* match mobile WELCOME ABOARD */
   }
 
   .home-paths__statement {
-    font-size: clamp(1.25rem, 5.5vw, 1.375rem); /* ~20–22px */
-    max-width: none;
+    font-size: clamp(1.375rem, 5.5vw, 1.5625rem); /* ~22–25px */
   }
 
   .home-paths__text {
-    font-size: 0.875rem; /* 14px */
-    max-width: none;
+    font-size: 1.0625rem; /* 17px */
   }
 
   .home-explore {
