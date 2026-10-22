@@ -37,15 +37,17 @@ export default function StudioPage() {
         <section className="studio-section" aria-labelledby="who-heading">
           <FilmReveal delayMs={100}>
             <div className="studio-section__grid">
-              <h2 id="who-heading" className="studio-section-heading">
-                {page.introHeading}
-              </h2>
-              <div className="studio-section__body">
+              <div className="studio-section__aside">
+                <h2 id="who-heading" className="studio-section-heading">
+                  {page.introHeading}
+                </h2>
                 {page.introParagraphs.map((paragraph) => (
                   <p key={paragraph.slice(0, 48)} className="studio-models__note">
                     {paragraph}
                   </p>
                 ))}
+              </div>
+              <div className="studio-section__body">
                 <ul className="studio-models__list studio-stats" aria-label="Studio at a glance">
                   {page.stats.map((stat, index) => (
                     <StudioModelItem

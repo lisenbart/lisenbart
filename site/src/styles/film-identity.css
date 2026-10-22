@@ -771,11 +771,19 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   padding-bottom: var(--section-y);
 }
 
-.studio-section--founder .studio-section__aside {
+.studio-section__aside {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   min-width: 0;
+}
+
+.studio-section__aside .studio-models__note {
+  margin-top: 0;
+}
+
+.studio-section--founder .studio-section__aside {
+  gap: var(--space-3);
 }
 
 .studio-section--founder .studio-section-heading {
