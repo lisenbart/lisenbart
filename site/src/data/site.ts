@@ -458,6 +458,8 @@ export const site = {
         text: "Final files in every format you need.",
       },
     ] as const,
+    pullQuote:
+      "I usually start with 'What if?' It pretty quickly becomes: 'Alright — how do we pull this off?'",
     peopleHeading: "Founder",
     founderName: "Dmytro Lisenbart",
     founderRole: "Founder, Director & Producer",

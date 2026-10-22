@@ -117,6 +117,14 @@ export default function StudioPage() {
           </ol>
         </section>
 
+        <section className="studio-pull" aria-label="Studio approach">
+          <FilmReveal>
+            <blockquote className="studio-pull__quote">
+              <p>{page.pullQuote}</p>
+            </blockquote>
+          </FilmReveal>
+        </section>
+
         <section className="studio-section studio-section--founder" aria-labelledby="people-heading">
           <FilmReveal>
             <div className="studio-section__grid">
