@@ -3511,6 +3511,12 @@ footer {
   padding-bottom: var(--section-spacing);
 }
 
+/* Reel heroes are full-bleed under the absolute film header */
+.work-page.page-with-hero-reel {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 /* Legacy /work/* already clears the header via .work-shell + work-nav spacer */
 .work-shell .work-page {
   padding-top: 0;
