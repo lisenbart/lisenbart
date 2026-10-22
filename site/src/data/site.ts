@@ -374,7 +374,7 @@ export const site = {
   },
   homeContact: {
     heading: "Let's fly together.",
-    lead: "For teams that need speed / tight budgets",
+    lead: "",
   },
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
