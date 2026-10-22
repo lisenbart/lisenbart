@@ -572,13 +572,27 @@ html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
 
-/* Home: white logo with light shadow (desktop nav temporarily off) */
+/* Home + hero-reel pages: white logo with light shadow (desktop nav temporarily off) */
 html:has(.home-page--gateway) .film-header .brand-lockup,
 html:has(.home-page--gateway) .film-header .brand,
 html:has(.home-page--gateway) .film-header .brand-animalines,
-html:has(.home-page--gateway) .film-header .brand-est {
+html:has(.home-page--gateway) .film-header .brand-est,
+html:has(.page-with-hero-reel) .film-header .brand-lockup,
+html:has(.page-with-hero-reel) .film-header .brand,
+html:has(.page-with-hero-reel) .film-header .brand-est {
   color: #fff;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+html:has(.page-with-hero-reel) .menu-button:not(.open) {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(16, 21, 36, 0.48);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+
+html:has(.page-with-hero-reel) .menu-button:not(.open) span {
+  background: #fff;
 }
 
 /* Dark soft disc over evening hero so the icon still reads */
@@ -851,6 +865,55 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   overflow: hidden;
   margin: 0;
   background: #142038;
+}
+
+/*
+ * Trial: direction page hero = existing showreel (AI first).
+ * Logo / menu / page title sit over the reel like Home over the bear.
+ */
+.page-hero-reel {
+  position: relative;
+  width: 100%;
+  min-height: clamp(22rem, 52vh, 34rem);
+  overflow: hidden;
+  background: #142038;
+}
+
+.page-hero-reel .film-showreel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.page-hero-reel__chrome {
+  position: relative;
+  z-index: 4;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: clamp(22rem, 52vh, 34rem);
+  max-width: var(--home-measure);
+  margin: 0 auto;
+  padding:
+    calc(var(--header-offset) + clamp(0.35rem, 1.2vw, 0.85rem))
+    var(--gutter)
+    clamp(1.25rem, 2.5vw, 2rem);
+  box-sizing: border-box;
+}
+
+.page-hero-reel__chrome .page-title-row {
+  margin: 0;
+}
+
+.page-hero-reel__chrome h1 {
+  color: #fff;
+  font-weight: 400;
+  text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
 }
 
 .film-showreel__stage {
