@@ -83,6 +83,7 @@ img { display: block; width: 100%; }
 ::selection { color: white; background: var(--blue); }
 
 /* Shared type roles — HOME content ladder site-wide */
+/* Page titles — never bold */
 .film-display,
 .page-title-row h1,
 .film-contact__eyebrow {
@@ -91,7 +92,7 @@ img { display: block; width: 100%; }
   max-width: none;
   font-family: var(--font-display);
   font-size: var(--text-display);
-  font-weight: 600;
+  font-weight: 400;
   line-height: var(--leading-display);
   letter-spacing: var(--track-display);
   text-transform: uppercase;
@@ -173,7 +174,7 @@ img { display: block; width: 100%; }
   margin: var(--stack) 0 0;
 }
 
-/* Section headings — HOME audience-title scale (not bold) */
+/* Section headings under the reel — bold */
 .film-section-label,
 .studio-section-heading {
   margin: 0 0 var(--space-3);
@@ -181,7 +182,7 @@ img { display: block; width: 100%; }
   max-width: none;
   font-family: var(--font-display);
   font-size: var(--text-display);
-  font-weight: 400;
+  font-weight: 600;
   line-height: var(--leading-display);
   letter-spacing: var(--track-display);
   text-transform: uppercase;
@@ -1129,7 +1130,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   max-width: none;
   font-family: var(--font-display);
   font-size: var(--text-display);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: var(--track-display);
   text-transform: uppercase;
   line-height: var(--leading-display);
@@ -2311,7 +2312,7 @@ a.original-tile {
   width: 100%;
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 3.2vw, 2.875rem); /* ~36–46px */
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.025em;
   text-transform: uppercase;
   line-height: 1.1;
@@ -3091,6 +3092,13 @@ html[data-hero-period="evening"] .home-explore {
 
 .page-shell.page-shell--from-reel .film-section-label {
   margin-bottom: var(--space-3);
+  font-weight: 600;
+}
+
+.page-shell.page-shell--from-reel .studio-models__title,
+.page-shell.page-shell--from-reel .film-capabilities__title,
+.page-shell.page-shell--from-reel .client-group__heading {
+  font-weight: 600;
 }
 
 .page-title-row {
