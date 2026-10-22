@@ -55,6 +55,7 @@ export default function StudioPage() {
                   />
                 ))}
               </ul>
+              <p className="studio-models__note">{page.statsNote}</p>
             </div>
           </FilmReveal>
         </section>

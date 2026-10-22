@@ -402,6 +402,8 @@ export const site = {
       { value: "1,000+", label: "projects delivered" },
       { value: "3", label: "specialized teams" },
     ] as const,
+    statsNote:
+      "Trusted by Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active, Voodoo, Plarium and leading agencies including BBDO, McCann and Leo Burnett.",
     teamsHeading: "One vision, three teams",
     teams: [
       {
