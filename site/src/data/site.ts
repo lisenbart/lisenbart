@@ -6,8 +6,8 @@ export const site = {
   gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
-    /** Home hero primary headline */
-    headline: "Cleared for takeoff",
+    /** Home hero primary headline — always two lines: CLEARED FOR / TAKEOFF */
+    headline: "Cleared for\ntakeoff",
     /** Studio page only */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
     /** Home hero — under the fly headline */
