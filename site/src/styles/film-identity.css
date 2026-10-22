@@ -101,7 +101,8 @@ img { display: block; width: 100%; }
 }
 
 /* Contact heading — 25% smaller than display, not bold */
-.contact-content > h1 {
+.contact-content > h1,
+.contact-content [role="status"] > h1 {
   margin: 0;
   width: 100%;
   max-width: none;
@@ -2517,27 +2518,12 @@ a.original-tile {
 }
 
 /* Same column as header / hero / footer — gutter inside the measure */
-.home-paths > .film-reveal,
 .home-paths__grid {
   width: 100%;
   max-width: var(--home-measure);
   margin-inline: auto;
   padding-inline: var(--gutter);
   box-sizing: border-box;
-}
-
-.home-paths__heading {
-  margin: 0 0 clamp(1.75rem, 2.8vw, 2.25rem); /* ~28–36px */
-  max-width: none;
-  width: 100%;
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 3.2vw, 2.875rem); /* ~36–46px */
-  font-weight: 400;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-  line-height: 1.1;
-  text-align: center;
-  color: var(--ink);
 }
 
 .home-paths__grid {
@@ -2604,13 +2590,13 @@ a.original-tile {
   outline-offset: 6px;
 }
 
-/* Audience title — same size as WELCOME ABOARD, not bold; wraps to card width */
+/* Audience title — display size, not bold; wraps to card width */
 .home-paths__label {
   margin: 0 0 0.75rem;
   width: 100%;
   max-width: none;
   font-family: var(--font-display);
-  font-size: clamp(2.25rem, 3.2vw, 2.875rem); /* match .home-paths__heading */
+  font-size: clamp(2.25rem, 3.2vw, 2.875rem);
   font-weight: 400;
   letter-spacing: -0.025em;
   text-transform: uppercase;
@@ -4000,11 +3986,6 @@ html[data-hero-period="evening"] .home-explore {
   .home-paths.home-gateway {
     padding-top: 2.25rem;
     padding-bottom: 2.75rem;
-  }
-
-  .home-paths__heading {
-    font-size: clamp(1.875rem, 7.5vw, 2.375rem);
-    margin-bottom: 1.5rem;
   }
 
   .home-paths__grid {

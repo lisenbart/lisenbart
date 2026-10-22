@@ -24,7 +24,6 @@ export const site = {
   },
 
   homePaths: {
-    heading: "Welcome aboard",
     items: [
       {
         label: "For Brands & Agencies",
@@ -431,9 +430,10 @@ export const site = {
   contactForm: {
     submitLabel: "Send a brief",
     sendingLabel: "Sending…",
-    successMessage: "Thank you — we’ll review your message and get back to you soon.",
+    successHeading: "Welcome aboard.",
+    successMessage: "Thanks for reaching out. We'll be in touch soon.",
     successAction: "Send Another Message",
-    errorFallback: "Your message couldn’t be sent. Please try again or email us directly.",
+    errorFallback: "Something went wrong. Please email us at info@lisenbart.com.",
     emailRequired: "Email is required.",
     emailInvalid: "Enter a valid email address.",
     messageRequired: "Tell us a little about the project.",

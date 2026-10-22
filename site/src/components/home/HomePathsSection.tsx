@@ -7,13 +7,7 @@ export default function HomePathsSection() {
   const { homePaths } = site;
 
   return (
-    <section className="home-gateway home-paths" aria-labelledby="home-paths-heading">
-      <FilmReveal>
-        <h2 id="home-paths-heading" className="home-paths__heading">
-          {homePaths.heading}
-        </h2>
-      </FilmReveal>
-
+    <section className="home-gateway home-paths" aria-label="Audience paths">
       <div className="home-paths__grid">
         {homePaths.items.map((item, index) => (
           <FilmReveal key={item.label} delayMs={index * 60}>
