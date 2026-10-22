@@ -69,6 +69,14 @@ export const legalConfig = {
   },
 
   policies: {
+    legal: {
+      title: "Legal",
+      path: "/legal/",
+      pageTitle: "Legal Information",
+      seoTitle: "Legal Information — LISENBART FILM",
+      seoDescription:
+        "Registered business information for LISENBART FILM in Canada and Ukraine, including legal names, addresses and registration numbers.",
+    },
     privacy: {
       title: "Privacy Policy",
       path: "/privacy/",

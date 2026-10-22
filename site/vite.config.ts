@@ -27,6 +27,7 @@ export default defineConfig(({ command }) => ({
               "/ai",
               "/privacy",
               "/cookie-policy",
+              "/legal",
             ],
 
           }),

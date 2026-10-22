@@ -8,6 +8,7 @@ export const routes = {
   ai: "/ai",
   privacy: "/privacy",
   cookiePolicy: "/cookie-policy",
+  legal: "/legal",
 } as const;
 
 export type HubPageSlug =
@@ -18,7 +19,7 @@ export type HubPageSlug =
   | "games"
   | "ai";
 
-export type LegalPageSlug = "privacy" | "cookie-policy";
+export type LegalPageSlug = "privacy" | "cookie-policy" | "legal";
 
 export type OriginalsProjectSlug =
   | "unnecessary-things"
@@ -91,6 +92,7 @@ export function parseLegalPage(pathname?: string): LegalPageSlug | null {
   const normalized = normalizePathname(resolvePathname(pathname));
   if (normalized === routes.privacy) return "privacy";
   if (normalized === routes.cookiePolicy) return "cookie-policy";
+  if (normalized === routes.legal) return "legal";
   return null;
 }
 

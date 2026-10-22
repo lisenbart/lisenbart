@@ -2030,6 +2030,15 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   line-height: var(--leading-label);
 }
 
+.film-footer__locations {
+  margin: 0;
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: none;
+  line-height: var(--leading-label);
+  color: var(--muted);
+}
+
 .film-footer__email:hover,
 .film-footer__nav a:hover,
 .film-footer__policies a:hover,
