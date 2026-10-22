@@ -386,7 +386,7 @@ export const site = {
   studioPage: {
     name: "STUDIO",
     title: "",
-    seoTitle: "Studio | LISENBART FILM",
+    seoTitle: "LISENBART FILM",
     seoDescription:
       "Independent animation studio since 2006. Brand films, AI & hybrid production, game ads and original IP — one creative lead, specialized teams.",
     showreel: {
