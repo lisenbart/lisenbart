@@ -868,7 +868,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 /*
- * Trial: direction page hero = existing showreel (AI first).
+ * Direction / project heroes: existing showreel as first viewport.
  * Logo / menu / page title sit over the reel like Home over the bear.
  */
 .page-hero-reel {
@@ -953,6 +953,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  gap: var(--space-2);
   width: 100%;
   min-height: clamp(22rem, 52vh, 34rem);
   max-width: var(--home-measure);
@@ -972,6 +973,33 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: #fff;
   font-weight: 400;
   text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Project pages: nav + intro over the reel */
+.page-hero-reel__chrome .project-page__nav,
+.page-hero-reel__chrome .project-page__nav a,
+.page-hero-reel__chrome .project-page__format,
+.page-hero-reel__chrome .project-page__status,
+.page-hero-reel__chrome .project-page__crumb-title {
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+.page-hero-reel__chrome .project-page__back {
+  border-bottom-color: rgba(255, 255, 255, 0.45);
+  pointer-events: auto;
+}
+
+.page-hero-reel__chrome .project-page__back:hover {
+  border-bottom-color: #fff;
+}
+
+.page-hero-reel__chrome .project-page__intro {
+  margin: 0;
+}
+
+.page-hero-reel__chrome .project-page__intro h1 {
+  color: #fff;
 }
 
 .film-showreel__stage {

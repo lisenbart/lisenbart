@@ -1,7 +1,7 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmCapabilityItem from "@/components/film/FilmCapabilityItem";
 import FilmReveal from "@/components/film/FilmReveal";
-import FilmShowreel from "@/components/film/FilmShowreel";
+import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 
@@ -17,19 +17,7 @@ export default function AiPage() {
         url={`${site.canonical}/ai/`}
       />
       <div className="ai-page page-with-hero-reel">
-        <section className="page-hero-reel" aria-labelledby="ai-page-heading">
-          <FilmShowreel
-            id={reel.id}
-            label={reel.label}
-            poster={reel.poster}
-            vimeoId={reel.vimeoId}
-          />
-          <div className="page-hero-reel__chrome">
-            <div className="page-title-row">
-              <h1 id="ai-page-heading">{page.name}</h1>
-            </div>
-          </div>
-        </section>
+        <PageHeroReel title={page.name} titleId="ai-page-heading" reel={reel} />
 
         <section className="page-shell direction-page page-shell--from-reel">
           <FilmReveal>

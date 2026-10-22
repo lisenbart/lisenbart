@@ -1,6 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
-import FilmShowreel from "@/components/film/FilmShowreel";
+import PageHeroReel from "@/components/film/PageHeroReel";
 import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import {
   FestivalFeaturedStrip,
@@ -233,7 +233,7 @@ function FilmProjectIntro({ project }: { project: ProjectData }) {
     <div className="project-page__intro">
       <p className="project-page__format">{project.format}</p>
       {project.status ? <p className="project-page__status">{project.status}</p> : null}
-      <h1>{item.title}</h1>
+      <h1 id={`${item.id}-heading`}>{item.title}</h1>
     </div>
   );
 }
@@ -273,23 +273,20 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
       />
 
       {hasFullBleedReel ? (
-        <>
-          <section
-            className={`page-shell project-page project-page--${project.layout} page-shell--to-reel`}
+        <div className={`project-page project-page--${project.layout} page-with-hero-reel`}>
+          <PageHeroReel
+            title={item.title}
+            titleId={`${item.id}-heading`}
+            reel={{
+              id: `${item.id}-reel`,
+              label: item.title,
+              poster: publicAsset(item.mediaImage!),
+              vimeoId: item.vimeoId,
+            }}
           >
-            <FilmReveal>
-              <ProjectNav title={item.title} />
-              <FilmProjectIntro project={project} />
-            </FilmReveal>
-          </section>
-          <FilmReveal delayMs={60}>
-            <FilmShowreel
-              id={`${item.id}-reel`}
-              label={item.title}
-              poster={publicAsset(item.mediaImage!)}
-              vimeoId={item.vimeoId}
-            />
-          </FilmReveal>
+            <ProjectNav title={item.title} />
+            <FilmProjectIntro project={project} />
+          </PageHeroReel>
           <section
             className={`page-shell project-page project-page--${project.layout} page-shell--from-reel`}
           >
@@ -297,7 +294,7 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
               <ProjectBody project={project} />
             </FilmReveal>
           </section>
-        </>
+        </div>
       ) : (
         <section className={`page-shell project-page project-page--${project.layout}`}>
           <FilmReveal>
