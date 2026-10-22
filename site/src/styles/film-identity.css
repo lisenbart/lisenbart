@@ -2146,7 +2146,8 @@ a.original-tile {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end; /* always bottom of hero */
+  align-items: flex-start;
   width: 100%;
   max-width: var(--home-measure);
   margin: 0 auto;
@@ -2155,6 +2156,7 @@ a.original-tile {
     var(--gutter)
     clamp(1.25rem, 2.5vw, 2rem);
   box-sizing: border-box;
+  text-align: left;
   text-shadow: 0 1px 18px rgba(0, 0, 0, 0.35);
 }
 
@@ -2162,7 +2164,9 @@ a.original-tile {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
   max-width: min(34rem, 100%);
+  text-align: left;
 }
 
 .home-hero__fly {
