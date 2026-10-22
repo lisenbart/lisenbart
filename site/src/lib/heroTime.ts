@@ -3,12 +3,17 @@ export type HeroPeriod = "day" | "evening";
 
 export const HERO_IMAGES = {
   evening: "/images/HERO_bear_01.webp",
-  day: "/images/HERO_bear_02.webp",
+  // TEMP: use dark hero for both periods while evaluating V8
+  day: "/images/HERO_bear_01.webp",
+  // day: "/images/HERO_bear_02.webp",
 } as const;
 
 export function heroPeriodFromDate(date = new Date()): HeroPeriod {
-  const hour = date.getHours();
-  return hour >= 6 && hour < 18 ? "day" : "evening";
+  // TEMP: lock evening chrome (white type) to match dark hero
+  void date;
+  return "evening";
+  // const hour = date.getHours();
+  // return hour >= 6 && hour < 18 ? "day" : "evening";
 }
 
 export function heroImageForPeriod(period: HeroPeriod) {
