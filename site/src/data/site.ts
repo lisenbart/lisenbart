@@ -26,7 +26,7 @@ export const site = {
   },
 
   homePaths: {
-    heading: "Welcome aboard.",
+    heading: "Welcome aboard",
     items: [
       {
         label: "For Brands & Agencies",
