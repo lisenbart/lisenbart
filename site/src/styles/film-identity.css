@@ -3871,8 +3871,8 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: var(--space-4);
 }
 
-.studio-section .studio-stats {
-  margin-top: var(--space-4);
+.studio-section__body > .studio-stats:first-child {
+  margin-top: 0;
 }
 
 .studio-image {
