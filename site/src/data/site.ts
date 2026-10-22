@@ -43,7 +43,7 @@ export const site = {
         label: "For Game Studios",
         statement: "Let's get your game noticed.",
         text: "Video ads, UA creatives and playables. From ready-to-produce assets to fresh creative concepts.",
-        cta: "Explore Games",
+        cta: "Explore Games ADS",
         hub: "games" as const,
       },
       {
@@ -146,7 +146,7 @@ export const site = {
       subtitle: "Game Advertising & Playable Production",
       text: "Creative production, game advertising and playable ads.",
       href: "/games/",
-      cta: "Explore Games",
+      cta: "Explore Games ADS",
       external: false as const,
     },
     ai: {
