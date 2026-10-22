@@ -31,7 +31,7 @@ export function useScrollParallax(
     if (!section || !target) return;
 
     let frame = 0;
-    const narrowMq = window.matchMedia("(max-width: 800px)");
+    const narrowMq = window.matchMedia("(max-width: 900px)");
 
     const update = () => {
       frame = 0;
@@ -45,7 +45,7 @@ export function useScrollParallax(
         return;
       }
 
-      // Narrow viewports use CSS crop/scale for the bear — don't override with parallax zoom.
+      // While the mobile hero layer is blending in, keep desktop art unscaled.
       if (narrowMq.matches) {
         target.style.transform = "";
         return;

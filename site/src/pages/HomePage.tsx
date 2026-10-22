@@ -25,15 +25,39 @@ export default function HomePage() {
   const [period, setPeriod] = useState<HeroPeriod>("day");
   const headlineLines = formatHeadline(site.studioHome.headline);
   const heroRef = useRef<HTMLElement>(null);
-  const bearRef = useRef<HTMLImageElement>(null);
+  const bearDesktopRef = useRef<HTMLImageElement>(null);
 
-  useScrollParallax(heroRef, bearRef, { strength: 8 });
+  useScrollParallax(heroRef, bearDesktopRef, { strength: 8 });
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
     if (!hash) return;
     const timer = window.setTimeout(() => scrollToSection(hash), 50);
     return () => window.clearTimeout(timer);
+  }, []);
+
+  /** Blend desktop↔mobile hero framing across a width band (no hard jump at 800px). */
+  useLayoutEffect(() => {
+    const hero = heroRef.current;
+    if (!hero) return;
+
+    const BLEND_WIDE = 900;
+    const BLEND_NARROW = 700;
+
+    const syncNarrow = () => {
+      const t = Math.min(
+        1,
+        Math.max(0, (BLEND_WIDE - window.innerWidth) / (BLEND_WIDE - BLEND_NARROW)),
+      );
+      hero.style.setProperty("--hero-narrow", t.toFixed(4));
+    };
+
+    syncNarrow();
+    window.addEventListener("resize", syncNarrow, { passive: true });
+    return () => {
+      window.removeEventListener("resize", syncNarrow);
+      hero.style.removeProperty("--hero-narrow");
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -82,18 +106,25 @@ export default function HomePage() {
           className={`home-hero home-hero--${period}`}
           aria-labelledby="home-who-heading"
         >
-          <picture>
-            <source media="(max-width: 800px)" srcSet={HERO_IMAGES.mobile} width={1170} height={1560} />
+          <div className="home-hero__art" aria-hidden="true">
             <img
-              ref={bearRef}
-              className="bear-art"
+              ref={bearDesktopRef}
+              className="bear-art bear-art--desktop"
               src={HERO_IMAGES.desktop}
               alt=""
               width={2400}
               height={800}
               fetchPriority="high"
             />
-          </picture>
+            <img
+              className="bear-art bear-art--mobile"
+              src={HERO_IMAGES.mobile}
+              alt=""
+              width={1170}
+              height={1560}
+              fetchPriority="high"
+            />
+          </div>
           <div className="home-hero__copy film-reveal is-in">
             <div className="home-hero__intro">
               <h1 id="home-who-heading" className="home-hero__fly">

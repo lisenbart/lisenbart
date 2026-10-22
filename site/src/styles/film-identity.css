@@ -487,13 +487,15 @@ img { display: block; width: 100%; }
   background: #0c1630;
   display: flex;
   flex-direction: column;
+  /* 0 = wide desktop framing, 1 = narrow mobile framing (JS blends 700–900px) */
+  --hero-narrow: 0;
 }
 
 .home-hero--day {
   background: #7eb8e8;
 }
 
-.home-hero picture {
+.home-hero__art {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -501,6 +503,7 @@ img { display: block; width: 100%; }
   width: 100%;
   height: 100%;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .bear-art {
@@ -509,12 +512,40 @@ img { display: block; width: 100%; }
   inset: 0;
   width: 100%;
   height: 100%;
-  /* Crops are art-directed — keep framing as exported */
   object-fit: cover;
-  object-position: center center;
   pointer-events: none;
-  will-change: transform;
+}
+
+.bear-art--desktop {
+  object-position: center center;
+  opacity: calc(1 - var(--hero-narrow));
+  will-change: transform, opacity;
   transform: translate3d(0, 0, 0);
+}
+
+/* Mobile crop: raise + bias toward the bear as --hero-narrow → 1 */
+.bear-art--mobile {
+  inset: auto;
+  left: 0;
+  width: 100%;
+  top: calc(-22% * var(--hero-narrow));
+  height: calc(100% + 22% * var(--hero-narrow));
+  object-position: calc(50% + 28% * var(--hero-narrow)) top;
+  opacity: var(--hero-narrow);
+  will-change: opacity;
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .home-hero {
+    --hero-narrow: 1;
+  }
+}
+
+@media (min-width: 900px) {
+  .home-hero {
+    --hero-narrow: 0;
+  }
 }
 
 /* V8 reference: white type over cinematic hero */
@@ -3947,20 +3978,6 @@ html[data-hero-period="evening"] .home-explore {
     pointer-events: none;
   }
   .light-scene { background: linear-gradient(120deg, #476da2, #f8c5ad 55%, #3c6299); }
-  /*
-   * Narrow hero: fill with the art-directed mobile crop. Bias X so side-crops
-   * eat the left dunes; shift up so the bear sits above the headline.
-   */
-  .bear-art {
-    inset: auto;
-    top: -22%;
-    left: 0;
-    width: 100%;
-    height: 122%;
-    object-fit: cover;
-    object-position: 78% top;
-    transform: none;
-  }
   .home-hero__copy {
     z-index: 3;
     max-width: none;
