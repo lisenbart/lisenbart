@@ -1,6 +1,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { Maximize2, Minimize2, Pause, Play, Send, Volume1, Volume2, VolumeX } from "lucide-react";
 import { site } from "@/data/site";
+import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
 
 const DEFAULT_VIMEO_ID = "849899875";
 const DEFAULT_VOLUME = 0.5;
@@ -76,6 +77,7 @@ export default function HeroShowreel({
   autoPlay = false,
   hidePlayButton = false,
 }: HeroShowreelProps) {
+  const isNarrow = useIsNarrowViewport();
   const isPoster = variant === "poster";
   const resolvedId = vimeoId === undefined ? DEFAULT_VIMEO_ID : vimeoId;
   const hasVideo = Boolean(resolvedId);
@@ -474,14 +476,16 @@ export default function HeroShowreel({
                   {volumeIcon()}
                 </button>
               </div>
-              <button
-                type="button"
-                onClick={() => void toggleFullscreen()}
-                aria-label={isFullscreen ? `Exit fullscreen ${title}` : `Fullscreen ${title}`}
-                className="hero-showreel__control"
-              >
-                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
-              </button>
+              {isNarrow ? (
+                <button
+                  type="button"
+                  onClick={() => void toggleFullscreen()}
+                  aria-label={isFullscreen ? `Exit fullscreen ${title}` : `Fullscreen ${title}`}
+                  className="hero-showreel__control hero-showreel__control--fullscreen"
+                >
+                  {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                </button>
+              ) : null}
             </>
           )}
           <button

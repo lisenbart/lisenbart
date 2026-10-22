@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
+import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
 import { site } from "@/data/site";
 
 const SLIDES = [
@@ -35,7 +36,9 @@ const reel = site.studioPage.showreel;
 
 export default function StudioSlideshow() {
   const { openReel } = useReel();
+  const isNarrow = useIsNarrowViewport();
   const [active, setActive] = useState(0);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     SLIDES.forEach(({ src }) => {
@@ -45,6 +48,7 @@ export default function StudioSlideshow() {
   }, []);
 
   useEffect(() => {
+    if (playing) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) return;
 
@@ -53,33 +57,56 @@ export default function StudioSlideshow() {
     }, INTERVAL_MS);
 
     return () => window.clearInterval(timer);
-  }, []);
+  }, [playing]);
+
+  const play = () => {
+    if (!reel.vimeoId) return;
+    if (isNarrow) {
+      openReel(reel.vimeoId, reel.label);
+      return;
+    }
+    setPlaying(true);
+  };
 
   return (
-    <div className="studio-image" aria-label="Studio work collage slideshow">
+    <div
+      className={`studio-image${playing ? " studio-image--playing" : ""}`}
+      aria-label="Studio work collage slideshow"
+    >
       {SLIDES.map((slide, index) => (
         <img
           key={slide.src}
           className={index === active ? "is-active" : undefined}
           src={slide.src}
-          alt={index === active ? slide.alt : ""}
+          alt={index === active && !playing ? slide.alt : ""}
           width={1536}
           height={1024}
           loading={index === 0 ? "eager" : "lazy"}
-          aria-hidden={index === active ? undefined : true}
+          aria-hidden={index === active && !playing ? undefined : true}
         />
       ))}
-      <button
-        type="button"
-        className="studio-image__play"
-        onClick={() => openReel(reel.vimeoId, reel.label)}
-        aria-label={`${reel.playLabel}: ${reel.label}`}
-      >
-        <span className="studio-image__play-circle">
-          <PlayIcon />
-        </span>
-        <span className="studio-image__play-label">{reel.playLabel}</span>
-      </button>
+      {playing && reel.vimeoId ? (
+        <div className="studio-image__player">
+          <iframe
+            title={reel.label}
+            src={`https://player.vimeo.com/video/${reel.vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <button
+          type="button"
+          className="studio-image__play"
+          onClick={play}
+          aria-label={`${reel.playLabel}: ${reel.label}`}
+        >
+          <span className="studio-image__play-circle">
+            <PlayIcon />
+          </span>
+          <span className="studio-image__play-label">{reel.playLabel}</span>
+        </button>
+      )}
     </div>
   );
 }
