@@ -3581,6 +3581,15 @@ html[data-hero-period="evening"] .home-explore {
   background: var(--white);
 }
 
+/*
+ * Full-bleed reel heroes sit under the absolute film-header.
+ * Kill legacy archive padding (e.g. .work-page padding-top) that pushed the reel down.
+ */
+.page-with-hero-reel {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .studio-page.page-with-hero-reel {
   padding: 0;
 }
