@@ -879,6 +879,29 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   background: #142038;
 }
 
+/* Option 3: light total veil + stronger top/bottom zones for type */
+.page-hero-reel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 14, 32, 0.58) 0%,
+      rgba(8, 14, 32, 0.28) 22%,
+      rgba(8, 14, 32, 0) 38%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(8, 14, 32, 0.68) 0%,
+      rgba(8, 14, 32, 0.32) 28%,
+      rgba(8, 14, 32, 0) 48%
+    ),
+    rgba(8, 14, 32, 0.18);
+}
+
 .page-hero-reel .film-showreel {
   position: absolute;
   inset: 0;
