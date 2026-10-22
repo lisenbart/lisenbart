@@ -1,11 +1,9 @@
-import { legalConfig, shouldLinkDraftPolicies } from "@/data/legal";
+import { legalConfig } from "@/data/legal";
 import { openCookiePreferences } from "@/components/CookieConsent";
 import { contactPageHref, goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
 export default function Footer() {
-  const showPolicies = shouldLinkDraftPolicies();
-
   return (
     <footer className="film-footer">
       <div className="film-footer__inner">
@@ -48,12 +46,8 @@ export default function Footer() {
           </p>
           <nav className="film-footer__policies" aria-label="Legal">
             <a href={legalConfig.policies.legal.path}>{legalConfig.policies.legal.title}</a>
-            {showPolicies ? (
-              <>
-                <a href={legalConfig.policies.privacy.path}>{legalConfig.policies.privacy.title}</a>
-                <a href={legalConfig.policies.cookies.path}>{legalConfig.policies.cookies.title}</a>
-              </>
-            ) : null}
+            <a href={legalConfig.policies.privacy.path}>{legalConfig.policies.privacy.title}</a>
+            <a href={legalConfig.policies.cookies.path}>{legalConfig.policies.cookies.title}</a>
             <button
               type="button"
               className="film-footer__cookie-prefs"
