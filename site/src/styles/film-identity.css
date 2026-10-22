@@ -3525,9 +3525,37 @@ html[data-hero-period="evening"] .home-explore {
   margin-bottom: var(--space-2);
 }
 
+.page-hero-reel__chrome .studio-page-hero__lead {
+  margin: 0;
+  max-width: min(36rem, 100%);
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
 .studio-intro-block {
   padding: clamp(2rem, 3.5vw, 2.75rem) var(--gutter) 0;
   background: var(--white);
+}
+
+.studio-intro .studio-people__link {
+  margin-top: var(--space-3);
+}
+
+.studio-intro .studio-stats {
+  margin-top: var(--space-4);
+}
+
+.studio-how {
+  padding-top: 0;
+}
+
+.studio-how__stages {
+  margin-top: var(--space-3);
 }
 
 .studio-page.page-with-hero-reel .studio-models,

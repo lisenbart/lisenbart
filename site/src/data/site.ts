@@ -384,45 +384,59 @@ export const site = {
   studioPage: {
     name: "STUDIO",
     title: "",
-    seoTitle: "Studio — How We Work | LISENBART FILM",
+    seoTitle: "Studio | LISENBART FILM",
     seoDescription:
-      "LISENBART FILM is an independent director-led creative production company founded in 2006. Commissioned animation and original films.",
+      "Independent animation studio founded in 2006. Production company discipline for brands, agencies, game studios and original IP.",
     showreel: {
       label: "Studio Showreel",
       vimeoId: "849899875",
       playLabel: "Watch reel",
     },
+    heroLead: "Independent animation studio. Production company discipline.",
     introHeading: "Who we are",
     introParagraphs: [
-      "Founded in 2006, LISENBART FILM is an independent animation studio with over 1,000 commercial projects behind us.",
-      "We work with brands, agencies and production partners, combining creative direction and production expertise.",
-      "Alongside commissioned work, we develop and produce our own animated films and original IP.",
+      "Founded in 2006, LISENBART FILM creates animation and film for brands, agencies, game studios and production partners. Alongside client work, we develop award-winning original films and IP.",
     ] as const,
+    introCta: {
+      label: "Explore Originals",
+      hub: "originals" as const,
+    },
+    stats: [
+      { value: "2006", label: "founded" },
+      { value: "1,000+", label: "projects delivered" },
+      { value: "3", label: "specialized teams" },
+    ] as const,
+    teamsHeading: "One vision, three teams",
+    teams: [
+      {
+        title: "LISENBART FILM",
+        text: "Brand films, commercial animation and original IP.",
+      },
+      {
+        title: "GLOWL",
+        text: "AI & hybrid production.",
+      },
+      {
+        title: "LISENBART GAMES",
+        text: "Game ads, UA creatives and playables.",
+      },
+    ] as const,
+    teamsNote: "One creative lead. Specialized teams around every project.",
     howHeading: "How we work",
     howParagraphs: [
-      "A focused creative and production core leads each project, bringing together the right artists and specialists for its specific needs.",
-      "We manage the creative process and production, taking responsibility from the first decisions to final delivery.",
+      "A small senior core leads every project and brings in the right artists and specialists for it — studio-level craft without studio-level overhead.",
     ] as const,
-    engagementHeading: "Ways to work with us",
-    engagementModels: [
-      {
-        title: "Production Partner",
-        text: "You have the brief and assets. We handle the production work you need.",
-      },
-      {
-        title: "Creative & Direction",
-        text: "Need the idea, the story or the right visual approach? That's where we can start.",
-      },
-      {
-        title: "Full Production",
-        text: "From the first conversation to the finished film, with creative leadership guiding the process.",
-      },
-    ] as const,
-    peopleHeading: "People & leadership",
+    howStages: ["Brief", "Development", "Production", "Delivery"] as const,
+    howNote: "One producer, one point of contact, from the first call to the final file.",
+    peopleHeading: "Founder",
     founderName: "Dmytro Lisenbart",
-    founderRole: "Animation Director, Producer & Founder",
-    founderProof: "20 years directing · 15 years producing",
-    founderCta: "About Dmytro Lisenbart",
+    founderRole: "Founder, Director & Producer",
+    founderProof: [
+      "20 years directing · 15 years producing",
+      "The last director of Ukranimafilm, Ukraine's oldest state animation studio",
+      "Co-founder of UANIMA, the Ukrainian Animation Association",
+    ] as const,
+    founderCta: "About Dmytro",
     founderPortrait: "/images/portrait.webp",
     founderPortraitAlt: "Portrait of Dmytro Lisenbart",
   },

@@ -10,7 +10,8 @@ type ReelProps = {
 };
 
 type PageHeroReelProps = {
-  title: string;
+  /** Used for default chrome; optional when `children` provide the heading */
+  title?: string;
   titleId: string;
   /** Standard Vimeo/poster showreel */
   reel?: ReelProps;
@@ -46,7 +47,7 @@ export default function PageHeroReel({
       <div className="page-hero-reel__chrome">
         {children ?? (
           <div className="page-title-row">
-            <h1 id={titleId}>{title}</h1>
+            <h1 id={titleId}>{title ?? ""}</h1>
           </div>
         )}
       </div>
