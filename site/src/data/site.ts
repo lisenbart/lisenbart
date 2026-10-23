@@ -287,22 +287,28 @@ export const site = {
     seoDescription:
       "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
     defaultProjectType: "Originals Partnership",
-    featured: {
-      id: "unnecessary-things",
-      title: "Unnecessary Things",
-      format: "Animated short · 14 min · 2021",
-      image: "/images/work/unnecessary-things-preview.webp",
-      imageAlt: "Unnecessary Things — robot eyes close-up",
-      accent: "11 awards · 45 festival selections",
-      logline:
-        "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
-      credit: "Based on a story by Robert Sheckley · Officially licensed adaptation",
-      fullFilmLabel: "Watch the full film",
-      fullFilmVimeoId: "823618245",
-      festivalLabel: "Festivals & awards →",
-      festivalHref: "/originals/unnecessary-things/",
-    },
+    /** Hero still — same frame as Unnecessary Things row */
+    heroImage: "/images/work/unnecessary-things-preview.webp",
     projects: [
+      {
+        id: "unnecessary-things",
+        title: "Unnecessary Things",
+        image: "/images/work/unnecessary-things-preview.webp",
+        imageAlt: "Unnecessary Things — robot eyes close-up",
+        /** Still only on the hub — full film opens via CTA lightbox */
+        vimeoId: null as string | null,
+        accent: "11 awards · 45 festival selections",
+        format: "Animated short · 14 min · 2021",
+        logline:
+          "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
+        secondary: "Based on a story by Robert Sheckley · Officially licensed adaptation",
+        fullFilmLabel: "Watch the full film",
+        fullFilmVimeoId: "823618245",
+        festivalLabel: "Festivals & awards →",
+        festivalHref: "/originals/unnecessary-things/",
+        ctaLabel: null as string | null,
+        ctaKind: null as "contact" | null,
+      },
       {
         id: "the-last-kozak",
         title: "The Last Kozak",

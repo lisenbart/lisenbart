@@ -10,7 +10,6 @@ import { goToContact, scrollToSection, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.filmPage;
-const featured = page.featured;
 
 function TikTokIcon() {
   return (
@@ -89,7 +88,7 @@ export default function FilmPage() {
           media={
             <div className="page-hero-reel__still" aria-hidden="true">
               <img
-                src={publicAsset(featured.image)}
+                src={publicAsset(page.heroImage)}
                 alt=""
                 width={1600}
                 height={900}
@@ -104,44 +103,20 @@ export default function FilmPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <section
-          id={featured.id}
-          className="studio-section originals-featured"
-          aria-labelledby="originals-featured-title"
-        >
-          <FilmReveal>
-            <div className="originals-featured__grid">
-              <div className="originals-featured__primary">
-                <h2 id="originals-featured-title" className="originals-slate__title">
-                  {featured.title}
-                </h2>
-                <p className="originals-slate__format">{featured.format}</p>
-                <button
-                  type="button"
-                  className="send-button originals-featured__watch"
-                  onClick={() => openReel(featured.fullFilmVimeoId, featured.title)}
-                >
-                  {featured.fullFilmLabel}
-                </button>
-              </div>
-              <div className="originals-featured__copy">
-                <p className="originals-slate__accent">{featured.accent}</p>
-                <p className="originals-slate__logline">{featured.logline}</p>
-                <p className="originals-slate__secondary">{featured.credit}</p>
-                <a className="originals-featured__festival-link" href={featured.festivalHref}>
-                  {featured.festivalLabel}
-                </a>
-              </div>
-            </div>
-          </FilmReveal>
-        </section>
-
         {page.projects.map((item, index) => {
           const primaryId =
             "anchorIds" in item && item.anchorIds ? item.anchorIds[0] : item.id;
           const extraAnchors =
             "anchorIds" in item && item.anchorIds ? item.anchorIds.slice(1) : [];
           const tint = index % 2 === 1;
+          const fullFilmLabel =
+            "fullFilmLabel" in item && item.fullFilmLabel ? item.fullFilmLabel : null;
+          const fullFilmVimeoId =
+            "fullFilmVimeoId" in item && item.fullFilmVimeoId ? item.fullFilmVimeoId : null;
+          const festivalLabel =
+            "festivalLabel" in item && item.festivalLabel ? item.festivalLabel : null;
+          const festivalHref =
+            "festivalHref" in item && item.festivalHref ? item.festivalHref : null;
 
           return (
             <section
@@ -158,7 +133,7 @@ export default function FilmPage() {
                   aria-hidden="true"
                 />
               ))}
-              <FilmReveal>
+              <FilmReveal className="originals-row__reveal">
                 <div className="originals-row__grid">
                   <div className="originals-row__media">
                     <ProjectMedia
@@ -230,15 +205,31 @@ export default function FilmPage() {
                         </div>
                       </aside>
                     ) : null}
-                    {item.ctaKind === "contact" ? (
-                      <button
-                        type="button"
-                        className="send-button originals-slate__cta"
-                        onClick={() => goToContact()}
-                      >
-                        {item.ctaLabel}
-                      </button>
-                    ) : null}
+                    <div className="originals-row__actions">
+                      {fullFilmLabel && fullFilmVimeoId ? (
+                        <button
+                          type="button"
+                          className="send-button"
+                          onClick={() => openReel(fullFilmVimeoId, item.title)}
+                        >
+                          {fullFilmLabel}
+                        </button>
+                      ) : null}
+                      {festivalHref && festivalLabel ? (
+                        <a className="originals-row__text-link" href={festivalHref}>
+                          {festivalLabel}
+                        </a>
+                      ) : null}
+                      {item.ctaKind === "contact" && item.ctaLabel ? (
+                        <button
+                          type="button"
+                          className="send-button originals-slate__cta"
+                          onClick={() => goToContact()}
+                        >
+                          {item.ctaLabel}
+                        </button>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </FilmReveal>
