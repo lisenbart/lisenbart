@@ -147,6 +147,22 @@
       <input type="text" name="page" />
       <input type="text" name="website" />
     </form>
+    <form
+      name="contact-ai"
+      method="POST"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact-ai" />
+      <input type="email" name="email" />
+      <input type="text" name="name" />
+      <input type="text" name="projectType" />
+      <textarea name="message"></textarea>
+      <input type="text" name="page" />
+      <input type="text" name="website" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

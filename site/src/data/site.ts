@@ -414,12 +414,11 @@ export const site = {
   },
 
   aiPage: {
-    name: "AI & Hybrid",
-    title: "New tools open up new possibilities. We know how to turn them into finished work.",
+    name: "AI & HYBRID",
+    heroLead: "New tools. Same creative standards.",
     seoTitle: "AI & Hybrid — AI Video Production by GLOWL | LISENBART FILM",
     seoDescription:
       "AI & hybrid video production by GLOWL, part of LISENBART FILM. AI, animation and live action — directed by filmmakers.",
-    showreelHeading: "AI & Hybrid Showreel",
     showreel: {
       id: "ai-powered-reel",
       label: "AI & Hybrid Showreel",
@@ -427,21 +426,69 @@ export const site = {
       vimeoId: "1212613379" as string | null,
       poster: "/images/reels/ai/showreel-poster.webp",
     },
-    capabilitiesHeading: "How we use it",
-    capabilities: [
+    selectedWorkHeading: "Selected work",
+    selectedWork: [
+      { id: "ai-1", title: "Project title", client: "Client" },
+      { id: "ai-2", title: "Project title", client: "Client" },
+      { id: "ai-3", title: "Project title", client: "Client" },
+      { id: "ai-4", title: "Project title", client: "Client" },
+      { id: "ai-5", title: "Project title", client: "Client" },
+      { id: "ai-6", title: "Project title", client: "Client" },
+    ] as const,
+    howHeading: "How we use AI",
+    howIntro: "The brief defines AI's role, not the other way round.",
+    howSteps: [
       {
-        title: "Explore",
+        number: "01",
+        title: "Visual development",
         text: "Find the look before committing to production.",
       },
       {
-        title: "Create",
-        text: "Bring ideas to the screen in new ways.",
+        number: "02",
+        title: "World building",
+        text: "Environments and characters at the scale the idea needs.",
       },
       {
-        title: "Finish",
-        text: "Bring everything together into one coherent result.",
+        number: "03",
+        title: "Individual sequences",
+        text: "AI shots inside a handcrafted film.",
+      },
+      {
+        number: "04",
+        title: "Complete films",
+        text: "Fully AI-generated, directed from first frame to last.",
       },
     ] as const,
+    whatWeMakeHeading: "What we make",
+    formats: [
+      "Commercials",
+      "Brand films",
+      "Game trailers & cinematics",
+      "Product animation",
+      "Title sequences",
+      "Music videos",
+    ] as const,
+    principlesHeading: "Principles",
+    principles: [
+      {
+        title: "Directed, not generated",
+        text: "The creative decisions stay with filmmakers.",
+      },
+      {
+        title: "Finished by hand",
+        text: "Compositing, sound and grading by our team.",
+      },
+      {
+        title: "Your AI policy, respected",
+        text: "We work within your brand's rules on AI.",
+      },
+    ] as const,
+    divisionHeading: "GLOWL",
+    divisionText: "Our AI & hybrid production team, part of LISENBART FILM.",
+    externalCta: "Visit glowl.direct",
+    externalHref: "https://glowl.direct",
+    contactEmail: "info@glowl.direct",
+    defaultProjectType: "AI & Hybrid",
   },
   homeContact: {
     heading: "Let's fly together",

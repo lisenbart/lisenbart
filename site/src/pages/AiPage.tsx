@@ -1,9 +1,9 @@
 import FilmContactSection from "@/components/FilmContactSection";
-import FilmCapabilityItem from "@/components/film/FilmCapabilityItem";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
+import { NETLIFY_FORM_NAME_AI } from "@/lib/contactConfig";
 
 const page = site.aiPage;
 const reel = page.showreel;
@@ -17,25 +17,138 @@ export default function AiPage() {
         url={`${site.canonical}/ai/`}
       />
       <div className="ai-page page-with-hero-reel">
-        <PageHeroReel title={page.name} titleId="ai-page-heading" reel={reel} />
+        <PageHeroReel titleId="ai-page-heading" reel={reel}>
+          <div className="page-title-row">
+            <h1 id="ai-page-heading">{page.name}</h1>
+          </div>
+          <p className="studio-page-hero__lead">{page.heroLead}</p>
+        </PageHeroReel>
 
-        <section className="page-shell direction-page page-shell--from-reel">
+        <section
+          className="studio-section studio-section--tint studio-section--selected-work"
+          aria-labelledby="ai-selected-work-heading"
+        >
           <FilmReveal>
-            <p className="film-section-label">{page.capabilitiesHeading}</p>
+            <div className="studio-section__grid studio-section__grid--inset">
+              <h2 id="ai-selected-work-heading" className="studio-section-heading">
+                {page.selectedWorkHeading}
+              </h2>
+            </div>
           </FilmReveal>
-          <ul className="film-capabilities__list">
-            {page.capabilities.map((item, index) => (
-              <FilmCapabilityItem
-                key={item.title}
-                title={item.title}
-                text={item.text}
-                delayMs={index * 70}
-              />
+          <ul className="client-selected-grid" aria-label="Selected work">
+            {page.selectedWork.map((item) => (
+              <li key={item.id} className="client-selected-card">
+                <button
+                  type="button"
+                  className="client-selected-card__button"
+                  aria-label={`${item.title} — ${item.client}`}
+                >
+                  <span className="client-selected-card__media" aria-hidden="true" />
+                  <span className="client-selected-card__meta">
+                    <span className="client-selected-card__title">{item.title}</span>
+                    <span className="client-selected-card__client">{item.client}</span>
+                  </span>
+                </button>
+              </li>
             ))}
           </ul>
         </section>
+
+        <section className="studio-section" aria-labelledby="ai-how-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ai-how-heading" className="studio-section-heading">
+                  {page.howHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <p className="studio-models__note">{page.howIntro}</p>
+              </div>
+            </div>
+          </FilmReveal>
+          <ol className="studio-how-steps studio-section__full" aria-label="How we use AI">
+            {page.howSteps.map((step) => (
+              <li key={step.title} className="studio-how-steps__item">
+                <span className="studio-how-steps__number">{step.number}</span>
+                <h3 className="studio-models__title">{step.title}</h3>
+                <p className="studio-models__text">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        <section className="studio-section studio-section--tint" aria-labelledby="ai-what-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ai-what-heading" className="studio-section-heading">
+                  {page.whatWeMakeHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <p className="client-make__line">{page.formats.join(" · ")}</p>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
+        <section className="studio-section" aria-labelledby="ai-principles-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ai-principles-heading" className="studio-section-heading">
+                  {page.principlesHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
+          <ul
+            className="studio-how-steps studio-how-steps--3 studio-section__full"
+            aria-label="Principles"
+          >
+            {page.principles.map((item) => (
+              <li key={item.title} className="studio-how-steps__item">
+                <h3 className="studio-models__title">{item.title}</h3>
+                <p className="studio-models__text">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section
+          className="studio-section studio-section--tint"
+          aria-labelledby="ai-division-heading"
+        >
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ai-division-heading" className="studio-section-heading">
+                  {page.divisionHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body games-division">
+                <p className="studio-models__note">{page.divisionText}</p>
+                <a
+                  className="send-button games-division__cta"
+                  href={page.externalHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {page.externalCta}
+                </a>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
         <FilmReveal>
-          <FilmContactSection heading={site.homeContact.heading} />
+          <FilmContactSection
+            heading={site.homeContact.heading}
+            defaultProjectType={page.defaultProjectType}
+            formName={NETLIFY_FORM_NAME_AI}
+            helloEmail={page.contactEmail}
+          />
         </FilmReveal>
       </div>
     </>
