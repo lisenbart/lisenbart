@@ -2855,25 +2855,22 @@ a.original-tile {
   color: var(--ink);
 }
 
+/* Full-bleed path cards — flush to hero above and contact below, edge to edge */
 .home-paths.home-gateway {
-  padding-top: clamp(2.5rem, 4vw, 3rem); /* ~40–48px */
-  padding-bottom: clamp(2.75rem, 4.5vw, 3.5rem); /* ~44–56px */
-}
-
-/* Same column as header / hero / footer — gutter inside the measure */
-.home-paths__grid {
-  width: 100%;
-  max-width: var(--home-measure);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .home-paths__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   border: 0;
+  box-sizing: border-box;
   align-items: stretch;
 }
 
@@ -2881,27 +2878,17 @@ a.original-tile {
   display: flex;
   min-width: 0;
   height: 100%;
+  padding: 0;
   border-bottom: 1px solid var(--line);
 }
 
 .home-paths__grid > .film-reveal:nth-child(odd) {
   border-right: 1px solid var(--line);
-  padding-right: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.home-paths__grid > .film-reveal:nth-child(even) {
-  padding-left: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.home-paths__grid > .film-reveal:nth-child(1),
-.home-paths__grid > .film-reveal:nth-child(2) {
-  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .home-paths__grid > .film-reveal:nth-child(3),
 .home-paths__grid > .film-reveal:nth-child(4) {
   border-bottom: 0;
-  padding-top: clamp(1.75rem, 3vw, 2.5rem);
 }
 
 .home-paths__card {
@@ -2912,7 +2899,7 @@ a.original-tile {
   width: 100%;
   height: 100%;
   min-height: 0;
-  padding: 0;
+  padding: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
   text-decoration: none;
   color: inherit;
   border: 0;
@@ -2955,6 +2942,13 @@ a.original-tile {
 .home-paths__card:hover .home-paths__media img,
 .home-paths__card:focus-visible .home-paths__media img {
   transform: scale(1.03);
+}
+
+.home-paths__label,
+.home-paths__statement,
+.home-paths__text {
+  padding-inline: clamp(1rem, 2.5vw, 1.75rem);
+  box-sizing: border-box;
 }
 
 /* Audience title — display size, not bold; wraps to card width */
@@ -3009,6 +3003,7 @@ a.original-tile {
   align-self: flex-end;
   margin-top: auto;
   margin-left: auto;
+  margin-right: clamp(1rem, 2.5vw, 1.75rem);
   padding-top: 1.25rem;
   font-family: var(--font-display);
   font-size: 0.875rem; /* 14px */
@@ -4045,6 +4040,12 @@ html[data-hero-period="evening"] .home-explore {
   border-top: 1px solid var(--line);
 }
 
+/* Home: paths sit flush on contact — no extra band of empty space */
+.home-page .home-paths + .film-reveal .contact-page {
+  padding-top: var(--space-5);
+  margin-top: 0;
+}
+
 .contact-columns {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
@@ -4396,8 +4397,7 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .home-paths.home-gateway {
-    padding-top: 2.25rem;
-    padding-bottom: 2.75rem;
+    padding: 0;
   }
 
   .home-paths__grid {
@@ -4408,7 +4408,7 @@ html[data-hero-period="evening"] .home-explore {
   .home-paths__grid > .film-reveal {
     border-right: 0 !important;
     border-bottom: 1px solid var(--line);
-    padding: 1.5rem 0 !important;
+    padding: 0 !important;
   }
 
   .home-paths__grid > .film-reveal:last-child {
@@ -4417,6 +4417,7 @@ html[data-hero-period="evening"] .home-explore {
 
   .home-paths__card {
     padding-inline: 0;
+    padding-bottom: 1.5rem;
   }
 
   .home-paths__label {
