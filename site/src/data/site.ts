@@ -50,8 +50,8 @@ export const site = {
         text: "Video ads, UA creatives and playables. From ready-to-produce assets to fresh creative concepts.",
         cta: "Explore Game Ads",
         hub: "games" as const,
-        image: "/images/reels/games/showreel-poster.webp",
-        imageAlt: "Game Ads showreel",
+        image: "/images/home/games-path-preview.webp",
+        imageAlt: "Game advertising creatives collage",
       },
       {
         label: "For Film & IP Partners",
