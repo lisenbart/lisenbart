@@ -147,7 +147,6 @@ export default function AiPage() {
             heading={site.homeContact.heading}
             defaultProjectType={page.defaultProjectType}
             formName={NETLIFY_FORM_NAME_AI}
-            helloEmail={page.contactEmail}
           />
         </FilmReveal>
       </div>

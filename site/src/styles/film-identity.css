@@ -4328,7 +4328,7 @@ html[data-hero-period="evening"] .home-explore {
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: var(--space-4) var(--space-5);
   margin-top: var(--space-3);
-  align-items: start;
+  align-items: stretch;
 }
 
 .contact-columns form {
@@ -4441,15 +4441,18 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .contact-details {
-  padding: var(--space-3) 0 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: var(--space-2);
+  min-height: 100%;
+  padding: 0;
+  text-align: center;
 }
 
-.contact-details span {
-  margin-bottom: 0;
+.contact-details__label {
+  margin: 0;
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -4457,18 +4460,37 @@ html[data-hero-period="evening"] .home-explore {
   color: var(--ink);
 }
 
-.contact-details a,
-.contact-details p {
+/* Secondary to .send-button — outlined, so Submit stays primary */
+.contact-details__email {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 3rem;
   margin: 0;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: var(--leading-body);
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: transparent;
   color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-decoration: none;
+  text-transform: none;
+  transition: background 160ms ease, color 160ms ease;
 }
 
-.contact-details a {
-  border-bottom: 1px solid var(--line);
+.contact-details__email:hover {
+  background: var(--ink);
+  color: #fff;
+}
+
+.contact-details__email:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 .reel-modal {

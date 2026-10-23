@@ -147,7 +147,6 @@ export default function GamesPage() {
             heading={site.homeContact.heading}
             defaultProjectType={page.defaultProjectType}
             formName={NETLIFY_FORM_NAME_GAMES}
-            helloEmail={page.contactEmail}
           />
         </FilmReveal>
       </div>

@@ -36,7 +36,7 @@ export default function FilmContactSection({
   defaultProjectType?: string;
   /** Netlify Forms name — Games uses `contact-games`. */
   formName?: string;
-  /** "Or just say hello" address (Games uses info@lisenbart.games). */
+  /** "Or just say hello" address (defaults to info@lisenbart.com). */
   helloEmail?: string;
 }) {
   const fieldId = formName === NETLIFY_FORM_NAME ? "contact" : formName;
@@ -260,8 +260,10 @@ export default function FilmContactSection({
                 </form>
               </div>
               <div className="contact-details">
-                <span>Or just say hello</span>
-                <a href={`mailto:${helloEmail}`}>{helloEmail}</a>
+                <span className="contact-details__label">Or just say hello</span>
+                <a className="contact-details__email" href={`mailto:${helloEmail}`}>
+                  {helloEmail}
+                </a>
               </div>
             </div>
           </>
