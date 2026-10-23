@@ -126,7 +126,7 @@ export const site = {
   },
 
   homeOriginals: {
-    heading: "Original Stories. Independent Vision.",
+    heading: "Original Stories. Independent Vision",
     lead: "Our original films reflect the storytelling and creative direction we bring to everything we make.",
     filmId: "unnecessary-things" as const,
     filmTitle: "Unnecessary Things",
@@ -135,7 +135,7 @@ export const site = {
   },
   whyStudio: {
     eyebrow: "Why LISENBART",
-    headline: "Creative thinking. Directorial experience. Production you can rely on.",
+    headline: "Creative thinking. Directorial experience. Production you can rely on",
     text: "An independent animation studio founded in 2006 — combining creative development, direction and production under one roof.",
     founder: "Founded by Dmytro Lisenbart, animation director and producer.",
     aboutCta: "About the founder",
@@ -225,7 +225,7 @@ export const site = {
       "Campaign production partner — credited alongside network creative agencies.",
   },
   explorePaths: {
-    titleLines: ["What we do."] as const,
+    titleLines: ["What we do"] as const,
     commercial: {
       title: "CLIENT WORK",
       text: "Creative development, direction and animation production for brands, agencies and production partners.",
@@ -383,7 +383,7 @@ export const site = {
     ] as const,
   },
   homeContact: {
-    heading: "Let's fly together.",
+    heading: "Let's fly together",
     lead: "",
   },
   aboutPage: {
@@ -484,7 +484,7 @@ export const site = {
   contactForm: {
     submitLabel: "Send a brief",
     sendingLabel: "Sending…",
-    successHeading: "Welcome aboard.",
+    successHeading: "Welcome aboard",
     successMessage: "Thanks for reaching out. We'll be in touch soon.",
     successAction: "Send Another Message",
     errorFallback: "Something went wrong. Please email us at info@lisenbart.com.",

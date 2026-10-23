@@ -12,7 +12,7 @@ export default function OriginalsPartnershipSection() {
       aria-labelledby="originals-partnership-heading"
     >
       <h2 id="originals-partnership-heading" className="film-section-label">
-        Original stories. Built from the ground up.
+        Original stories. Built from the ground up
       </h2>
       <p className="originals-partnership__lead">
         From the first idea to a fully developed animated property, we create original
