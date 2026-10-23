@@ -64,9 +64,12 @@ export default function StudioPage() {
           </FilmReveal>
         </section>
 
-        <section className="studio-section studio-section--tint" aria-labelledby="teams-heading">
+        <section
+          className="studio-section studio-section--tint studio-section--teams"
+          aria-labelledby="teams-heading"
+        >
           <FilmReveal>
-            <div className="studio-section__grid">
+            <div className="studio-section__grid studio-section__grid--inset">
               <h2 id="teams-heading" className="studio-section-heading studio-section-heading--teams">
                 <span className="studio-section-heading__run">One vision,</span>{" "}
                 <span className="studio-section-heading__run">three&nbsp;teams</span>
@@ -76,7 +79,7 @@ export default function StudioPage() {
               </div>
             </div>
           </FilmReveal>
-          <ul className="studio-models__list studio-section__full">
+          <ul className="studio-teams-grid" aria-label="Three teams">
             {page.teams.map((item, index) => (
               <StudioModelItem
                 key={item.hub}

@@ -696,19 +696,6 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
     border-left: 1px solid var(--line);
   }
 
-  /* Team cards with media: equal column width (middle was narrower from L+R padding) */
-  .studio-models__list:has(.studio-team-card) {
-    column-gap: var(--space-4);
-  }
-
-  .studio-models__list:has(.studio-team-card) > li {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .studio-models__list:has(.studio-team-card) > li + li {
-    border-left: 0;
-  }
 }
 
 .film-games-bridge {
@@ -974,10 +961,58 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   line-height: var(--leading-label);
   color: var(--muted);
   overflow-wrap: break-word;
+  transition: color 220ms ease;
+}
+
+/* One vision / three teams — same full-bleed card system as homepage paths */
+.studio-section--teams {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.studio-section--teams .studio-section__grid--inset {
+  padding-inline: var(--gutter);
+}
+
+.studio-teams-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  width: 100%;
+  max-width: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  align-items: stretch;
+}
+
+.studio-teams-grid > .studio-team-card,
+.studio-teams-grid > li {
+  display: flex;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.studio-teams-grid > li:last-child {
+  border-bottom: 0;
 }
 
 .studio-team-card .studio-models__title {
-  margin-bottom: 0.35rem;
+  margin: 0 0 0.35rem;
+  padding-inline: clamp(1rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  transition: color 220ms ease;
+}
+
+.studio-team-card .studio-models__team,
+.studio-team-card .studio-models__text {
+  padding-inline: clamp(1rem, 2.5vw, 1.75rem);
+  box-sizing: border-box;
 }
 
 .studio-team-card__link {
@@ -985,38 +1020,41 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
+  width: 100%;
   height: 100%;
+  padding: 0 0 clamp(1.25rem, 2.5vw, 1.75rem);
   color: inherit;
   text-decoration: none;
+  text-align: left;
 }
 
 .studio-team-card__media {
   display: block;
   width: 100%;
-  margin: 0 0 0.85rem;
-  aspect-ratio: 16 / 9;
+  margin: 0 0 1rem;
   overflow: hidden;
   background: #142038;
+  line-height: 0;
 }
 
 .studio-team-card__media img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   object-position: center;
-  transition: transform 320ms ease, opacity 220ms ease;
+  transition: transform 320ms ease;
 }
 
 .studio-team-card__link:hover .studio-team-card__media img,
 .studio-team-card__link:focus-visible .studio-team-card__media img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .studio-team-card__link:hover .studio-models__title,
 .studio-team-card__link:focus-visible .studio-models__title {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  color: var(--blue);
+  text-decoration: none;
 }
 
 .studio-team-card__link:hover .studio-models__team,
@@ -1026,7 +1064,21 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-team-card__link:focus-visible {
   outline: 2px solid var(--ink);
-  outline-offset: 4px;
+  outline-offset: 6px;
+}
+
+@media (min-width: 768px) {
+  .studio-teams-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .studio-teams-grid > li {
+    border-bottom: 0;
+  }
+
+  .studio-teams-grid > li + li {
+    border-left: 1px solid var(--line);
+  }
 }
 
 .studio-models__text,
