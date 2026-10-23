@@ -287,8 +287,8 @@ export const site = {
     seoDescription:
       "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
     defaultProjectType: "Originals Partnership",
-    /** Hero still — same frame as Unnecessary Things row */
-    heroImage: "/images/work/unnecessary-things-preview.webp",
+    /** Hero still — Originals IP collage */
+    heroImage: "/images/home/originals-path-preview.webp",
     projects: [
       {
         id: "unnecessary-things",
