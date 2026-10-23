@@ -2904,13 +2904,11 @@ a.original-tile {
   color: inherit;
   border: 0;
   text-align: left;
-  transition: opacity 220ms ease;
 }
 
 .home-paths__card:hover,
 .home-paths__card:focus-visible {
   background: transparent;
-  opacity: 0.82;
   outline: none;
 }
 
@@ -2964,6 +2962,12 @@ a.original-tile {
   line-height: 1.1;
   color: #1d1d1f;
   overflow-wrap: break-word;
+  transition: color 220ms ease;
+}
+
+.home-paths__card:hover .home-paths__label,
+.home-paths__card:focus-visible .home-paths__label {
+  color: var(--blue);
 }
 
 /* Statement under audience title — full card width, natural wrap */
@@ -3014,16 +3018,24 @@ a.original-tile {
   padding-bottom: 0.2rem;
   width: fit-content;
   color: var(--ink);
+  transition: border-bottom-color 220ms ease, color 220ms ease;
 }
 
 .home-paths__card:hover .home-paths__cta,
 .home-paths__card:focus-visible .home-paths__cta {
-  border-bottom-color: var(--ink);
+  color: var(--blue);
+  border-bottom-color: var(--blue);
 }
 
 .home-paths__cta-arrow {
   display: inline-grid;
   place-items: center;
+  transition: transform 220ms ease;
+}
+
+.home-paths__card:hover .home-paths__cta-arrow,
+.home-paths__card:focus-visible .home-paths__cta-arrow {
+  transform: translateX(3px);
 }
 
 .home-paths__cta-arrow .arrow-icon {
