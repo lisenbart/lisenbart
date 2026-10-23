@@ -117,17 +117,37 @@ export default function FilmPage() {
                     {"secondary" in item && item.secondary ? (
                       <p className="originals-slate__secondary">{item.secondary}</p>
                     ) : null}
-                    {"secondaryBeforeLink" in item && item.secondaryBeforeLink && item.secondaryLink ? (
-                      <p className="originals-slate__secondary">
-                        {item.secondaryBeforeLink}
-                        <a
-                          href={item.secondaryLink.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.secondaryLink.label}
-                        </a>
-                      </p>
+                    {"appCard" in item && item.appCard ? (
+                      <aside className="originals-app-card" aria-label="Scoopy Log app">
+                        <img
+                          className="originals-app-card__icon"
+                          src={publicAsset(item.appCard.icon)}
+                          alt=""
+                          width={56}
+                          height={56}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div className="originals-app-card__copy">
+                          <p className="originals-app-card__title">{item.appCard.title}</p>
+                          <p className="originals-app-card__text">{item.appCard.text}</p>
+                          <a
+                            className="originals-app-card__store"
+                            href={item.appCard.storeHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              src={publicAsset(item.appCard.storeBadge)}
+                              alt={item.appCard.storeBadgeAlt}
+                              width={120}
+                              height={40}
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          </a>
+                        </div>
+                      </aside>
                     ) : null}
                     {"socialLinks" in item && item.socialLinks ? (
                       <ul className="originals-slate__social" aria-label="Social links">

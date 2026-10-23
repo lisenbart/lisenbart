@@ -329,10 +329,14 @@ export const site = {
         format: "Preschool IP · Ages 2–5 · English & Ukrainian (as Pershosvit) · Since 2016",
         logline:
           "Songs, stories and early learning for the youngest viewers, led by Scoopy Cap — a space captain who helps kids discover the world.",
-        secondaryBeforeLink: "On YouTube, YouTube Kids, Amazon, Roku and 9 more platforms · ",
-        secondaryLink: {
-          label: "Brand extension: Scoopy Log app",
-          href: "https://scoopylog.app",
+        secondary: "On YouTube, YouTube Kids, Amazon, Roku and 9 more platforms.",
+        appCard: {
+          icon: "/images/work/scoopy-log-icon.png",
+          title: "Scoopy Log",
+          text: "Baby tracker app for parents — sleep, feeding and diapers.",
+          storeHref: "https://apps.apple.com/app/apple-store/id6758025825",
+          storeBadge: "/images/work/app-store-badge.svg",
+          storeBadgeAlt: "Download on the App Store",
         },
         socialLinks: [
           { platform: "youtube" as const, label: "YouTube (Pershosvit)", href: "https://www.youtube.com/@pershosvit" },
