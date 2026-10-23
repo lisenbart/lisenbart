@@ -297,12 +297,20 @@ export const site = {
         "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
       credit: "Based on a story by Robert Sheckley · Officially licensed adaptation",
       secondary:
-        "Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
+        "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
       festivalLabel: "Festival page",
       festivalHref: "/originals/unnecessary-things/",
       fullFilmLabel: "Watch the full film",
       fullFilmVimeoId: "823618245",
       laurels: [
+        {
+          src: "/images/work/unnecessary-things/laurels/shanghai-2021-golden-goblet-competition.png",
+          alt: "Golden Goblet Award Competition — Shanghai International Film Festival 2021",
+        },
+        {
+          src: "/images/work/unnecessary-things/laurels/huesca-2021-official-selection.png",
+          alt: "Official Selection — 49th Huesca International Film Festival",
+        },
         {
           src: "/images/work/unnecessary-things/laurels/prague-film-awards-2022-winner.png",
           alt: "Winner, Best Animated Film — Prague Film Awards 2022",

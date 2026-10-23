@@ -4313,14 +4313,14 @@ html[data-hero-period="evening"] .home-explore {
   }
 
   .originals-featured__laurels {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem 0.85rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.65rem 0.75rem;
     justify-self: stretch;
   }
 
   .originals-featured__laurels img {
-    max-width: 7rem;
-    max-height: 4.5rem;
+    max-width: 6.25rem;
+    max-height: 4.1rem;
   }
 }
 
