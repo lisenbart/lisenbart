@@ -22,21 +22,25 @@ interface FormState {
 type Status = "idle" | "loading" | "success" | "error";
 
 const copy = site.contactForm;
-const emptyForm = (): FormState => ({
-  name: "",
-  email: "",
-  projectType: "",
-  message: "",
-  honeypot: "",
-});
 
 export default function FilmContactSection({
   heading = site.homeContact.heading,
   lead = site.homeContact.lead,
+  defaultProjectType = "",
 }: {
   heading?: string;
   lead?: string;
+  /** Preselect Project type on this page (e.g. Client Work → Brand Film or Campaign). */
+  defaultProjectType?: string;
 }) {
+  const emptyForm = (): FormState => ({
+    name: "",
+    email: "",
+    projectType: defaultProjectType,
+    message: "",
+    honeypot: "",
+  });
+
   const [form, setForm] = useState<FormState>(emptyForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<Status>("idle");

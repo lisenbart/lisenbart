@@ -193,10 +193,12 @@ export const site = {
      */
     brands: [
       "Nestlé",
-      "Danone",
       "McDonald's",
-      "Mastercard",
       "Samsung",
+      "Mastercard",
+      "Coca-Cola",
+      "P&G",
+      "Danone",
       "PepsiCo",
       "METRO",
       "Lactalis",
@@ -289,11 +291,10 @@ export const site = {
   },
   commercialPage: {
     name: "CLIENT WORK",
-    title: "Bring us the idea, the brief, or the work already in progress. We'll take it from there.",
+    heroLead: "Brand animation, crafted like film.",
     seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
     seoDescription:
       "Commission animation for brands and agencies: creative development, direction and production — from individual stages to complete campaigns.",
-    showreelHeading: "Advertising & Animation Showreel",
     showreel: {
       id: "advertising-reel",
       label: "Advertising & Animation Showreel",
@@ -301,21 +302,41 @@ export const site = {
       vimeoId: "849899875" as string | null,
       poster: "/images/reels/advertising/showreel-poster.webp",
     },
-    capabilitiesHeading: "What we bring to the table",
-    capabilities: [
+    selectedWorkHeading: "Selected work",
+    selectedWork: [
+      { id: "cw-1", title: "Project title", client: "Client" },
+      { id: "cw-2", title: "Project title", client: "Client" },
+      { id: "cw-3", title: "Project title", client: "Client" },
+      { id: "cw-4", title: "Project title", client: "Client" },
+      { id: "cw-5", title: "Project title", client: "Client" },
+      { id: "cw-6", title: "Project title", client: "Client" },
+    ] as const,
+    whatWeMakeHeading: "What we make",
+    formats: [
+      "Commercials & TV spots",
+      "Brand films",
+      "Character animation",
+      "Explainers & motion design",
+      "Social & digital content",
+    ] as const,
+    techniques: ["2D", "3D", "Hand-drawn", "Stop motion", "Motion design", "Mixed media"] as const,
+    waysHeading: "Ways to work with us",
+    ways: [
       {
-        title: "Creative Development",
-        text: "Ideas, scripts, storyboards and visual worlds.",
+        title: "Production Partner",
+        text: "You have the brief and assets. We handle the production work you need.",
       },
       {
-        title: "Direction",
-        text: "A clear creative vision, from first decisions to final frame.",
+        title: "Creative & Direction",
+        text: "Need the idea, the story or the right visual approach? That's where we can start.",
       },
       {
-        title: "Production",
-        text: "The right team and a production plan built around your project.",
+        title: "Full Production",
+        text: "From the first conversation to the finished film, with creative leadership guiding the process.",
       },
     ] as const,
+    clientsHeading: "Selected clients",
+    defaultProjectType: "Brand Film or Campaign",
   },
 
   gamesPage: {
