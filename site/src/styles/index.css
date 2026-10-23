@@ -315,8 +315,13 @@ body:has(.film-app) {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
+  /* Avoid single-word orphans on the last line (e.g. "…with / us") */
+  text-wrap: balance;
 }
 
 .font-sans {

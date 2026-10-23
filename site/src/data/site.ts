@@ -292,9 +292,9 @@ export const site = {
   commercialPage: {
     name: "CLIENT WORK",
     heroLead: "Brand animation, crafted like film.",
-    seoTitle: "Client Work — Animation Production & Direction | LISENBART FILM",
+    seoTitle: "Client Work — Brand Animation & Commercials | LISENBART FILM",
     seoDescription:
-      "Commission animation for brands and agencies: creative development, direction and production — from individual stages to complete campaigns.",
+      "Brand animation, crafted like film. Commercials, brand films and character animation for brands and agencies — 2D, 3D, hand-drawn and stop motion, since 2006.",
     showreel: {
       id: "advertising-reel",
       label: "Advertising & Animation Showreel",
