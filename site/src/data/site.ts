@@ -280,7 +280,7 @@ export const site = {
   filmPage: {
     name: "ORIGINALS",
     title: "",
-    seoTitle: "Original Films & IP — LISENBART FILM",
+    seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
       "Original animated films and character-led IP from LISENBART FILM: Unnecessary Things, The Last Kozak, Pershosvit and Scoopy Cap.",
     filmIds: ["unnecessary-things", "the-last-kozak"] as const,
@@ -395,7 +395,7 @@ export const site = {
   studioPage: {
     name: "STUDIO",
     title: "",
-    seoTitle: "LISENBART FILM",
+    seoTitle: "Studio — Independent Animation Studio Since 2006 | LISENBART FILM",
     seoDescription:
       "Independent animation studio since 2006. Brand films, AI & hybrid production, game ads and original IP — one creative lead, specialized teams.",
     showreel: {
@@ -422,24 +422,24 @@ export const site = {
         team: "LISENBART FILM",
         text: "Commercials, brand films and our own animated IP.",
         hub: "client-work" as const,
-        image: "/images/home/brands-path-preview.webp",
-        imageAlt: "Brand film and commercial animation stills",
+        image: "/images/reels/advertising/showreel-poster.webp",
+        imageAlt: "Client Work showreel",
       },
       {
         title: "AI & Hybrid Production",
         team: "GLOWL",
         text: "AI-powered films and content, directed by filmmakers.",
         hub: "ai" as const,
-        image: "/images/home/ai-path-preview.webp",
-        imageAlt: "AI & Hybrid production still",
+        image: "/images/reels/ai/showreel-poster.webp",
+        imageAlt: "AI & Hybrid showreel",
       },
       {
         title: "Game Ads & Playables",
         team: "LISENBART GAMES",
         text: "Trailers, UA creatives and playable ads for games.",
         hub: "games" as const,
-        image: "/images/home/games-path-preview.webp",
-        imageAlt: "Game advertising creatives collage",
+        image: "/images/reels/games/showreel-poster.webp",
+        imageAlt: "Game Ads showreel",
       },
     ] as const,
     teamsNote: "One creative lead. Specialized teams around every project.",
