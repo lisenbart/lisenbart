@@ -402,7 +402,7 @@ export const site = {
         text: "From a single task to a steady flow.",
       },
     ] as const,
-    trustedHeading: "Trusted by",
+    trustedHeading: "Selected clients",
     clientsNote:
       "Trusted by teams at Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania and Beach Bum Games.",
     divisionHeading: "LISENBART GAMES",
