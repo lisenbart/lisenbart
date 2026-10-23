@@ -27,12 +27,20 @@ export default function FilmContactSection({
   heading = site.homeContact.heading,
   lead = site.homeContact.lead,
   defaultProjectType = "",
+  formName = NETLIFY_FORM_NAME,
+  helloEmail = site.email,
 }: {
   heading?: string;
   lead?: string;
   /** Preselect Project type on this page (e.g. Client Work → Brand Film or Campaign). */
   defaultProjectType?: string;
+  /** Netlify Forms name — Games uses `contact-games`. */
+  formName?: string;
+  /** "Or just say hello" address (Games uses info@lisenbart.games). */
+  helloEmail?: string;
 }) {
+  const fieldId = formName === NETLIFY_FORM_NAME ? "contact" : formName;
+
   const emptyForm = (): FormState => ({
     name: "",
     email: "",
@@ -83,8 +91,8 @@ export default function FilmContactSection({
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setStatus("idle");
-      if (validationErrors.email) document.getElementById("contact-email")?.focus();
-      else if (validationErrors.message) document.getElementById("contact-message")?.focus();
+      if (validationErrors.email) document.getElementById(`${fieldId}-email`)?.focus();
+      else if (validationErrors.message) document.getElementById(`${fieldId}-message`)?.focus();
       return;
     }
 
@@ -94,7 +102,7 @@ export default function FilmContactSection({
     setServerMsg("");
 
     try {
-      const result = await submitContact(form);
+      const result = await submitContact({ ...form, formName });
       if (result.success) {
         setStatus("success");
         setServerMsg(result.message);
@@ -135,14 +143,14 @@ export default function FilmContactSection({
             <div className="contact-columns">
               <div aria-live="polite" aria-atomic="true" className="contact-status-region">
                 <form
-                  name={NETLIFY_FORM_NAME}
+                  name={formName}
                   method="POST"
                   data-netlify="true"
                   data-netlify-honeypot="website"
                   onSubmit={handleSubmit}
                   noValidate
                 >
-                  <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+                  <input type="hidden" name="form-name" value={formName} />
                   <input
                     type="hidden"
                     name="page"
@@ -164,10 +172,10 @@ export default function FilmContactSection({
                     autoComplete="off"
                     aria-hidden="true"
                   />
-                  <label htmlFor="contact-name">
+                  <label htmlFor={`${fieldId}-name`}>
                     <span>Name</span>
                     <input
-                      id="contact-name"
+                      id={`${fieldId}-name`}
                       name="name"
                       value={form.name}
                       onChange={(e) => update("name", e.target.value)}
@@ -175,7 +183,7 @@ export default function FilmContactSection({
                       placeholder="Your name"
                     />
                   </label>
-                  <label htmlFor="contact-email">
+                  <label htmlFor={`${fieldId}-email`}>
                     <span>
                       Email
                       {errors.email ? (
@@ -183,7 +191,7 @@ export default function FilmContactSection({
                       ) : null}
                     </span>
                     <input
-                      id="contact-email"
+                      id={`${fieldId}-email`}
                       name="email"
                       type="email"
                       value={form.email}
@@ -191,19 +199,19 @@ export default function FilmContactSection({
                       autoComplete="email"
                       required
                       aria-invalid={Boolean(errors.email)}
-                      aria-describedby={errors.email ? "contact-email-error" : undefined}
+                      aria-describedby={errors.email ? `${fieldId}-email-error` : undefined}
                       placeholder={copy.emailPlaceholder}
                     />
                     {errors.email ? (
-                      <span id="contact-email-error" className="sr-only">
+                      <span id={`${fieldId}-email-error`} className="sr-only">
                         {errors.email}
                       </span>
                     ) : null}
                   </label>
-                  <label htmlFor="contact-projectType">
+                  <label htmlFor={`${fieldId}-projectType`}>
                     <span>Project type</span>
                     <select
-                      id="contact-projectType"
+                      id={`${fieldId}-projectType`}
                       name="projectType"
                       value={form.projectType}
                       onChange={(e) => update("projectType", e.target.value)}
@@ -216,7 +224,7 @@ export default function FilmContactSection({
                       ))}
                     </select>
                   </label>
-                  <label htmlFor="contact-message">
+                  <label htmlFor={`${fieldId}-message`}>
                     <span>
                       Message
                       {errors.message ? (
@@ -224,18 +232,18 @@ export default function FilmContactSection({
                       ) : null}
                     </span>
                     <textarea
-                      id="contact-message"
+                      id={`${fieldId}-message`}
                       name="message"
                       rows={5}
                       value={form.message}
                       onChange={(e) => update("message", e.target.value)}
                       required
                       aria-invalid={Boolean(errors.message)}
-                      aria-describedby={errors.message ? "contact-message-error" : undefined}
+                      aria-describedby={errors.message ? `${fieldId}-message-error` : undefined}
                       placeholder={copy.messagePlaceholder}
                     />
                     {errors.message ? (
-                      <span id="contact-message-error" className="sr-only">
+                      <span id={`${fieldId}-message-error`} className="sr-only">
                         {errors.message}
                       </span>
                     ) : null}
@@ -243,7 +251,7 @@ export default function FilmContactSection({
                   {status === "error" ? (
                     <p className="contact-form-error" role="alert">
                       Something went wrong. Please email us at{" "}
-                      <a href={`mailto:${site.email}`}>{site.email}</a>.
+                      <a href={`mailto:${helloEmail}`}>{helloEmail}</a>.
                     </p>
                   ) : null}
                   <button className="send-button" type="submit" disabled={status === "loading"}>
@@ -253,7 +261,7 @@ export default function FilmContactSection({
               </div>
               <div className="contact-details">
                 <span>Or just say hello</span>
-                <a href={`mailto:${site.email}`}>{site.email}</a>
+                <a href={`mailto:${helloEmail}`}>{helloEmail}</a>
               </div>
             </div>
           </>

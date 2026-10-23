@@ -754,7 +754,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-section:first-of-type,
 .studio-page .page-hero-reel + .studio-section,
-.work-page .page-hero-reel + .studio-section {
+.work-page .page-hero-reel + .studio-section,
+.games-page .page-hero-reel + .studio-section {
   border-top: 0;
   padding-top: clamp(2rem, 3.5vw, 2.75rem);
 }
@@ -834,7 +835,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 /* Match hero / contact: same display family, not bold, calmer than content titles */
 .studio-page .studio-section-heading,
-.work-page .studio-section-heading {
+.work-page .studio-section-heading,
+.games-page .studio-section-heading {
   margin: 0;
   font-size: calc(var(--text-display) * 0.75);
   font-weight: 400;
@@ -844,7 +846,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .studio-page .studio-section-heading::after,
-.work-page .studio-section-heading::after {
+.work-page .studio-section-heading::after,
+.games-page .studio-section-heading::after {
   content: none;
 }
 
@@ -4129,7 +4132,8 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .studio-page .page-title-row,
-.work-page .page-title-row {
+.work-page .page-title-row,
+.games-page .page-title-row {
   margin-bottom: var(--space-2);
 }
 
@@ -4146,14 +4150,38 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .studio-page.page-with-hero-reel .studio-section,
-.work-page.page-with-hero-reel .studio-section {
+.work-page.page-with-hero-reel .studio-section,
+.games-page.page-with-hero-reel .studio-section {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }
 
-.work-page.page-with-hero-reel .studio-section--selected-work {
+.work-page.page-with-hero-reel .studio-section--selected-work,
+.games-page.page-with-hero-reel .studio-section--selected-work {
   padding-left: 0;
   padding-right: 0;
+}
+
+.games-formats {
+  margin-top: var(--space-3);
+  padding-inline: 0;
+}
+
+.games-division {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.games-division .studio-models__note {
+  margin-top: 0;
+}
+
+.games-division__cta {
+  display: inline-flex;
+  width: auto;
+  text-decoration: none;
 }
 
 .studio-section-heading.studio-block,

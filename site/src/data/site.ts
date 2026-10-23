@@ -340,19 +340,27 @@ export const site = {
   },
 
   gamesPage: {
-    name: "Game Ads",
-    title: "From the assets you already have to the ideas you haven't made yet.",
+    name: "GAME ADS",
+    heroLead: "Animation that sells games.",
     seoTitle: "Game Ads — Trailers, UA Creatives & Playables | LISENBART FILM",
     seoDescription:
       "Game advertising creatives, playable production and creative development — LISENBART GAMES, part of LISENBART FILM.",
-    showreelHeading: "LISENBART GAMES",
     showreel: {
       id: "games-reel",
       label: "LISENBART GAMES Showreel",
       vimeoId: "944158555" as string | null,
       poster: "/images/reels/games/showreel-poster.webp",
     },
-    capabilitiesHeading: "What we do",
+    selectedWorkHeading: "Selected work",
+    selectedWork: [
+      { id: "ga-1", title: "Project title", client: "Client" },
+      { id: "ga-2", title: "Project title", client: "Client" },
+      { id: "ga-3", title: "Project title", client: "Client" },
+      { id: "ga-4", title: "Project title", client: "Client" },
+      { id: "ga-5", title: "Project title", client: "Client" },
+      { id: "ga-6", title: "Project title", client: "Client" },
+    ] as const,
+    whatWeMakeHeading: "What we make",
     capabilities: [
       {
         title: "Creative Production",
@@ -367,10 +375,42 @@ export const site = {
         text: "New concepts, scripts and creative direction.",
       },
     ] as const,
+    formats: [
+      "Ad creatives",
+      "Variants & localisation",
+      "Playable ads",
+      "Trailers & cinematics",
+      "Store & ASO assets",
+      "In-game motion & art",
+    ] as const,
+    howHeading: "How we work",
+    howSteps: [
+      {
+        title: "Start with a test task",
+        text: "Judge our work on your own project.",
+      },
+      {
+        title: "Dedicated producer",
+        text: "One contact, from brief to delivery.",
+      },
+      {
+        title: "Your production portal",
+        text: "Every project, status and deadline in one place.",
+      },
+      {
+        title: "Scale with you",
+        text: "From a single task to a steady flow.",
+      },
+    ] as const,
+    trustedHeading: "Trusted by",
     clientsNote:
-      "Trusted by Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania and Beach Bum Games.",
-    externalCta: "Explore LISENBART GAMES",
-    externalHref: "https://www.lisenbart.games",
+      "Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania and Beach Bum Games.",
+    divisionHeading: "LISENBART GAMES",
+    divisionText: "Our dedicated games team, part of LISENBART FILM.",
+    externalCta: "Visit lisenbart.games",
+    externalHref: "https://lisenbart.games",
+    contactEmail: "info@lisenbart.games",
+    defaultProjectType: "Game Ads, Trailers & Playables",
   },
 
   aiPage: {

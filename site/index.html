@@ -114,7 +114,7 @@
     </style>
   </head>
   <body>
-    <!-- Netlify Forms: static hook for build-time detection (React submits via fetch) -->
+    <!-- Netlify Forms: static hooks for build-time detection (React submits via fetch) -->
     <form
       name="contact"
       method="POST"
@@ -124,6 +124,22 @@
       hidden
     >
       <input type="hidden" name="form-name" value="contact" />
+      <input type="email" name="email" />
+      <input type="text" name="name" />
+      <input type="text" name="projectType" />
+      <textarea name="message"></textarea>
+      <input type="text" name="page" />
+      <input type="text" name="website" />
+    </form>
+    <form
+      name="contact-games"
+      method="POST"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact-games" />
       <input type="email" name="email" />
       <input type="text" name="name" />
       <input type="text" name="projectType" />

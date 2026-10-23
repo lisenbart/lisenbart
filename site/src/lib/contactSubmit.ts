@@ -14,6 +14,8 @@ export interface ContactPayload {
   honeypot?: string;
   /** Path the form was submitted from (for Netlify / email context). */
   page?: string;
+  /** Netlify Forms name — defaults to site-wide `contact`. */
+  formName?: string;
 }
 
 function currentPagePath(): string {
@@ -107,7 +109,7 @@ function buildFormspreeBody(data: ContactPayload): FormData {
 function buildNetlifyBody(data: ContactPayload): string {
   const page = data.page?.trim() || currentPagePath();
   return encodeUrlBody({
-    "form-name": NETLIFY_FORM_NAME,
+    "form-name": data.formName?.trim() || NETLIFY_FORM_NAME,
     email: data.email.trim(),
     name: data.name.trim(),
     projectType: data.projectType,
@@ -130,6 +132,7 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
 
   if (!isContactFormLive) {
     console.info("[LISENBART] Contact (dev mock):", {
+      formName: payload.formName || NETLIFY_FORM_NAME,
       name: payload.name,
       email: payload.email,
       projectType: payload.projectType,
