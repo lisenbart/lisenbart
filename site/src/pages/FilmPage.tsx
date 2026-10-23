@@ -117,6 +117,23 @@ export default function FilmPage() {
                     {"secondary" in item && item.secondary ? (
                       <p className="originals-slate__secondary">{item.secondary}</p>
                     ) : null}
+                    {"socialLinks" in item && item.socialLinks ? (
+                      <ul className="originals-slate__social" aria-label="Social links">
+                        {item.socialLinks.map((link) => (
+                          <li key={link.href}>
+                            <a
+                              href={link.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={link.label}
+                              title={link.label}
+                            >
+                              <SocialIcon platform={link.platform} />
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                     {"appCard" in item && item.appCard ? (
                       <aside className="originals-app-card" aria-label="Scoopy Log app">
                         <img
@@ -148,23 +165,6 @@ export default function FilmPage() {
                           </a>
                         </div>
                       </aside>
-                    ) : null}
-                    {"socialLinks" in item && item.socialLinks ? (
-                      <ul className="originals-slate__social" aria-label="Social links">
-                        {item.socialLinks.map((link) => (
-                          <li key={link.href}>
-                            <a
-                              href={link.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label={link.label}
-                              title={link.label}
-                            >
-                              <SocialIcon platform={link.platform} />
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
                     ) : null}
                     {item.ctaKind === "link" && "ctaHref" in item && item.ctaHref ? (
                       <a className="send-button originals-slate__cta" href={item.ctaHref}>
