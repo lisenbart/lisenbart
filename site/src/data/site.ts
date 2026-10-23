@@ -331,6 +331,10 @@ export const site = {
           "Songs & nursery rhymes · Ukrainian and English alphabet · Character stories · Lullabies & seasonal songs",
         distribution:
           "YouTube · YouTube Kids · Amazon · Roku · Plex · Kidoodle.TV · batteryPOP · AmebaTV · OverDrive · 24Flix · CoCoRoTV · FutureToday · HighBrow",
+        brandExtension: {
+          label: "Brand extension: Scoopy Log — a baby tracker app for parents (iOS)",
+          href: "https://scoopylog.app",
+        },
         links: [
           { label: "YouTube (Pershosvit)", href: "https://www.youtube.com/@pershosvit" },
           { label: "YouTube (Scoopy Cap)", href: "https://www.youtube.com/@ScoopyCap" },

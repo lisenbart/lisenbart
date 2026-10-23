@@ -115,6 +115,17 @@ export default function FilmPage() {
                             {item.distribution}
                           </p>
                         ) : null}
+                        {"brandExtension" in item && item.brandExtension ? (
+                          <p className="originals-slate__meta">
+                            <a
+                              href={item.brandExtension.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {item.brandExtension.label}
+                            </a>
+                          </p>
+                        ) : null}
                         {"links" in item && item.links ? (
                           <ul className="originals-slate__links" aria-label="Links">
                             {item.links.map((link) => (
