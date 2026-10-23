@@ -525,7 +525,7 @@ export const site = {
   meta: {
     title: "LISENBART FILM — Animation Studio for Brands, Games & Film",
     description:
-      "Independent animation studio for brands, agencies and production partners. Creative development, direction and animation production since 2006.",
+      "Animation studio for brands, agencies and game studios since 2006 — commercials, AI & hybrid production, game ads and original films.",
 
     /** Fresh path after domain-hack OG cache; keep separate from work thumbs. */
     ogImage: publicAsset("/images/work/lisenbart-og-2026.jpg"),
