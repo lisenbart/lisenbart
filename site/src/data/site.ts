@@ -32,8 +32,8 @@ export const site = {
         text: "Commercial films, animation and creative production. Bring us a brief, a script or just the beginnings of an idea.",
         cta: "Explore Client Work",
         hub: "client-work" as const,
-        image: "/images/reels/advertising/showreel-poster.webp",
-        imageAlt: "Client Work showreel",
+        image: "/images/home/brands-path-preview.webp",
+        imageAlt: "Brand film and commercial animation stills",
       },
       {
         label: "For AI-Driven Projects",
