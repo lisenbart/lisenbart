@@ -302,6 +302,28 @@ export const site = {
       festivalHref: "/originals/unnecessary-things/",
       fullFilmLabel: "Watch the full film",
       fullFilmVimeoId: "823618245",
+      laurels: [
+        {
+          src: "/images/work/unnecessary-things/laurels/prague-film-awards-2022-winner.png",
+          alt: "Winner, Best Animated Film — Prague Film Awards 2022",
+        },
+        {
+          src: "/images/work/unnecessary-things/laurels/curtas-2021-best-animated-short.png",
+          alt: "Best Animated Short Film — Curtas Festival do Imaxinario 2021",
+        },
+        {
+          src: "/images/work/unnecessary-things/laurels/viff-2021-official-selection.png",
+          alt: "Official Selection — Vancouver International Film Festival 2021",
+        },
+        {
+          src: "/images/work/unnecessary-things/laurels/psiaf-2022-official-selection.png",
+          alt: "Official Selection — Palm Springs International Animation Festival 2022",
+        },
+        {
+          src: "/images/work/unnecessary-things/laurels/ssff-asia-2022-official-selection.png",
+          alt: "Official Selection — Short Shorts Film Festival & Asia 2022",
+        },
+      ] as const,
     },
     intro:
       "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",

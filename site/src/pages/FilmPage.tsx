@@ -109,25 +109,41 @@ export default function FilmPage() {
           aria-labelledby="originals-featured-accent"
         >
           <FilmReveal>
-            <div className="originals-featured__inner">
-              <p id="originals-featured-accent" className="originals-slate__accent">
-                {featured.accent}
-              </p>
-              <p className="originals-slate__logline">{featured.logline}</p>
-              <p className="originals-slate__secondary">{featured.credit}</p>
-              <p className="originals-slate__secondary">{featured.secondary}</p>
-              <div className="originals-featured__actions">
-                <a className="send-button" href={featured.festivalHref}>
-                  {featured.festivalLabel}
-                </a>
-                <button
-                  type="button"
-                  className="send-button send-button--secondary"
-                  onClick={() => openReel(featured.fullFilmVimeoId, featured.title)}
-                >
-                  {featured.fullFilmLabel}
-                </button>
+            <div className="originals-featured__grid">
+              <div className="originals-featured__inner">
+                <p id="originals-featured-accent" className="originals-slate__accent">
+                  {featured.accent}
+                </p>
+                <p className="originals-slate__logline">{featured.logline}</p>
+                <p className="originals-slate__secondary">{featured.credit}</p>
+                <p className="originals-slate__secondary">{featured.secondary}</p>
+                <div className="originals-featured__actions">
+                  <a className="send-button" href={featured.festivalHref}>
+                    {featured.festivalLabel}
+                  </a>
+                  <button
+                    type="button"
+                    className="send-button send-button--secondary"
+                    onClick={() => openReel(featured.fullFilmVimeoId, featured.title)}
+                  >
+                    {featured.fullFilmLabel}
+                  </button>
+                </div>
               </div>
+              <ul className="originals-featured__laurels" aria-label="Festival recognition">
+                {featured.laurels.map((laurel) => (
+                  <li key={laurel.src}>
+                    <img
+                      src={publicAsset(laurel.src)}
+                      alt={laurel.alt}
+                      width={160}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </li>
+                ))}
+              </ul>
             </div>
           </FilmReveal>
         </section>
