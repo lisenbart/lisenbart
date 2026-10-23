@@ -295,11 +295,13 @@ export const site = {
       accent: "11 awards · 45 festival selections",
       logline:
         "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
+      credit: "Based on a story by Robert Sheckley · Officially licensed adaptation",
       secondary:
         "Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
       festivalLabel: "Festival page",
       festivalHref: "/originals/unnecessary-things/",
-      screenerLabel: "Request screener",
+      fullFilmLabel: "Watch the full film",
+      fullFilmVimeoId: "823618245",
     },
     intro:
       "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",

@@ -5,6 +5,7 @@ import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
+import { useReel } from "@/contexts/ReelContext";
 import { goToContact, scrollToSection, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
 
@@ -66,6 +67,8 @@ function ProjectMedia({
 }
 
 export default function FilmPage() {
+  const { openReel } = useReel();
+
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
     if (!hash || hash === "contact") return;
@@ -111,6 +114,7 @@ export default function FilmPage() {
                 {featured.accent}
               </p>
               <p className="originals-slate__logline">{featured.logline}</p>
+              <p className="originals-slate__secondary">{featured.credit}</p>
               <p className="originals-slate__secondary">{featured.secondary}</p>
               <div className="originals-featured__actions">
                 <a className="send-button" href={featured.festivalHref}>
@@ -119,9 +123,9 @@ export default function FilmPage() {
                 <button
                   type="button"
                   className="send-button send-button--secondary"
-                  onClick={() => goToContact()}
+                  onClick={() => openReel(featured.fullFilmVimeoId, featured.title)}
                 >
-                  {featured.screenerLabel}
+                  {featured.fullFilmLabel}
                 </button>
               </div>
             </div>
