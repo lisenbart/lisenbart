@@ -2933,6 +2933,31 @@ a.original-tile {
   outline-offset: 6px;
 }
 
+/* Compact path previews — secondary to the bear hero */
+.home-paths__media {
+  display: block;
+  width: 100%;
+  max-width: 22rem;
+  margin: 0 0 1rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #142038;
+}
+
+.home-paths__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 320ms ease;
+}
+
+.home-paths__card:hover .home-paths__media img,
+.home-paths__card:focus-visible .home-paths__media img {
+  transform: scale(1.03);
+}
+
 /* Audience title — display size, not bold; wraps to card width */
 .home-paths__label {
   margin: 0 0 0.75rem;

@@ -2,6 +2,7 @@ import FilmReveal from "@/components/film/FilmReveal";
 import { Arrow } from "@/components/film/FilmIcons";
 import { site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
+import { publicAsset } from "@/lib/publicAsset";
 
 export default function HomePathsSection() {
   const { homePaths } = site;
@@ -12,6 +13,16 @@ export default function HomePathsSection() {
         {homePaths.items.map((item, index) => (
           <FilmReveal key={item.label} delayMs={index * 60}>
             <a className="home-paths__card" href={hubCanonicalHref(item.hub)}>
+              <span className="home-paths__media">
+                <img
+                  src={publicAsset(item.image)}
+                  alt={item.imageAlt}
+                  width={640}
+                  height={360}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
               <h3 className="home-paths__label">{item.label}</h3>
               <p className="home-paths__statement">{item.statement}</p>
               <p className="home-paths__text">{item.text}</p>
