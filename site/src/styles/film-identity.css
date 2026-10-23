@@ -2933,13 +2933,12 @@ a.original-tile {
   outline-offset: 6px;
 }
 
-/* Compact path previews — secondary to the bear hero */
+/* Compact path previews — full card width, shorter than 16:9 */
 .home-paths__media {
   display: block;
   width: 100%;
-  max-width: 22rem;
   margin: 0 0 1rem;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2.4 / 1;
   overflow: hidden;
   background: #142038;
 }
