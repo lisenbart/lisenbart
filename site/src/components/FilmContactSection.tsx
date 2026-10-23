@@ -140,6 +140,17 @@ export default function FilmContactSection({
                 >
                   <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
                   <input
+                    type="hidden"
+                    name="page"
+                    value={
+                      typeof window !== "undefined"
+                        ? `${window.location.pathname}${window.location.search}` || "/"
+                        : "/"
+                    }
+                    readOnly
+                    aria-hidden="true"
+                  />
+                  <input
                     type="text"
                     name="website"
                     value={form.honeypot}

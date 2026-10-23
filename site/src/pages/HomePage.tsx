@@ -1,4 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import FilmContactSection from "@/components/FilmContactSection";
+import FilmReveal from "@/components/film/FilmReveal";
 import HomePathsSection from "@/components/home/HomePathsSection";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
@@ -110,6 +112,10 @@ export default function HomePage() {
         </section>
 
         <HomePathsSection />
+
+        <FilmReveal>
+          <FilmContactSection heading={site.homeContact.heading} />
+        </FilmReveal>
       </div>
     </>
   );

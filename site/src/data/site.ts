@@ -541,19 +541,19 @@ export function contactHref() {
   return `#${sectionIds.contact}`;
 }
 
-/** Canonical contact destination when the current page has no form (home / legal). */
+/** Canonical contact destination when the current page has no form (legal pages). */
 export function contactPageHref() {
-  return `/studio/#${sectionIds.contact}`;
+  return `/#${sectionIds.contact}`;
 }
 
-/** Nav/footer href: same-page #contact when the form is on this route, else Studio. */
+/** Nav/footer href: same-page #contact when the form is on this route, else home #contact. */
 export function contactNavHref(pathname?: string) {
   return pageHasContactForm(pathname) ? contactHref() : contactPageHref();
 }
 
 /**
  * Scroll to Contact on the current page when present.
- * Otherwise open Studio contact (home / legal / cookie pages have no form).
+ * Otherwise open home contact (legal / privacy / cookie pages have no form).
  */
 export function goToContact(onDone?: () => void) {
   if (document.getElementById(sectionIds.contact)) {
