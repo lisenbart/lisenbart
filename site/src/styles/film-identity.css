@@ -756,7 +756,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-page .page-hero-reel + .studio-section,
 .work-page .page-hero-reel + .studio-section,
 .games-page .page-hero-reel + .studio-section,
-.ai-page .page-hero-reel + .studio-section {
+.ai-page .page-hero-reel + .studio-section,
+.originals-page .page-hero-reel + .studio-section {
   border-top: 0;
   padding-top: clamp(2rem, 3.5vw, 2.75rem);
 }
@@ -838,7 +839,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-page .studio-section-heading,
 .work-page .studio-section-heading,
 .games-page .studio-section-heading,
-.ai-page .studio-section-heading {
+.ai-page .studio-section-heading,
+.originals-page .studio-section-heading {
   margin: 0;
   font-size: calc(var(--text-display) * 0.75);
   font-weight: 400;
@@ -850,7 +852,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .studio-page .studio-section-heading::after,
 .work-page .studio-section-heading::after,
 .games-page .studio-section-heading::after,
-.ai-page .studio-section-heading::after {
+.ai-page .studio-section-heading::after,
+.originals-page .studio-section-heading::after {
   content: none;
 }
 
@@ -4130,6 +4133,7 @@ html[data-hero-period="evening"] .home-explore {
 .ai-page.page-with-hero-reel,
 .studio-page.page-with-hero-reel,
 .project-page.page-with-hero-reel,
+.originals-page.page-with-hero-reel,
 .page-with-hero-reel {
   padding: 0 !important;
 }
@@ -4137,8 +4141,205 @@ html[data-hero-period="evening"] .home-explore {
 .studio-page .page-title-row,
 .work-page .page-title-row,
 .games-page .page-title-row,
-.ai-page .page-title-row {
+.ai-page .page-title-row,
+.originals-page .page-title-row {
   margin-bottom: var(--space-2);
+}
+
+.page-hero-reel__still {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  margin: 0;
+  overflow: hidden;
+  background: #142038;
+}
+
+.page-hero-reel__still img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.page-hero-reel__still::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 14, 32, 0.58) 0%,
+      rgba(8, 14, 32, 0.28) 22%,
+      rgba(8, 14, 32, 0) 38%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(8, 14, 32, 0.68) 0%,
+      rgba(8, 14, 32, 0.32) 28%,
+      rgba(8, 14, 32, 0) 48%
+    ),
+    rgba(8, 14, 32, 0.18);
+}
+
+.page-hero-reel__chrome .studio-page-hero__support {
+  margin: 0;
+  max-width: min(40rem, 100%);
+  font-family: var(--font-body);
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.88);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Originals slate — alternating key art / copy */
+.originals-slate {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
+  width: 100%;
+}
+
+.originals-slate__block {
+  scroll-margin-top: calc(var(--header-offset) + 1rem);
+}
+
+.originals-slate__grid {
+  display: grid;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.originals-slate__media {
+  min-width: 0;
+  overflow: hidden;
+  background: #142038;
+  line-height: 0;
+}
+
+.originals-slate__media img,
+.originals-slate__media .film-showreel {
+  display: block;
+  width: 100%;
+  margin: 0;
+}
+
+.originals-slate__media img {
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.originals-slate__media .film-showreel,
+.originals-slate__media .film-showreel__stage {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+}
+
+.originals-slate__media .film-showreel__stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.originals-slate__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.originals-slate__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+.originals-slate__format {
+  margin: 0;
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.originals-slate__logline {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--ink);
+}
+
+.originals-slate__meta {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm, 0.9375rem);
+  line-height: var(--leading-body);
+  color: var(--ink);
+}
+
+.originals-slate__meta-label {
+  display: block;
+  margin: 0 0 0.3rem;
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.originals-slate__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.originals-slate__links a {
+  font-size: var(--text-body-sm, 0.9375rem);
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.originals-slate__cta {
+  margin-top: var(--space-2);
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .originals-slate__grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    column-gap: var(--space-5);
+    align-items: center;
+  }
+
+  .originals-slate__block--flip .originals-slate__media {
+    order: 2;
+  }
+
+  .originals-slate__block--flip .originals-slate__copy {
+    order: 1;
+  }
 }
 
 .page-hero-reel__chrome .studio-page-hero__lead {
@@ -4156,7 +4357,8 @@ html[data-hero-period="evening"] .home-explore {
 .studio-page.page-with-hero-reel .studio-section,
 .work-page.page-with-hero-reel .studio-section,
 .games-page.page-with-hero-reel .studio-section,
-.ai-page.page-with-hero-reel .studio-section {
+.ai-page.page-with-hero-reel .studio-section,
+.originals-page.page-with-hero-reel .studio-section {
   padding-left: var(--gutter);
   padding-right: var(--gutter);
 }

@@ -17,9 +17,6 @@ export default defineConfig(({ command }) => ({
             additionalPrerenderRoutes: [
               "/originals",
               "/originals/unnecessary-things",
-              "/originals/the-last-kozak",
-              "/originals/pershosvit",
-              "/originals/scoopy-cap",
               "/client-work",
               "/studio",
               "/about",

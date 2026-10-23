@@ -281,13 +281,81 @@ export const site = {
   },
   filmPage: {
     name: "ORIGINALS",
-    title: "",
+    heroLead: "Stories of our own.",
+    heroSupport:
+      "Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
+    heroImage: "/images/explore/originals/card-poster.jpg",
     seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
-      "Original animated films and character-led IP from LISENBART FILM: Unnecessary Things, The Last Kozak, Pershosvit and Scoopy Cap.",
-    filmIds: ["unnecessary-things", "the-last-kozak"] as const,
-    ipIds: ["pershosvit", "scoopy-cap"] as const,
-    unnecessaryResult: "11 awards · 45 festival selections",
+      "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
+    defaultProjectType: "Originals Partnership",
+    slateHeading: "Slate",
+    slate: [
+      {
+        id: "unnecessary-things",
+        title: "Unnecessary Things",
+        image: "/images/work/unnecessary-things-preview.webp",
+        imageAlt: "Unnecessary Things — robot eyes close-up",
+        format: "Animated short · 14 min · 2021 · Completed",
+        logline:
+          "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
+        facts:
+          "11 awards · 45 festival selections · Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
+        ctaLabel: "Full festival page",
+        ctaHref: "/originals/unnecessary-things/",
+        ctaKind: "link" as const,
+      },
+      {
+        id: "the-last-kozak",
+        title: "The Last Kozak",
+        image: "/images/work/the-last-kozak-preview.webp",
+        imageAlt: "The Last Kozak — teaser preview frame",
+        format: "Animated short · 26 min · In development",
+        logline:
+          "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
+        available: "Script, treatment, storyboard and art complete. English teaser.",
+        vimeoId: "699197721",
+        ctaLabel: "Request the pitch",
+        ctaKind: "contact" as const,
+      },
+      {
+        id: "pershosvit",
+        title: "Pershosvit / Scoopy Cap",
+        image: "/images/work/pershosvit-preview.jpg",
+        imageAlt: "Pershosvit / Scoopy Cap preschool IP",
+        format: "Preschool IP · Ages 2–5 · Ukrainian & English · Since 2016",
+        logline:
+          "Songs, stories and early learning for the youngest viewers — one IP, two languages, led by Scoopy Cap, a space captain who helps kids discover the world.",
+        facts: "200M+ views · 160K+ subscribers on YouTube",
+        library:
+          "Songs & nursery rhymes · Ukrainian and English alphabet · Character stories · Lullabies & seasonal songs",
+        distribution:
+          "YouTube · YouTube Kids · Amazon · Roku · Plex · Kidoodle.TV · batteryPOP · AmebaTV · OverDrive · 24Flix · CoCoRoTV · FutureToday · HighBrow",
+        links: [
+          { label: "YouTube (Pershosvit)", href: "https://www.youtube.com/@pershosvit" },
+          { label: "YouTube (Scoopy Cap)", href: "https://www.youtube.com/@ScoopyCap" },
+          { label: "Instagram", href: "https://www.instagram.com/scoopycap/" },
+          { label: "TikTok", href: "https://www.tiktok.com/@scoopycap" },
+        ] as const,
+        ctaLabel: "Discuss licensing",
+        ctaKind: "contact" as const,
+      },
+    ] as const,
+    partnerHeading: "How we partner",
+    partners: [
+      {
+        title: "Co-production",
+        text: "Develop and produce new films and series together.",
+      },
+      {
+        title: "Distribution & sales",
+        text: "Bring our films and library to new audiences.",
+      },
+      {
+        title: "Licensing",
+        text: "Characters, episodes and music for your platform or products.",
+      },
+    ] as const,
   },
   commercialPage: {
     name: "CLIENT WORK",

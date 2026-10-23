@@ -1,12 +1,10 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
-import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
 import {
   FestivalFeaturedStrip,
   FestivalRecognitionSection,
 } from "@/components/originals/FestivalRecognition";
-import OriginalIpPhones from "@/components/originals/OriginalIpPhones";
 import {
   CreditsDisclosure,
   OriginalsStillGallery,
@@ -114,117 +112,8 @@ function FilmShortBody({ project }: { project: ProjectData }) {
   );
 }
 
-function FeatureDevBody({ project }: { project: ProjectData }) {
-  return (
-    <div className="project-page__layout project-page__layout--feature-dev">
-      <div className="project-page__copy">
-        <p className="project-page__synopsis">{project.synopsis}</p>
-        {project.body?.map((paragraph) => (
-          <p key={paragraph} className="project-page__body">
-            {paragraph}
-          </p>
-        ))}
-
-        {project.developmentNotes && project.developmentNotes.length > 0 ? (
-          <ul className="project-page__dev-list">
-            {project.developmentNotes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-        ) : null}
-
-        <ProjectCta project={project} />
-      </div>
-    </div>
-  );
-}
-
-function PreschoolLayout({
-  project,
-  showPlatforms = false,
-}: {
-  project: ProjectData;
-  showPlatforms?: boolean;
-}) {
-  const item = project.case;
-
-  return (
-    <div className="project-page__layout project-page__layout--preschool">
-      <section className="originals-case originals-case--ip project-page__ip-case">
-        <OriginalIpPhones item={item} />
-
-        <div className="originals-case__copy">
-          <div className="originals-case__intro originals-ip-intro">
-            {item.mediaImage ? (
-              <img
-                className="originals-ip-avatar"
-                src={publicAsset(item.mediaImage)}
-                alt=""
-                width={72}
-                height={72}
-                loading="eager"
-                decoding="async"
-              />
-            ) : null}
-            <div className="originals-ip-intro__text">
-              <p className="project-page__format">{project.format}</p>
-              <h1 className="originals-case__title">{item.title}</h1>
-            </div>
-          </div>
-
-          <div className="originals-case__body">
-            <p className="project-page__synopsis">{project.synopsis}</p>
-            {project.body?.map((paragraph) => (
-              <p key={paragraph} className="project-page__body">
-                {paragraph}
-              </p>
-            ))}
-
-            {project.characterNote ? (
-              <p className="project-page__character">
-                <span className="project-page__section-label">Lead character</span>
-                {project.characterNote}
-              </p>
-            ) : null}
-
-            {project.highlights && project.highlights.length > 0 ? (
-              <div className="project-page__highlights">
-                <h2 className="project-page__section-label">In the library</h2>
-                <ul>
-                  {project.highlights.map((line) => (
-                    <li key={line}>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
-            {showPlatforms ? (
-              <div className="project-page__platforms">
-                <ScoopyCapPlatforms heading="Distribution & Platforms" compactNote />
-              </div>
-            ) : null}
-
-            <ProjectCta project={project} />
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-}
-
 function ProjectBody({ project }: { project: ProjectData }) {
-  switch (project.layout) {
-    case "film-short":
-      return <FilmShortBody project={project} />;
-    case "feature-dev":
-      return <FeatureDevBody project={project} />;
-    case "preschool-ua":
-      return <PreschoolLayout project={project} />;
-    case "preschool-en":
-      return <PreschoolLayout project={project} showPlatforms />;
-    default:
-      return null;
-  }
+  return <FilmShortBody project={project} />;
 }
 
 function FilmProjectIntro({ project }: { project: ProjectData }) {
@@ -259,9 +148,7 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
     ? publicAsset(project.case.mediaImage.split("?")[0]!)
     : undefined;
   const item = project.case;
-  const hasFullBleedReel =
-    (project.layout === "film-short" || project.layout === "feature-dev") &&
-    Boolean(item.vimeoId && item.mediaImage);
+  const hasFullBleedReel = Boolean(item.vimeoId && item.mediaImage);
 
   return (
     <>

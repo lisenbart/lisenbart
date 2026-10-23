@@ -1,61 +1,21 @@
+import { useEffect } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
-import OriginalsPartnershipSection from "@/components/film/OriginalsPartnershipSection";
+import FilmShowreel from "@/components/film/FilmShowreel";
+import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
-import { site } from "@/data/site";
-import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
-import {
-  originalsProjectHref,
-  type OriginalsProjectSlug,
-} from "@/lib/routes";
+import { goToContact, scrollToSection, site } from "@/data/site";
+import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.filmPage;
 
-/** Short type line only — full detail lives on the project page. */
-const PROJECT_CARD: Record<
-  OriginalsProjectSlug,
-  { type: string; actionLabel: string }
-> = {
-  "unnecessary-things": {
-    type: "11 Awards · 45 Festival Selections",
-    actionLabel: "View project",
-  },
-  "the-last-kozak": { type: "Animated feature", actionLabel: "View project" },
-  pershosvit: { type: "Preschool IP", actionLabel: "View project" },
-  "scoopy-cap": { type: "Preschool IP", actionLabel: "View project" },
-};
-
-type ProjectCard = {
-  item: WorkCaseStudy;
-  slug: OriginalsProjectSlug;
-  href: string;
-  type: string;
-  actionLabel: string;
-};
-
-function buildCards(): ProjectCard[] {
-  const slugs = Object.keys(PROJECT_CARD) as OriginalsProjectSlug[];
-  const cases = getWorkCasesByIds(slugs);
-  const byId = new Map(cases.map((item) => [item.id, item]));
-
-  return slugs.flatMap((slug) => {
-    const item = byId.get(slug);
-    if (!item) return [];
-    const meta = PROJECT_CARD[slug];
-    return [
-      {
-        item,
-        slug,
-        href: originalsProjectHref(slug),
-        type: meta.type,
-        actionLabel: meta.actionLabel,
-      },
-    ];
-  });
-}
-
 export default function FilmPage() {
-  const cards = buildCards();
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash || hash === "contact") return;
+    const timer = window.setTimeout(() => scrollToSection(hash), 80);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -64,47 +24,163 @@ export default function FilmPage() {
         description={page.seoDescription}
         url={`${site.canonical}/originals/`}
       />
-      <section className="page-shell originals-page">
-        <FilmReveal>
-          <div className="page-title-row originals-title">
-            <h1>Originals</h1>
+      <div className="originals-page page-with-hero-reel">
+        <PageHeroReel
+          titleId="originals-page-heading"
+          media={
+            <div className="page-hero-reel__still" aria-hidden="true">
+              <img
+                src={publicAsset(page.heroImage)}
+                alt=""
+                width={1600}
+                height={900}
+                decoding="async"
+              />
+            </div>
+          }
+        >
+          <div className="page-title-row">
+            <h1 id="originals-page-heading">{page.name}</h1>
           </div>
-        </FilmReveal>
+          <p className="studio-page-hero__lead">{page.heroLead}</p>
+          <p className="studio-page-hero__support">{page.heroSupport}</p>
+        </PageHeroReel>
 
-        <div className="originals-grid">
-          {cards.map(({ item, href, type, actionLabel }, index) => {
-            const media = item.mediaImage ?? "";
+        <section className="studio-section" aria-labelledby="originals-slate-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="originals-slate-heading" className="studio-section-heading">
+                  {page.slateHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
 
-            return (
-              <FilmReveal key={item.id} delayMs={index * 70}>
-                <a
-                  className="original-card"
-                  href={href}
-                  aria-label={`${item.title} — ${actionLabel}`}
+          <div className="originals-slate">
+            {page.slate.map((item, index) => {
+              const flip = index % 2 === 1;
+              return (
+                <article
+                  key={item.id}
+                  id={item.id}
+                  className={`originals-slate__block${flip ? " originals-slate__block--flip" : ""}`}
                 >
-                  <span className="original-card__media">
-                    <img src={media} alt="" />
-                    <span className="original-card__overlay">
-                      <span className="original-card__copy">
-                        <span className="original-card__title">{item.title}</span>
-                        <span className="original-card__status">{type}</span>
-                        <span className="original-card__action">{actionLabel}</span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
-              </FilmReveal>
-            );
-          })}
-        </div>
+                  <FilmReveal>
+                    <div className="originals-slate__grid">
+                      <div className="originals-slate__media">
+                        {"vimeoId" in item && item.vimeoId ? (
+                          <FilmShowreel
+                            id={`${item.id}-teaser`}
+                            label={`${item.title} teaser`}
+                            poster={item.image}
+                            vimeoId={item.vimeoId}
+                          />
+                        ) : (
+                          <img
+                            src={publicAsset(item.image)}
+                            alt={item.imageAlt}
+                            width={1280}
+                            height={720}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        )}
+                      </div>
+                      <div className="originals-slate__copy">
+                        <h3 className="originals-slate__title">{item.title}</h3>
+                        <p className="originals-slate__format">{item.format}</p>
+                        <p className="originals-slate__logline">{item.logline}</p>
+                        {"facts" in item && item.facts ? (
+                          <p className="originals-slate__meta">
+                            <span className="originals-slate__meta-label">Key facts</span>
+                            {item.facts}
+                          </p>
+                        ) : null}
+                        {"available" in item && item.available ? (
+                          <p className="originals-slate__meta">
+                            <span className="originals-slate__meta-label">What&apos;s available</span>
+                            {item.available}
+                          </p>
+                        ) : null}
+                        {"library" in item && item.library ? (
+                          <p className="originals-slate__meta">
+                            <span className="originals-slate__meta-label">Library</span>
+                            {item.library}
+                          </p>
+                        ) : null}
+                        {"distribution" in item && item.distribution ? (
+                          <p className="originals-slate__meta">
+                            <span className="originals-slate__meta-label">Distribution</span>
+                            {item.distribution}
+                          </p>
+                        ) : null}
+                        {"links" in item && item.links ? (
+                          <ul className="originals-slate__links" aria-label="Links">
+                            {item.links.map((link) => (
+                              <li key={link.href}>
+                                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                                  {link.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                        {item.ctaKind === "link" && "ctaHref" in item && item.ctaHref ? (
+                          <a className="send-button originals-slate__cta" href={item.ctaHref}>
+                            {item.ctaLabel}
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            className="send-button originals-slate__cta"
+                            onClick={() => goToContact()}
+                          >
+                            {item.ctaLabel}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  </FilmReveal>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
-        <FilmReveal delayMs={120}>
-          <OriginalsPartnershipSection />
+        <section
+          className="studio-section studio-section--tint"
+          aria-labelledby="originals-partner-heading"
+        >
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="originals-partner-heading" className="studio-section-heading">
+                  {page.partnerHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
+          <ul
+            className="studio-how-steps studio-how-steps--3 studio-section__full"
+            aria-label="How we partner"
+          >
+            {page.partners.map((item) => (
+              <li key={item.title} className="studio-how-steps__item">
+                <h3 className="studio-models__title">{item.title}</h3>
+                <p className="studio-models__text">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <FilmReveal>
+          <FilmContactSection
+            heading={site.homeContact.heading}
+            defaultProjectType={page.defaultProjectType}
+          />
         </FilmReveal>
-      </section>
-      <FilmReveal>
-        <FilmContactSection heading={site.homeContact.heading} />
-      </FilmReveal>
+      </div>
     </>
   );
 }

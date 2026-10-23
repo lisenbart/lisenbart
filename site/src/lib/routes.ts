@@ -21,18 +21,17 @@ export type HubPageSlug =
 
 export type LegalPageSlug = "privacy" | "cookie-policy" | "legal";
 
-export type OriginalsProjectSlug =
+/** Project pages that still exist as standalone routes (festival page). */
+export type OriginalsProjectSlug = "unnecessary-things";
+
+/** Slugs that may appear in links / legacy URLs (slate anchors or redirects). */
+export type OriginalsSlateSlug =
   | "unnecessary-things"
   | "the-last-kozak"
   | "pershosvit"
   | "scoopy-cap";
 
-const ORIGINALS_PROJECT_SLUGS: readonly OriginalsProjectSlug[] = [
-  "unnecessary-things",
-  "the-last-kozak",
-  "pershosvit",
-  "scoopy-cap",
-] as const;
+const ORIGINALS_PROJECT_SLUGS: readonly OriginalsProjectSlug[] = ["unnecessary-things"] as const;
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -96,8 +95,25 @@ export function parseLegalPage(pathname?: string): LegalPageSlug | null {
   return null;
 }
 
-export function originalsProjectHref(slug: OriginalsProjectSlug): string {
-  return `${routes.originals}/${slug}/`;
+export function originalsProjectHref(slug: OriginalsSlateSlug): string {
+  if (slug === "unnecessary-things") return `${routes.originals}/unnecessary-things/`;
+  if (slug === "the-last-kozak") return `${routes.originals}/#the-last-kozak`;
+  return `${routes.originals}/#pershosvit`;
+}
+
+/** Former project pages folded into the Originals slate. */
+export function legacyOriginalsProjectRedirectTarget(pathname?: string): string | null {
+  const normalized = normalizePathname(resolvePathname(pathname));
+  if (normalized === `${routes.originals}/the-last-kozak`) {
+    return `${routes.originals}/#the-last-kozak`;
+  }
+  if (
+    normalized === `${routes.originals}/pershosvit` ||
+    normalized === `${routes.originals}/scoopy-cap`
+  ) {
+    return `${routes.originals}/#pershosvit`;
+  }
+  return null;
 }
 
 export function parseOriginalsProject(pathname?: string): OriginalsProjectSlug | null {

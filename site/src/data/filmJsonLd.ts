@@ -28,6 +28,6 @@ export const filmPageJsonLd = [
     description:
       "26-minute animated feature in development. A nameless Cossack trapped in a time loop — action-fantasy drawing on Ukrainian mythology.",
 
-    url: "https://lisenbart.com/originals/the-last-kozak/",
+    url: "https://lisenbart.com/originals/#the-last-kozak",
   },
 ] as const;

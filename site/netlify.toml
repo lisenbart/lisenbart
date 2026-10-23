@@ -79,6 +79,43 @@
 # with force=true Netlify matches the slashed URL too and loops forever.
 # Static dist/originals/index.html + client canonical redirect handle hubs.
 
+# --- Originals slate: former project pages → hub anchors ---
+[[redirects]]
+  from = "/originals/the-last-kozak"
+  to = "/originals/#the-last-kozak"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/originals/the-last-kozak/"
+  to = "/originals/#the-last-kozak"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/originals/pershosvit"
+  to = "/originals/#pershosvit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/originals/pershosvit/"
+  to = "/originals/#pershosvit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/originals/scoopy-cap"
+  to = "/originals/#pershosvit"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/originals/scoopy-cap/"
+  to = "/originals/#pershosvit"
+  status = 301
+  force = true
+
 # --- Legacy hubs → new names ---
 [[redirects]]
   from = "/film"

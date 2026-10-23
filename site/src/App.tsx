@@ -16,6 +16,7 @@ import CookieConsent from "./components/CookieConsent";
 import { ReelProvider } from "./contexts/ReelContext";
 import {
   legacyAiAnchorRedirectTarget,
+  legacyOriginalsProjectRedirectTarget,
   legacyWorkRedirectTarget,
   parseHubPage,
   parseLegalPage,
@@ -47,6 +48,12 @@ export default function App() {
     const legacyRedirect = legacyWorkRedirectTarget();
     if (legacyRedirect) {
       window.location.replace(legacyRedirect);
+      return null;
+    }
+
+    const originalsSlateRedirect = legacyOriginalsProjectRedirectTarget();
+    if (originalsSlateRedirect) {
+      window.location.replace(originalsSlateRedirect);
       return null;
     }
 
