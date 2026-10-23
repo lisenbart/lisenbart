@@ -487,7 +487,8 @@ export const site = {
     divisionText: "Our AI & hybrid production team, part of LISENBART FILM.",
     externalCta: "Visit glowl.direct",
     externalHref: "https://glowl.direct",
-    contactEmail: "info@glowl.direct",
+    /** Hello email — keep main studio inbox for now; switch to info@glowl.direct later. */
+    contactEmail: "info@lisenbart.com",
     defaultProjectType: "AI & Hybrid",
   },
   homeContact: {
