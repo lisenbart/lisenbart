@@ -35,7 +35,7 @@ export default function ReelModal({
           <div className="reel-embed">
             <iframe
               title={title}
-              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=0&title=0&byline=0&portrait=0`}
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             />

@@ -280,42 +280,41 @@ export const site = {
     markers: [] as const,
   },
   filmPage: {
-    name: "ORIGINALS",
-    heroLead: "Stories of our own.",
-    heroSupport:
-      "Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
-    heroImage: "/images/explore/originals/card-poster.jpg",
+    name: "Originals",
     seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
       "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
     defaultProjectType: "Originals Partnership",
-    slate: [
-      {
-        id: "unnecessary-things",
-        title: "Unnecessary Things",
-        image: "/images/work/unnecessary-things-preview.webp",
-        imageAlt: "Unnecessary Things — robot eyes close-up",
-        accent: "11 awards · 45 festival selections",
-        format: "Animated short · 14 min · 2021 · Completed",
-        logline:
-          "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
-        secondary:
-          "Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
-        ctaLabel: "Full festival page",
-        ctaHref: "/originals/unnecessary-things/",
-        ctaKind: "link" as const,
-      },
+    featured: {
+      id: "unnecessary-things",
+      title: "Unnecessary Things",
+      format: "Animated short · 14 min · 2021",
+      image: "/images/work/unnecessary-things-preview.webp",
+      imageAlt: "Unnecessary Things — robot eyes close-up",
+      vimeoId: "825786788",
+      accent: "11 awards · 45 festival selections",
+      logline:
+        "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
+      secondary:
+        "Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
+      festivalLabel: "Festival page",
+      festivalHref: "/originals/unnecessary-things/",
+      screenerLabel: "Request screener",
+    },
+    intro:
+      "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
+    projects: [
       {
         id: "the-last-kozak",
         title: "The Last Kozak",
         image: "/images/work/the-last-kozak-preview.webp",
         imageAlt: "The Last Kozak — teaser preview frame",
+        vimeoId: "699197721" as string | null,
         accent: "26 min · In development",
-        format: "Animated short · 26 min · In development",
+        format: "Animated short · English teaser available",
         logline:
           "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
-        secondary: "Script, treatment, storyboard and art complete. English teaser.",
-        vimeoId: "699197721",
+        secondary: "Script, treatment, storyboard and art complete.",
         ctaLabel: "Request the pitch",
         ctaKind: "contact" as const,
       },
@@ -325,6 +324,8 @@ export const site = {
         title: "Scoopy Cap",
         image: "/images/work/scoopy-cap-preview.jpg",
         imageAlt: "Scoopy Cap — preschool robot character",
+        /** Drop in a Vimeo id later to replace the still with a channel teaser. */
+        vimeoId: null as string | null,
         accent: "200M+ views · 160K+ subscribers",
         format: "Preschool IP · Ages 2–5 · English & Ukrainian (as Pershosvit) · Since 2016",
         logline:

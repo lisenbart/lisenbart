@@ -14,6 +14,9 @@ export default function FilmShowreel({
   poster,
   vimeoId = null,
   externalHref,
+  playLabel,
+  playLabelHidden = false,
+  withSound = false,
 }: {
   id: string;
   label: string;
@@ -21,6 +24,12 @@ export default function FilmShowreel({
   vimeoId?: string | null;
   /** Used when no Vimeo id — e.g. Games specialist site. */
   externalHref?: string;
+  /** Overrides default "Watch reel" / "Open site" play control text. */
+  playLabel?: string;
+  /** Icon-only play control (no text label). */
+  playLabelHidden?: boolean;
+  /** Request unmuted autoplay after a user click (Vimeo `muted=0`). */
+  withSound?: boolean;
 }) {
   const { openReel } = useReel();
   const isNarrow = useIsNarrowViewport();
@@ -42,8 +51,11 @@ export default function FilmShowreel({
     }
   };
 
-  const actionLabel = canPlayInline ? "Watch reel" : "Open site";
-  const ariaAction = canPlayInline ? `Watch ${label}` : `Open ${label}`;
+  const actionLabel = playLabel ?? (canPlayInline ? "Watch reel" : "Open site");
+  const ariaAction = canPlayInline ? `Play ${label}` : `Open ${label}`;
+  const vimeoQuery = withSound
+    ? "autoplay=1&muted=0&title=0&byline=0&portrait=0"
+    : "autoplay=1&title=0&byline=0&portrait=0";
 
   return (
     <section id={id} className="film-showreel" aria-label={label}>
@@ -52,7 +64,7 @@ export default function FilmShowreel({
           <div className="film-showreel__stage film-showreel__stage--playing">
             <iframe
               title={label}
-              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&title=0&byline=0&portrait=0`}
+              src={`https://player.vimeo.com/video/${vimeoId}?${vimeoQuery}`}
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
             />
@@ -71,7 +83,9 @@ export default function FilmShowreel({
             <span className="film-showreel__play-circle">
               <PlayIcon />
             </span>
-            <span className="film-showreel__play-label">{actionLabel}</span>
+            {playLabelHidden ? null : (
+              <span className="film-showreel__play-label">{actionLabel}</span>
+            )}
           </span>
         </button>
       )}

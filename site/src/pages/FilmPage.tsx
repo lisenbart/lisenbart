@@ -9,6 +9,7 @@ import { goToContact, scrollToSection, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.filmPage;
+const featured = page.featured;
 
 function TikTokIcon() {
   return (
@@ -22,6 +23,46 @@ function SocialIcon({ platform }: { platform: "youtube" | "instagram" | "tiktok"
   if (platform === "youtube") return <Youtube size={18} strokeWidth={1.75} aria-hidden="true" />;
   if (platform === "instagram") return <Instagram size={18} strokeWidth={1.75} aria-hidden="true" />;
   return <TikTokIcon />;
+}
+
+function ProjectMedia({
+  id,
+  title,
+  image,
+  imageAlt,
+  vimeoId,
+}: {
+  id: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+  vimeoId?: string | null;
+}) {
+  if (vimeoId) {
+    return (
+      <FilmShowreel
+        id={`${id}-teaser`}
+        label={`${title} teaser`}
+        poster={publicAsset(image)}
+        vimeoId={vimeoId}
+        playLabelHidden
+        withSound
+      />
+    );
+  }
+
+  return (
+    <div className="originals-row__still">
+      <img
+        src={publicAsset(image)}
+        alt={imageAlt}
+        width={1280}
+        height={720}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
 }
 
 export default function FilmPage() {
@@ -43,39 +84,68 @@ export default function FilmPage() {
         <PageHeroReel
           titleId="originals-page-heading"
           media={
-            <div className="page-hero-reel__still" aria-hidden="true">
-              <img
-                src={publicAsset(page.heroImage)}
-                alt=""
-                width={1600}
-                height={900}
-                decoding="async"
-              />
-            </div>
+            <FilmShowreel
+              id="unnecessary-things-hero"
+              label={featured.title}
+              poster={publicAsset(featured.image)}
+              vimeoId={featured.vimeoId}
+              withSound
+            />
           }
         >
-          <div className="page-title-row">
-            <h1 id="originals-page-heading">{page.name}</h1>
-          </div>
-          <p className="studio-page-hero__lead">{page.heroLead}</p>
-          <p className="studio-page-hero__support">{page.heroSupport}</p>
+          <h1 id="originals-page-heading" className="originals-hero__page">
+            {page.name}
+          </h1>
+          <p className="originals-hero__film-title">{featured.title}</p>
+          <p className="originals-hero__format">{featured.format}</p>
         </PageHeroReel>
 
-        {page.slate.map((item, index) => {
-          const flip = index % 2 === 1;
-          const tint = index % 2 === 1;
+        <section
+          id={featured.id}
+          className="studio-section originals-featured"
+          aria-labelledby="originals-featured-accent"
+        >
+          <FilmReveal>
+            <div className="originals-featured__inner">
+              <p id="originals-featured-accent" className="originals-slate__accent">
+                {featured.accent}
+              </p>
+              <p className="originals-slate__logline">{featured.logline}</p>
+              <p className="originals-slate__secondary">{featured.secondary}</p>
+              <div className="originals-featured__actions">
+                <a className="send-button" href={featured.festivalHref}>
+                  {featured.festivalLabel}
+                </a>
+                <button
+                  type="button"
+                  className="send-button send-button--secondary"
+                  onClick={() => goToContact()}
+                >
+                  {featured.screenerLabel}
+                </button>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
+        <section className="studio-section studio-section--tint originals-intro" aria-label="Originals intro">
+          <FilmReveal>
+            <p className="originals-intro__text">{page.intro}</p>
+          </FilmReveal>
+        </section>
+
+        {page.projects.map((item, index) => {
           const primaryId =
             "anchorIds" in item && item.anchorIds ? item.anchorIds[0] : item.id;
           const extraAnchors =
-            "anchorIds" in item && item.anchorIds
-              ? item.anchorIds.slice(1)
-              : [];
+            "anchorIds" in item && item.anchorIds ? item.anchorIds.slice(1) : [];
+          const tint = index % 2 === 1;
 
           return (
             <section
               key={item.id}
               id={primaryId}
-              className={`studio-section originals-slate-section${tint ? " studio-section--tint" : ""}${flip ? " originals-slate-section--flip" : ""}`}
+              className={`studio-section originals-row${tint ? " studio-section--tint" : ""}`}
               aria-labelledby={`${item.id}-title`}
             >
               {extraAnchors.map((anchorId) => (
@@ -87,28 +157,20 @@ export default function FilmPage() {
                 />
               ))}
               <FilmReveal>
-                <div className="originals-slate__grid">
-                  <div className="originals-slate__media">
-                    {"vimeoId" in item && item.vimeoId ? (
-                      <FilmShowreel
-                        id={`${item.id}-teaser`}
-                        label={`${item.title} teaser`}
-                        poster={item.image}
-                        vimeoId={item.vimeoId}
-                      />
-                    ) : (
-                      <img
-                        src={publicAsset(item.image)}
-                        alt={item.imageAlt}
-                        width={1280}
-                        height={720}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
+                <div className="originals-row__grid">
+                  <div className="originals-row__media">
+                    <ProjectMedia
+                      id={item.id}
+                      title={item.title}
+                      image={item.image}
+                      imageAlt={item.imageAlt}
+                      vimeoId={item.vimeoId}
+                    />
                   </div>
-                  <div className="originals-slate__copy">
-                    <p className="originals-slate__accent">{item.accent}</p>
+                  <div className="originals-row__copy">
+                    <p className="originals-slate__accent originals-slate__accent--row">
+                      {item.accent}
+                    </p>
                     <h2 id={`${item.id}-title`} className="originals-slate__title">
                       {item.title}
                     </h2>
@@ -166,11 +228,7 @@ export default function FilmPage() {
                         </div>
                       </aside>
                     ) : null}
-                    {item.ctaKind === "link" && "ctaHref" in item && item.ctaHref ? (
-                      <a className="send-button originals-slate__cta" href={item.ctaHref}>
-                        {item.ctaLabel}
-                      </a>
-                    ) : (
+                    {item.ctaKind === "contact" ? (
                       <button
                         type="button"
                         className="send-button originals-slate__cta"
@@ -178,7 +236,7 @@ export default function FilmPage() {
                       >
                         {item.ctaLabel}
                       </button>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </FilmReveal>
@@ -186,10 +244,7 @@ export default function FilmPage() {
           );
         })}
 
-        <section
-          className="studio-section studio-section--tint"
-          aria-labelledby="originals-partner-heading"
-        >
+        <section className="studio-section" aria-labelledby="originals-partner-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
