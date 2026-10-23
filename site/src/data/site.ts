@@ -321,9 +321,9 @@ export const site = {
   gamesPage: {
     name: "Game Ads",
     title: "From the assets you already have to the ideas you haven't made yet.",
-    seoTitle: "Game Ads — Ads, Cinematics & Playables | LISENBART FILM",
+    seoTitle: "Game Ads — Trailers, UA Creatives & Playables | LISENBART FILM",
     seoDescription:
-      "Game advertising creatives, playable production and creative development — LISENBART GAMES, a direction of LISENBART FILM.",
+      "Game advertising creatives, playable production and creative development — LISENBART GAMES, part of LISENBART FILM.",
     showreelHeading: "LISENBART GAMES",
     showreel: {
       id: "games-reel",
@@ -355,9 +355,9 @@ export const site = {
   aiPage: {
     name: "AI & Hybrid",
     title: "New tools open up new possibilities. We know how to turn them into finished work.",
-    seoTitle: "AI & Hybrid | LISENBART FILM",
+    seoTitle: "AI & Hybrid — AI Video Production by GLOWL | LISENBART FILM",
     seoDescription:
-      "AI-assisted visuals and hybrid filmmaking as a capability of LISENBART FILM — from exploration to finishing.",
+      "AI & hybrid video production by GLOWL, part of LISENBART FILM. AI, animation and live action — directed by filmmakers.",
     showreelHeading: "AI & Hybrid Showreel",
     showreel: {
       id: "ai-powered-reel",
@@ -523,7 +523,7 @@ export const site = {
     white: "/images/black_logo.png",
   },
   meta: {
-    title: "LISENBART FILM — Creative Freedom · Production Control",
+    title: "LISENBART FILM — Animation Studio for Brands, Games & Film",
     description:
       "Independent animation studio for brands, agencies and production partners. Creative development, direction and animation production since 2006.",
 
