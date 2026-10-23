@@ -98,6 +98,7 @@ export function parseLegalPage(pathname?: string): LegalPageSlug | null {
 export function originalsProjectHref(slug: OriginalsSlateSlug): string {
   if (slug === "unnecessary-things") return `${routes.originals}/unnecessary-things/`;
   if (slug === "the-last-kozak") return `${routes.originals}/#the-last-kozak`;
+  if (slug === "scoopy-cap") return `${routes.originals}/#scoopy-cap`;
   return `${routes.originals}/#pershosvit`;
 }
 
@@ -107,11 +108,11 @@ export function legacyOriginalsProjectRedirectTarget(pathname?: string): string 
   if (normalized === `${routes.originals}/the-last-kozak`) {
     return `${routes.originals}/#the-last-kozak`;
   }
-  if (
-    normalized === `${routes.originals}/pershosvit` ||
-    normalized === `${routes.originals}/scoopy-cap`
-  ) {
+  if (normalized === `${routes.originals}/pershosvit`) {
     return `${routes.originals}/#pershosvit`;
+  }
+  if (normalized === `${routes.originals}/scoopy-cap`) {
+    return `${routes.originals}/#scoopy-cap`;
   }
   return null;
 }

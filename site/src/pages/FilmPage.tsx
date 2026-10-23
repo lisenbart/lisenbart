@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Instagram, Youtube } from "lucide-react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
@@ -8,6 +9,20 @@ import { goToContact, scrollToSection, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.filmPage;
+
+function TikTokIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2 6.34 6.34 0 0 0 9.49 21.5a6.34 6.34 0 0 0 6.34-6.34V8.6a8.2 8.2 0 0 0 4.76 1.52V6.69h-1Z" />
+    </svg>
+  );
+}
+
+function SocialIcon({ platform }: { platform: "youtube" | "instagram" | "tiktok" }) {
+  if (platform === "youtube") return <Youtube size={18} strokeWidth={1.75} aria-hidden="true" />;
+  if (platform === "instagram") return <Instagram size={18} strokeWidth={1.75} aria-hidden="true" />;
+  return <TikTokIcon />;
+}
 
 export default function FilmPage() {
   useEffect(() => {
@@ -46,118 +61,110 @@ export default function FilmPage() {
           <p className="studio-page-hero__support">{page.heroSupport}</p>
         </PageHeroReel>
 
-        <section className="studio-section" aria-labelledby="originals-slate-heading">
-          <FilmReveal>
-            <div className="studio-section__grid">
-              <div className="studio-section__aside">
-                <h2 id="originals-slate-heading" className="studio-section-heading">
-                  {page.slateHeading}
-                </h2>
-              </div>
-            </div>
-          </FilmReveal>
+        {page.slate.map((item, index) => {
+          const flip = index % 2 === 1;
+          const tint = index % 2 === 1;
+          const primaryId =
+            "anchorIds" in item && item.anchorIds ? item.anchorIds[0] : item.id;
+          const extraAnchors =
+            "anchorIds" in item && item.anchorIds
+              ? item.anchorIds.slice(1)
+              : [];
 
-          <div className="originals-slate">
-            {page.slate.map((item, index) => {
-              const flip = index % 2 === 1;
-              return (
-                <article
-                  key={item.id}
-                  id={item.id}
-                  className={`originals-slate__block${flip ? " originals-slate__block--flip" : ""}`}
-                >
-                  <FilmReveal>
-                    <div className="originals-slate__grid">
-                      <div className="originals-slate__media">
-                        {"vimeoId" in item && item.vimeoId ? (
-                          <FilmShowreel
-                            id={`${item.id}-teaser`}
-                            label={`${item.title} teaser`}
-                            poster={item.image}
-                            vimeoId={item.vimeoId}
-                          />
-                        ) : (
-                          <img
-                            src={publicAsset(item.image)}
-                            alt={item.imageAlt}
-                            width={1280}
-                            height={720}
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        )}
-                      </div>
-                      <div className="originals-slate__copy">
-                        <h3 className="originals-slate__title">{item.title}</h3>
-                        <p className="originals-slate__format">{item.format}</p>
-                        <p className="originals-slate__logline">{item.logline}</p>
-                        {"facts" in item && item.facts ? (
-                          <p className="originals-slate__meta">
-                            <span className="originals-slate__meta-label">Key facts</span>
-                            {item.facts}
-                          </p>
-                        ) : null}
-                        {"available" in item && item.available ? (
-                          <p className="originals-slate__meta">
-                            <span className="originals-slate__meta-label">What&apos;s available</span>
-                            {item.available}
-                          </p>
-                        ) : null}
-                        {"library" in item && item.library ? (
-                          <p className="originals-slate__meta">
-                            <span className="originals-slate__meta-label">Library</span>
-                            {item.library}
-                          </p>
-                        ) : null}
-                        {"distribution" in item && item.distribution ? (
-                          <p className="originals-slate__meta">
-                            <span className="originals-slate__meta-label">Distribution</span>
-                            {item.distribution}
-                          </p>
-                        ) : null}
-                        {"brandExtension" in item && item.brandExtension ? (
-                          <p className="originals-slate__meta">
+          return (
+            <section
+              key={item.id}
+              id={primaryId}
+              className={`studio-section originals-slate-section${tint ? " studio-section--tint" : ""}${flip ? " originals-slate-section--flip" : ""}`}
+              aria-labelledby={`${item.id}-title`}
+            >
+              {extraAnchors.map((anchorId) => (
+                <span
+                  key={anchorId}
+                  id={anchorId}
+                  className="originals-slate__anchor"
+                  aria-hidden="true"
+                />
+              ))}
+              <FilmReveal>
+                <div className="originals-slate__grid">
+                  <div className="originals-slate__media">
+                    {"vimeoId" in item && item.vimeoId ? (
+                      <FilmShowreel
+                        id={`${item.id}-teaser`}
+                        label={`${item.title} teaser`}
+                        poster={item.image}
+                        vimeoId={item.vimeoId}
+                      />
+                    ) : (
+                      <img
+                        src={publicAsset(item.image)}
+                        alt={item.imageAlt}
+                        width={1280}
+                        height={720}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
+                  </div>
+                  <div className="originals-slate__copy">
+                    <p className="originals-slate__accent">{item.accent}</p>
+                    <h2 id={`${item.id}-title`} className="originals-slate__title">
+                      {item.title}
+                    </h2>
+                    <p className="originals-slate__format">{item.format}</p>
+                    <p className="originals-slate__logline">{item.logline}</p>
+                    {"secondary" in item && item.secondary ? (
+                      <p className="originals-slate__secondary">{item.secondary}</p>
+                    ) : null}
+                    {"secondaryBeforeLink" in item && item.secondaryBeforeLink && item.secondaryLink ? (
+                      <p className="originals-slate__secondary">
+                        {item.secondaryBeforeLink}
+                        <a
+                          href={item.secondaryLink.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.secondaryLink.label}
+                        </a>
+                      </p>
+                    ) : null}
+                    {"socialLinks" in item && item.socialLinks ? (
+                      <ul className="originals-slate__social" aria-label="Social links">
+                        {item.socialLinks.map((link) => (
+                          <li key={link.href}>
                             <a
-                              href={item.brandExtension.href}
+                              href={link.href}
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={link.label}
+                              title={link.label}
                             >
-                              {item.brandExtension.label}
+                              <SocialIcon platform={link.platform} />
                             </a>
-                          </p>
-                        ) : null}
-                        {"links" in item && item.links ? (
-                          <ul className="originals-slate__links" aria-label="Links">
-                            {item.links.map((link) => (
-                              <li key={link.href}>
-                                <a href={link.href} target="_blank" rel="noopener noreferrer">
-                                  {link.label}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                        {item.ctaKind === "link" && "ctaHref" in item && item.ctaHref ? (
-                          <a className="send-button originals-slate__cta" href={item.ctaHref}>
-                            {item.ctaLabel}
-                          </a>
-                        ) : (
-                          <button
-                            type="button"
-                            className="send-button originals-slate__cta"
-                            onClick={() => goToContact()}
-                          >
-                            {item.ctaLabel}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </FilmReveal>
-                </article>
-              );
-            })}
-          </div>
-        </section>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                    {item.ctaKind === "link" && "ctaHref" in item && item.ctaHref ? (
+                      <a className="send-button originals-slate__cta" href={item.ctaHref}>
+                        {item.ctaLabel}
+                      </a>
+                    ) : (
+                      <button
+                        type="button"
+                        className="send-button originals-slate__cta"
+                        onClick={() => goToContact()}
+                      >
+                        {item.ctaLabel}
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </FilmReveal>
+            </section>
+          );
+        })}
 
         <section
           className="studio-section studio-section--tint"

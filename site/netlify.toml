@@ -106,13 +106,13 @@
 
 [[redirects]]
   from = "/originals/scoopy-cap"
-  to = "/originals/#pershosvit"
+  to = "/originals/#scoopy-cap"
   status = 301
   force = true
 
 [[redirects]]
   from = "/originals/scoopy-cap/"
-  to = "/originals/#pershosvit"
+  to = "/originals/#scoopy-cap"
   status = 301
   force = true
 

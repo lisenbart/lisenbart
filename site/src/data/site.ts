@@ -289,18 +289,18 @@ export const site = {
     seoDescription:
       "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
     defaultProjectType: "Originals Partnership",
-    slateHeading: "Slate",
     slate: [
       {
         id: "unnecessary-things",
         title: "Unnecessary Things",
         image: "/images/work/unnecessary-things-preview.webp",
         imageAlt: "Unnecessary Things — robot eyes close-up",
+        accent: "11 awards · 45 festival selections",
         format: "Animated short · 14 min · 2021 · Completed",
         logline:
           "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
-        facts:
-          "11 awards · 45 festival selections · Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
+        secondary:
+          "Golden Goblet nominee, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
         ctaLabel: "Full festival page",
         ctaHref: "/originals/unnecessary-things/",
         ctaKind: "link" as const,
@@ -310,36 +310,35 @@ export const site = {
         title: "The Last Kozak",
         image: "/images/work/the-last-kozak-preview.webp",
         imageAlt: "The Last Kozak — teaser preview frame",
+        accent: "26 min · In development",
         format: "Animated short · 26 min · In development",
         logline:
           "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
-        available: "Script, treatment, storyboard and art complete. English teaser.",
+        secondary: "Script, treatment, storyboard and art complete. English teaser.",
         vimeoId: "699197721",
         ctaLabel: "Request the pitch",
         ctaKind: "contact" as const,
       },
       {
         id: "pershosvit",
-        title: "Pershosvit / Scoopy Cap",
-        image: "/images/work/pershosvit-preview.jpg",
-        imageAlt: "Pershosvit / Scoopy Cap preschool IP",
-        format: "Preschool IP · Ages 2–5 · Ukrainian & English · Since 2016",
+        anchorIds: ["pershosvit", "scoopy-cap"] as const,
+        title: "Scoopy Cap",
+        image: "/images/work/scoopy-cap-preview.jpg",
+        imageAlt: "Scoopy Cap — preschool robot character",
+        accent: "200M+ views · 160K+ subscribers",
+        format: "Preschool IP · Ages 2–5 · English & Ukrainian (as Pershosvit) · Since 2016",
         logline:
-          "Songs, stories and early learning for the youngest viewers — one IP, two languages, led by Scoopy Cap, a space captain who helps kids discover the world.",
-        facts: "200M+ views · 160K+ subscribers on YouTube",
-        library:
-          "Songs & nursery rhymes · Ukrainian and English alphabet · Character stories · Lullabies & seasonal songs",
-        distribution:
-          "YouTube · YouTube Kids · Amazon · Roku · Plex · Kidoodle.TV · batteryPOP · AmebaTV · OverDrive · 24Flix · CoCoRoTV · FutureToday · HighBrow",
-        brandExtension: {
-          label: "Brand extension: Scoopy Log — a baby tracker app for parents (iOS)",
+          "Songs, stories and early learning for the youngest viewers, led by Scoopy Cap — a space captain who helps kids discover the world.",
+        secondaryBeforeLink: "On YouTube, YouTube Kids, Amazon, Roku and 9 more platforms · ",
+        secondaryLink: {
+          label: "Brand extension: Scoopy Log app",
           href: "https://scoopylog.app",
         },
-        links: [
-          { label: "YouTube (Pershosvit)", href: "https://www.youtube.com/@pershosvit" },
-          { label: "YouTube (Scoopy Cap)", href: "https://www.youtube.com/@ScoopyCap" },
-          { label: "Instagram", href: "https://www.instagram.com/scoopycap/" },
-          { label: "TikTok", href: "https://www.tiktok.com/@scoopycap" },
+        socialLinks: [
+          { platform: "youtube" as const, label: "YouTube (Pershosvit)", href: "https://www.youtube.com/@pershosvit" },
+          { platform: "youtube" as const, label: "YouTube (Scoopy Cap)", href: "https://www.youtube.com/@ScoopyCap" },
+          { platform: "instagram" as const, label: "Instagram", href: "https://www.instagram.com/scoopycap/" },
+          { platform: "tiktok" as const, label: "TikTok", href: "https://www.tiktok.com/@scoopycap" },
         ] as const,
         ctaLabel: "Discuss licensing",
         ctaKind: "contact" as const,
