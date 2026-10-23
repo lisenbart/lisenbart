@@ -4,6 +4,7 @@ import { publicAsset } from "@/lib/publicAsset";
 
 export default function StudioModelItem({
   title,
+  team,
   text,
   href,
   image,
@@ -11,6 +12,8 @@ export default function StudioModelItem({
   delayMs = 0,
 }: {
   title: string;
+  /** Secondary team signature under the direction title */
+  team?: string;
   text: string;
   href?: string;
   image?: string;
@@ -34,6 +37,7 @@ export default function StudioModelItem({
         </span>
       ) : null}
       <h3 className="studio-models__title">{title}</h3>
+      {team ? <p className="studio-models__team">{team}</p> : null}
       <p className="studio-models__text">{text}</p>
     </>
   );

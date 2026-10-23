@@ -77,14 +77,15 @@ export default function StudioPage() {
             </div>
           </FilmReveal>
           <ul className="studio-models__list studio-section__full">
-            {page.teams.map((team, index) => (
+            {page.teams.map((item, index) => (
               <StudioModelItem
-                key={team.title}
-                title={team.title}
-                text={team.text}
-                href={hubCanonicalHref(team.hub)}
-                image={team.image}
-                imageAlt={team.imageAlt}
+                key={item.hub}
+                title={item.title}
+                team={item.team}
+                text={item.text}
+                href={hubCanonicalHref(item.hub)}
+                image={item.image}
+                imageAlt={item.imageAlt}
                 delayMs={index * 70}
               />
             ))}
