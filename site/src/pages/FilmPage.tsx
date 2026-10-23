@@ -87,70 +87,52 @@ export default function FilmPage() {
         <PageHeroReel
           titleId="originals-page-heading"
           media={
-            <FilmShowreel
-              id="unnecessary-things-hero"
-              label={featured.title}
-              poster={publicAsset(featured.image)}
-              vimeoId={featured.vimeoId}
-              withSound
-            />
+            <div className="page-hero-reel__still" aria-hidden="true">
+              <img
+                src={publicAsset(featured.image)}
+                alt=""
+                width={1600}
+                height={900}
+                decoding="async"
+              />
+            </div>
           }
         >
-          <h1 id="originals-page-heading" className="originals-hero__page">
-            {page.name}
-          </h1>
-          <p className="originals-hero__film-title">{featured.title}</p>
-          <p className="originals-hero__format">{featured.format}</p>
+          <div className="page-title-row">
+            <h1 id="originals-page-heading">{page.name}</h1>
+          </div>
+          <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
         <section
           id={featured.id}
           className="studio-section originals-featured"
-          aria-labelledby="originals-featured-accent"
+          aria-labelledby="originals-featured-title"
         >
           <FilmReveal>
             <div className="originals-featured__grid">
-              <div className="originals-featured__inner">
-                <p id="originals-featured-accent" className="originals-slate__accent">
-                  {featured.accent}
-                </p>
+              <div className="originals-featured__primary">
+                <h2 id="originals-featured-title" className="originals-slate__title">
+                  {featured.title}
+                </h2>
+                <p className="originals-slate__format">{featured.format}</p>
+                <button
+                  type="button"
+                  className="send-button originals-featured__watch"
+                  onClick={() => openReel(featured.fullFilmVimeoId, featured.title)}
+                >
+                  {featured.fullFilmLabel}
+                </button>
+              </div>
+              <div className="originals-featured__copy">
+                <p className="originals-slate__accent">{featured.accent}</p>
                 <p className="originals-slate__logline">{featured.logline}</p>
                 <p className="originals-slate__secondary">{featured.credit}</p>
-                <p className="originals-slate__secondary">{featured.secondary}</p>
-                <div className="originals-featured__actions">
-                  <a className="send-button" href={featured.festivalHref}>
-                    {featured.festivalLabel}
-                  </a>
-                  <button
-                    type="button"
-                    className="send-button send-button--secondary"
-                    onClick={() => openReel(featured.fullFilmVimeoId, featured.title)}
-                  >
-                    {featured.fullFilmLabel}
-                  </button>
-                </div>
+                <a className="originals-featured__festival-link" href={featured.festivalHref}>
+                  {featured.festivalLabel}
+                </a>
               </div>
-              <ul className="originals-featured__laurels" aria-label="Festival recognition">
-                {featured.laurels.map((laurel) => (
-                  <li key={laurel.src}>
-                    <img
-                      src={publicAsset(laurel.src)}
-                      alt={laurel.alt}
-                      width={160}
-                      height={80}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </li>
-                ))}
-              </ul>
             </div>
-          </FilmReveal>
-        </section>
-
-        <section className="studio-section studio-section--tint originals-intro" aria-label="Originals intro">
-          <FilmReveal>
-            <p className="originals-intro__text">{page.intro}</p>
           </FilmReveal>
         </section>
 

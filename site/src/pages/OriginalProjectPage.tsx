@@ -1,5 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
+import FilmShowreel from "@/components/film/FilmShowreel";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import {
   FestivalFeaturedStrip,
@@ -10,6 +11,7 @@ import {
   OriginalsStillGallery,
 } from "@/components/originals/OriginalsMedia";
 import { SEO } from "@/components/SEO";
+import { useReel } from "@/contexts/ReelContext";
 import {
   getOriginalsProject,
   type OriginalsProjectPage as ProjectData,
@@ -22,6 +24,10 @@ import {
   parseOriginalsProject,
   type OriginalsProjectSlug,
 } from "@/lib/routes";
+
+const FULL_FILM_VIMEO_ID = "823618245";
+const HIGHLIGHT_LINE =
+  "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)";
 
 function ProjectNav({ title }: { title: string }) {
   return (
@@ -57,21 +63,26 @@ function ProjectCta({ project }: { project: ProjectData }) {
 }
 
 function FilmShortBody({ project }: { project: ProjectData }) {
+  const { openReel } = useReel();
   const item = project.case;
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
+      <div className="project-page__top-actions">
+        <button
+          type="button"
+          className="send-button"
+          onClick={() => openReel(FULL_FILM_VIMEO_ID, item.title)}
+        >
+          Watch the full film
+        </button>
+      </div>
+
       <FestivalFeaturedStrip />
+      <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
 
       <div className="project-page__copy">
-        <p className="project-page__synopsis">{project.synopsis}</p>
-        {project.body?.map((paragraph) => (
-          <p key={paragraph} className="project-page__body">
-            {paragraph}
-          </p>
-        ))}
-
         {item.quote ? (
           <blockquote className="project-page__quote">
             <p>“{item.quote.text}”</p>
@@ -164,12 +175,16 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
           <PageHeroReel
             title={item.title}
             titleId={`${item.id}-heading`}
-            reel={{
-              id: `${item.id}-reel`,
-              label: item.title,
-              poster: publicAsset(item.mediaImage!),
-              vimeoId: item.vimeoId,
-            }}
+            media={
+              <FilmShowreel
+                id={`${item.id}-reel`}
+                label={`${item.title} teaser`}
+                poster={publicAsset(item.mediaImage!)}
+                vimeoId={item.vimeoId}
+                playLabelHidden
+                withSound
+              />
+            }
           >
             <ProjectNav title={item.title} />
             <FilmProjectIntro project={project} />

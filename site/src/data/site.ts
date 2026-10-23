@@ -280,7 +280,9 @@ export const site = {
     markers: [] as const,
   },
   filmPage: {
-    name: "Originals",
+    name: "ORIGINALS",
+    heroLead:
+      "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
     seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
       "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
@@ -291,50 +293,15 @@ export const site = {
       format: "Animated short · 14 min · 2021",
       image: "/images/work/unnecessary-things-preview.webp",
       imageAlt: "Unnecessary Things — robot eyes close-up",
-      vimeoId: "825786788",
       accent: "11 awards · 45 festival selections",
       logline:
         "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
       credit: "Based on a story by Robert Sheckley · Officially licensed adaptation",
-      secondary:
-        "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)",
-      festivalLabel: "Festival page",
-      festivalHref: "/originals/unnecessary-things/",
       fullFilmLabel: "Watch the full film",
       fullFilmVimeoId: "823618245",
-      laurels: [
-        {
-          src: "/images/work/unnecessary-things/laurels/shanghai-2021-golden-goblet-competition.png",
-          alt: "Golden Goblet Award Competition — Shanghai International Film Festival 2021",
-        },
-        {
-          src: "/images/work/unnecessary-things/laurels/huesca-2021-official-selection.png",
-          alt: "Official Selection — 49th Huesca International Film Festival",
-        },
-        {
-          src: "/images/work/unnecessary-things/laurels/prague-film-awards-2022-winner.png",
-          alt: "Winner, Best Animated Film — Prague Film Awards 2022",
-        },
-        {
-          src: "/images/work/unnecessary-things/laurels/curtas-2021-best-animated-short.png",
-          alt: "Best Animated Short Film — Curtas Festival do Imaxinario 2021",
-        },
-        {
-          src: "/images/work/unnecessary-things/laurels/viff-2021-official-selection.png",
-          alt: "Official Selection — Vancouver International Film Festival 2021",
-        },
-        {
-          src: "/images/work/unnecessary-things/laurels/psiaf-2022-official-selection.png",
-          alt: "Official Selection — Palm Springs International Animation Festival 2022",
-        },
-        {
-          src: "/images/work/unnecessary-things/laurels/ssff-asia-2022-official-selection.png",
-          alt: "Official Selection — Short Shorts Film Festival & Asia 2022",
-        },
-      ] as const,
+      festivalLabel: "Festivals & awards →",
+      festivalHref: "/originals/unnecessary-things/",
     },
-    intro:
-      "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
     projects: [
       {
         id: "the-last-kozak",

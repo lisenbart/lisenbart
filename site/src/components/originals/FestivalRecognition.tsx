@@ -49,14 +49,12 @@ function RecognitionRow({ item }: { item: FestivalRecognition }) {
   );
 }
 
-/** Compact featured laurels + summary — placed immediately after the film hero. */
+/** Compact featured laurels — placed near the top of the festival page. */
 export function FestivalFeaturedStrip() {
-  const { statement } = unnecessaryThingsFestivalSummary;
   const laurels = unnecessaryThingsFeaturedLaurels.filter((l) => l.laurelSrc);
 
   return (
     <aside className="festival-featured" aria-label="Festival recognition highlights">
-      <p className="festival-featured__statement">{statement}</p>
       <ul className="festival-featured__laurels">
         {laurels.map((item) => (
           <li key={item.id} className="festival-featured__laurel">
@@ -91,7 +89,11 @@ export function FestivalFeaturedStrip() {
 /** Full typographic festival history further down the project page. */
 export function FestivalRecognitionSection() {
   return (
-    <section className="festival-rec" aria-labelledby="festival-rec-heading">
+    <section
+      id="festivals"
+      className="festival-rec"
+      aria-labelledby="festival-rec-heading"
+    >
       <h2 id="festival-rec-heading" className="project-page__section-label">
         Festival Recognition
       </h2>
