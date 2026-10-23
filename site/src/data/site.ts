@@ -409,7 +409,8 @@ export const site = {
     divisionText: "Our dedicated games team, part of LISENBART FILM.",
     externalCta: "Visit lisenbart.games",
     externalHref: "https://lisenbart.games",
-    contactEmail: "info@lisenbart.games",
+    /** Hello email — keep main studio inbox for now; switch to info@lisenbart.games later. */
+    contactEmail: "info@lisenbart.com",
     defaultProjectType: "Game Ads, Trailers & Playables",
   },
 
