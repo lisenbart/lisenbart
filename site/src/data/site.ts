@@ -41,8 +41,8 @@ export const site = {
         text: "AI, animation, compositing — whatever serves the shot.",
         cta: "Explore AI & Hybrid",
         hub: "ai" as const,
-        image: "/images/reels/ai/showreel-poster.webp",
-        imageAlt: "AI & Hybrid showreel",
+        image: "/images/home/ai-path-preview.webp",
+        imageAlt: "AI & Hybrid production still",
       },
       {
         label: "For Game Studios",
