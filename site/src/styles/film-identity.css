@@ -2203,12 +2203,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .awards-block__stats {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(0.75rem, 1.1vw, 0.875rem);
-  font-weight: 500;
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  font-weight: 600;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
-  line-height: 1.25;
-  color: var(--muted);
+  line-height: 1.2;
+  color: var(--ink);
 }
 
 .awards-block__details {
