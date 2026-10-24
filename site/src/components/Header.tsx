@@ -17,8 +17,8 @@ function navHref(id: NavId) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  /** TEMP V8: always show hamburger (desktop nav hidden). Restore scroll-dock later. */
-  const [navDocked, setNavDocked] = useState(true);
+  /** Desktop: floating burger only after primary header nav leaves view */
+  const [navDocked, setNavDocked] = useState(false);
   const menuId = useId();
   const headerRef = useRef<HTMLElement>(null);
   const onSubpage = isSiteSubpage();
@@ -46,8 +46,42 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    // TEMP V8: desktop inline nav is off — keep floating hamburger always available
-    setNavDocked(true);
+    const header = headerRef.current;
+    if (!header) return;
+
+    const mq = window.matchMedia("(min-width: 801px)");
+    let raf = 0;
+
+    const update = () => {
+      // Mobile: primary desktop nav is hidden — keep the floating control available
+      if (!mq.matches) {
+        setNavDocked(true);
+        return;
+      }
+      // Small hysteresis avoids flicker at the exact threshold
+      const bottom = header.getBoundingClientRect().bottom;
+      setNavDocked((prev) => {
+        if (prev) return bottom < 12;
+        return bottom <= 0;
+      });
+    };
+
+    const onScrollOrResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    mq.addEventListener("change", update);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      mq.removeEventListener("change", update);
+    };
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
