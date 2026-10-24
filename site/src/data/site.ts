@@ -414,6 +414,13 @@ export const site = {
         vimeoId: "89693204",
         poster: "/images/work/nlo-valentines-poster.webp",
       },
+      {
+        id: "wog-mustang",
+        title: "Mustang 100",
+        client: "WOG",
+        vimeoId: "941579249",
+        poster: "/images/work/wog-mustang-poster.webp",
+      },
     ] as const,
     whatWeMakeHeading: "What we make",
     formats: [
