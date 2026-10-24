@@ -63,15 +63,19 @@ function ProjectCta({ project }: { project: ProjectData }) {
 function FilmShortBody({ project }: { project: ProjectData }) {
   const item = project.case;
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
+  const stills = item.stills ?? [];
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
-      <FestivalFeaturedStrip />
-      <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
+      {stills.length > 0 ? (
+        <section className="project-stills-bleed" aria-label={`${item.title} stills`}>
+          <OriginalsStillGallery stills={stills} projectTitle={item.title} />
+        </section>
+      ) : null}
 
-      <div className="project-page__copy">
+      <section className="project-press" aria-label="Press">
         {item.quote ? (
-          <blockquote className="project-page__quote">
+          <blockquote className="project-page__quote project-press__quote">
             <p>“{item.quote.text}”</p>
             {item.quote.href ? (
               <cite>
@@ -84,27 +88,27 @@ function FilmShortBody({ project }: { project: ProjectData }) {
             )}
           </blockquote>
         ) : null}
-
         {imdbHref ? (
-          <p className="project-page__ext-link">
+          <p className="project-page__ext-link project-press__imdb">
             <a href={imdbHref} target="_blank" rel="noopener noreferrer">
               View on IMDb
             </a>
           </p>
         ) : null}
+      </section>
 
-        {item.stills && item.stills.length > 0 ? (
-          <div className="project-page__stills">
-            <h2 className="project-page__section-label">Stills</h2>
-            <OriginalsStillGallery stills={item.stills} projectTitle={item.title} />
-          </div>
-        ) : null}
+      <div className="festival-featured-bleed">
+        <FestivalFeaturedStrip />
+      </div>
 
-        <FestivalRecognitionSection />
+      <div className="page-shell project-page project-page--film-short page-shell--from-reel project-page__rest">
+        <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
 
-        {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
-
-        <ProjectCta project={project} />
+        <div className="project-page__copy">
+          <FestivalRecognitionSection />
+          {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
+          <ProjectCta project={project} />
+        </div>
       </div>
     </div>
   );
@@ -177,13 +181,9 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
             <ProjectNav title={item.title} />
             <FilmProjectIntro project={project} />
           </PageHeroReel>
-          <section
-            className={`page-shell project-page project-page--${project.layout} page-shell--from-reel`}
-          >
-            <FilmReveal delayMs={100}>
-              <ProjectBody project={project} />
-            </FilmReveal>
-          </section>
+          <FilmReveal delayMs={100}>
+            <ProjectBody project={project} />
+          </FilmReveal>
         </div>
       ) : (
         <section className={`page-shell project-page project-page--${project.layout}`}>
