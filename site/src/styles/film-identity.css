@@ -5908,6 +5908,13 @@ html[data-hero-period="evening"] .home-explore {
     height: clamp(26rem, 70vh, 34rem);
     height: clamp(26rem, 70svh, 34rem);
   }
+
+  /* Hub / project heroes: 16:9 on phone (not the tall square clamp) */
+  .page-hero-reel {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
   .home-hero::after {
     content: "";
     position: absolute;
