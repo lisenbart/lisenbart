@@ -41,7 +41,7 @@ export const site = {
         cta: "Explore Client Work",
         hub: "client-work" as const,
         image: "/images/home/brands-path-preview.webp",
-        imageAlt: "Brand film and commercial animation stills",
+        imageAlt: "Beauty portrait still from brand animation",
       },
       {
         label: "For AI-Driven Projects",
