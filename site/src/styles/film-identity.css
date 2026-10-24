@@ -5335,17 +5335,36 @@ html[data-hero-period="evening"] .home-explore {
   text-decoration: none;
 }
 
-/* GLOWL logo fills the aside to the same height as the body column — no letterbox gaps */
+/*
+ * GLOWL block: logo flush to section edges (no gutter / section padding around the mark).
+ * Body copy keeps normal gutters; row height follows the body column.
+ */
+.ai-page.page-with-hero-reel .studio-section.ai-division,
+.ai-page .studio-section.ai-division {
+  padding: 0;
+  overflow: hidden;
+}
+
+.ai-division > .film-reveal {
+  display: block;
+}
+
 .ai-division .studio-section__grid {
   align-items: stretch;
+  gap: 0;
+  column-gap: 0;
+  row-gap: 0;
+}
+
+.ai-division .studio-section__aside {
+  gap: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .ai-page .ai-division__heading {
-  display: flex;
-  align-items: stretch;
+  display: block;
   margin: 0;
-  height: 100%;
-  min-height: 0;
   font-size: 0;
   line-height: 0;
   text-transform: none;
@@ -5360,11 +5379,28 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
 }
 
-@media (max-width: 767px) {
-  .ai-page .ai-division__heading {
-    height: auto;
+.ai-division .studio-section__body.games-division {
+  padding: var(--space-5) var(--gutter);
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .ai-division .studio-section__grid {
+    grid-template-columns: minmax(14rem, 1fr) minmax(0, 2fr);
   }
 
+  .ai-division .studio-section__aside {
+    position: relative;
+  }
+
+  .ai-page .ai-division__heading {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+@media (max-width: 767px) {
   .ai-division__logo {
     height: auto;
     aspect-ratio: 1024 / 479;
