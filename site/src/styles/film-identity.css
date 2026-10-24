@@ -1076,7 +1076,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .client-selected-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 0;
   width: 100%;
   margin: var(--space-4) 0 0;
@@ -1117,7 +1117,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  /* Mobile: shorter than 16:9. Desktop restores 16:9 below. */
+  aspect-ratio: 3 / 1;
   margin: 0 0 1rem;
   overflow: hidden;
   background:
@@ -1347,6 +1348,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   .client-selected-grid {
     /* Test: 4-col selected work. Revert to repeat(3, …) if it fails review. */
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .client-selected-card__media {
+    aspect-ratio: 16 / 9;
   }
 
   .client-selected-card {
