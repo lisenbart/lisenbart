@@ -294,7 +294,7 @@ export const site = {
         id: "unnecessary-things",
         title: "Unnecessary Things",
         image: "/images/work/unnecessary-things-preview.webp",
-        imageAlt: "Unnecessary Things — robot eyes close-up",
+        imageAlt: "Unnecessary Things — cosmic eyes over the crimson tree",
         /** Still only on the hub — full film opens via CTA lightbox */
         vimeoId: null as string | null,
         accent: "11 awards · 45 festival selections",

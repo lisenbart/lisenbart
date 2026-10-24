@@ -52,7 +52,7 @@ const originalsCases: WorkCaseStudy[] = [
     /** Festival-page hero teaser */
     vimeoId: "825786788",
     mediaImage: "/images/work/unnecessary-things-preview.webp",
-    mediaImageAlt: "Unnecessary Things — robot eyes close-up preview",
+    mediaImageAlt: "Unnecessary Things — cosmic eyes over the crimson tree",
     stills: [
       "/images/work/unnecessary-things-still-02.jpg",
       "/images/work/unnecessary-things-still-04.jpg",
