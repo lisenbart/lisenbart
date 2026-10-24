@@ -74,26 +74,50 @@ function FilmShortBody({ project }: { project: ProjectData }) {
       ) : null}
 
       <section className="project-press" aria-label="Press">
-        {item.quote ? (
-          <blockquote className="project-page__quote project-press__quote">
-            <p>“{item.quote.text}”</p>
-            {item.quote.href ? (
-              <cite>
-                <a href={item.quote.href} target="_blank" rel="noopener noreferrer">
-                  {item.quote.attribution}
-                </a>
-              </cite>
-            ) : (
-              <cite>{item.quote.attribution}</cite>
-            )}
-          </blockquote>
-        ) : null}
         {imdbHref ? (
-          <p className="project-page__ext-link project-press__imdb">
-            <a href={imdbHref} target="_blank" rel="noopener noreferrer">
-              View on IMDb
-            </a>
-          </p>
+          <a
+            className="project-press__imdb"
+            href={imdbHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={
+              item.imdbRating
+                ? `IMDb rating ${item.imdbRating} out of 10`
+                : "View on IMDb"
+            }
+          >
+            <span className="project-press__imdb-mark" aria-hidden="true">
+              IMDb
+            </span>
+            {item.imdbRating ? (
+              <span className="project-press__imdb-score">
+                <span className="project-press__imdb-value">{item.imdbRating}</span>
+                <span className="project-press__imdb-scale">/10</span>
+              </span>
+            ) : (
+              <span className="project-press__imdb-link-label">View on IMDb</span>
+            )}
+          </a>
+        ) : null}
+
+        {item.quote ? (
+          <blockquote className="project-press__quote">
+            <span className="project-press__quotemark" aria-hidden="true">
+              “
+            </span>
+            <div className="project-press__quote-body">
+              <p className="project-press__quote-text">{item.quote.text}</p>
+              {item.quote.href ? (
+                <cite>
+                  <a href={item.quote.href} target="_blank" rel="noopener noreferrer">
+                    {item.quote.attribution}
+                  </a>
+                </cite>
+              ) : (
+                <cite>{item.quote.attribution}</cite>
+              )}
+            </div>
+          </blockquote>
         ) : null}
       </section>
 

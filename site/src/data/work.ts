@@ -14,6 +14,9 @@ export interface WorkCaseStudy {
   mediaImageAlt?: string;
   stills?: string[];
   imdbId?: string;
+  /** Display rating next to IMDb mark (optional). */
+  imdbRating?: string;
+  imdbVotes?: string;
   youtubeUrl?: string;
   tiktokUrl?: string;
   instagramUrl?: string;
@@ -60,6 +63,8 @@ const originalsCases: WorkCaseStudy[] = [
       "/images/work/unnecessary-things-still-08.jpg",
     ],
     imdbId: "tt14760808",
+    imdbRating: "7.9",
+    imdbVotes: "36",
     selectionLinks: [
       {
         label: "Vancouver International Film Festival",
