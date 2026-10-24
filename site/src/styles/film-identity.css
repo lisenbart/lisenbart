@@ -5597,18 +5597,19 @@ html[data-hero-period="evening"] .home-explore {
   border-color: var(--ink);
 }
 
-/* Secondary CTA — white fill, black label (outlined) */
+/* Secondary CTA — coral fill (Meet the founder) */
 .film-cta--secondary {
-  background: var(--surface-white, #fff);
-  color: var(--ink);
-  border-color: var(--ink);
+  --cta-secondary-bg: #e77855;
+  background: var(--cta-secondary-bg);
+  color: var(--white);
+  border-color: var(--cta-secondary-bg);
 }
 
 .film-cta--secondary:hover,
 .film-cta--secondary:focus-visible {
-  background: var(--cta-bg);
-  color: var(--cta-fg);
-  border-color: var(--cta-bg);
+  background: transparent;
+  color: var(--cta-secondary-bg);
+  border-color: var(--cta-secondary-bg);
 }
 
 .film-cta:focus-visible,
