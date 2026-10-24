@@ -30,15 +30,13 @@
   --surface-tint: #e8e8ea;
 
   /*
-   * PRIMARY CTA — one navy button site-wide
-   * -----------------------------------------
-   * Class: .film-cta (canonical) · aliases: .send-button, .project-page__cta,
-   *         .home-paths__cta, .home-cta--primary, .studio-cta (when used as action)
-   * Fill: --cta-bg (#00052b) · Text: --white · Hover: invert (outline on transparent)
-   * Do not invent text-link / underline CTAs for primary actions.
+   * PRIMARY CTA — tokens live in cta-tokens.css (loaded last in main.tsx).
+   * Canonical fill: #001956. Do not redefine --cta-bg in index/theme/archive.
+   * Class: .film-cta / .send-button (+ aliases). Hover: invert to outline.
    */
-  --cta-bg: #00052b;
-  --cta-fg: var(--white);
+  --cta-bg: #001956;
+  --cta-fg: #ffffff;
+  --cta-secondary-bg: #e77855;
   --cta-radius: var(--radius);
 
   /* Type families */
@@ -1311,18 +1309,6 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .client-selected-more__chevron {
   flex-shrink: 0;
   color: currentColor;
-}
-
-/* Hover invert uses #001956 instead of body ink black */
-.client-selected-more__cta:hover,
-.client-selected-more__cta:focus-visible {
-  color: #001956;
-  border-color: #001956;
-}
-
-.client-selected-more__cta:hover .client-selected-more__chevron,
-.client-selected-more__cta:focus-visible .client-selected-more__chevron {
-  color: #001956;
 }
 
 .client-make {
@@ -5557,7 +5543,7 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 /*
- * PRIMARY CTA — black button (single source)
+ * PRIMARY CTA — navy #001956 (tokens: --cta-bg / --cta-fg from cta-tokens.css)
  * Use .film-cta or .send-button on <a> / <button> / summary / span-in-card.
  */
 .film-cta,
@@ -5579,10 +5565,10 @@ html[data-hero-period="evening"] .home-explore {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  border: 1px solid var(--cta-bg);
+  border: 1px solid var(--cta-bg, #001956);
   border-radius: var(--cta-radius);
-  background: var(--cta-bg);
-  color: var(--cta-fg);
+  background: var(--cta-bg, #001956);
+  color: var(--cta-fg, #ffffff);
   font-family: var(--font-display);
   font-size: 0.8125rem;
   font-weight: 500;
@@ -5614,23 +5600,22 @@ html[data-hero-period="evening"] .home-explore {
 .awards-block__toggle:focus-visible,
 .awards-block__details[open] .awards-block__toggle {
   background: transparent;
-  color: var(--ink);
-  border-color: var(--ink);
+  color: var(--cta-bg, #001956);
+  border-color: var(--cta-bg, #001956);
 }
 
-/* Secondary CTA — coral fill (Meet the founder) */
+/* Secondary CTA — coral (Meet the founder) */
 .film-cta--secondary {
-  --cta-secondary-bg: #e77855;
-  background: var(--cta-secondary-bg);
-  color: var(--white);
-  border-color: var(--cta-secondary-bg);
+  background: var(--cta-secondary-bg, #e77855);
+  color: var(--cta-fg, #ffffff);
+  border-color: var(--cta-secondary-bg, #e77855);
 }
 
 .film-cta--secondary:hover,
 .film-cta--secondary:focus-visible {
   background: transparent;
-  color: var(--cta-secondary-bg);
-  border-color: var(--cta-secondary-bg);
+  color: var(--cta-secondary-bg, #e77855);
+  border-color: var(--cta-secondary-bg, #e77855);
 }
 
 .film-cta:focus-visible,
@@ -5639,7 +5624,7 @@ html[data-hero-period="evening"] .home-explore {
 .home-cta:focus-visible,
 .studio-cta:focus-visible,
 .awards-block__toggle:focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--cta-bg, #001956);
   outline-offset: 3px;
 }
 

@@ -117,10 +117,10 @@ body:has(.film-app) {
   --title-experience-gradient: none;
   --title-mode: solid;
 
-  --cta-bg: #141416;
+  /* --cta-bg / --cta-fg owned by cta-tokens.css (do not set near-black here) */
   --cta-border: rgba(18, 18, 20, 0.08);
   --cta-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-  --cta-text-color: #fff;
+  --cta-text-color: var(--cta-fg, #fff);
 
   --process-line-bg: var(--separator);
   --process-line-active-bg: linear-gradient(90deg, rgba(106, 50, 232, 0.32), rgba(0, 136, 184, 0.42));
@@ -249,7 +249,7 @@ body:has(.film-app) {
     var(--magenta) 100%
   );
   --title-experience-gradient: linear-gradient(180deg, #ede9fe 0%, #d8b4ff 38%, #c084fc 100%);
-  --cta-bg: linear-gradient(90deg, #0a5f74 0%, #0c7f99 42%, #4338a8 100%);
+  /* --cta-bg owned by cta-tokens.css */
   --cta-border: rgba(66, 217, 255, 0.28);
   --cta-shadow: 0 6px 24px rgba(8, 79, 97, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   --process-line-bg: linear-gradient(90deg, rgba(127, 66, 255, 0.28), rgba(66, 217, 255, 0.55));

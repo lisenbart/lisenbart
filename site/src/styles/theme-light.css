@@ -82,10 +82,10 @@
     color-mix(in srgb, var(--magenta) 78%, #121214) 100%
   );
 
-  --cta-bg: #141416;
+  /* --cta-bg owned by cta-tokens.css — do not override with #141416 */
   --cta-border: rgba(18, 18, 20, 0.08);
   --cta-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset;
-  --cta-text-color: #fff;
+  --cta-text-color: var(--cta-fg, #fff);
 
   --process-line-bg: var(--separator);
   --process-line-active-bg: linear-gradient(90deg, rgba(106, 50, 232, 0.32), rgba(0, 136, 184, 0.42));

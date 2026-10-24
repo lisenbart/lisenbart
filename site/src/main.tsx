@@ -5,6 +5,8 @@ import { initAnalyticsFromStoredConsent } from "./lib/analyticsConsent";
 import { initTheme } from "./lib/theme";
 import "./styles/index.css";
 import "./styles/theme-light.css";
+/** CTA tokens last — wins over archive / theme-light --cta-bg overrides (#141416). */
+import "./styles/cta-tokens.css";
 
 initTheme();
 initAnalyticsFromStoredConsent();
