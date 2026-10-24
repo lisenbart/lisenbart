@@ -1,6 +1,7 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
+import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_AI } from "@/lib/contactConfig";
@@ -24,35 +25,13 @@ export default function AiPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <section
-          className="studio-section studio-section--tint studio-section--selected-work"
-          aria-labelledby="ai-selected-work-heading"
-        >
-          <FilmReveal>
-            <div className="studio-section__grid studio-section__grid--inset">
-              <h2 id="ai-selected-work-heading" className="studio-section-heading">
-                {page.selectedWorkHeading}
-              </h2>
-            </div>
-          </FilmReveal>
-          <ul className="client-selected-grid" aria-label="Selected work">
-            {page.selectedWork.map((item) => (
-              <li key={item.id} className="client-selected-card">
-                <button
-                  type="button"
-                  className="client-selected-card__button"
-                  aria-label={`${item.title} — ${item.client}`}
-                >
-                  <span className="client-selected-card__media" aria-hidden="true" />
-                  <span className="client-selected-card__meta">
-                    <span className="client-selected-card__title">{item.title}</span>
-                    <span className="client-selected-card__client">{item.client}</span>
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <SelectedWorkGrid
+          items={page.selectedWork}
+          label={page.selectedWorkHeading}
+          moreLabel={page.selectedWorkMore}
+          lessLabel={page.selectedWorkLess}
+          gridId="ai-selected-work-grid"
+        />
 
         <section className="studio-section" aria-labelledby="ai-how-heading">
           <FilmReveal>

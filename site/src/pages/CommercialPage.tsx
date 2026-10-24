@@ -1,36 +1,14 @@
-import { useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
-import { PlayIcon } from "@/components/film/FilmIcons";
 import PageHeroReel from "@/components/film/PageHeroReel";
+import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
-import { useReel } from "@/contexts/ReelContext";
 import { site } from "@/data/site";
-import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.commercialPage;
 const reel = page.showreel;
-const PREVIEW_COUNT = 3;
-
-type SelectedItem = (typeof page.selectedWork)[number];
-
-function playSelected(
-  item: SelectedItem,
-  openReel: ReturnType<typeof useReel>["openReel"],
-) {
-  const label = `${item.title} — ${item.client}`;
-  if ("youtubeId" in item && item.youtubeId) {
-    openReel({ provider: "youtube", id: item.youtubeId }, label);
-    return;
-  }
-  openReel("vimeoId" in item ? item.vimeoId : null, label);
-}
 
 export default function CommercialPage() {
-  const { openReel } = useReel();
-  const [moreOpen, setMoreOpen] = useState(false);
-  const hasMore = page.selectedWork.length > PREVIEW_COUNT;
-
   return (
     <>
       <SEO
@@ -46,82 +24,13 @@ export default function CommercialPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <section
-          className="studio-section studio-section--selected-work studio-section--selected-work-compact"
-          aria-label={page.selectedWorkHeading}
-        >
-          <ul
-            id="client-selected-work-grid"
-            className="client-selected-grid client-selected-grid--flush"
-            aria-label={page.selectedWorkHeading}
-          >
-            {page.selectedWork.map((item, index) => {
-              const collapsed = hasMore && !moreOpen && index >= PREVIEW_COUNT;
-              return (
-                <li
-                  key={item.id}
-                  className={
-                    collapsed
-                      ? "client-selected-card client-selected-card--collapsed"
-                      : "client-selected-card"
-                  }
-                  hidden={collapsed}
-                >
-                  <button
-                    type="button"
-                    className="client-selected-card__button"
-                    aria-label={`Play ${item.title} — ${item.client}`}
-                    style={{ animationDelay: `${index * 40}ms` }}
-                    onClick={() => playSelected(item, openReel)}
-                    tabIndex={collapsed ? -1 : undefined}
-                  >
-                    <span className="client-selected-card__media">
-                      <img
-                        className="client-selected-card__poster"
-                        src={publicAsset(item.poster)}
-                        alt=""
-                        width={1280}
-                        height={720}
-                        loading={index < PREVIEW_COUNT ? "eager" : "lazy"}
-                        decoding="async"
-                      />
-                      <span className="client-selected-card__play" aria-hidden="true">
-                        <span className="client-selected-card__play-circle">
-                          <PlayIcon />
-                        </span>
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-
-          {hasMore ? (
-            <div className="client-selected-more">
-              <button
-                type="button"
-                className="film-cta client-selected-more__cta"
-                aria-expanded={moreOpen}
-                aria-controls="client-selected-work-grid"
-                onClick={() => {
-                  setMoreOpen((open) => {
-                    if (open) {
-                      window.requestAnimationFrame(() => {
-                        document
-                          .getElementById("client-selected-work-grid")
-                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-                      });
-                    }
-                    return !open;
-                  });
-                }}
-              >
-                {moreOpen ? page.selectedWorkLess : page.selectedWorkMore}
-              </button>
-            </div>
-          ) : null}
-        </section>
+        <SelectedWorkGrid
+          items={page.selectedWork}
+          label={page.selectedWorkHeading}
+          moreLabel={page.selectedWorkMore}
+          lessLabel={page.selectedWorkLess}
+          gridId="client-selected-work-grid"
+        />
 
         <section className="studio-section studio-section--tint" aria-labelledby="what-we-make-heading">
           <FilmReveal>

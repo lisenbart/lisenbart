@@ -501,6 +501,8 @@ export const site = {
       poster: "/images/reels/games/showreel-poster.webp",
     },
     selectedWorkHeading: "Selected work",
+    selectedWorkMore: "View More",
+    selectedWorkLess: "View Less",
     selectedWork: [
       { id: "ga-1", title: "Project title", client: "Client" },
       { id: "ga-2", title: "Project title", client: "Client" },
@@ -577,6 +579,8 @@ export const site = {
       poster: "/images/reels/ai/showreel-poster.webp",
     },
     selectedWorkHeading: "Selected work",
+    selectedWorkMore: "View More",
+    selectedWorkLess: "View Less",
     selectedWork: [
       { id: "ai-1", title: "Project title", client: "Client" },
       { id: "ai-2", title: "Project title", client: "Client" },
