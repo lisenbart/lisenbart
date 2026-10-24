@@ -834,11 +834,6 @@ export const site = {
     seoTitle: "Studio — Independent Animation Studio Since 2006 | LISENBART FILM",
     seoDescription:
       "Independent animation studio since 2006. Brand films, AI & hybrid production, game ads and original IP — one creative lead, specialized teams.",
-    showreel: {
-      label: "Studio Showreel",
-      vimeoId: "849899875",
-      playLabel: "Watch reel",
-    },
     heroLead: "Independent animation studio. Production company discipline.",
     introHeading: "Who we are",
     introParagraphs: [
