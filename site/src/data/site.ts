@@ -393,12 +393,13 @@ export const site = {
     },
     selectedWorkHeading: "Selected work",
     selectedWork: [
-      { id: "cw-1", title: "Project title", client: "Client" },
-      { id: "cw-2", title: "Project title", client: "Client" },
-      { id: "cw-3", title: "Project title", client: "Client" },
-      { id: "cw-4", title: "Project title", client: "Client" },
-      { id: "cw-5", title: "Project title", client: "Client" },
-      { id: "cw-6", title: "Project title", client: "Client" },
+      {
+        id: "hubbub",
+        title: "Sound go social",
+        client: "Hubbub.fm",
+        vimeoId: "34131366",
+        poster: "/images/work/hubbub-poster.webp",
+      },
     ] as const,
     whatWeMakeHeading: "What we make",
     formats: [

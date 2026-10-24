@@ -1094,12 +1094,24 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .client-selected-card__media {
+  position: relative;
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   margin: 0 0 1rem;
+  overflow: hidden;
   background:
     linear-gradient(145deg, #d8d8dc 0%, #ececef 48%, #cfcfd4 100%);
+}
+
+.client-selected-card__poster {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .client-selected-card__meta {

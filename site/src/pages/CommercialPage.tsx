@@ -2,12 +2,16 @@ import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
+import { useReel } from "@/contexts/ReelContext";
 import { site } from "@/data/site";
+import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.commercialPage;
 const reel = page.showreel;
 
 export default function CommercialPage() {
+  const { openReel } = useReel();
+
   return (
     <>
       <SEO
@@ -40,10 +44,21 @@ export default function CommercialPage() {
                 <button
                   type="button"
                   className="client-selected-card__button"
-                  aria-label={`${item.title} — ${item.client}`}
+                  aria-label={`Play ${item.title} — ${item.client}`}
                   style={{ animationDelay: `${index * 40}ms` }}
+                  onClick={() => openReel(item.vimeoId, `${item.title} — ${item.client}`)}
                 >
-                  <span className="client-selected-card__media" aria-hidden="true" />
+                  <span className="client-selected-card__media" aria-hidden="true">
+                    <img
+                      className="client-selected-card__poster"
+                      src={publicAsset(item.poster)}
+                      alt=""
+                      width={1280}
+                      height={720}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </span>
                   <span className="client-selected-card__meta">
                     <span className="client-selected-card__title">{item.title}</span>
                     <span className="client-selected-card__client">{item.client}</span>
