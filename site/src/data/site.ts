@@ -393,6 +393,7 @@ export const site = {
       poster: "/images/reels/advertising/showreel-poster.webp",
     },
     selectedWorkHeading: "Selected work",
+    selectedWorkMore: "View More",
     selectedWork: [
       {
         id: "wog-ukraine",

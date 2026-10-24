@@ -1238,6 +1238,26 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   }
 }
 
+.work-page .client-selected-card--collapsed {
+  display: none;
+}
+
+.work-page .client-selected-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 1.75rem) var(--gutter);
+  border-top: 1px solid var(--line);
+  background: var(--surface-white);
+  box-sizing: border-box;
+}
+
+.work-page .client-selected-more__cta {
+  margin: 0;
+}
+
 .client-make {
   display: flex;
   flex-direction: column;
