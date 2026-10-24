@@ -27,6 +27,10 @@ export function resolveContactEndpoint(): string {
 export const contactEndpoint = resolveContactEndpoint();
 
 export const NETLIFY_FORM_NAME = "contact";
+/** Games page Netlify Forms hook (detected via static form in index.html). */
+export const NETLIFY_FORM_NAME_GAMES = "contact-games";
+/** AI page Netlify Forms hook (detected via static form in index.html). */
+export const NETLIFY_FORM_NAME_AI = "contact-ai";
 
 /**
  * Live submit on production (Netlify/php) or whenever a remote endpoint is configured.

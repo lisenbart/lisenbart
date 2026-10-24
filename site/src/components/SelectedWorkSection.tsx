@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import HeroShowreel from "@/components/HeroShowreel";
 import ReelSlideshow from "@/components/ReelSlideshow";
+import { useShowreelSession } from "@/hooks/useShowreelSession";
 import { sectionIds, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 
@@ -9,6 +10,7 @@ import { hubCanonicalHref } from "@/lib/routes";
 export default function SelectedWorkSection() {
   const { selectedWork } = site;
   const [playing, setPlaying] = useState(false);
+  const closeControl = useShowreelSession(playing, setPlaying);
   const images = [...selectedWork.previewImages];
 
   return (
@@ -29,14 +31,17 @@ export default function SelectedWorkSection() {
 
         <div className="selected-work__stage">
           {playing ? (
-            <div className="selected-work__media" aria-label={`${selectedWork.label} reel`}>
-              <HeroShowreel
-                vimeoId={selectedWork.vimeoId}
-                title={selectedWork.label}
-                autoPlay
-                hidePlayButton
-              />
-            </div>
+            <>
+              <div className="selected-work__media" aria-label={`${selectedWork.label} reel`}>
+                <HeroShowreel
+                  vimeoId={selectedWork.vimeoId}
+                  title={selectedWork.label}
+                  autoPlay
+                  hidePlayButton
+                />
+              </div>
+              {closeControl}
+            </>
           ) : (
             <>
               <div className="selected-work__media selected-work__media--preview">

@@ -1,6 +1,6 @@
 export const projectTypes = [
   "Brand Film or Campaign",
-  "Game Trailer or Cinematic",
+  "Game Ads, Trailers & Playables",
   "Animation or Motion",
   "AI & Hybrid",
   "Originals Partnership",

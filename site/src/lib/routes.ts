@@ -8,6 +8,7 @@ export const routes = {
   ai: "/ai",
   privacy: "/privacy",
   cookiePolicy: "/cookie-policy",
+  legal: "/legal",
 } as const;
 
 export type HubPageSlug =
@@ -18,20 +19,19 @@ export type HubPageSlug =
   | "games"
   | "ai";
 
-export type LegalPageSlug = "privacy" | "cookie-policy";
+export type LegalPageSlug = "privacy" | "cookie-policy" | "legal";
 
-export type OriginalsProjectSlug =
+/** Project pages that still exist as standalone routes (festival page). */
+export type OriginalsProjectSlug = "unnecessary-things";
+
+/** Slugs that may appear in links / legacy URLs (slate anchors or redirects). */
+export type OriginalsSlateSlug =
   | "unnecessary-things"
   | "the-last-kozak"
   | "pershosvit"
   | "scoopy-cap";
 
-const ORIGINALS_PROJECT_SLUGS: readonly OriginalsProjectSlug[] = [
-  "unnecessary-things",
-  "the-last-kozak",
-  "pershosvit",
-  "scoopy-cap",
-] as const;
+const ORIGINALS_PROJECT_SLUGS: readonly OriginalsProjectSlug[] = ["unnecessary-things"] as const;
 
 let prerenderPathnameOverride: string | undefined;
 
@@ -91,11 +91,30 @@ export function parseLegalPage(pathname?: string): LegalPageSlug | null {
   const normalized = normalizePathname(resolvePathname(pathname));
   if (normalized === routes.privacy) return "privacy";
   if (normalized === routes.cookiePolicy) return "cookie-policy";
+  if (normalized === routes.legal) return "legal";
   return null;
 }
 
-export function originalsProjectHref(slug: OriginalsProjectSlug): string {
-  return `${routes.originals}/${slug}/`;
+export function originalsProjectHref(slug: OriginalsSlateSlug): string {
+  if (slug === "unnecessary-things") return `${routes.originals}/unnecessary-things/`;
+  if (slug === "the-last-kozak") return `${routes.originals}/#the-last-kozak`;
+  if (slug === "scoopy-cap") return `${routes.originals}/#scoopy-cap`;
+  return `${routes.originals}/#pershosvit`;
+}
+
+/** Former project pages folded into the Originals slate. */
+export function legacyOriginalsProjectRedirectTarget(pathname?: string): string | null {
+  const normalized = normalizePathname(resolvePathname(pathname));
+  if (normalized === `${routes.originals}/the-last-kozak`) {
+    return `${routes.originals}/#the-last-kozak`;
+  }
+  if (normalized === `${routes.originals}/pershosvit`) {
+    return `${routes.originals}/#pershosvit`;
+  }
+  if (normalized === `${routes.originals}/scoopy-cap`) {
+    return `${routes.originals}/#scoopy-cap`;
+  }
+  return null;
 }
 
 export function parseOriginalsProject(pathname?: string): OriginalsProjectSlug | null {
@@ -115,6 +134,12 @@ export function isSiteSubpage(pathname?: string) {
     parseLegalPage(pathname) !== null ||
     parseOriginalsProject(pathname) !== null
   );
+}
+
+/** True when the route renders FilmContactSection (id=contact). */
+export function pageHasContactForm(pathname?: string): boolean {
+  // Only legal/privacy/cookie pages omit the form; home and all hubs include it.
+  return parseLegalPage(pathname) === null;
 }
 
 /** Canonical hub path for links, sitemap, and SEO (trailing slash). */

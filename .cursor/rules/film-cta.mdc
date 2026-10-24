@@ -1,0 +1,23 @@
+---
+description: LISENBART FILM — primary CTAs are one navy button
+alwaysApply: true
+---
+
+# Primary CTA
+
+Single source: `site/src/styles/cta-tokens.css` (loaded last) +
+`.film-cta` / `.send-button` in `film-identity.css`.
+
+Tokens: `--cta-bg: #001956` · `--cta-fg: #ffffff` · `--cta-secondary-bg: #e77855`.
+
+## Rule
+
+- Primary actions are **navy filled buttons** (`#001956`, white label), hover invert to outline in the same navy.
+- Use class `film-cta` or `send-button` (aliases already wired for home paths, project CTA, awards toggle).
+- Do **not** redefine `--cta-bg` in `index.css`, `theme-light.css`, or `archive-design.css`.
+- Do **not** use underline text / ghost text links as primary CTAs.
+
+## Exceptions
+
+- Secondary (`.film-cta--secondary`): coral `#e77855` (e.g. Meet the founder).
+- Cookie / legal chrome may differ.

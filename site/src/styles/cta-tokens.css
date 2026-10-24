@@ -1,0 +1,14 @@
+/*
+ * PRIMARY / SECONDARY CTA TOKENS — single source, loaded LAST.
+ * Do not redefine --cta-bg / --cta-fg / --cta-secondary-bg in index, theme-light, or archive.
+ */
+:root,
+html,
+html[data-theme="light"],
+html[data-theme="dark"],
+[data-theme="light"],
+[data-theme="dark"] {
+  --cta-bg: #001956;
+  --cta-fg: #ffffff;
+  --cta-secondary-bg: #e77855;
+}

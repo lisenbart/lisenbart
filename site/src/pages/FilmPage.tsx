@@ -1,61 +1,77 @@
+import { useEffect } from "react";
+import { Instagram, Youtube } from "lucide-react";
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
-import OriginalsPartnershipSection from "@/components/film/OriginalsPartnershipSection";
+import FilmShowreel from "@/components/film/FilmShowreel";
+import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
-import { site } from "@/data/site";
-import { getWorkCasesByIds, type WorkCaseStudy } from "@/data/work";
-import {
-  originalsProjectHref,
-  type OriginalsProjectSlug,
-} from "@/lib/routes";
+import { goToContact, scrollToSection, site } from "@/data/site";
+import { publicAsset } from "@/lib/publicAsset";
+import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.filmPage;
 
-/** Short type line only — full detail lives on the project page. */
-const PROJECT_CARD: Record<
-  OriginalsProjectSlug,
-  { type: string; actionLabel: string }
-> = {
-  "unnecessary-things": {
-    type: "11 Awards · 45 Festival Selections",
-    actionLabel: "View project",
-  },
-  "the-last-kozak": { type: "Animated feature", actionLabel: "View project" },
-  pershosvit: { type: "Preschool IP", actionLabel: "View project" },
-  "scoopy-cap": { type: "Preschool IP", actionLabel: "View project" },
-};
+function TikTokIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2 6.34 6.34 0 0 0 9.49 21.5a6.34 6.34 0 0 0 6.34-6.34V8.6a8.2 8.2 0 0 0 4.76 1.52V6.69h-1Z" />
+    </svg>
+  );
+}
 
-type ProjectCard = {
-  item: WorkCaseStudy;
-  slug: OriginalsProjectSlug;
-  href: string;
-  type: string;
-  actionLabel: string;
-};
+function SocialIcon({ platform }: { platform: "youtube" | "instagram" | "tiktok" }) {
+  if (platform === "youtube") return <Youtube size={18} strokeWidth={1.75} aria-hidden="true" />;
+  if (platform === "instagram") return <Instagram size={18} strokeWidth={1.75} aria-hidden="true" />;
+  return <TikTokIcon />;
+}
 
-function buildCards(): ProjectCard[] {
-  const slugs = Object.keys(PROJECT_CARD) as OriginalsProjectSlug[];
-  const cases = getWorkCasesByIds(slugs);
-  const byId = new Map(cases.map((item) => [item.id, item]));
+function ProjectMedia({
+  id,
+  title,
+  image,
+  imageAlt,
+  vimeoId,
+}: {
+  id: string;
+  title: string;
+  image: string;
+  imageAlt: string;
+  vimeoId?: string | null;
+}) {
+  if (vimeoId) {
+    return (
+      <FilmShowreel
+        id={`${id}-teaser`}
+        label={`${title} teaser`}
+        poster={publicAsset(image)}
+        vimeoId={vimeoId}
+        playLabelHidden
+        withSound
+      />
+    );
+  }
 
-  return slugs.flatMap((slug) => {
-    const item = byId.get(slug);
-    if (!item) return [];
-    const meta = PROJECT_CARD[slug];
-    return [
-      {
-        item,
-        slug,
-        href: originalsProjectHref(slug),
-        type: meta.type,
-        actionLabel: meta.actionLabel,
-      },
-    ];
-  });
+  return (
+    <div className="originals-row__still">
+      <img
+        src={publicAsset(image)}
+        alt={imageAlt}
+        width={1280}
+        height={720}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  );
 }
 
 export default function FilmPage() {
-  const cards = buildCards();
+  useEffect(() => {
+    const hash = window.location.hash.replace(/^#/, "");
+    if (!hash || hash === "contact") return;
+    const timer = window.setTimeout(() => scrollToSection(hash), 80);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -64,47 +80,189 @@ export default function FilmPage() {
         description={page.seoDescription}
         url={`${site.canonical}/originals/`}
       />
-      <section className="page-shell originals-page">
-        <FilmReveal>
-          <div className="page-title-row originals-title">
-            <h1>Originals</h1>
+      <div className="originals-page page-with-hero-reel">
+        <PageHeroReel
+          titleId="originals-page-heading"
+          media={
+            <div className="page-hero-reel__still" aria-hidden="true">
+              <img
+                src={publicAsset(page.heroImage)}
+                alt=""
+                width={1600}
+                height={900}
+                decoding="async"
+              />
+            </div>
+          }
+        >
+          <div className="page-title-row">
+            <h1 id="originals-page-heading">{page.name}</h1>
           </div>
-        </FilmReveal>
+          <p className="studio-page-hero__lead">{page.heroLead}</p>
+        </PageHeroReel>
 
-        <div className="originals-grid">
-          {cards.map(({ item, href, type, actionLabel }, index) => {
-            const media = item.mediaImage ?? "";
+        {page.projects.map((item, index) => {
+          const bandTotal = page.projects.length + 1; /* + partner */
+          const primaryId =
+            "anchorIds" in item && item.anchorIds ? item.anchorIds[0] : item.id;
+          const extraAnchors =
+            "anchorIds" in item && item.anchorIds ? item.anchorIds.slice(1) : [];
+          const fullFilmLabel =
+            "fullFilmLabel" in item && item.fullFilmLabel ? item.fullFilmLabel : null;
+          const fullFilmHref =
+            "fullFilmHref" in item && item.fullFilmHref ? item.fullFilmHref : null;
 
-            return (
-              <FilmReveal key={item.id} delayMs={index * 70}>
-                <a
-                  className="original-card"
-                  href={href}
-                  aria-label={`${item.title} — ${actionLabel}`}
-                >
-                  <span className="original-card__media">
-                    <img src={media} alt="" />
-                    <span className="original-card__overlay">
-                      <span className="original-card__copy">
-                        <span className="original-card__title">{item.title}</span>
-                        <span className="original-card__status">{type}</span>
-                        <span className="original-card__action">{actionLabel}</span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
+          return (
+            <section
+              key={item.id}
+              id={primaryId}
+              className={studioSectionClass(index, bandTotal, "originals-row")}
+              aria-labelledby={`${item.id}-title`}
+            >
+              {extraAnchors.map((anchorId) => (
+                <span
+                  key={anchorId}
+                  id={anchorId}
+                  className="originals-slate__anchor"
+                  aria-hidden="true"
+                />
+              ))}
+              <FilmReveal className="originals-row__reveal">
+                <div className="originals-row__grid">
+                  <div className="originals-row__media">
+                    <ProjectMedia
+                      id={item.id}
+                      title={item.title}
+                      image={item.image}
+                      imageAlt={item.imageAlt}
+                      vimeoId={item.vimeoId}
+                    />
+                  </div>
+                  <div
+                    className={`originals-row__copy${
+                      "appCard" in item && item.appCard ? " originals-row__copy--split" : ""
+                    }`}
+                  >
+                    <div className="originals-row__body">
+                      <div className="originals-row__main">
+                        <p className="originals-slate__accent originals-slate__accent--row">
+                          {item.accent}
+                        </p>
+                        <h2 id={`${item.id}-title`} className="originals-slate__title">
+                          {item.title}
+                        </h2>
+                        <p className="originals-slate__format">{item.format}</p>
+                        <p className="originals-slate__logline">{item.logline}</p>
+                        {"secondary" in item && item.secondary ? (
+                          <p className="originals-slate__secondary">{item.secondary}</p>
+                        ) : null}
+                        {"socialLinks" in item && item.socialLinks ? (
+                          <ul className="originals-slate__social" aria-label="Social links">
+                            {item.socialLinks.map((link) => (
+                              <li key={link.href}>
+                                <a
+                                  href={link.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={link.label}
+                                  title={link.label}
+                                >
+                                  <SocialIcon platform={link.platform} />
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                      {"appCard" in item && item.appCard ? (
+                        <aside className="originals-app-card" aria-label="Scoopy Log app">
+                          <img
+                            className="originals-app-card__icon"
+                            src={publicAsset(item.appCard.icon)}
+                            alt=""
+                            width={56}
+                            height={56}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <div className="originals-app-card__copy">
+                            <p className="originals-app-card__title">{item.appCard.title}</p>
+                            <p className="originals-app-card__text">{item.appCard.text}</p>
+                            <a
+                              className="originals-app-card__store"
+                              href={item.appCard.storeHref}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <img
+                                src={publicAsset(item.appCard.storeBadge)}
+                                alt={item.appCard.storeBadgeAlt}
+                                width={120}
+                                height={40}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            </a>
+                          </div>
+                        </aside>
+                      ) : null}
+                    </div>
+                    <div className="originals-row__actions">
+                      {fullFilmLabel && fullFilmHref ? (
+                        <a className="send-button originals-slate__cta" href={fullFilmHref}>
+                          {fullFilmLabel}
+                        </a>
+                      ) : null}
+                      {item.ctaKind === "contact" && item.ctaLabel ? (
+                        <button
+                          type="button"
+                          className="send-button originals-slate__cta"
+                          onClick={() => goToContact()}
+                        >
+                          {item.ctaLabel}
+                        </button>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
               </FilmReveal>
-            );
-          })}
-        </div>
+            </section>
+          );
+        })}
 
-        <FilmReveal delayMs={120}>
-          <OriginalsPartnershipSection />
+        <section
+          className={studioSectionClass(page.projects.length, page.projects.length + 1)}
+          aria-labelledby="originals-partner-heading"
+        >
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="originals-partner-heading" className="studio-section-heading">
+                  {page.partnerHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
+          <ul
+            className="studio-how-steps studio-how-steps--3 studio-section__full"
+            aria-label="How we partner"
+          >
+            {page.partners.map((item) => (
+              <li key={item.title} className="studio-how-steps__item">
+                <h3 className="studio-models__title">{item.title}</h3>
+                <p className="studio-models__text">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <FilmReveal>
+          <FilmContactSection
+            heading={site.homeContact.heading}
+            defaultProjectType={page.defaultProjectType}
+          />
         </FilmReveal>
-      </section>
-      <FilmReveal>
-        <FilmContactSection heading={site.homeContact.heading} />
-      </FilmReveal>
+      </div>
     </>
   );
 }

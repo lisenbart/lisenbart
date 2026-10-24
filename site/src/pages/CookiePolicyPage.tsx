@@ -19,6 +19,7 @@ export default function CookiePolicyPage() {
       </SEO>
 
       <article className="page-shell legal-doc">
+        <div className="legal-doc__inner">
         <div className="page-title-row">
           <h1>{meta.title}</h1>
         </div>
@@ -88,6 +89,7 @@ export default function CookiePolicyPage() {
             Questions: <a href={`mailto:${site.email}`}>{site.email}</a>. Last technical draft:
             October 2026.
           </p>
+        </div>
         </div>
       </article>
     </>

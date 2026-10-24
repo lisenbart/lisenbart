@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Play } from "lucide-react";
 import HeroShowreel from "./HeroShowreel";
 import ReelSlideshow from "./ReelSlideshow";
+import { useShowreelSession } from "@/hooks/useShowreelSession";
 
 interface ReelBlockProps {
   id: string;
@@ -25,6 +26,7 @@ export default function ReelBlock({
   emphasis = "primary",
 }: ReelBlockProps) {
   const [playing, setPlaying] = useState(false);
+  const closeControl = useShowreelSession(playing, setPlaying);
   const ariaLabel = `${label} reel`;
   const canPlay = Boolean(videoId) && !comingSoon;
 
@@ -38,14 +40,17 @@ export default function ReelBlock({
     >
       <div className="reel-block__stage">
         {playing && canPlay ? (
-          <div className="reel-block__media" aria-label={ariaLabel}>
-            <HeroShowreel
-              vimeoId={videoId}
-              title={ariaLabel}
-              autoPlay
-              hidePlayButton
-            />
-          </div>
+          <>
+            <div className="reel-block__media" aria-label={ariaLabel}>
+              <HeroShowreel
+                vimeoId={videoId}
+                title={ariaLabel}
+                autoPlay
+                hidePlayButton
+              />
+            </div>
+            {closeControl}
+          </>
         ) : (
           <>
             <div className="reel-block__media reel-block__media--preview">

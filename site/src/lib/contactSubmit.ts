@@ -12,6 +12,16 @@ export interface ContactPayload {
   projectType: string;
   message: string;
   honeypot?: string;
+  /** Path the form was submitted from (for Netlify / email context). */
+  page?: string;
+  /** Netlify Forms name — defaults to site-wide `contact`. */
+  formName?: string;
+}
+
+function currentPagePath(): string {
+  if (typeof window === "undefined") return "/";
+  const { pathname, search } = window.location;
+  return `${pathname}${search}` || "/";
 }
 
 export interface ContactResult {
@@ -41,6 +51,7 @@ function buildSubject(data: ContactPayload): string {
 }
 
 function formatMessageBody(data: ContactPayload): string {
+  const page = data.page?.trim() || currentPagePath();
   const lines = [
     data.message.trim() || "(no message)",
     "",
@@ -48,6 +59,7 @@ function formatMessageBody(data: ContactPayload): string {
     data.name.trim() ? `Name: ${data.name.trim()}` : "Name: (not provided)",
     `Email: ${data.email.trim()}`,
     data.projectType ? `Project type: ${data.projectType}` : "Project type: (not provided)",
+    `Page: ${page}`,
   ];
   return lines.join("\n");
 }
@@ -75,10 +87,12 @@ async function parseErrorResponse(res: Response): Promise<string> {
 }
 
 function buildPhpFormBody(data: ContactPayload): FormData {
+  const page = data.page?.trim() || currentPagePath();
   const body = new FormData();
   body.append("email", data.email.trim());
   if (data.name.trim()) body.append("name", data.name.trim());
   if (data.projectType) body.append("projectType", data.projectType);
+  body.append("page", page);
   body.append("message", formatMessageBody(data));
   if (data.honeypot?.trim()) body.append("website", data.honeypot.trim());
   return body;
@@ -93,28 +107,37 @@ function buildFormspreeBody(data: ContactPayload): FormData {
 }
 
 function buildNetlifyBody(data: ContactPayload): string {
+  const page = data.page?.trim() || currentPagePath();
   return encodeUrlBody({
-    "form-name": NETLIFY_FORM_NAME,
+    "form-name": data.formName?.trim() || NETLIFY_FORM_NAME,
     email: data.email.trim(),
     name: data.name.trim(),
     projectType: data.projectType,
+    page,
     message: formatMessageBody(data),
     website: data.honeypot?.trim() ?? "",
   });
 }
 
 export async function submitContact(data: ContactPayload): Promise<ContactResult> {
-  const errors = validateContact(data);
+  const payload: ContactPayload = {
+    ...data,
+    page: data.page?.trim() || currentPagePath(),
+  };
+
+  const errors = validateContact(payload);
   if (Object.keys(errors).length > 0) {
     return { success: false, message: Object.values(errors)[0]! };
   }
 
   if (!isContactFormLive) {
     console.info("[LISENBART] Contact (dev mock):", {
-      name: data.name,
-      email: data.email,
-      projectType: data.projectType,
-      message: data.message,
+      formName: payload.formName || NETLIFY_FORM_NAME,
+      name: payload.name,
+      email: payload.email,
+      projectType: payload.projectType,
+      page: payload.page,
+      message: payload.message,
     });
     await new Promise((r) => setTimeout(r, 600));
     return {
@@ -130,18 +153,18 @@ export async function submitContact(data: ContactPayload): Promise<ContactResult
       res = await fetch(contactEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: buildNetlifyBody(data),
+        body: buildNetlifyBody(payload),
       });
     } else if (contactHandler === "remote" && contactEndpoint.includes("formspree.io")) {
       res = await fetch(contactEndpoint, {
         method: "POST",
-        body: buildFormspreeBody(data),
+        body: buildFormspreeBody(payload),
         headers: { Accept: "application/json" },
       });
     } else {
       res = await fetch(contactEndpoint, {
         method: "POST",
-        body: buildPhpFormBody(data),
+        body: buildPhpFormBody(payload),
         headers: { Accept: "application/json" },
       });
     }

@@ -1,5 +1,5 @@
-import { useEffect, useId, useState, type MouseEvent } from "react";
-import { goToContact, site } from "@/data/site";
+import { useEffect, useId, useRef, useState, type MouseEvent } from "react";
+import { contactNavHref, goToContact, site } from "@/data/site";
 import {
   hubCanonicalHref,
   isSiteSubpage,
@@ -11,13 +11,16 @@ import {
 type NavId = (typeof site.primaryNav)[number]["id"];
 
 function navHref(id: NavId) {
-  if (id === "contact") return "#contact";
+  if (id === "contact") return contactNavHref();
   return hubCanonicalHref(id);
 }
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  /** Desktop: floating burger only after primary header nav leaves view */
+  const [navDocked, setNavDocked] = useState(false);
   const menuId = useId();
+  const headerRef = useRef<HTMLElement>(null);
   const onSubpage = isSiteSubpage();
   const activeHub = parseHubPage();
 
@@ -42,6 +45,45 @@ export default function Header() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const mq = window.matchMedia("(min-width: 801px)");
+    let raf = 0;
+
+    const update = () => {
+      // Mobile: primary desktop nav is hidden — keep the floating control available
+      if (!mq.matches) {
+        setNavDocked(true);
+        return;
+      }
+      // Small hysteresis avoids flicker at the exact threshold
+      const bottom = header.getBoundingClientRect().bottom;
+      setNavDocked((prev) => {
+        if (prev) return bottom < 12;
+        return bottom <= 0;
+      });
+    };
+
+    const onScrollOrResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    mq.addEventListener("change", update);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      mq.removeEventListener("change", update);
+    };
+  }, []);
+
   const closeMenu = () => setMenuOpen(false);
   const toggleMenu = () => setMenuOpen((v) => !v);
 
@@ -52,18 +94,25 @@ export default function Header() {
   };
 
   const onNavClick = (id: NavId, e: MouseEvent<HTMLAnchorElement>) => {
+    const wasMenuOpen = menuOpen;
     closeMenu();
     if (id !== "contact") return;
     e.preventDefault();
-    goToContact();
+    // Let the mobile menu unlock body scroll before smooth-scrolling to the form.
+    const run = () => goToContact();
+    if (wasMenuOpen) window.setTimeout(run, 40);
+    else run();
   };
+
+  const showFloating = navDocked || menuOpen;
 
   return (
     <>
-      <header className="film-header">
+      <header ref={headerRef} className="film-header">
         <a
+          className={`brand-lockup${onSubpage ? "" : " brand-lockup--hero"}`}
           href={onSubpage ? routes.home : "#top"}
-          aria-label={`${site.brand} home`}
+          aria-label={`${site.brand} ${site.studioHome.established} home`}
           onClick={
             onSubpage
               ? undefined
@@ -75,6 +124,7 @@ export default function Header() {
           }
         >
           <span className="brand">{site.brand}</span>
+          <span className="brand-est">{site.studioHome.established}</span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (
@@ -92,11 +142,13 @@ export default function Header() {
       </header>
 
       <button
-        className={`menu-button ${menuOpen ? "open" : ""}`}
+        className={`menu-button${menuOpen ? " open" : ""}${showFloating ? " is-floating" : ""}`}
         type="button"
         aria-label={menuOpen ? "Close menu" : "Open menu"}
         aria-expanded={menuOpen}
         aria-controls={menuId}
+        aria-hidden={!showFloating}
+        tabIndex={showFloating ? 0 : -1}
         onClick={toggleMenu}
       >
         <span />

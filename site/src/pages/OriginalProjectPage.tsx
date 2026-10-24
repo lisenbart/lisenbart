@@ -1,12 +1,8 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
-import ScoopyCapPlatforms from "@/components/film/ScoopyCapPlatforms";
-import {
-  FestivalFeaturedStrip,
-  FestivalRecognitionSection,
-} from "@/components/originals/FestivalRecognition";
-import OriginalIpPhones from "@/components/originals/OriginalIpPhones";
+import PageHeroReel from "@/components/film/PageHeroReel";
+import { AwardsDisclosure } from "@/components/originals/FestivalRecognition";
 import {
   CreditsDisclosure,
   OriginalsStillGallery,
@@ -44,7 +40,7 @@ function ProjectCta({ project }: { project: ProjectData }) {
     <div className="project-page__cta-row">
       <button
         type="button"
-        className="project-page__cta"
+        className="film-cta project-page__cta"
         onClick={() =>
           goToContactWithPrefill({
             projectType: project.cta.projectType,
@@ -61,170 +57,101 @@ function ProjectCta({ project }: { project: ProjectData }) {
 function FilmShortBody({ project }: { project: ProjectData }) {
   const item = project.case;
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
+  const stills = item.stills ?? [];
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
-      <FestivalFeaturedStrip />
+      {stills.length > 0 ? (
+        <section className="project-stills-bleed" aria-label={`${item.title} stills`}>
+          <OriginalsStillGallery stills={stills} projectTitle={item.title} />
+        </section>
+      ) : null}
 
-      <div className="project-page__copy">
-        <p className="project-page__synopsis">{project.synopsis}</p>
-        {project.body?.map((paragraph) => (
-          <p key={paragraph} className="project-page__body">
-            {paragraph}
-          </p>
-        ))}
+      <section className="project-press" aria-label="Press">
+        {imdbHref ? (
+          <a
+            className="project-press__imdb"
+            href={imdbHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={
+              item.imdbRating
+                ? `IMDb rating ${item.imdbRating} out of 10`
+                : "View on IMDb"
+            }
+          >
+            <span className="project-press__imdb-mark" aria-hidden="true">
+              IMDb
+            </span>
+            {item.imdbRating ? (
+              <span className="project-press__imdb-score">
+                <span className="project-press__imdb-value">{item.imdbRating}</span>
+                <span className="project-press__imdb-scale">/10</span>
+              </span>
+            ) : (
+              <span className="project-press__imdb-link-label">View on IMDb</span>
+            )}
+          </a>
+        ) : null}
 
         {item.quote ? (
-          <blockquote className="project-page__quote">
-            <p>“{item.quote.text}”</p>
-            {item.quote.href ? (
-              <cite>
-                <a href={item.quote.href} target="_blank" rel="noopener noreferrer">
-                  {item.quote.attribution}
-                </a>
-              </cite>
-            ) : (
-              <cite>{item.quote.attribution}</cite>
-            )}
+          <blockquote className="project-press__quote">
+            <span className="project-press__quotemark" aria-hidden="true">
+              “
+            </span>
+            <div className="project-press__quote-body">
+              <p className="project-press__quote-text">{item.quote.text}</p>
+              {item.quote.href ? (
+                <cite>
+                  <a href={item.quote.href} target="_blank" rel="noopener noreferrer">
+                    {item.quote.attribution}
+                  </a>
+                </cite>
+              ) : (
+                <cite>{item.quote.attribution}</cite>
+              )}
+            </div>
           </blockquote>
         ) : null}
 
-        {imdbHref ? (
-          <p className="project-page__ext-link">
-            <a href={imdbHref} target="_blank" rel="noopener noreferrer">
-              View on IMDb
-            </a>
-          </p>
+        {item.sweetTv ? (
+          <a
+            className="project-press__sweet"
+            href={item.sweetTv.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.sweetTv.label ?? "Watch on SWEET.TV"}
+          >
+            <img
+              className="project-press__sweet-poster"
+              src={publicAsset(item.sweetTv.poster)}
+              alt=""
+              width={268}
+              height={402}
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="project-press__sweet-label">
+              {item.sweetTv.label ?? "SWEET.TV"}
+            </span>
+          </a>
         ) : null}
-
-        {item.stills && item.stills.length > 0 ? (
-          <div className="project-page__stills">
-            <h2 className="project-page__section-label">Stills</h2>
-            <OriginalsStillGallery stills={item.stills} projectTitle={item.title} />
-          </div>
-        ) : null}
-
-        <FestivalRecognitionSection />
-
-        {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
-
-        <ProjectCta project={project} />
-      </div>
-    </div>
-  );
-}
-
-function FeatureDevBody({ project }: { project: ProjectData }) {
-  return (
-    <div className="project-page__layout project-page__layout--feature-dev">
-      <div className="project-page__copy">
-        <p className="project-page__synopsis">{project.synopsis}</p>
-        {project.body?.map((paragraph) => (
-          <p key={paragraph} className="project-page__body">
-            {paragraph}
-          </p>
-        ))}
-
-        {project.developmentNotes && project.developmentNotes.length > 0 ? (
-          <ul className="project-page__dev-list">
-            {project.developmentNotes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
-        ) : null}
-
-        <ProjectCta project={project} />
-      </div>
-    </div>
-  );
-}
-
-function PreschoolLayout({
-  project,
-  showPlatforms = false,
-}: {
-  project: ProjectData;
-  showPlatforms?: boolean;
-}) {
-  const item = project.case;
-
-  return (
-    <div className="project-page__layout project-page__layout--preschool">
-      <section className="originals-case originals-case--ip project-page__ip-case">
-        <OriginalIpPhones item={item} />
-
-        <div className="originals-case__copy">
-          <div className="originals-case__intro originals-ip-intro">
-            {item.mediaImage ? (
-              <img
-                className="originals-ip-avatar"
-                src={publicAsset(item.mediaImage)}
-                alt=""
-                width={72}
-                height={72}
-                loading="eager"
-                decoding="async"
-              />
-            ) : null}
-            <div className="originals-ip-intro__text">
-              <p className="project-page__format">{project.format}</p>
-              <h1 className="originals-case__title">{item.title}</h1>
-            </div>
-          </div>
-
-          <div className="originals-case__body">
-            <p className="project-page__synopsis">{project.synopsis}</p>
-            {project.body?.map((paragraph) => (
-              <p key={paragraph} className="project-page__body">
-                {paragraph}
-              </p>
-            ))}
-
-            {project.characterNote ? (
-              <p className="project-page__character">
-                <span className="project-page__section-label">Lead character</span>
-                {project.characterNote}
-              </p>
-            ) : null}
-
-            {project.highlights && project.highlights.length > 0 ? (
-              <div className="project-page__highlights">
-                <h2 className="project-page__section-label">In the library</h2>
-                <ul>
-                  {project.highlights.map((line) => (
-                    <li key={line}>{line}</li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
-            {showPlatforms ? (
-              <div className="project-page__platforms">
-                <ScoopyCapPlatforms heading="Distribution & Platforms" compactNote />
-              </div>
-            ) : null}
-
-            <ProjectCta project={project} />
-          </div>
-        </div>
       </section>
+
+      <AwardsDisclosure />
+
+      <div className="page-shell project-page project-page--film-short page-shell--from-reel project-page__rest">
+        <div className="project-page__copy">
+          {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
+          <ProjectCta project={project} />
+        </div>
+      </div>
     </div>
   );
 }
 
 function ProjectBody({ project }: { project: ProjectData }) {
-  switch (project.layout) {
-    case "film-short":
-      return <FilmShortBody project={project} />;
-    case "feature-dev":
-      return <FeatureDevBody project={project} />;
-    case "preschool-ua":
-      return <PreschoolLayout project={project} />;
-    case "preschool-en":
-      return <PreschoolLayout project={project} showPlatforms />;
-    default:
-      return null;
-  }
+  return <FilmShortBody project={project} />;
 }
 
 function FilmProjectIntro({ project }: { project: ProjectData }) {
@@ -233,7 +160,7 @@ function FilmProjectIntro({ project }: { project: ProjectData }) {
     <div className="project-page__intro">
       <p className="project-page__format">{project.format}</p>
       {project.status ? <p className="project-page__status">{project.status}</p> : null}
-      <h1>{item.title}</h1>
+      <h1 id={`${item.id}-heading`}>{item.title}</h1>
     </div>
   );
 }
@@ -259,9 +186,7 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
     ? publicAsset(project.case.mediaImage.split("?")[0]!)
     : undefined;
   const item = project.case;
-  const hasFullBleedReel =
-    (project.layout === "film-short" || project.layout === "feature-dev") &&
-    Boolean(item.vimeoId && item.mediaImage);
+  const hasFullBleedReel = Boolean(item.vimeoId && item.mediaImage);
 
   return (
     <>
@@ -273,31 +198,29 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
       />
 
       {hasFullBleedReel ? (
-        <>
-          <section
-            className={`page-shell project-page project-page--${project.layout} page-shell--to-reel`}
+        <div className={`project-page project-page--${project.layout} page-with-hero-reel`}>
+          <PageHeroReel
+            title={item.title}
+            titleId={`${item.id}-heading`}
+            media={
+              <FilmShowreel
+                id={`${item.id}-reel`}
+                label={item.title}
+                poster={publicAsset(item.mediaImage!)}
+                vimeoId={item.vimeoId}
+                playLabel="Watch full film"
+                withSound
+                forceModal
+              />
+            }
           >
-            <FilmReveal>
-              <ProjectNav title={item.title} />
-              <FilmProjectIntro project={project} />
-            </FilmReveal>
-          </section>
-          <FilmReveal delayMs={60}>
-            <FilmShowreel
-              id={`${item.id}-reel`}
-              label={item.title}
-              poster={publicAsset(item.mediaImage!)}
-              vimeoId={item.vimeoId}
-            />
+            <ProjectNav title={item.title} />
+            <FilmProjectIntro project={project} />
+          </PageHeroReel>
+          <FilmReveal delayMs={100}>
+            <ProjectBody project={project} />
           </FilmReveal>
-          <section
-            className={`page-shell project-page project-page--${project.layout} page-shell--from-reel`}
-          >
-            <FilmReveal delayMs={100}>
-              <ProjectBody project={project} />
-            </FilmReveal>
-          </section>
-        </>
+        </div>
       ) : (
         <section className={`page-shell project-page project-page--${project.layout}`}>
           <FilmReveal>

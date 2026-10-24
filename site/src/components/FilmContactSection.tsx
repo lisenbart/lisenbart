@@ -22,21 +22,33 @@ interface FormState {
 type Status = "idle" | "loading" | "success" | "error";
 
 const copy = site.contactForm;
-const emptyForm = (): FormState => ({
-  name: "",
-  email: "",
-  projectType: "",
-  message: "",
-  honeypot: "",
-});
 
 export default function FilmContactSection({
   heading = site.homeContact.heading,
-  lead,
+  lead = site.homeContact.lead,
+  defaultProjectType = "",
+  formName = NETLIFY_FORM_NAME,
+  helloEmail = site.email,
 }: {
   heading?: string;
   lead?: string;
+  /** Preselect Project type on this page (e.g. Client Work → Brand Film or Campaign). */
+  defaultProjectType?: string;
+  /** Netlify Forms name — Games uses `contact-games`. */
+  formName?: string;
+  /** "Or just say hello" address (defaults to info@lisenbart.com). */
+  helloEmail?: string;
 }) {
+  const fieldId = formName === NETLIFY_FORM_NAME ? "contact" : formName;
+
+  const emptyForm = (): FormState => ({
+    name: "",
+    email: "",
+    projectType: defaultProjectType,
+    message: "",
+    honeypot: "",
+  });
+
   const [form, setForm] = useState<FormState>(emptyForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<Status>("idle");
@@ -79,8 +91,8 @@ export default function FilmContactSection({
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       setStatus("idle");
-      if (validationErrors.email) document.getElementById("contact-email")?.focus();
-      else if (validationErrors.message) document.getElementById("contact-message")?.focus();
+      if (validationErrors.email) document.getElementById(`${fieldId}-email`)?.focus();
+      else if (validationErrors.message) document.getElementById(`${fieldId}-message`)?.focus();
       return;
     }
 
@@ -90,7 +102,7 @@ export default function FilmContactSection({
     setServerMsg("");
 
     try {
-      const result = await submitContact(form);
+      const result = await submitContact({ ...form, formName });
       if (result.success) {
         setStatus("success");
         setServerMsg(result.message);
@@ -110,136 +122,152 @@ export default function FilmContactSection({
   return (
     <section id={sectionIds.contact} className="contact-page" aria-label="Contact">
       <div className="contact-content">
-        <h1>{heading}</h1>
-        {lead ? <p className="film-contact__lead">{lead}</p> : null}
-        {!isContactFormLive && import.meta.env.DEV ? (
-          <p className="film-contact__lead">
-            Dev: form mocks locally. On Netlify it uses Netlify Forms.
-          </p>
-        ) : null}
+        {status === "success" ? (
+          <div role="status" aria-live="polite">
+            <h2 className="contact-heading">{copy.successHeading}</h2>
+            <p className="film-contact__lead">{copy.successMessage}</p>
+            <button type="button" className="send-button" onClick={() => setStatus("idle")}>
+              {copy.successAction}
+            </button>
+          </div>
+        ) : (
+          <>
+            <h2 className="contact-heading">{heading}</h2>
+            {lead ? <p className="film-contact__lead">{lead}</p> : null}
+            {!isContactFormLive && import.meta.env.DEV ? (
+              <p className="film-contact__lead">
+                Dev: form mocks locally. On Netlify it uses Netlify Forms.
+              </p>
+            ) : null}
 
-        <div className="contact-columns">
-          <div aria-live="polite" aria-atomic="true" className="contact-status-region">
-            {status === "success" ? (
-              <div role="status">
-                <p>{serverMsg || copy.successMessage}</p>
-                <button type="button" className="send-button" onClick={() => setStatus("idle")}>
-                  {copy.successAction}
-                </button>
-              </div>
-            ) : (
-              <form
-                name={NETLIFY_FORM_NAME}
-                method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="website"
-                onSubmit={handleSubmit}
-                noValidate
-              >
-                <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
-                <input
-                  type="text"
-                  name="website"
-                  value={form.honeypot}
-                  onChange={(e) => update("honeypot", e.target.value)}
-                  className="absolute -left-[9999px] h-0 w-0 opacity-0"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  aria-hidden="true"
-                />
-                <label htmlFor="contact-name">
-                  <span>Name</span>
+            <div className="contact-columns">
+              <div aria-live="polite" aria-atomic="true" className="contact-status-region">
+                <form
+                  name={formName}
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="website"
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
+                  <input type="hidden" name="form-name" value={formName} />
                   <input
-                    id="contact-name"
-                    name="name"
-                    value={form.name}
-                    onChange={(e) => update("name", e.target.value)}
-                    autoComplete="name"
-                    placeholder="Your name"
+                    type="hidden"
+                    name="page"
+                    value={
+                      typeof window !== "undefined"
+                        ? `${window.location.pathname}${window.location.search}` || "/"
+                        : "/"
+                    }
+                    readOnly
+                    aria-hidden="true"
                   />
-                </label>
-                <label htmlFor="contact-email">
-                  <span>
-                    Email
+                  <input
+                    type="text"
+                    name="website"
+                    value={form.honeypot}
+                    onChange={(e) => update("honeypot", e.target.value)}
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+                  <label htmlFor={`${fieldId}-name`}>
+                    <span>Name</span>
+                    <input
+                      id={`${fieldId}-name`}
+                      name="name"
+                      value={form.name}
+                      onChange={(e) => update("name", e.target.value)}
+                      autoComplete="name"
+                      placeholder="Your name"
+                    />
+                  </label>
+                  <label htmlFor={`${fieldId}-email`}>
+                    <span>
+                      Email
+                      {errors.email ? (
+                        <span className="contact-field-error"> — {errors.email}</span>
+                      ) : null}
+                    </span>
+                    <input
+                      id={`${fieldId}-email`}
+                      name="email"
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => update("email", e.target.value)}
+                      autoComplete="email"
+                      required
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? `${fieldId}-email-error` : undefined}
+                      placeholder={copy.emailPlaceholder}
+                    />
                     {errors.email ? (
-                      <span className="contact-field-error"> — {errors.email}</span>
+                      <span id={`${fieldId}-email-error`} className="sr-only">
+                        {errors.email}
+                      </span>
                     ) : null}
-                  </span>
-                  <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => update("email", e.target.value)}
-                    autoComplete="email"
-                    required
-                    aria-invalid={Boolean(errors.email)}
-                    aria-describedby={errors.email ? "contact-email-error" : undefined}
-                    placeholder={copy.emailPlaceholder}
-                  />
-                  {errors.email ? (
-                    <span id="contact-email-error" className="sr-only">
-                      {errors.email}
+                  </label>
+                  <label htmlFor={`${fieldId}-projectType`}>
+                    <span>Project type</span>
+                    <select
+                      id={`${fieldId}-projectType`}
+                      name="projectType"
+                      value={form.projectType}
+                      onChange={(e) => update("projectType", e.target.value)}
+                    >
+                      <option value="">{copy.projectTypePlaceholder}</option>
+                      {projectTypes.map((t) => (
+                        <option key={t} value={t}>
+                          {t}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label htmlFor={`${fieldId}-message`}>
+                    <span>
+                      Message
+                      {errors.message ? (
+                        <span className="contact-field-error"> — {errors.message}</span>
+                      ) : null}
                     </span>
-                  ) : null}
-                </label>
-                <label htmlFor="contact-projectType">
-                  <span>Project type</span>
-                  <select
-                    id="contact-projectType"
-                    name="projectType"
-                    value={form.projectType}
-                    onChange={(e) => update("projectType", e.target.value)}
-                  >
-                    <option value="">{copy.projectTypePlaceholder}</option>
-                    {projectTypes.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-                <label htmlFor="contact-message">
-                  <span>
-                    Message
+                    <textarea
+                      id={`${fieldId}-message`}
+                      name="message"
+                      rows={5}
+                      value={form.message}
+                      onChange={(e) => update("message", e.target.value)}
+                      required
+                      aria-invalid={Boolean(errors.message)}
+                      aria-describedby={errors.message ? `${fieldId}-message-error` : undefined}
+                      placeholder={copy.messagePlaceholder}
+                    />
                     {errors.message ? (
-                      <span className="contact-field-error"> — {errors.message}</span>
+                      <span id={`${fieldId}-message-error`} className="sr-only">
+                        {errors.message}
+                      </span>
                     ) : null}
-                  </span>
-                  <textarea
-                    id="contact-message"
-                    name="message"
-                    rows={5}
-                    value={form.message}
-                    onChange={(e) => update("message", e.target.value)}
-                    required
-                    aria-invalid={Boolean(errors.message)}
-                    aria-describedby={errors.message ? "contact-message-error" : undefined}
-                    placeholder={copy.messagePlaceholder}
-                  />
-                  {errors.message ? (
-                    <span id="contact-message-error" className="sr-only">
-                      {errors.message}
-                    </span>
+                  </label>
+                  {status === "error" ? (
+                    <p className="contact-form-error" role="alert">
+                      Something went wrong. Please email us at{" "}
+                      <a href={`mailto:${helloEmail}`}>{helloEmail}</a>.
+                    </p>
                   ) : null}
-                </label>
-                {status === "error" && serverMsg ? (
-                  <p className="contact-form-error" role="alert">
-                    {serverMsg}{" "}
-                    <a href={`mailto:${site.email}`}>{site.email}</a>
-                  </p>
-                ) : null}
-                <button className="send-button" type="submit" disabled={status === "loading"}>
-                  {status === "loading" ? copy.sendingLabel : copy.submitLabel}
-                </button>
-              </form>
-            )}
-          </div>
-          <div className="contact-details">
-            <span>Or just say hello</span>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-          </div>
-        </div>
+                  <button className="send-button" type="submit" disabled={status === "loading"}>
+                    {status === "loading" ? copy.sendingLabel : copy.submitLabel}
+                  </button>
+                </form>
+              </div>
+              <div className="contact-details">
+                <span className="contact-details__label">Or just say hello</span>
+                <a className="contact-details__email" href={`mailto:${helloEmail}`}>
+                  {helloEmail}
+                </a>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

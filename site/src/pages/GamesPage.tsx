@@ -1,10 +1,10 @@
 import FilmContactSection from "@/components/FilmContactSection";
-import FilmCapabilityItem from "@/components/film/FilmCapabilityItem";
 import FilmReveal from "@/components/film/FilmReveal";
-import FilmShowreel from "@/components/film/FilmShowreel";
+import PageHeroReel from "@/components/film/PageHeroReel";
+import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
-import { Arrow } from "@/components/film/FilmIcons";
 import { site } from "@/data/site";
+import { NETLIFY_FORM_NAME_GAMES } from "@/lib/contactConfig";
 
 const page = site.gamesPage;
 const reel = page.showreel;
@@ -17,61 +17,118 @@ export default function GamesPage() {
         description={page.seoDescription}
         url={`${site.canonical}/games/`}
       />
-      <section className="page-shell direction-page page-shell--to-reel">
-        <FilmReveal>
+      <div className="games-page page-with-hero-reel">
+        <PageHeroReel titleId="games-page-heading" reel={reel}>
           <div className="page-title-row">
-            <h1>{page.name}</h1>
+            <h1 id="games-page-heading">{page.name}</h1>
           </div>
-        </FilmReveal>
-      </section>
+          <p className="studio-page-hero__lead">{page.heroLead}</p>
+        </PageHeroReel>
 
-      <FilmReveal delayMs={60}>
-        <FilmShowreel
-          id={reel.id}
-          label={reel.label}
-          poster={reel.poster}
-          vimeoId={reel.vimeoId}
+        <SelectedWorkGrid
+          items={page.selectedWork}
+          label={page.selectedWorkHeading}
+          moreLabel={page.selectedWorkMore}
+          lessLabel={page.selectedWorkLess}
+          gridId="games-selected-work-grid"
         />
-      </FilmReveal>
 
-      <section className="page-shell direction-page page-shell--from-reel">
+        <section className="studio-section" aria-labelledby="games-what-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="games-what-heading" className="studio-section-heading">
+                  {page.whatWeMakeHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
+          <ul
+            className="studio-how-steps studio-how-steps--3 studio-section__full"
+            aria-label="What we make"
+          >
+            {page.capabilities.map((item) => (
+              <li key={item.title} className="studio-how-steps__item">
+                <h3 className="studio-models__title">{item.title}</h3>
+                <p className="studio-models__text">{item.text}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="client-make__line client-make__line--secondary studio-section__full games-formats">
+            <span className="client-make__label">Formats</span>
+            {page.formats.join(" · ")}
+          </p>
+        </section>
+
+        <section className="studio-section studio-section--tint" aria-labelledby="games-how-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="games-how-heading" className="studio-section-heading">
+                  {page.howHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
+          <ul className="studio-how-steps studio-section__full" aria-label="How we work">
+            {page.howSteps.map((step) => (
+              <li key={step.title} className="studio-how-steps__item">
+                <h3 className="studio-models__title">{step.title}</h3>
+                <p className="studio-models__text">{step.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="studio-section" aria-labelledby="games-trusted-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="games-trusted-heading" className="studio-section-heading">
+                  {page.trustedHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <p className="studio-models__note">{page.clientsNote}</p>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
+        <section
+          className="studio-section studio-section--tint"
+          aria-labelledby="games-division-heading"
+        >
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="games-division-heading" className="studio-section-heading">
+                  {page.divisionHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body games-division">
+                <p className="studio-models__note">{page.divisionText}</p>
+                <a
+                  className="send-button games-division__cta"
+                  href={page.externalHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {page.externalCta}
+                </a>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
         <FilmReveal>
-          <p className="film-section-label">{page.capabilitiesHeading}</p>
+          <FilmContactSection
+            heading={site.homeContact.heading}
+            defaultProjectType={page.defaultProjectType}
+            formName={NETLIFY_FORM_NAME_GAMES}
+          />
         </FilmReveal>
-        <ul className="film-capabilities__list">
-          {page.capabilities.map((item, index) => (
-            <FilmCapabilityItem
-              key={item.title}
-              title={item.title}
-              text={item.text}
-              delayMs={index * 70}
-            />
-          ))}
-        </ul>
-
-        <FilmReveal delayMs={80}>
-          <div className="direction-external">
-            <a
-              className="direction-external__link"
-              href={page.externalHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                e.preventDefault();
-                window.open(page.externalHref, "_blank", "noopener,noreferrer");
-              }}
-            >
-              {page.externalCta}
-              <span className="circle-link">
-                <Arrow />
-              </span>
-            </a>
-          </div>
-        </FilmReveal>
-      </section>
-      <FilmReveal>
-        <FilmContactSection heading={site.homeContact.heading} />
-      </FilmReveal>
+      </div>
     </>
   );
 }

@@ -9,19 +9,13 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Montserrat:wght@300;400;500&display=swap"
       rel="stylesheet"
     />
-    <!-- Static OG for social crawlers (LinkedIn especially) — before scripts -->
-    <title>LISENBART FILM — Creative Freedom. Production Control.</title>
-    <meta
-      name="description"
-      content="Independent animation studio. Original films and story IP, plus commissioned work for brands and agencies. Game animation at Lisenbart Games."
-    />
+    <!--
+      Page title/description/og/twitter are injected per-route by react-helmet-async
+      during vite-prerender-plugin (see src/prerender.tsx + SEO.tsx).
+      Do not put route-agnostic description tags here — they duplicate and win for crawlers.
+    -->
+    <title>LISENBART FILM — Animation Studio for Brands, Games & Film</title>
     <link rel="canonical" href="https://lisenbart.com/" />
-    <meta property="og:title" content="LISENBART FILM — Independent Animation Studio" />
-    <meta
-      property="og:description"
-      content="Independent animation studio. Original films and story IP, plus commissioned work for brands and agencies. Game animation at Lisenbart Games."
-    />
-    <meta property="og:url" content="https://lisenbart.com/" />
     <meta property="og:image" content="https://lisenbart.com/images/work/lisenbart-og-2026.jpg" />
     <meta property="og:image:secure_url" content="https://lisenbart.com/images/work/lisenbart-og-2026.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -30,11 +24,6 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="LISENBART FILM" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LISENBART FILM — Independent Animation Studio" />
-    <meta
-      name="twitter:description"
-      content="Independent animation studio. Original films and story IP, plus commissioned work for brands and agencies. Game animation at Lisenbart Games."
-    />
     <meta name="twitter:image" content="https://lisenbart.com/images/work/lisenbart-og-2026.jpg" />
     <!-- GA4 loads only after optional analytics consent (see analyticsConsent.ts) -->
     <link rel="icon" href="%BASE_URL%favicon.svg?v=3" type="image/svg+xml" />
@@ -125,7 +114,7 @@
     </style>
   </head>
   <body>
-    <!-- Netlify Forms: static hook for build-time detection (React submits via fetch) -->
+    <!-- Netlify Forms: static hooks for build-time detection (React submits via fetch) -->
     <form
       name="contact"
       method="POST"
@@ -139,6 +128,39 @@
       <input type="text" name="name" />
       <input type="text" name="projectType" />
       <textarea name="message"></textarea>
+      <input type="text" name="page" />
+      <input type="text" name="website" />
+    </form>
+    <form
+      name="contact-games"
+      method="POST"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact-games" />
+      <input type="email" name="email" />
+      <input type="text" name="name" />
+      <input type="text" name="projectType" />
+      <textarea name="message"></textarea>
+      <input type="text" name="page" />
+      <input type="text" name="website" />
+    </form>
+    <form
+      name="contact-ai"
+      method="POST"
+      action="/"
+      data-netlify="true"
+      data-netlify-honeypot="website"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact-ai" />
+      <input type="email" name="email" />
+      <input type="text" name="name" />
+      <input type="text" name="projectType" />
+      <textarea name="message"></textarea>
+      <input type="text" name="page" />
       <input type="text" name="website" />
     </form>
     <div id="root"></div>

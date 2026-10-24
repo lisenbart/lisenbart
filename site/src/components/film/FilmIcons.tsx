@@ -1,11 +1,12 @@
+/** Explicit chevron used in CTAs (right by default; rotate for down). */
 export function Arrow({ direction = "right" }: { direction?: "right" | "down" }) {
   return (
     <svg
-      className={`arrow-icon ${direction === "down" ? "arrow-down" : ""}`}
-      viewBox="0 0 30 30"
+      className={`arrow-icon arrow-icon--chevron ${direction === "down" ? "arrow-down" : ""}`}
+      viewBox="0 0 24 24"
       aria-hidden="true"
     >
-      <path d="M5 15h19M17 8l7 7-7 7" />
+      <path d="m9 6 6 6-6 6" />
     </svg>
   );
 }

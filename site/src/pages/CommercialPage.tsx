@@ -1,7 +1,7 @@
 import FilmContactSection from "@/components/FilmContactSection";
-import FilmCapabilityItem from "@/components/film/FilmCapabilityItem";
 import FilmReveal from "@/components/film/FilmReveal";
-import FilmShowreel from "@/components/film/FilmShowreel";
+import PageHeroReel from "@/components/film/PageHeroReel";
+import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 
@@ -16,65 +16,101 @@ export default function CommercialPage() {
         description={page.seoDescription}
         url={`${site.canonical}/client-work/`}
       />
-      <section className="page-shell work-page page-shell--to-reel">
-        <FilmReveal>
+      <div className="work-page page-with-hero-reel">
+        <PageHeroReel titleId="client-work-heading" reel={reel}>
           <div className="page-title-row">
-            <h1>Client Work</h1>
+            <h1 id="client-work-heading">{page.name}</h1>
           </div>
-        </FilmReveal>
-      </section>
+          <p className="studio-page-hero__lead">{page.heroLead}</p>
+        </PageHeroReel>
 
-      <FilmReveal delayMs={60}>
-        <FilmShowreel
-          id={reel.id}
-          label={reel.label}
-          poster={reel.poster}
-          vimeoId={reel.vimeoId}
+        <SelectedWorkGrid
+          items={page.selectedWork}
+          label={page.selectedWorkHeading}
+          moreLabel={page.selectedWorkMore}
+          lessLabel={page.selectedWorkLess}
+          gridId="client-selected-work-grid"
         />
-      </FilmReveal>
 
-      <section className="page-shell work-page page-shell--from-reel">
+        <section className="studio-section studio-section--tint" aria-labelledby="what-we-make-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="what-we-make-heading" className="studio-section-heading">
+                  {page.whatWeMakeHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body client-make">
+                <p className="client-make__line">
+                  <span className="client-make__label">Formats</span>
+                  {page.formats.join(" · ")}
+                </p>
+                <p className="client-make__line client-make__line--secondary">
+                  <span className="client-make__label">Techniques</span>
+                  {page.techniques.join(" · ")}
+                </p>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
+        <section className="studio-section" aria-labelledby="ways-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ways-heading" className="studio-section-heading">
+                  {page.waysHeading}
+                </h2>
+              </div>
+            </div>
+          </FilmReveal>
+          <ul className="studio-how-steps studio-how-steps--3 studio-section__full" aria-label="Ways to work">
+            {page.ways.map((way) => (
+              <li key={way.title} className="studio-how-steps__item">
+                <h3 className="studio-models__title">{way.title}</h3>
+                <p className="studio-models__text">{way.text}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="studio-section studio-section--tint" aria-labelledby="clients-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="clients-heading" className="studio-section-heading">
+                  {page.clientsHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <div className="client-group">
+                  <h3 className="client-group__heading">Brands</h3>
+                  <div className="client-names" aria-label="Selected brands">
+                    {site.trustedBy.brands.map((brand) => (
+                      <span key={brand}>{brand}</span>
+                    ))}
+                  </div>
+                </div>
+                <div className="client-group">
+                  <h3 className="client-group__heading">Agencies</h3>
+                  <div className="client-names" aria-label="Selected agencies">
+                    {site.trustedBy.agencies.map((agency) => (
+                      <span key={agency}>{agency}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
         <FilmReveal>
-          <p className="film-section-label">{page.capabilitiesHeading}</p>
+          <FilmContactSection
+            heading={site.homeContact.heading}
+            defaultProjectType={page.defaultProjectType}
+          />
         </FilmReveal>
-        <ul className="film-capabilities__list">
-          {page.capabilities.map((item, index) => (
-            <FilmCapabilityItem
-              key={item.title}
-              title={item.title}
-              text={item.text}
-              delayMs={index * 70}
-            />
-          ))}
-        </ul>
-
-        <FilmReveal delayMs={80}>
-          <div className="direction-clients">
-            <p className="film-section-label">{site.trustedBy.label}</p>
-
-            <div className="client-group">
-              <h2 className="client-group__heading">Brands</h2>
-              <div className="client-names" aria-label="Selected brands">
-                {site.trustedBy.brands.map((brand) => (
-                  <span key={brand}>{brand}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="client-group">
-              <h2 className="client-group__heading">Agencies</h2>
-              <div className="client-names" aria-label="Selected agencies">
-                {site.trustedBy.agencies.map((agency) => (
-                  <span key={agency}>{agency}</span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </FilmReveal>
-      </section>
-      <FilmReveal>
-        <FilmContactSection heading={site.homeContact.heading} />
-      </FilmReveal>
+      </div>
     </>
   );
 }

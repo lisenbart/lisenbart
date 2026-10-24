@@ -65,7 +65,7 @@
   --title-mode: solid;
   --how-ios-bg: var(--paper-light);
   --card-shadow: 0 14px 40px rgba(17, 17, 20, 0.07);
-  --cta-bg: var(--ink);
+  /* --cta-bg owned by cta-tokens.css */
   --emerald-button-bg: var(--ink);
 }
 
@@ -112,8 +112,8 @@ html[data-theme="dark"] {
   --header-bg-scrolled: color-mix(in srgb, var(--paper) 94%, transparent);
   --header-bg-solid: var(--paper);
   --header-bg-scrolled-solid: #ebe8df;
-  --cta-bg: var(--ink);
-  --cta-text-color: #fff;
+  /* --cta-bg owned by cta-tokens.css */
+  --cta-text-color: var(--cta-fg, #fff);
   --emerald-button-bg: var(--ink);
   --emerald-button-color: #fff;
   --btn-on-accent-color: #fff;
@@ -2990,6 +2990,10 @@ footer .how-ios-card {
   letter-spacing: -0.045em;
   line-height: 0.95;
   color: var(--text-primary);
+}
+
+.studio-hero__headline-line {
+  display: block;
 }
 
 .studio-hero__lead {

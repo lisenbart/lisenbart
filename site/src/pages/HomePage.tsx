@@ -1,18 +1,17 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import FilmContactSection from "@/components/FilmContactSection";
-import { Arrow } from "@/components/film/FilmIcons";
 import FilmReveal from "@/components/film/FilmReveal";
+import HomePathsSection from "@/components/home/HomePathsSection";
+import HomeStudioTeaser from "@/components/home/HomeStudioTeaser";
 import { SEO } from "@/components/SEO";
 import { useScrollParallax } from "@/hooks/useScrollParallax";
 import {
   HERO_IMAGES,
-  heroImageForPeriod,
   heroPeriodFromDate,
   msUntilNextHeroBoundary,
   type HeroPeriod,
 } from "@/lib/heroTime";
-import { scrollToSection, sectionIds, site } from "@/data/site";
-import { hubCanonicalHref } from "@/lib/routes";
+import { scrollToSection, site } from "@/data/site";
 
 function formatHeadline(headline: string) {
   const lines = headline.split(/\n+/).map((line) => line.trim()).filter(Boolean);
@@ -30,9 +29,8 @@ export default function HomePage() {
   const headlineLines = formatHeadline(site.studioHome.headline);
   const heroRef = useRef<HTMLElement>(null);
   const bearRef = useRef<HTMLImageElement>(null);
-  const exploreRef = useRef<HTMLElement>(null);
 
-  useScrollParallax(heroRef, bearRef, { strength: 12 });
+  useScrollParallax(heroRef, bearRef, { strength: 8 });
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
@@ -42,7 +40,7 @@ export default function HomePage() {
   }, []);
 
   useLayoutEffect(() => {
-    Object.values(HERO_IMAGES).forEach((src) => {
+    [HERO_IMAGES.desktop, HERO_IMAGES.mobile].forEach((src) => {
       const preload = new Image();
       preload.src = src;
     });
@@ -78,68 +76,45 @@ export default function HomePage() {
     };
   }, []);
 
-  const heroSrc = heroImageForPeriod(period);
-
   return (
     <>
       <SEO title={site.meta.title} description={site.meta.description} url={`${site.canonical}/`} />
-      <div className="home-page">
-        <section ref={heroRef} className={`home-hero home-hero--${period}`}>
-          <img
-            ref={bearRef}
-            className="bear-art"
-            src={heroSrc}
-            alt=""
-            width={2500}
-            height={2500}
-            fetchPriority="high"
-          />
-          <div className="home-statement film-reveal is-in">
-            <h1>
-              {headlineLines.map((line, index) => (
-                <span key={line}>
-                  {index > 0 ? <br /> : null}
-                  {line}
-                </span>
-              ))}
-            </h1>
+      <div className="home-page home-page--gateway">
+        <section
+          ref={heroRef}
+          className={`home-hero home-hero--${period}`}
+          aria-labelledby="home-who-heading"
+        >
+          <picture>
+            <source media="(max-width: 800px)" srcSet={HERO_IMAGES.mobile} width={1170} height={1560} />
+            <img
+              ref={bearRef}
+              className="bear-art"
+              src={HERO_IMAGES.desktop}
+              alt=""
+              width={2400}
+              height={800}
+              fetchPriority="high"
+            />
+          </picture>
+          <div className="home-hero__copy film-reveal is-in">
+            <div className="home-hero__intro">
+              <h1 id="home-who-heading" className="home-hero__fly">
+                {headlineLines.map((line) => (
+                  <span key={line} className="home-hero__fly-line">
+                    {line}
+                  </span>
+                ))}
+              </h1>
+              <p className="home-hero__support-heading">{site.studioHome.heroSupportHeading}</p>
+              <p className="home-hero__support">{site.studioHome.heroSupport}</p>
+            </div>
           </div>
         </section>
 
-        <section ref={exploreRef} className="home-explore" id={sectionIds.explore}>
-          <FilmReveal delayMs={0}>
-            <a className="explore-strip explore-strip--work" href={hubCanonicalHref("client-work")}>
-              <h3>Client Work</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={80}>
-            <a className="explore-strip explore-strip--originals" href={hubCanonicalHref("originals")}>
-              <h3>Originals</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={160}>
-            <a className="explore-strip explore-strip--games" href={hubCanonicalHref("games")}>
-              <h3>Game Ads</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-          <FilmReveal delayMs={240}>
-            <a className="explore-strip explore-strip--ai" href={hubCanonicalHref("ai")}>
-              <h3>AI &amp; Hybrid</h3>
-              <span className="circle-link explore-strip__arrow" aria-hidden="true">
-                <Arrow />
-              </span>
-            </a>
-          </FilmReveal>
-        </section>
+        <HomePathsSection />
+
+        <HomeStudioTeaser />
 
         <FilmReveal>
           <FilmContactSection heading={site.homeContact.heading} />

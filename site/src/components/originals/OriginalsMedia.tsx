@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { Play, X } from "lucide-react";
 import HeroShowreel from "@/components/HeroShowreel";
+import { useShowreelSession } from "@/hooks/useShowreelSession";
 import { publicAsset } from "@/lib/publicAsset";
 
 /** 16:9 poster → play → Vimeo (mount on interaction). */
@@ -20,15 +21,19 @@ export function FilmMediaStage({
   className?: string;
 }) {
   const [playing, setPlaying] = useState(false);
+  const closeControl = useShowreelSession(playing, setPlaying);
 
   return (
     <div className={`originals-tv ${className}`.trim()}>
       <div className="originals-tv__bezel">
         <div className="originals-media">
           {playing ? (
-            <div className="originals-media__player">
-              <HeroShowreel vimeoId={vimeoId} title={title} autoPlay hidePlayButton />
-            </div>
+            <>
+              <div className="originals-media__player">
+                <HeroShowreel vimeoId={vimeoId} title={title} autoPlay hidePlayButton />
+              </div>
+              {closeControl}
+            </>
           ) : (
             <>
               <img

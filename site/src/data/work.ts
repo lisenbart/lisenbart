@@ -14,6 +14,16 @@ export interface WorkCaseStudy {
   mediaImageAlt?: string;
   stills?: string[];
   imdbId?: string;
+  /** Display rating next to IMDb mark (optional). */
+  imdbRating?: string;
+  imdbVotes?: string;
+  /** Streaming / VOD presence (e.g. Sweet.tv). */
+  sweetTv?: {
+    href: string;
+    poster: string;
+    posterAlt: string;
+    label?: string;
+  };
   youtubeUrl?: string;
   tiktokUrl?: string;
   instagramUrl?: string;
@@ -49,9 +59,10 @@ const originalsCases: WorkCaseStudy[] = [
 
 
     mediaColor: "#0a1f0f",
+    /** Full film — festival-page hero opens this in the lightbox */
     vimeoId: "823618245",
     mediaImage: "/images/work/unnecessary-things-preview.webp",
-    mediaImageAlt: "Unnecessary Things — robot eyes close-up preview",
+    mediaImageAlt: "Unnecessary Things — cosmic eyes over the crimson tree",
     stills: [
       "/images/work/unnecessary-things-still-02.jpg",
       "/images/work/unnecessary-things-still-04.jpg",
@@ -59,6 +70,14 @@ const originalsCases: WorkCaseStudy[] = [
       "/images/work/unnecessary-things-still-08.jpg",
     ],
     imdbId: "tt14760808",
+    imdbRating: "8.0",
+    imdbVotes: "38",
+    sweetTv: {
+      href: "https://sweet.tv/ua-en/cartoon/28822-unnecessary-things",
+      poster: "/images/work/unnecessary-things-sweet-tv.webp",
+      posterAlt: "Unnecessary Things on SWEET.TV",
+      label: "Watch on SWEET.TV",
+    },
     selectionLinks: [
       {
         label: "Vancouver International Film Festival",
@@ -99,7 +118,7 @@ const originalsCases: WorkCaseStudy[] = [
     mediaColor: "#120808",
     vimeoId: "699197721",
     mediaImage: "/images/work/the-last-kozak-preview.webp",
-    mediaImageAlt: "The Last Kozak — teaser preview frame",
+    mediaImageAlt: "The Last Kozak — Frozen Frontier still",
   },
   {
     id: "scoopy-cap",
@@ -113,8 +132,8 @@ const originalsCases: WorkCaseStudy[] = [
     result: "Original English-language preschool learning & music",
 
     mediaColor: "#1a1428",
-    mediaImage: "/images/work/scoopy-cap-preview.jpg",
-    mediaImageAlt: "Scoopy Cap YouTube channel",
+    mediaImage: "/images/work/scoopy-cap-preview.webp",
+    mediaImageAlt: "Scoopy Cap — colourful kids channel collage",
     youtubeUrl: "https://www.youtube.com/@ScoopyCap",
     tiktokUrl: "https://www.tiktok.com/@scoopycap",
     instagramUrl: "https://www.instagram.com/scoopycap/",
