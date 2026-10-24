@@ -298,7 +298,7 @@ export const site = {
       "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
     seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
-      "Original animated films and preschool IP by LISENBART FILM — award-winning short Unnecessary Things, The Last Kozak in development, and Pershosvit / Scoopy Cap with 200M+ views. Open to co-producers, distributors and platforms.",
+      "Original animated films and preschool IP: award-winning short Unnecessary Things, The Last Kozak in development, and Scoopy Cap with 200M+ views.",
     defaultProjectType: "Originals Partnership",
     /** Hero still — Unnecessary Things frame */
     heroImage: "/images/explore/originals/hero-still.webp",
@@ -777,7 +777,7 @@ export const site = {
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
     seoDescription:
-      "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM (since 2006). Last director of Ukranimafilm, co-founder of UANIMA and Aerorozvidka, director of the award-winning short Unnecessary Things.",
+      "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM. Last director of Ukranimafilm, co-founder of UANIMA and Aerorozvidka.",
     heroName: "Dmytro Lisenbart",
     heroSubtitle: "Founder, Director & Producer — LISENBART FILM",
     heroImage: "/images/about-hero-mountains.webp",
