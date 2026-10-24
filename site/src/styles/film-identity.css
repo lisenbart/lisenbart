@@ -3510,7 +3510,7 @@ a.original-tile {
 
 .home-gateway {
   padding: 0;
-  background: #fff;
+  background: var(--surface-white);
   color: var(--ink);
 }
 
@@ -3518,6 +3518,8 @@ a.original-tile {
 .home-paths.home-gateway {
   padding: 0;
   margin: 0;
+  /* Cards carry their own surface; section itself stays neutral */
+  background: transparent;
 }
 
 .home-paths__grid {
@@ -3533,12 +3535,22 @@ a.original-tile {
   align-items: stretch;
 }
 
+/*
+ * Path cards are surface bands. Count from footer up:
+ * footer tint → contact white → studio tint → last path white → tint → white → tint.
+ * nth-last-child keeps that order on mobile stack and desktop 2×2.
+ */
 .home-paths__grid > .film-reveal {
   display: flex;
   min-width: 0;
   height: 100%;
   padding: 0;
   border-bottom: 1px solid var(--line);
+  background: var(--surface-white);
+}
+
+.home-paths__grid > .film-reveal:nth-last-child(even) {
+  background: var(--surface-tint);
 }
 
 .home-paths__grid > .film-reveal:nth-child(odd) {
