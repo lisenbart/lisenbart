@@ -313,7 +313,7 @@ export const site = {
         id: "the-last-kozak",
         title: "The Last Kozak",
         image: "/images/work/the-last-kozak-preview.webp",
-        imageAlt: "The Last Kozak — teaser preview frame",
+        imageAlt: "The Last Kozak — Frozen Frontier still",
         vimeoId: "699197721" as string | null,
         accent: "26 min · In development",
         format: "Animated short · English teaser available",

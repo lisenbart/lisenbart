@@ -100,7 +100,7 @@ const originalsCases: WorkCaseStudy[] = [
     mediaColor: "#120808",
     vimeoId: "699197721",
     mediaImage: "/images/work/the-last-kozak-preview.webp",
-    mediaImageAlt: "The Last Kozak — teaser preview frame",
+    mediaImageAlt: "The Last Kozak — Frozen Frontier still",
   },
   {
     id: "scoopy-cap",
