@@ -5308,7 +5308,8 @@ html[data-hero-period="evening"] .home-explore {
 
 .work-page.page-with-hero-reel .studio-section--selected-work,
 .games-page.page-with-hero-reel .studio-section--selected-work,
-.ai-page.page-with-hero-reel .studio-section--selected-work {
+.ai-page.page-with-hero-reel .studio-section--selected-work,
+.studio-page.page-with-hero-reel .studio-section--teams {
   padding-left: 0;
   padding-right: 0;
 }
