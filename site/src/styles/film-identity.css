@@ -4711,6 +4711,13 @@ html[data-hero-period="evening"] .home-explore {
   letter-spacing: 0.02em;
 }
 
+.client-names__etc,
+.home-experience__names .client-names__etc {
+  color: var(--muted);
+  font-style: italic;
+  font-weight: 400;
+}
+
 .originals-title p {
   margin: 0;
   font-size: var(--text-meta);

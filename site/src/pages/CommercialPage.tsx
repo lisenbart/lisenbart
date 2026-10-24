@@ -1,6 +1,7 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
+import ClientNameList from "@/components/ClientNameList";
 import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
@@ -85,19 +86,11 @@ export default function CommercialPage() {
               <div className="studio-section__body">
                 <div className="client-group">
                   <h3 className="client-group__heading">Brands</h3>
-                  <div className="client-names" aria-label="Selected brands">
-                    {site.trustedBy.brands.map((brand) => (
-                      <span key={brand}>{brand}</span>
-                    ))}
-                  </div>
+                  <ClientNameList names={site.trustedBy.brands} aria-label="Selected brands" />
                 </div>
                 <div className="client-group">
                   <h3 className="client-group__heading">Agencies</h3>
-                  <div className="client-names" aria-label="Selected agencies">
-                    {site.trustedBy.agencies.map((agency) => (
-                      <span key={agency}>{agency}</span>
-                    ))}
-                  </div>
+                  <ClientNameList names={site.trustedBy.agencies} aria-label="Selected agencies" />
                 </div>
               </div>
             </div>

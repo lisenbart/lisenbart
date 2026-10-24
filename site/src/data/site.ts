@@ -14,7 +14,7 @@ export const site = {
     /** Home hero — under the fly headline */
     heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
     heroSupport:
-      "Since 2006 · 1,000+ projects for brands and studios like Nestlé, McDonald's, Samsung, Mastercard, Playtika and Moon Active · 11 festival awards",
+      "Since 2006 · 1,000+ projects for brands and studios like Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active and others · 11 festival awards",
     /** Shown with brand in the header lockup */
     established: "Est. 2006",
     proof: ["Since 2006", "1,000+ projects delivered"] as const,
@@ -195,6 +195,8 @@ export const site = {
   },
   trustedBy: {
     label: "Selected Clients",
+    /** Trailing cue on every curated client list — not a closed roster. */
+    andOthers: "and others",
     /**
      * International names evidenced on @lisenbartfilm credits.
      * No UA/RU brands, no game studios. Agencies = network names from public credits.
@@ -627,7 +629,7 @@ export const site = {
     ] as const,
     trustedHeading: "Selected clients",
     clientsNote:
-      "Trusted by teams at Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania and Beach Bum Games.",
+      "Trusted by teams at Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania, Beach Bum Games and others.",
     divisionHeading: "LISENBART GAMES",
     divisionText: "Our dedicated games team, part of LISENBART FILM.",
     externalCta: "Visit lisenbart.games",
@@ -848,7 +850,7 @@ export const site = {
       { value: "3", label: "specialized teams" },
     ] as const,
     statsNote:
-      "Trusted by Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active, Voodoo, Plarium and leading agencies including BBDO, McCann and Leo Burnett.",
+      "Trusted by Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active, Voodoo, Plarium and others. Agencies include BBDO, McCann, Leo Burnett and others.",
     teamsHeading: "One vision, three teams",
     teams: [
       {

@@ -18,7 +18,7 @@ function BrandRow({ groupId, brands }: { groupId: string; brands: readonly strin
 
 export default function TrustedBySection() {
   const { trustedBy } = site;
-  const brands = trustedBy.brands;
+  const brands = [...trustedBy.brands, trustedBy.andOthers];
 
   return (
     <section

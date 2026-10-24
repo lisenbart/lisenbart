@@ -1,3 +1,4 @@
+import ClientNameList from "@/components/ClientNameList";
 import FilmReveal from "@/components/film/FilmReveal";
 import { sectionIds, site } from "@/data/site";
 
@@ -37,21 +38,21 @@ export default function HomeExperienceSection() {
         <FilmReveal delayMs={120}>
           <div className="home-experience__group">
             <h3 className="home-experience__group-heading">Brands</h3>
-            <div className="home-experience__names" aria-label="Selected brands">
-              {experience.brands.map((brand) => (
-                <span key={brand}>{brand}</span>
-              ))}
-            </div>
+            <ClientNameList
+              names={experience.brands}
+              className="home-experience__names"
+              aria-label="Selected brands"
+            />
           </div>
         </FilmReveal>
         <FilmReveal delayMs={160}>
           <div className="home-experience__group">
             <h3 className="home-experience__group-heading">Agencies</h3>
-            <div className="home-experience__names" aria-label="Selected agencies">
-              {experience.agencies.map((agency) => (
-                <span key={agency}>{agency}</span>
-              ))}
-            </div>
+            <ClientNameList
+              names={experience.agencies}
+              className="home-experience__names"
+              aria-label="Selected agencies"
+            />
           </div>
         </FilmReveal>
       </div>
