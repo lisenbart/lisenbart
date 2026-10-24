@@ -28,17 +28,10 @@ export default function CommercialPage() {
         </PageHeroReel>
 
         <section
-          className="studio-section studio-section--selected-work"
-          aria-labelledby="selected-work-heading"
+          className="studio-section studio-section--selected-work studio-section--selected-work-compact"
+          aria-label={page.selectedWorkHeading}
         >
-          <FilmReveal>
-            <div className="studio-section__grid studio-section__grid--inset">
-              <h2 id="selected-work-heading" className="studio-section-heading">
-                {page.selectedWorkHeading}
-              </h2>
-            </div>
-          </FilmReveal>
-          <ul className="client-selected-grid" aria-label="Selected work">
+          <ul className="client-selected-grid client-selected-grid--plaque" aria-label={page.selectedWorkHeading}>
             {page.selectedWork.map((item, index) => (
               <li key={item.id} className="client-selected-card">
                 <button
@@ -48,7 +41,7 @@ export default function CommercialPage() {
                   style={{ animationDelay: `${index * 40}ms` }}
                   onClick={() => openReel(item.vimeoId, `${item.title} — ${item.client}`)}
                 >
-                  <span className="client-selected-card__media" aria-hidden="true">
+                  <span className="client-selected-card__media">
                     <img
                       className="client-selected-card__poster"
                       src={publicAsset(item.poster)}
@@ -58,10 +51,10 @@ export default function CommercialPage() {
                       loading="lazy"
                       decoding="async"
                     />
-                  </span>
-                  <span className="client-selected-card__meta">
-                    <span className="client-selected-card__title">{item.title}</span>
-                    <span className="client-selected-card__client">{item.client}</span>
+                    <span className="client-selected-card__plaque">
+                      <span className="client-selected-card__title">{item.title}</span>
+                      <span className="client-selected-card__client">{item.client}</span>
+                    </span>
                   </span>
                 </button>
               </li>

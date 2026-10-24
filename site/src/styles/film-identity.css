@@ -1145,6 +1145,60 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--blue);
 }
 
+/* Client Work — compact: titles on white plaque over poster (no section heading) */
+.work-page .studio-section--selected-work-compact {
+  padding-block: 0;
+}
+
+.work-page .client-selected-grid--plaque {
+  margin-top: 0;
+}
+
+.work-page .client-selected-grid--plaque .client-selected-card__button {
+  padding: 0;
+}
+
+.work-page .client-selected-grid--plaque .client-selected-card__media {
+  margin: 0;
+}
+
+.work-page .client-selected-card__plaque {
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-width: calc(100% - 1.5rem);
+  width: max-content;
+  padding: 0.55rem 0.75rem 0.6rem;
+  background: var(--surface-white, #fff);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+}
+
+.work-page .client-selected-grid--plaque .client-selected-card__title {
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.work-page .client-selected-grid--plaque .client-selected-card__client {
+  font-size: 0.7rem;
+}
+
+.work-page .client-selected-grid--plaque .client-selected-card__button:hover .client-selected-card__title,
+.work-page .client-selected-grid--plaque .client-selected-card__button:focus-visible .client-selected-card__title {
+  color: var(--ink);
+}
+
+.work-page .client-selected-grid--plaque .client-selected-card__button:hover .client-selected-card__plaque,
+.work-page .client-selected-grid--plaque .client-selected-card__button:focus-visible .client-selected-card__plaque {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
 .client-make {
   display: flex;
   flex-direction: column;
