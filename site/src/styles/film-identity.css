@@ -30,14 +30,14 @@
   --surface-tint: #e8e8ea;
 
   /*
-   * PRIMARY CTA — one black button site-wide
+   * PRIMARY CTA — one navy button site-wide
    * -----------------------------------------
    * Class: .film-cta (canonical) · aliases: .send-button, .project-page__cta,
    *         .home-paths__cta, .home-cta--primary, .studio-cta (when used as action)
-   * Fill: --ink · Text: --white · Hover: invert (outline on transparent)
+   * Fill: --cta-bg (#00052b) · Text: --white · Hover: invert (outline on transparent)
    * Do not invent text-link / underline CTAs for primary actions.
    */
-  --cta-bg: var(--ink);
+  --cta-bg: #00052b;
   --cta-fg: var(--white);
   --cta-radius: var(--radius);
 
