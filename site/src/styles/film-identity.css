@@ -318,14 +318,18 @@ img { display: block; width: 100%; }
 }
 
 .desktop-nav {
-  flex: 0 1 auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: clamp(0.85rem, 1.6vw, 1.65rem);
-  margin-left: auto;
-  max-width: none;
+  margin: 0;
+  max-width: min(100%, 42rem);
+  z-index: 1;
 }
 
 .desktop-nav a {
@@ -587,13 +591,15 @@ html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
 
-/* Home + hero-reel pages: white logo with light shadow (desktop nav temporarily off) */
+/* Dark hero previews: white brand + centered nav (readable on stills/reels) */
 html:has(.home-page--gateway) .film-header .brand-lockup,
 html:has(.home-page--gateway) .film-header .brand,
 html:has(.home-page--gateway) .film-header .brand-est,
+html:has(.home-page--gateway) .film-header .desktop-nav a,
 html:has(.page-with-hero-reel) .film-header .brand-lockup,
 html:has(.page-with-hero-reel) .film-header .brand,
-html:has(.page-with-hero-reel) .film-header .brand-est {
+html:has(.page-with-hero-reel) .film-header .brand-est,
+html:has(.page-with-hero-reel) .film-header .desktop-nav a {
   color: #fff;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
 }
