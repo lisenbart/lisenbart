@@ -5,6 +5,7 @@ import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_AI } from "@/lib/contactConfig";
+import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.aiPage;
 const reel = page.showreel;
@@ -96,14 +97,21 @@ export default function AiPage() {
         </section>
 
         <section
-          className="studio-section studio-section--tint"
+          className="studio-section studio-section--tint ai-division"
           aria-labelledby="ai-division-heading"
         >
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
-                <h2 id="ai-division-heading" className="studio-section-heading">
-                  {page.divisionHeading}
+                <h2 id="ai-division-heading" className="studio-section-heading ai-division__heading">
+                  <span className="sr-only">{page.divisionHeading}</span>
+                  <img
+                    className="ai-division__logo"
+                    src={publicAsset("/images/brand/glowl-logo.webp")}
+                    alt=""
+                    width={1024}
+                    height={479}
+                  />
                 </h2>
               </div>
               <div className="studio-section__body games-division">

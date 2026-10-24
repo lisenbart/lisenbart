@@ -5335,6 +5335,25 @@ html[data-hero-period="evening"] .home-explore {
   text-decoration: none;
 }
 
+/* GLOWL mark replaces text heading — capped so the section stays the same height band */
+.ai-page .ai-division__heading {
+  margin: 0;
+  font-size: 0;
+  line-height: 0;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.ai-division__logo {
+  display: block;
+  width: 100%;
+  max-width: 18rem;
+  height: auto;
+  max-height: 4.75rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .studio-section-heading.studio-block,
 .film-section-label.studio-block {
   margin-top: var(--space-4);
