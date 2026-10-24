@@ -1,0 +1,28 @@
+---
+description: LISENBART FILM — alternating section surface backgrounds (footer-up)
+alwaysApply: true
+---
+
+# Surface bands
+
+Single source: `site/src/styles/film-identity.css` tokens `--surface-white` / `--surface-tint`.
+
+## Rule
+
+1. `.film-footer` is always **tint**.
+2. Contact (above footer) is always **white**.
+3. Content bands above contact alternate upward: **tint → white → tint → …**
+4. Last content band before contact is always **tint**.
+5. Heroes, reels, dark stills are **not** surface bands.
+
+## When adding / reordering sections
+
+- Prefer `studioSectionClass(index, total)` from `site/src/lib/surfaceBand.ts`.
+- Or set `studio-section--tint` / `surface-band--tint` so the footer-up chain stays correct.
+- Never hardcode `#f4f4f5` or ad-hoc whites for page bands — use the tokens / classes.
+- Page-specific layouts are fine; the **alternating rule** is not optional.
+
+## Do not
+
+- Leave two adjacent content bands the same surface (except media/hero skips).
+- Invent a third band color for normal sections.

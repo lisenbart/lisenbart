@@ -8,6 +8,26 @@
   --blue: #305d98;
   --peach: #ffbd9e;
 
+  /*
+   * SURFACE BANDS — page block backgrounds (single source of truth)
+   * ----------------------------------------------------------------
+   * Anchor: .film-footer is always tint. Count upward:
+   *   footer tint → contact white → tint → white → tint …
+   * Heroes, reels, dark media stills are NOT surface bands (own treatment).
+   *
+   * | Token             | Value              | Use                                      |
+   * |-------------------|--------------------|------------------------------------------|
+   * | --surface-white   | #ffffff            | Default band; contact; odd steps up      |
+   * | --surface-tint    | #f4f4f5            | Footer; alternate band; even steps up    |
+   *
+   * Classes: .studio-section / .surface-band → white
+   *          .studio-section--tint / .surface-band--tint → tint
+   * Helper:  surfaceBandClass(index, total) in src/lib/surfaceBand.ts
+   *          (last content band before contact must be tint)
+   */
+  --surface-white: var(--white);
+  --surface-tint: #f4f4f5;
+
   /* Type families */
   --font-display: "Manrope", sans-serif;
   --font-body: "Montserrat", sans-serif;
@@ -734,7 +754,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .studio-models {
   padding: var(--space-5) var(--gutter);
-  background: var(--white);
+  background: var(--surface-white);
 }
 
 .studio-models__list {
@@ -744,12 +764,30 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 /* Studio page body — one grid for every section under the hero */
 .studio-section {
   padding: var(--space-5) var(--gutter);
-  background: var(--white);
+  background: var(--surface-white);
   border-top: 1px solid var(--line);
 }
 
-.studio-section--tint {
-  background: #f4f4f5;
+.studio-section--tint,
+.surface-band--tint {
+  background: var(--surface-tint);
+}
+
+.surface-band--white {
+  background: var(--surface-white);
+}
+
+/*
+ * Optional auto-stack: only direct .surface-band children participate.
+ * Last child = tint (sits above white contact / tint footer).
+ * Do not put heroes, dark stills, or FilmReveal wrappers in the stack.
+ */
+.surface-stack > .surface-band:nth-last-child(odd) {
+  background: var(--surface-tint);
+}
+
+.surface-stack > .surface-band:nth-last-child(even) {
+  background: var(--surface-white);
 }
 
 .studio-section:first-of-type,
@@ -1948,7 +1986,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   width: 100%;
   box-sizing: border-box;
   padding: clamp(1.75rem, 3.5vw, 2.75rem) var(--gutter);
-  background: var(--white);
+  /* Festival page from footer: contact white → rest tint → awards white → press tint */
+  background: var(--surface-tint);
 }
 
 @media (min-width: 800px) {
@@ -2116,7 +2155,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   width: 100%;
   margin: 0;
   border-top: 1px solid var(--line);
-  background: var(--white);
+  background: var(--surface-white);
 }
 
 .awards-block__intro {
@@ -2265,7 +2304,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   width: 100%;
   box-sizing: border-box;
   padding: clamp(1.25rem, 2.5vw, 2rem) var(--gutter);
-  background: var(--white);
+  background: transparent;
   border-top: 1px solid var(--line);
 }
 
@@ -2304,6 +2343,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .project-page__rest {
   border-top: 1px solid var(--line);
+  background: var(--surface-tint);
 }
 
 .festival-featured__statement {
@@ -2930,8 +2970,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   padding: var(--space-4) 0;
   border-top: 1px solid rgba(16, 21, 36, 0.08);
   color: var(--muted);
-  /* Light gray, full-bleed; grows to fill remaining viewport */
-  background: #f4f4f5;
+  /* Always tint — anchor for upward surface alternating */
+  background: var(--surface-tint);
   box-sizing: border-box;
 }
 
@@ -5141,7 +5181,8 @@ html[data-hero-period="evening"] .home-explore {
   min-height: auto;
   padding: var(--space-5) var(--gutter);
   overflow: hidden;
-  background: var(--white);
+  /* Always white — first content band above tint footer */
+  background: var(--surface-white);
   /* Keep the form heading clear of the absolute header + floating menu control */
   scroll-margin-top: calc(var(--header-offset) + 0.75rem);
 }

@@ -24,7 +24,7 @@ export default function CommercialPage() {
         </PageHeroReel>
 
         <section
-          className="studio-section studio-section--tint studio-section--selected-work"
+          className="studio-section studio-section--selected-work"
           aria-labelledby="selected-work-heading"
         >
           <FilmReveal>
@@ -54,7 +54,7 @@ export default function CommercialPage() {
           </ul>
         </section>
 
-        <section className="studio-section" aria-labelledby="what-we-make-heading">
+        <section className="studio-section studio-section--tint" aria-labelledby="what-we-make-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -76,7 +76,7 @@ export default function CommercialPage() {
           </FilmReveal>
         </section>
 
-        <section className="studio-section studio-section--tint" aria-labelledby="ways-heading">
+        <section className="studio-section" aria-labelledby="ways-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -96,7 +96,7 @@ export default function CommercialPage() {
           </ul>
         </section>
 
-        <section className="studio-section" aria-labelledby="clients-heading">
+        <section className="studio-section studio-section--tint" aria-labelledby="clients-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">

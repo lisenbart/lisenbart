@@ -7,6 +7,7 @@ import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
 import { goToContact, scrollToSection, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
+import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.filmPage;
 
@@ -101,11 +102,11 @@ export default function FilmPage() {
         </PageHeroReel>
 
         {page.projects.map((item, index) => {
+          const bandTotal = page.projects.length + 1; /* + partner */
           const primaryId =
             "anchorIds" in item && item.anchorIds ? item.anchorIds[0] : item.id;
           const extraAnchors =
             "anchorIds" in item && item.anchorIds ? item.anchorIds.slice(1) : [];
-          const tint = index % 2 === 1;
           const fullFilmLabel =
             "fullFilmLabel" in item && item.fullFilmLabel ? item.fullFilmLabel : null;
           const fullFilmHref =
@@ -115,7 +116,7 @@ export default function FilmPage() {
             <section
               key={item.id}
               id={primaryId}
-              className={`studio-section originals-row${tint ? " studio-section--tint" : ""}`}
+              className={studioSectionClass(index, bandTotal, "originals-row")}
               aria-labelledby={`${item.id}-title`}
             >
               {extraAnchors.map((anchorId) => (
@@ -229,7 +230,10 @@ export default function FilmPage() {
           );
         })}
 
-        <section className="studio-section" aria-labelledby="originals-partner-heading">
+        <section
+          className={studioSectionClass(page.projects.length, page.projects.length + 1)}
+          aria-labelledby="originals-partner-heading"
+        >
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
