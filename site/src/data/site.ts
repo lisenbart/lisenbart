@@ -421,6 +421,13 @@ export const site = {
         vimeoId: "941579249",
         poster: "/images/work/wog-mustang-poster.webp",
       },
+      {
+        id: "ecounit",
+        title: "The 40 Foundation",
+        client: "EcoUnit",
+        vimeoId: "90018830",
+        poster: "/images/work/ecounit-poster.webp",
+      },
     ] as const,
     whatWeMakeHeading: "What we make",
     formats: [
