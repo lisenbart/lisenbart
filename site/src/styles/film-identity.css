@@ -1473,13 +1473,14 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   overflow: hidden;
   background: #142038;
   line-height: 0;
+  aspect-ratio: 16 / 9;
 }
 
 .studio-team-card__media img {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
   transition: transform 320ms ease;
 }
