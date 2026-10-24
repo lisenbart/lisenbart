@@ -126,7 +126,7 @@ export function AwardsDisclosure() {
         <p className="awards-block__highlight">{HIGHLIGHT_LINE}</p>
 
         <details ref={detailsRef} className="awards-block__details">
-          <summary className="awards-block__toggle">
+          <summary className="film-cta awards-block__toggle">
             <span className="awards-block__toggle-closed">View full festival list</span>
             <span className="awards-block__toggle-open">Hide festival list</span>
             <span className="awards-block__toggle-chevron" aria-hidden="true" />

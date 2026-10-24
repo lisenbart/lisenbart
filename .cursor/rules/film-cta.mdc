@@ -1,0 +1,20 @@
+---
+description: LISENBART FILM — primary CTAs are one black button
+alwaysApply: true
+---
+
+# Primary CTA
+
+Single source in `site/src/styles/film-identity.css`: `.film-cta` / `.send-button`
+(`--cta-bg` / `--cta-fg`).
+
+## Rule
+
+- Primary actions are **black filled buttons** (white label), hover invert.
+- Use class `film-cta` or `send-button` (aliases already wired for home paths, project CTA, awards toggle).
+- Do **not** use underline text / ghost text links as primary CTAs.
+
+## Exceptions
+
+- Secondary actions (e.g. contact email beside Submit) may stay outlined.
+- Cookie / legal chrome may differ.

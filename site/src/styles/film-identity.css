@@ -28,6 +28,18 @@
   --surface-white: var(--white);
   --surface-tint: #f4f4f5;
 
+  /*
+   * PRIMARY CTA — one black button site-wide
+   * -----------------------------------------
+   * Class: .film-cta (canonical) · aliases: .send-button, .project-page__cta,
+   *         .home-paths__cta, .home-cta--primary, .studio-cta (when used as action)
+   * Fill: --ink · Text: --white · Hover: invert (outline on transparent)
+   * Do not invent text-link / underline CTAs for primary actions.
+   */
+  --cta-bg: var(--ink);
+  --cta-fg: var(--white);
+  --cta-radius: var(--radius);
+
   /* Type families */
   --font-display: "Manrope", sans-serif;
   --font-body: "Montserrat", sans-serif;
@@ -2216,27 +2228,11 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .awards-block__toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  width: fit-content;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 0.85rem 1.25rem;
-  border: 1.5px solid var(--ink);
-  background: var(--ink);
-  color: var(--white);
+  /* inherits .film-cta / .send-button look; details-only extras below */
   list-style: none;
-  cursor: pointer;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  font-family: var(--font-display);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  line-height: 1.2;
-  transition: background 0.15s ease, color 0.15s ease;
+  margin-top: 0;
 }
 
 .awards-block__toggle::-webkit-details-marker {
@@ -2245,16 +2241,6 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .awards-block__toggle::marker {
   content: "";
-}
-
-.awards-block__toggle:hover {
-  background: transparent;
-  color: var(--ink);
-}
-
-.awards-block__toggle:focus-visible {
-  outline: 2px solid var(--ink);
-  outline-offset: 3px;
 }
 
 .awards-block__toggle-open {
@@ -2283,11 +2269,6 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .awards-block__details[open] .awards-block__toggle-chevron {
   transform: rotate(225deg);
   margin-top: 0.15rem;
-}
-
-.awards-block__details[open] .awards-block__toggle {
-  background: transparent;
-  color: var(--ink);
 }
 
 .awards-block__panel {
@@ -2569,25 +2550,6 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .project-page__cta-row {
   margin-top: var(--space-3);
-}
-
-.project-page__cta {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.7rem 1.15rem;
-  border: 1px solid var(--ink);
-  background: transparent;
-  color: var(--ink);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.project-page__cta:hover {
-  background: var(--ink);
-  color: var(--white);
 }
 
 .project-page__layout--feature-dev .project-page__copy {
@@ -3658,35 +3620,6 @@ a.original-tile {
   overflow-wrap: break-word;
 }
 
-/* CTA — right edge of each card block */
-.home-paths__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  align-self: flex-end;
-  margin-top: auto;
-  margin-left: auto;
-  margin-right: clamp(1rem, 2.5vw, 1.75rem);
-  padding-top: 1.25rem;
-  font-family: var(--font-display);
-  font-size: 0.875rem; /* 14px */
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border-bottom: 1px solid rgba(16, 21, 36, 0.32);
-  padding-bottom: 0.2rem;
-  width: fit-content;
-  color: var(--ink);
-  transition: border-bottom-color 220ms ease, color 220ms ease;
-}
-
-.home-paths__card:hover .home-paths__cta,
-.home-paths__card:focus-visible .home-paths__cta {
-  color: var(--blue);
-  border-bottom-color: var(--blue);
-}
-
 .home-paths__cta-arrow {
   display: inline-grid;
   place-items: center;
@@ -3707,67 +3640,6 @@ a.original-tile {
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
   margin-top: var(--space-4);
-}
-
-.home-cta {
-  appearance: none;
-  margin: 0;
-  padding: 0.85rem 1.35rem;
-  border: 1px solid currentColor;
-  border-radius: 0;
-  background: transparent;
-  color: inherit;
-  font-family: var(--font-display);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 220ms ease, color 220ms ease, border-color 220ms ease, opacity 220ms ease;
-}
-
-.home-cta--primary {
-  background: currentColor;
-  font-weight: 600;
-}
-
-.home-cta--secondary {
-  opacity: 0.88;
-}
-
-.home-hero--day .home-cta--primary {
-  color: #fbfaf7;
-  background: #101524;
-  border-color: #101524;
-}
-
-.home-hero--day .home-cta--primary:hover,
-.home-hero--day .home-cta--primary:focus-visible {
-  background: #243454;
-  border-color: #243454;
-}
-
-.home-hero--evening .home-cta--primary {
-  color: #101524;
-  background: #fbfaf7;
-  border-color: #fbfaf7;
-}
-
-.home-hero--evening .home-cta--primary:hover,
-.home-hero--evening .home-cta--primary:focus-visible {
-  background: #e8e6e1;
-  border-color: #e8e6e1;
-}
-
-.home-cta--secondary:hover,
-.home-cta--secondary:focus-visible {
-  background: rgba(251, 250, 247, 0.12);
-}
-
-.home-hero--day .home-cta--secondary:hover,
-.home-hero--day .home-cta--secondary:focus-visible {
-  background: rgba(16, 21, 36, 0.06);
 }
 
 /* —— Home B2B sections (post-hero journey) —— */
@@ -5164,16 +5036,9 @@ html[data-hero-period="evening"] .home-explore {
   }
 }
 
+/* .studio-cta uses shared .film-cta — keep only spacing override */
 .studio-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
   margin-top: var(--block-gap);
-  font-size: var(--text-label);
-  font-weight: 600;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  color: var(--ink);
 }
 
 .contact-page {
@@ -5298,34 +5163,90 @@ html[data-hero-period="evening"] .home-explore {
   color: #b42318;
 }
 
-.send-button {
+/*
+ * PRIMARY CTA — black button (single source)
+ * Use .film-cta or .send-button on <a> / <button> / summary / span-in-card.
+ */
+.film-cta,
+.send-button,
+.project-page__cta,
+.home-paths__cta,
+.home-cta,
+.home-cta--primary,
+.studio-cta,
+.awards-block__toggle {
+  appearance: none;
   width: fit-content;
+  max-width: 100%;
   min-height: 3rem;
-  margin-top: var(--space-1);
+  margin: 0;
   padding: 0.85rem 1.5rem;
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  border: 1px solid var(--ink);
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: #fff;
+  border: 1px solid var(--cta-bg);
+  border-radius: var(--cta-radius);
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  font-family: var(--font-display);
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  transition: background 160ms ease, color 160ms ease;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
-.send-button:hover:not(:disabled) {
+.send-button {
+  margin-top: var(--space-1);
+}
+
+.film-cta:hover,
+.film-cta:focus-visible,
+.send-button:hover:not(:disabled),
+.send-button:focus-visible:not(:disabled),
+.project-page__cta:hover,
+.project-page__cta:focus-visible,
+.home-paths__card:hover .home-paths__cta,
+.home-paths__card:focus-visible .home-paths__cta,
+.home-cta:hover,
+.home-cta:focus-visible,
+.studio-cta:hover,
+.studio-cta:focus-visible,
+.awards-block__toggle:hover,
+.awards-block__toggle:focus-visible,
+.awards-block__details[open] .awards-block__toggle {
   background: transparent;
   color: var(--ink);
+  border-color: var(--ink);
+}
+
+.film-cta:focus-visible,
+.send-button:focus-visible,
+.project-page__cta:focus-visible,
+.home-cta:focus-visible,
+.studio-cta:focus-visible,
+.awards-block__toggle:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 .send-button:disabled {
   opacity: 0.55;
   cursor: wait;
+}
+
+/* Home path cards — CTA sits bottom-right (overrides shared margin: 0) */
+.home-paths__cta.film-cta,
+.home-paths__cta {
+  align-self: flex-end;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .contact-details {

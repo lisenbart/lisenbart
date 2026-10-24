@@ -40,7 +40,7 @@ function ProjectCta({ project }: { project: ProjectData }) {
     <div className="project-page__cta-row">
       <button
         type="button"
-        className="project-page__cta"
+        className="film-cta project-page__cta"
         onClick={() =>
           goToContactWithPrefill({
             projectType: project.cta.projectType,

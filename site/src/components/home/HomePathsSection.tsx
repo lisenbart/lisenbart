@@ -26,7 +26,7 @@ export default function HomePathsSection() {
               <h3 className="home-paths__label">{item.label}</h3>
               <p className="home-paths__statement">{item.statement}</p>
               <p className="home-paths__text">{item.text}</p>
-              <span className="home-paths__cta">
+              <span className="film-cta home-paths__cta">
                 {item.cta}
                 <span className="home-paths__cta-arrow" aria-hidden="true">
                   <Arrow />
