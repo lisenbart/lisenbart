@@ -155,7 +155,7 @@ export default function SelectedWorkGrid({
                     <img
                       className="client-selected-card__poster"
                       src={poster}
-                      alt={alt}
+                      alt=""
                       width={1280}
                       height={720}
                       loading={index < PREVIEW_COUNT ? "eager" : "lazy"}
@@ -163,7 +163,6 @@ export default function SelectedWorkGrid({
                       onError={(event) => onYouTubePosterError(event, item.youtubeId)}
                     />
                   ) : null}
-                  <span className="client-selected-card__brand">{item.client}</span>
                   {canPlay ? (
                     <span className="client-selected-card__play" aria-hidden="true">
                       <span className="client-selected-card__play-circle">
