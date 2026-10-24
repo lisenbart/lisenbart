@@ -63,8 +63,8 @@ const originalsCases: WorkCaseStudy[] = [
       "/images/work/unnecessary-things-still-08.jpg",
     ],
     imdbId: "tt14760808",
-    imdbRating: "7.9",
-    imdbVotes: "36",
+    imdbRating: "8.0",
+    imdbVotes: "38",
     selectionLinks: [
       {
         label: "Vancouver International Film Festival",
