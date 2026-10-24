@@ -1232,8 +1232,9 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   display: grid;
   place-items: center;
   color: #fff;
-  background: rgba(10, 18, 37, 0.12);
-  transition: background 250ms ease;
+  background: rgba(10, 18, 37, 0);
+  opacity: 0;
+  transition: opacity 220ms ease, background 220ms ease;
   pointer-events: none;
 }
 
@@ -1247,6 +1248,9 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   background: #fff;
   isolation: isolate;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 220ms ease, transform 220ms ease;
 }
 
 .client-selected-card__play-circle .play-icon {
@@ -1257,9 +1261,28 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   mix-blend-mode: destination-out;
 }
 
-.client-selected-card__button:hover:not(:disabled) .client-selected-card__play,
+.client-selected-card.is-active .client-selected-card__play,
 .client-selected-card__button:focus-visible:not(:disabled) .client-selected-card__play {
-  background: rgba(10, 18, 37, 0.22);
+  opacity: 1;
+  background: rgba(10, 18, 37, 0.34);
+}
+
+.client-selected-card.is-active .client-selected-card__play-circle,
+.client-selected-card__button:focus-visible:not(:disabled) .client-selected-card__play-circle {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .client-selected-card__button:hover:not(:disabled) .client-selected-card__play {
+    opacity: 1;
+    background: rgba(10, 18, 37, 0.34);
+  }
+
+  .client-selected-card__button:hover:not(:disabled) .client-selected-card__play-circle {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (min-width: 768px) {

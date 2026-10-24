@@ -1,5 +1,7 @@
-import { useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
+import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
 import { publicAsset } from "@/lib/publicAsset";
 import { youtubePosterSrc } from "@/lib/reelSource";
 
@@ -43,7 +45,10 @@ export default function SelectedWorkGrid({
   gridId: string;
 }) {
   const { openReel } = useReel();
+  const isNarrow = useIsNarrowViewport();
+  const gridRef = useRef<HTMLUListElement>(null);
   const [moreOpen, setMoreOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string | null>(null);
   const hasMore = items.length > PREVIEW_COUNT;
 
   const playItem = (item: SelectedWorkItem) => {
@@ -57,12 +62,57 @@ export default function SelectedWorkGrid({
     }
   };
 
+  useEffect(() => {
+    if (!isNarrow) {
+      setActiveId(null);
+      return;
+    }
+
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    let raf = 0;
+    const updateActive = () => {
+      const mid = window.innerHeight * 0.5;
+      let bestId: string | null = null;
+      let bestDist = Number.POSITIVE_INFINITY;
+
+      grid.querySelectorAll<HTMLElement>(".client-selected-card:not([hidden])").forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
+        const center = rect.top + rect.height / 2;
+        const dist = Math.abs(center - mid);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestId = card.dataset.workId ?? null;
+        }
+      });
+
+      setActiveId(bestId);
+    };
+
+    const onScrollOrResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(updateActive);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+    };
+  }, [isNarrow, moreOpen, items]);
+
   return (
     <section
       className="studio-section studio-section--selected-work studio-section--selected-work-compact"
       aria-label={label}
     >
       <ul
+        ref={gridRef}
         id={gridId}
         className="client-selected-grid client-selected-grid--flush"
         aria-label={label}
@@ -72,15 +122,19 @@ export default function SelectedWorkGrid({
           const canPlay = Boolean(item.youtubeId || item.vimeoId);
           const poster = resolvePoster(item);
           const alt = `${item.client} — ${item.title}`;
+          const isActive = isNarrow && activeId === item.id;
 
           return (
             <li
               key={item.id}
-              className={
-                collapsed
-                  ? "client-selected-card client-selected-card--collapsed"
-                  : "client-selected-card"
-              }
+              data-work-id={item.id}
+              className={[
+                "client-selected-card",
+                collapsed ? "client-selected-card--collapsed" : "",
+                isActive ? "is-active" : "",
+              ]
+                .filter(Boolean)
+                .join(" ")}
               hidden={collapsed}
             >
               <button
@@ -108,6 +162,13 @@ export default function SelectedWorkGrid({
                     />
                   ) : null}
                   <span className="client-selected-card__brand">{item.client}</span>
+                  {canPlay ? (
+                    <span className="client-selected-card__play" aria-hidden="true">
+                      <span className="client-selected-card__play-circle">
+                        <PlayIcon />
+                      </span>
+                    </span>
+                  ) : null}
                 </span>
               </button>
             </li>
