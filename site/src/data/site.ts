@@ -395,6 +395,27 @@ export const site = {
     selectedWorkHeading: "Selected work",
     selectedWork: [
       {
+        id: "wog-ukraine",
+        title: "Ukraine Everywhere",
+        client: "WOG",
+        youtubeId: "1ApNEmt4kEk",
+        poster: "/images/work/wog-ukraine-poster.webp",
+      },
+      {
+        id: "watsons-kaleidoscope",
+        title: "Kaleidoscope",
+        client: "Watson's",
+        youtubeId: "mPIw8yLMzMs",
+        poster: "/images/work/watsons-kaleidoscope-poster.webp",
+      },
+      {
+        id: "galychyna-go-karpaty",
+        title: "Go Karpaty",
+        client: "Galychyna",
+        youtubeId: "ASKX6yYyui0",
+        poster: "/images/work/galychyna-go-karpaty-poster.webp",
+      },
+      {
         id: "hubbub",
         title: "Sound go social",
         client: "Hubbub.fm",
