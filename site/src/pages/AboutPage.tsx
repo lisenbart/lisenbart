@@ -133,6 +133,7 @@ export default function AboutPage() {
         </section>
 
         <section
+          id="culture-defends"
           className="studio-section studio-section--tint about-culture"
           aria-labelledby="about-culture-heading"
         >

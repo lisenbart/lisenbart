@@ -20,9 +20,14 @@ export default function HomeStudioTeaser() {
           </div>
           <div className="studio-section__body">
             <p className="studio-models__note home-studio-teaser__text">{teaser.text}</p>
-            <a className="film-cta home-studio-teaser__cta" href={hubCanonicalHref("studio")}>
-              {teaser.cta}
-            </a>
+            <div className="home-studio-teaser__actions">
+              <a className="film-cta" href={hubCanonicalHref("studio")}>
+                {teaser.cta}
+              </a>
+              <a className="home-studio-teaser__founder" href={hubCanonicalHref("about")}>
+                {teaser.founderCta}
+              </a>
+            </div>
           </div>
         </div>
       </FilmReveal>

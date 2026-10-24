@@ -29,6 +29,7 @@ export const site = {
     heading: "Studio",
     text: "Independent animation studio since 2006. One creative lead, specialized teams around every project.",
     cta: "Meet the studio",
+    founderCta: "Meet the founder →",
   },
 
   homePaths: {
@@ -788,6 +789,16 @@ export const site = {
     { id: "games" as const, label: "Game Ads" },
     { id: "originals" as const, label: "Originals" },
     { id: "studio" as const, label: "Studio" },
+    { id: "contact" as const, label: "Contact" },
+  ],
+  /** Footer only — Founder stays out of the main header menu. */
+  footerNav: [
+    { id: "client-work" as const, label: "Client Work" },
+    { id: "ai" as const, label: "AI & Hybrid" },
+    { id: "games" as const, label: "Game Ads" },
+    { id: "originals" as const, label: "Originals" },
+    { id: "studio" as const, label: "Studio" },
+    { id: "about" as const, label: "Founder" },
     { id: "contact" as const, label: "Contact" },
   ],
 

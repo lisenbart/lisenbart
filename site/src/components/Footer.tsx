@@ -3,6 +3,8 @@ import { openCookiePreferences } from "@/components/CookieConsent";
 import { contactNavHref, goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
+const cultureDefendsHref = `${hubCanonicalHref("about")}#culture-defends`;
+
 export default function Footer() {
   return (
     <footer className="film-footer">
@@ -17,12 +19,14 @@ export default function Footer() {
             </a>
             <p className="film-footer__locations">
               Toronto · Kyiv
-              <span className="film-footer__tagline">{site.footerTagline}</span>
+              <a className="film-footer__tagline" href={cultureDefendsHref}>
+                {site.footerTagline}
+              </a>
             </p>
           </div>
 
           <nav className="film-footer__nav" aria-label="Footer">
-            {site.primaryNav.map((link) =>
+            {site.footerNav.map((link) =>
               link.id === "contact" ? (
                 <a
                   key={link.id}
