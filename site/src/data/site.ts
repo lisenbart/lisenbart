@@ -397,11 +397,11 @@ export const site = {
     selectedWorkLess: "View Less",
     selectedWork: [
       {
-        id: "departure",
-        title: "Departure",
-        client: "Void",
-        vimeoId: "96828164",
-        poster: "/images/work/departure-poster.webp",
+        id: "pepsico-don-kido",
+        title: "Don Kido",
+        client: "PepsiCo",
+        youtubeId: "16fL5MxC3qo",
+        poster: "/images/work/pepsico-don-kido-poster.webp",
       },
       {
         id: "watsons-kaleidoscope",
@@ -446,11 +446,11 @@ export const site = {
         poster: "/images/work/kraft-tuc-poster.webp",
       },
       {
-        id: "pepsico-don-kido",
-        title: "Don Kido",
-        client: "PepsiCo",
-        youtubeId: "16fL5MxC3qo",
-        poster: "/images/work/pepsico-don-kido-poster.webp",
+        id: "departure",
+        title: "Departure",
+        client: "Void",
+        vimeoId: "96828164",
+        poster: "/images/work/departure-poster.webp",
       },
       {
         id: "samsung-mobilochka",
