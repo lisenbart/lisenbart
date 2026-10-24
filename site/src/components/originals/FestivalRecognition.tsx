@@ -115,6 +115,7 @@ export function AwardsDisclosure() {
         <h2 id="awards-heading" className="awards-block__label">
           Awards
         </h2>
+        <p className="awards-block__stats">{unnecessaryThingsFestivalSummary.statement}</p>
       </div>
 
       <div className="festival-featured-bleed awards-block__laurels">
@@ -123,7 +124,6 @@ export function AwardsDisclosure() {
 
       <div className="awards-block__copy">
         <p className="awards-block__highlight">{HIGHLIGHT_LINE}</p>
-        <p className="awards-block__stats">{unnecessaryThingsFestivalSummary.statement}</p>
 
         <details ref={detailsRef} className="awards-block__details">
           <summary className="awards-block__toggle">
