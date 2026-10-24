@@ -13,6 +13,7 @@ import CookiePolicyPage from "./pages/CookiePolicyPage";
 import LegalPage from "./pages/LegalPage";
 import Footer from "./components/Footer";
 import CookieConsent from "./components/CookieConsent";
+import LegalDocModal from "./components/legal/LegalDocModal";
 import { ReelProvider } from "./contexts/ReelContext";
 import {
   legacyAiAnchorRedirectTarget,
@@ -78,6 +79,7 @@ export default function App() {
         {resolveMain()}
         <Footer />
         <CookieConsent />
+        <LegalDocModal />
       </div>
     </ReelProvider>
   );

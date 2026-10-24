@@ -1,5 +1,6 @@
 import { legalConfig } from "@/data/legal";
 import { openCookiePreferences } from "@/components/CookieConsent";
+import { openLegalDoc } from "@/lib/legalDocEvents";
 import { contactNavHref, goToContact, site } from "@/data/site";
 import { hubCanonicalHref, routes } from "@/lib/routes";
 
@@ -52,9 +53,27 @@ export default function Footer() {
             © {legalConfig.copyrightYear} {site.brand}
           </p>
           <nav className="film-footer__policies" aria-label="Legal">
-            <a href={legalConfig.policies.legal.path}>{legalConfig.policies.legal.title}</a>
-            <a href={legalConfig.policies.privacy.path}>{legalConfig.policies.privacy.title}</a>
-            <a href={legalConfig.policies.cookies.path}>{legalConfig.policies.cookies.title}</a>
+            <button
+              type="button"
+              className="film-footer__cookie-prefs"
+              onClick={() => openLegalDoc("legal")}
+            >
+              {legalConfig.policies.legal.title}
+            </button>
+            <button
+              type="button"
+              className="film-footer__cookie-prefs"
+              onClick={() => openLegalDoc("privacy")}
+            >
+              {legalConfig.policies.privacy.title}
+            </button>
+            <button
+              type="button"
+              className="film-footer__cookie-prefs"
+              onClick={() => openLegalDoc("cookies")}
+            >
+              {legalConfig.policies.cookies.title}
+            </button>
             <button
               type="button"
               className="film-footer__cookie-prefs"

@@ -4,7 +4,7 @@ import {
   setAnalyticsConsent,
   type AnalyticsConsent,
 } from "@/lib/analyticsConsent";
-import { legalConfig } from "@/data/legal";
+import { openLegalDoc } from "@/lib/legalDocEvents";
 
 const OPEN_EVENT = "lisenbart:open-cookie-preferences";
 
@@ -52,9 +52,21 @@ export default function CookieConsent() {
         <p id="cookie-consent-desc" className="cookie-consent__text">
           We use optional Google Analytics to understand aggregate traffic. Essential site
           features work either way.{" "}
-          <a href={legalConfig.policies.cookies.path}>Cookie Policy</a>
+          <button
+            type="button"
+            className="cookie-consent__link"
+            onClick={() => openLegalDoc("cookies")}
+          >
+            Cookie Policy
+          </button>
           {" · "}
-          <a href={legalConfig.policies.privacy.path}>Privacy Policy</a>
+          <button
+            type="button"
+            className="cookie-consent__link"
+            onClick={() => openLegalDoc("privacy")}
+          >
+            Privacy Policy
+          </button>
         </p>
         <div className="cookie-consent__actions">
           <button
