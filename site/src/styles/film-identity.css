@@ -2117,6 +2117,88 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--ink);
 }
 
+/* Expandable AWARDS — works on desktop + mobile via native <details> */
+.awards-disclosure {
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  background: var(--white);
+}
+
+.awards-disclosure__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: clamp(1.1rem, 2.2vw, 1.5rem) var(--gutter);
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.awards-disclosure__summary::-webkit-details-marker {
+  display: none;
+}
+
+.awards-disclosure__summary::marker {
+  content: "";
+}
+
+.awards-disclosure__label {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+.awards-disclosure__chevron {
+  flex: 0 0 auto;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.awards-disclosure[open] .awards-disclosure__chevron {
+  transform: rotate(225deg);
+  margin-top: 0.25rem;
+}
+
+.awards-disclosure__summary:hover .awards-disclosure__label,
+.awards-disclosure__summary:focus-visible .awards-disclosure__label {
+  opacity: 0.72;
+}
+
+.awards-disclosure__summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -2px;
+}
+
+.awards-disclosure__panel {
+  border-top: 1px solid var(--line);
+}
+
+.awards-disclosure__laurels.festival-featured-bleed {
+  border-top: 0;
+}
+
+.awards-disclosure__copy {
+  box-sizing: border-box;
+  padding: 0 var(--gutter) clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.awards-disclosure__copy .festival-rec {
+  margin-top: var(--space-3);
+}
+
 .festival-featured-bleed {
   width: 100%;
   box-sizing: border-box;

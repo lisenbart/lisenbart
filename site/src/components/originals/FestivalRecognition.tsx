@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import {
   unnecessaryThingsAwards,
   unnecessaryThingsFeaturedLaurels,
@@ -86,17 +87,61 @@ export function FestivalFeaturedStrip() {
   );
 }
 
+const HIGHLIGHT_LINE =
+  "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)";
+
+/** Expandable AWARDS block — laurels + highlight + full festival list. */
+export function AwardsDisclosure() {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+
+  useEffect(() => {
+    const openIfHash = () => {
+      if (window.location.hash.replace(/^#/, "") !== "festivals") return;
+      const el = detailsRef.current;
+      if (!el) return;
+      el.open = true;
+    };
+    openIfHash();
+    window.addEventListener("hashchange", openIfHash);
+    return () => window.removeEventListener("hashchange", openIfHash);
+  }, []);
+
+  return (
+    <details ref={detailsRef} id="festivals" className="awards-disclosure">
+      <summary className="awards-disclosure__summary">
+        <span className="awards-disclosure__label">Awards</span>
+        <span className="awards-disclosure__chevron" aria-hidden="true" />
+      </summary>
+      <div className="awards-disclosure__panel">
+        <div className="festival-featured-bleed awards-disclosure__laurels">
+          <FestivalFeaturedStrip />
+        </div>
+        <div className="awards-disclosure__copy">
+          <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
+          <FestivalRecognitionSection hideHeading />
+        </div>
+      </div>
+    </details>
+  );
+}
+
 /** Full typographic festival history further down the project page. */
-export function FestivalRecognitionSection() {
+export function FestivalRecognitionSection({
+  hideHeading = false,
+}: {
+  hideHeading?: boolean;
+} = {}) {
   return (
     <section
-      id="festivals"
       className="festival-rec"
-      aria-labelledby="festival-rec-heading"
+      aria-labelledby={hideHeading ? undefined : "festival-rec-heading"}
+      aria-label={hideHeading ? "Festival recognition" : undefined}
     >
-      <h2 id="festival-rec-heading" className="project-page__section-label">
-        Festival Recognition
-      </h2>
+      {hideHeading ? null : (
+        <h2 id="festival-rec-heading" className="project-page__section-label">
+          Festival Recognition
+        </h2>
+      )}
       <p className="festival-rec__summary">{unnecessaryThingsFestivalSummary.statement}</p>
 
       <div className="festival-rec__group">

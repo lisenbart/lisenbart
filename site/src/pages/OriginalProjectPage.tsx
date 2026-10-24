@@ -2,10 +2,7 @@ import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
 import PageHeroReel from "@/components/film/PageHeroReel";
-import {
-  FestivalFeaturedStrip,
-  FestivalRecognitionSection,
-} from "@/components/originals/FestivalRecognition";
+import { AwardsDisclosure } from "@/components/originals/FestivalRecognition";
 import {
   CreditsDisclosure,
   OriginalsStillGallery,
@@ -23,9 +20,6 @@ import {
   parseOriginalsProject,
   type OriginalsProjectSlug,
 } from "@/lib/routes";
-
-const HIGHLIGHT_LINE =
-  "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)";
 
 function ProjectNav({ title }: { title: string }) {
   return (
@@ -146,15 +140,10 @@ function FilmShortBody({ project }: { project: ProjectData }) {
         ) : null}
       </section>
 
-      <div className="festival-featured-bleed">
-        <FestivalFeaturedStrip />
-      </div>
+      <AwardsDisclosure />
 
       <div className="page-shell project-page project-page--film-short page-shell--from-reel project-page__rest">
-        <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
-
         <div className="project-page__copy">
-          <FestivalRecognitionSection />
           {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
           <ProjectCta project={project} />
         </div>
