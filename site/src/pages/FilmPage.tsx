@@ -144,68 +144,81 @@ export default function FilmPage() {
                       vimeoId={item.vimeoId}
                     />
                   </div>
-                  <div className="originals-row__copy">
-                    <p className="originals-slate__accent originals-slate__accent--row">
-                      {item.accent}
-                    </p>
-                    <h2 id={`${item.id}-title`} className="originals-slate__title">
-                      {item.title}
-                    </h2>
-                    <p className="originals-slate__format">{item.format}</p>
-                    <p className="originals-slate__logline">{item.logline}</p>
-                    {"secondary" in item && item.secondary ? (
-                      <p className="originals-slate__secondary">{item.secondary}</p>
-                    ) : null}
-                    {"socialLinks" in item && item.socialLinks ? (
-                      <ul className="originals-slate__social" aria-label="Social links">
-                        {item.socialLinks.map((link) => (
-                          <li key={link.href}>
+                  <div
+                    className={`originals-row__copy${
+                      "appCard" in item && item.appCard ? " originals-row__copy--split" : ""
+                    }`}
+                  >
+                    <div className="originals-row__body">
+                      <div className="originals-row__main">
+                        <p className="originals-slate__accent originals-slate__accent--row">
+                          {item.accent}
+                        </p>
+                        <h2 id={`${item.id}-title`} className="originals-slate__title">
+                          {item.title}
+                        </h2>
+                        <p className="originals-slate__format">{item.format}</p>
+                        <p className="originals-slate__logline">{item.logline}</p>
+                        {"secondary" in item && item.secondary ? (
+                          <p className="originals-slate__secondary">{item.secondary}</p>
+                        ) : null}
+                        {"socialLinks" in item && item.socialLinks ? (
+                          <ul className="originals-slate__social" aria-label="Social links">
+                            {item.socialLinks.map((link) => (
+                              <li key={link.href}>
+                                <a
+                                  href={link.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={link.label}
+                                  title={link.label}
+                                >
+                                  <SocialIcon platform={link.platform} />
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                      {"appCard" in item && item.appCard ? (
+                        <aside className="originals-app-card" aria-label="Scoopy Log app">
+                          <img
+                            className="originals-app-card__icon"
+                            src={publicAsset(item.appCard.icon)}
+                            alt=""
+                            width={56}
+                            height={56}
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <div className="originals-app-card__copy">
+                            <p className="originals-app-card__title">{item.appCard.title}</p>
+                            <p className="originals-app-card__text">{item.appCard.text}</p>
                             <a
-                              href={link.href}
+                              className="originals-app-card__store"
+                              href={item.appCard.storeHref}
                               target="_blank"
                               rel="noopener noreferrer"
-                              aria-label={link.label}
-                              title={link.label}
                             >
-                              <SocialIcon platform={link.platform} />
+                              <img
+                                src={publicAsset(item.appCard.storeBadge)}
+                                alt={item.appCard.storeBadgeAlt}
+                                width={120}
+                                height={40}
+                                loading="lazy"
+                                decoding="async"
+                              />
                             </a>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                    {"appCard" in item && item.appCard ? (
-                      <aside className="originals-app-card" aria-label="Scoopy Log app">
-                        <img
-                          className="originals-app-card__icon"
-                          src={publicAsset(item.appCard.icon)}
-                          alt=""
-                          width={56}
-                          height={56}
-                          loading="lazy"
-                          decoding="async"
-                        />
-                        <div className="originals-app-card__copy">
-                          <p className="originals-app-card__title">{item.appCard.title}</p>
-                          <p className="originals-app-card__text">{item.appCard.text}</p>
-                          <a
-                            className="originals-app-card__store"
-                            href={item.appCard.storeHref}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <img
-                              src={publicAsset(item.appCard.storeBadge)}
-                              alt={item.appCard.storeBadgeAlt}
-                              width={120}
-                              height={40}
-                              loading="lazy"
-                              decoding="async"
-                            />
-                          </a>
-                        </div>
-                      </aside>
-                    ) : null}
+                          </div>
+                        </aside>
+                      ) : null}
+                    </div>
                     <div className="originals-row__actions">
+                      {festivalHref && festivalLabel ? (
+                        <a className="originals-row__text-link" href={festivalHref}>
+                          {festivalLabel}
+                        </a>
+                      ) : null}
                       {fullFilmLabel && fullFilmVimeoId ? (
                         <button
                           type="button"
@@ -214,11 +227,6 @@ export default function FilmPage() {
                         >
                           {fullFilmLabel}
                         </button>
-                      ) : null}
-                      {festivalHref && festivalLabel ? (
-                        <a className="originals-row__text-link" href={festivalHref}>
-                          {festivalLabel}
-                        </a>
                       ) : null}
                       {item.ctaKind === "contact" && item.ctaLabel ? (
                         <button
