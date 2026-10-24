@@ -842,21 +842,27 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin-bottom: 0;
 }
 
+/* Text + CTA share one row (desktop: right column; mobile: under heading) */
 .home-studio-teaser .studio-section__body {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  min-height: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-4);
+  min-width: 0;
 }
 
 .home-studio-teaser__text {
-  margin-top: 0;
+  margin: 0;
+  flex: 1 1 12rem;
+  min-width: 0;
   max-width: 36rem;
 }
 
 .home-studio-teaser__cta {
-  align-self: flex-end;
-  margin-top: var(--space-3);
+  flex: 0 0 auto;
+  margin: 0;
   margin-left: auto;
 }
 
