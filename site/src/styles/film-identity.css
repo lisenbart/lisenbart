@@ -842,13 +842,22 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin-bottom: 0;
 }
 
+.home-studio-teaser .studio-section__body {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-height: 100%;
+}
+
 .home-studio-teaser__text {
   margin-top: 0;
   max-width: 36rem;
 }
 
 .home-studio-teaser__cta {
+  align-self: flex-end;
   margin-top: var(--space-3);
+  margin-left: auto;
 }
 
 .studio-section__aside .studio-models__note {
