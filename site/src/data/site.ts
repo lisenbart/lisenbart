@@ -400,6 +400,13 @@ export const site = {
         vimeoId: "34131366",
         poster: "/images/work/hubbub-poster.webp",
       },
+      {
+        id: "departure",
+        title: "Departure",
+        client: "Void",
+        vimeoId: "96828164",
+        poster: "/images/work/departure-poster.webp",
+      },
     ] as const,
     whatWeMakeHeading: "What we make",
     formats: [
