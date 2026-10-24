@@ -404,11 +404,11 @@ export const site = {
         poster: "/images/work/kraft-tuc-poster.webp",
       },
       {
-        id: "pepsico-motomania",
-        title: "Motomania",
+        id: "pepsico-don-kido",
+        title: "Don Kido",
         client: "PepsiCo",
-        youtubeId: "eVhwE64Fs8U",
-        poster: "/images/work/pepsico-motomania-poster.webp",
+        youtubeId: "16fL5MxC3qo",
+        poster: "/images/work/pepsico-don-kido-poster.webp",
       },
       {
         id: "samsung-mobilochka",
