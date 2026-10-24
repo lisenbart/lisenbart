@@ -40,7 +40,14 @@ export default function CommercialPage() {
                   className="client-selected-card__button"
                   aria-label={`Play ${item.title} — ${item.client}`}
                   style={{ animationDelay: `${index * 40}ms` }}
-                  onClick={() => openReel(item.vimeoId, `${item.title} — ${item.client}`)}
+                  onClick={() => {
+                    const label = `${item.title} — ${item.client}`;
+                    if ("youtubeId" in item && item.youtubeId) {
+                      openReel({ provider: "youtube", id: item.youtubeId }, label);
+                      return;
+                    }
+                    openReel("vimeoId" in item ? item.vimeoId : null, label);
+                  }}
                 >
                   <span className="client-selected-card__media">
                     <img

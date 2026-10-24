@@ -1,16 +1,17 @@
 import { useEffect } from "react";
 import { PlayIcon } from "./FilmIcons";
 import ShowreelCloseButton from "@/components/film/ShowreelCloseButton";
+import { reelEmbedSrc, type ReelSource } from "@/lib/reelSource";
 
 export default function ReelModal({
   open,
   close,
-  vimeoId,
+  source,
   title = "Showreel",
 }: {
   open: boolean;
   close: () => void;
-  vimeoId: string | null;
+  source: ReelSource | null;
   title?: string;
 }) {
   useEffect(() => {
@@ -31,12 +32,12 @@ export default function ReelModal({
   return (
     <>
       <div className="reel-modal" role="dialog" aria-modal="true" aria-label={title}>
-        {vimeoId ? (
+        {source ? (
           <div className="reel-embed">
             <iframe
               title={title}
-              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=0&title=0&byline=0&portrait=0`}
-              allow="autoplay; fullscreen; picture-in-picture"
+              src={reelEmbedSrc(source)}
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
               allowFullScreen
             />
           </div>
