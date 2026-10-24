@@ -2828,13 +2828,14 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   z-index: 0;
 }
 
-/* Placeholder field for a future full-bleed photo */
 .about-hero__still {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 70% 60% at 70% 40%, rgba(72, 98, 140, 0.45), transparent 70%),
-    linear-gradient(145deg, #0c1018 0%, #142038 48%, #1a2740 100%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  background: #0c1018;
 }
 
 .about-hero__veil {

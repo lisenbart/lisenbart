@@ -591,6 +591,8 @@ export const site = {
       "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM (since 2006). Last director of Ukranimafilm, co-founder of UANIMA and Aerorozvidka, director of the award-winning short Unnecessary Things.",
     heroName: "Dmytro Lisenbart",
     heroSubtitle: "Founder, Director & Producer — LISENBART FILM",
+    heroImage: "/images/about-hero-mountains.webp",
+    heroImageAlt: "Mountain landscape",
     stats: [
       { value: "20", label: "years directing" },
       { value: "15", label: "years producing" },

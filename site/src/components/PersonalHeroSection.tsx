@@ -18,9 +18,16 @@ export default function PersonalHeroSection() {
 
   return (
     <section className="about-hero about-hero--dark" aria-labelledby="about-hero-heading">
-      {/* Drop a future hero photo into .about-hero__still (img or background-image). */}
       <div className="about-hero__media" aria-hidden="true">
-        <div className="about-hero__still" />
+        <img
+          className="about-hero__still"
+          src={publicAsset(aboutPage.heroImage)}
+          alt=""
+          width={1920}
+          height={1200}
+          decoding="async"
+          fetchPriority="high"
+        />
         <div className="about-hero__veil" />
       </div>
 
