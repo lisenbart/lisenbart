@@ -114,8 +114,8 @@ const originalsCases: WorkCaseStudy[] = [
     result: "Original English-language preschool learning & music",
 
     mediaColor: "#1a1428",
-    mediaImage: "/images/work/scoopy-cap-preview.jpg",
-    mediaImageAlt: "Scoopy Cap YouTube channel",
+    mediaImage: "/images/work/scoopy-cap-preview.webp",
+    mediaImageAlt: "Scoopy Cap — colourful kids channel collage",
     youtubeUrl: "https://www.youtube.com/@ScoopyCap",
     tiktokUrl: "https://www.tiktok.com/@scoopycap",
     instagramUrl: "https://www.instagram.com/scoopycap/",

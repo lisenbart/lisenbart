@@ -327,8 +327,8 @@ export const site = {
         id: "pershosvit",
         anchorIds: ["pershosvit", "scoopy-cap"] as const,
         title: "Scoopy Cap",
-        image: "/images/work/scoopy-cap-preview.jpg",
-        imageAlt: "Scoopy Cap — preschool robot character",
+        image: "/images/work/scoopy-cap-preview.webp",
+        imageAlt: "Scoopy Cap — colourful kids channel collage",
         /** Drop in a Vimeo id later to replace the still with a channel teaser. */
         vimeoId: null as string | null,
         accent: "200M+ views · 160K+ subscribers",
