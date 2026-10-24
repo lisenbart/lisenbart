@@ -880,21 +880,22 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 @media (max-width: 800px) {
   .home-studio-teaser .studio-section__body {
     flex-direction: column;
+    flex-wrap: nowrap;
     align-items: stretch;
     justify-content: flex-start;
-    /* Match path-card text→CTA air (avoid gap + margin stacking) */
-    gap: 0;
+    gap: 1.35rem; /* same air as path-card text→CTA */
   }
 
   .home-studio-teaser__text {
+    /* Desktop uses flex-basis 12rem as WIDTH; in a column that became HEIGHT and blew the gap */
+    flex: 0 1 auto;
     max-width: none;
-    margin-bottom: 1.35rem;
+    margin: 0;
   }
 
   .home-studio-teaser__actions {
     width: 100%;
-    margin-left: 0;
-    margin-top: 0;
+    margin: 0;
     align-items: center;
     gap: 0.75rem;
   }
