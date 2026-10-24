@@ -97,16 +97,27 @@ export default function CommercialPage() {
             })}
           </ul>
 
-          {hasMore && !moreOpen ? (
+          {hasMore ? (
             <div className="client-selected-more">
               <button
                 type="button"
                 className="film-cta client-selected-more__cta"
-                aria-expanded={false}
+                aria-expanded={moreOpen}
                 aria-controls="client-selected-work-grid"
-                onClick={() => setMoreOpen(true)}
+                onClick={() => {
+                  setMoreOpen((open) => {
+                    if (open) {
+                      window.requestAnimationFrame(() => {
+                        document
+                          .getElementById("client-selected-work-grid")
+                          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      });
+                    }
+                    return !open;
+                  });
+                }}
               >
-                {page.selectedWorkMore}
+                {moreOpen ? page.selectedWorkLess : page.selectedWorkMore}
               </button>
             </div>
           ) : null}

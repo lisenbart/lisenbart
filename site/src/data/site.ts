@@ -394,6 +394,7 @@ export const site = {
     },
     selectedWorkHeading: "Selected work",
     selectedWorkMore: "View More",
+    selectedWorkLess: "View Less",
     selectedWork: [
       {
         id: "wog-ukraine",
