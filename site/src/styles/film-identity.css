@@ -2181,7 +2181,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   padding: 0.85rem 1.25rem;
   border: 1.5px solid var(--ink);
   background: var(--ink);
-  color: var(--bg);
+  color: var(--white);
   list-style: none;
   cursor: pointer;
   user-select: none;
@@ -2542,7 +2542,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .project-page__cta:hover {
   background: var(--ink);
-  color: var(--bg);
+  color: var(--white);
 }
 
 .project-page__layout--feature-dev .project-page__copy {
