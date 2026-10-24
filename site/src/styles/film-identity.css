@@ -4849,6 +4849,11 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
 }
 
+/* Client Work: pin still to the hero floor — crop top, keep bottom edge flush */
+.page-hero-reel__still--bottom img {
+  object-position: center bottom;
+}
+
 .page-hero-reel__still::before {
   content: "";
   position: absolute;

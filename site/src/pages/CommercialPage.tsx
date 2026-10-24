@@ -22,7 +22,7 @@ export default function CommercialPage() {
         <PageHeroReel
           titleId="client-work-heading"
           media={
-            <div className="page-hero-reel__still" aria-hidden="true">
+            <div className="page-hero-reel__still page-hero-reel__still--bottom" aria-hidden="true">
               <img
                 src={publicAsset(hero.poster)}
                 alt=""
