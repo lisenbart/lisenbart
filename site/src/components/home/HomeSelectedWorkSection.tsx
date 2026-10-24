@@ -27,9 +27,9 @@ export default function HomeSelectedWorkSection() {
           </FilmReveal>
         </div>
         <FilmReveal delayMs={60}>
-          <a className="home-b2b__text-link" href={hubCanonicalHref("client-work")}>
+          <a className="film-cta" href={hubCanonicalHref("client-work")}>
             {selectedWork.cta}
-            <span className="home-b2b__text-link-arrow" aria-hidden="true">
+            <span className="home-paths__cta-arrow" aria-hidden="true">
               <Arrow />
             </span>
           </a>

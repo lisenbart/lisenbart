@@ -49,9 +49,9 @@ export default function HomeOriginalStoriesSection() {
       </FilmReveal>
 
       <FilmReveal delayMs={140}>
-        <a className="home-b2b__text-link" href={hubCanonicalHref("originals")}>
+        <a className="film-cta" href={hubCanonicalHref("originals")}>
           {homeOriginals.cta}
-          <span className="home-b2b__text-link-arrow" aria-hidden="true">
+          <span className="home-paths__cta-arrow" aria-hidden="true">
             <Arrow />
           </span>
         </a>

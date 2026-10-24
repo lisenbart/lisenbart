@@ -3699,38 +3699,13 @@ a.original-tile {
   max-width: 32rem;
 }
 
-.home-b2b__text-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
+.home-b2b .film-cta {
   margin-top: var(--space-4);
-  font-family: var(--font-display);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink);
-  border-bottom: 1px solid rgba(16, 21, 36, 0.28);
-  padding-bottom: 0.2rem;
 }
 
-.home-b2b__header--row .home-b2b__text-link {
+.home-b2b__header--row .film-cta {
   margin-top: 0;
-}
-
-.home-b2b__text-link:hover,
-.home-b2b__text-link:focus-visible {
-  border-bottom-color: var(--ink);
-}
-
-.home-b2b__text-link-arrow {
-  display: inline-grid;
-  place-items: center;
-}
-
-.home-b2b__text-link-arrow .arrow-icon {
-  width: 1rem;
+  flex-shrink: 0;
 }
 
 .home-selected-work {
