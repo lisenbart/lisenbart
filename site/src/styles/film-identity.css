@@ -5544,7 +5544,7 @@ html[data-hero-period="evening"] .home-explore {
     align-items: flex-start;
   }
 
-  .home-b2b__header--row .home-b2b__text-link {
+  .home-b2b__header--row .film-cta {
     margin-top: var(--space-1);
   }
 
