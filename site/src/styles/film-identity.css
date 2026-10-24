@@ -1367,6 +1367,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 .page-hero-reel {
   position: relative;
   width: 100%;
+  /* Locked height so long hero leads (e.g. Originals) match other hubs */
+  height: clamp(26rem, 60vh, 40rem);
   min-height: clamp(26rem, 60vh, 40rem);
   overflow: hidden;
   background: #142038;
@@ -1520,7 +1522,8 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   justify-content: flex-end;
   gap: var(--space-2);
   width: 100%;
-  min-height: clamp(26rem, 60vh, 40rem);
+  height: 100%;
+  min-height: 0;
   max-width: var(--home-measure);
   margin: 0 auto;
   padding:
