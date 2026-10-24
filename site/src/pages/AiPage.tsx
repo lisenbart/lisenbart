@@ -8,7 +8,7 @@ import { NETLIFY_FORM_NAME_AI } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.aiPage;
-const reel = page.showreel;
+const hero = page.showreel;
 
 export default function AiPage() {
   return (
@@ -19,7 +19,20 @@ export default function AiPage() {
         url={`${site.canonical}/ai/`}
       />
       <div className="ai-page page-with-hero-reel">
-        <PageHeroReel titleId="ai-page-heading" reel={reel}>
+        <PageHeroReel
+          titleId="ai-page-heading"
+          media={
+            <div className="page-hero-reel__still" aria-hidden="true">
+              <img
+                src={publicAsset(hero.poster)}
+                alt=""
+                width={1672}
+                height={941}
+                decoding="async"
+              />
+            </div>
+          }
+        >
           <div className="page-title-row">
             <h1 id="ai-page-heading">{page.name}</h1>
           </div>

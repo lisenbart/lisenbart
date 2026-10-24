@@ -8,7 +8,7 @@ import { NETLIFY_FORM_NAME_GAMES } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.gamesPage;
-const reel = page.showreel;
+const hero = page.showreel;
 
 export default function GamesPage() {
   return (
@@ -19,7 +19,20 @@ export default function GamesPage() {
         url={`${site.canonical}/games/`}
       />
       <div className="games-page page-with-hero-reel">
-        <PageHeroReel titleId="games-page-heading" reel={reel}>
+        <PageHeroReel
+          titleId="games-page-heading"
+          media={
+            <div className="page-hero-reel__still" aria-hidden="true">
+              <img
+                src={publicAsset(hero.poster)}
+                alt=""
+                width={1672}
+                height={941}
+                decoding="async"
+              />
+            </div>
+          }
+        >
           <div className="page-title-row">
             <h1 id="games-page-heading">{page.name}</h1>
           </div>

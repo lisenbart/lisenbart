@@ -5,9 +5,10 @@ import ClientNameList from "@/components/ClientNameList";
 import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
+import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.commercialPage;
-const reel = page.showreel;
+const hero = page.showreel;
 
 export default function CommercialPage() {
   return (
@@ -18,7 +19,20 @@ export default function CommercialPage() {
         url={`${site.canonical}/client-work/`}
       />
       <div className="work-page page-with-hero-reel">
-        <PageHeroReel titleId="client-work-heading" reel={reel}>
+        <PageHeroReel
+          titleId="client-work-heading"
+          media={
+            <div className="page-hero-reel__still" aria-hidden="true">
+              <img
+                src={publicAsset(hero.poster)}
+                alt=""
+                width={1672}
+                height={941}
+                decoding="async"
+              />
+            </div>
+          }
+        >
           <div className="page-title-row">
             <h1 id="client-work-heading">{page.name}</h1>
           </div>
