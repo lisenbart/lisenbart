@@ -56,7 +56,14 @@ export function reelEmbedSrc(source: ReelSource): string {
   return `https://player.vimeo.com/video/${source.id}?autoplay=1&muted=0&title=0&byline=0&portrait=0`;
 }
 
-/** YouTube poster — maxres with hqdefault as runtime fallback via onError. */
-export function youtubePosterSrc(videoId: string, quality: "maxresdefault" | "hqdefault" = "maxresdefault") {
+/**
+ * YouTube poster URL.
+ * Prefer sddefault/hqdefault — maxresdefault often 404s as a tiny placeholder
+ * that still "loads", so onError never fires.
+ */
+export function youtubePosterSrc(
+  videoId: string,
+  quality: "sddefault" | "hqdefault" | "maxresdefault" = "sddefault",
+) {
   return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
 }

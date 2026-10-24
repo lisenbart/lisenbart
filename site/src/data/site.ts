@@ -401,18 +401,21 @@ export const site = {
         title: "TUC Trailer",
         client: "Kraft Foods",
         youtubeId: "m5uZDKCIF80",
+        poster: "/images/work/kraft-tuc-poster.webp",
       },
       {
         id: "pepsico-motomania",
         title: "Motomania",
         client: "PepsiCo",
         youtubeId: "eVhwE64Fs8U",
+        poster: "/images/work/pepsico-motomania-poster.webp",
       },
       {
         id: "samsung-mobilochka",
         title: "Double summer",
         client: "Samsung × Mobilochka",
         youtubeId: "C3hVEueQIhQ",
+        poster: "/images/work/samsung-mobilochka-poster.webp",
       },
       {
         id: "wog-ukraine",
