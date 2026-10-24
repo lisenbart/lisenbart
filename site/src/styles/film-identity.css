@@ -1302,6 +1302,24 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .client-selected-more__cta {
   margin: 0;
+  gap: 0.55rem;
+}
+
+.client-selected-more__chevron {
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* Hover invert uses #001956 instead of body ink black */
+.client-selected-more__cta:hover,
+.client-selected-more__cta:focus-visible {
+  color: #001956;
+  border-color: #001956;
+}
+
+.client-selected-more__cta:hover .client-selected-more__chevron,
+.client-selected-more__cta:focus-visible .client-selected-more__chevron {
+  color: #001956;
 }
 
 .client-make {

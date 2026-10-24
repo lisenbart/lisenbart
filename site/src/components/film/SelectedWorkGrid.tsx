@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
@@ -198,7 +199,12 @@ export default function SelectedWorkGrid({
               });
             }}
           >
-            {moreOpen ? lessLabel : moreLabel}
+            <span>{moreOpen ? lessLabel : moreLabel}</span>
+            {moreOpen ? (
+              <ChevronUp className="client-selected-more__chevron" size={18} strokeWidth={2.25} aria-hidden="true" />
+            ) : (
+              <ChevronDown className="client-selected-more__chevron" size={18} strokeWidth={2.25} aria-hidden="true" />
+            )}
           </button>
         </div>
       ) : null}
