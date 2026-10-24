@@ -1,5 +1,6 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
+import { PlayIcon } from "@/components/film/FilmIcons";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
 import { useReel } from "@/contexts/ReelContext";
@@ -31,7 +32,7 @@ export default function CommercialPage() {
           className="studio-section studio-section--selected-work studio-section--selected-work-compact"
           aria-label={page.selectedWorkHeading}
         >
-          <ul className="client-selected-grid client-selected-grid--plaque" aria-label={page.selectedWorkHeading}>
+          <ul className="client-selected-grid client-selected-grid--flush" aria-label={page.selectedWorkHeading}>
             {page.selectedWork.map((item, index) => (
               <li key={item.id} className="client-selected-card">
                 <button
@@ -51,9 +52,10 @@ export default function CommercialPage() {
                       loading="lazy"
                       decoding="async"
                     />
-                    <span className="client-selected-card__plaque">
-                      <span className="client-selected-card__title">{item.title}</span>
-                      <span className="client-selected-card__client">{item.client}</span>
+                    <span className="client-selected-card__play" aria-hidden="true">
+                      <span className="client-selected-card__play-circle">
+                        <PlayIcon />
+                      </span>
                     </span>
                   </span>
                 </button>

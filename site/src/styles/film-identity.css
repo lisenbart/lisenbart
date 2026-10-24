@@ -1145,58 +1145,69 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--blue);
 }
 
-/* Client Work — compact: titles on white plaque over poster (no section heading) */
+/* Client Work — flush tile grid + centered play (titles temporarily off) */
 .work-page .studio-section--selected-work-compact {
-  padding-block: 0;
-}
-
-.work-page .client-selected-grid--plaque {
-  margin-top: 0;
-}
-
-.work-page .client-selected-grid--plaque .client-selected-card__button {
   padding: 0;
-}
-
-.work-page .client-selected-grid--plaque .client-selected-card__media {
   margin: 0;
 }
 
-.work-page .client-selected-card__plaque {
+.work-page .client-selected-grid--flush {
+  margin: 0;
+  border: 0;
+  gap: 0;
+}
+
+.work-page .client-selected-grid--flush .client-selected-card {
+  border: 0;
+}
+
+.work-page .client-selected-grid--flush .client-selected-card__button {
+  padding: 0;
+}
+
+.work-page .client-selected-grid--flush .client-selected-card__media {
+  margin: 0;
+}
+
+.work-page .client-selected-card__play {
   position: absolute;
-  left: 0.75rem;
-  right: 0.75rem;
-  bottom: 0.75rem;
+  inset: 0;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  max-width: calc(100% - 1.5rem);
-  width: max-content;
-  padding: 0.55rem 0.75rem 0.6rem;
-  background: var(--surface-white, #fff);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: rgba(10, 18, 37, 0.18);
+  transition: background 250ms ease;
   pointer-events: none;
 }
 
-.work-page .client-selected-grid--plaque .client-selected-card__title {
-  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+.work-page .client-selected-card__play-circle {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: rgba(10, 18, 37, 0.28);
 }
 
-.work-page .client-selected-grid--plaque .client-selected-card__client {
-  font-size: 0.7rem;
+.work-page .client-selected-card__play-circle .play-icon {
+  width: 22px;
+  height: 22px;
 }
 
-.work-page .client-selected-grid--plaque .client-selected-card__button:hover .client-selected-card__title,
-.work-page .client-selected-grid--plaque .client-selected-card__button:focus-visible .client-selected-card__title {
-  color: var(--ink);
+.work-page .client-selected-card__button:hover .client-selected-card__play,
+.work-page .client-selected-card__button:focus-visible .client-selected-card__play {
+  background: rgba(10, 18, 37, 0.34);
 }
 
-.work-page .client-selected-grid--plaque .client-selected-card__button:hover .client-selected-card__plaque,
-.work-page .client-selected-grid--plaque .client-selected-card__button:focus-visible .client-selected-card__plaque {
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+@media (min-width: 768px) {
+  .work-page .client-selected-grid--flush .client-selected-card,
+  .work-page .client-selected-grid--flush .client-selected-card:nth-child(n + 4),
+  .work-page .client-selected-grid--flush .client-selected-card + .client-selected-card,
+  .work-page .client-selected-grid--flush .client-selected-card:nth-child(3n + 1) {
+    border: 0;
+  }
 }
 
 .client-make {
