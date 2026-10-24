@@ -4255,44 +4255,54 @@ html[data-hero-period="evening"] .home-explore {
 .originals-row__media {
   position: relative;
   min-width: 0;
+  width: 100%;
   overflow: hidden;
   background: #142038;
   line-height: 0;
   aspect-ratio: 16 / 9;
 }
 
-.originals-row__still,
-.originals-row__media .film-showreel {
-  position: absolute;
-  inset: 0;
+/* Keeps 16:9 height when all children are absolute (Safari) */
+.originals-row__media::before {
+  content: "";
   display: block;
   width: 100%;
-  height: 100%;
-  margin: 0;
+  padding-bottom: 56.25%;
 }
 
-.originals-row__still img,
-.originals-row__media .film-showreel__stage {
+@supports (aspect-ratio: 16 / 9) {
+  .originals-row__media::before {
+    display: none;
+  }
+}
+
+.originals-page .originals-row__still,
+.originals-page .originals-row__media .film-showreel {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  aspect-ratio: auto;
+}
+
+.originals-page .originals-row__still img,
+.originals-page .originals-row__media .film-showreel__stage,
+.originals-page .originals-row__media .film-showreel__stage img {
   position: absolute;
   inset: 0;
   display: block;
   width: 100%;
+  max-width: none;
   height: 100%;
+  min-height: 0;
   margin: 0;
   aspect-ratio: auto;
   object-fit: cover;
-}
-
-.originals-row__media .film-showreel__stage {
-  min-height: 0;
-}
-
-.originals-row__media .film-showreel__stage img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-position: center;
 }
 
 .originals-row__copy {
@@ -4334,6 +4344,11 @@ html[data-hero-period="evening"] .home-explore {
   width: 100%;
 }
 
+.originals-row__actions .send-button {
+  width: auto;
+  max-width: 100%;
+}
+
 .originals-row__text-link {
   font-family: var(--font-body);
   font-size: var(--text-meta);
@@ -4348,6 +4363,35 @@ html[data-hero-period="evening"] .home-explore {
   opacity: 0.72;
 }
 
+@media (max-width: 899px) {
+  /* Previews must stay visible — don't wait on scroll reveal */
+  .originals-page .originals-row__reveal.film-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .originals-row__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .originals-row__actions .send-button,
+  .originals-row__actions .originals-row__text-link {
+    width: 100%;
+    text-align: center;
+  }
+
+  .originals-row__actions .originals-row__text-link {
+    order: 2;
+    border-bottom: 0;
+    padding: 0.35rem 0;
+  }
+
+  .originals-row__actions .send-button {
+    order: 1;
+  }
+}
+
 @media (min-width: 900px) {
   .originals-row__grid {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -4358,6 +4402,10 @@ html[data-hero-period="evening"] .home-explore {
     aspect-ratio: auto;
     min-height: 100%;
     align-self: stretch;
+  }
+
+  .originals-row__media::before {
+    display: none;
   }
 
   .originals-row__copy {
