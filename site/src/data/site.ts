@@ -24,6 +24,13 @@ export const site = {
     founderAria: "About Dmytro Lisenbart, founder of LISENBART FILM",
   },
 
+  homeStudioTeaser: {
+    eyebrow: "About us",
+    heading: "Studio",
+    text: "Independent animation studio since 2006. One creative lead, specialized teams around every project.",
+    cta: "Meet the studio",
+  },
+
   homePaths: {
     items: [
       {

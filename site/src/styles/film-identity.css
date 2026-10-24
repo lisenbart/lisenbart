@@ -828,6 +828,29 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   min-width: 0;
 }
 
+.studio-section__eyebrow {
+  margin: 0;
+  font-size: var(--text-meta);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.studio-section__aside .studio-section-heading {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.home-studio-teaser__text {
+  margin-top: 0;
+  max-width: 36rem;
+}
+
+.home-studio-teaser__cta {
+  margin-top: var(--space-3);
+}
+
 .studio-section__aside .studio-models__note {
   margin-top: 0;
 }
