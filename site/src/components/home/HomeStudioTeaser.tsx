@@ -24,7 +24,7 @@ export default function HomeStudioTeaser() {
               <a className="film-cta" href={hubCanonicalHref("studio")}>
                 {teaser.cta}
               </a>
-              <a className="home-studio-teaser__founder" href={hubCanonicalHref("about")}>
+              <a className="film-cta film-cta--secondary" href={hubCanonicalHref("about")}>
                 {teaser.founderCta}
               </a>
             </div>

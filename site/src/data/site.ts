@@ -29,7 +29,7 @@ export const site = {
     heading: "Studio",
     text: "Independent animation studio since 2006. One creative lead, specialized teams around every project.",
     cta: "Meet the studio",
-    founderCta: "Meet the founder →",
+    founderCta: "Meet the founder",
   },
 
   homePaths: {

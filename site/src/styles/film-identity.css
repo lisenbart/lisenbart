@@ -863,28 +863,17 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 .home-studio-teaser__actions {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.85rem 1.25rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.65rem;
   flex: 0 0 auto;
   margin: 0;
   margin-left: auto;
 }
 
-.home-studio-teaser__founder {
-  font-family: var(--font-body);
-  font-size: var(--text-meta);
-  font-weight: 500;
-  letter-spacing: var(--track-label);
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink);
-  transition: color 220ms ease;
-}
-
-.home-studio-teaser__founder:hover,
-.home-studio-teaser__founder:focus-visible {
-  color: var(--blue);
+.home-studio-teaser__actions .film-cta {
+  width: 100%;
+  justify-content: center;
 }
 
 .studio-section__aside .studio-models__note {
@@ -5606,6 +5595,20 @@ html[data-hero-period="evening"] .home-explore {
   background: transparent;
   color: var(--ink);
   border-color: var(--ink);
+}
+
+/* Secondary CTA — white fill, black label (outlined) */
+.film-cta--secondary {
+  background: var(--surface-white, #fff);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.film-cta--secondary:hover,
+.film-cta--secondary:focus-visible {
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  border-color: var(--cta-bg);
 }
 
 .film-cta:focus-visible,
