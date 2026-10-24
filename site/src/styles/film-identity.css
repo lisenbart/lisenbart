@@ -1958,6 +1958,47 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   }
 }
 
+.project-press__aside {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.project-press__sweet {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.project-press__sweet-poster {
+  display: block;
+  width: clamp(5.5rem, 14vw, 7.25rem);
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 0.2rem;
+  box-shadow: 0 8px 24px rgba(12, 16, 24, 0.16);
+  background: #142038;
+}
+
+.project-press__sweet-label {
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid transparent;
+}
+
+.project-press__sweet:hover .project-press__sweet-label {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
 .project-press__imdb {
   display: inline-flex;
   flex-direction: column;

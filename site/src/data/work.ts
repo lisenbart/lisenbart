@@ -17,6 +17,13 @@ export interface WorkCaseStudy {
   /** Display rating next to IMDb mark (optional). */
   imdbRating?: string;
   imdbVotes?: string;
+  /** Streaming / VOD presence (e.g. Sweet.tv). */
+  sweetTv?: {
+    href: string;
+    poster: string;
+    posterAlt: string;
+    label?: string;
+  };
   youtubeUrl?: string;
   tiktokUrl?: string;
   instagramUrl?: string;
@@ -65,6 +72,12 @@ const originalsCases: WorkCaseStudy[] = [
     imdbId: "tt14760808",
     imdbRating: "8.0",
     imdbVotes: "38",
+    sweetTv: {
+      href: "https://sweet.tv/ua-en/cartoon/28822-unnecessary-things",
+      poster: "/images/work/unnecessary-things-sweet-tv.webp",
+      posterAlt: "Unnecessary Things on SWEET.TV",
+      label: "Watch on SWEET.TV",
+    },
     selectionLinks: [
       {
         label: "Vancouver International Film Festival",
