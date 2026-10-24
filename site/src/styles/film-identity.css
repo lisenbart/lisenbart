@@ -1345,14 +1345,15 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 @media (min-width: 768px) {
   .client-selected-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    /* Test: 4-col selected work. Revert to repeat(3, …) if it fails review. */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .client-selected-card {
     border-bottom: 0;
   }
 
-  .client-selected-card:nth-child(n + 4) {
+  .client-selected-card:nth-child(n + 5) {
     border-top: 1px solid var(--line);
   }
 
@@ -1360,7 +1361,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
     border-left: 1px solid var(--line);
   }
 
-  .client-selected-card:nth-child(3n + 1) {
+  .client-selected-card:nth-child(4n + 1) {
     border-left: 0;
   }
 }

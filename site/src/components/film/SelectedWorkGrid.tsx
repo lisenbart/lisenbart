@@ -14,7 +14,8 @@ export type SelectedWorkItem = {
   youtubeId?: string;
 };
 
-const PREVIEW_COUNT = 3;
+/** First visible row on desktop (4-col test). Revert to 3 with the grid if we roll back. */
+const PREVIEW_COUNT = 4;
 
 function resolvePoster(item: SelectedWorkItem): string | null {
   if (item.poster) {
