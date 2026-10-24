@@ -18,15 +18,16 @@
    * | Token             | Value              | Use                                      |
    * |-------------------|--------------------|------------------------------------------|
    * | --surface-white   | #ffffff            | Default band; contact; odd steps up      |
-   * | --surface-tint    | #f4f4f5            | Footer; alternate band; even steps up    |
+   * | --surface-tint    | #e8e8ea            | Footer; alternate band; even steps up    |
    *
    * Classes: .studio-section / .surface-band → white
    *          .studio-section--tint / .surface-band--tint → tint
    * Helper:  surfaceBandClass(index, total) in src/lib/surfaceBand.ts
    *          (last content band before contact must be tint)
+   * Home path cards: desktop 2×2 all white; mobile stack alternates.
    */
   --surface-white: var(--white);
-  --surface-tint: #f4f4f5;
+  --surface-tint: #e8e8ea;
 
   /*
    * PRIMARY CTA — one black button site-wide
@@ -3542,8 +3543,8 @@ a.original-tile {
 }
 
 /*
- * Path cards: desktop 2×2 = all white. Mobile stack = alternate from footer up
- * (studio tint below → last path white → tint → white → tint).
+ * Path cards: desktop 2×2 = all white.
+ * Mobile stack alternating is in the max-width:800px block with the 1-col grid.
  */
 .home-paths__grid > .film-reveal {
   display: flex;
@@ -3552,12 +3553,6 @@ a.original-tile {
   padding: 0;
   border-bottom: 1px solid var(--line);
   background: var(--surface-white);
-}
-
-@media (max-width: 800px) {
-  .home-paths__grid > .film-reveal:nth-last-child(even) {
-    background: var(--surface-tint);
-  }
 }
 
 .home-paths__grid > .film-reveal:nth-child(odd) {
@@ -5548,6 +5543,12 @@ html[data-hero-period="evening"] .home-explore {
     border-right: 0 !important;
     border-bottom: 1px solid var(--line);
     padding: 0 !important;
+    background: var(--surface-white);
+  }
+
+  /* Mobile stack: alternate from footer (studio tint → last path white → …) */
+  .home-paths__grid > .film-reveal:nth-last-child(even) {
+    background: var(--surface-tint);
   }
 
   .home-paths__grid > .film-reveal:last-child {
