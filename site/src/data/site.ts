@@ -276,13 +276,16 @@ export const site = {
   },
   personalAbout: {
     title: "About",
+    /** Body copy for /about/ — quote + contact invite live in separate blocks. */
     paragraphs: [
       "I grew up drawing and making things up. At no point did I decide this was the career — I just kept doing it, and never got around to stopping.",
       "Since then: artist, director, producer, studio founder. For a stretch I was the last director of Ukranimafilm, Ukraine's oldest state animation studio — still slightly improbable to me.",
       "What all of it taught me is that creativity and production aren't enemies, even if they sometimes act like it. An idea needs room to breathe — and the right people, structure and runway to actually get made.",
-      "I usually start with \"What if?\" It pretty quickly becomes: \"Alright — how do we pull this off?\"",
-      "If you're working on something — an animated film, a world, a character, or an idea that is starting to take shape — send me a short brief or a few clear thoughts.",
     ] as const,
+    pullQuote:
+      "I usually start with ‘What if?’ It pretty quickly becomes: ‘Alright — how do we pull this off?’",
+    contactInvite:
+      "If you're working on something — an animated film, a world, a character, or an idea that is starting to take shape — send me a short brief or a few clear thoughts. That is enough to begin a conversation.",
     closing: "That is enough to begin a conversation.",
     markers: [] as const,
   },
@@ -585,8 +588,54 @@ export const site = {
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",
     seoDescription:
-      "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM. Original films, story IP, and commissioned work.",
+      "Dmytro Lisenbart — animation director and producer, founder of LISENBART FILM (since 2006). Last director of Ukranimafilm, co-founder of UANIMA and Aerorozvidka, director of the award-winning short Unnecessary Things.",
+    heroName: "Dmytro Lisenbart",
+    heroSubtitle: "Founder, Director & Producer — LISENBART FILM",
+    stats: [
+      { value: "20", label: "years directing" },
+      { value: "15", label: "years producing" },
+      { value: "1,000+", label: "projects" },
+    ] as const,
+    credentialsHeading: "Credentials",
+    credentials: [
+      "Started at Ukranimafilm as a teenager in 1991 — returned as its last director, 2017–2019. Ukranimafilm was Ukraine's oldest state animation studio.",
+      "Co-founder of UANIMA, the Ukrainian Animation Association (2017)",
+      "Co-founder of Aerorozvidka (2014) — the volunteer team that became one of the pioneers of drone reconnaissance in Ukraine",
+      "Film Directing, Karpenko-Kary National University of Theatre, Cinema and Television (1998)",
+    ] as const,
+    selectedWorkHeading: "Selected work",
+    selectedWork: [
+      {
+        title: "Unnecessary Things",
+        meta: "Director · 2021 · 11 awards incl. Kinokolo Film Critics Award for Best Animated Film",
+        note: "Based on a story by Robert Sheckley, adapted with the blessing of the Sheckley family.",
+        href: "/originals/unnecessary-things/",
+      },
+      {
+        title: "The Last Kozak",
+        meta: "Writer & Director · In development",
+        href: "/originals/#the-last-kozak",
+      },
+      {
+        title: "Scoopy Cap / Pershosvit",
+        meta: "Creator · Since 2016",
+        href: "/originals/#scoopy-cap",
+      },
+      {
+        title: "500+ commercials",
+        meta: "Director, for Nestlé, McDonald's, Samsung and others",
+        href: "/client-work/",
+      },
+    ] as const,
+    cultureHeading: "Culture defends",
+    cultureParagraphs: [
+      "I'm an artist, not a soldier. In 2014, when Russia invaded my country, I used what I had — imagination, a director's eye, a producer's way of getting things done — and co-founded Aerorozvidka, one of the pioneers of drone reconnaissance in Ukraine.",
+      "It taught me what I still believe: culture is not a luxury for peaceful times. Culture defends — with ideas, with skills, with people who refuse to stand aside.",
+      "And culture must be defended. Russia's war has killed hundreds of Ukrainian children and deported more than 19,000. It has damaged over two thousand heritage sites — museums, theatres, libraries, churches — trying to erase who we are.",
+      "A future without culture has no meaning. So we keep making Ukrainian stories, and we keep fighting for them.",
+    ] as const,
   },
+  footerTagline: "A Ukrainian studio. Culture defends.",
   /** Company page — identity, operating model, engagement. */
   studioPage: {
     name: "STUDIO",

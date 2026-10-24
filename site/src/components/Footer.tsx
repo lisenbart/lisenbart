@@ -15,7 +15,10 @@ export default function Footer() {
             <a className="film-footer__email" href={`mailto:${site.email}`}>
               {site.email}
             </a>
-            <p className="film-footer__locations">Toronto · Kyiv</p>
+            <p className="film-footer__locations">
+              Toronto · Kyiv
+              <span className="film-footer__tagline">{site.footerTagline}</span>
+            </p>
           </div>
 
           <nav className="film-footer__nav" aria-label="Footer">
