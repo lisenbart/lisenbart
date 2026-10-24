@@ -90,7 +90,10 @@ export function FestivalFeaturedStrip() {
 const HIGHLIGHT_LINE =
   "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)";
 
-/** Expandable AWARDS block — laurels + highlight + full festival list. */
+/**
+ * Always-visible awards block: laurels + highlight + summary stats,
+ * with a clear control to expand the full festival list.
+ */
 export function AwardsDisclosure() {
   const detailsRef = useRef<HTMLDetailsElement>(null);
 
@@ -107,29 +110,43 @@ export function AwardsDisclosure() {
   }, []);
 
   return (
-    <details ref={detailsRef} id="festivals" className="awards-disclosure">
-      <summary className="awards-disclosure__summary">
-        <span className="awards-disclosure__label">Awards</span>
-        <span className="awards-disclosure__chevron" aria-hidden="true" />
-      </summary>
-      <div className="awards-disclosure__panel">
-        <div className="festival-featured-bleed awards-disclosure__laurels">
-          <FestivalFeaturedStrip />
-        </div>
-        <div className="awards-disclosure__copy">
-          <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
-          <FestivalRecognitionSection hideHeading />
-        </div>
+    <section id="festivals" className="awards-block" aria-labelledby="awards-heading">
+      <div className="awards-block__intro">
+        <h2 id="awards-heading" className="awards-block__label">
+          Awards
+        </h2>
       </div>
-    </details>
+
+      <div className="festival-featured-bleed awards-block__laurels">
+        <FestivalFeaturedStrip />
+      </div>
+
+      <div className="awards-block__copy">
+        <p className="awards-block__highlight">{HIGHLIGHT_LINE}</p>
+        <p className="awards-block__stats">{unnecessaryThingsFestivalSummary.statement}</p>
+
+        <details ref={detailsRef} className="awards-block__details">
+          <summary className="awards-block__toggle">
+            <span className="awards-block__toggle-closed">View full festival list</span>
+            <span className="awards-block__toggle-open">Hide festival list</span>
+            <span className="awards-block__toggle-chevron" aria-hidden="true" />
+          </summary>
+          <div className="awards-block__panel">
+            <FestivalRecognitionSection hideHeading hideSummary />
+          </div>
+        </details>
+      </div>
+    </section>
   );
 }
 
 /** Full typographic festival history further down the project page. */
 export function FestivalRecognitionSection({
   hideHeading = false,
+  hideSummary = false,
 }: {
   hideHeading?: boolean;
+  hideSummary?: boolean;
 } = {}) {
   return (
     <section
@@ -142,7 +159,9 @@ export function FestivalRecognitionSection({
           Festival Recognition
         </h2>
       )}
-      <p className="festival-rec__summary">{unnecessaryThingsFestivalSummary.statement}</p>
+      {hideSummary ? null : (
+        <p className="festival-rec__summary">{unnecessaryThingsFestivalSummary.statement}</p>
+      )}
 
       <div className="festival-rec__group">
         <h3 className="festival-rec__group-title">{kindLabel("award")}s</h3>
