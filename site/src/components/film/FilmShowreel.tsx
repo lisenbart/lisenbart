@@ -17,6 +17,7 @@ export default function FilmShowreel({
   playLabel,
   playLabelHidden = false,
   withSound = false,
+  forceModal = false,
 }: {
   id: string;
   label: string;
@@ -30,6 +31,8 @@ export default function FilmShowreel({
   playLabelHidden?: boolean;
   /** Request unmuted autoplay after a user click (Vimeo `muted=0`). */
   withSound?: boolean;
+  /** Always open the lightbox player instead of inline playback. */
+  forceModal?: boolean;
 }) {
   const { openReel } = useReel();
   const isNarrow = useIsNarrowViewport();
@@ -39,7 +42,7 @@ export default function FilmShowreel({
 
   const play = () => {
     if (canPlayInline && vimeoId) {
-      if (isNarrow) {
+      if (forceModal || isNarrow) {
         openReel(vimeoId, label);
         return;
       }

@@ -11,7 +11,6 @@ import {
   OriginalsStillGallery,
 } from "@/components/originals/OriginalsMedia";
 import { SEO } from "@/components/SEO";
-import { useReel } from "@/contexts/ReelContext";
 import {
   getOriginalsProject,
   type OriginalsProjectPage as ProjectData,
@@ -25,7 +24,6 @@ import {
   type OriginalsProjectSlug,
 } from "@/lib/routes";
 
-const FULL_FILM_VIMEO_ID = "823618245";
 const HIGHLIGHT_LINE =
   "Golden Goblet Award Competition, Shanghai IFF · Official Selection, Huesca (Oscar-qualifying)";
 
@@ -63,22 +61,11 @@ function ProjectCta({ project }: { project: ProjectData }) {
 }
 
 function FilmShortBody({ project }: { project: ProjectData }) {
-  const { openReel } = useReel();
   const item = project.case;
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
-      <div className="project-page__top-actions">
-        <button
-          type="button"
-          className="send-button"
-          onClick={() => openReel(FULL_FILM_VIMEO_ID, item.title)}
-        >
-          Watch the full film
-        </button>
-      </div>
-
       <FestivalFeaturedStrip />
       <p className="project-page__highlight">{HIGHLIGHT_LINE}</p>
 
@@ -178,11 +165,12 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
             media={
               <FilmShowreel
                 id={`${item.id}-reel`}
-                label={`${item.title} teaser`}
+                label={item.title}
                 poster={publicAsset(item.mediaImage!)}
                 vimeoId={item.vimeoId}
-                playLabelHidden
+                playLabel="Watch full film"
                 withSound
+                forceModal
               />
             }
           >

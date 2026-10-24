@@ -295,17 +295,15 @@ export const site = {
         title: "Unnecessary Things",
         image: "/images/work/unnecessary-things-preview.webp",
         imageAlt: "Unnecessary Things — cosmic eyes over the crimson tree",
-        /** Still only on the hub — full film opens via CTA lightbox */
-        vimeoId: null as string | null,
+        /** Teaser plays in-card (same pattern as The Last Kozak) */
+        vimeoId: "825786788" as string | null,
         accent: "11 awards · 45 festival selections",
         format: "Animated short · 14 min · 2021",
         logline:
           "In a quiet future, a robot buys a discarded human from a store of unwanted things. What begins as an act of curiosity becomes a story about friendship, memory and the need to be seen.",
         secondary: "Based on a story by Robert Sheckley · Officially licensed adaptation",
         fullFilmLabel: "Watch the full film",
-        fullFilmVimeoId: "823618245",
-        festivalLabel: "Festivals & awards →",
-        festivalHref: "/originals/unnecessary-things/",
+        fullFilmHref: "/originals/unnecessary-things/",
         ctaLabel: null as string | null,
         ctaKind: null as "contact" | null,
       },

@@ -5,7 +5,6 @@ import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import { SEO } from "@/components/SEO";
-import { useReel } from "@/contexts/ReelContext";
 import { goToContact, scrollToSection, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
 
@@ -66,8 +65,6 @@ function ProjectMedia({
 }
 
 export default function FilmPage() {
-  const { openReel } = useReel();
-
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
     if (!hash || hash === "contact") return;
@@ -111,12 +108,8 @@ export default function FilmPage() {
           const tint = index % 2 === 1;
           const fullFilmLabel =
             "fullFilmLabel" in item && item.fullFilmLabel ? item.fullFilmLabel : null;
-          const fullFilmVimeoId =
-            "fullFilmVimeoId" in item && item.fullFilmVimeoId ? item.fullFilmVimeoId : null;
-          const festivalLabel =
-            "festivalLabel" in item && item.festivalLabel ? item.festivalLabel : null;
-          const festivalHref =
-            "festivalHref" in item && item.festivalHref ? item.festivalHref : null;
+          const fullFilmHref =
+            "fullFilmHref" in item && item.fullFilmHref ? item.fullFilmHref : null;
 
           return (
             <section
@@ -214,19 +207,10 @@ export default function FilmPage() {
                       ) : null}
                     </div>
                     <div className="originals-row__actions">
-                      {festivalHref && festivalLabel ? (
-                        <a className="originals-row__text-link" href={festivalHref}>
-                          {festivalLabel}
-                        </a>
-                      ) : null}
-                      {fullFilmLabel && fullFilmVimeoId ? (
-                        <button
-                          type="button"
-                          className="send-button"
-                          onClick={() => openReel(fullFilmVimeoId, item.title)}
-                        >
+                      {fullFilmLabel && fullFilmHref ? (
+                        <a className="send-button originals-slate__cta" href={fullFilmHref}>
                           {fullFilmLabel}
-                        </button>
+                        </a>
                       ) : null}
                       {item.ctaKind === "contact" && item.ctaLabel ? (
                         <button

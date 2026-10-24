@@ -49,8 +49,8 @@ const originalsCases: WorkCaseStudy[] = [
 
 
     mediaColor: "#0a1f0f",
-    /** Festival-page hero teaser */
-    vimeoId: "825786788",
+    /** Full film — festival-page hero opens this in the lightbox */
+    vimeoId: "823618245",
     mediaImage: "/images/work/unnecessary-things-preview.webp",
     mediaImageAlt: "Unnecessary Things — cosmic eyes over the crimson tree",
     stills: [
