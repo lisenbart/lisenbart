@@ -1,134 +1,120 @@
 import { SEO } from "@/components/SEO";
-import {
-  legalConfig,
-  shouldTreatPoliciesAsDraft,
-} from "@/data/legal";
+import { openCookiePreferences } from "@/components/CookieConsent";
+import { legalConfig } from "@/data/legal";
 import { site } from "@/data/site";
 
 const meta = legalConfig.policies.privacy;
 
 export default function PrivacyPage() {
-  const draft = shouldTreatPoliciesAsDraft();
-
   return (
     <>
       <SEO
-        title={draft ? meta.seoTitle : "Privacy Policy — LISENBART FILM"}
+        title={meta.seoTitle}
         description={meta.seoDescription}
         url={`${site.canonical}${meta.path}`}
-      >
-        {draft ? <meta name="robots" content="noindex, nofollow" /> : null}
-      </SEO>
+      />
 
       <article className="page-shell legal-doc">
         <div className="legal-doc__inner">
-        <div className="page-title-row">
-          <h1>{meta.title}</h1>
-        </div>
+          <div className="page-title-row">
+            <h1>{meta.title}</h1>
+          </div>
 
-        {draft ? (
-          <p className="legal-doc__banner" role="status">
-            Draft for review — not an approved policy. Do not treat as a binding privacy notice until
-            published.
-          </p>
-        ) : null}
+          <div className="legal-doc__body">
+            <p>Last updated: October 2026</p>
 
-        <div className="legal-doc__body">
-          <p>
-            This notice describes how <strong>{site.brand}</strong> handles information related to
-            lisenbart.com, based on how the website actually works today.
-          </p>
+            <h2>Who we are</h2>
+            <p>
+              lisenbart.com is operated by {legalConfig.ukraine.legalName},{" "}
+              {legalConfig.ukraine.addressLine}, {legalConfig.ukraine.cityLine},{" "}
+              {legalConfig.ukraine.registrationLine} (&quot;we&quot;, &quot;us&quot;). For any
+              privacy question, contact{" "}
+              <a href={`mailto:${site.email}`}>{site.email}</a>. Full company details:{" "}
+              <a href={legalConfig.policies.legal.path}>Legal Information</a>.
+            </p>
+            <p>
+              If your enquiry leads to a project, the contracting entity named in your contract
+              processes your data as needed for that contract.
+            </p>
 
-          <h2>Who we are</h2>
-          <p>
-            LISENBART FILM is an independent animation studio. Public contact:{" "}
-            <a href={`mailto:${site.email}`}>{site.email}</a>.
-          </p>
-          <p>
-            Registered presence (as published in the site footer):
-          </p>
-          <ul>
-            <li>
-              Canada — {legalConfig.canada.legalName}; {legalConfig.canada.cityLine};{" "}
-              {legalConfig.canada.registrationLine}.
-            </li>
-            <li>
-              Ukraine — {legalConfig.ukraine.legalName}; {legalConfig.ukraine.addressLine},{" "}
-              {legalConfig.ukraine.cityLine}; {legalConfig.ukraine.registrationLine}.
-            </li>
-          </ul>
-          <p>
-            {/* REVIEW REQUIRED: nominate the primary data controller / lead entity for GDPR/PIPEDA
-                correspondence if different from the public contact email. */}
-            <em>REVIEW REQUIRED:</em> Confirm which entity is the primary data controller for
-            website enquiries if Canada and Ukraine entities share operations.
-          </p>
+            <h2>What we collect and why</h2>
+            <p>
+              When you send us a message through a contact form, we receive your name, email
+              address, the project type you select, your message, and the page of the site you sent
+              it from. We use this only to reply to your enquiry and to discuss a possible project
+              with you. Where GDPR applies, the legal basis is our legitimate interest in responding
+              to enquiries and taking steps at your request before entering into a contract. Please
+              do not send sensitive personal data through the form.
+            </p>
 
-          <h2>Information you send us</h2>
-          <p>
-            The contact form may collect your name, email address, selected project type, and
-            message. We use that information to respond to project enquiries. Please do not submit
-            sensitive personal data through the form.
-          </p>
-          <p>
-            Form submissions are processed via <strong>Netlify Forms</strong> on our hosting
-            provider (Netlify). Message content may be emailed to the studio for follow-up.
-          </p>
+            <h2>Analytics</h2>
+            <p>
+              If you accept analytics in the cookie prompt, we use Google Analytics 4 to understand
+              how the site is used in aggregate. If you reject it, Google Analytics is not loaded.
+              You can change your choice at any time via{" "}
+              <button type="button" className="legal-doc__text-btn" onClick={() => openCookiePreferences()}>
+                Cookie preferences
+              </button>
+              . The legal basis for analytics is your consent.
+            </p>
 
-          <h2>Analytics</h2>
-          <p>
-            Optional <strong>Google Analytics 4</strong> (measurement ID G-ZB7KBQMZ6T) may load
-            after you accept analytics cookies in the site consent prompt. If you reject analytics,
-            GA4 is not initialized by this site.
-          </p>
-          <p>
-            {/* REVIEW REQUIRED: lawful basis for analytics (consent vs legitimate interest) per
-                jurisdiction. */}
-            <em>REVIEW REQUIRED:</em> Confirm the lawful basis for analytics in each market you
-            actively serve.
-          </p>
+            <h2>Service providers</h2>
+            <p>
+              We use the following providers, which may process data on our behalf or when you use
+              their features:
+            </p>
+            <ul>
+              <li>
+                <strong>Netlify</strong> — website hosting and processing of contact form
+                submissions.
+              </li>
+              <li>
+                <strong>Google</strong> — Google Analytics (only with your consent) and Google Fonts.
+              </li>
+              <li>
+                <strong>Vimeo</strong> — playback of films and showreels when you press play.
+              </li>
+              <li>
+                <strong>YouTube</strong> (privacy-enhanced mode) — playback of some videos when you
+                press play.
+              </li>
+            </ul>
+            <p>
+              Links to external sites (YouTube, Instagram, TikTok, IMDb, SWEET.TV and partner sites)
+              are governed by those services&apos; own policies.
+            </p>
 
-          <h2>Embedded media and third parties</h2>
-          <ul>
-            <li>
-              <strong>Vimeo</strong> — showreel playback may load Vimeo players when you choose to
-              watch a reel.
-            </li>
-            <li>
-              <strong>Google Fonts</strong> — typefaces are requested from Google Fonts.
-            </li>
-            <li>
-              External links (YouTube, TikTok, Instagram, IMDb, partner sites) are controlled by
-              those services when you leave lisenbart.com.
-            </li>
-          </ul>
+            <h2>International transfers</h2>
+            <p>
+              Some of these providers process data outside your country, including in the United
+              States. We rely on the safeguards these providers offer for international transfers.
+            </p>
 
-          <h2>Browser storage</h2>
-          <ul>
-            <li>
-              <strong>localStorage</strong> — theme preference; analytics consent choice
-              (<code> lisenbart-analytics-consent</code>).
-            </li>
-            <li>
-              <strong>sessionStorage</strong> — short-lived contact-form prefill when arriving from
-              an on-site CTA.
-            </li>
-          </ul>
+            <h2>How long we keep data</h2>
+            <p>
+              We keep enquiries for up to 24 months after our last contact, unless they lead to a
+              project — then we keep what is needed for the project and our legal obligations.
+              Analytics data is kept according to our Google Analytics retention settings.
+            </p>
 
-          <h2>Retention and rights</h2>
-          <p>
-            {/* REVIEW REQUIRED: retention schedule for Netlify form submissions and email threads. */}
-            <em>REVIEW REQUIRED:</em> Document how long enquiry emails and Netlify form records are
-            retained. Until then, email <a href={`mailto:${site.email}`}>{site.email}</a> for access
-            or deletion requests.
-          </p>
+            <h2>Your rights</h2>
+            <p>
+              You can ask us to access, correct or delete your personal data, to restrict or object
+              to its processing, and to receive a copy of it. You can withdraw your consent to
+              analytics at any time. Write to{" "}
+              <a href={`mailto:${site.email}`}>{site.email}</a> — we will reply within 30 days. You
+              also have the right to complain to the data protection authority in your country.
+            </p>
 
-          <h2>Changes</h2>
-          <p>
-            This page will be updated when the policy is approved for publication. Last technical
-            draft: October 2026.
-          </p>
-        </div>
+            <h2>Children</h2>
+            <p>
+              This website is intended for businesses and professionals and is not directed at
+              children.
+            </p>
+
+            <h2>Changes</h2>
+            <p>We may update this policy. The date above shows the latest version.</p>
+          </div>
         </div>
       </article>
     </>

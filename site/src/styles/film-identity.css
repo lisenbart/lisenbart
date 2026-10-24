@@ -3657,6 +3657,22 @@ a.film-footer__tagline:focus-visible {
   border-color: var(--ink);
 }
 
+.legal-doc__text-btn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+.legal-doc__text-btn:hover {
+  opacity: 0.75;
+}
+
 .contact-field-error {
   color: #8b3a3a;
   text-transform: none;

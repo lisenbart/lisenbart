@@ -22,11 +22,8 @@ export type RegisteredPresence = {
 };
 
 export const legalConfig = {
-  /**
-   * When false, Privacy / Cookie pages are review drafts only.
-   * Production footer omits those links until this is true.
-   */
-  policiesPublished: false as boolean,
+  /** When true, Privacy / Cookie pages are published (no draft banner / noindex). */
+  policiesPublished: true as boolean,
 
   brandDescriptor: "Independent Creative Studio · Est. 2006",
 
@@ -80,16 +77,16 @@ export const legalConfig = {
     privacy: {
       title: "Privacy Policy",
       path: "/privacy/",
-      seoTitle: "Privacy Policy (Draft) — LISENBART FILM",
+      seoTitle: "Privacy Policy | LISENBART FILM",
       seoDescription:
-        "Draft privacy notice for LISENBART FILM: contact form, Netlify Forms, optional Google Analytics after consent, Vimeo and fonts. Pending legal review.",
+        "How LISENBART FILM handles personal data on lisenbart.com: contact form, optional Google Analytics after consent, Vimeo and YouTube on play, and your rights.",
     },
     cookies: {
       title: "Cookie Policy",
       path: "/cookie-policy/",
-      seoTitle: "Cookie Policy (Draft) — LISENBART FILM",
+      seoTitle: "Cookie Policy | LISENBART FILM",
       seoDescription:
-        "Draft cookie notice for LISENBART FILM: essential storage, optional GA4 after consent, Vimeo on play, Google Fonts. Pending legal review.",
+        "Cookies and similar technologies on lisenbart.com: essential storage, optional Google Analytics after consent, Vimeo and YouTube on play, and how to change your choice.",
     },
   },
 } as const;

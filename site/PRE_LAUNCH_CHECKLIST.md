@@ -10,7 +10,6 @@ Last updated: 2026-10-20
 
 | Item | Why | Owner action |
 |------|-----|--------------|
-| Legal review of Privacy / Cookie drafts | `policiesPublished` is still `false` | Counsel/owner review `PrivacyPage` / `CookiePolicyPage`, resolve `REVIEW REQUIRED` markers, then set `policiesPublished: true` in `src/data/legal.ts` |
 | Netlify Forms notifications | Delivery not verified in this session | Netlify → Site → Forms → `contact` → confirm notification email to `info@lisenbart.com` |
 | Confirm GA4 property ownership | Consent gates G-ZB7KBQMZ6T | Confirm this measurement ID is the intended production property |
 | Explicit deploy approval | Policy: no prod deploy without owner OK | Approve merge to `main` / production publish |
@@ -51,11 +50,6 @@ Last updated: 2026-10-20
    - [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) and Facebook Sharing Debugger on `https://lisenbart.com/` after production deploy (prerendered OG tags in HTML).
 4. **Device pass**
    - iPhone Safari + desktop Chrome: menu circle, contact form, one Originals page, reel open/close.
-5. **After policy approval**
-   - Set `legalConfig.policiesPublished = true`.
-   - Rebuild & deploy.
-   - Confirm footer Privacy / Cookie links on production (not only preview).
-
 ---
 
 ## POST-LAUNCH
