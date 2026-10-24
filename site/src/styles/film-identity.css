@@ -5335,9 +5335,17 @@ html[data-hero-period="evening"] .home-explore {
   text-decoration: none;
 }
 
-/* GLOWL mark replaces text heading — capped so the section stays the same height band */
+/* GLOWL logo fills the aside to the same height as the body column — no letterbox gaps */
+.ai-division .studio-section__grid {
+  align-items: stretch;
+}
+
 .ai-page .ai-division__heading {
+  display: flex;
+  align-items: stretch;
   margin: 0;
+  height: 100%;
+  min-height: 0;
   font-size: 0;
   line-height: 0;
   text-transform: none;
@@ -5347,11 +5355,20 @@ html[data-hero-period="evening"] .home-explore {
 .ai-division__logo {
   display: block;
   width: 100%;
-  max-width: 18rem;
-  height: auto;
-  max-height: 4.75rem;
-  object-fit: contain;
-  object-position: left center;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 767px) {
+  .ai-page .ai-division__heading {
+    height: auto;
+  }
+
+  .ai-division__logo {
+    height: auto;
+    aspect-ratio: 1024 / 479;
+  }
 }
 
 .studio-section-heading.studio-block,
