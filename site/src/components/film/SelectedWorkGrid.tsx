@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { publicAsset } from "@/lib/publicAsset";
+import { youtubePosterSrc } from "@/lib/reelSource";
 
 export type SelectedWorkItem = {
   id: string;
@@ -13,6 +14,21 @@ export type SelectedWorkItem = {
 };
 
 const PREVIEW_COUNT = 3;
+
+function resolvePoster(item: SelectedWorkItem): string | null {
+  if (item.poster) {
+    return item.poster.startsWith("http") ? item.poster : publicAsset(item.poster);
+  }
+  if (item.youtubeId) return youtubePosterSrc(item.youtubeId);
+  return null;
+}
+
+function onYouTubePosterError(event: SyntheticEvent<HTMLImageElement>, youtubeId?: string) {
+  if (!youtubeId) return;
+  const img = event.currentTarget;
+  const fallback = youtubePosterSrc(youtubeId, "hqdefault");
+  if (img.src !== fallback) img.src = fallback;
+}
 
 export default function SelectedWorkGrid({
   items,
@@ -32,7 +48,7 @@ export default function SelectedWorkGrid({
   const hasMore = items.length > PREVIEW_COUNT;
 
   const playItem = (item: SelectedWorkItem) => {
-    const reelTitle = `${item.title} — ${item.client}`;
+    const reelTitle = `${item.client} — ${item.title}`;
     if (item.youtubeId) {
       openReel({ provider: "youtube", id: item.youtubeId }, reelTitle);
       return;
@@ -55,6 +71,8 @@ export default function SelectedWorkGrid({
         {items.map((item, index) => {
           const collapsed = hasMore && !moreOpen && index >= PREVIEW_COUNT;
           const canPlay = Boolean(item.youtubeId || item.vimeoId);
+          const poster = resolvePoster(item);
+          const alt = `${item.client} — ${item.title}`;
 
           return (
             <li
@@ -69,7 +87,7 @@ export default function SelectedWorkGrid({
               <button
                 type="button"
                 className="client-selected-card__button"
-                aria-label={canPlay ? `Play ${item.title} — ${item.client}` : `${item.title} — ${item.client}`}
+                aria-label={canPlay ? `Play ${alt}` : alt}
                 style={{ animationDelay: `${index * 40}ms` }}
                 onClick={() => {
                   if (canPlay) playItem(item);
@@ -78,17 +96,19 @@ export default function SelectedWorkGrid({
                 disabled={!canPlay}
               >
                 <span className="client-selected-card__media">
-                  {item.poster ? (
+                  {poster ? (
                     <img
                       className="client-selected-card__poster"
-                      src={publicAsset(item.poster)}
-                      alt=""
+                      src={poster}
+                      alt={alt}
                       width={1280}
                       height={720}
                       loading={index < PREVIEW_COUNT ? "eager" : "lazy"}
                       decoding="async"
+                      onError={(event) => onYouTubePosterError(event, item.youtubeId)}
                     />
                   ) : null}
+                  <span className="client-selected-card__brand">{item.client}</span>
                   {canPlay ? (
                     <span className="client-selected-card__play" aria-hidden="true">
                       <span className="client-selected-card__play-circle">

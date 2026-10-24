@@ -51,7 +51,12 @@ export function resolveReelSource(
 
 export function reelEmbedSrc(source: ReelSource): string {
   if (source.provider === "youtube") {
-    return `https://www.youtube.com/embed/${source.id}?autoplay=1&rel=0&modestbranding=1`;
+    return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&rel=0&modestbranding=1`;
   }
   return `https://player.vimeo.com/video/${source.id}?autoplay=1&muted=0&title=0&byline=0&portrait=0`;
+}
+
+/** YouTube poster — maxres with hqdefault as runtime fallback via onError. */
+export function youtubePosterSrc(videoId: string, quality: "maxresdefault" | "hqdefault" = "maxresdefault") {
+  return `https://img.youtube.com/vi/${videoId}/${quality}.jpg`;
 }

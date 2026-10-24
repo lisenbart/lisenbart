@@ -397,6 +397,24 @@ export const site = {
     selectedWorkLess: "View Less",
     selectedWork: [
       {
+        id: "kraft-tuc",
+        title: "TUC Trailer",
+        client: "Kraft Foods",
+        youtubeId: "m5uZDKCIF80",
+      },
+      {
+        id: "pepsico-motomania",
+        title: "Motomania",
+        client: "PepsiCo",
+        youtubeId: "eVhwE64Fs8U",
+      },
+      {
+        id: "samsung-mobilochka",
+        title: "Double summer",
+        client: "Samsung × Mobilochka",
+        youtubeId: "C3hVEueQIhQ",
+      },
+      {
         id: "wog-ukraine",
         title: "Ukraine Everywhere",
         client: "WOG",
