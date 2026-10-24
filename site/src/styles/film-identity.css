@@ -1146,9 +1146,12 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 /* Client Work — flush tile grid + centered play (titles temporarily off) */
-.work-page .studio-section--selected-work-compact {
+.work-page .studio-section--selected-work-compact,
+.work-page .page-hero-reel + .studio-section--selected-work-compact,
+.work-page.page-with-hero-reel .studio-section--selected-work-compact {
   padding: 0;
   margin: 0;
+  border-top: 0;
 }
 
 .work-page .client-selected-grid--flush {
@@ -1176,7 +1179,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   display: grid;
   place-items: center;
   color: #fff;
-  background: rgba(10, 18, 37, 0.18);
+  background: rgba(10, 18, 37, 0.12);
   transition: background 250ms ease;
   pointer-events: none;
 }
@@ -1186,19 +1189,24 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   place-items: center;
   width: 56px;
   height: 56px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 0;
   border-radius: 50%;
-  background: rgba(10, 18, 37, 0.28);
+  background: #fff;
+  isolation: isolate;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
 }
 
 .work-page .client-selected-card__play-circle .play-icon {
   width: 22px;
   height: 22px;
+  fill: #000;
+  stroke: none;
+  mix-blend-mode: destination-out;
 }
 
 .work-page .client-selected-card__button:hover .client-selected-card__play,
 .work-page .client-selected-card__button:focus-visible .client-selected-card__play {
-  background: rgba(10, 18, 37, 0.34);
+  background: rgba(10, 18, 37, 0.22);
 }
 
 @media (min-width: 768px) {
