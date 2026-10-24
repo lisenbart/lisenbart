@@ -1287,9 +1287,9 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
 @media (min-width: 768px) {
   .client-selected-grid--flush .client-selected-card,
-  .client-selected-grid--flush .client-selected-card:nth-child(n + 4),
+  .client-selected-grid--flush .client-selected-card:nth-child(n + 5),
   .client-selected-grid--flush .client-selected-card + .client-selected-card,
-  .client-selected-grid--flush .client-selected-card:nth-child(3n + 1) {
+  .client-selected-grid--flush .client-selected-card:nth-child(4n + 1) {
     border: 0;
   }
 }
