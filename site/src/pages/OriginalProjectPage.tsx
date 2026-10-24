@@ -68,56 +68,31 @@ function FilmShortBody({ project }: { project: ProjectData }) {
       ) : null}
 
       <section className="project-press" aria-label="Press">
-        <div className="project-press__aside">
-          {item.sweetTv ? (
-            <a
-              className="project-press__sweet"
-              href={item.sweetTv.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={item.sweetTv.label ?? "Watch on SWEET.TV"}
-            >
-              <img
-                className="project-press__sweet-poster"
-                src={publicAsset(item.sweetTv.poster)}
-                alt=""
-                width={268}
-                height={402}
-                loading="lazy"
-                decoding="async"
-              />
-              <span className="project-press__sweet-label">
-                {item.sweetTv.label ?? "SWEET.TV"}
+        {imdbHref ? (
+          <a
+            className="project-press__imdb"
+            href={imdbHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={
+              item.imdbRating
+                ? `IMDb rating ${item.imdbRating} out of 10`
+                : "View on IMDb"
+            }
+          >
+            <span className="project-press__imdb-mark" aria-hidden="true">
+              IMDb
+            </span>
+            {item.imdbRating ? (
+              <span className="project-press__imdb-score">
+                <span className="project-press__imdb-value">{item.imdbRating}</span>
+                <span className="project-press__imdb-scale">/10</span>
               </span>
-            </a>
-          ) : null}
-
-          {imdbHref ? (
-            <a
-              className="project-press__imdb"
-              href={imdbHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={
-                item.imdbRating
-                  ? `IMDb rating ${item.imdbRating} out of 10`
-                  : "View on IMDb"
-              }
-            >
-              <span className="project-press__imdb-mark" aria-hidden="true">
-                IMDb
-              </span>
-              {item.imdbRating ? (
-                <span className="project-press__imdb-score">
-                  <span className="project-press__imdb-value">{item.imdbRating}</span>
-                  <span className="project-press__imdb-scale">/10</span>
-                </span>
-              ) : (
-                <span className="project-press__imdb-link-label">View on IMDb</span>
-              )}
-            </a>
-          ) : null}
-        </div>
+            ) : (
+              <span className="project-press__imdb-link-label">View on IMDb</span>
+            )}
+          </a>
+        ) : null}
 
         {item.quote ? (
           <blockquote className="project-press__quote">
@@ -137,6 +112,29 @@ function FilmShortBody({ project }: { project: ProjectData }) {
               )}
             </div>
           </blockquote>
+        ) : null}
+
+        {item.sweetTv ? (
+          <a
+            className="project-press__sweet"
+            href={item.sweetTv.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={item.sweetTv.label ?? "Watch on SWEET.TV"}
+          >
+            <img
+              className="project-press__sweet-poster"
+              src={publicAsset(item.sweetTv.poster)}
+              alt=""
+              width={268}
+              height={402}
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="project-press__sweet-label">
+              {item.sweetTv.label ?? "SWEET.TV"}
+            </span>
+          </a>
         ) : null}
       </section>
 
