@@ -5,6 +5,7 @@ import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_GAMES } from "@/lib/contactConfig";
+import { publicAsset } from "@/lib/publicAsset";
 
 const page = site.gamesPage;
 const reel = page.showreel;
@@ -96,14 +97,21 @@ export default function GamesPage() {
         </section>
 
         <section
-          className="studio-section studio-section--tint"
+          className="studio-section studio-section--tint hub-division hub-division--games"
           aria-labelledby="games-division-heading"
         >
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
-                <h2 id="games-division-heading" className="studio-section-heading">
-                  {page.divisionHeading}
+                <h2 id="games-division-heading" className="studio-section-heading hub-division__heading">
+                  <span className="sr-only">{page.divisionHeading}</span>
+                  <img
+                    className="hub-division__logo"
+                    src={publicAsset("/images/brand/lisenbart-games-logo.webp")}
+                    alt=""
+                    width={1024}
+                    height={477}
+                  />
                 </h2>
               </div>
               <div className="studio-section__body games-division">

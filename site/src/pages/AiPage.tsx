@@ -97,16 +97,16 @@ export default function AiPage() {
         </section>
 
         <section
-          className="studio-section studio-section--tint ai-division"
+          className="studio-section studio-section--tint hub-division hub-division--glowl"
           aria-labelledby="ai-division-heading"
         >
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
-                <h2 id="ai-division-heading" className="studio-section-heading ai-division__heading">
+                <h2 id="ai-division-heading" className="studio-section-heading hub-division__heading">
                   <span className="sr-only">{page.divisionHeading}</span>
                   <img
-                    className="ai-division__logo"
+                    className="hub-division__logo"
                     src={publicAsset("/images/brand/glowl-logo.webp")}
                     alt=""
                     width={1024}

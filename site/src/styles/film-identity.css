@@ -5336,34 +5336,43 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 /*
- * GLOWL block: full logo visible, flush to section edges (no gutter crop).
+ * Hub division (GLOWL / LISENBART GAMES): full logo visible, flush to section edges.
  * Logo intrinsic aspect sets row height; body column stretches beside it.
  */
-.ai-page.page-with-hero-reel .studio-section.ai-division,
-.ai-page .studio-section.ai-division {
+.ai-page.page-with-hero-reel .studio-section.hub-division,
+.games-page.page-with-hero-reel .studio-section.hub-division,
+.ai-page .studio-section.hub-division,
+.games-page .studio-section.hub-division {
   padding: 0;
   overflow: hidden;
 }
 
-.ai-division > .film-reveal {
+.hub-division > .film-reveal {
   display: block;
 }
 
-.ai-division .studio-section__grid {
+.hub-division .studio-section__grid {
   align-items: stretch;
   gap: 0;
   column-gap: 0;
   row-gap: 0;
 }
 
-.ai-division .studio-section__aside {
+.hub-division .studio-section__aside {
   gap: 0;
   min-height: 0;
   line-height: 0;
+}
+
+.hub-division--glowl .studio-section__aside {
   background: #f3eee6;
 }
 
-.ai-page .ai-division__heading {
+.hub-division--games .studio-section__aside {
+  background: #fff;
+}
+
+.hub-division__heading {
   display: block;
   margin: 0;
   font-size: 0;
@@ -5372,21 +5381,21 @@ html[data-hero-period="evening"] .home-explore {
   letter-spacing: 0;
 }
 
-.ai-division__logo {
+.hub-division__logo {
   display: block;
   width: 100%;
   height: auto;
   vertical-align: top;
 }
 
-.ai-division .studio-section__body.games-division {
+.hub-division .studio-section__body.games-division {
   padding: var(--space-5) var(--gutter);
   justify-content: center;
   box-sizing: border-box;
 }
 
 @media (min-width: 768px) {
-  .ai-division .studio-section__grid {
+  .hub-division .studio-section__grid {
     grid-template-columns: minmax(16rem, 1fr) minmax(0, 2fr);
   }
 }
