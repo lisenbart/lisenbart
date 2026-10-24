@@ -1168,7 +1168,13 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 /* Selected work flush tiles — Client Work / Game Ads / AI (titles temporarily off) */
 .studio-section--selected-work-compact,
 .page-hero-reel + .studio-section--selected-work-compact,
-.page-with-hero-reel .studio-section--selected-work-compact {
+.page-with-hero-reel .studio-section--selected-work-compact,
+.work-page .page-hero-reel + .studio-section--selected-work-compact,
+.games-page .page-hero-reel + .studio-section--selected-work-compact,
+.ai-page .page-hero-reel + .studio-section--selected-work-compact,
+.work-page.page-with-hero-reel .studio-section--selected-work-compact,
+.games-page.page-with-hero-reel .studio-section--selected-work-compact,
+.ai-page.page-with-hero-reel .studio-section--selected-work-compact {
   padding: 0;
   margin: 0;
   border-top: 0;
