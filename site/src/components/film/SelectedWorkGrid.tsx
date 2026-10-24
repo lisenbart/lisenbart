@@ -1,5 +1,4 @@
 import { useState, type SyntheticEvent } from "react";
-import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { publicAsset } from "@/lib/publicAsset";
 import { youtubePosterSrc } from "@/lib/reelSource";
@@ -109,13 +108,6 @@ export default function SelectedWorkGrid({
                     />
                   ) : null}
                   <span className="client-selected-card__brand">{item.client}</span>
-                  {canPlay ? (
-                    <span className="client-selected-card__play" aria-hidden="true">
-                      <span className="client-selected-card__play-circle">
-                        <PlayIcon />
-                      </span>
-                    </span>
-                  ) : null}
                 </span>
               </button>
             </li>
