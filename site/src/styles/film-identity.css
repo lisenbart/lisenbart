@@ -3542,9 +3542,8 @@ a.original-tile {
 }
 
 /*
- * Path cards are surface bands. Count from footer up:
- * footer tint → contact white → studio tint → last path white → tint → white → tint.
- * nth-last-child keeps that order on mobile stack and desktop 2×2.
+ * Path cards: desktop 2×2 = all white. Mobile stack = alternate from footer up
+ * (studio tint below → last path white → tint → white → tint).
  */
 .home-paths__grid > .film-reveal {
   display: flex;
@@ -3555,8 +3554,10 @@ a.original-tile {
   background: var(--surface-white);
 }
 
-.home-paths__grid > .film-reveal:nth-last-child(even) {
-  background: var(--surface-tint);
+@media (max-width: 800px) {
+  .home-paths__grid > .film-reveal:nth-last-child(even) {
+    background: var(--surface-tint);
+  }
 }
 
 .home-paths__grid > .film-reveal:nth-child(odd) {
