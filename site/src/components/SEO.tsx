@@ -20,8 +20,13 @@ export function SEO({ title, description, url, image, children }: SEOProps) {
   const canonical = url.startsWith("http") ? url : `${site.canonical}${url}`;
   const verification = site.meta.googleSiteVerification?.trim();
 
-  /** Deploy-preview / branch builds set VITE_LEGAL_PREVIEW — keep out of indexes. */
-  const previewNoIndex = import.meta.env.VITE_LEGAL_PREVIEW === "true";
+  /**
+   * Production Netlify CONTEXT must stay indexable (no robots meta).
+   * Deploy-preview / branch-deploy set VITE_SITE_NOINDEX (and legacy VITE_LEGAL_PREVIEW).
+   */
+  const previewNoIndex =
+    import.meta.env.VITE_SITE_NOINDEX === "true" ||
+    import.meta.env.VITE_LEGAL_PREVIEW === "true";
 
   return (
     <Helmet>

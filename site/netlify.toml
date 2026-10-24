@@ -5,13 +5,25 @@
 [build.environment]
   NODE_VERSION = "20"
 
-# Preview / branch deploys may render marked legal placeholders & draft policies.
-# Production context must not set VITE_LEGAL_PREVIEW (unverified legal stays omitted).
+# Production CONTEXT must NOT set VITE_SITE_NOINDEX / VITE_LEGAL_PREVIEW — pages stay indexable.
+# Preview / branch: noindex meta (SEO.tsx) + X-Robots-Tag (scripts/netlify-postbuild.mjs).
 [context.deploy-preview.environment]
+  VITE_SITE_NOINDEX = "true"
   VITE_LEGAL_PREVIEW = "true"
 
 [context.branch-deploy.environment]
+  VITE_SITE_NOINDEX = "true"
   VITE_LEGAL_PREVIEW = "true"
+
+[[context.deploy-preview.headers]]
+  for = "/*"
+  [context.deploy-preview.headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[context.branch-deploy.headers]]
+  for = "/*"
+  [context.branch-deploy.headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 # --- Hard-block compromised / WordPress paths (hack aftermath) ---
 # Must stay ABOVE the SPA /* fallback so they are not soft-200 HTML.

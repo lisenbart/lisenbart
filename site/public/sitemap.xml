@@ -2,56 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lisenbart.com/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://lisenbart.com/client-work/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lisenbart.com/originals/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://lisenbart.com/originals/unnecessary-things/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://lisenbart.com/games/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://lisenbart.com/ai/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://lisenbart.com/games/</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://lisenbart.com/originals/</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://lisenbart.com/originals/unnecessary-things/</loc>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://lisenbart.com/studio/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://lisenbart.com/about/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://lisenbart.com/legal/</loc>
-    <lastmod>2026-10-23</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://lisenbart.com/privacy/</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://lisenbart.com/cookie-policy/</loc>
+    <lastmod>2026-10-25</lastmod>
   </url>
 </urlset>
