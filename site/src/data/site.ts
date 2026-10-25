@@ -304,6 +304,8 @@ export const site = {
     seoDescription:
       "Original animated films and preschool IP: award-winning short Unnecessary Things, The Last Kozak in development, and Scoopy Cap with 200M+ views.",
     defaultProjectType: "Originals Partnership",
+    contactLead:
+      "Interested in one of our projects? Tell us which one and what you have in mind — co-production, distribution or licensing. We reply within one business day and can share pitch materials.",
     /** Hero still — Unnecessary Things frame */
     heroImage: "/images/explore/originals/hero-still.webp",
     projects: [
@@ -648,6 +650,8 @@ export const site = {
     /** Hello email — keep main studio inbox for now; switch to info@lisenbart.games later. */
     contactEmail: "info@lisenbart.com",
     defaultProjectType: "Game Ads, Trailers & Playables",
+    contactLead:
+      "Tell us about your game and what you need — creatives, playables or a trailer. Your assets, references or a test task are enough to start. We reply within one business day.",
   },
 
   aiPage: {
@@ -783,9 +787,12 @@ export const site = {
     /** Hello email — keep main studio inbox for now; switch to info@glowl.direct later. */
     contactEmail: "info@lisenbart.com",
     defaultProjectType: "AI & Hybrid",
+    contactLead:
+      "Tell us about your idea and where AI should fit — or let us suggest it. A brief, a reference or a rough concept is enough. If your brand has AI rules, share them too. We reply within one business day.",
   },
   homeContact: {
     heading: "Let's fly together",
+    /** Default form intro — overridden per page via FilmContactSection `lead`. */
     lead:
       "Tell us what you need, when you need it and what you already have. A brief, a reference or an early idea is enough to start. We reply within one business day with questions or a first approach.",
   },

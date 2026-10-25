@@ -31,6 +31,7 @@ export default function FilmContactSection({
   helloEmail = site.email,
 }: {
   heading?: string;
+  /** Intro under the heading. Defaults to `site.homeContact.lead`; pass a page-specific string to override. */
   lead?: string;
   /** Preselect Project type on this page (e.g. Client Work → Brand Film or Campaign). */
   defaultProjectType?: string;

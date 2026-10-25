@@ -231,7 +231,10 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
       )}
 
       <FilmReveal>
-        <FilmContactSection heading={site.homeContact.heading} />
+        <FilmContactSection
+          heading={site.homeContact.heading}
+          lead={project.contactLead}
+        />
       </FilmReveal>
     </>
   );

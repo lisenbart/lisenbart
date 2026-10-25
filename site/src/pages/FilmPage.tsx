@@ -275,6 +275,7 @@ export default function FilmPage() {
         <FilmReveal>
           <FilmContactSection
             heading={site.homeContact.heading}
+            lead={page.contactLead}
             defaultProjectType={page.defaultProjectType}
           />
         </FilmReveal>

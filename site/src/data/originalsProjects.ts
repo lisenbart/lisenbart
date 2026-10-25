@@ -25,6 +25,8 @@ export type OriginalsProjectPage = {
     projectType: string;
     message: string;
   };
+  /** Contact form intro under “Let's fly together”; falls back to home default. */
+  contactLead?: string;
   case: WorkCaseStudy;
 };
 
@@ -48,6 +50,8 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
       projectType: "Originals Partnership",
       message: "Enquiry about Unnecessary Things.",
     },
+    contactLead:
+      "Want to screen or distribute Unnecessary Things? Tell us about your festival, platform or programme. We reply within one business day.",
     case: unnecessary,
   },
 };

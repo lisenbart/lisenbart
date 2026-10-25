@@ -175,6 +175,7 @@ export default function GamesPage() {
         <FilmReveal>
           <FilmContactSection
             heading={site.homeContact.heading}
+            lead={page.contactLead}
             defaultProjectType={page.defaultProjectType}
             formName={NETLIFY_FORM_NAME_GAMES}
           />
