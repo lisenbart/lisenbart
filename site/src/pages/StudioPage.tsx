@@ -8,6 +8,7 @@ import StudioSlideshow from "@/components/film/StudioSlideshow";
 import { scrollToSection, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
 import { publicAsset } from "@/lib/publicAsset";
+import { SHOW_DIVISIONS } from "@/lib/siteFlags";
 
 const page = site.studioPage;
 
@@ -71,20 +72,25 @@ export default function StudioPage() {
           <FilmReveal>
             <div className="studio-section__grid studio-section__grid--inset">
               <h2 id="teams-heading" className="studio-section-heading studio-section-heading--teams">
-                <span className="studio-section-heading__run">One vision,</span>{" "}
-                <span className="studio-section-heading__run">three&nbsp;teams</span>
+                <span className="studio-section-heading__run">{page.teamsHeadingLead}</span>{" "}
+                <span className="studio-section-heading__run">
+                  {page.teamsHeadingTail.replace(" ", "\u00A0")}
+                </span>
               </h2>
               <div className="studio-section__body">
                 <p className="studio-models__note">{page.teamsNote}</p>
               </div>
             </div>
           </FilmReveal>
-          <ul className="studio-teams-grid" aria-label="Three teams">
+          <ul
+            className="studio-teams-grid"
+            aria-label={SHOW_DIVISIONS ? "Three teams" : "Three directions"}
+          >
             {page.teams.map((item, index) => (
               <StudioModelItem
                 key={item.hub}
                 title={item.title}
-                team={item.team}
+                team={SHOW_DIVISIONS ? item.team : undefined}
                 text={item.text}
                 href={hubCanonicalHref(item.hub)}
                 image={item.image}

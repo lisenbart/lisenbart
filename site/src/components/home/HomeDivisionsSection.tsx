@@ -2,8 +2,11 @@ import FilmReveal from "@/components/film/FilmReveal";
 import { Arrow } from "@/components/film/FilmIcons";
 import { sectionIds, site } from "@/data/site";
 import { hubCanonicalHref } from "@/lib/routes";
+import { SHOW_DIVISIONS } from "@/lib/siteFlags";
 
 export default function HomeDivisionsSection() {
+  if (!SHOW_DIVISIONS) return null;
+
   const { specializedDivisions: divisions } = site;
   const items = [
     { ...divisions.games, hub: "games" as const },

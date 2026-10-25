@@ -6,13 +6,14 @@ import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_AI } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
+import { SHOW_DIVISIONS } from "@/lib/siteFlags";
 import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.aiPage;
 const hero = page.showreel;
 
 /** Content bands above contact (hero skipped). Last before contact = tint. */
-const BANDS = 5;
+const BANDS = SHOW_DIVISIONS ? 5 : 4;
 
 export default function AiPage() {
   return (
@@ -113,38 +114,40 @@ export default function AiPage() {
           </ul>
         </section>
 
-        <section
-          className={studioSectionClass(4, BANDS, "hub-division hub-division--glowl")}
-          aria-labelledby="ai-division-heading"
-        >
-          <FilmReveal>
-            <div className="studio-section__grid">
-              <div className="studio-section__aside">
-                <h2 id="ai-division-heading" className="studio-section-heading hub-division__heading">
-                  <span className="sr-only">{page.divisionHeading}</span>
-                  <img
-                    className="hub-division__logo"
-                    src={publicAsset("/images/brand/glowl-logo.webp")}
-                    alt=""
-                    width={1024}
-                    height={479}
-                  />
-                </h2>
+        {SHOW_DIVISIONS ? (
+          <section
+            className={studioSectionClass(4, BANDS, "hub-division hub-division--glowl")}
+            aria-labelledby="ai-division-heading"
+          >
+            <FilmReveal>
+              <div className="studio-section__grid">
+                <div className="studio-section__aside">
+                  <h2 id="ai-division-heading" className="studio-section-heading hub-division__heading">
+                    <span className="sr-only">{page.divisionHeading}</span>
+                    <img
+                      className="hub-division__logo"
+                      src={publicAsset("/images/brand/glowl-logo.webp")}
+                      alt=""
+                      width={1024}
+                      height={479}
+                    />
+                  </h2>
+                </div>
+                <div className="studio-section__body games-division">
+                  <p className="studio-models__note">{page.divisionText}</p>
+                  <a
+                    className="send-button games-division__cta"
+                    href={page.externalHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {page.externalCta}
+                  </a>
+                </div>
               </div>
-              <div className="studio-section__body games-division">
-                <p className="studio-models__note">{page.divisionText}</p>
-                <a
-                  className="send-button games-division__cta"
-                  href={page.externalHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {page.externalCta}
-                </a>
-              </div>
-            </div>
-          </FilmReveal>
-        </section>
+            </FilmReveal>
+          </section>
+        ) : null}
 
         <FilmReveal>
           <FilmContactSection

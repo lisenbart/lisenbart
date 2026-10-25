@@ -9,6 +9,7 @@ import { gamesPlayables } from "@/data/playables";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_GAMES } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
+import { SHOW_DIVISIONS } from "@/lib/siteFlags";
 import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.gamesPage;
@@ -18,7 +19,7 @@ const hero = page.showreel;
  * Bands above contact excluding the three always-white service rows
  * (those stay white by design). Last content before contact = tint.
  */
-const BANDS = 4;
+const BANDS = SHOW_DIVISIONS ? 4 : 3;
 
 export default function GamesPage() {
   return (
@@ -133,38 +134,40 @@ export default function GamesPage() {
           </FilmReveal>
         </section>
 
-        <section
-          className={studioSectionClass(3, BANDS, "hub-division hub-division--games")}
-          aria-labelledby="games-division-heading"
-        >
-          <FilmReveal>
-            <div className="studio-section__grid">
-              <div className="studio-section__aside">
-                <h2 id="games-division-heading" className="studio-section-heading hub-division__heading">
-                  <span className="sr-only">{page.divisionHeading}</span>
-                  <img
-                    className="hub-division__logo"
-                    src={publicAsset("/images/brand/lisenbart-games-logo.webp")}
-                    alt=""
-                    width={1024}
-                    height={477}
-                  />
-                </h2>
+        {SHOW_DIVISIONS ? (
+          <section
+            className={studioSectionClass(3, BANDS, "hub-division hub-division--games")}
+            aria-labelledby="games-division-heading"
+          >
+            <FilmReveal>
+              <div className="studio-section__grid">
+                <div className="studio-section__aside">
+                  <h2 id="games-division-heading" className="studio-section-heading hub-division__heading">
+                    <span className="sr-only">{page.divisionHeading}</span>
+                    <img
+                      className="hub-division__logo"
+                      src={publicAsset("/images/brand/lisenbart-games-logo.webp")}
+                      alt=""
+                      width={1024}
+                      height={477}
+                    />
+                  </h2>
+                </div>
+                <div className="studio-section__body games-division">
+                  <p className="studio-models__note">{page.divisionText}</p>
+                  <a
+                    className="send-button games-division__cta"
+                    href={page.externalHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {page.externalCta}
+                  </a>
+                </div>
               </div>
-              <div className="studio-section__body games-division">
-                <p className="studio-models__note">{page.divisionText}</p>
-                <a
-                  className="send-button games-division__cta"
-                  href={page.externalHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {page.externalCta}
-                </a>
-              </div>
-            </div>
-          </FilmReveal>
-        </section>
+            </FilmReveal>
+          </section>
+        ) : null}
 
         <FilmReveal>
           <FilmContactSection

@@ -1,9 +1,11 @@
 import { publicAsset } from "@/lib/publicAsset";
 import { pageHasContactForm } from "@/lib/routes";
+import { SHOW_DIVISIONS } from "@/lib/siteFlags";
 
 export const site = {
   name: "LISENBART FILM",
   brand: "LISENBART FILM",
+  /** External Games division site — only linked when SHOW_DIVISIONS. */
   gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
@@ -517,11 +519,12 @@ export const site = {
     name: "GAME ADS",
     heroLead: "Animation that sells games.",
     seoTitle: "Game Ads — Trailers, UA Creatives & Playables | LISENBART FILM",
-    seoDescription:
-      "Game advertising creatives, playable production and creative development — LISENBART GAMES, part of LISENBART FILM.",
+    seoDescription: SHOW_DIVISIONS
+      ? "Game advertising creatives, playable production and creative development — LISENBART GAMES, part of LISENBART FILM."
+      : "Game advertising creatives, playable production and creative development by LISENBART FILM.",
     showreel: {
       id: "games-reel",
-      label: "LISENBART GAMES Showreel",
+      label: SHOW_DIVISIONS ? "LISENBART GAMES Showreel" : "Game Ads Showreel",
       vimeoId: "944158555" as string | null,
       poster: "/images/reels/games/showreel-poster.webp",
     },
@@ -647,9 +650,12 @@ export const site = {
   aiPage: {
     name: "AI & HYBRID",
     heroLead: "New tools. Same creative standards.",
-    seoTitle: "AI & Hybrid — AI Video Production by GLOWL | LISENBART FILM",
-    seoDescription:
-      "AI & hybrid video production by GLOWL, part of LISENBART FILM. AI, animation and live action — directed by filmmakers.",
+    seoTitle: SHOW_DIVISIONS
+      ? "AI & Hybrid — AI Video Production by GLOWL | LISENBART FILM"
+      : "AI & Hybrid — AI Video Production | LISENBART FILM",
+    seoDescription: SHOW_DIVISIONS
+      ? "AI & hybrid video production by GLOWL, part of LISENBART FILM. AI, animation and live action — directed by filmmakers."
+      : "AI & hybrid video production by LISENBART FILM. AI, animation and live action — directed by filmmakers.",
     showreel: {
       id: "ai-powered-reel",
       label: "AI & Hybrid Showreel",
@@ -848,11 +854,18 @@ export const site = {
     stats: [
       { value: "2006", label: "founded" },
       { value: "1,000+", label: "projects delivered" },
-      { value: "3", label: "specialized teams" },
+      SHOW_DIVISIONS
+        ? { value: "3", label: "specialized teams" }
+        : { value: "500+", label: "animated commercials" },
     ] as const,
     statsNote:
       "Trusted by Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active, Voodoo, Plarium and others. Agencies include BBDO, McCann, Leo Burnett and others.",
-    teamsHeading: "One vision, three teams",
+    teamsHeading: SHOW_DIVISIONS
+      ? "One vision, three teams"
+      : "One studio, three directions",
+    /** Line break after the comma in the teams heading. */
+    teamsHeadingLead: SHOW_DIVISIONS ? "One vision," : "One studio,",
+    teamsHeadingTail: SHOW_DIVISIONS ? "three teams" : "three directions",
     teams: [
       {
         title: "Brand & Original Animation",

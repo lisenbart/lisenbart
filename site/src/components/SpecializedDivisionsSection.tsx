@@ -1,7 +1,10 @@
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { sectionIds, site } from "@/data/site";
+import { SHOW_DIVISIONS } from "@/lib/siteFlags";
 
 export default function SpecializedDivisionsSection() {
+  if (!SHOW_DIVISIONS) return null;
+
   const { specializedDivisions: divisions } = site;
   const items = [divisions.games, divisions.ai];
 
