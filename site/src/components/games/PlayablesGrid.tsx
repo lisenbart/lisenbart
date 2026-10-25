@@ -15,7 +15,7 @@ export default function PlayablesGrid({
   return (
     <>
       {items.map((item, index) => (
-        <div key={item.id} className="games-proof-card" role="listitem">
+        <div key={item.id} className="games-proof-card games-proof-card--icon" role="listitem">
           <button
             type="button"
             className="games-proof-card__button"
@@ -28,7 +28,7 @@ export default function PlayablesGrid({
                 alt=""
                 width={512}
                 height={512}
-                loading={index < 3 ? "eager" : "lazy"}
+                loading={index < 6 ? "eager" : "lazy"}
                 decoding="async"
               />
             </span>

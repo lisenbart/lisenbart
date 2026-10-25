@@ -73,6 +73,7 @@ export default function GamesPage() {
             title={page.playableProduction.title}
             text={page.playableProduction.text}
             railLabel={`${page.playableProduction.title} examples`}
+            density="icons"
           >
             <PlayablesGrid
               items={gamesPlayables}

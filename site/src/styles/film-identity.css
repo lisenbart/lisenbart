@@ -5615,6 +5615,27 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
 }
 
+/* Playable icons: full mark visible, smaller cards → more per row */
+.games-service--icons {
+  --games-rail-visible: 2.6;
+  --games-rail-gap: 0.55rem;
+  align-items: start;
+}
+
+.games-proof-card--icon .games-proof-card__media {
+  aspect-ratio: 1 / 1;
+  background: transparent;
+}
+
+.games-proof-card--icon .games-proof-card__media img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.games-proof-card--icon .games-proof-card__meta {
+  min-height: 0;
+}
+
 .games-proof-card__play {
   position: absolute;
   inset: 0;
@@ -5704,6 +5725,11 @@ html[data-hero-period="evening"] .home-explore {
     grid-template-columns: minmax(11.5rem, 15.5rem) minmax(0, 1fr);
     column-gap: clamp(1.25rem, 2.5vw, 2rem);
     align-items: center;
+  }
+
+  .games-service--icons {
+    --games-rail-visible: 6;
+    align-items: start;
   }
 
   .games-service__media.is-scrollable {

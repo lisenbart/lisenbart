@@ -7,12 +7,15 @@ export default function GamesServiceBlock({
   title,
   text,
   railLabel,
+  density = "video",
   children,
 }: {
   titleId: string;
   title: string;
   text: string;
   railLabel: string;
+  /** `icons` = smaller playable covers, more visible per row. */
+  density?: "video" | "icons";
   children: ReactNode;
 }) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -47,7 +50,12 @@ export default function GamesServiceBlock({
   };
 
   return (
-    <article className="games-service" aria-labelledby={titleId}>
+    <article
+      className={["games-service", density === "icons" ? "games-service--icons" : ""]
+        .filter(Boolean)
+        .join(" ")}
+      aria-labelledby={titleId}
+    >
       <FilmReveal>
         <div className="games-service__copy">
           <h3 id={titleId} className="studio-models__title">
