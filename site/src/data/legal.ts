@@ -86,7 +86,7 @@ export const legalConfig = {
       path: "/cookie-policy/",
       seoTitle: "Cookie Policy | LISENBART FILM",
       seoDescription:
-        "Cookies and similar technologies on lisenbart.com: essential storage, optional Google Analytics after consent, Vimeo and YouTube on play, and how to change your choice.",
+        "How lisenbart.com uses cookies: essential storage, optional Google Analytics, and video players that load only when you press play.",
     },
   },
 } as const;
