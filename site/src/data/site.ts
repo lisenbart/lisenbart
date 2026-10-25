@@ -525,83 +525,9 @@ export const site = {
       vimeoId: "944158555" as string | null,
       poster: "/images/reels/games/showreel-poster.webp",
     },
-    selectedWorkHeading: "Selected work",
-    selectedWorkMore: "View More",
-    selectedWorkLess: "View Less",
-    /** Order 1→8 as supplied (Vimeo). */
-    selectedWork: [
-      {
-        id: "ga-plarium-deathknight-01",
-        title: "Deathknight",
-        client: "Plarium",
-        poster: "/images/work/ga-plarium-deathknight-01-poster.webp",
-        vimeoId: "1239139826",
-      },
-      {
-        id: "ga-bingo-blitz",
-        title: "Bingo Blitz",
-        client: "Bingo Blitz",
-        poster: "/images/work/ga-bingo-blitz-poster.webp",
-        vimeoId: "1239139903",
-      },
-      {
-        id: "ga-plarium-alice",
-        title: "Alice Choice",
-        client: "Plarium",
-        poster: "/images/work/ga-plarium-alice-poster.webp",
-        vimeoId: "1239139866",
-      },
-      {
-        id: "ga-moon-pet-master-01",
-        title: "Pet Master",
-        client: "Moon Active",
-        poster: "/images/work/ga-moon-pet-master-01-poster.webp",
-        vimeoId: "1239139946",
-      },
-      {
-        id: "ga-plarium-deathknight-02",
-        title: "Deathknight",
-        client: "Plarium",
-        poster: "/images/work/ga-plarium-deathknight-02-poster.webp",
-        vimeoId: "1239139850",
-      },
-      {
-        id: "ga-moon-cards-battle",
-        title: "Cards Battle",
-        client: "Moon Active",
-        poster: "/images/work/ga-moon-cards-battle-poster.webp",
-        vimeoId: "1239140148",
-      },
-      {
-        id: "ga-playtika-gop",
-        title: "Full House",
-        client: "Playtika",
-        poster: "/images/work/ga-playtika-gop-poster.webp",
-        vimeoId: "1239140019",
-      },
-      {
-        id: "ga-moon-pet-master-02",
-        title: "Pet Master",
-        client: "Moon Active",
-        poster: "/images/work/ga-moon-pet-master-02-poster.webp",
-        vimeoId: "1239140117",
-      },
-    ] as const,
+    viewMore: "View More",
+    viewLess: "View Less",
     whatWeMakeHeading: "What we make",
-    capabilities: [
-      {
-        title: "Creative Production",
-        text: "Turn your briefs and assets into campaign-ready creatives.",
-      },
-      {
-        title: "Playable Production",
-        text: "Interactive ads, built and adapted for your campaigns.",
-      },
-      {
-        title: "Creative Development",
-        text: "New concepts, scripts and creative direction.",
-      },
-    ] as const,
     formats: [
       "Ad creatives",
       "Variants & localisation",
@@ -610,8 +536,80 @@ export const site = {
       "Store & ASO assets",
       "In-game motion & art",
     ] as const,
-    playablesHeading: "Playables",
-    playablesSubtitle: "Tap to play. Real playable ads we built for live games.",
+    /** Same 8 Vimeo pieces as before — split under their service. */
+    creativeProduction: {
+      title: "Creative Production",
+      text: "Turn your briefs and assets into campaign-ready creatives.",
+      work: [
+        {
+          id: "ga-bingo-blitz",
+          title: "Bingo Blitz",
+          client: "Bingo Blitz",
+          poster: "/images/work/ga-bingo-blitz-poster.webp",
+          vimeoId: "1239139903",
+        },
+        {
+          id: "ga-moon-pet-master-01",
+          title: "Pet Master",
+          client: "Moon Active",
+          poster: "/images/work/ga-moon-pet-master-01-poster.webp",
+          vimeoId: "1239139946",
+        },
+        {
+          id: "ga-moon-pet-master-02",
+          title: "Pet Master",
+          client: "Moon Active",
+          poster: "/images/work/ga-moon-pet-master-02-poster.webp",
+          vimeoId: "1239140117",
+        },
+        {
+          id: "ga-moon-cards-battle",
+          title: "Cards Battle",
+          client: "Moon Active",
+          poster: "/images/work/ga-moon-cards-battle-poster.webp",
+          vimeoId: "1239140148",
+        },
+        {
+          id: "ga-playtika-gop",
+          title: "Full House",
+          client: "Playtika",
+          poster: "/images/work/ga-playtika-gop-poster.webp",
+          vimeoId: "1239140019",
+        },
+      ] as const,
+    },
+    playableProduction: {
+      title: "Playable Production",
+      text: "Interactive ads, built and adapted for your campaigns.",
+      tapLabel: "Tap to play",
+    },
+    creativeDevelopment: {
+      title: "Creative Development",
+      text: "New concepts, scripts and creative direction.",
+      work: [
+        {
+          id: "ga-plarium-deathknight-01",
+          title: "Deathknight",
+          client: "Plarium",
+          poster: "/images/work/ga-plarium-deathknight-01-poster.webp",
+          vimeoId: "1239139826",
+        },
+        {
+          id: "ga-plarium-deathknight-02",
+          title: "Deathknight",
+          client: "Plarium",
+          poster: "/images/work/ga-plarium-deathknight-02-poster.webp",
+          vimeoId: "1239139850",
+        },
+        {
+          id: "ga-plarium-alice",
+          title: "Alice Choice",
+          client: "Plarium",
+          poster: "/images/work/ga-plarium-alice-poster.webp",
+          vimeoId: "1239139866",
+        },
+      ] as const,
+    },
     howHeading: "How we work",
     howSteps: [
       {

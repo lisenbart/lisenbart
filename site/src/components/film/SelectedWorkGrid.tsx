@@ -16,8 +16,8 @@ export type SelectedWorkItem = {
   youtubeId?: string;
 };
 
-/** First visible row on desktop (4-col test). Revert to 3 with the grid if we roll back. */
-const PREVIEW_COUNT = 4;
+/** First visible cards before "View more". Client Work / AI use 4; Games service blocks pass their own. */
+const DEFAULT_PREVIEW_COUNT = 4;
 
 function resolvePoster(item: SelectedWorkItem): string | null {
   if (item.poster) {
@@ -41,6 +41,8 @@ export default function SelectedWorkGrid({
   moreLabel,
   lessLabel,
   gridId,
+  previewCount = DEFAULT_PREVIEW_COUNT,
+  embedded = false,
 }: {
   items: readonly SelectedWorkItem[];
   label: string;
@@ -49,13 +51,17 @@ export default function SelectedWorkGrid({
   moreLabel: string;
   lessLabel: string;
   gridId: string;
+  /** How many cards show before View more. */
+  previewCount?: number;
+  /** Nested under a parent section (no outer studio-section chrome). */
+  embedded?: boolean;
 }) {
   const { openReel } = useReel();
   const isNarrow = useIsNarrowViewport();
   const gridRef = useRef<HTMLUListElement>(null);
   const [moreOpen, setMoreOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const hasMore = items.length > PREVIEW_COUNT;
+  const hasMore = items.length > previewCount;
 
   const playItem = (item: SelectedWorkItem) => {
     const reelTitle = `${item.client} — ${item.title}`;
@@ -112,17 +118,8 @@ export default function SelectedWorkGrid({
     };
   }, [isNarrow, moreOpen, items]);
 
-  return (
-    <section
-      className={[
-        "studio-section studio-section--selected-work studio-section--selected-work-compact",
-        intro ? "studio-section--selected-work-intro" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      aria-labelledby={intro ? `${gridId}-heading` : undefined}
-      aria-label={intro ? undefined : label}
-    >
+  const body = (
+    <>
       {intro ? (
         <FilmReveal>
           <div className="client-selected-intro">
@@ -140,7 +137,7 @@ export default function SelectedWorkGrid({
         aria-label={label}
       >
         {items.map((item, index) => {
-          const collapsed = hasMore && !moreOpen && index >= PREVIEW_COUNT;
+          const collapsed = hasMore && !moreOpen && index >= previewCount;
           const canPlay = Boolean(item.youtubeId || item.vimeoId);
           const poster = resolvePoster(item);
           const alt = `${item.client} — ${item.title}`;
@@ -178,7 +175,7 @@ export default function SelectedWorkGrid({
                       alt=""
                       width={1280}
                       height={720}
-                      loading={index < PREVIEW_COUNT ? "eager" : "lazy"}
+                      loading={index < previewCount ? "eager" : "lazy"}
                       decoding="async"
                       onError={(event) => onYouTubePosterError(event, item.youtubeId)}
                     />
@@ -227,6 +224,25 @@ export default function SelectedWorkGrid({
           </button>
         </div>
       ) : null}
+    </>
+  );
+
+  if (embedded) {
+    return <div className="games-service__media">{body}</div>;
+  }
+
+  return (
+    <section
+      className={[
+        "studio-section studio-section--selected-work studio-section--selected-work-compact",
+        intro ? "studio-section--selected-work-intro" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-labelledby={intro ? `${gridId}-heading` : undefined}
+      aria-label={intro ? undefined : label}
+    >
+      {body}
     </section>
   );
 }

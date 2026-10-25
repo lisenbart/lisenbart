@@ -41,15 +41,7 @@ export default function GamesPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <SelectedWorkGrid
-          items={page.selectedWork}
-          label={page.selectedWorkHeading}
-          moreLabel={page.selectedWorkMore}
-          lessLabel={page.selectedWorkLess}
-          gridId="games-selected-work-grid"
-        />
-
-        <section className="studio-section studio-section--tint" aria-labelledby="games-what-heading">
+        <section className="studio-section" aria-labelledby="games-what-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -57,32 +49,74 @@ export default function GamesPage() {
                   {page.whatWeMakeHeading}
                 </h2>
               </div>
+              <div className="studio-section__body">
+                <p className="client-make__line client-make__line--secondary games-formats games-formats--inline">
+                  <span className="client-make__label">Formats</span>
+                  {page.formats.join(" · ")}
+                </p>
+              </div>
             </div>
           </FilmReveal>
-          <ul
-            className="studio-how-steps studio-how-steps--3 studio-section__full"
-            aria-label="What we make"
-          >
-            {page.capabilities.map((item) => (
-              <li key={item.title} className="studio-how-steps__item">
-                <h3 className="studio-models__title">{item.title}</h3>
-                <p className="studio-models__text">{item.text}</p>
-              </li>
-            ))}
-          </ul>
-          <p className="client-make__line client-make__line--secondary studio-section__full games-formats">
-            <span className="client-make__label">Formats</span>
-            {page.formats.join(" · ")}
-          </p>
-        </section>
 
-        <PlayablesGrid
-          items={gamesPlayables}
-          heading={page.playablesHeading}
-          subtitle={page.playablesSubtitle}
-          moreLabel={page.selectedWorkMore}
-          lessLabel={page.selectedWorkLess}
-        />
+          <div className="games-service" aria-labelledby="games-creative-production-heading">
+            <FilmReveal>
+              <div className="games-service__copy">
+                <h3 id="games-creative-production-heading" className="studio-models__title">
+                  {page.creativeProduction.title}
+                </h3>
+                <p className="studio-models__text">{page.creativeProduction.text}</p>
+              </div>
+            </FilmReveal>
+            <SelectedWorkGrid
+              items={page.creativeProduction.work}
+              label={page.creativeProduction.title}
+              moreLabel={page.viewMore}
+              lessLabel={page.viewLess}
+              gridId="games-creative-production-grid"
+              previewCount={3}
+              embedded
+            />
+          </div>
+
+          <div className="games-service" aria-labelledby="games-playable-production-heading">
+            <FilmReveal>
+              <div className="games-service__copy">
+                <h3 id="games-playable-production-heading" className="studio-models__title">
+                  {page.playableProduction.title}
+                </h3>
+                <p className="studio-models__text">{page.playableProduction.text}</p>
+              </div>
+            </FilmReveal>
+            <PlayablesGrid
+              items={gamesPlayables}
+              label={page.playableProduction.title}
+              moreLabel={page.viewMore}
+              lessLabel={page.viewLess}
+              gridId="games-playables-grid"
+              tapLabel={page.playableProduction.tapLabel}
+            />
+          </div>
+
+          <div className="games-service" aria-labelledby="games-creative-development-heading">
+            <FilmReveal>
+              <div className="games-service__copy">
+                <h3 id="games-creative-development-heading" className="studio-models__title">
+                  {page.creativeDevelopment.title}
+                </h3>
+                <p className="studio-models__text">{page.creativeDevelopment.text}</p>
+              </div>
+            </FilmReveal>
+            <SelectedWorkGrid
+              items={page.creativeDevelopment.work}
+              label={page.creativeDevelopment.title}
+              moreLabel={page.viewMore}
+              lessLabel={page.viewLess}
+              gridId="games-creative-development-grid"
+              previewCount={3}
+              embedded
+            />
+          </div>
+        </section>
 
         <section className="studio-section studio-section--tint" aria-labelledby="games-how-heading">
           <FilmReveal>

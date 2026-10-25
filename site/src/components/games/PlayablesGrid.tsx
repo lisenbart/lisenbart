@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import FilmReveal from "@/components/film/FilmReveal";
 import PlayableModal from "@/components/games/PlayableModal";
 import {
   PLAYABLES_PREVIEW_COUNT,
@@ -10,41 +9,27 @@ import { publicAsset } from "@/lib/publicAsset";
 
 export default function PlayablesGrid({
   items,
-  heading,
-  subtitle,
+  label,
   moreLabel,
   lessLabel,
+  gridId = "games-playables-grid",
+  tapLabel = "Tap to play",
 }: {
   items: readonly PlayableItem[];
-  heading: string;
-  subtitle: string;
+  /** Accessible name for the grid (service title). */
+  label: string;
   moreLabel: string;
   lessLabel: string;
+  gridId?: string;
+  tapLabel?: string;
 }) {
   const [moreOpen, setMoreOpen] = useState(false);
   const [active, setActive] = useState<PlayableItem | null>(null);
   const hasMore = items.length > PLAYABLES_PREVIEW_COUNT;
-  const gridId = "games-playables-grid";
 
   return (
-    <section
-      className="studio-section games-playables"
-      aria-labelledby="games-playables-heading"
-    >
-      <FilmReveal>
-        <div className="studio-section__grid">
-          <div className="studio-section__aside">
-            <h2 id="games-playables-heading" className="studio-section-heading">
-              {heading}
-            </h2>
-          </div>
-          <div className="studio-section__body">
-            <p className="studio-models__note games-playables__subtitle">{subtitle}</p>
-          </div>
-        </div>
-      </FilmReveal>
-
-      <ul id={gridId} className="games-playables__grid" aria-label={heading}>
+    <div className="games-service__media games-playables">
+      <ul id={gridId} className="games-playables__grid" aria-label={label}>
         {items.map((item, index) => {
           const collapsed = hasMore && !moreOpen && index >= PLAYABLES_PREVIEW_COUNT;
           return (
@@ -61,7 +46,7 @@ export default function PlayablesGrid({
               <button
                 type="button"
                 className="games-playables__button"
-                aria-label={`Play ${item.game}`}
+                aria-label={`${tapLabel}: ${item.game}`}
                 tabIndex={collapsed ? -1 : undefined}
                 onClick={() => setActive(item)}
               >
@@ -75,7 +60,10 @@ export default function PlayablesGrid({
                     decoding="async"
                   />
                 </span>
-                <span className="games-playables__name">{item.game}</span>
+                <span className="games-playables__meta">
+                  <span className="games-playables__name">{item.game}</span>
+                  <span className="games-playables__tap">{tapLabel}</span>
+                </span>
               </button>
             </li>
           );
@@ -119,6 +107,6 @@ export default function PlayablesGrid({
         title={active ? active.game : "Playable"}
         onClose={() => setActive(null)}
       />
-    </section>
+    </div>
   );
 }
