@@ -588,7 +588,7 @@ export const site = {
     creativeDevelopment: {
       title: "Creative Development",
       text: "New concepts, scripts and creative direction.",
-      note: "Typical delivery: 15\u201130\u00A0days.",
+      note: "Typical delivery: 20\u201140\u00A0days.",
       work: [
         {
           id: "ga-plarium-deathknight-01",
