@@ -1400,6 +1400,20 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   gap: var(--space-3);
 }
 
+/* AI What we make — formats + note side by side in the body column */
+.client-make--row {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .client-make--row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--space-5);
+    align-items: start;
+  }
+}
+
 .client-make__line {
   margin: 0;
   font-family: var(--font-body);

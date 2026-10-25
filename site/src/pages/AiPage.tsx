@@ -53,8 +53,9 @@ export default function AiPage() {
                   {page.whatWeMakeHeading}
                 </h2>
               </div>
-              <div className="studio-section__body">
+              <div className="studio-section__body client-make client-make--row">
                 <p className="client-make__line">{page.formats.join(" · ")}</p>
+                <p className="client-make__line client-make__line--secondary">{page.whatWeMakeNote}</p>
               </div>
             </div>
           </FilmReveal>
@@ -63,7 +64,6 @@ export default function AiPage() {
         <SelectedWorkGrid
           items={page.selectedWork}
           label={page.selectedWorkHeading}
-          intro={page.selectedWorkIntro}
           moreLabel={page.selectedWorkMore}
           lessLabel={page.selectedWorkLess}
           gridId="ai-selected-work-grid"

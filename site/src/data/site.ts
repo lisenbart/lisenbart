@@ -671,10 +671,11 @@ export const site = {
       poster: "/images/reels/ai/showreel-poster.webp",
     },
     selectedWorkHeading: "Selected work",
-    selectedWorkIntro:
-      "Every project below was developed and produced by our team — from idea to final cut.",
     selectedWorkMore: "View More",
     selectedWorkLess: "View Less",
+    /** Second column under What we make (beside formats). */
+    whatWeMakeNote:
+      "Every project below was developed and produced by our team — from idea to final cut.",
     /** title + client (Type · production time). playAria for button/reel labels. */
     selectedWork: [
       {
