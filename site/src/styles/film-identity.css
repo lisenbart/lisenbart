@@ -1021,6 +1021,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   margin-top: var(--space-4);
 }
 
+.ai-film-made__closing {
+  max-width: 40rem;
+}
+
 .studio-how-steps .studio-models__title {
   overflow-wrap: normal;
   word-break: normal;

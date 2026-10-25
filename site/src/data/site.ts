@@ -789,6 +789,8 @@ export const site = {
         imageAlt: "Sound and color",
       },
     ] as const,
+    filmMadeClosing:
+      "Your AI policy, respected — we work within your brand's rules on AI.",
     howHeading: "How we use AI",
     howIntro: "The brief defines AI's role, not the other way round.",
     howSteps: [
@@ -821,21 +823,6 @@ export const site = {
       "Product animation",
       "Title sequences",
       "Music videos",
-    ] as const,
-    principlesHeading: "Principles",
-    principles: [
-      {
-        title: "Directed, not generated",
-        text: "The creative decisions stay with filmmakers.",
-      },
-      {
-        title: "Finished by hand",
-        text: "Compositing, sound and grading by our team.",
-      },
-      {
-        title: "Your AI policy, respected",
-        text: "We work within your brand's rules on AI.",
-      },
     ] as const,
     divisionHeading: "GLOWL",
     divisionText: "Our AI & hybrid production team, part of LISENBART FILM.",

@@ -14,7 +14,7 @@ const hero = page.showreel;
 
 /** Content bands above contact (hero skipped). Last before contact = tint.
  * Index 1 = Selected work grid (own section chrome). */
-const BANDS = SHOW_DIVISIONS ? 6 : 5;
+const BANDS = SHOW_DIVISIONS ? 5 : 4;
 
 export default function AiPage() {
   return (
@@ -123,6 +123,9 @@ export default function AiPage() {
               );
             })}
           </ol>
+          <p className="studio-models__note studio-section__full ai-film-made__closing">
+            {page.filmMadeClosing}
+          </p>
         </section>
 
         <section className={studioSectionClass(3, BANDS)} aria-labelledby="ai-how-heading">
@@ -149,32 +152,9 @@ export default function AiPage() {
           </ol>
         </section>
 
-        <section className={studioSectionClass(4, BANDS)} aria-labelledby="ai-principles-heading">
-          <FilmReveal>
-            <div className="studio-section__grid">
-              <div className="studio-section__aside">
-                <h2 id="ai-principles-heading" className="studio-section-heading">
-                  {page.principlesHeading}
-                </h2>
-              </div>
-            </div>
-          </FilmReveal>
-          <ul
-            className="studio-how-steps studio-how-steps--3 studio-section__full"
-            aria-label="Principles"
-          >
-            {page.principles.map((item) => (
-              <li key={item.title} className="studio-how-steps__item">
-                <h3 className="studio-models__title">{item.title}</h3>
-                <p className="studio-models__text">{item.text}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
         {SHOW_DIVISIONS ? (
           <section
-            className={studioSectionClass(5, BANDS, "hub-division hub-division--glowl")}
+            className={studioSectionClass(4, BANDS, "hub-division hub-division--glowl")}
             aria-labelledby="ai-division-heading"
           >
             <FilmReveal>
