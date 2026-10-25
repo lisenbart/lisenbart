@@ -1,5 +1,6 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import FilmReveal from "@/components/film/FilmReveal";
+import { Arrow } from "@/components/film/FilmIcons";
 import { useMatchMedia } from "@/hooks/useMatchMedia";
 
 export default function GamesServiceBlock({
@@ -26,6 +27,25 @@ export default function GamesServiceBlock({
 }) {
   const railRef = useRef<HTMLDivElement>(null);
   const isMobile = useMatchMedia("(max-width: 899px)");
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+
+  const updateRailNav = useCallback(() => {
+    const rail = railRef.current;
+    if (!rail) {
+      setCanScrollLeft(false);
+      setCanScrollRight(false);
+      return;
+    }
+    const maxScroll = rail.scrollWidth - rail.clientWidth;
+    if (maxScroll <= 2) {
+      setCanScrollLeft(false);
+      setCanScrollRight(false);
+      return;
+    }
+    setCanScrollLeft(rail.scrollLeft > 2);
+    setCanScrollRight(rail.scrollLeft < maxScroll - 2);
+  }, []);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -35,11 +55,11 @@ export default function GamesServiceBlock({
       rail.querySelectorAll<HTMLElement>(".games-proof-card.is-active").forEach((card) => {
         card.classList.remove("is-active");
       });
-      return;
     }
 
     let raf = 0;
     const updateActive = () => {
+      if (!isMobile) return;
       const midX = window.innerWidth * 0.5;
       const midY = window.innerHeight * 0.5;
       let best: HTMLElement | null = null;
@@ -72,20 +92,41 @@ export default function GamesServiceBlock({
 
     const onScrollOrResize = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(updateActive);
+      raf = requestAnimationFrame(() => {
+        updateActive();
+        updateRailNav();
+      });
     };
 
     updateActive();
+    updateRailNav();
     rail.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize);
+
+    const ro =
+      typeof ResizeObserver !== "undefined" ? new ResizeObserver(onScrollOrResize) : null;
+    ro?.observe(rail);
+
     return () => {
       cancelAnimationFrame(raf);
       rail.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("scroll", onScrollOrResize);
       window.removeEventListener("resize", onScrollOrResize);
+      ro?.disconnect();
     };
-  }, [isMobile, children]);
+  }, [isMobile, children, updateRailNav]);
+
+  const scrollRail = (direction: -1 | 1) => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const firstCard = rail.querySelector<HTMLElement>(".games-proof-card");
+    const step = firstCard
+      ? firstCard.getBoundingClientRect().width +
+        (Number.parseFloat(getComputedStyle(rail).columnGap || "0") || 8)
+      : rail.clientWidth * 0.75;
+    rail.scrollBy({ left: direction * step, behavior: "smooth" });
+  };
+
+  const showDesktopNav = !isMobile && (canScrollLeft || canScrollRight);
 
   return (
     <section
@@ -109,6 +150,34 @@ export default function GamesServiceBlock({
       </FilmReveal>
 
       <div className="games-service__media">
+        {showDesktopNav ? (
+          <div className="games-service__rail-nav">
+            {canScrollLeft ? (
+              <button
+                type="button"
+                className="games-service__rail-btn games-service__rail-btn--prev"
+                aria-label="Scroll previews left"
+                onClick={() => scrollRail(-1)}
+              >
+                <span className="circle-link games-service__rail-btn-circle" aria-hidden="true">
+                  <Arrow />
+                </span>
+              </button>
+            ) : null}
+            {canScrollRight ? (
+              <button
+                type="button"
+                className="games-service__rail-btn games-service__rail-btn--next"
+                aria-label="Scroll previews right"
+                onClick={() => scrollRail(1)}
+              >
+                <span className="circle-link games-service__rail-btn-circle" aria-hidden="true">
+                  <Arrow />
+                </span>
+              </button>
+            ) : null}
+          </div>
+        ) : null}
         <div
           ref={railRef}
           className="games-service__rail"

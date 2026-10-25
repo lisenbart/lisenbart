@@ -5576,6 +5576,10 @@ html[data-hero-period="evening"] .home-explore {
   max-width: none;
 }
 
+.games-service__rail-nav {
+  display: none;
+}
+
 .games-service__rail {
   display: grid;
   grid-auto-flow: column;
@@ -5591,8 +5595,15 @@ html[data-hero-period="evening"] .home-explore {
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
+}
+
+.games-service__rail::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .games-proof-card {
@@ -5823,6 +5834,54 @@ html[data-hero-period="evening"] .home-explore {
   .games-service--icons.studio-section {
     /* denser so phone frames stay compact while showing full screenshot */
     --games-rail-visible: 7;
+  }
+
+  .games-service__rail-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.45rem;
+    min-height: 2.45rem;
+    margin: 0 0 0.55rem;
+    padding-right: var(--gutter);
+  }
+
+  .games-service__rail-btn {
+    display: grid;
+    place-items: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .games-service__rail-btn:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+    border-radius: 50%;
+  }
+
+  .games-service__rail-btn-circle {
+    width: 2.45rem;
+    height: 2.45rem;
+    transition: background 180ms ease, color 180ms ease;
+  }
+
+  .games-service__rail-btn:hover .games-service__rail-btn-circle,
+  .games-service__rail-btn:focus-visible .games-service__rail-btn-circle {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  .games-service__rail-btn-circle .arrow-icon {
+    width: 1.05rem;
+  }
+
+  /* Left chevron — mirror the shared right arrow */
+  .games-service__rail-btn--prev .arrow-icon {
+    transform: scaleX(-1);
   }
 
   .games-proof-card--icon .games-proof-card__media {
