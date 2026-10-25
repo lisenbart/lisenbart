@@ -5496,7 +5496,7 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: 0;
 }
 
-/* Compact service rows — full-bleed rail to the right edge */
+/* Compact service rows — white band, full-bleed rail to the right edge */
 .games-service.studio-section {
   --games-rail-gap: 0.5rem;
   --games-rail-visible: 1.2;
@@ -5509,26 +5509,8 @@ html[data-hero-period="evening"] .home-explore {
   padding-bottom: clamp(1.1rem, 2.2vw, 1.5rem);
   padding-right: 0 !important;
   overflow: visible;
+  background: var(--surface-white);
   color: var(--games-service-fg);
-}
-
-.games-service--production {
-  background: #19cdfe;
-}
-
-.games-service--playables {
-  background: #fbb819;
-}
-
-.games-service--development {
-  --games-service-fg: #ffffff;
-  background: #3c5d73;
-}
-
-.games-service--development .studio-models__title,
-.games-service--development .studio-models__text,
-.games-service--development .games-service__note {
-  color: #ffffff;
 }
 
 .games-service > .film-reveal {
@@ -5558,12 +5540,7 @@ html[data-hero-period="evening"] .home-explore {
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   line-height: 1.35;
-  color: var(--games-service-fg);
-  opacity: 0.82;
-}
-
-.games-service--development .games-service__note {
-  opacity: 0.88;
+  color: var(--muted);
 }
 
 .games-service__media {
