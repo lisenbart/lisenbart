@@ -5704,6 +5704,22 @@ html[data-hero-period="evening"] .home-explore {
   transform: scale(1);
 }
 
+/* Playables: always show play affordance (touch + desktop) */
+.games-proof-card--icon .games-proof-card__play {
+  opacity: 1;
+  background: rgba(10, 18, 37, 0.18);
+}
+
+.games-proof-card--icon .games-proof-card__play-circle {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.games-proof-card--icon .games-proof-card__button:hover .games-proof-card__play,
+.games-proof-card--icon .games-proof-card__button:focus-visible .games-proof-card__play {
+  background: rgba(10, 18, 37, 0.32);
+}
+
 .games-proof-card__meta {
   display: flex;
   flex-direction: column;

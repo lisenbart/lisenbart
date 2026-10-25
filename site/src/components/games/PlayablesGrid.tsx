@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PlayIcon } from "@/components/film/FilmIcons";
 import PlayableModal from "@/components/games/PlayableModal";
 import type { PlayableItem } from "@/data/playables";
 import { publicAsset } from "@/lib/publicAsset";
@@ -31,6 +32,11 @@ export default function PlayablesGrid({
                 loading={index < 6 ? "eager" : "lazy"}
                 decoding="async"
               />
+              <span className="games-proof-card__play" aria-hidden="true">
+                <span className="games-proof-card__play-circle">
+                  <PlayIcon />
+                </span>
+              </span>
               <span className="games-proof-card__meta">
                 <span className="games-proof-card__name">{item.game}</span>
                 <span className="games-proof-card__tap">{tapLabel}</span>
