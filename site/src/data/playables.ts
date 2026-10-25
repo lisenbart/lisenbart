@@ -6,90 +6,90 @@ export type PlayableItem = {
   cover: string;
 };
 
-/** Order matches the client brief. Covers are stills extracted from each playable. */
+/** Order matches the client brief. Covers are rounded phone screenshots. */
 export const gamesPlayables: readonly PlayableItem[] = [
   {
     id: "bb-blitzy-runway",
     game: "Bingo Blitz",
     file: "/playables/BB_BlitzyRunway.html",
-    cover: "/images/playables/thumbs/BB_BlitzyRunway.jpg",
+    cover: "/images/playables/thumbs/BB_BlitzyRunway.webp",
   },
   {
     id: "sgh-snoopy",
     game: "Solitaire Grand Harvest",
     file: "/playables/SGH_Snoopy_Moloco.html",
-    cover: "/images/playables/thumbs/SGH_Snoopy_Moloco.jpg",
+    cover: "/images/playables/thumbs/SGH_Snoopy_Moloco.webp",
   },
   {
     id: "bf-merge-fiends",
     game: "Best Fiends",
     file: "/playables/BF_MergeFiends.html",
-    cover: "/images/playables/thumbs/BF_MergeFiends.jpg",
+    cover: "/images/playables/thumbs/BF_MergeFiends.webp",
   },
   {
     id: "sm-balinko",
     game: "Slotomania",
     file: "/playables/SM_Balinko.html",
-    cover: "/images/playables/thumbs/SM_Balinko.jpg",
+    cover: "/images/playables/thumbs/SM_Balinko.webp",
   },
   {
     id: "rdr",
     game: "Redecor",
     file: "/playables/RDR.html",
-    cover: "/images/playables/thumbs/RDR.jpg",
+    cover: "/images/playables/thumbs/RDR.webp",
   },
   {
     id: "wsop-all-in",
     game: "WSOP Poker",
     file: "/playables/WSOP_AllIn.html",
-    cover: "/images/playables/thumbs/WSOP_AllIn.jpg",
+    cover: "/images/playables/thumbs/WSOP_AllIn.webp",
   },
   {
     id: "bb-gameplay-6x2",
     game: "Bingo Blitz",
     file: "/playables/BB_Gameplay_6x2.html",
-    cover: "/images/playables/thumbs/BB_Gameplay_6x2.jpg",
+    cover: "/images/playables/thumbs/BB_Gameplay_6x2.webp",
   },
   {
     id: "bb-choose-your-room",
     game: "Bingo Blitz",
     file: "/playables/BB_ChooseYourRoom.html",
-    cover: "/images/playables/thumbs/BB_ChooseYourRoom.jpg",
+    cover: "/images/playables/thumbs/BB_ChooseYourRoom.webp",
   },
   {
     id: "bb-race",
     game: "Bingo Blitz",
     file: "/playables/BB_Race.html",
-    cover: "/images/playables/thumbs/BB_Race.jpg",
+    cover: "/images/playables/thumbs/BB_Race.webp",
   },
   {
     id: "bf-defeat-slug",
     game: "Best Fiends",
     file: "/playables/BF_DefeatSlug.html",
-    cover: "/images/playables/thumbs/BF_DefeatSlug.jpg",
+    cover: "/images/playables/thumbs/BF_DefeatSlug.webp",
   },
   {
     id: "bf-simplified",
     game: "Best Fiends",
     file: "/playables/BF_SimplifiedGamePlay_Moloco.html",
-    cover: "/images/playables/thumbs/BF_SimplifiedGamePlay_Moloco.jpg",
+    cover: "/images/playables/thumbs/BF_SimplifiedGamePlay_Moloco.webp",
   },
   {
     id: "hof-triple-magma",
     game: "House of Fun",
     file: "/playables/HOF_TripleMagma_Moloco.html",
-    cover: "/images/playables/thumbs/HOF_TripleMagma_Moloco.jpg",
+    cover: "/images/playables/thumbs/HOF_TripleMagma_Moloco.webp",
   },
   {
     id: "hof-bank-of-jackpot",
     game: "House of Fun",
     file: "/playables/HOF_BankOfJackpot.html",
-    cover: "/images/playables/thumbs/HOF_BankOfJackpot.jpg",
+    cover: "/images/playables/thumbs/HOF_BankOfJackpot.webp",
   },
   {
     id: "sgh-hungry-carrie",
     game: "Solitaire Grand Harvest",
     file: "/playables/SGH_HungryCarrie_Moloco.html",
-    cover: "/images/playables/thumbs/SGH_HungryCarrie_Moloco.jpg",
+    cover: "/images/playables/thumbs/SGH_HungryCarrie_Moloco.webp",
   },
 ] as const;
