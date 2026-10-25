@@ -31,7 +31,7 @@ export const site = {
   homeStudioTeaser: {
     eyebrow: "About us",
     heading: "Studio",
-    text: "Independent animation studio since 2006. One creative lead, specialized teams around every project.",
+    text: "Independent since 2006. Every project gets one director and a team picked for the job.",
     cta: "Meet the studio",
     founderCta: "Meet the founder",
   },
@@ -40,8 +40,8 @@ export const site = {
     items: [
       {
         label: "For AI-Driven Projects",
-        statement: "New tools. Same creative standards.",
-        text: "AI, animation, compositing — whatever serves the shot.",
+        statement: "AI speeds things up. It doesn't lower the bar.",
+        text: "Mix it with animation and compositing, or let it carry the whole film. The shot decides.",
         cta: "Explore AI & Hybrid",
         hub: "ai" as const,
         image: "/images/home/ai-path-preview.webp",
@@ -50,7 +50,7 @@ export const site = {
       {
         label: "For Brands & Agencies",
         statement: "From the first sketch to the final cut.",
-        text: "Commercial films, animation and creative production. Bring us a brief, a script or just the beginnings of an idea.",
+        text: "Commercials and brand films for people who show up with a brief, a script or just a hunch.",
         cta: "Explore Client Work",
         hub: "client-work" as const,
         image: "/images/home/brands-path-preview.webp",
@@ -59,7 +59,7 @@ export const site = {
       {
         label: "For Game Studios",
         statement: "Let's get your game noticed.",
-        text: "Video ads, UA creatives and playables. From ready-to-produce assets to fresh creative concepts.",
+        text: "Video ads, UA creatives and playables, built from your assets or dreamed up from scratch.",
         cta: "Explore Game Ads",
         hub: "games" as const,
         image: "/images/home/games-path-preview.webp",
@@ -68,7 +68,7 @@ export const site = {
       {
         label: "For Film & IP Partners",
         statement: "We've got stories of our own, too.",
-        text: "Original films and IP in development. Always open to the right creative partners and co-producers.",
+        text: "Some of our films and characters are already out in the world, and more are on the way. Co-producers welcome.",
         cta: "Explore Originals",
         hub: "originals" as const,
         image: "/images/home/originals-path-preview.webp",
@@ -301,7 +301,7 @@ export const site = {
     /** Under-hero intro (was hero lead). */
     introHeading: "Stories of our own",
     introText:
-      "Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
+      "Films and characters we made because we wanted to. Now we're looking for co-producers, distributors and platforms to take them further.",
     seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
       "Original animated films and preschool IP: award-winning short Unnecessary Things, The Last Kozak in development, and Scoopy Cap with 200M+ views.",
@@ -338,7 +338,7 @@ export const site = {
         format: "Animated short · English teaser available",
         logline:
           "A nameless Cossack is trapped in a time loop, forced to face evil again and again. An action-fantasy drawing on Ukrainian mythology, comic-book rhythm and psychological tension.",
-        secondary: "Script, treatment, storyboard and art complete.",
+        secondary: "Script, treatment, storyboard and art are done.",
         ctaLabel: "Request the pitch",
         ctaKind: "contact" as const,
       },
@@ -378,15 +378,15 @@ export const site = {
     partners: [
       {
         title: "Co-production",
-        text: "Develop and produce new films and series together.",
+        text: "Make new films and series with us.",
       },
       {
         title: "Distribution & sales",
-        text: "Bring our films and library to new audiences.",
+        text: "Take our films and library to new audiences.",
       },
       {
         title: "Licensing",
-        text: "Characters, episodes and music for your platform or products.",
+        text: "Our characters, episodes and music, on your platform or your products.",
       },
     ] as const,
   },
@@ -494,7 +494,7 @@ export const site = {
     ] as const,
     whatWeMakeHeading: "What we make",
     whatWeMakeIntro:
-      "Our usual role: the idea comes from the brand or agency. We adapt the script, build the storyboard and the pipeline, then direct, animate and deliver.",
+      "Usually the idea comes from the brand or the agency. Our job is to make it work on screen: adapt the script, storyboard it, set up the pipeline, then direct, animate and deliver.",
     formats: [
       "Commercials & TV spots",
       "Brand films",
@@ -515,7 +515,7 @@ export const site = {
       },
       {
         title: "Full Production",
-        text: "From the first conversation to the finished film, with creative leadership guiding the process.",
+        text: "Hand us the whole thing, start to finish.",
       },
     ] as const,
     clientsHeading: "Selected clients",
@@ -549,7 +549,7 @@ export const site = {
     /** Same 8 Vimeo pieces as before — split under their service. */
     creativeProduction: {
       title: "Creative Production",
-      text: "Turn your briefs and assets into campaign-ready creatives.",
+      text: "Send over the brief and assets, and campaign-ready ads come back.",
       note: "Typical video delivery: 1\u20112\u00A0weeks.",
       work: [
         {
@@ -591,13 +591,13 @@ export const site = {
     },
     playableProduction: {
       title: "Playable Production",
-      text: "Interactive ads, built and adapted for your campaigns.",
+      text: "Brand-new playables, or new versions of the ones you're already running.",
       note: "Typical delivery for one playable: 2\u20117\u00A0days.",
       tapLabel: "Tap to play",
     },
     creativeDevelopment: {
       title: "Creative Development",
-      text: "New concepts, scripts and creative direction.",
+      text: "Out of ideas for the next campaign? This is where concepts, scripts and direction come in.",
       note: "Typical delivery: 20\u201140\u00A0days.",
       work: [
         {
@@ -627,19 +627,19 @@ export const site = {
     howSteps: [
       {
         title: "Start with a test task",
-        text: "Judge our work on your own project.",
+        text: "The easiest way to judge us is on your own project.",
       },
       {
         title: "Dedicated producer",
-        text: "One contact, from brief to delivery.",
+        text: "One person knows your project and answers your messages.",
       },
       {
         title: "Your production portal",
-        text: "Every project, status and deadline in one place.",
+        text: "Tasks, statuses and deadlines, all in one place.",
       },
       {
         title: "Scale with you",
-        text: "From a single task to a steady flow.",
+        text: "Begin with a single task. If it works, grow it into a steady flow.",
       },
     ] as const,
     trustedHeading: "Selected clients",
@@ -747,13 +747,13 @@ export const site = {
     ] as const,
     filmMadeHeading: "How an AI film is made",
     filmMadeIntro:
-      "The same pipeline as any film — AI replaces the camera, not the filmmaker.",
+      "An AI film goes through the same stages as any other film. The only thing missing is the camera.",
     /** Optional image/video paths unlock media above each step when set. */
     filmMadeSteps: [
       {
         number: "01",
         title: "Script",
-        text: "The story and every scene are written first.",
+        text: "It starts on paper: the story first, then every scene.",
         image: null as string | null,
         video: null as string | null,
         imageAlt: "Script",
@@ -761,7 +761,7 @@ export const site = {
       {
         number: "02",
         title: "Storyboard",
-        text: "Each shot is planned: framing, action, timing.",
+        text: "Each shot gets planned, with framing, action and timing.",
         image: null as string | null,
         video: null as string | null,
         imageAlt: "Storyboard",
@@ -769,7 +769,7 @@ export const site = {
       {
         number: "03",
         title: "Shot by shot",
-        text: "Every shot is generated separately, to the storyboard, and selected by the director.",
+        text: "Shots are generated one at a time, against the storyboard, and the director picks the takes.",
         image: null as string | null,
         video: null as string | null,
         imageAlt: "Shot by shot",
@@ -777,7 +777,7 @@ export const site = {
       {
         number: "04",
         title: "Edit & compositing",
-        text: "Shots are cut, combined and refined in post-production.",
+        text: "Then the edit: cutting, combining, cleaning up.",
         image: null as string | null,
         video: null as string | null,
         imageAlt: "Edit and compositing",
@@ -785,36 +785,35 @@ export const site = {
       {
         number: "05",
         title: "Sound & color",
-        text: "Music, sound design and color grading finish the film.",
+        text: "Music, sound design and grading finish it off.",
         image: null as string | null,
         video: null as string | null,
         imageAlt: "Sound and color",
       },
     ] as const,
-    filmMadeClosing:
-      "Your AI policy, respected — we work within your brand's rules on AI.",
+    filmMadeClosing: "Got brand rules about AI? We'll stick to them.",
     howHeading: "How we use AI",
-    howIntro: "The brief defines AI's role, not the other way round.",
+    howIntro: "Sometimes AI is a sketchbook, sometimes it's the whole film. The project decides.",
     howSteps: [
       {
         number: "01",
         title: "Visual development",
-        text: "Find the look before committing to production.",
+        text: "Try out the look before the budget is committed.",
       },
       {
         number: "02",
         title: "World building",
-        text: "Environments and characters at the scale the idea needs.",
+        text: "Worlds and characters at whatever scale the idea calls for.",
       },
       {
         number: "03",
         title: "Individual sequences",
-        text: "AI shots inside a handcrafted film.",
+        text: "A few AI shots inside a film made the classic way.",
       },
       {
         number: "04",
         title: "Complete films",
-        text: "Fully AI-generated, directed from first frame to last.",
+        text: "Entirely AI-generated, still directed frame by frame.",
       },
     ] as const,
     whatWeMakeHeading: "What we make",
@@ -902,10 +901,10 @@ export const site = {
     seoTitle: "Studio — Independent Animation Studio Since 2006 | LISENBART FILM",
     seoDescription:
       "Independent animation studio since 2006. Brand films, AI & hybrid production, game ads and original IP — one creative lead, specialized teams.",
-    heroLead: "Independent animation studio. Production company discipline.",
+    heroLead: "An independent studio that runs like a production company.",
     introHeading: "Who we are",
     introParagraphs: [
-      "Founded in 2006, LISENBART FILM creates animation and film for brands, agencies, game studios and production partners. Alongside client work, we develop award-winning original films and IP.",
+      "LISENBART FILM has been making animation and film since 2006: commercials for brands and agencies, ads for game studios, work for other producers. In between, there are films of our own, and a few of them have picked up festival awards.",
     ] as const,
     stats: [
       { value: "2006", label: "founded" },
@@ -948,32 +947,32 @@ export const site = {
         imageAlt: "Game Ads showreel",
       },
     ] as const,
-    teamsNote: "One creative lead. Specialized teams around every project.",
+    teamsNote: "Every project has one director. The team around them changes with the job.",
     howHeading: "How we work",
     howParagraphs: [
-      "A small senior core leads every project and brings in the right artists and specialists for it — studio-level craft without studio-level overhead.",
+      "The core team is small and senior. For each project it brings in the artists that project actually needs, so you get studio-level work without paying for a big studio's overhead.",
     ] as const,
-    howNote: "One producer, one point of contact, from the first call to the final file.",
+    howNote: "Your contact stays the same throughout: one producer, from the first call to the final file.",
     howSteps: [
       {
         number: "01",
         title: "Brief",
-        text: "Your goals, assets and constraints.",
+        text: "Tell us the goal, what you already have and where the limits are.",
       },
       {
         number: "02",
         title: "Development",
-        text: "Concept, script, storyboard and look.",
+        text: "The idea takes shape as a script, a storyboard and a look.",
       },
       {
         number: "03",
         title: "Production",
-        text: "Animation, AI, compositing and sound.",
+        text: "This is where the film gets made, in animation, AI or both, with compositing and sound.",
       },
       {
         number: "04",
         title: "Delivery",
-        text: "Final files in every format you need.",
+        text: "Final files arrive in every format you asked for.",
       },
     ] as const,
     pullQuote:
