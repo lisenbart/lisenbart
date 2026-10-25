@@ -4,6 +4,10 @@ import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 type ParallaxOptions = {
   /** Max translate in % of element height (hero art). Default 10. */
   strength?: number;
+  /** Extra Y% at rest (e.g. lower home bear under the nav). Default 0. */
+  baseOffset?: number;
+  /** Cover scale while parallaxing. Default 1.05. */
+  scale?: number;
   /** CSS custom property for background drift (explore cards). */
   cssVar?: string;
   /** Multiplier for cssVar pixel offset. Default 0.045. */
@@ -21,7 +25,7 @@ export function useScrollParallax(
   options: ParallaxOptions = {},
 ) {
   const reduced = usePrefersReducedMotion();
-  const { strength = 10, cssVar, cssStrength = 0.045 } = options;
+  const { strength = 10, baseOffset = 0, scale = 1.05, cssVar, cssStrength = 0.045 } = options;
 
   useEffect(() => {
     if (reduced) return;
@@ -53,7 +57,8 @@ export function useScrollParallax(
 
       const travel = Math.max(rect.height, 1);
       const progress = Math.min(1, Math.max(0, -rect.top / travel));
-      target.style.transform = `translate3d(0, ${(progress * strength).toFixed(2)}%, 0) scale(1.05)`;
+      const y = baseOffset + progress * strength;
+      target.style.transform = `translate3d(0, ${y.toFixed(2)}%, 0) scale(${scale})`;
     };
 
     const onScroll = () => {
@@ -73,5 +78,5 @@ export function useScrollParallax(
       if (cssVar) target.style.removeProperty(cssVar);
       else target.style.transform = "";
     };
-  }, [reduced, sectionRef, targetRef, strength, cssVar, cssStrength]);
+  }, [reduced, sectionRef, targetRef, strength, baseOffset, scale, cssVar, cssStrength]);
 }

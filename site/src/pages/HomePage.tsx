@@ -19,7 +19,8 @@ export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const bearRef = useRef<HTMLImageElement>(null);
 
-  useScrollParallax(heroRef, bearRef, { strength: 8 });
+  /* baseOffset drops the bear clear of the desktop nav; scale covers the shift */
+  useScrollParallax(heroRef, bearRef, { strength: 8, baseOffset: 7, scale: 1.12 });
 
   useEffect(() => {
     const hash = window.location.hash.replace(/^#/, "");
