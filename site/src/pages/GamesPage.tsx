@@ -87,10 +87,7 @@ export default function GamesPage() {
           density="icons"
           tone="playables"
         >
-          <PlayablesGrid
-            items={gamesPlayables}
-            tapLabel={page.playableProduction.tapLabel}
-          />
+          <PlayablesGrid items={gamesPlayables} />
         </GamesServiceBlock>
 
         <GamesServiceBlock

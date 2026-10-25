@@ -4,13 +4,7 @@ import PlayableModal from "@/components/games/PlayableModal";
 import type { PlayableItem } from "@/data/playables";
 import { publicAsset } from "@/lib/publicAsset";
 
-export default function PlayablesGrid({
-  items,
-  tapLabel = "Tap to play",
-}: {
-  items: readonly PlayableItem[];
-  tapLabel?: string;
-}) {
+export default function PlayablesGrid({ items }: { items: readonly PlayableItem[] }) {
   const [active, setActive] = useState<PlayableItem | null>(null);
 
   return (
@@ -20,7 +14,7 @@ export default function PlayablesGrid({
           <button
             type="button"
             className="games-proof-card__button"
-            aria-label={`${tapLabel}: ${item.game}`}
+            aria-label={`Play ${item.game}`}
             onClick={() => setActive(item)}
           >
             <span className="games-proof-card__media">
@@ -36,10 +30,6 @@ export default function PlayablesGrid({
                 <span className="games-proof-card__play-circle">
                   <PlayIcon />
                 </span>
-              </span>
-              <span className="games-proof-card__meta">
-                <span className="games-proof-card__name">{item.game}</span>
-                <span className="games-proof-card__tap">{tapLabel}</span>
               </span>
             </span>
           </button>

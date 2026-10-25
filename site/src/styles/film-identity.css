@@ -5658,18 +5658,6 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
 }
 
-.games-proof-card--icon .games-proof-card__meta {
-  position: absolute;
-  left: 0.35rem;
-  right: 0.35rem;
-  bottom: 0.35rem;
-  z-index: 2;
-  padding: 0.25rem 0.35rem;
-  border-radius: 0.3rem;
-  background: rgba(255, 255, 255, 0.92);
-  pointer-events: none;
-}
-
 .games-proof-card__play {
   position: absolute;
   inset: 0;
