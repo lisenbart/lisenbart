@@ -1,7 +1,8 @@
 import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
-import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
+import GamesServiceBlock from "@/components/games/GamesServiceBlock";
+import GamesVideoCards from "@/components/games/GamesVideoCards";
 import PlayablesGrid from "@/components/games/PlayablesGrid";
 import { SEO } from "@/components/SEO";
 import { gamesPlayables } from "@/data/playables";
@@ -58,64 +59,35 @@ export default function GamesPage() {
             </div>
           </FilmReveal>
 
-          <div className="games-service" aria-labelledby="games-creative-production-heading">
-            <FilmReveal>
-              <div className="games-service__copy">
-                <h3 id="games-creative-production-heading" className="studio-models__title">
-                  {page.creativeProduction.title}
-                </h3>
-                <p className="studio-models__text">{page.creativeProduction.text}</p>
-              </div>
-            </FilmReveal>
-            <SelectedWorkGrid
-              items={page.creativeProduction.work}
-              label={page.creativeProduction.title}
-              moreLabel={page.viewMore}
-              lessLabel={page.viewLess}
-              gridId="games-creative-production-grid"
-              previewCount={3}
-              embedded
-            />
-          </div>
+          <GamesServiceBlock
+            titleId="games-creative-production-heading"
+            title={page.creativeProduction.title}
+            text={page.creativeProduction.text}
+            railLabel={`${page.creativeProduction.title} examples`}
+          >
+            <GamesVideoCards items={page.creativeProduction.work} />
+          </GamesServiceBlock>
 
-          <div className="games-service" aria-labelledby="games-playable-production-heading">
-            <FilmReveal>
-              <div className="games-service__copy">
-                <h3 id="games-playable-production-heading" className="studio-models__title">
-                  {page.playableProduction.title}
-                </h3>
-                <p className="studio-models__text">{page.playableProduction.text}</p>
-              </div>
-            </FilmReveal>
+          <GamesServiceBlock
+            titleId="games-playable-production-heading"
+            title={page.playableProduction.title}
+            text={page.playableProduction.text}
+            railLabel={`${page.playableProduction.title} examples`}
+          >
             <PlayablesGrid
               items={gamesPlayables}
-              label={page.playableProduction.title}
-              moreLabel={page.viewMore}
-              lessLabel={page.viewLess}
-              gridId="games-playables-grid"
               tapLabel={page.playableProduction.tapLabel}
             />
-          </div>
+          </GamesServiceBlock>
 
-          <div className="games-service" aria-labelledby="games-creative-development-heading">
-            <FilmReveal>
-              <div className="games-service__copy">
-                <h3 id="games-creative-development-heading" className="studio-models__title">
-                  {page.creativeDevelopment.title}
-                </h3>
-                <p className="studio-models__text">{page.creativeDevelopment.text}</p>
-              </div>
-            </FilmReveal>
-            <SelectedWorkGrid
-              items={page.creativeDevelopment.work}
-              label={page.creativeDevelopment.title}
-              moreLabel={page.viewMore}
-              lessLabel={page.viewLess}
-              gridId="games-creative-development-grid"
-              previewCount={3}
-              embedded
-            />
-          </div>
+          <GamesServiceBlock
+            titleId="games-creative-development-heading"
+            title={page.creativeDevelopment.title}
+            text={page.creativeDevelopment.text}
+            railLabel={`${page.creativeDevelopment.title} examples`}
+          >
+            <GamesVideoCards items={page.creativeDevelopment.work} />
+          </GamesServiceBlock>
         </section>
 
         <section className="studio-section studio-section--tint" aria-labelledby="games-how-heading">
