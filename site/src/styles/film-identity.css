@@ -5489,26 +5489,33 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: 0;
 }
 
+/* Compact equal-height service rows — always white, full-bleed rail to the right edge */
 .games-service.studio-section {
-  --games-rail-gap: 0.65rem;
-  --games-rail-visible: 1.15;
+  --games-rail-gap: 0.5rem;
+  --games-rail-visible: 1.2;
+  --games-proof-h: clamp(5.5rem, 16vw, 7.25rem);
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
+  gap: 0.75rem;
   align-items: center;
+  padding-top: clamp(1.1rem, 2.2vw, 1.5rem);
+  padding-bottom: clamp(1.1rem, 2.2vw, 1.5rem);
+  padding-right: 0;
+  background: var(--surface-white);
 }
 
 .games-service > .film-reveal {
   display: flex;
   align-items: center;
   min-width: 0;
+  padding-right: var(--gutter);
 }
 
 .games-service__copy {
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  max-width: 22rem;
+  gap: 0.35rem;
+  max-width: 20rem;
 }
 
 .games-service__copy .studio-models__title,
@@ -5516,49 +5523,20 @@ html[data-hero-period="evening"] .home-explore {
   margin: 0;
 }
 
+.games-service__note {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
 .games-service__media {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.55rem;
   min-width: 0;
   width: 100%;
-}
-
-.games-service__rail-chrome {
-  display: none;
-  flex-shrink: 0;
-  justify-content: flex-end;
-  gap: 0.4rem;
-}
-
-.games-service__media.is-scrollable .games-service__rail-chrome {
-  display: none;
-}
-
-.games-service__nav {
-  display: grid;
-  place-items: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  margin: 0;
-  padding: 0;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  background: var(--surface-white);
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.studio-section--tint .games-service__nav {
-  background: var(--surface-tint);
-}
-
-.games-service__nav:hover,
-.games-service__nav:focus-visible {
-  border-color: var(--ink);
-  outline: none;
 }
 
 .games-service__rail {
@@ -5571,7 +5549,7 @@ html[data-hero-period="evening"] .home-explore {
   gap: var(--games-rail-gap);
   width: 100%;
   margin: 0;
-  padding: 0 0 0.35rem;
+  padding: 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
@@ -5588,7 +5566,7 @@ html[data-hero-period="evening"] .home-explore {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.45rem;
+  gap: 0.3rem;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -5610,17 +5588,15 @@ html[data-hero-period="evening"] .home-explore {
   outline-offset: 3px;
 }
 
+/* Same media height for video + playable rows */
 .games-proof-card__media {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: var(--games-proof-h);
+  aspect-ratio: auto;
   overflow: hidden;
   background: var(--surface-tint);
-}
-
-.studio-section--tint .games-proof-card__media {
-  background: var(--surface-white);
 }
 
 .games-proof-card__media img {
@@ -5631,26 +5607,31 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
 }
 
-/* Playable phone screenshots: portrait frames, denser rail */
 .games-service--icons {
-  --games-rail-visible: 3.2;
-  --games-rail-gap: 0.55rem;
+  --games-rail-visible: 4.2;
+  --games-rail-gap: 0.45rem;
 }
 
 .games-proof-card--icon .games-proof-card__media {
-  aspect-ratio: 9 / 18;
-  border-radius: 0.85rem;
-  background: transparent;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  border-radius: 0.55rem;
+  background: var(--surface-tint);
 }
 
 .games-proof-card--icon .games-proof-card__media img {
   object-fit: contain;
-  object-position: center;
+  object-position: center bottom;
 }
 
 .games-proof-card--icon .games-proof-card__meta {
-  min-height: 0;
+  position: absolute;
+  left: 0.35rem;
+  right: 0.35rem;
+  bottom: 0.35rem;
+  z-index: 2;
+  padding: 0.25rem 0.35rem;
+  border-radius: 0.3rem;
+  background: rgba(255, 255, 255, 0.92);
+  pointer-events: none;
 }
 
 .games-proof-card__play {
@@ -5669,8 +5650,8 @@ html[data-hero-period="evening"] .home-explore {
 .games-proof-card__play-circle {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
@@ -5680,8 +5661,8 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .games-proof-card__play-circle .play-icon {
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
   fill: #000;
   margin-left: 2px;
 }
@@ -5702,23 +5683,23 @@ html[data-hero-period="evening"] .home-explore {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.1rem;
-  min-height: 2.4rem;
+  gap: 0.05rem;
+  min-height: 0;
 }
 
 .games-proof-card__name {
   font-family: var(--font-body);
-  font-size: var(--text-meta);
+  font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
-  line-height: 1.25;
+  line-height: 1.2;
   color: var(--ink);
 }
 
 .games-proof-card__tap {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.62rem;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--muted);
@@ -5729,27 +5710,17 @@ html[data-hero-period="evening"] .home-explore {
   color: var(--blue);
 }
 
-/* Keep video + playable rows the same height: reserve caption space on video cards too */
-.games-proof-card__button:not(:has(.games-proof-card__meta))::after {
-  content: "";
-  display: block;
-  min-height: 2.4rem;
-}
-
 @media (min-width: 900px) {
   .games-service.studio-section {
     --games-rail-visible: 3;
-    grid-template-columns: minmax(11.5rem, 15.5rem) minmax(0, 1fr);
-    column-gap: clamp(1.25rem, 2.5vw, 2rem);
+    --games-proof-h: clamp(6.25rem, 11vw, 8rem);
+    grid-template-columns: minmax(11rem, 14.5rem) minmax(0, 1fr);
+    column-gap: clamp(1rem, 2vw, 1.75rem);
     align-items: center;
   }
 
   .games-service--icons.studio-section {
-    --games-rail-visible: 5;
-  }
-
-  .games-service__media.is-scrollable .games-service__rail-chrome {
-    display: flex;
+    --games-rail-visible: 6;
   }
 }
 

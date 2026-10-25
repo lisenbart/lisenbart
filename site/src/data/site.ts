@@ -540,6 +540,7 @@ export const site = {
     creativeProduction: {
       title: "Creative Production",
       text: "Turn your briefs and assets into campaign-ready creatives.",
+      note: "Typical video delivery: 1–2 weeks.",
       work: [
         {
           id: "ga-bingo-blitz",
@@ -581,11 +582,13 @@ export const site = {
     playableProduction: {
       title: "Playable Production",
       text: "Interactive ads, built and adapted for your campaigns.",
+      note: "Typical delivery for one playable: 2–7 days.",
       tapLabel: "Tap to play",
     },
     creativeDevelopment: {
       title: "Creative Development",
       text: "New concepts, scripts and creative direction.",
+      note: "Typical delivery: 15–30 days.",
       work: [
         {
           id: "ga-plarium-deathknight-01",

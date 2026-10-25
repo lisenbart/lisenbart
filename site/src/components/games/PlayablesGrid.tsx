@@ -26,15 +26,15 @@ export default function PlayablesGrid({
               <img
                 src={publicAsset(item.cover)}
                 alt=""
-                width={512}
-                height={512}
+                width={432}
+                height={864}
                 loading={index < 6 ? "eager" : "lazy"}
                 decoding="async"
               />
-            </span>
-            <span className="games-proof-card__meta">
-              <span className="games-proof-card__name">{item.game}</span>
-              <span className="games-proof-card__tap">{tapLabel}</span>
+              <span className="games-proof-card__meta">
+                <span className="games-proof-card__name">{item.game}</span>
+                <span className="games-proof-card__tap">{tapLabel}</span>
+              </span>
             </span>
           </button>
         </div>

@@ -1,68 +1,34 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { ReactNode } from "react";
 import FilmReveal from "@/components/film/FilmReveal";
-import { studioSectionClass } from "@/lib/surfaceBand";
 
 export default function GamesServiceBlock({
   titleId,
   title,
   text,
+  note,
   railLabel,
   density = "video",
-  bandIndex,
-  bandTotal,
   children,
 }: {
   titleId: string;
   title: string;
   text: string;
+  /** Delivery / timing line under the description. */
+  note?: string;
   railLabel: string;
-  /** `icons` = smaller playable covers, more visible per row. */
+  /** `icons` = playable phone thumbs (same row height as video). */
   density?: "video" | "icons";
-  bandIndex: number;
-  bandTotal: number;
   children: ReactNode;
 }) {
-  const railRef = useRef<HTMLDivElement>(null);
-  const [canScroll, setCanScroll] = useState(false);
-
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return;
-
-    const update = () => {
-      setCanScroll(rail.scrollWidth > rail.clientWidth + 2);
-    };
-
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(rail);
-    window.addEventListener("resize", update);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", update);
-    };
-  }, [children]);
-
-  const scrollByCard = (direction: -1 | 1) => {
-    const rail = railRef.current;
-    if (!rail) return;
-    const card = rail.querySelector<HTMLElement>(".games-proof-card");
-    const styles = getComputedStyle(rail);
-    const gap = Number.parseFloat(styles.columnGap || styles.gap || "0") || 0;
-    const step = (card?.offsetWidth ?? rail.clientWidth / 3) + gap;
-    rail.scrollBy({ left: direction * step, behavior: "smooth" });
-  };
-
   return (
     <section
-      className={studioSectionClass(
-        bandIndex,
-        bandTotal,
-        ["games-service", density === "icons" ? "games-service--icons" : ""]
-          .filter(Boolean)
-          .join(" "),
-      )}
+      className={[
+        "studio-section",
+        "games-service",
+        density === "icons" ? "games-service--icons" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
       aria-labelledby={titleId}
     >
       <FilmReveal>
@@ -71,36 +37,12 @@ export default function GamesServiceBlock({
             {title}
           </h3>
           <p className="studio-models__text">{text}</p>
+          {note ? <p className="games-service__note">{note}</p> : null}
         </div>
       </FilmReveal>
 
-      <div className={["games-service__media", canScroll ? "is-scrollable" : ""].filter(Boolean).join(" ")}>
-        {canScroll ? (
-          <div className="games-service__rail-chrome">
-            <button
-              type="button"
-              className="games-service__nav games-service__nav--prev"
-              aria-label="Scroll examples left"
-              onClick={() => scrollByCard(-1)}
-            >
-              <ChevronLeft size={18} strokeWidth={2.25} aria-hidden="true" />
-            </button>
-            <button
-              type="button"
-              className="games-service__nav games-service__nav--next"
-              aria-label="Scroll examples right"
-              onClick={() => scrollByCard(1)}
-            >
-              <ChevronRight size={18} strokeWidth={2.25} aria-hidden="true" />
-            </button>
-          </div>
-        ) : null}
-        <div
-          ref={railRef}
-          className="games-service__rail"
-          role="list"
-          aria-label={railLabel}
-        >
+      <div className="games-service__media">
+        <div className="games-service__rail" role="list" aria-label={railLabel}>
           {children}
         </div>
       </div>
