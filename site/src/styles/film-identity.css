@@ -4012,13 +4012,13 @@ a.original-tile {
 }
 
 .home-hero__fly {
-  margin: 0 0 clamp(0.85rem, 1.8vw, 1.2rem);
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.1rem, 5.2vw, 4.75rem); /* two-line: CLEARED FOR / TAKEOFF */
+  font-size: clamp(2.1rem, 5.2vw, 4.75rem);
   font-weight: 700;
   line-height: 0.98;
   letter-spacing: -0.04em;
-  text-transform: uppercase;
+  text-transform: none;
   color: #fff;
 }
 
@@ -4026,10 +4026,11 @@ a.original-tile {
   display: block;
 }
 
+/* Small line above the slogan — same H1, former support-heading look */
 .home-hero__support-heading {
+  display: block;
   margin: 0 0 0.75rem;
   font-family: var(--font-display);
-  /* Mid between fly slogan and body support copy */
   font-size: clamp(1.25rem, 2.6vw, 1.875rem); /* ~20–30px */
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -6689,7 +6690,6 @@ html[data-hero-period="evening"] .home-explore {
   }
   .home-hero__fly {
     font-size: clamp(2.1rem, 9.5vw, 2.65rem);
-    margin-bottom: 0.55rem;
   }
   .home-hero__support-heading {
     font-size: clamp(1.0625rem, 3.8vw, 1.25rem); /* ~17–20px, mid fly ↔ body */

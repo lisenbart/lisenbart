@@ -13,20 +13,9 @@ import {
 } from "@/lib/heroTime";
 import { scrollToSection, site } from "@/data/site";
 
-function formatHeadline(headline: string) {
-  const lines = headline.split(/\n+/).map((line) => line.trim()).filter(Boolean);
-  if (lines.length >= 2) return lines;
-  const parts = headline
-    .split(/(?<=\.)\s+/)
-    .map((part) => part.replace(/\.$/, "").trim())
-    .filter(Boolean);
-  return parts.length >= 2 ? parts : [headline.replace(/\.$/, "").trim()];
-}
-
 export default function HomePage() {
   /** Default day for SSR/prerender; local period applied before paint. */
   const [period, setPeriod] = useState<HeroPeriod>("day");
-  const headlineLines = formatHeadline(site.studioHome.headline);
   const heroRef = useRef<HTMLElement>(null);
   const bearRef = useRef<HTMLImageElement>(null);
 
@@ -99,14 +88,16 @@ export default function HomePage() {
           </picture>
           <div className="home-hero__copy film-reveal is-in">
             <div className="home-hero__intro">
-              <h1 id="home-who-heading" className="home-hero__fly">
-                {headlineLines.map((line) => (
-                  <span key={line} className="home-hero__fly-line">
-                    {line}
-                  </span>
-                ))}
+              <h1
+                id="home-who-heading"
+                className="home-hero__fly"
+                aria-label={site.studioHome.heroH1Aria}
+              >
+                <span className="home-hero__support-heading">
+                  {site.studioHome.heroSupportHeading}
+                </span>
+                <span className="home-hero__fly-line">{site.studioHome.headline}</span>
               </h1>
-              <p className="home-hero__support-heading">{site.studioHome.heroSupportHeading}</p>
             </div>
           </div>
         </section>

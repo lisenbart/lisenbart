@@ -9,12 +9,14 @@ export const site = {
   gamesUrl: "https://www.lisenbart.games",
   studioHome: {
     brandLine: "LISENBART FILM",
-    /** Home hero primary headline — always two lines: CLEARED FOR / TAKEOFF */
-    headline: "Cleared for\ntakeoff",
+    /** Home hero slogan (large line inside H1). */
+    headline: "Every idea, landed",
+    /** Accessible H1 name: eyebrow + slogan. */
+    heroH1Aria: "Film & Animation Company — Every idea, landed",
     /** Studio page only */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
-    /** Home hero — under the fly headline */
-    heroSupportHeading: "FILM & ANIMATION PRODUCTION COMPANY",
+    /** Home hero — small line above the slogan, inside the same H1. */
+    heroSupportHeading: "FILM & ANIMATION COMPANY",
     heroSupport:
       "Since 2006 · 1,000+ projects for brands and studios like Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active and others · 11 festival awards",
     /** Shown with brand in the header lockup */
