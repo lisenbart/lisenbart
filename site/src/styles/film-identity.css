@@ -5475,9 +5475,16 @@ html[data-hero-period="evening"] .home-explore {
 .work-page.page-with-hero-reel .studio-section--selected-work,
 .games-page.page-with-hero-reel .studio-section--selected-work,
 .ai-page.page-with-hero-reel .studio-section--selected-work,
+.studio-page.page-with-hero-reel .studio-section--teams,
+.games-page.page-with-hero-reel .studio-section.games-service {
+  padding-right: 0;
+}
+
+.work-page.page-with-hero-reel .studio-section--selected-work,
+.games-page.page-with-hero-reel .studio-section--selected-work,
+.ai-page.page-with-hero-reel .studio-section--selected-work,
 .studio-page.page-with-hero-reel .studio-section--teams {
   padding-left: 0;
-  padding-right: 0;
 }
 
 .games-formats {
@@ -5500,7 +5507,8 @@ html[data-hero-period="evening"] .home-explore {
   align-items: center;
   padding-top: clamp(1.1rem, 2.2vw, 1.5rem);
   padding-bottom: clamp(1.1rem, 2.2vw, 1.5rem);
-  padding-right: 0;
+  padding-right: 0 !important;
+  overflow: visible;
   color: var(--games-service-fg);
 }
 
@@ -5562,6 +5570,7 @@ html[data-hero-period="evening"] .home-explore {
   position: relative;
   min-width: 0;
   width: 100%;
+  max-width: none;
 }
 
 .games-service__rail {
@@ -5573,6 +5582,7 @@ html[data-hero-period="evening"] .home-explore {
   );
   gap: var(--games-rail-gap);
   width: 100%;
+  max-width: none;
   margin: 0;
   padding: 0;
   overflow-x: auto;
