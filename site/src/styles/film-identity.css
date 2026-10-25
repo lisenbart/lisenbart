@@ -1047,6 +1047,22 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--ink);
 }
 
+/* Optional still / loop per step — set image or video on the step data. */
+.studio-how-steps__media {
+  margin: 0 0 0.85rem;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--surface-tint, #e8e8ea);
+}
+
+.studio-how-steps__image,
+.studio-how-steps__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 @media (min-width: 768px) {
   .studio-section__grid {
     grid-template-columns: minmax(12rem, 1fr) minmax(0, 2fr);
@@ -1078,6 +1094,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 
   .studio-how-steps--3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .studio-how-steps--5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 

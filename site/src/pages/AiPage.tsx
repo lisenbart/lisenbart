@@ -12,8 +12,9 @@ import { studioSectionClass } from "@/lib/surfaceBand";
 const page = site.aiPage;
 const hero = page.showreel;
 
-/** Content bands above contact (hero skipped). Last before contact = tint. */
-const BANDS = SHOW_DIVISIONS ? 5 : 4;
+/** Content bands above contact (hero skipped). Last before contact = tint.
+ * Index 1 = Selected work grid (own section chrome). */
+const BANDS = SHOW_DIVISIONS ? 6 : 5;
 
 export default function AiPage() {
   return (
@@ -68,7 +69,63 @@ export default function AiPage() {
           gridId="ai-selected-work-grid"
         />
 
-        <section className={studioSectionClass(2, BANDS)} aria-labelledby="ai-how-heading">
+        <section className={studioSectionClass(2, BANDS)} aria-labelledby="ai-film-made-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ai-film-made-heading" className="studio-section-heading">
+                  {page.filmMadeHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <p className="studio-models__note">{page.filmMadeIntro}</p>
+              </div>
+            </div>
+          </FilmReveal>
+          <ol
+            className="studio-how-steps studio-how-steps--5 studio-section__full"
+            aria-label={page.filmMadeHeading}
+          >
+            {page.filmMadeSteps.map((step) => {
+              const hasMedia = Boolean(step.video || step.image);
+              return (
+                <li key={step.title} className="studio-how-steps__item">
+                  {hasMedia ? (
+                    <div className="studio-how-steps__media">
+                      {step.video ? (
+                        <video
+                          className="studio-how-steps__video"
+                          src={publicAsset(step.video)}
+                          muted
+                          playsInline
+                          loop
+                          autoPlay
+                          preload="metadata"
+                          aria-label={step.imageAlt || step.title}
+                        />
+                      ) : (
+                        <img
+                          className="studio-how-steps__image"
+                          src={publicAsset(step.image!)}
+                          alt={step.imageAlt || step.title}
+                          width={640}
+                          height={360}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                    </div>
+                  ) : null}
+                  <span className="studio-how-steps__number">{step.number}</span>
+                  <h3 className="studio-models__title">{step.title}</h3>
+                  <p className="studio-models__text">{step.text}</p>
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+
+        <section className={studioSectionClass(3, BANDS)} aria-labelledby="ai-how-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -92,7 +149,7 @@ export default function AiPage() {
           </ol>
         </section>
 
-        <section className={studioSectionClass(3, BANDS)} aria-labelledby="ai-principles-heading">
+        <section className={studioSectionClass(4, BANDS)} aria-labelledby="ai-principles-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -117,7 +174,7 @@ export default function AiPage() {
 
         {SHOW_DIVISIONS ? (
           <section
-            className={studioSectionClass(4, BANDS, "hub-division hub-division--glowl")}
+            className={studioSectionClass(5, BANDS, "hub-division hub-division--glowl")}
             aria-labelledby="ai-division-heading"
           >
             <FilmReveal>

@@ -742,6 +742,52 @@ export const site = {
         vimeoId: "1218646081",
       },
     ] as const,
+    filmMadeHeading: "How an AI film is made",
+    filmMadeIntro:
+      "The same pipeline as any film — AI replaces the camera, not the filmmaker.",
+    /** Optional image/video paths unlock media above each step when set. */
+    filmMadeSteps: [
+      {
+        number: "01",
+        title: "Script",
+        text: "The story and every scene are written first.",
+        image: null as string | null,
+        video: null as string | null,
+        imageAlt: "Script",
+      },
+      {
+        number: "02",
+        title: "Storyboard",
+        text: "Each shot is planned: framing, action, timing.",
+        image: null as string | null,
+        video: null as string | null,
+        imageAlt: "Storyboard",
+      },
+      {
+        number: "03",
+        title: "Shot by shot",
+        text: "Every shot is generated separately, to the storyboard, and selected by the director.",
+        image: null as string | null,
+        video: null as string | null,
+        imageAlt: "Shot by shot",
+      },
+      {
+        number: "04",
+        title: "Edit & compositing",
+        text: "Shots are cut, combined and refined in post-production.",
+        image: null as string | null,
+        video: null as string | null,
+        imageAlt: "Edit and compositing",
+      },
+      {
+        number: "05",
+        title: "Sound & color",
+        text: "Music, sound design and color grading finish the film.",
+        image: null as string | null,
+        video: null as string | null,
+        imageAlt: "Sound and color",
+      },
+    ] as const,
     howHeading: "How we use AI",
     howIntro: "The brief defines AI's role, not the other way round.",
     howSteps: [
