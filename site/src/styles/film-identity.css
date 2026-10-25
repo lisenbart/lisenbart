@@ -5489,18 +5489,13 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: 0;
 }
 
-.games-service {
+.games-service.studio-section {
   --games-rail-gap: 0.65rem;
   --games-rail-visible: 1.15;
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
   align-items: start;
-  margin-top: clamp(2rem, 5vw, 3.25rem);
-}
-
-.games-service:first-of-type {
-  margin-top: clamp(1.75rem, 4vw, 2.5rem);
 }
 
 .games-service__copy {
@@ -5538,9 +5533,13 @@ html[data-hero-period="evening"] .home-explore {
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 50%;
-  background: var(--surface-white, #fff);
+  background: var(--surface-white);
   color: var(--ink);
   cursor: pointer;
+}
+
+.studio-section--tint .games-service__nav {
+  background: var(--surface-tint);
 }
 
 .games-service__nav:hover,
@@ -5604,7 +5603,11 @@ html[data-hero-period="evening"] .home-explore {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--surface-tint, #f4f4f5);
+  background: var(--surface-tint);
+}
+
+.studio-section--tint .games-proof-card__media {
+  background: var(--surface-white);
 }
 
 .games-proof-card__media img {
@@ -5720,14 +5723,14 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 @media (min-width: 900px) {
-  .games-service {
+  .games-service.studio-section {
     --games-rail-visible: 3;
     grid-template-columns: minmax(11.5rem, 15.5rem) minmax(0, 1fr);
     column-gap: clamp(1.25rem, 2.5vw, 2rem);
     align-items: center;
   }
 
-  .games-service--icons {
+  .games-service--icons.studio-section {
     --games-rail-visible: 6;
     align-items: start;
   }

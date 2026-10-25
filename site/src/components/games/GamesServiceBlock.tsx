@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import FilmReveal from "@/components/film/FilmReveal";
+import { studioSectionClass } from "@/lib/surfaceBand";
 
 export default function GamesServiceBlock({
   titleId,
@@ -8,6 +9,8 @@ export default function GamesServiceBlock({
   text,
   railLabel,
   density = "video",
+  bandIndex,
+  bandTotal,
   children,
 }: {
   titleId: string;
@@ -16,6 +19,8 @@ export default function GamesServiceBlock({
   railLabel: string;
   /** `icons` = smaller playable covers, more visible per row. */
   density?: "video" | "icons";
+  bandIndex: number;
+  bandTotal: number;
   children: ReactNode;
 }) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -50,10 +55,14 @@ export default function GamesServiceBlock({
   };
 
   return (
-    <article
-      className={["games-service", density === "icons" ? "games-service--icons" : ""]
-        .filter(Boolean)
-        .join(" ")}
+    <section
+      className={studioSectionClass(
+        bandIndex,
+        bandTotal,
+        ["games-service", density === "icons" ? "games-service--icons" : ""]
+          .filter(Boolean)
+          .join(" "),
+      )}
       aria-labelledby={titleId}
     >
       <FilmReveal>
@@ -95,6 +104,6 @@ export default function GamesServiceBlock({
           {children}
         </div>
       </div>
-    </article>
+    </section>
   );
 }

@@ -9,9 +9,13 @@ import { gamesPlayables } from "@/data/playables";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_GAMES } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
+import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.gamesPage;
 const hero = page.showreel;
+
+/** Content bands above contact (hero skipped). Last = tint. */
+const BANDS = 7;
 
 export default function GamesPage() {
   return (
@@ -42,7 +46,7 @@ export default function GamesPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <section className="studio-section" aria-labelledby="games-what-heading">
+        <section className={studioSectionClass(0, BANDS)} aria-labelledby="games-what-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -58,40 +62,46 @@ export default function GamesPage() {
               </div>
             </div>
           </FilmReveal>
-
-          <GamesServiceBlock
-            titleId="games-creative-production-heading"
-            title={page.creativeProduction.title}
-            text={page.creativeProduction.text}
-            railLabel={`${page.creativeProduction.title} examples`}
-          >
-            <GamesVideoCards items={page.creativeProduction.work} />
-          </GamesServiceBlock>
-
-          <GamesServiceBlock
-            titleId="games-playable-production-heading"
-            title={page.playableProduction.title}
-            text={page.playableProduction.text}
-            railLabel={`${page.playableProduction.title} examples`}
-            density="icons"
-          >
-            <PlayablesGrid
-              items={gamesPlayables}
-              tapLabel={page.playableProduction.tapLabel}
-            />
-          </GamesServiceBlock>
-
-          <GamesServiceBlock
-            titleId="games-creative-development-heading"
-            title={page.creativeDevelopment.title}
-            text={page.creativeDevelopment.text}
-            railLabel={`${page.creativeDevelopment.title} examples`}
-          >
-            <GamesVideoCards items={page.creativeDevelopment.work} />
-          </GamesServiceBlock>
         </section>
 
-        <section className="studio-section studio-section--tint" aria-labelledby="games-how-heading">
+        <GamesServiceBlock
+          titleId="games-creative-production-heading"
+          title={page.creativeProduction.title}
+          text={page.creativeProduction.text}
+          railLabel={`${page.creativeProduction.title} examples`}
+          bandIndex={1}
+          bandTotal={BANDS}
+        >
+          <GamesVideoCards items={page.creativeProduction.work} />
+        </GamesServiceBlock>
+
+        <GamesServiceBlock
+          titleId="games-playable-production-heading"
+          title={page.playableProduction.title}
+          text={page.playableProduction.text}
+          railLabel={`${page.playableProduction.title} examples`}
+          density="icons"
+          bandIndex={2}
+          bandTotal={BANDS}
+        >
+          <PlayablesGrid
+            items={gamesPlayables}
+            tapLabel={page.playableProduction.tapLabel}
+          />
+        </GamesServiceBlock>
+
+        <GamesServiceBlock
+          titleId="games-creative-development-heading"
+          title={page.creativeDevelopment.title}
+          text={page.creativeDevelopment.text}
+          railLabel={`${page.creativeDevelopment.title} examples`}
+          bandIndex={3}
+          bandTotal={BANDS}
+        >
+          <GamesVideoCards items={page.creativeDevelopment.work} />
+        </GamesServiceBlock>
+
+        <section className={studioSectionClass(4, BANDS)} aria-labelledby="games-how-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -111,7 +121,7 @@ export default function GamesPage() {
           </ul>
         </section>
 
-        <section className="studio-section" aria-labelledby="games-trusted-heading">
+        <section className={studioSectionClass(5, BANDS)} aria-labelledby="games-trusted-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -127,7 +137,7 @@ export default function GamesPage() {
         </section>
 
         <section
-          className="studio-section studio-section--tint hub-division hub-division--games"
+          className={studioSectionClass(6, BANDS, "hub-division hub-division--games")}
           aria-labelledby="games-division-heading"
         >
           <FilmReveal>
