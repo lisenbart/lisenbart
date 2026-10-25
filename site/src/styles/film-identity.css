@@ -5616,6 +5616,9 @@ html[data-hero-period="evening"] .home-explore {
   height: 100%;
   object-fit: contain;
   object-position: center;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .games-service--icons {
@@ -5637,6 +5640,7 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
   transform: scale(1.12);
   transform-origin: center;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Mobile: cell width = preview width + small gap (no empty side padding in the cell) */
@@ -5718,9 +5722,19 @@ html[data-hero-period="evening"] .home-explore {
     opacity: 1;
     transform: scale(1);
   }
+
+  .games-proof-card__button:hover .games-proof-card__media img,
+  .games-proof-card__button:focus-visible .games-proof-card__media img {
+    transform: scale(1.08);
+  }
+
+  .games-proof-card--icon .games-proof-card__button:hover .games-proof-card__media img,
+  .games-proof-card--icon .games-proof-card__button:focus-visible .games-proof-card__media img {
+    transform: scale(1.22);
+  }
 }
 
-/* Mobile: play only when the card is centered in the viewport */
+/* Mobile: play + zoom only when the card is centered in the viewport */
 @media (max-width: 899px) {
   .games-proof-card.is-active .games-proof-card__play {
     opacity: 1;
@@ -5730,6 +5744,14 @@ html[data-hero-period="evening"] .home-explore {
   .games-proof-card.is-active .games-proof-card__play-circle {
     opacity: 1;
     transform: scale(1);
+  }
+
+  .games-proof-card.is-active .games-proof-card__media img {
+    transform: scale(1.08);
+  }
+
+  .games-proof-card--icon.is-active .games-proof-card__media img {
+    transform: scale(1.22);
   }
 }
 
