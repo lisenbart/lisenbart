@@ -6,9 +6,13 @@ import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
 import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
+import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.commercialPage;
 const hero = page.showreel;
+
+/** Content bands above contact (hero skipped). Last before contact = tint. */
+const BANDS = 4;
 
 export default function CommercialPage() {
   return (
@@ -39,16 +43,7 @@ export default function CommercialPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
-        <SelectedWorkGrid
-          items={page.selectedWork}
-          label={page.selectedWorkHeading}
-          intro={page.selectedWorkIntro}
-          moreLabel={page.selectedWorkMore}
-          lessLabel={page.selectedWorkLess}
-          gridId="client-selected-work-grid"
-        />
-
-        <section className="studio-section studio-section--tint" aria-labelledby="what-we-make-heading">
+        <section className={studioSectionClass(0, BANDS)} aria-labelledby="what-we-make-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -70,7 +65,16 @@ export default function CommercialPage() {
           </FilmReveal>
         </section>
 
-        <section className="studio-section" aria-labelledby="ways-heading">
+        <SelectedWorkGrid
+          items={page.selectedWork}
+          label={page.selectedWorkHeading}
+          intro={page.selectedWorkIntro}
+          moreLabel={page.selectedWorkMore}
+          lessLabel={page.selectedWorkLess}
+          gridId="client-selected-work-grid"
+        />
+
+        <section className={studioSectionClass(2, BANDS)} aria-labelledby="ways-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -90,7 +94,7 @@ export default function CommercialPage() {
           </ul>
         </section>
 
-        <section className="studio-section studio-section--tint" aria-labelledby="clients-heading">
+        <section className={studioSectionClass(3, BANDS)} aria-labelledby="clients-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
