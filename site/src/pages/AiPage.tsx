@@ -6,9 +6,13 @@ import { SEO } from "@/components/SEO";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_AI } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
+import { studioSectionClass } from "@/lib/surfaceBand";
 
 const page = site.aiPage;
 const hero = page.showreel;
+
+/** Content bands above contact (hero skipped). Last before contact = tint. */
+const BANDS = 5;
 
 export default function AiPage() {
   return (
@@ -39,6 +43,21 @@ export default function AiPage() {
           <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
+        <section className={studioSectionClass(0, BANDS)} aria-labelledby="ai-what-heading">
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="ai-what-heading" className="studio-section-heading">
+                  {page.whatWeMakeHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <p className="client-make__line">{page.formats.join(" · ")}</p>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
         <SelectedWorkGrid
           items={page.selectedWork}
           label={page.selectedWorkHeading}
@@ -47,7 +66,7 @@ export default function AiPage() {
           gridId="ai-selected-work-grid"
         />
 
-        <section className="studio-section" aria-labelledby="ai-how-heading">
+        <section className={studioSectionClass(2, BANDS)} aria-labelledby="ai-how-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -71,22 +90,7 @@ export default function AiPage() {
           </ol>
         </section>
 
-        <section className="studio-section studio-section--tint" aria-labelledby="ai-what-heading">
-          <FilmReveal>
-            <div className="studio-section__grid">
-              <div className="studio-section__aside">
-                <h2 id="ai-what-heading" className="studio-section-heading">
-                  {page.whatWeMakeHeading}
-                </h2>
-              </div>
-              <div className="studio-section__body">
-                <p className="client-make__line">{page.formats.join(" · ")}</p>
-              </div>
-            </div>
-          </FilmReveal>
-        </section>
-
-        <section className="studio-section" aria-labelledby="ai-principles-heading">
+        <section className={studioSectionClass(3, BANDS)} aria-labelledby="ai-principles-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -110,7 +114,7 @@ export default function AiPage() {
         </section>
 
         <section
-          className="studio-section studio-section--tint hub-division hub-division--glowl"
+          className={studioSectionClass(4, BANDS, "hub-division hub-division--glowl")}
           aria-labelledby="ai-division-heading"
         >
           <FilmReveal>
