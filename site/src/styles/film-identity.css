@@ -560,11 +560,9 @@ img { display: block; width: 100%; }
 .home-hero--day .home-hero__copy,
 .home-hero--day .home-hero__fly,
 .home-hero--day .home-hero__support-heading,
-.home-hero--day .home-hero__support,
 .home-hero--evening .home-hero__copy,
 .home-hero--evening .home-hero__fly,
-.home-hero--evening .home-hero__support-heading,
-.home-hero--evening .home-hero__support {
+.home-hero--evening .home-hero__support-heading {
   color: #fff;
 }
 
