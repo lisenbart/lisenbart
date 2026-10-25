@@ -62,6 +62,7 @@ export default function AiPage() {
         <SelectedWorkGrid
           items={page.selectedWork}
           label={page.selectedWorkHeading}
+          intro={page.selectedWorkIntro}
           moreLabel={page.selectedWorkMore}
           lessLabel={page.selectedWorkLess}
           gridId="ai-selected-work-grid"

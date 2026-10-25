@@ -10,7 +10,10 @@ import { youtubePosterSrc } from "@/lib/reelSource";
 export type SelectedWorkItem = {
   id: string;
   title: string;
+  /** Second visible line (client name, or “Type · production time”). */
   client: string;
+  /** Accessible name for play control / reel title; defaults to `client — title`. */
+  playAria?: string;
   poster?: string;
   vimeoId?: string | null;
   youtubeId?: string;
@@ -63,8 +66,11 @@ export default function SelectedWorkGrid({
   const [activeId, setActiveId] = useState<string | null>(null);
   const hasMore = items.length > previewCount;
 
+  const itemLabel = (item: SelectedWorkItem) =>
+    item.playAria ?? `${item.client} — ${item.title}`;
+
   const playItem = (item: SelectedWorkItem) => {
-    const reelTitle = `${item.client} — ${item.title}`;
+    const reelTitle = itemLabel(item);
     if (item.youtubeId) {
       openReel({ provider: "youtube", id: item.youtubeId }, reelTitle);
       return;
@@ -140,7 +146,7 @@ export default function SelectedWorkGrid({
           const collapsed = hasMore && !moreOpen && index >= previewCount;
           const canPlay = Boolean(item.youtubeId || item.vimeoId);
           const poster = resolvePoster(item);
-          const alt = `${item.client} — ${item.title}`;
+          const alt = itemLabel(item);
           const isActive = isNarrow && activeId === item.id;
 
           return (
@@ -172,7 +178,7 @@ export default function SelectedWorkGrid({
                     <img
                       className="client-selected-card__poster"
                       src={poster}
-                      alt=""
+                      alt={alt}
                       width={1280}
                       height={720}
                       loading={index < previewCount ? "eager" : "lazy"}
