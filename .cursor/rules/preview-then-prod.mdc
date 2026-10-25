@@ -8,12 +8,14 @@ alwaysApply: true
 ## Rule
 
 1. **Never push or merge to `main`** unless the user explicitly says the preview is OK / ship to production / merge.
-2. All site work ships to the **preview branch** first (`home-b2b-v1` or the active PR branch) and is verified on the **Netlify Deploy Preview** URL.
-3. After each change: push the preview branch and give the user the **current Deploy Preview URL** (not a stale closed-PR URL like an old `deploy-preview-N`).
-4. If the Deploy Preview looks frozen on old commits (PR closed, wrong title/meta, missing recent UI), stop pointing at that URL — open/refresh a PR so Netlify builds a new preview, then use that link.
+2. All site work ships to **`home-b2b-v1`** first; verify on the **active Deploy Preview**.
+3. **Current preview (keep PR open — do not merge until user says production):**  
+   https://deploy-preview-6--lisenbart.netlify.app  
+   After each push, point the user at that URL (wait for Netlify build if needed).
+4. If the preview freezes (PR merged/closed), stop using the old `deploy-preview-N` — open a new PR from `home-b2b-v1` and update this rule with the new URL. Do not nag about “new PR” while the current one is open and building.
 
 ## Do not
 
 - Fast-forward / merge `home-b2b-v1` → `main` “to be helpful”
 - Tell the user to check production when they asked for preview
-- Assume `deploy-preview-3` (or any fixed N) is still live after the PR closed
+- Suggest opening another PR while DP6 / the current open PR is still active
