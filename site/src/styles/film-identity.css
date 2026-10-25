@@ -5700,16 +5700,31 @@ html[data-hero-period="evening"] .home-explore {
   margin-left: 2px;
 }
 
-.games-proof-card__button:hover .games-proof-card__play,
-.games-proof-card__button:focus-visible .games-proof-card__play {
-  opacity: 1;
-  background: rgba(10, 18, 37, 0.28);
+@media (hover: hover) and (pointer: fine) {
+  .games-proof-card__button:hover .games-proof-card__play,
+  .games-proof-card__button:focus-visible .games-proof-card__play {
+    opacity: 1;
+    background: rgba(10, 18, 37, 0.28);
+  }
+
+  .games-proof-card__button:hover .games-proof-card__play-circle,
+  .games-proof-card__button:focus-visible .games-proof-card__play-circle {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.games-proof-card__button:hover .games-proof-card__play-circle,
-.games-proof-card__button:focus-visible .games-proof-card__play-circle {
-  opacity: 1;
-  transform: scale(1);
+/* Mobile: play only when the card is centered in the viewport */
+@media (max-width: 899px) {
+  .games-proof-card.is-active .games-proof-card__play {
+    opacity: 1;
+    background: rgba(10, 18, 37, 0.28);
+  }
+
+  .games-proof-card.is-active .games-proof-card__play-circle {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .games-proof-card__meta {
