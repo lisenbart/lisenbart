@@ -5495,7 +5495,13 @@ html[data-hero-period="evening"] .home-explore {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
-  align-items: start;
+  align-items: center;
+}
+
+.games-service > .film-reveal {
+  display: flex;
+  align-items: center;
+  min-width: 0;
 }
 
 .games-service__copy {
@@ -5512,12 +5518,19 @@ html[data-hero-period="evening"] .home-explore {
 
 .games-service__media {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.55rem;
   min-width: 0;
   width: 100%;
 }
 
 .games-service__rail-chrome {
   display: none;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: 0.4rem;
 }
 
 .games-service__media.is-scrollable .games-service__rail-chrome {
@@ -5618,11 +5631,10 @@ html[data-hero-period="evening"] .home-explore {
   object-position: center;
 }
 
-/* Playable icons: full mark visible, smaller cards → more per row */
+/* Playable icons: smaller cards → more per row; same vertical centering as video rows */
 .games-service--icons {
   --games-rail-visible: 2.6;
   --games-rail-gap: 0.55rem;
-  align-items: start;
 }
 
 .games-proof-card--icon .games-proof-card__media {
@@ -5731,20 +5743,10 @@ html[data-hero-period="evening"] .home-explore {
 
   .games-service--icons.studio-section {
     --games-rail-visible: 6;
-    align-items: start;
-  }
-
-  .games-service__media.is-scrollable {
-    padding-top: 2.4rem;
   }
 
   .games-service__media.is-scrollable .games-service__rail-chrome {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
     display: flex;
-    gap: 0.4rem;
   }
 }
 
