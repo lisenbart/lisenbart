@@ -352,6 +352,7 @@ export const site = {
           "Songs, stories and early learning for the youngest viewers, led by Scoopy Cap — a space captain who helps kids discover the world.",
         secondary: "On YouTube, YouTube Kids, Amazon, Roku and 9 more platforms.",
         appCard: {
+          label: "Scoopy Cap, now on iPhone",
           icon: "/images/work/scoopy-log-icon.png",
           title: "Scoopy Log",
           text: "Baby tracker app for parents — sleep, feeding and diapers.",
