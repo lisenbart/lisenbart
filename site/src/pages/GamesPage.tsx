@@ -16,10 +16,10 @@ const page = site.gamesPage;
 const hero = page.showreel;
 
 /**
- * Bands above contact excluding the three always-white service rows
- * (those stay white by design). Last content before contact = tint.
+ * All content bands above contact, including the three service rails.
+ * Last before contact = tint (footer-up rule).
  */
-const BANDS = SHOW_DIVISIONS ? 4 : 3;
+const BANDS = SHOW_DIVISIONS ? 7 : 6;
 
 export default function GamesPage() {
   return (
@@ -74,6 +74,7 @@ export default function GamesPage() {
           text={page.creativeProduction.text}
           note={page.creativeProduction.note}
           railLabel={`${page.creativeProduction.title} examples`}
+          sectionClassName={studioSectionClass(1, BANDS)}
         >
           <GamesVideoCards items={page.creativeProduction.work} />
         </GamesServiceBlock>
@@ -85,6 +86,7 @@ export default function GamesPage() {
           note={page.playableProduction.note}
           railLabel={`${page.playableProduction.title} examples`}
           density="icons"
+          sectionClassName={studioSectionClass(2, BANDS)}
         >
           <PlayablesGrid items={gamesPlayables} />
         </GamesServiceBlock>
@@ -95,11 +97,12 @@ export default function GamesPage() {
           text={page.creativeDevelopment.text}
           note={page.creativeDevelopment.note}
           railLabel={`${page.creativeDevelopment.title} examples`}
+          sectionClassName={studioSectionClass(3, BANDS)}
         >
           <GamesVideoCards items={page.creativeDevelopment.work} />
         </GamesServiceBlock>
 
-        <section className={studioSectionClass(1, BANDS)} aria-labelledby="games-how-heading">
+        <section className={studioSectionClass(4, BANDS)} aria-labelledby="games-how-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -119,7 +122,7 @@ export default function GamesPage() {
           </ul>
         </section>
 
-        <section className={studioSectionClass(2, BANDS)} aria-labelledby="games-trusted-heading">
+        <section className={studioSectionClass(5, BANDS)} aria-labelledby="games-trusted-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -136,7 +139,7 @@ export default function GamesPage() {
 
         {SHOW_DIVISIONS ? (
           <section
-            className={studioSectionClass(3, BANDS, "hub-division hub-division--games")}
+            className={studioSectionClass(6, BANDS, "hub-division hub-division--games")}
             aria-labelledby="games-division-heading"
           >
             <FilmReveal>

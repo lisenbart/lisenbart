@@ -9,6 +9,7 @@ export default function GamesServiceBlock({
   note,
   railLabel,
   density = "video",
+  sectionClassName,
   children,
 }: {
   titleId: string;
@@ -19,6 +20,8 @@ export default function GamesServiceBlock({
   railLabel: string;
   /** `icons` = playable phone thumbs. */
   density?: "video" | "icons";
+  /** Surface band classes from `studioSectionClass`. */
+  sectionClassName?: string;
   children: ReactNode;
 }) {
   const railRef = useRef<HTMLDivElement>(null);
@@ -87,7 +90,7 @@ export default function GamesServiceBlock({
   return (
     <section
       className={[
-        "studio-section",
+        sectionClassName || "studio-section",
         "games-service",
         density === "icons" ? "games-service--icons" : "",
       ]

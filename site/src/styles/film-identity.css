@@ -1152,6 +1152,9 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .client-selected-card__meta {
@@ -1297,6 +1300,11 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   transform: scale(1);
 }
 
+.client-selected-card.is-active .client-selected-card__poster,
+.client-selected-card__button:focus-visible:not(:disabled) .client-selected-card__poster {
+  transform: scale(1.08);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .client-selected-card__button:hover:not(:disabled) .client-selected-card__play {
     opacity: 1;
@@ -1306,6 +1314,10 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   .client-selected-card__button:hover:not(:disabled) .client-selected-card__play-circle {
     opacity: 1;
     transform: scale(1);
+  }
+
+  .client-selected-card__button:hover:not(:disabled) .client-selected-card__poster {
+    transform: scale(1.08);
   }
 }
 
@@ -5500,7 +5512,7 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: 0;
 }
 
-/* Compact service rows — white band, full-bleed rail to the right edge */
+/* Compact service rows — full-bleed rail; surface from studioSectionClass */
 .games-service.studio-section {
   --games-rail-gap: 0.5rem;
   --games-rail-visible: 1.2;
@@ -5513,7 +5525,6 @@ html[data-hero-period="evening"] .home-explore {
   padding-bottom: clamp(1.1rem, 2.2vw, 1.5rem);
   padding-right: 0 !important;
   overflow: visible;
-  background: var(--surface-white);
   color: var(--games-service-fg);
 }
 
