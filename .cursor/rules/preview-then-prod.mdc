@@ -1,0 +1,19 @@
+---
+description: Deploy workflow — preview first, production only on explicit OK
+alwaysApply: true
+---
+
+# Preview → production
+
+## Rule
+
+1. **Never push or merge to `main`** unless the user explicitly says the preview is OK / ship to production / merge.
+2. All site work ships to the **preview branch** first (`home-b2b-v1` or the active PR branch) and is verified on the **Netlify Deploy Preview** URL.
+3. After each change: push the preview branch and give the user the **current Deploy Preview URL** (not a stale closed-PR URL like an old `deploy-preview-N`).
+4. If the Deploy Preview looks frozen on old commits (PR closed, wrong title/meta, missing recent UI), stop pointing at that URL — open/refresh a PR so Netlify builds a new preview, then use that link.
+
+## Do not
+
+- Fast-forward / merge `home-b2b-v1` → `main` “to be helpful”
+- Tell the user to check production when they asked for preview
+- Assume `deploy-preview-3` (or any fixed N) is still live after the PR closed
