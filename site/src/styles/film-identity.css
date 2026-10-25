@@ -5647,7 +5647,8 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .games-proof-card--icon .games-proof-card__media {
-  aspect-ratio: 9 / 18;
+  /* Mobile: same height as video thumbs (16:9). Desktop restores phone frame below. */
+  aspect-ratio: 16 / 9;
   border-radius: 0.55rem;
   background: transparent;
 }
@@ -5756,6 +5757,10 @@ html[data-hero-period="evening"] .home-explore {
   .games-service--icons.studio-section {
     /* denser so phone frames stay compact while showing full screenshot */
     --games-rail-visible: 7;
+  }
+
+  .games-proof-card--icon .games-proof-card__media {
+    aspect-ratio: 9 / 18;
   }
 }
 
