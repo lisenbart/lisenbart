@@ -5647,8 +5647,6 @@ html[data-hero-period="evening"] .home-explore {
 }
 
 .games-proof-card--icon .games-proof-card__media {
-  /* Mobile: same height as video thumbs (16:9). Desktop restores phone frame below. */
-  aspect-ratio: 16 / 9;
   border-radius: 0.55rem;
   background: transparent;
 }
@@ -5656,6 +5654,40 @@ html[data-hero-period="evening"] .home-explore {
 .games-proof-card--icon .games-proof-card__media img {
   object-fit: contain;
   object-position: center;
+}
+
+/* Mobile: cell width = preview width + small gap (no empty side padding in the cell) */
+@media (max-width: 899px) {
+  .games-service.studio-section {
+    --games-rail-gap: 0.4rem;
+    --games-thumb-h: clamp(7.75rem, 30vw, 10.5rem);
+  }
+
+  .games-service__rail {
+    grid-auto-columns: max-content;
+    gap: var(--games-rail-gap);
+  }
+
+  .games-proof-card {
+    width: max-content;
+  }
+
+  .games-proof-card__button {
+    width: auto;
+  }
+
+  .games-proof-card__media {
+    width: calc(var(--games-thumb-h) * 16 / 9);
+    height: var(--games-thumb-h);
+    aspect-ratio: auto;
+  }
+
+  /* Same height as video thumbs; width follows the phone frame */
+  .games-proof-card--icon .games-proof-card__media {
+    width: calc(var(--games-thumb-h) * 9 / 18);
+    height: var(--games-thumb-h);
+    aspect-ratio: auto;
+  }
 }
 
 .games-proof-card__play {
