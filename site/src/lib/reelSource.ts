@@ -56,9 +56,11 @@ export function resolveReelSource(
 
 export function reelEmbedSrc(source: ReelSource): string {
   if (source.provider === "youtube") {
-    return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&rel=0&modestbranding=1`;
+    // mute=1 required for reliable YouTube autoplay after async modal mount
+    return `https://www.youtube-nocookie.com/embed/${source.id}?autoplay=1&mute=1&rel=0&modestbranding=1`;
   }
-  return `https://player.vimeo.com/video/${source.id}?autoplay=1&muted=0&title=0&byline=0&portrait=0`;
+  // muted=1 first — unmuted autoplay after setState often hits Vimeo Error
+  return `https://player.vimeo.com/video/${source.id}?autoplay=1&muted=1&title=0&byline=0&portrait=0&playsinline=1`;
 }
 
 /**

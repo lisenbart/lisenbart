@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { PlayIcon } from "./FilmIcons";
 import ShowreelCloseButton from "@/components/film/ShowreelCloseButton";
 import { reelEmbedSrc, type ReelSource } from "@/lib/reelSource";
+import { unmuteVimeoIframe } from "@/lib/vimeoPlayer";
 
 export default function ReelModal({
   open,
@@ -14,6 +15,8 @@ export default function ReelModal({
   source: ReelSource | null;
   title?: string;
 }) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -27,6 +30,27 @@ export default function ReelModal({
     };
   }, [open, close]);
 
+  // Modal opens after setState — unmute once muted autoplay is running.
+  useEffect(() => {
+    if (!open || source?.provider !== "vimeo") return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    let cancelled = false;
+    const tryUnmute = () => {
+      if (cancelled) return;
+      void unmuteVimeoIframe(iframe);
+    };
+
+    iframe.addEventListener("load", tryUnmute);
+    tryUnmute();
+
+    return () => {
+      cancelled = true;
+      iframe.removeEventListener("load", tryUnmute);
+    };
+  }, [open, source]);
+
   if (!open) return null;
 
   return (
@@ -35,6 +59,7 @@ export default function ReelModal({
         {source ? (
           <div className="reel-embed">
             <iframe
+              ref={iframeRef}
               title={title}
               src={reelEmbedSrc(source)}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media"

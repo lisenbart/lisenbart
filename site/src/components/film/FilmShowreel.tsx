@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
 import { useShowreelSession } from "@/hooks/useShowreelSession";
+import { unmuteVimeoIframe } from "@/lib/vimeoPlayer";
 
 /**
  * Single showreel presentation: one poster, one play action.
  * Mobile → fullscreen modal. Desktop → plays in the showreel frame.
+ *
+ * Embeds always start muted (autoplay after setState loses the user-gesture
+ * token, so unmuted `autoplay=1&muted=0` can show Vimeo's Error dialog).
+ * When `withSound`, we unmute via the Player API after the iframe loads.
  */
 export default function FilmShowreel({
   id,
@@ -29,7 +34,7 @@ export default function FilmShowreel({
   playLabel?: string;
   /** Icon-only play control (no text label). */
   playLabelHidden?: boolean;
-  /** Request unmuted autoplay after a user click (Vimeo `muted=0`). */
+  /** Prefer unmuted playback after the user click (unmute via Player API). */
   withSound?: boolean;
   /** Always open the lightbox player instead of inline playback. */
   forceModal?: boolean;
@@ -38,6 +43,7 @@ export default function FilmShowreel({
   const isNarrow = useIsNarrowViewport();
   const [playing, setPlaying] = useState(false);
   const closeControl = useShowreelSession(playing, setPlaying);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const canPlayInline = Boolean(vimeoId);
 
   const play = () => {
@@ -54,11 +60,30 @@ export default function FilmShowreel({
     }
   };
 
+  useEffect(() => {
+    if (!playing || !vimeoId || !withSound) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    let cancelled = false;
+    const tryUnmute = () => {
+      if (cancelled) return;
+      void unmuteVimeoIframe(iframe);
+    };
+
+    iframe.addEventListener("load", tryUnmute);
+    tryUnmute();
+
+    return () => {
+      cancelled = true;
+      iframe.removeEventListener("load", tryUnmute);
+    };
+  }, [playing, vimeoId, withSound]);
+
   const actionLabel = playLabel ?? (canPlayInline ? "Watch reel" : "Open site");
   const ariaAction = canPlayInline ? `Play ${label}` : `Open ${label}`;
-  const vimeoQuery = withSound
-    ? "autoplay=1&muted=0&title=0&byline=0&portrait=0"
-    : "autoplay=1&title=0&byline=0&portrait=0";
+  // Always muted in the URL — reliable after async iframe mount.
+  const vimeoQuery = "autoplay=1&muted=1&title=0&byline=0&portrait=0&playsinline=1";
 
   return (
     <section id={id} className="film-showreel" aria-label={label}>
@@ -66,9 +91,10 @@ export default function FilmShowreel({
         <>
           <div className="film-showreel__stage film-showreel__stage--playing">
             <iframe
+              ref={iframeRef}
               title={label}
               src={`https://player.vimeo.com/video/${vimeoId}?${vimeoQuery}`}
-              allow="autoplay; fullscreen; picture-in-picture"
+              allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
               allowFullScreen
             />
           </div>
