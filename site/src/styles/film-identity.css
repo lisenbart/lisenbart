@@ -5669,10 +5669,10 @@ html[data-hero-period="evening"] .home-explore {
     aspect-ratio: auto;
   }
 
-  /* Same height as video thumbs; width follows the phone frame */
+  /* Slightly taller than video thumbs (~18%) so phone frames read clearer */
   .games-proof-card--icon .games-proof-card__media {
-    width: calc(var(--games-thumb-h) * 9 / 18);
-    height: var(--games-thumb-h);
+    width: calc(var(--games-thumb-h) * 9 / 18 * 1.18);
+    height: calc(var(--games-thumb-h) * 1.18);
     aspect-ratio: auto;
   }
 }
