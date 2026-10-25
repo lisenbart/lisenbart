@@ -188,6 +188,10 @@ export default function SelectedWorkGrid({
                     </span>
                   ) : null}
                 </span>
+                <span className="client-selected-card__meta">
+                  <span className="client-selected-card__title">{item.title}</span>
+                  <span className="client-selected-card__client">{item.client}</span>
+                </span>
               </button>
             </li>
           );

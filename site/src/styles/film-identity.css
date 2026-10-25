@@ -1185,7 +1185,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--blue);
 }
 
-/* Selected work flush tiles — Client Work / Game Ads / AI (titles temporarily off) */
+/* Selected work flush tiles — Client Work / AI */
 .studio-section--selected-work-compact,
 .page-hero-reel + .studio-section--selected-work-compact,
 .page-with-hero-reel .studio-section--selected-work-compact,
@@ -1211,7 +1211,7 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .client-selected-grid--flush .client-selected-card__button {
-  padding: 0;
+  padding: 0 0 clamp(1.1rem, 2.2vw, 1.5rem);
 }
 
 .client-selected-grid--flush .client-selected-card__button:disabled {
@@ -1219,7 +1219,11 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
 }
 
 .client-selected-grid--flush .client-selected-card__media {
-  margin: 0;
+  margin: 0 0 0.85rem;
+}
+
+.client-selected-grid--flush .client-selected-card__meta {
+  padding-inline: clamp(0.85rem, 2vw, 1.25rem);
 }
 
 .client-selected-card__brand {
