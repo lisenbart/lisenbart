@@ -37,15 +37,6 @@ export const site = {
   homePaths: {
     items: [
       {
-        label: "For Brands & Agencies",
-        statement: "From the first sketch to the final cut.",
-        text: "Commercial films, animation and creative production. Bring us a brief, a script or just the beginnings of an idea.",
-        cta: "Explore Client Work",
-        hub: "client-work" as const,
-        image: "/images/home/brands-path-preview.webp",
-        imageAlt: "Beauty portrait still from brand animation",
-      },
-      {
         label: "For AI-Driven Projects",
         statement: "New tools. Same creative standards.",
         text: "AI, animation, compositing — whatever serves the shot.",
@@ -53,6 +44,15 @@ export const site = {
         hub: "ai" as const,
         image: "/images/home/ai-path-preview.webp",
         imageAlt: "AI & Hybrid production still",
+      },
+      {
+        label: "For Brands & Agencies",
+        statement: "From the first sketch to the final cut.",
+        text: "Commercial films, animation and creative production. Bring us a brief, a script or just the beginnings of an idea.",
+        cta: "Explore Client Work",
+        hub: "client-work" as const,
+        image: "/images/home/brands-path-preview.webp",
+        imageAlt: "Beauty portrait still from brand animation",
       },
       {
         label: "For Game Studios",
