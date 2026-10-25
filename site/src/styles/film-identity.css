@@ -5489,10 +5489,11 @@ html[data-hero-period="evening"] .home-explore {
   margin-top: 0;
 }
 
-/* Compact service rows — always white, full-bleed rail to the right edge */
+/* Compact service rows — full-bleed rail to the right edge */
 .games-service.studio-section {
   --games-rail-gap: 0.5rem;
   --games-rail-visible: 1.2;
+  --games-service-fg: var(--ink);
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
@@ -5501,6 +5502,34 @@ html[data-hero-period="evening"] .home-explore {
   padding-bottom: clamp(1.1rem, 2.2vw, 1.5rem);
   padding-right: 0;
   background: var(--surface-white);
+  color: var(--games-service-fg);
+}
+
+.games-service--cyan {
+  --games-service-fg: #ffffff;
+  background: #19cdfe;
+}
+
+.games-service--amber {
+  --games-service-fg: #ffffff;
+  background: #fbb819;
+}
+
+.games-service--coral {
+  --games-service-fg: #ffffff;
+  background: var(--cta-secondary-bg, #e77855);
+}
+
+.games-service--cyan .studio-models__title,
+.games-service--amber .studio-models__title,
+.games-service--coral .studio-models__title,
+.games-service--cyan .studio-models__text,
+.games-service--amber .studio-models__text,
+.games-service--coral .studio-models__text,
+.games-service--cyan .games-service__note,
+.games-service--amber .games-service__note,
+.games-service--coral .games-service__note {
+  color: #ffffff;
 }
 
 .games-service > .film-reveal {
@@ -5529,7 +5558,7 @@ html[data-hero-period="evening"] .home-explore {
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   line-height: 1.35;
-  color: var(--muted);
+  color: color-mix(in srgb, var(--games-service-fg) 72%, transparent);
 }
 
 .games-service__media {

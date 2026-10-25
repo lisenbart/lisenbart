@@ -8,6 +8,7 @@ export default function GamesServiceBlock({
   note,
   railLabel,
   density = "video",
+  tone = "default",
   children,
 }: {
   titleId: string;
@@ -18,6 +19,8 @@ export default function GamesServiceBlock({
   railLabel: string;
   /** `icons` = playable phone thumbs (same row height as video). */
   density?: "video" | "icons";
+  /** Brand color band for this service. */
+  tone?: "default" | "cyan" | "amber" | "coral";
   children: ReactNode;
 }) {
   return (
@@ -26,6 +29,7 @@ export default function GamesServiceBlock({
         "studio-section",
         "games-service",
         density === "icons" ? "games-service--icons" : "",
+        tone !== "default" ? `games-service--${tone}` : "",
       ]
         .filter(Boolean)
         .join(" ")}
