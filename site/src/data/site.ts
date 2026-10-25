@@ -395,6 +395,8 @@ export const site = {
       poster: "/images/reels/advertising/showreel-poster.webp",
     },
     selectedWorkHeading: "Selected work",
+    selectedWorkIntro:
+      "Our usual role: the idea comes from the brand or agency. We adapt the script, build the storyboard and the pipeline, then direct, animate and deliver.",
     selectedWorkMore: "View More",
     selectedWorkLess: "View Less",
     selectedWork: [
@@ -608,6 +610,8 @@ export const site = {
       "Store & ASO assets",
       "In-game motion & art",
     ] as const,
+    playablesHeading: "Playables",
+    playablesSubtitle: "Tap to play. Real playable ads we built for live games.",
     howHeading: "How we work",
     howSteps: [
       {
@@ -772,7 +776,8 @@ export const site = {
   },
   homeContact: {
     heading: "Let's fly together",
-    lead: "",
+    lead:
+      "Tell us what you need, when you need it and what you already have. A brief, a reference or an early idea is enough to start. We reply within one business day with questions or a first approach.",
   },
   aboutPage: {
     seoTitle: "Dmytro Lisenbart — Director & Producer | LISENBART FILM",

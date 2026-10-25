@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Raw playable HTML — never index (sitemap also omits /playables/).
+[[headers]]
+  for = "/playables/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 # Production CONTEXT must NOT set VITE_SITE_NOINDEX / VITE_LEGAL_PREVIEW — pages stay indexable.
 # Preview / branch: noindex meta (SEO.tsx) + X-Robots-Tag (scripts/netlify-postbuild.mjs).
 [context.deploy-preview.environment]

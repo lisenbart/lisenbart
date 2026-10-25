@@ -2,7 +2,9 @@ import FilmContactSection from "@/components/FilmContactSection";
 import FilmReveal from "@/components/film/FilmReveal";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import SelectedWorkGrid from "@/components/film/SelectedWorkGrid";
+import PlayablesGrid from "@/components/games/PlayablesGrid";
 import { SEO } from "@/components/SEO";
+import { gamesPlayables } from "@/data/playables";
 import { site } from "@/data/site";
 import { NETLIFY_FORM_NAME_GAMES } from "@/lib/contactConfig";
 import { publicAsset } from "@/lib/publicAsset";
@@ -47,7 +49,7 @@ export default function GamesPage() {
           gridId="games-selected-work-grid"
         />
 
-        <section className="studio-section" aria-labelledby="games-what-heading">
+        <section className="studio-section studio-section--tint" aria-labelledby="games-what-heading">
           <FilmReveal>
             <div className="studio-section__grid">
               <div className="studio-section__aside">
@@ -73,6 +75,14 @@ export default function GamesPage() {
             {page.formats.join(" · ")}
           </p>
         </section>
+
+        <PlayablesGrid
+          items={gamesPlayables}
+          heading={page.playablesHeading}
+          subtitle={page.playablesSubtitle}
+          moreLabel={page.selectedWorkMore}
+          lessLabel={page.selectedWorkLess}
+        />
 
         <section className="studio-section studio-section--tint" aria-labelledby="games-how-heading">
           <FilmReveal>

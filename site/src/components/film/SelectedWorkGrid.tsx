@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import FilmReveal from "@/components/film/FilmReveal";
 import { PlayIcon } from "@/components/film/FilmIcons";
 import { useReel } from "@/contexts/ReelContext";
 import { useIsNarrowViewport } from "@/hooks/useMatchMedia";
@@ -36,12 +37,15 @@ function onYouTubePosterError(event: SyntheticEvent<HTMLImageElement>, youtubeId
 export default function SelectedWorkGrid({
   items,
   label,
+  intro,
   moreLabel,
   lessLabel,
   gridId,
 }: {
   items: readonly SelectedWorkItem[];
   label: string;
+  /** Optional line under the heading (Client Work). */
+  intro?: string;
   moreLabel: string;
   lessLabel: string;
   gridId: string;
@@ -110,9 +114,25 @@ export default function SelectedWorkGrid({
 
   return (
     <section
-      className="studio-section studio-section--selected-work studio-section--selected-work-compact"
-      aria-label={label}
+      className={[
+        "studio-section studio-section--selected-work studio-section--selected-work-compact",
+        intro ? "studio-section--selected-work-intro" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      aria-labelledby={intro ? `${gridId}-heading` : undefined}
+      aria-label={intro ? undefined : label}
     >
+      {intro ? (
+        <FilmReveal>
+          <div className="client-selected-intro">
+            <h2 id={`${gridId}-heading`} className="studio-section-heading">
+              {label}
+            </h2>
+            <p className="studio-models__note client-selected-intro__text">{intro}</p>
+          </div>
+        </FilmReveal>
+      ) : null}
       <ul
         ref={gridRef}
         id={gridId}

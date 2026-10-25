@@ -42,6 +42,7 @@ export default function CommercialPage() {
         <SelectedWorkGrid
           items={page.selectedWork}
           label={page.selectedWorkHeading}
+          intro={page.selectedWorkIntro}
           moreLabel={page.selectedWorkMore}
           lessLabel={page.selectedWorkLess}
           gridId="client-selected-work-grid"
