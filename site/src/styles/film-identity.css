@@ -5627,11 +5627,10 @@ html[data-hero-period="evening"] .home-explore {
 
 .games-proof-card--icon .games-proof-card__media {
   aspect-ratio: 1 / 1;
-  background: transparent;
 }
 
 .games-proof-card--icon .games-proof-card__media img {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
 
