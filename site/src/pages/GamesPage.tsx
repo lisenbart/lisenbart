@@ -73,7 +73,7 @@ export default function GamesPage() {
           text={page.creativeProduction.text}
           note={page.creativeProduction.note}
           railLabel={`${page.creativeProduction.title} examples`}
-          tone="cyan"
+          tone="production"
         >
           <GamesVideoCards items={page.creativeProduction.work} />
         </GamesServiceBlock>
@@ -85,7 +85,7 @@ export default function GamesPage() {
           note={page.playableProduction.note}
           railLabel={`${page.playableProduction.title} examples`}
           density="icons"
-          tone="amber"
+          tone="playables"
         >
           <PlayablesGrid
             items={gamesPlayables}
@@ -99,7 +99,7 @@ export default function GamesPage() {
           text={page.creativeDevelopment.text}
           note={page.creativeDevelopment.note}
           railLabel={`${page.creativeDevelopment.title} examples`}
-          tone="slate"
+          tone="development"
         >
           <GamesVideoCards items={page.creativeDevelopment.work} />
         </GamesServiceBlock>

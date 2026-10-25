@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import FilmReveal from "@/components/film/FilmReveal";
 
+export type GamesServiceTone = "production" | "playables" | "development";
+
 export default function GamesServiceBlock({
   titleId,
   title,
@@ -8,7 +10,7 @@ export default function GamesServiceBlock({
   note,
   railLabel,
   density = "video",
-  tone = "default",
+  tone,
   children,
 }: {
   titleId: string;
@@ -17,10 +19,9 @@ export default function GamesServiceBlock({
   /** Delivery / timing line under the description. */
   note?: string;
   railLabel: string;
-  /** `icons` = playable phone thumbs (same row height as video). */
+  /** `icons` = playable phone thumbs. */
   density?: "video" | "icons";
-  /** Brand color band for this service. */
-  tone?: "default" | "cyan" | "amber" | "slate";
+  tone: GamesServiceTone;
   children: ReactNode;
 }) {
   return (
@@ -28,8 +29,8 @@ export default function GamesServiceBlock({
       className={[
         "studio-section",
         "games-service",
+        `games-service--${tone}`,
         density === "icons" ? "games-service--icons" : "",
-        tone !== "default" ? `games-service--${tone}` : "",
       ]
         .filter(Boolean)
         .join(" ")}
