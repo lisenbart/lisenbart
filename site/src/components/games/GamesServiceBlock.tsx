@@ -20,7 +20,7 @@ export default function GamesServiceBlock({
   /** `icons` = playable phone thumbs (same row height as video). */
   density?: "video" | "icons";
   /** Brand color band for this service. */
-  tone?: "default" | "cyan" | "amber" | "coral";
+  tone?: "default" | "cyan" | "amber" | "slate";
   children: ReactNode;
 }) {
   return (

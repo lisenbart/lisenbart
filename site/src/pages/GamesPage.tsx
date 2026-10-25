@@ -99,6 +99,7 @@ export default function GamesPage() {
           text={page.creativeDevelopment.text}
           note={page.creativeDevelopment.note}
           railLabel={`${page.creativeDevelopment.title} examples`}
+          tone="slate"
         >
           <GamesVideoCards items={page.creativeDevelopment.work} />
         </GamesServiceBlock>

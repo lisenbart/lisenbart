@@ -5515,20 +5515,20 @@ html[data-hero-period="evening"] .home-explore {
   background: #fbb819;
 }
 
-.games-service--coral {
+.games-service--slate {
   --games-service-fg: #ffffff;
-  background: var(--cta-secondary-bg, #e77855);
+  background: #3c5d73;
 }
 
 .games-service--cyan .studio-models__title,
 .games-service--amber .studio-models__title,
-.games-service--coral .studio-models__title,
+.games-service--slate .studio-models__title,
 .games-service--cyan .studio-models__text,
 .games-service--amber .studio-models__text,
-.games-service--coral .studio-models__text,
+.games-service--slate .studio-models__text,
 .games-service--cyan .games-service__note,
 .games-service--amber .games-service__note,
-.games-service--coral .games-service__note {
+.games-service--slate .games-service__note {
   color: #ffffff;
 }
 
