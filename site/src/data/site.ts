@@ -399,8 +399,6 @@ export const site = {
       poster: "/images/reels/advertising/showreel-poster.webp",
     },
     selectedWorkHeading: "Selected work",
-    selectedWorkIntro:
-      "Our usual role: the idea comes from the brand or agency. We adapt the script, build the storyboard and the pipeline, then direct, animate and deliver.",
     selectedWorkMore: "View More",
     selectedWorkLess: "View Less",
     selectedWork: [
@@ -490,6 +488,8 @@ export const site = {
       },
     ] as const,
     whatWeMakeHeading: "What we make",
+    whatWeMakeIntro:
+      "Our usual role: the idea comes from the brand or agency. We adapt the script, build the storyboard and the pipeline, then direct, animate and deliver.",
     formats: [
       "Commercials & TV spots",
       "Brand films",

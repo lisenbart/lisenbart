@@ -50,6 +50,7 @@ export default function CommercialPage() {
                 <h2 id="what-we-make-heading" className="studio-section-heading">
                   {page.whatWeMakeHeading}
                 </h2>
+                <p className="studio-models__note">{page.whatWeMakeIntro}</p>
               </div>
               <div className="studio-section__body client-make">
                 <p className="client-make__line">
@@ -68,7 +69,6 @@ export default function CommercialPage() {
         <SelectedWorkGrid
           items={page.selectedWork}
           label={page.selectedWorkHeading}
-          intro={page.selectedWorkIntro}
           moreLabel={page.selectedWorkMore}
           lessLabel={page.selectedWorkLess}
           gridId="client-selected-work-grid"
