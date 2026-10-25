@@ -58,6 +58,8 @@ export function useScrollParallax(
       const travel = Math.max(rect.height, 1);
       const progress = Math.min(1, Math.max(0, -rect.top / travel));
       const y = baseOffset + progress * strength;
+      // Scale from the top so cover growth doesn't open a gap under the nav.
+      target.style.transformOrigin = "50% 0%";
       target.style.transform = `translate3d(0, ${y.toFixed(2)}%, 0) scale(${scale})`;
     };
 

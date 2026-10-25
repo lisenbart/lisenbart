@@ -546,18 +546,19 @@ img { display: block; width: 100%; }
 .bear-art {
   position: absolute;
   z-index: 1;
-  inset: 0;
+  /* Top-pinned, taller than the hero: use master sky under the nav, drop the bear (no translate gap). */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
   width: 100%;
-  height: 100%;
+  height: 120%;
   object-fit: cover;
-  /*
-   * Desktop: bias to the upper part of the master (sky spare under the nav)
-   * so the bear sits a touch lower — no translate (that left a black gap).
-   */
-  object-position: center 28%;
+  object-position: center top;
   pointer-events: none;
   will-change: transform;
   transform: translate3d(0, 0, 0);
+  transform-origin: 50% 0%;
 }
 
 /* V8 reference: white type over cinematic hero */
