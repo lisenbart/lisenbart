@@ -4002,17 +4002,13 @@ a.original-tile {
   color: #fff;
 }
 
-.home-hero__support {
+.home-proof-band .studio-section__grid {
+  grid-template-columns: 1fr;
+}
+
+.home-proof-band__text {
   margin: 0;
-  max-width: min(42rem, 100%);
-  font-family: var(--font-body);
-  font-size: clamp(0.9375rem, 1.15vw, 1.0625rem); /* 15–17px */
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  text-transform: none;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.92);
-  opacity: 1;
+  max-width: min(48rem, 100%);
 }
 
 .home-gateway {

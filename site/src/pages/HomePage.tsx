@@ -107,9 +107,23 @@ export default function HomePage() {
                 ))}
               </h1>
               <p className="home-hero__support-heading">{site.studioHome.heroSupportHeading}</p>
-              <p className="home-hero__support">{site.studioHome.heroSupport}</p>
             </div>
           </div>
+        </section>
+
+        <section
+          className="studio-section studio-section--tint home-proof-band"
+          aria-label="Studio proof"
+        >
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__body">
+                <p className="studio-models__note home-proof-band__text">
+                  {site.studioHome.heroSupport}
+                </p>
+              </div>
+            </div>
+          </FilmReveal>
         </section>
 
         <HomePathsSection />
