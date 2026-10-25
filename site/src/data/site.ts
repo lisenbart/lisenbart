@@ -296,8 +296,10 @@ export const site = {
   },
   filmPage: {
     name: "ORIGINALS",
-    heroLead:
-      "Stories of our own. Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
+    /** Under-hero intro (was hero lead). */
+    introHeading: "Stories of our own",
+    introText:
+      "Original films and animated IP — developed in-house, open to co-producers, distributors and platforms.",
     seoTitle: "Originals — Original Films & IP | LISENBART FILM",
     seoDescription:
       "Original animated films and preschool IP: award-winning short Unnecessary Things, The Last Kozak in development, and Scoopy Cap with 200M+ views.",

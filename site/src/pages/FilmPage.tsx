@@ -98,11 +98,28 @@ export default function FilmPage() {
           <div className="page-title-row">
             <h1 id="originals-page-heading">{page.name}</h1>
           </div>
-          <p className="studio-page-hero__lead">{page.heroLead}</p>
         </PageHeroReel>
 
+        <section
+          className={studioSectionClass(0, page.projects.length + 2)}
+          aria-labelledby="originals-intro-heading"
+        >
+          <FilmReveal>
+            <div className="studio-section__grid">
+              <div className="studio-section__aside">
+                <h2 id="originals-intro-heading" className="studio-section-heading">
+                  {page.introHeading}
+                </h2>
+              </div>
+              <div className="studio-section__body">
+                <p className="studio-models__note">{page.introText}</p>
+              </div>
+            </div>
+          </FilmReveal>
+        </section>
+
         {page.projects.map((item, index) => {
-          const bandTotal = page.projects.length + 1; /* + partner */
+          const bandTotal = page.projects.length + 2; /* intro + partner */
           const primaryId =
             "anchorIds" in item && item.anchorIds ? item.anchorIds[0] : item.id;
           const extraAnchors =
@@ -116,7 +133,7 @@ export default function FilmPage() {
             <section
               key={item.id}
               id={primaryId}
-              className={studioSectionClass(index, bandTotal, "originals-row")}
+              className={studioSectionClass(index + 1, bandTotal, "originals-row")}
               aria-labelledby={`${item.id}-title`}
             >
               {extraAnchors.map((anchorId) => (
@@ -231,7 +248,7 @@ export default function FilmPage() {
         })}
 
         <section
-          className={studioSectionClass(page.projects.length, page.projects.length + 1)}
+          className={studioSectionClass(page.projects.length + 1, page.projects.length + 2)}
           aria-labelledby="originals-partner-heading"
         >
           <FilmReveal>
