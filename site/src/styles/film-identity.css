@@ -6031,17 +6031,39 @@ html[data-hero-period="evening"] .home-explore {
     --games-rail-visible: 7;
   }
 
+  /* Overlay left/right on the video strip (not clustered top-right) */
   .games-service__rail-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.45rem;
-    min-height: 2.45rem;
-    margin: 0 0 0.55rem;
-    padding-right: var(--gutter);
+    display: block;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* Match visible card media height (16:9), ignore caption rows below */
+    height: calc(
+      (
+          (100% - (var(--games-rail-visible) - 1) * var(--games-rail-gap)) /
+            var(--games-rail-visible)
+        ) * 9 / 16
+    );
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .games-service--icons .games-service__rail-nav {
+    height: calc(
+      (
+          (100% - (var(--games-rail-visible) - 1) * var(--games-rail-gap)) /
+            var(--games-rail-visible)
+        ) * 18 / 9
+    );
   }
 
   .games-service__rail-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     display: grid;
     place-items: center;
     margin: 0;
@@ -6050,6 +6072,15 @@ html[data-hero-period="evening"] .home-explore {
     background: transparent;
     color: var(--ink);
     cursor: pointer;
+    pointer-events: auto;
+  }
+
+  .games-service__rail-btn--prev {
+    left: 0.15rem;
+  }
+
+  .games-service__rail-btn--next {
+    right: 0.15rem;
   }
 
   .games-service__rail-btn:focus-visible {
