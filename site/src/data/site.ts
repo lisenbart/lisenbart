@@ -12,11 +12,14 @@ export const site = {
     /** Home hero slogan (large line inside H1). */
     headline: "Every idea, landed",
     /** Accessible H1 name: eyebrow + slogan. */
-    heroH1Aria: "Film & Animation Company — Every idea, landed",
+    heroH1Aria: "LISENBART FILM — Film & animation company — Every idea, landed",
     /** Studio page only */
     lead: "An independent film and animation studio united by a belief in the power of storytelling to make a difference.",
     /** Home hero — small line above the slogan, inside the same H1. */
-    heroSupportHeading: "FILM & ANIMATION COMPANY",
+    heroSupportHeading: "LISENBART FILM — Film & animation company",
+    /** Home hero — under the slogan (not in the H1). */
+    heroLead:
+      "Full-cycle animation studio for brands, agencies and game studios. Commercials, game ads, playables and AI films — from idea to final cut.",
     heroSupport:
       "Since 2006 · 1,000+ projects for brands and studios like Nestlé, McDonald's, Samsung, Mastercard, Playtika, Moon Active and others · 11 festival awards",
     /** Shown with brand in the header lockup */

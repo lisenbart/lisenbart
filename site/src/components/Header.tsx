@@ -123,8 +123,20 @@ export default function Header() {
                 }
           }
         >
-          <span className="brand">{site.brand}</span>
-          <span className="brand-est">{site.studioHome.established}</span>
+          <img
+            className="brand-mark"
+            src="/images/brand/lisenbart-film-mark.webp"
+            srcSet="/images/brand/lisenbart-film-mark-128.webp 128w, /images/brand/lisenbart-film-mark-256.webp 256w"
+            sizes="(max-width: 800px) 40px, 56px"
+            width={56}
+            height={56}
+            alt="LISENBART FILM"
+            decoding="async"
+          />
+          <span className="brand-lockup__text">
+            <span className="brand">{site.brand}</span>
+            <span className="brand-est">{site.studioHome.established}</span>
+          </span>
         </a>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {site.primaryNav.map((link) => (

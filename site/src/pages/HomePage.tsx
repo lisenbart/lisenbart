@@ -98,6 +98,7 @@ export default function HomePage() {
                 </span>
                 <span className="home-hero__fly-line">{site.studioHome.headline}</span>
               </h1>
+              <p className="home-hero__lead">{site.studioHome.heroLead}</p>
             </div>
           </div>
         </section>
