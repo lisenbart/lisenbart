@@ -552,7 +552,7 @@ export const site = {
     /** Same 8 Vimeo pieces as before — split under their service. */
     creativeProduction: {
       title: "Creative Production",
-      text: "Send the brief and the assets. Campaign-ready ads come back, roughly in the order you'd hope.",
+      text: "Send the brief and the assets. Campaign-ready ads come back, roughly in the order you'd hope. Short on ideas? We can write the concepts too.",
       note: "Typical video delivery: 1\u20112\u00A0weeks.",
       work: [
         {
@@ -599,8 +599,8 @@ export const site = {
       tapLabel: "Tap to play",
     },
     creativeDevelopment: {
-      title: "Creative Development",
-      text: "Ran out of ideas around campaign twelve? It happens to the best of us. Concepts, scripts and direction live here.",
+      title: "Trailers & Cinematics",
+      text: "Story-driven trailers with characters people actually remember. Your script, our direction and animation.",
       note: "Typical delivery: 20\u201140\u00A0days.",
       work: [
         {
