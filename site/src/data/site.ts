@@ -603,18 +603,18 @@ export const site = {
       note: "Typical delivery: 20\u201140\u00A0days.",
       work: [
         {
-          id: "ga-plarium-deathknight-01",
-          title: "Death Knight p.1",
-          client: "Plarium",
-          poster: "/images/work/ga-plarium-deathknight-01-poster.webp",
-          vimeoId: "1239139826",
-        },
-        {
           id: "ga-corepunk",
           title: "Early Access",
           client: "Corepunk",
           poster: "/images/work/ga-corepunk-poster.webp",
           vimeoId: "1239944833",
+        },
+        {
+          id: "ga-plarium-deathknight-01",
+          title: "Death Knight p.1",
+          client: "Plarium",
+          poster: "/images/work/ga-plarium-deathknight-01-poster.webp",
+          vimeoId: "1239139826",
         },
         {
           id: "ga-plarium-deathknight-02",
