@@ -49,7 +49,7 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
     layout: "film-short",
     seoTitle: "Unnecessary Things — Animated Short | LISENBART FILM",
     seoDescription:
-      "Unnecessary Things — a 14-minute animated short by Dmytro Lisenbart, based on Robert Sheckley's “The Old Curiosity Shop”. 11 awards · 45 selections.",
+      "Unnecessary Things (2021) — a 14-minute animated short by Dmytro Lisenbart, based on a story by Robert Sheckley. 11 awards · 45 festival selections.",
     format: "Animated short · 14 min · 2021",
     synopsis: unnecessary.description,
     creditLines: [
