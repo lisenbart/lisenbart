@@ -2401,6 +2401,14 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   color: var(--ink);
 }
 
+.project-about__source {
+  margin: var(--space-2) 0 0;
+  max-width: min(44rem, 100%);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--muted);
+}
+
 .project-credits__list {
   margin: 0;
   max-width: min(52rem, 100%);

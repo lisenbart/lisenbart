@@ -71,6 +71,9 @@ function FilmShortBody({ project }: { project: ProjectData }) {
         </h2>
         <p className="project-about__format">{project.format}</p>
         <p className="project-about__synopsis">{project.synopsis}</p>
+        <p className="project-about__source">
+          Based on the short story “The Old Curiosity Shop” written by Robert Sheckley
+        </p>
       </section>
 
       {creditLines.length > 0 ? (
