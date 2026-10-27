@@ -604,21 +604,21 @@ export const site = {
       work: [
         {
           id: "ga-plarium-deathknight-01",
-          title: "Deathknight",
+          title: "Death Knight p.1",
           client: "Plarium",
           poster: "/images/work/ga-plarium-deathknight-01-poster.webp",
           vimeoId: "1239139826",
         },
         {
           id: "ga-corepunk",
-          title: "Corepunk",
+          title: "Early Access",
           client: "Corepunk",
           poster: "/images/work/ga-corepunk-poster.webp",
           vimeoId: "1239944833",
         },
         {
           id: "ga-plarium-deathknight-02",
-          title: "Deathknight",
+          title: "Death Knight p.2",
           client: "Plarium",
           poster: "/images/work/ga-plarium-deathknight-02-poster.webp",
           vimeoId: "1239139850",

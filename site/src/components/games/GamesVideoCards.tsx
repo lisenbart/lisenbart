@@ -51,6 +51,10 @@ export default function GamesVideoCards({ items }: { items: readonly SelectedWor
                   </span>
                 ) : null}
               </span>
+              <span className="games-proof-card__meta">
+                <span className="games-proof-card__name">{item.title}</span>
+                <span className="games-proof-card__tap">{item.client}</span>
+              </span>
             </button>
           </div>
         );
