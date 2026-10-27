@@ -3,10 +3,7 @@ import FilmReveal from "@/components/film/FilmReveal";
 import FilmShowreel from "@/components/film/FilmShowreel";
 import PageHeroReel from "@/components/film/PageHeroReel";
 import { AwardsDisclosure } from "@/components/originals/FestivalRecognition";
-import {
-  CreditsDisclosure,
-  OriginalsStillGallery,
-} from "@/components/originals/OriginalsMedia";
+import { OriginalsStillGallery } from "@/components/originals/OriginalsMedia";
 import { SEO } from "@/components/SEO";
 import {
   getOriginalsProject,
@@ -58,12 +55,54 @@ function FilmShortBody({ project }: { project: ProjectData }) {
   const item = project.case;
   const imdbHref = item.imdbId ? `https://www.imdb.com/title/${item.imdbId}/` : null;
   const stills = item.stills ?? [];
+  const creditLines = project.creditLines ?? [];
 
   return (
     <div className="project-page__layout project-page__layout--film-short">
       {stills.length > 0 ? (
         <section className="project-stills-bleed" aria-label={`${item.title} stills`}>
           <OriginalsStillGallery stills={stills} projectTitle={item.title} />
+        </section>
+      ) : null}
+
+      <section className="project-about" aria-labelledby="project-about-heading">
+        <h2 id="project-about-heading" className="project-about__label">
+          About the film
+        </h2>
+        <p className="project-about__format">{project.format}</p>
+        <p className="project-about__synopsis">{project.synopsis}</p>
+      </section>
+
+      {creditLines.length > 0 ? (
+        <section className="project-credits" aria-labelledby="project-credits-heading">
+          <h2 id="project-credits-heading" className="project-credits__label">
+            Credits
+          </h2>
+          <dl className="project-credits__list">
+            {creditLines.map((line) =>
+              line.kind === "note" ? (
+                <div key={line.text} className="project-credits__note">
+                  <dd>{line.text}</dd>
+                </div>
+              ) : (
+                <div key={line.role} className="project-credits__row">
+                  <dt>{line.role}</dt>
+                  <dd>{line.names}</dd>
+                </div>
+              ),
+            )}
+          </dl>
+          {project.creditsImdbHref ? (
+            <p className="project-credits__imdb">
+              <a
+                href={project.creditsImdbHref}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Full cast and crew on IMDb →
+              </a>
+            </p>
+          ) : null}
         </section>
       ) : null}
 
@@ -142,7 +181,6 @@ function FilmShortBody({ project }: { project: ProjectData }) {
 
       <div className="page-shell project-page project-page--film-short page-shell--from-reel project-page__rest">
         <div className="project-page__copy">
-          {item.credits ? <CreditsDisclosure credits={item.credits} /> : null}
           <ProjectCta project={project} />
         </div>
       </div>

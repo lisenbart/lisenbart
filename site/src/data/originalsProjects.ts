@@ -5,6 +5,10 @@ export type { OriginalsProjectSlug };
 
 export type OriginalsLayout = "film-short";
 
+export type OriginalsCreditLine =
+  | { kind: "row"; role: string; names: string }
+  | { kind: "note"; text: string };
+
 export type OriginalsProjectPage = {
   slug: OriginalsProjectSlug;
   layout: OriginalsLayout;
@@ -20,6 +24,9 @@ export type OriginalsProjectPage = {
   highlights?: readonly string[];
   characterNote?: string;
   developmentNotes?: readonly string[];
+  /** Structured credits block (film-short project page). */
+  creditLines?: readonly OriginalsCreditLine[];
+  creditsImdbHref?: string;
   cta: {
     label: string;
     projectType: string;
@@ -42,16 +49,42 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
     layout: "film-short",
     seoTitle: "Unnecessary Things — Animated Short | LISENBART FILM",
     seoDescription:
-      "Unnecessary Things (2021) — a 14-minute animated short by Dmytro Lisenbart. 11 awards · 45 festival selections.",
+      "Unnecessary Things — a 14-minute animated short by Dmytro Lisenbart, based on Robert Sheckley's “The Old Curiosity Shop”. 11 awards · 45 selections.",
     format: "Animated short · 14 min · 2021",
     synopsis: unnecessary.description,
+    creditLines: [
+      { kind: "row", role: "Directed by", names: "Dmytro Lisenbart" },
+      {
+        kind: "row",
+        role: "Written by",
+        names: "Andriy Rushkovskyi, Dmytro Lisenbart",
+      },
+      {
+        kind: "note",
+        text: "Based on the short story “The Old Curiosity Shop” written by Robert Sheckley",
+      },
+      { kind: "row", role: "With", names: "Valeriy Pugashkin" },
+      { kind: "row", role: "Producer", names: "Vitaliy Halo, Marcus Film" },
+      { kind: "row", role: "Creative producer", names: "Valeriy Pugashkin" },
+      { kind: "row", role: "Production design", names: "Dmytro Kryvonos" },
+      { kind: "row", role: "Music", names: "Oleksiy Omelchuk" },
+      { kind: "row", role: "Sound, mixing and mastering", names: "Propeller Studios" },
+      { kind: "row", role: "Production", names: "Lisenbart Animation Studio" },
+      {
+        kind: "row",
+        role: "Made with the support of",
+        names:
+          "State Agency of Ukraine for Film Affairs; Ministry of Culture and Information Policy of Ukraine",
+      },
+    ],
+    creditsImdbHref: "https://www.imdb.com/title/tt14760808/",
     cta: {
-      label: "Discuss this film",
+      label: "Festival & press enquiries",
       projectType: "Originals Partnership",
       message: "Enquiry about Unnecessary Things.",
     },
     contactLead:
-      "Want to screen or distribute Unnecessary Things? Tell us about your festival, platform or programme. We reply within one business day.",
+      "Festival, programme or press enquiry about Unnecessary Things? Tell us what you have in mind. We reply within one business day.",
     case: unnecessary,
   },
 };

@@ -2354,6 +2354,112 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   border-radius: 0;
 }
 
+/* About / Credits — between stills and press; bands: about tint → credits white → press tint */
+.project-about,
+.project-credits {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) var(--gutter);
+  border-top: 1px solid var(--line);
+}
+
+.project-about {
+  background: var(--surface-tint);
+}
+
+.project-credits {
+  background: var(--surface-white);
+}
+
+.project-about__label,
+.project-credits__label {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.project-about__format {
+  margin: 0;
+  font-size: var(--text-meta);
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  line-height: var(--leading-label);
+  color: var(--muted);
+}
+
+.project-about__synopsis {
+  margin: var(--space-2) 0 0;
+  max-width: min(44rem, 100%);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--ink);
+}
+
+.project-credits__list {
+  margin: 0;
+  max-width: min(52rem, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.project-credits__row {
+  display: grid;
+  grid-template-columns: minmax(9rem, 15rem) minmax(0, 1fr);
+  column-gap: clamp(1rem, 2.5vw, 2rem);
+  row-gap: 0.2rem;
+  align-items: baseline;
+}
+
+.project-credits__row dt,
+.project-credits__row dd,
+.project-credits__note dd {
+  margin: 0;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.project-credits__row dt {
+  color: var(--muted);
+}
+
+.project-credits__row dd,
+.project-credits__note dd {
+  color: var(--ink);
+}
+
+.project-credits__note {
+  max-width: none;
+}
+
+.project-credits__imdb {
+  margin: var(--space-4) 0 0;
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+}
+
+.project-credits__imdb a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.project-credits__imdb a:hover {
+  border-bottom-color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .project-credits__row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project-press {
   display: grid;
   gap: clamp(1.25rem, 3vw, 2rem);
@@ -2361,8 +2467,9 @@ html[data-hero-period="evening"] .menu-button:not(.open) span {
   width: 100%;
   box-sizing: border-box;
   padding: clamp(1.75rem, 3.5vw, 2.75rem) var(--gutter);
-  /* Festival page from footer: contact white → rest tint → awards white → press tint */
+  /* Festival page from footer: contact white → rest tint → awards white → press tint → credits white → about tint */
   background: var(--surface-tint);
+  border-top: 1px solid var(--line);
 }
 
 @media (min-width: 800px) {
