@@ -297,12 +297,9 @@ img { display: block; width: 100%; }
   flex: 0 0 auto;
   width: 3.5rem; /* ~56px — memorable, still under hero slogan weight */
   height: 3.5rem;
-  border-radius: 50%;
-  object-fit: cover;
-  /* Soft edge so the white circle holds on light bands */
-  box-shadow:
-    0 0 0 1px rgba(16, 21, 36, 0.08),
-    0 2px 10px rgba(0, 0, 0, 0.18);
+  object-fit: contain;
+  /* Asset is white moon + transparent bear; invert for default dark ink on light pages */
+  filter: invert(1);
 }
 
 .brand-lockup__text {
@@ -619,6 +616,10 @@ html[data-hero-period="evening"] .film-header .desktop-nav a {
   color: #fff;
 }
 
+html[data-hero-period="evening"] .film-header .brand-mark {
+  filter: none;
+}
+
 /* Dark hero previews: white brand + centered nav (readable on stills/reels) */
 html:has(.home-page--gateway) .film-header .brand-lockup,
 html:has(.home-page--gateway) .film-header .brand,
@@ -630,6 +631,11 @@ html:has(.page-with-hero-reel) .film-header .brand-est,
 html:has(.page-with-hero-reel) .film-header .desktop-nav a {
   color: #fff;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Dark still/reel heroes (not day home — day keeps inverted dark mark) */
+html:has(.page-with-hero-reel) .film-header .brand-mark {
+  filter: none;
 }
 
 html:has(.page-with-hero-reel) .menu-button:not(.open) {
