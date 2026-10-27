@@ -61,8 +61,8 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
       },
       {
         kind: "row",
-        role: "With",
-        names: "With the participation of Valeriy Pugashkin",
+        role: "With the participation of",
+        names: "Valeriy Pugashkin",
       },
       { kind: "row", role: "Producer", names: "Vitaliy Halo, Marcus Film" },
       { kind: "row", role: "Creative producer", names: "Valeriy Pugashkin" },
