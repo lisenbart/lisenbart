@@ -529,9 +529,8 @@ export const site = {
     name: "GAME ADS",
     heroLead: "Animation that sells games.",
     seoTitle: "Game Ads — Trailers, UA Creatives & Playables | LISENBART FILM",
-    seoDescription: SHOW_DIVISIONS
-      ? "Game advertising creatives, playable production and creative development — LISENBART GAMES, part of LISENBART FILM."
-      : "Game advertising creatives, playable production and creative development by LISENBART FILM.",
+    seoDescription:
+      "Game ads, UA creatives, playables and story-driven trailers by LISENBART FILM. From your brief and assets to campaign-ready creatives.",
     showreel: {
       id: "games-reel",
       label: SHOW_DIVISIONS ? "LISENBART GAMES Showreel" : "Game Ads Showreel",
