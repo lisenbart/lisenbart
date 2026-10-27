@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import FilmReveal from "@/components/film/FilmReveal";
-import { Arrow } from "@/components/film/FilmIcons";
 import { useMatchMedia } from "@/hooks/useMatchMedia";
 
 export default function GamesServiceBlock({
@@ -27,25 +26,6 @@ export default function GamesServiceBlock({
 }) {
   const railRef = useRef<HTMLDivElement>(null);
   const isMobile = useMatchMedia("(max-width: 899px)");
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
-
-  const updateRailNav = useCallback(() => {
-    const rail = railRef.current;
-    if (!rail) {
-      setCanScrollLeft(false);
-      setCanScrollRight(false);
-      return;
-    }
-    const maxScroll = rail.scrollWidth - rail.clientWidth;
-    if (maxScroll <= 2) {
-      setCanScrollLeft(false);
-      setCanScrollRight(false);
-      return;
-    }
-    setCanScrollLeft(rail.scrollLeft > 2);
-    setCanScrollRight(rail.scrollLeft < maxScroll - 2);
-  }, []);
 
   useEffect(() => {
     const rail = railRef.current;
@@ -92,14 +72,10 @@ export default function GamesServiceBlock({
 
     const onScrollOrResize = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        updateActive();
-        updateRailNav();
-      });
+      raf = requestAnimationFrame(updateActive);
     };
 
     updateActive();
-    updateRailNav();
     rail.addEventListener("scroll", onScrollOrResize, { passive: true });
     window.addEventListener("resize", onScrollOrResize);
 
@@ -113,20 +89,63 @@ export default function GamesServiceBlock({
       window.removeEventListener("resize", onScrollOrResize);
       ro?.disconnect();
     };
-  }, [isMobile, children, updateRailNav]);
+  }, [isMobile, children]);
 
-  const scrollRail = (direction: -1 | 1) => {
+  /* Desktop: click-drag the rail; suppress click after a real drag so play doesn't fire. */
+  useEffect(() => {
     const rail = railRef.current;
-    if (!rail) return;
-    const firstCard = rail.querySelector<HTMLElement>(".games-proof-card");
-    const step = firstCard
-      ? firstCard.getBoundingClientRect().width +
-        (Number.parseFloat(getComputedStyle(rail).columnGap || "0") || 8)
-      : rail.clientWidth * 0.75;
-    rail.scrollBy({ left: direction * step, behavior: "smooth" });
-  };
+    if (!rail || isMobile) return;
 
-  const showDesktopNav = !isMobile && (canScrollLeft || canScrollRight);
+    const DRAG_THRESHOLD = 6;
+    let pointerId: number | null = null;
+    let startX = 0;
+    let startScroll = 0;
+    let dragging = false;
+
+    const endDrag = (event: PointerEvent) => {
+      if (pointerId !== event.pointerId) return;
+      pointerId = null;
+      rail.classList.remove("is-dragging");
+      if (!dragging) return;
+      dragging = false;
+      const suppressClick = (clickEvent: Event) => {
+        clickEvent.preventDefault();
+        clickEvent.stopPropagation();
+        rail.removeEventListener("click", suppressClick, true);
+      };
+      rail.addEventListener("click", suppressClick, true);
+    };
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (event.button !== 0) return;
+      pointerId = event.pointerId;
+      startX = event.clientX;
+      startScroll = rail.scrollLeft;
+      dragging = false;
+      rail.setPointerCapture(event.pointerId);
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (pointerId !== event.pointerId) return;
+      const dx = event.clientX - startX;
+      if (!dragging && Math.abs(dx) < DRAG_THRESHOLD) return;
+      dragging = true;
+      rail.classList.add("is-dragging");
+      rail.scrollLeft = startScroll - dx;
+    };
+
+    rail.addEventListener("pointerdown", onPointerDown);
+    rail.addEventListener("pointermove", onPointerMove);
+    rail.addEventListener("pointerup", endDrag);
+    rail.addEventListener("pointercancel", endDrag);
+
+    return () => {
+      rail.removeEventListener("pointerdown", onPointerDown);
+      rail.removeEventListener("pointermove", onPointerMove);
+      rail.removeEventListener("pointerup", endDrag);
+      rail.removeEventListener("pointercancel", endDrag);
+    };
+  }, [isMobile, children]);
 
   return (
     <section
@@ -150,34 +169,6 @@ export default function GamesServiceBlock({
       </FilmReveal>
 
       <div className="games-service__media">
-        {showDesktopNav ? (
-          <div className="games-service__rail-nav">
-            {canScrollLeft ? (
-              <button
-                type="button"
-                className="games-service__rail-btn games-service__rail-btn--prev"
-                aria-label="Scroll previews left"
-                onClick={() => scrollRail(-1)}
-              >
-                <span className="circle-link games-service__rail-btn-circle" aria-hidden="true">
-                  <Arrow />
-                </span>
-              </button>
-            ) : null}
-            {canScrollRight ? (
-              <button
-                type="button"
-                className="games-service__rail-btn games-service__rail-btn--next"
-                aria-label="Scroll previews right"
-                onClick={() => scrollRail(1)}
-              >
-                <span className="circle-link games-service__rail-btn-circle" aria-hidden="true">
-                  <Arrow />
-                </span>
-              </button>
-            ) : null}
-          </div>
-        ) : null}
         <div
           ref={railRef}
           className="games-service__rail"
