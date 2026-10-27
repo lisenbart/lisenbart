@@ -96,6 +96,7 @@ export default function HomePage() {
                 <span className="home-hero__support-heading">
                   {site.studioHome.heroSupportHeading}
                 </span>
+                <span className="sr-only">: </span>
                 <span className="home-hero__fly-line">{site.studioHome.headline}</span>
               </h1>
               <p className="home-hero__lead">{site.studioHome.heroLead}</p>
