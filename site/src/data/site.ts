@@ -653,7 +653,7 @@ export const site = {
     ] as const,
     trustedHeading: "Selected clients",
     clientsNote:
-      "Trusted by teams at Playtika, Moon Active, Voodoo, Plarium, Youda, Slotomania, Beach Bum Games and others.",
+      "Trusted by teams at Playtika, Moon Active, Voodoo, Plarium, Corepunk, Youda, Slotomania, Beach Bum Games and others.",
     divisionHeading: "LISENBART GAMES",
     divisionText: "Our dedicated games team, part of LISENBART FILM.",
     externalCta: "Visit lisenbart.games",
