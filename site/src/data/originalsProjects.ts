@@ -59,7 +59,11 @@ export const originalsProjects: Record<OriginalsProjectSlug, OriginalsProjectPag
         role: "Written by",
         names: "Andriy Rushkovskyi, Dmytro Lisenbart",
       },
-      { kind: "row", role: "With", names: "Valeriy Pugashkin" },
+      {
+        kind: "row",
+        role: "With",
+        names: "With the participation of Valeriy Pugashkin",
+      },
       { kind: "row", role: "Producer", names: "Vitaliy Halo, Marcus Film" },
       { kind: "row", role: "Creative producer", names: "Valeriy Pugashkin" },
       { kind: "row", role: "Production design", names: "Dmytro Kryvonos" },
