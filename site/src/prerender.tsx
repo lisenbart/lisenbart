@@ -50,6 +50,36 @@ function parseHelmetTags(fragment: string): HeadElement[] {
   return elements;
 }
 
+function parseHelmetScripts(fragment: string): HeadElement[] {
+  const elements: HeadElement[] = [];
+  const scriptRegex = /<script\s+([^>]*?)>([\s\S]*?)<\/script>/gi;
+  let match: RegExpExecArray | null;
+
+  while ((match = scriptRegex.exec(fragment)) !== null) {
+    const attrString = match[1];
+    const content = match[2] ?? "";
+    const props: Record<string, string> = {};
+    const attrRegex = /([\w:-]+)\s*=\s*("([^"]*)"|'([^']*)')/g;
+    let attrMatch: RegExpExecArray | null;
+
+    while ((attrMatch = attrRegex.exec(attrString)) !== null) {
+      const key = attrMatch[1];
+      props[key] = attrMatch[3] ?? attrMatch[4] ?? "";
+    }
+
+    if (content.trim()) {
+      // vite-prerender-plugin accepts inner HTML via children string on script elements.
+      (props as Record<string, string>).children = content;
+    }
+
+    if (Object.keys(props).length > 0) {
+      elements.push({ type: "script", props });
+    }
+  }
+
+  return elements;
+}
+
 function helmetToHead(helmet?: HelmetServerState) {
   if (!helmet) return undefined;
 
@@ -57,6 +87,7 @@ function helmetToHead(helmet?: HelmetServerState) {
   const elements = new Set([
     ...parseHelmetTags(helmet.meta.toString()),
     ...parseHelmetTags(helmet.link.toString()),
+    ...parseHelmetScripts(helmet.script?.toString?.() ?? ""),
   ]);
 
   return {

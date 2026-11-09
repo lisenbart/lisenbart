@@ -243,11 +243,14 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
         description={project.seoDescription}
         url={`${site.canonical}${canonicalPath}`}
         image={ogImage}
-      >
-        {movieJsonLd ? (
-          <script type="application/ld+json">{JSON.stringify(movieJsonLd)}</script>
-        ) : null}
-      </SEO>
+      />
+      {/* Body JSON-LD so vite-prerender HTML includes Movie (Helmet scripts are not serialized). */}
+      {movieJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(movieJsonLd) }}
+        />
+      ) : null}
 
       {hasFullBleedReel ? (
         <div className={`project-page project-page--${project.layout} page-with-hero-reel`}>
