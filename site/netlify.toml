@@ -262,7 +262,18 @@
   status = 301
   force = true
 
+# Contact is an on-page section (id=contact), not a hub. Avoid soft-200 homepage HTML.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact/"
+  to = "/#contact"
+  status = 301
+  force = true
+
+# Do NOT SPA-fallback unknown paths to index.html (soft-404 duplicates home canonical).
+# Public hubs are prerendered as static files; missing paths should 404.

@@ -9,6 +9,7 @@ import {
   getOriginalsProject,
   type OriginalsProjectPage as ProjectData,
 } from "@/data/originalsProjects";
+import { filmPageJsonLd } from "@/data/filmJsonLd";
 import { goToContactWithPrefill, site } from "@/data/site";
 import { publicAsset } from "@/lib/publicAsset";
 import {
@@ -228,6 +229,12 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
     : undefined;
   const item = project.case;
   const hasFullBleedReel = Boolean(item.vimeoId && item.mediaImage);
+  /** Only emit Movie JSON-LD for works with a real URL (skip hash-only stubs). */
+  const movieJsonLd = filmPageJsonLd.find(
+    (entry) =>
+      entry.url === `${site.canonical}${canonicalPath}` ||
+      entry.url === `https://lisenbart.com${canonicalPath}`,
+  );
 
   return (
     <>
@@ -236,7 +243,11 @@ export default function OriginalProjectPage({ slug }: { slug?: OriginalsProjectS
         description={project.seoDescription}
         url={`${site.canonical}${canonicalPath}`}
         image={ogImage}
-      />
+      >
+        {movieJsonLd ? (
+          <script type="application/ld+json">{JSON.stringify(movieJsonLd)}</script>
+        ) : null}
+      </SEO>
 
       {hasFullBleedReel ? (
         <div className={`project-page project-page--${project.layout} page-with-hero-reel`}>
