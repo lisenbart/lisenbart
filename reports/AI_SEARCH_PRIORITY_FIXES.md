@@ -43,7 +43,16 @@ Certainty: high / medium / low
 
 ---
 
-## Suggested commit sequence (when authorized)
+## Applied on `home-b2b-v1` (preview only — not merged to `main`)
+
+| Change | Tested (local `npm run build`) | Result |
+|--------|--------------------------------|--------|
+| UT Movie JSON-LD in body | `dist/.../unnecessary-things/index.html` contains `"@type":"Movie"` | PASS |
+| Dedupe `og:image` | home dist: 1× `og:image` | PASS |
+| Remove SPA soft-404 catch-all + `/contact` → `/#contact` | Config in `netlify.toml` (live verify after deploy) | PENDING prod |
+| Sitemap `lastmod` → 2026-11-09 | `site/public/sitemap.xml` | PASS |
+
+## Suggested remaining commit sequence (when authorized)
 
 1. `fix(seo): emit Unnecessary Things Movie JSON-LD`  
 2. `fix(seo): dedupe og:image shell tags`  
